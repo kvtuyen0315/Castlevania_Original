@@ -12,33 +12,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94fa564f47c57fc43a14f19cbafbf4a7, type: 3}
   m_Name: ConfigAnimationSimond
   m_EditorClassIdentifier: 
-  sheetId: 
-  gridId: 
-  primaryKeyName: 
   records:
-  - name: ascend_
+  - name: ascend
     lengthAnim: 2
-  - name: dead_
+  - name: dead
     lengthAnim: 2
-  - name: descend_
+  - name: descend
     lengthAnim: 2
-  - name: duck_
+  - name: duck
     lengthAnim: 1
-  - name: hurt_
+  - name: hurt
     lengthAnim: 1
-  - name: idle_
+  - name: idle
     lengthAnim: 1
-  - name: intro_
+  - name: intro
     lengthAnim: 1
-  - name: jump_
+  - name: jump
     lengthAnim: 1
-  - name: walk_
+  - name: walk
     lengthAnim: 3
-  - name: whipAscend_
+  - name: whipAscend
     lengthAnim: 3
-  - name: whipDescend_
+  - name: whipDescend
     lengthAnim: 4
-  - name: whipDuck_
+  - name: whipDuck
     lengthAnim: 3
-  - name: whipStand_
+  - name: whipStand
     lengthAnim: 3

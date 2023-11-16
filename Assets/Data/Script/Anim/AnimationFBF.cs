@@ -1,5 +1,5 @@
-﻿using TuyenAFramework;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using TuyenAFramework;
 using UnityEngine;
 
 public class AnimationFBF : BaseUIComp
@@ -9,24 +9,33 @@ public class AnimationFBF : BaseUIComp
     [Header("Data")]
     [SerializeField] List<Sprite> lstSprite = new();
     [SerializeField] float frameRate = 60f;
+    [SerializeField] float speed = 1f;
     [SerializeField] bool isRevert;
 
-    float curFrameRate => 1f / frameRate;
+    float curFrameRate => (1f / frameRate) / speed;
     float _timer { get; set; }
     int _curIndex { get; set; }
+    bool isNullLstSprite { get; set; }
+    bool isOneSprite { get; set; }
 
-    // AAA - Viết về việc cho character thay đổi anim.
+    public bool isPlayAnim { get; set; }
 
-    public void Update()
+    public void SetData(List<Sprite> lstSprite, bool isPlayAnim = true)
     {
-        if (lstSprite.IsNullOrEmpty()) return;
+        this.isPlayAnim = isPlayAnim;
 
-        if (lstSprite.Count is 1) return;
+        this.lstSprite = lstSprite;
+        isNullLstSprite = lstSprite.IsNullOrEmpty();
+        isOneSprite = !isNullLstSprite && lstSprite.Count is 1;
+        CheckFrame(isRevert: isOneSprite ? true : isRevert, isCheckNext: false);
+    }
 
-        _timer += Time.deltaTime;
-        if (_timer >= curFrameRate)
+    private void CheckFrame(bool isRevert, bool isCheckNext)
+    {
+        _timer = 0f;
+
+        if (isCheckNext)
         {
-            _timer = 0f;
             if (isRevert)
             {
                 _curIndex = _curIndex - 1;
@@ -39,7 +48,25 @@ public class AnimationFBF : BaseUIComp
             {
                 _curIndex = (_curIndex + 1) % lstSprite.Count;
             }
-            spriteRenderer.sprite = lstSprite[_curIndex];
+        }
+        else
+        {
+            _curIndex = isRevert ? lstSprite.Count - 1 : 0;
+        }
+
+        spriteRenderer.sprite = lstSprite[_curIndex];
+    }
+
+    public void Update()
+    {
+        if (!isPlayAnim) return;
+        if (isNullLstSprite) return;
+        if (isOneSprite) return;
+
+        _timer += Time.deltaTime;
+        if (_timer >= curFrameRate)
+        {
+            CheckFrame(isRevert, isCheckNext: true);
         }
     }
 }

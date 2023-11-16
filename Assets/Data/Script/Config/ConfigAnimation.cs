@@ -2,8 +2,8 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "ScriptableObject/ConfigAnimationSimond")]
-public class ConfigAnimationSimond : BNDataTable<ConfigAnimationSimondRecord>
+[CreateAssetMenu(menuName = "ScriptableObject/ConfigAnimation")]
+public class ConfigAnimation : BNDataTable<ConfigAnimationRecord>
 {
     public const string pathData = "Character/Simond/";
 
@@ -11,7 +11,7 @@ public class ConfigAnimationSimond : BNDataTable<ConfigAnimationSimondRecord>
 
     public void Init()
     {
-        foreach (ConfigAnimationSimondRecord config in records)
+        foreach (ConfigAnimationRecord config in records)
         {
             string path = config.name.Replace("_", string.Empty);
             Sprite[] lstSprites = Resources.LoadAll<Sprite>($"{pathData}{path}");
@@ -28,7 +28,7 @@ public class ConfigAnimationSimond : BNDataTable<ConfigAnimationSimondRecord>
 }
 
 [Serializable]
-public class ConfigAnimationSimondRecord
+public class ConfigAnimationRecord
 {
     public string name;
     public int lengthAnim;
