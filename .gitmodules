@@ -1,0 +1,3 @@
+[submodule "Assets/TuyenAframework"]
+	path = Assets/TuyenAframework
+	url = https://gitlab.com/kvtuyen0315/tuyenaframework.git

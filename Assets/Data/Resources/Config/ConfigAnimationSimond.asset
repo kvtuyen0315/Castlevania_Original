@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94fa564f47c57fc43a14f19cbafbf4a7, type: 3}
+  m_Name: ConfigAnimationSimond
+  m_EditorClassIdentifier: 
+  sheetId: 
+  gridId: 
+  primaryKeyName: 
+  records:
+  - name: ascend_
+    lengthAnim: 2
+  - name: dead_
+    lengthAnim: 2
+  - name: descend_
+    lengthAnim: 2
+  - name: duck_
+    lengthAnim: 1
+  - name: hurt_
+    lengthAnim: 1
+  - name: idle_
+    lengthAnim: 1
+  - name: intro_
+    lengthAnim: 1
+  - name: jump_
+    lengthAnim: 1
+  - name: walk_
+    lengthAnim: 3
+  - name: whipAscend_
+    lengthAnim: 3
+  - name: whipDescend_
+    lengthAnim: 4
+  - name: whipDuck_
+    lengthAnim: 3
+  - name: whipStand_
+    lengthAnim: 3
