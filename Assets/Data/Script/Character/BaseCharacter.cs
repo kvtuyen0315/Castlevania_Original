@@ -3,32 +3,17 @@ using UnityEngine;
 
 public class BaseCharacter : MonoBehaviour
 {
-    public AnimationFBF animationFBF { get; private set; }
+    public AnimationFBF animationFBF { get; protected set; }
+    public InputController controller { get; protected set; }
 
     #region State
-    public BaseState curState { get; private set; }
-    public NoneState noneState { get; private set; } 
-    public IntroState introState { get; private set; } 
-    public IdleState idleState { get; private set; } 
-    public WalkState walkState { get; private set; } 
-    #endregion
-
-    public void SetData()
-    {
-        animationFBF = GetComponent<AnimationFBF>();
-
-        noneState = new NoneState() { character = this, config = GetConfig(eStateType.none) };
-        introState = new IntroState() { character = this, config = GetConfig(eStateType.intro) };
-        idleState = new IdleState() { character = this, config = GetConfig(eStateType.idle) };
-        walkState = new WalkState() { character = this, config = GetConfig(eStateType.walk) };
-
-        curState = noneState;
-    }
-
-    private ConfigAnimationRecord GetConfig(eStateType stateType)
-    {
-        return AnimationManager.configAnimationSimond.records.Find(s => s.name == stateType.ToString());
-    }
+    public BaseState curState { get; protected set; }
+    public NoneState noneState { get; protected set; }
+    public IntroState introState { get; protected set; }
+    public IdleState idleState { get; protected set; }
+    public WalkState walkState { get; protected set; }
+    public DuckState duckState { get; protected set; }
+    public JumpState jumpState { get; protected set; }
 
     public void SetState(BaseState state)
     {
@@ -39,6 +24,14 @@ public class BaseCharacter : MonoBehaviour
         if (curState != null)
             curState.OnEnterState();
     }
+    #endregion
+
+    public virtual void SetData(InputController controller) { }
+
+    protected ConfigAnimationRecord GetConfig(eStateType stateType)
+    {
+        return AnimationManager.configAnimationSimond.records.Find(s => s.name == stateType.ToString());
+    }
 
     public void PlayAnim(ConfigAnimationRecord config)
     {
@@ -46,8 +39,30 @@ public class BaseCharacter : MonoBehaviour
         animationFBF.SetData(lstSprite);
     }
 
+    public eDirectionType directionTypeH { get; private set; } = eDirectionType.Left;
+    public eDirectionType directionTypeV { get; private set; } = eDirectionType.None;
+    public void SetDirection(eDirectionType directionType)
+    {
+        switch (directionType)
+        {
+            case eDirectionType.None: directionTypeV = eDirectionType.None; break;
+            case eDirectionType.Up: directionTypeV = eDirectionType.Up; break;
+            case eDirectionType.Right: directionTypeH = eDirectionType.Right; break;
+            case eDirectionType.Down: directionTypeV = eDirectionType.Down; break;
+            case eDirectionType.Left: directionTypeH = eDirectionType.Left; break;
+        }
+
+        if (controller.isJump) return;
+
+        if (directionType is eDirectionType.Right or eDirectionType.Left)
+        {
+            float x = directionType is eDirectionType.Right ? -Mathf.Abs(transform.localScale.x) : Mathf.Abs(transform.localScale.x);
+            transform.localScale = new Vector3(x, transform.localScale.y, transform.localScale.z);
+        }
+    }
+
     public bool isPause { get; set; }
-    private void Update()
+    protected virtual void Update()
     {
         if (isPause) return;
         if (curState is null) return;
@@ -58,6 +73,11 @@ public class BaseCharacter : MonoBehaviour
 
     // Cheat
 #if UNITY_EDITOR
+    private void Start()
+    {
+        CheatSetState();
+    }
+
     [Header("Cheat")]
     [SerializeField] eStateType cheatState = eStateType.none;
 
@@ -65,7 +85,7 @@ public class BaseCharacter : MonoBehaviour
     private void CheatSetState()
     {
         if (curState is null)
-            SetData();
+            SetData(InputManager.I.controllerP1);
 
         BaseState state = null;
         switch (cheatState)
@@ -73,11 +93,11 @@ public class BaseCharacter : MonoBehaviour
             case eStateType.ascend: break;
             case eStateType.dead: break;
             case eStateType.descend: break;
-            case eStateType.duck: break;
+            case eStateType.duck: state = duckState; break;
             case eStateType.hurt: break;
             case eStateType.idle: state = idleState; break;
             case eStateType.intro: state = introState; break;
-            case eStateType.jump: break;
+            case eStateType.jump: state = jumpState; break;
             case eStateType.walk: state = walkState; break;
             case eStateType.whipAscend: break;
             case eStateType.whipDescend: break;

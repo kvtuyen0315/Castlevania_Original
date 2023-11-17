@@ -18,7 +18,8 @@ public class AnimationFBF : BaseUIComp
     bool isNullLstSprite { get; set; }
     bool isOneSprite { get; set; }
 
-    public bool isPlayAnim { get; set; }
+    public bool isPlayAnim { get; private set; }
+    public bool isEndAnim { get; private set; }
 
     public void SetData(List<Sprite> lstSprite, bool isPlayAnim = true)
     {
@@ -38,6 +39,7 @@ public class AnimationFBF : BaseUIComp
         {
             if (isRevert)
             {
+                isEndAnim = _curIndex <= -1;
                 _curIndex = _curIndex - 1;
                 if (_curIndex < 0)
                 {
@@ -46,6 +48,7 @@ public class AnimationFBF : BaseUIComp
             }
             else
             {
+                isEndAnim = _curIndex == lstSprite.Count - 1;
                 _curIndex = (_curIndex + 1) % lstSprite.Count;
             }
         }
