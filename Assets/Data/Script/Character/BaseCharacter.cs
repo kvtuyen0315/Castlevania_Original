@@ -5,6 +5,7 @@ public class BaseCharacter : MonoBehaviour
 {
     public AnimationFBF animationFBF { get; protected set; }
     public InputController controller { get; protected set; }
+    public PhysicController physicController { get; protected set; }
 
     #region State
     public BaseState curState { get; protected set; }

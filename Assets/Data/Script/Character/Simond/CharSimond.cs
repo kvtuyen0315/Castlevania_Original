@@ -5,6 +5,8 @@ public class CharSimond : BaseCharacter
         this.controller = controller;
 
         animationFBF = GetComponent<AnimationFBF>();
+        physicController = GetComponent<PhysicController>();
+        if (physicController) physicController.SetData(character: this);
 
         noneState = new NoneState() { character = this, config = GetConfig(eStateType.none) };
         introState = new IntroState() { character = this, config = GetConfig(eStateType.intro) };
