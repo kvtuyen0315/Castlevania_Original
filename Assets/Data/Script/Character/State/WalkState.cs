@@ -1,7 +1,5 @@
 public class WalkState : BaseState
 {
-    public override eStateType stateType => eStateType.walk;
-
     public override void OnEnterState()
     {
         character.PlayAnim(config);
@@ -11,7 +9,7 @@ public class WalkState : BaseState
     {
         if (character.controller.moveX is 0)
         {
-            character.SetState(character.idleState);
+            character.SetState(character.GetState(eStateType.idle));
             return;
         }
 
@@ -27,9 +25,7 @@ public class WalkState : BaseState
         {
             character.SetDirection(character.controller.moveY > 0 ? eDirectionType.Up : eDirectionType.Down);
             if (character.directionTypeV is eDirectionType.Down)
-            {
-                character.SetState(character.duckState);
-            }
+                character.SetState(character.GetState(eStateType.duck));
         }
     }
 }

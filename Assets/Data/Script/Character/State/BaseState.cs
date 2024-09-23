@@ -1,28 +1,27 @@
 public enum eStateType
 {
     none = -1,
+    intro,
+    idle,
+    walk,
     ascend,
+    duck,
+    jump,
+    hurt,
     dead,
     descend,
-    duck,
-    hurt,
-    idle,
-    intro,
-    jump,
-    walk,
     whipAscend,
     whipDescend,
     whipDuck,
     whipStand,
+    Length,
 }
 
 public class BaseState
 {
     public BaseCharacter character { get; set; }
     public ConfigAnimationRecord config { get; set; }
-
-    public virtual eStateType stateType => eStateType.none;
-    public string nameState => stateType.ToString();
+    public eStateType stateType { get; set; } = eStateType.none;
 
     public virtual void OnEnterState()
     {

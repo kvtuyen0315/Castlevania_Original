@@ -1,7 +1,5 @@
 public class JumpState : BaseState
 {
-    public override eStateType stateType => eStateType.jump;
-
     public override void OnEnterState()
     {
         character.PlayAnim(config);

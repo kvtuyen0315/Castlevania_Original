@@ -3,7 +3,6 @@
 public class PhysicController : MonoBehaviour
 {
     [SerializeField] Vector2 startPosition;
-    [SerializeField] float fallSpeed = 5f;
 
     BaseCharacter _character { get; set; }
 
@@ -19,23 +18,60 @@ public class PhysicController : MonoBehaviour
 
     public void Update()
     {
-        if (isPause) return;
-        if (isGround) return;
+        if (isPause)
+            return;
+
+        if (isGround)
+            return;
+
+        if (_isJumping && _onJumpUp)
+        {
+            transform.Translate(Vector3.up * (jumpForce * (1f - _jumpTime / jumpDuration)) * Time.deltaTime);
+            _jumpTime += Time.deltaTime;
+
+            if (_jumpTime >= jumpDuration)
+            {
+                _jumpTime = 0f;
+                _onJumpUp = false;
+            }
+            else
+                return;
+        }
 
         isGround = IsGrounded();
         Debug.Log($"isGround {isGround}");
 
-        if (!isGround)
-        {
-            Fall();
-        }
+        if (isGround)
+            _isJumping = false;
+
+        Fall();
     }
 
+    [SerializeField] float fallSpeed = 5f;
     private void Fall()
     {
         // Di chuyển nhân vật theo hướng Vector2.down với tốc độ fallSpeed
-        transform.Translate(Vector2.down * fallSpeed * Time.deltaTime);
+        _jumpTime += Time.deltaTime;
+        transform.Translate(Vector2.down * (jumpForce * _jumpTime / fallSpeed) * Time.deltaTime);
     }
+
+    #region Jump
+    [SerializeField] float jumpForce = 2f; // Độ mạnh của cú nhảy  
+    [SerializeField] float jumpDuration = 1f;
+    float _jumpTime { get; set; }
+    bool _isJumping { get; set; } // Kiểm tra xem nhân vật đang nhảy hay không
+    bool _onJumpUp { get; set; }
+    public void Jump()
+    {
+        if (_isJumping)
+            return;
+
+        _isJumping = true;
+        _onJumpUp = true;
+        _jumpTime = 0f;
+        isGround = false;
+    }
+    #endregion
 
     Vector2 posBox => new Vector2(transform.position.x, transform.position.y + (boxSize.y / 2));
     private bool IsGrounded()

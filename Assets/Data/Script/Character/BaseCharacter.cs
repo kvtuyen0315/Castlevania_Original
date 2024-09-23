@@ -10,11 +10,20 @@ public class BaseCharacter : MonoBehaviour
     #region State
     public BaseState curState { get; protected set; }
     public NoneState noneState { get; protected set; }
-    public IntroState introState { get; protected set; }
-    public IdleState idleState { get; protected set; }
-    public WalkState walkState { get; protected set; }
-    public DuckState duckState { get; protected set; }
-    public JumpState jumpState { get; protected set; }
+    public List<BaseState> stateList { get; protected set; }
+
+    public BaseState GetState(eStateType stateType)
+    {
+        var state = stateList.Find(x => x.stateType == stateType);
+        if (state is null)
+        {
+#if UNITY_EDITOR
+            Debug.LogError($"state is null by stateList is {gameObject.name}");
+#endif
+        }
+
+        return state;
+    }
 
     public void SetState(BaseState state)
     {
@@ -27,7 +36,37 @@ public class BaseCharacter : MonoBehaviour
     }
     #endregion
 
-    public virtual void SetData(InputController controller) { }
+    public virtual void SetData(InputController controller)
+    {
+        noneState = new NoneState() { character = this, config = GetConfig(eStateType.none) };
+
+        stateList = new();
+
+        int length = (int)eStateType.Length;
+        for (int i = 0; i < length; i++)
+        {
+            eStateType stateType = (eStateType)i;
+            BaseState state = null;
+            switch (stateType)
+            {
+                case eStateType.intro: state = new IntroState(); break;
+                case eStateType.idle: state = new IdleState(); break;
+                case eStateType.walk: state = new WalkState(); break;
+                case eStateType.duck: state = new DuckState(); break;
+                case eStateType.jump: state = new JumpState(); break;
+            }
+
+            if (state is null)
+                continue;
+
+            state.character = this;
+            state.config = GetConfig(stateType);
+            state.stateType = stateType;
+
+            if (!stateList.Contains(state))
+                stateList.Add(state);
+        }
+    }
 
     protected ConfigAnimationRecord GetConfig(eStateType stateType)
     {
@@ -88,23 +127,10 @@ public class BaseCharacter : MonoBehaviour
         if (curState is null)
             SetData(InputManager.I.controllerP1);
 
-        BaseState state = null;
-        switch (cheatState)
-        {
-            case eStateType.ascend: break;
-            case eStateType.dead: break;
-            case eStateType.descend: break;
-            case eStateType.duck: state = duckState; break;
-            case eStateType.hurt: break;
-            case eStateType.idle: state = idleState; break;
-            case eStateType.intro: state = introState; break;
-            case eStateType.jump: state = jumpState; break;
-            case eStateType.walk: state = walkState; break;
-            case eStateType.whipAscend: break;
-            case eStateType.whipDescend: break;
-            case eStateType.whipDuck: break;
-            case eStateType.whipStand: break;
-        }
+        BaseState state = GetState(cheatState);
+        if (state is null)
+            return;
+
         SetState(state);
     }
 

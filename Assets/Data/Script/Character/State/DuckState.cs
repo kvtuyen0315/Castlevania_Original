@@ -1,7 +1,5 @@
 public class DuckState : BaseState
 {
-    public override eStateType stateType => eStateType.duck;
-
     public override void OnEnterState()
     {
         character.PlayAnim(config);
@@ -11,9 +9,11 @@ public class DuckState : BaseState
     {
         if (character.controller.moveY >= 0)
         {
-            character.SetState(character.idleState);
+            character.SetState(character.GetState(eStateType.idle));
             return;
         }
+        else if (character.controller.moveX != 0)
+            character.SetDirection(character.controller.moveX > 0 ? eDirectionType.Right : eDirectionType.Left);
 
         if (character.controller.isAttack)
         {
