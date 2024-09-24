@@ -9,11 +9,11 @@ public class DuckState : BaseState
     {
         if (character.controller.moveY >= 0)
         {
-            character.SetState(character.GetState(eStateType.idle));
+            SetState(eStateType.idle);
             return;
         }
         else if (character.controller.moveX != 0)
-            character.SetDirection(character.controller.moveX > 0 ? eDirectionType.Right : eDirectionType.Left);
+            character.SetDirection(character.curDirectionH);
 
         if (character.controller.isAttack)
         {

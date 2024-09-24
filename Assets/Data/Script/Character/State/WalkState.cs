@@ -2,14 +2,17 @@ public class WalkState : BaseState
 {
     public override void OnEnterState()
     {
+        base.OnEnterState();
         character.PlayAnim(config);
     }
 
     public override void CheckNextState()
     {
+        base.CheckNextState();
+
         if (character.controller.moveX is 0)
         {
-            character.SetState(character.GetState(eStateType.idle));
+            SetState(eStateType.idle);
             return;
         }
 
@@ -19,13 +22,29 @@ public class WalkState : BaseState
         }
         else if (character.controller.isJump)
         {
-
+            SetState(eStateType.jump);
         }
+        else if (character.controller.moveX != 0)
+            character.SetDirection(character.curDirectionH);
         else if (character.controller.moveY != 0)
         {
-            character.SetDirection(character.controller.moveY > 0 ? eDirectionType.Up : eDirectionType.Down);
+            character.SetDirection(character.curDirectionV);
             if (character.directionTypeV is eDirectionType.Down)
-                character.SetState(character.GetState(eStateType.duck));
+                SetState(eStateType.duck);
         }
+    }
+
+    public override void OnExecuteState()
+    {
+        base.OnExecuteState();
+
+        character.Move(character.curDirectionH);
+    }
+
+    public override void OnExitState()
+    {
+        base.OnExitState();
+
+        character.StopMove();
     }
 }

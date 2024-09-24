@@ -79,6 +79,8 @@ public class BaseCharacter : MonoBehaviour
         animationFBF.SetData(lstSprite);
     }
 
+    public eDirectionType curDirectionH => controller.moveX > 0 ? eDirectionType.Right : eDirectionType.Left;
+    public eDirectionType curDirectionV => controller.moveY > 0 ? eDirectionType.Up : eDirectionType.Down;
     public eDirectionType directionTypeH { get; private set; } = eDirectionType.Left;
     public eDirectionType directionTypeV { get; private set; } = eDirectionType.None;
     public void SetDirection(eDirectionType directionType)
@@ -92,7 +94,8 @@ public class BaseCharacter : MonoBehaviour
             case eDirectionType.Left: directionTypeH = eDirectionType.Left; break;
         }
 
-        if (controller.isJump) return;
+        if (controller.isJump)
+            return;
 
         if (directionType is eDirectionType.Right or eDirectionType.Left)
         {
@@ -110,6 +113,18 @@ public class BaseCharacter : MonoBehaviour
         curState.OnExecuteState();
         curState.CheckNextState();
     }
+
+    #region Jump
+    public bool isGround => physicController.isGround;
+
+    public void Jump() => physicController.Jump();
+    #endregion
+
+    #region Move
+    public void Move(eDirectionType directionType) => physicController.Move(directionType);
+
+    public void StopMove() => physicController.StopMove();
+    #endregion
 
     // Cheat
 #if UNITY_EDITOR

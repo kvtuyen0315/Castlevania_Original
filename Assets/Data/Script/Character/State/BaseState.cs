@@ -23,6 +23,8 @@ public class BaseState
     public ConfigAnimationRecord config { get; set; }
     public eStateType stateType { get; set; } = eStateType.none;
 
+    protected void SetState(eStateType stateType) => character.SetState(character.GetState(stateType));
+
     public virtual void OnEnterState()
     {
 

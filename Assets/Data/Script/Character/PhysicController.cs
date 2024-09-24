@@ -21,9 +21,21 @@ public class PhysicController : MonoBehaviour
         if (isPause)
             return;
 
+        #region Move
+        if (_isMove)
+        {
+            // Tạo vector hướng di chuyển 2D  
+            Vector2 movement = new Vector2(onMoveDicrection, 0);
+
+            // Di chuyển transform  
+            transform.Translate(movement * speed * Time.deltaTime);
+        }
+        #endregion
+
         if (isGround)
             return;
 
+        #region Jump
         if (_isJumping && _onJumpUp)
         {
             transform.Translate(Vector3.up * (jumpForce * (1f - _jumpTime / jumpDuration)) * Time.deltaTime);
@@ -36,7 +48,8 @@ public class PhysicController : MonoBehaviour
             }
             else
                 return;
-        }
+        } 
+        #endregion
 
         isGround = IsGrounded();
         Debug.Log($"isGround {isGround}");
@@ -71,6 +84,20 @@ public class PhysicController : MonoBehaviour
         _jumpTime = 0f;
         isGround = false;
     }
+    #endregion
+
+    #region Move
+    
+    bool _isMove { get; set; }
+    public float onMoveDicrection { get; set; } = 1f;
+    public float speed = 1f; // Tốc độ di chuyển
+    public void Move(eDirectionType directionType)
+    {
+        _isMove = true;
+        onMoveDicrection = directionType is eDirectionType.Right ? 1 : -1;
+    }
+
+    public void StopMove() => _isMove = false;
     #endregion
 
     Vector2 posBox => new Vector2(transform.position.x, transform.position.y + (boxSize.y / 2));
