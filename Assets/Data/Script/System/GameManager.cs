@@ -1,4 +1,4 @@
-using TuyenAFramework;
+using afsdk;
 
 public class GameManager : ManualSingletonMono<GameManager>
 {
