@@ -41,6 +41,21 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Background
+    uniqueID: 228625069
+    locked: 0
+  - name: BackgroundFX
+    uniqueID: 980407382
+    locked: 0
   - name: Character
     uniqueID: 733023783
+    locked: 0
+  - name: Foreground
+    uniqueID: 700303014
+    locked: 0
+  - name: HUD
+    uniqueID: 2137038465
+    locked: 0
+  - name: Overlay
+    uniqueID: 148255773
     locked: 0

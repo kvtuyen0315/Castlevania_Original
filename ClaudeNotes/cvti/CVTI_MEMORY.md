@@ -9,7 +9,7 @@
 |---|---|---|---|---|---|
 | 00 | hạ tầng timeline + sổ | **XONG** (ảnh Play Mode baseline chụp lại 11/10 nhưng ra TRẮNG, xem §7) | (commit "CVTI 00") | 11/10/2026 | đo bằng ffmpeg + python; MCP mất kết nối khi vào Play Mode |
 | 01 | thu thập sprite/sound nguồn | **XONG** | (commit "CVTI 01") | 11/10/2026 | nhập 3 PNG + zip + 37 WAV, sha256/md5 khớp; 3 thứ còn thiếu → §5 |
-| 02 | nền render pixel-perfect NES | CHƯA | | | |
+| 02 | nền render pixel-perfect NES | **XONG** | (commit "CVTI 02") | 11/10/2026 | 256×240, PPU 16, scale 4× trên 1920×1080 = `1024:960:448:60`; ảnh lưới khớp từng pixel ở 3×/4×/6× |
 | 03 | cắt sprite Title/Intro/HUD/font | CHƯA | | | |
 | 04 | khung game flow/input/audio/NesText | CHƯA | | | |
 | 05 | màn Title + dơi + nháy PUSH START | CHƯA | | | |
@@ -146,7 +146,24 @@ Nguồn + sha256 + credit: `Art_Source/SOURCES.md` (và `CVTI_PLAN.md §2`). Đ�
 | Thời lượng tính bằng frame NES 60 fps, chuẩn: nháy 8f tắt + 8f bật ×5 (80 f), đen 16 f trước Intro, đen 32 f trước Stage 1, Simon 0.5 px/f ≈ 252 f, mây 0.118 px/f | §2 | 00 (hằng số `NesTiming` thuộc routine 04) |
 | Hiến pháp H1–H7 giữ nguyên như đề bài | | 00 |
 
-(Chưa có quyết định nào khác — để routine 02/04 điền.)
+### 4.1 Nền render (routine 02 chốt — 11/10/2026)
+
+| Quyết định | Giá trị | Lý do |
+|---|---|---|
+| Độ phân giải logic | **256×240** (đủ màn NES, không cắt 8 dòng như TV/trình giả lập) | Intro dùng hết y 0–239 (HUD 0–47 + nền 48–239); Title có thanh xám y 0–7 trong sheet. Cắt 224 dòng sẽ mất 8 dòng đáy cảnh Intro. Video cắt 8 dòng trên là do trình giả lập — lệnh ghép §3a đã tính (overlay y −7). |
+| Tỷ lệ pixel | **Vuông** (1:1) | Scale nguyên lần ⇒ pixel đều. 8:7 (ngang ×1.143) không nguyên lần ⇒ cột pixel rộng hẹp không đều. Câu hỏi để ở §5 #2, KHÔNG tự làm 8:7. |
+| PPU | **16** (`NesCoord.PPU`) | 1 metatile NES 16×16 = 1 unit, tile 8×8 = 0.5 unit; màn = 16×15 unit — số tròn cho vật lý/tilemap Stage sau. PPU 8 cũng được nhưng khối 16 px (đơn vị thiết kế màn của Castlevania) sẽ là 2 unit. |
+| Camera | `MainCamera` (tag **MainCamera** — sửa nợ §6 cũ), ortho size 7.5, pos `NesCoord.CameraHome` = (8, −7.5, −10), SolidColor **#000000 alpha 1**, depth 0 + `UnityEngine.U2D.PixelPerfectCamera` (package 2d.pixel-perfect 5.1.1): assetsPPU 16, ref 256×240, upscaleRT ✓, pixelSnapping ✓, cropFrameX ✓, cropFrameY ✓, stretchFill ✗ | upscaleRT: vẽ vào RT 256×240 rồi phóng Point ⇒ vật ở vị trí lẻ pixel (Simon 0.5 px/f) vẫn ra đúng lưới pixel NES. |
+| **Camera xoá viền** | con `MainCamera/LetterboxClear`: Camera depth −100, SolidColor đen, cullingMask Nothing, rect full | Built-in: PixelPerfectCamera thu `pixelRect` về vùng game nên vùng viền KHÔNG được ai xoá ⇒ ra rác trắng/đen (ảnh `grid_1920x1080_noclear.png`; đây cũng là lý do ảnh baseline routine 00 ra trắng). Mọi scene có camera game phải mang theo con này. |
+| Bảng scale (Game view cố định) | **1280×720 → 3× = 768×720 @ (256,0)** · **1920×1080 → 4× = 1024×960 @ (448,60)** · **2560×1440 → 6× = 1536×1440 @ (512,0)** | đo bằng `cam.pixelRect` trong Play + ảnh chụp so từng pixel với PNG gốc: 0 pixel lệch, 0 pixel không đen ngoài vùng game ở cả 3 mức. zoom = min(⌊W/256⌋, ⌊H/240⌋). |
+| **Vùng game trong ảnh chụp 1920×1080** | **`1024:960:448:60`** (W:H:X:Y, gốc trên-trái ảnh) | dùng cho lệnh ghép `CVTI_PLAN §3a`. |
+| Hệ toạ độ | NES (x phải, **y xuống**, gốc trên-trái màn) → world `(x/16, −y/16)`; góc trên-trái màn = world (0,0), góc dưới-phải = (16, −15). API `NesCoord`: `SCREEN_W/H`, `PPU`, `UNIT_PER_PIXEL`, `CameraHome`, `ToWorld(int,int)`, `ToWorld(float,float)` (vị trí lẻ pixel), `ToNes(Vector3)` (làm tròn). | Đặt object bằng toạ độ đo trên sheet/video là so pixel trực tiếp. Màn cuộn (Stage) sau này: toạ độ NES = toạ độ pixel trong level, camera dời theo x — không đổi quy ước. |
+| Pivot | **Top-Left** cho mọi sprite, trừ `Assets/Data/Art/Character/**` = **Bottom-Center** | Top-Left: transform = `ToWorld(góc trên-trái đo trên sheet)`. Nhân vật: transform = `ToWorld(tâm x, mép dưới)` — vd Simon 16×32 góc (120,177) ⇒ `ToWorld(128, 209)`; tiện cho chân chạm sàn/lật hướng. Sheet cắt Multiple (routine 03) tự đặt pivot từng sprite theo đúng quy ước này. |
+| Preset import | `Assets/Data/Editor/NesSpriteImporter.cs` (`OnPreprocessTexture`), chỉ `Assets/Data/Art/**`, chỉ khi `importSettingsMissing` (lần đầu): Sprite, PPU 16, **Point**, **Uncompressed**, no mipmap, alphaIsTransparency, Clamp, mesh **FullRect**, pivot như trên | Đã thử: import mới ra đúng hết; chỉnh tay PPU 32 rồi force reimport → giữ 32 (không đè). Lưu ý: file PNG chép vào CÙNG đợt với lúc script importer mới tạo sẽ import trước khi compile ⇒ phải xoá `.meta` và import lại (đã gặp ở routine 02). |
+| Sorting layers (dưới → trên) | `Default`, `Background`, `BackgroundFX`, **`Character`**, `Foreground`, `HUD`, `Overlay` | Thêm bằng SerializedObject trên TagManager. **Dùng lại layer `Character` có sẵn** (uniqueID 733023783, không asset nào dùng) thay vì tạo `Characters` trùng nghĩa. `Default` để dưới cùng: object quên đặt layer sẽ bị che ⇒ lộ lỗi ngay. `Overlay` = màn đen cắt cảnh. |
+| Chữ & UI | **SpriteRenderer world-space** (Title, HUD, NesText) — KHÔNG dùng uGUI Canvas Screen Space Overlay/TextMeshPro | Canvas Overlay không đi qua PixelPerfectCamera ⇒ không nguyên pixel, lệch scale. Nếu buộc phải Canvas thì Screen Space - Camera trỏ `MainCamera` + sprite Point, ghi lý do ở đây. |
+| Scene test | `Assets/Scenes/Test/PixelGrid.unity` (MainCamera + LetterboxClear giống Main + sprite `Assets/Data/Art/_Test/PixelGrid.png` ở NES (0,0), layer Background); ảnh lưới sinh bằng `python -I Tools/cvti/make_pixel_grid.py <out.png>` | Giữ lại để routine sau kiểm nhanh pixel-perfect sau khi đổi camera. Camera trong scene test là BẢN SAO — nếu routine 04 đổi camera Main thì sửa cả bản này. |
+| Kiểm từng pixel ảnh chụp | `python -I Tools/cvti/check_pixel_exact.py <shot> <src.png> <S> <X> <Y> <shotW> <shotH> [srcW srcH]` — so RGBA từng khối S×S với PNG gốc + ngoài vùng game phải đen alpha 255 | 0 lệch ⇒ không nhoè, không lệch nửa pixel. Phải so cả alpha: vùng không ai xoá ra (0,0,0,**0**) — trình xem ảnh hiện TRẮNG, so RGB sẽ lọt. |
 
 ## §5 Câu hỏi cho người dùng (chép từ CVTI_PLAN §8 + phát sinh)
 
@@ -156,6 +173,7 @@ Nguồn + sha256 + credit: `Art_Source/SOURCES.md` (và `CVTI_PLAN.md §2`). Đ�
 4. Sheet HUD/font và sheet Stage 1 — người dùng tải thêm khi nào? (chặn routine 06 và phần Stage 1 của 07)
 5. Stage 1 sau intro: chỉ dựng **stub** (màn đầu + HUD + nhạc) để nối luồng; gameplay Stage 1 là cụm khác — xác nhận.
 6. (Mới) Dòng copyright: làm theo video "1988"/3 dòng (mặc định đã chọn theo yêu cầu "như video") — xác nhận được.
+7. (02) Tỷ lệ pixel (= câu 2, chi tiết): routine 02 đã làm **pixel vuông** 256×240 scale nguyên. Nếu muốn giống video 8:7 thì có thể thêm *tuỳ chọn* kéo ngang ×8/7 bằng RT Point (pixel ngang sẽ rộng 4 hoặc 5 px màn hình xen kẽ ở 4×) — có muốn không? Mặc định KHÔNG.
 
 **Trả lời cho §5 (routine 01, chạy vắng mặt — không hỏi được người dùng):** CHƯA TRẢ LỜI. Cần người dùng cung cấp đúng 3 thứ (chi tiết `Art_Source/_inbox/README.md`): (1) sheet HUD+font — chặn routine 06; (2) sheet Stage 1 — 07 dùng nền đen nếu thiếu; (3) nhạc Prologue + Vampire Killer — 07 không phát nhạc nếu thiếu. Tạm áp dụng phương án Recommended: người dùng tự tải vào `Art_Source/_inbox/`, routine 02–05 làm tiếp phần đã có; 06 tự kiểm sheet HUD.
 
@@ -165,7 +183,13 @@ Nguồn + sha256 + credit: `Art_Source/SOURCES.md` (và `CVTI_PLAN.md §2`). Đ�
 - Nhịp từng tư thế walk của Simon và từng khung dơi Title không đo được ở capture 7.5 fps.
 - Nhiễu nền git (không thuộc cụm): `Assets/TuyenAframework.meta`, `Castlevania_Original-main.slnx`, `UserSettings/`, submodule `Assets/TuyenAframework` hiện cờ ` m`.
 - (01) 393996 = SFX không tên, cụm gameplay sẽ định danh; không import WAV nào vào `Assets/` ở cụm CVTI.
-- Camera `MainCamera` Untagged ⇒ `Camera.main` null (routine 02 nên tag lại hoặc không dùng `Camera.main`).
+- ~~Camera `MainCamera` Untagged ⇒ `Camera.main` null~~ — **đã sửa ở routine 02** (tag MainCamera).
+- ~~Ảnh baseline Play Mode ra trắng~~ — **nguyên nhân (02)**: vùng không camera nào xoá ra alpha 0 (trình xem hiện trắng). Đã sửa bằng `LetterboxClear` + nền camera alpha 1.
+- (02) **`Assets/Data/Prefabs/GameManager.prefab` có 2 con `AnimationManager`, `InputManager` mang script MISSING** (sót từ code cũ đã xoá) ⇒ vào Play Main báo 6 warning "The referenced script … is missing!". Không thuộc phạm vi 02 — **routine 04** dọn khi dựng input/flow.
+- (02) **MCP rơi kết nối khi vào Play Mode** nếu cửa sổ Unity không được focus (Editor bị throttle, ping không trả lời; `runInBackground: 0`). Cách xử lý đã thử OK: sau `manage_editor play` chạy PowerShell `(New-Object -ComObject WScript.Shell).AppActivate(<PID Unity>)` rồi chờ ~4 s; PID lấy bằng `Get-Process Unity` (cái có MainWindowTitle). Không đổi `runInBackground` (ProjectSettings ngoài phạm vi) — routine 04 cân nhắc.
+- (02) Build target hiện là **Android** (nhóm Game view = Android; size 1920×1080 Landscape = index 6, 1280×720 = 4, 2560×1440 = 10). `manage_camera screenshot` chụp theo size Game view. Không đổi build target.
+- (02) Ngoài TagManager KHÔNG đổi ProjectSettings. Gợi ý cho **routine 04**: `Time.fixedDeltaTime`/vSync/`Application.targetFrameRate = 60` cho nhịp frame NES (H4).
+- (02) Lỗi nền console không thuộc cụm (có từ trước): Odin `PersistentContextCache` ArgumentNullException `path1`, `Unity.Mathematics module data`, GUIClips — giữ nguyên.
 
 ## §7 Nhật ký nghiệm thu
 
@@ -181,3 +205,15 @@ Nguồn + sha256 + credit: `Art_Source/SOURCES.md` (và `CVTI_PLAN.md §2`). Đ�
 
 ### Routine 01 — 11/10/2026
 - Nhập 3 PNG + zip + giải nén 37 WAV vào `Art_Source/`; sha256 4 file khớp planner, md5 37 WAV khớp `Downloads\393996\`. `SOURCES.md` + `_inbox/README.md` đã tạo. Bản đồ sheet đo lại (§3): không lệch. Đã mở xem cả 3 sheet. 0 file mới trong `Assets/`.
+
+### Routine 02 — 11/10/2026
+- Tạo: `Assets/Data/Script/System/NesCoord.cs`, `Assets/Data/Editor/NesSpriteImporter.cs`, `Assets/Scenes/Test/PixelGrid.unity`, `Assets/Data/Art/_Test/PixelGrid.png`, `Tools/cvti/make_pixel_grid.py`, `Tools/cvti/check_pixel_exact.py`. Sửa: `Assets/Scenes/Main.unity` (MainCamera + PixelPerfectCamera + con LetterboxClear), `ProjectSettings/TagManager.asset` (5 sorting layer mới). Không đụng `Assets/TuyenAframework`.
+- Ảnh nghiệm thu (thư mục `ClaudeNotes/cvti/_cache/shots/02/`, đều đã mở xem):
+  - `grid_1920x1080.png` — lưới 256×240 ở NES (0,0): scale 4×, vùng game (448,60,1024,960), viền đen; `check_pixel_exact` **0/983 040 lệch, 0 pixel ngoài vùng không đen**. Xem phóng to `zoom_topleft.png` (viền đỏ 1 px = 4 px màn, ô xanh 8×8 ở (1,1)), `zoom_center.png` (caro 1 px đen/trắng nét, không nhoè).
+  - `grid_1280x720.png` (3×, 0/552 960 lệch) · `grid_2560x1440.png` (6×, 0/2 211 840 lệch) — đều 0 pixel ngoài vùng không đen.
+  - `grid_1920x1080_noclear.png` — TRƯỚC khi thêm LetterboxClear: vùng viền là rác (alpha 0 hiện trắng + mảng đen cũ), checker báo 737 676 pixel ⇒ bằng chứng cần camera xoá viền.
+  - `title_panelA_1920x1080.png` — panel A sheet Title (crop (1,1,256,240), sprite tạm) ở NES (0,0): khớp từng pixel với PNG (0 lệch). Lệnh ghép §3a với `ref/01` → `cmp_side.png`, `cmp_diff.png`: ảnh hiệu **tối** ở logo, 2 dải ô vuông, thanh xám dưới (chỉ viền mảnh do h264); **sáng** ở dòng copyright (1987/4 dòng vs 1988/3 dòng), PUSH START KEY (thanh chấm tím/xanh), ô tháp ô-liu, và UI trình giả lập dưới đáy — đúng như dự đoán. Có thêm dải sáng mảnh ở mép trên (video y 0–6, chỗ thanh xám NES y 0–7 bị trình giả lập cắt) — chưa xác minh nguyên nhân; logo/ô vuông bên dưới khớp nên không phải lệch toạ độ chung.
+  - `main_play_1920x1080.png` — Play `Main.unity`: toàn khung đen đặc (0 pixel khác (0,0,0,255)), `Camera.main` có, pixelRect (448,60,1024,960), zoom 4.
+- Sprite tạm `TitlePanelA_tmp.png` + object trong scene test **đã xoá** trước commit (03 cắt bản chính thức).
+- Console sau `refresh_unity`: không có error/warning nào từ file của routine 02; còn lỗi nền §6 (Odin, Mathematics, GUIClips) và 6 warning missing script của `GameManager.prefab` (§6, routine 04).
+- `Main.unity` + `PixelGrid.unity` đã lưu (scene active cuối phiên: Main, không dirty). Game view để lại 1920×1080 Landscape.
