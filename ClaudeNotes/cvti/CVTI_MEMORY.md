@@ -13,9 +13,9 @@
 | 03 | cắt sprite Title/Intro/HUD/font | **XONG phần Title/Intro/Simon/Font; HUD + Stage 1 chờ sheet** | (commit "CVTI 03") | 11/10/2026 | 77 sprite từ manifest `Tools/cvti/slices.json`, chạy 2 lần md5 y hệt; ảnh lưới 0 pixel lệch; `NesFont.asset` 26 glyph |
 | 04 | khung game flow/input/audio/NesText | **XONG** | (commit "CVTI 04") | 11/10/2026 | 1 scene + 3 prefab màn placeholder; NesClock 60 Hz; log frame đúng ±0 (80/16/442/32) ở 20 fps và ~378 fps; 3 ảnh đã xem |
 | 05 | màn Title + dơi + nháy PUSH START | **XONG** | (commit "CVTI 05") | 11/10/2026 | prefab Title thật; 19 ảnh Play khớp 0 pixel lệch với ảnh ghép từ PNG; dơi 37 khung bay 3/4 f xen kẽ (129 f, xấp xỉ) + lơ lửng 37-38-39-38 ×4 f; log nháy 80 / đen 16 ±0 |
-| 06 | HUD dùng chung | **CHƯA — DỪNG (thiếu sheet HUD)** | (không có commit code) | 11/10/2026 | `Text Font.gif` mới chỉ là bảng chữ, vẫn thiếu thanh máu/tim/khung vũ khí phụ; xem §5 #13, §7 |
-| 07 | Intro Simon + nối Stage 1 stub | **CHƯA — DỪNG ở Bước 0 (cổng 06 chưa đạt)** | (chỉ commit ghi sổ) | 11/10/2026 | 06 chưa XONG, vẫn chưa có sheet HUD; xem §7 |
-| 08 | nghiệm thu so với video gốc | **XONG — kết luận cụm: CHƯA ĐẠT** | (commit "CVTI 08") + sửa nhỏ `7ae4d00` | 11/10/2026 | Title + khung luồng đạt (8/12 mốc ±1.2 f, tất định, pixel-exact ở 4 độ phân giải); Intro/Stage 1 vẫn placeholder (06/07 dừng), không nhạc ⇒ xem §7 "NGHIỆM THU CỤM" + routine đề xuất |
+| 06 | HUD dùng chung | **XONG (có phần TẠM)** — chạy lại 11/10/2026 chiều theo yêu cầu người dùng | (commit "CVTI 06") | 11/10/2026 | HUD = Canvas World Space + TextMeshProUGUI font `NesFont TMP` (mới); chữ số/G/- TẠM từ sheet Text Font (Famicom), thanh máu/tim/khung TẠM vẽ theo video (§4.5, §5 #16–#17); chữ khớp 0 pixel lệch với glyph |
+| 07 | Intro Simon + nối Stage 1 stub | **XONG (thiếu nhạc + nền Stage 1)** — chạy lại 11/10/2026 chiều | (commit "CVTI 07") | 11/10/2026 | Simon/mây/2 dơi theo số đo khung-khớp-khung §2.4; luồng đủ Title→Intro→Stage1 đúng frame (Intro L448, Simon dừng L696, đen L890, Stage 1 L922); Stage 1 = nền đen + HUD + Simon; chưa có nhạc (§5 #3) |
+| 08 | nghiệm thu so với video gốc | **XONG — kết luận cụm: CHƯA ĐẠT** (trước khi 06/07 xong — **cần chạy lại 08**) | (commit "CVTI 08") + sửa nhỏ `7ae4d00` | 11/10/2026 | Title + khung luồng đạt (8/12 mốc ±1.2 f, tất định, pixel-exact ở 4 độ phân giải); Intro/Stage 1 vẫn placeholder (06/07 dừng), không nhạc ⇒ xem §7 "NGHIỆM THU CỤM" + routine đề xuất |
 
 ## §2 Timeline & số đo (video 524×476, 30 fps container, capture thực ~7.5 fps ⇒ sai số mốc ±0.13 s; frame NES = giây × 60)
 
@@ -95,6 +95,17 @@ Thời lượng: Title im lặng 1.03→6.90 (5.87 s ≈ 352 f) · nháy 6.90→
 
 **Nháy PUSH START (đo lại `ref/brightness_series.tsv` cột 3)**: tắt (16.0) ở 6.900 / 7.167 / 7.433 / 7.700 / 7.967 s, bật (61.0) ở 7.033 / 7.300 / 7.533 / 7.833 / 8.100 s, đen 8.233 s, Intro 8.500 s ⇒ chu kỳ 0.267 s = 16 f (8 tắt + 8 bật), 5 lần tắt, 80 f, đen 16 f — **khớp hằng số cũ, không đổi**.
 
+### 2.4 Intro — đo khung-khớp-khung (planner, 11/10/2026 chiều) — dùng cho `IntroScreen` (§4.6)
+
+**Cách đo**: mọi khung video 8.40–16.0 s (30 fps) lấy mẫu về lưới NES (`x = 11 + 1.969·(nx+.5)`, `y = −7.4 + 1.712·(ny+.5)`), so với `intro_bg` + từng sprite (`walk_0/1/2`, `back_0`, `intro_cloud`) ⇒ chọn vị trí + tư thế sai số nhỏ nhất. Script ở scratchpad planner (không commit).
+- **Simon**: đỉnh sprite **y 178** (so 177: sai số 59 vs 108 ⇒ 178 chắc chắn; số 177/209 cũ ở §2.2 lệch 1 px). Mép trái x = **243 − ⌊f/2⌋** (f = frame Intro): khớp mọi mẫu ±1 px (8.533 s → 242 … 12.60 s → 120), dừng ở **x 119** (tâm 127) ⇒ đi **248 f** (không phải 252), quay lưng thấy từ 12.667 s.
+- **Chu kỳ đi = walk_0 → walk_1 → walk_2 → walk_1**, mỗi tư thế **7 f**, lệch pha **+4 f** khi cảnh bật: tư thế = `ORDER[((f+4)/7) % 4]` — khớp ~60/62 mẫu (mẫu lệch đều do jitter capture). Chu kỳ 28 f (đo 0.486 s/chu kỳ trên 7 chu kỳ). §2.2 cũ "14 f" là chu kỳ bề rộng bbox (= nửa chu kỳ tư thế).
+- **Mây**: y top **73**; x = **222 − ⌊(f+4)/8⌋** (1 px mỗi 8 f = 7.5 px/s; đo 7.6 px/s): 8.533 s → 222, 11.0 → 203, 13.0 → 188 ✓.
+- **2 dơi nhỏ** (tâm, đo cụm điểm đen trên nền trời; **XẤP XỈ** — bị che khi bay qua bóng đen lâu đài/cây): A ở ngọn tháp (145,72) từ đầu → (136,69) f110 → (129,76) f200 → (125,75) f246 → (121,72) f270 → (117,69) f330 → (115,66) f390 → (117,63) f442. B hiện ~f66 (9.6 s) ở trái-dưới (31,121) → (43,111) f150 → (54,100) f194 → (65,94) f240 → (70,89) f270 → (83,79) f330 → (96,70) f390 → (107,63) f430. Vệt "dơi thứ 3" ở mép phải x≈245–253 là đuôi mây (đã xem crop) — chỉ có 2 dơi. Nhịp vỗ cánh không đo được ⇒ chọn 8 f/khung.
+- **Stage 1 (16.6–17.9 s)**: Simon `idle_0` **lật phải (flipX)**, góc trên-trái **(42,161)** (sai số 90 lật vs 183 không lật).
+- **HUD video** (trung bình 12 khung 8.7–14.2 s): dòng trạng thái y 16 (`SCORE-000000 TIME 0300 STAGE 01`, ô 8 px từ x 0); `PLAYER` (0,24), `ENEMY` (0,32); 16 vạch máu khối đặc **3×6, bước 4 px từ x 56**, PLAYER y 25 màu ≈(208,32,0)→NES (216,40,0), ENEMY y 33 ≈(240,112,96)→(252,116,96); khung vũ khí phụ **32×22 tại (128,24), viền 2 px** đỏ; tim **8×8 tại (168,24)** đỏ + vệt trắng; `-05` (176,24); `P-03` (168,32).
+- **Bộ chữ HUD video = bộ chữ US của màn Title** (chấm điểm trên video: R/E US khớp hơn hẳn bản sheet Text Font; số `0` video khác `0` Famicom vài pixel; `-` video 6 px ở dòng 3, Famicom 5 px ở dòng 4).
+
 ## §3 Tài nguyên
 
 Nguồn + sha256 + credit: `Art_Source/SOURCES.md` (và `CVTI_PLAN.md §2`). Đã nhập 11/10/2026, **sha256 cả 4 file khớp planner**; 37 WAV giải nén lại từ zip, md5 từng file khớp `Downloads\393996\`. Sprite đã cắt: xem **§3.1** (routine 03).
@@ -121,6 +132,15 @@ Sinh bằng `python -P -E Tools/cvti/slice_sprites.py` từ `Tools/cvti/slices.j
 **Dòng copyright theo video** (ghép bằng glyph, đã thử ghép + so `ref/01` bằng lệnh §3a: khớp, căn lệch tối ưu (1,1) video px giống hệt logo ⇒ vị trí đúng): dòng 1 `TM AND © 1988` tại NES **(72,160)**; dòng 2 `KONAMI INDUSTRY CO.,LTD.` tại **(32,168)**; dòng 3 `LICENSED BY NINTENDO` tại **(48,176)** (thử x 40/44/48/52/56 — 48 là duy nhất khớp). Ô 8 px, không khoảng cách thêm. Ảnh: `_cache/03/cmp_side.png`, `zoom_copy.png`.
 
 **Font (`Assets/Data/Art/Font/NesFont.asset`, class `NesFont` ở `Assets/Data/Script/UI/NesFont.cs`)**: 26 glyph; API `TryGetSprite(char, out Sprite)`, `CanRender(string, out char missing)`, hằng `NesFont.CELL = 8`; dấu cách = tiến 1 ô, không sprite. Dựng lại: menu **CVTI/Build NesFont** (`Assets/Data/Editor/NesFontBuilder.cs`, quét `glyph_*.png`; tên đặc biệt đã khai sẵn `hyphen`→`-`, `heart`→`♥` cho sheet HUD sau này). Kiểm `CanRender`: 3 dòng copyright video ✓, `PUSH START KEY` ✓, `PLAYER` ✓, `ENEMY` ✓; **HUD thiếu `G`, `-`, `0`, `2`–`6` (và icon ♥)** → §5.
+
+### 3.2 Bổ sung 11/10/2026 chiều (routine 06/07 chạy lại)
+
+| tên | file | nguồn | ghi chú |
+|---|---|---|---|
+| `glyph_0 2 3 4 5 6 G J Q V W X Z hyphen` (14) | `Assets/Data/Art/Font/glyph_*.png` | `Art_Source/spriters-resource/text_font.gif` (chuyển từ `_inbox/`, sha256 `bbf0ddca…`) — ô 8×8 ghi ở `slices.json` | **TẠM** (bộ chữ Famicom; người dùng chọn "dùng tạm từ gif"). Trắng (255,255,254) chuẩn hoá về (252,252,252) bằng trường mới `recolor` của `slice_sprites.py`. Chữ đã có bản US giữ bản US (E/F/L/R/8 của gif KHÁC US — đã so). `NesFont.asset` giờ 40 glyph: `, - . 0–9 A–Z ©`. |
+| `hud_tick_player_temp`, `hud_tick_enemy_temp` (3×6), `hud_subweapon_frame_temp` (32×22), `hud_heart_temp` (8×8) | `Assets/Data/Art/Intro/` (theo chỉ định người dùng) | **VẼ LẠI theo số đo video** bằng `Tools/cvti/make_hud_temp.py` (không phải pixel sheet) | **TẠM** — người dùng đồng ý dựng tạm 11/10/2026. Màu palette NES (216,40,0)/(252,116,96)/(252,252,252). Khi có sheet HUD US: cắt bằng manifest, xoá `*_temp.png`, sửa đường dẫn trong `CvtiIntroPrefabBuilder` rồi chạy lại menu. |
+| `NesFont TMP.asset` | `Assets/Data/Art/Font/NesFont TMP.asset` (+ sub-asset atlas 128×128 Point, material `TextMeshPro/Bitmap`) | dựng từ `NesFont.asset` bằng menu **CVTI/Build NesFont TMP** (`Assets/Data/Editor/NesTmpFontBuilder.cs`) | 42 ký tự (40 glyph + dấu cách + `_` dùng chung glyph trống để TMP khỏi cảnh báo gạch chân). Cỡ chữ 8 = 8 px NES. |
+| TMP Essential Resources | `Assets/TextMesh Pro/` (3.6 MB) | gói chuẩn của com.unity.textmeshpro 3.0.9 | Bắt buộc để dùng TMP (shader, TMP Settings). |
 
 ### Bản đồ sheet đã xác nhận (đo bằng ffmpeg rawvideo + python, 11/10/2026)
 
@@ -259,6 +279,25 @@ Sinh bằng `python -P -E Tools/cvti/slice_sprites.py` từ `Tools/cvti/slices.j
 | Âm thanh | Không phát gì ở Title, kể cả khi bấm Start. | Video im lặng. Không làm demo/attract mode (§5 #1). |
 | Test chụp ảnh đúng frame | `execute_code` đăng ký delegate `NesClock.OnTick` gọi `ScreenCapture.CaptureScreenshot(<đường dẫn tuyệt đối>)` ở local frame mong muốn (chạy sau FrameAnimator vì đăng ký sau) — chụp đúng khung đã log. Nhận diện khung dơi trong ảnh: `_cache/05/whichbat.py` (so với ảnh ghép `expected.py`). | `manage_camera screenshot` qua MCP không chọn được frame. Lưu ý: Unity mất focus ⇒ NesClock ngừng (delegate treo tới khi `AppActivate`). |
 
+### 4.5 HUD + font TMP (routine 06, chạy lại 11/10/2026 chiều)
+
+| Quyết định | Giá trị | Lý do |
+|---|---|---|
+| Font TextMeshPro | `NesFont TMP.asset`: bitmap tĩnh (AtlasPopulationMode Static, RASTER), atlas 128×128 Point, ô 10×10 đệm 1 px; FaceInfo pointSize 8, lineHeight 8, ascent 8, baseline 0; glyph metrics 8×8, bearingY 8, advance 8. Dựng lại: **CVTI/Build NesFont** rồi **CVTI/Build NesFont TMP** (giữ GUID). | Người dùng yêu cầu "font kiểu TextMeshProUI". Ghi trực tiếp bảng glyph (reflection vào field internal của TMP 3.0.9) ⇒ không cần file TTF, pixel y nguyên PNG. |
+| HUD | `Assets/Data/Prefabs/UI/HUD.prefab`: root **Canvas World Space** 256×48, pivot trên-trái, scale 1/16 ⇒ 1 đơn vị canvas = 1 px NES, sortingLayer **HUD**; con: `StatusLine`/`PlayerLabel`/`EnemyLabel`/`Hearts`/`Lives` = **TextMeshProUGUI** (font NesFont TMP, cỡ 8, màu (252,252,252), TopLeft, không wrap) + `PlayerBar`/`EnemyBar` (16 `Image` vạch) + `SubWeaponFrame` + `Heart` (`Image`). Component `Hud` (`Script/UI/Hud.cs`) đọc `GameSession.Current`, ẩn vạch đã mất. | Thay quyết định "không uGUI" ở §4.1: Canvas **World Space** đi qua PixelPerfectCamera như sprite thường (chỉ Screen Space Overlay mới hỏng). Đã kiểm: chữ khớp **0 pixel lệch** với glyph PNG, mọi khối 4×4 đồng nhất. |
+| Dữ liệu HUD | `GameSession` (`Script/System/GameSession.cs`, class thường, `Current` tĩnh): score 0, time 300, stage 1, playerHp/enemyHp 16 (`MAX_HP`), hearts 5, lives 3, `eSubWeapon.None`; `NotifyChanged()` ⇒ event `Changed`. | Giá trị đầu ván theo video; gameplay (đếm giờ…) là cụm sau. |
+| Dựng prefab | Menu **CVTI/Build HUD + Intro + Stage1 prefabs** (`Assets/Data/Editor/CvtiIntroPrefabBuilder.cs`) — xoá con cũ, dựng lại, giữ GUID prefab màn. **Sửa layout = sửa builder rồi chạy lại**, không sửa tay prefab. | Tái lập được khi thay sprite TẠM bằng sheet thật. |
+
+### 4.6 Intro + Stage 1 stub (routine 07, chạy lại 11/10/2026 chiều)
+
+| Quyết định | Giá trị | Lý do |
+|---|---|---|
+| Prefab `IntroScreen` | Con: `HUD` (prefab), `Background` (`intro_bg` @ NES (0,48), layer Background), `Cloud` (BackgroundFX 0), `BatA`/`BatB` (BackgroundFX 1), `Simon` (Character, pivot Bottom-Center). | §2.4. Mây vẽ đè mặt trăng (trăng nằm sẵn trong nền). |
+| `IntroScreen.cs` | Tính lại mọi vị trí từ `localFrame` mỗi tick (không cộng dồn ⇒ tất định). Simon `x = 243 − f/2` tới f 248 rồi `back_0` ở x 119; chân y 210 (`ToWorld(x+8, 210)`); tư thế `WALK_ORDER[((f+4)/7)%4]`. Mây `x = 222 − (f+4)/8`, y 73. Dơi: bảng (frame, tâm x, tâm y) nội suy tuyến tính, làm tròn pixel; B ẩn tới f 66; vỗ cánh 8 f/khung, B lệch pha 8 f. Hết 442 f ⇒ `GoTo(Stage1, 32)`. | Số đo §2.4. Simon 0.5 px/f làm bằng số nguyên (1 px mỗi 2 f) ⇒ không có toạ độ lẻ. |
+| Hằng `NesTiming` mới/đổi | `INTRO_SIMON_WALK` **252 → 248**, `INTRO_SIMON_STEP 2`, `INTRO_SIMON_POSE 7`, `INTRO_SIMON_POSE_PHASE 4`, `INTRO_CLOUD_STEP 8`, `INTRO_CLOUD_PHASE 4`, `INTRO_BAT_FLAP 8`, `INTRO_BAT_B_APPEAR 66`. | 252 cũ suy từ 12.70 s; đo khớp sprite ra 248 (video quay lưng 12.667 s). |
+| Stage 1 stub | `HUD` + `Simon` (`idle_0`, **flipX**, `ToWorld(50,193)` = góc (42,161)); nền đen (chưa có sheet Stage 1); nhạc chưa có. | Video 16.4 s. Không làm gameplay. |
+| Nhạc | `IntroScreen.music` / `Stage1Stub.music` vẫn trống (log "chưa có clip — im lặng"). | Chưa có nguồn (§5 #3). |
+
 ## §5 Câu hỏi cho người dùng (chép từ CVTI_PLAN §8 + phát sinh)
 
 1. Để yên ở Title lâu thì có cần attract/demo mode không? (video không thể hiện ⇒ mặc định KHÔNG làm)
@@ -279,6 +318,10 @@ Sinh bằng `python -P -E Tools/cvti/slice_sprites.py` từ `Tools/cvti/slices.j
 
 14. (08) **Dựng Intro trước, chưa có HUD?** Mọi sprite Intro đã cắt đủ (`intro_bg`, Simon walk/back, mây, 2 dơi nhỏ — §3.1); chỉ HUD, nền Stage 1 và nhạc là thiếu nguồn. Routine 07 đang bị khoá vì cổng "06 phải XONG". Đề xuất `cvti-fix-01` (§7) dựng Intro chừa trống dải HUD y 0–47 — người dùng có đồng ý tách cổng không? (Mặc định đề xuất: CÓ.)
 15. (08) Tình trạng câu hỏi cũ: #1 (attract/demo), #2/#7 (8:7), #3 (nguồn nhạc), #4/#8/#9/#13 (sheet HUD + Stage 1), #5 (Stage 1 chỉ stub), #6 (copyright 1988), #10 (Start bỏ qua Intro), #11 (Start khi dơi đang bay), #12 (3/4 f từng khung dơi) — **vẫn CHƯA được trả lời** tới 11/10/2026; `Downloads/` không có file mới sau `Text Font.gif` (12:43).
+
+16. (06, chiều 11/10) **Chữ số/G/-/J/Q/V/W/X/Z đang TẠM từ sheet Text Font (Famicom)** — người dùng chọn "Dùng tạm từ gif". Đã so với video: `0` và `-` của gif KHÁC bản US vài pixel. Khi có sheet HUD/font bản US: thay ô trong `slices.json` → slicer → CVTI/Build NesFont → CVTI/Build NesFont TMP.
+17. (06, chiều 11/10) **Thanh máu, tim, khung vũ khí phụ là hình VẼ LẠI theo video** (`Assets/Data/Art/Intro/hud_*_temp.png`, `Tools/cvti/make_hud_temp.py`) — người dùng trả lời "Data trong folder Assets/Data/Art/Intro" cho câu hỏi dựng tạm; planner hiểu là dựng tạm và đặt ở thư mục đó. Cần xác nhận cách hiểu; khi có sheet HUD thì thay.
+18. (07, chiều 11/10) Còn thiếu để Intro/Stage 1 giống video hoàn toàn: **nhạc Prologue + Vampire Killer** (#3) và **sheet Stage 1** (#9). #14 đã được người dùng trả lời bằng việc yêu cầu "làm intro như video luôn" ⇒ đã tách cổng, Intro dựng xong.
 
 **Trả lời cho §5 (routine 01, chạy vắng mặt — không hỏi được người dùng):** CHƯA TRẢ LỜI. Cần người dùng cung cấp đúng 3 thứ (chi tiết `Art_Source/_inbox/README.md`): (1) sheet HUD+font — chặn routine 06; (2) sheet Stage 1 — 07 dùng nền đen nếu thiếu; (3) nhạc Prologue + Vampire Killer — 07 không phát nhạc nếu thiếu. Tạm áp dụng phương án Recommended: người dùng tự tải vào `Art_Source/_inbox/`, routine 02–05 làm tiếp phần đã có; 06 tự kiểm sheet HUD.
 
@@ -530,3 +573,16 @@ Kiểm từng pixel (`_cache/08/verify_run1.txt`): 16 ảnh Title (L3…L431) **
 | 3 | (chạy lại) `cvti-06-hud-dung-chung-score-time-stage` | Sonnet 5.5 · high | HUD dùng chung khi đã có sheet (routine sẵn có, không tạo mới). |
 | 4 | `cvti-fix-03-gan-hud-nhac-va-nen-stage1` | Opus 5.5 · high | Gắn HUD vào Intro + Stage 1 stub, gán clip Prologue (không loop) / Vampire Killer (loop) và nền Stage 1, đo lại lệch nhạc so với 8.436 s / 16.414 s. |
 | 5 | (chạy lại) `cvti-08-nghiem-thu-so-khop-video-goc` | Opus 5.5 · xhigh | Nghiệm thu lại cả cụm — nhất là 4 mốc Simon/nhạc, ref 05/06/07/09, rung nửa pixel Simon/mây ở 4 độ phân giải. |
+
+### Routine 06 + 07 — chạy lại 11/10/2026 chiều (phiên planner, theo yêu cầu người dùng "check qua 2 routine này… làm luôn font TextMeshProUI… làm intro như video")
+
+**Người dùng chọn** (hỏi 1 lần): chữ số/G/- **dùng tạm từ sheet Text Font**; thanh máu/tim/khung trả lời "Data trong folder Assets/Data/Art/Intro" ⇒ dựng tạm theo video, đặt ở thư mục đó (§5 #16–#17).
+
+**Đã làm**: gif chuyển `_inbox/` → `Art_Source/spriters-resource/text_font.gif` (git mv, sha256 giữ nguyên) + 14 ô glyph vào `slices.json` (slicer thêm `recolor`; chạy lại 91 sprite, 77 cũ giữ nguyên byte); `NesFont.asset` 40 glyph; nhập TMP Essential Resources; `NesTmpFontBuilder` → `NesFont TMP.asset`; `GameSession`, `Hud`, `make_hud_temp.py` + 4 sprite TẠM; `CvtiIntroPrefabBuilder` dựng `HUD.prefab`, nội dung `IntroScreen.prefab` (bỏ placeholder `Label`) và `Stage1Stub.prefab` (bỏ `SCENE 1`); `IntroScreen.cs` thật; `NesTiming` thêm/đổi hằng (§4.6).
+
+**Nghiệm thu** (Play `Main.unity`, Game view 1920×1080, `AppActivate` Unity; ảnh ở `_cache/shots/07/`, đã mở xem):
+- Console: 0 error/warning của cụm (chỉ lỗi nền §6: Odin PersistentContext, Unity.Mathematics, GUIClips, WebSocket MCP).
+- Luồng đầy đủ (harness `GoTo(Title,0)` + `InjectStart` ở L351, log `CVTI.LogFlow`): dơi lơ lửng L129 · Start L352 · đen L432 · **Intro L448** (video 448.2) · **Simon dừng L696** (video 12.667 s ≈ 698) · **đen L890** (video 890) · **Stage 1 L922** (video 922). Lệch ≤ 2 f.
+- Pixel HUD: chữ TMP so với glyph PNG ở 5 dòng — **0 pixel lệch**; mọi khối 4×4 trong dải HUD đồng nhất (không nhoè). Màu vạch/khung/tim đúng (216,40,0)/(252,116,96).
+- So video ở lưới NES (`nes_diff`, ảnh `nesdiff_L002/150/250/330/441.png`): nền, HUD, Simon (vị trí + tư thế), mây, 2 dơi trùng chỗ; sai khác còn lại là viền do nén/scale video (scene mean diff ≈ 11/255). L441 lệch lớn vì video đã cắt đen ở 15.867 s (mốc biên). Ở L330 (14.0 s) 2 dơi: build (83,79) & (117,70) — video (84,79) & (117,69).
+- Chưa đạt/chưa kiểm: nhạc (không có file), nền Stage 1 (không có sheet), chữ số/HUD là TẠM (khác US vài pixel), nhịp vỗ cánh dơi xấp xỉ. **Cần chạy lại routine 08** để nghiệm thu chính thức cả cụm.

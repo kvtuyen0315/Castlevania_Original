@@ -23,9 +23,23 @@ public static class NesTiming
     public const int BLACK_AFTER_TITLE = 16;
     public const int BLACK_AFTER_INTRO = 32;
 
-    // Intro (§2.1): 8.50→15.87 s = 7.37 s ≈ 442 f; Simon đi từ đầu cảnh tới 12.70 s (4.2 s = 252 f) rồi quay lưng.
+    // Intro (§2.1): 8.50→15.87 s = 7.37 s ≈ 442 f.
     public const int INTRO_TOTAL = 442;
-    public const int INTRO_SIMON_WALK = 252;
+
+    // Intro — Simon (§2.4, khớp từng khung video 30 fps với sprite): đi 1 px mỗi 2 f từ x 243 tới 119 = 124 px ⇒ 248 f,
+    // rồi quay lưng (video 12.67 s). Chu kỳ đi walk_0→1→2→1, mỗi tư thế 7 f (28 f/chu kỳ), lệch pha 4 f lúc cảnh bật.
+    public const int INTRO_SIMON_WALK = 248;
+    public const int INTRO_SIMON_STEP = 2;
+    public const int INTRO_SIMON_POSE = 7;
+    public const int INTRO_SIMON_POSE_PHASE = 4;
+
+    // Intro — mây (§2.4): trôi sang trái 1 px mỗi 8 f (video 7.6 px/s), lệch pha 4 f.
+    public const int INTRO_CLOUD_STEP = 8;
+    public const int INTRO_CLOUD_PHASE = 4;
+
+    // Intro — 2 dơi nhỏ (§2.4, XẤP XỈ): vỗ cánh đổi khung mỗi 8 f; dơi B hiện từ frame 66 (video 9.6 s).
+    public const int INTRO_BAT_FLAP = 8;
+    public const int INTRO_BAT_B_APPEAR = 66;
 
     public static float ToSeconds(int frames)
     {
