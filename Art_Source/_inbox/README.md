@@ -7,3 +7,5 @@ Trang resource bị Cloudflare chặn truy cập tự động nên cần ngườ
 3. **Nhạc Prologue + Vampire Killer** — pack 393996 chỉ có SFX; nguồn do người dùng chọn. Gợi ý tên: `prologue.(wav|ogg|mp3)`, `vampire_killer.(wav|ogg|mp3)`. Routine 07 không phát nhạc nếu chưa có.
 
 Sau khi bỏ file vào, chạy lại nhập (chép nguyên byte + sha256 + thêm dòng vào `../SOURCES.md`).
+
+**Cập nhật 11/10/2026 chiều:** `Text Font.gif` đã chuyển sang `../spriters-resource/text_font.gif` và dùng tạm cho chữ số HUD. Vẫn cần: (1) sheet HUD bản US (chữ số, thanh máu, tim, khung vũ khí phụ) để thay đồ TẠM; (2) sheet Stage 1; (3) nhạc Prologue + Vampire Killer.

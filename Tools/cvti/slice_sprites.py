@@ -7,6 +7,8 @@ Kiểm (lỗi nào cũng dừng, không ghi đè nửa chừng):
   - `edgeCheck` (mặc định bật): viền 1 px ngay ngoài rect toàn màu nền sheet ⇒ rect không hụt mép ô;
   - `forbidColors`: 0 pixel các màu này sau khi tô; `allowColors`: chỉ có các màu này (trước khi key);
   - `alsoAt`: các chỗ khác trên sheet (cùng w×h) phải trùng từng pixel (glyph font lặp lại).
+  - `recolor`: [[từ, thành], …] đổi màu ngay sau `fill` (chuẩn hoá palette giữa các sheet rip khác nhau,
+    vd trắng (255,255,254) của sheet Text Font → (252,252,252) như sheet Title); `allowColors` kiểm SAU khi đổi.
 Cần Pillow (máy này cài ở user site ⇒ chạy `python -P -E`, KHÔNG `-I` vì `-I` bỏ user site):
   python -P -E Tools/cvti/slice_sprites.py [--check]      (--check: chỉ kiểm, không ghi file)
 Chạy từ thư mục gốc repo. In md5 từng file để so hai lần chạy.
@@ -55,6 +57,13 @@ def process(e, sheet, bg):
         for j in range(fy, fy + fh):
             for i in range(fx, fx + fw):
                 px[i, j] = (0, 0, 0, 255)
+
+    for src, dst in e.get("recolor", []):
+        src, dst = tuple(src), tuple(dst)
+        for j in range(h):
+            for i in range(w):
+                if rgb(px[i, j]) == src:
+                    px[i, j] = dst + (255,)
 
     colors = {}
     for j in range(h):

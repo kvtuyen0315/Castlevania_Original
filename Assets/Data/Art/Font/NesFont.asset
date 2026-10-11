@@ -15,10 +15,24 @@ MonoBehaviour:
   glyphs:
   - character: 44
     sprite: {fileID: 21300000, guid: d599f765b2666694ba332a55932801be, type: 3}
+  - character: 45
+    sprite: {fileID: 21300000, guid: a075027d27877fe4a9b9b4707178fbc8, type: 3}
   - character: 46
     sprite: {fileID: 21300000, guid: 6227e3917fa788741b8ff3e89d47a1a5, type: 3}
+  - character: 48
+    sprite: {fileID: 21300000, guid: 39cfbadc849b0e34caa82fba69b9c7b9, type: 3}
   - character: 49
     sprite: {fileID: 21300000, guid: 2bab27736bd7855488707e18e5cfd130, type: 3}
+  - character: 50
+    sprite: {fileID: 21300000, guid: 42bff571cb2b6e441a596b073a0eca82, type: 3}
+  - character: 51
+    sprite: {fileID: 21300000, guid: 9f193794a7c6e5d4fbf60df7175e2f0d, type: 3}
+  - character: 52
+    sprite: {fileID: 21300000, guid: ff88c4e3bea5f414b82a01814902fb7d, type: 3}
+  - character: 53
+    sprite: {fileID: 21300000, guid: 7848f7878094e2a4382c12d086847967, type: 3}
+  - character: 54
+    sprite: {fileID: 21300000, guid: 529927aa942c0c948b47cbde58ae5730, type: 3}
   - character: 55
     sprite: {fileID: 21300000, guid: 20b7e5e8ce3a48a4b980136c076fd0d4, type: 3}
   - character: 56
@@ -37,10 +51,14 @@ MonoBehaviour:
     sprite: {fileID: 21300000, guid: 40c328aa3ce788d4b9ab1fe9d238c6d6, type: 3}
   - character: 70
     sprite: {fileID: 21300000, guid: f0dd5b8ac05e0c44c9ba2c2b49e3bb9d, type: 3}
+  - character: 71
+    sprite: {fileID: 21300000, guid: 11824693c0f93cb40b66641105e946ae, type: 3}
   - character: 72
     sprite: {fileID: 21300000, guid: e44741d2deea4e94ab6362791f27946b, type: 3}
   - character: 73
     sprite: {fileID: 21300000, guid: 02d4cdf0d27c1e447aef50e4744871da, type: 3}
+  - character: 74
+    sprite: {fileID: 21300000, guid: 296d62009d13cba40a5e1741f5aa5e1a, type: 3}
   - character: 75
     sprite: {fileID: 21300000, guid: c3d0f248279b3e04b8fc38e8f94fd78b, type: 3}
   - character: 76
@@ -53,6 +71,8 @@ MonoBehaviour:
     sprite: {fileID: 21300000, guid: 9975658c0c85fe34c8181441d03f5268, type: 3}
   - character: 80
     sprite: {fileID: 21300000, guid: bc3ce7bd834733c459a962e2aa04aa8b, type: 3}
+  - character: 81
+    sprite: {fileID: 21300000, guid: 6023c90cb72bd974083fdd77a738c3c8, type: 3}
   - character: 82
     sprite: {fileID: 21300000, guid: 46a3ce6d87855714a85f772c09322a7f, type: 3}
   - character: 83
@@ -61,7 +81,15 @@ MonoBehaviour:
     sprite: {fileID: 21300000, guid: 39bd9fe3e305bfd43a202697d43a0e78, type: 3}
   - character: 85
     sprite: {fileID: 21300000, guid: c214da1ddeda4844892dc2722b1e476b, type: 3}
+  - character: 86
+    sprite: {fileID: 21300000, guid: b276ad1bc2cc28146adaa45210d86e9a, type: 3}
+  - character: 87
+    sprite: {fileID: 21300000, guid: 2f61ae96117b7f14ab5e979bc32bcac1, type: 3}
+  - character: 88
+    sprite: {fileID: 21300000, guid: 16d4dac1dbfe31e4cb4cacb466bad093, type: 3}
   - character: 89
     sprite: {fileID: 21300000, guid: 294c7294c7042c748a973e88b5fb65ad, type: 3}
+  - character: 90
+    sprite: {fileID: 21300000, guid: 571703adf69b5d642adb4a47d13c51be, type: 3}
   - character: 169
     sprite: {fileID: 21300000, guid: e318fa5e10d2f1b42999584c1f5e722c, type: 3}
