@@ -97,3 +97,6 @@ $RECYCLE.BIN/
 
 # Firebase
 remote_config_data
+
+# CVTI
+ClaudeNotes/cvti/_cache/
