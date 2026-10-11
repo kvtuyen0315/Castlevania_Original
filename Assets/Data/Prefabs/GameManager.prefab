@@ -92,6 +92,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   musicSource: {fileID: 8364206373882911148}
   sfxSource: {fileID: 4212540265720833875}
+  sfxLibrary: {fileID: 11400000, guid: d85f19ed6cc9a7b47af7633a66f762e4, type: 2}
 --- !u!82 &8364206373882911148
 AudioSource:
   m_ObjectHideFlags: 0

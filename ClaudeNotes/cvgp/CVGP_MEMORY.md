@@ -25,7 +25,7 @@
 |---|---|---|---|---|---|
 | 00 | cvgp-00-ha-tang-so-ghi-nho-va-baseline | **XONG** | (commit "CVGP 00") | 11/10/2026 | sổ + kiểm mẫu 17 mốc video (0 lệch) + baseline luồng CVTI (5 mốc H8 khớp) |
 | 01 | cvgp-01-nhap-sheet-gameplay-va-ban-do-level1 | **XONG** | (commit "CVGP 01") | 11/10/2026 | 4 sheet nhập nguyên byte (sha256 khớp) + kiểm kê chạy lại y hệt từ `Tools/cvgp/` + **16 bản nhạc MP3 mới** nhập `Art_Source/music/` |
-| 02 | cvgp-02-dinh-danh-37-sfx-qua-am-thanh-video | CHƯA | — | — | |
+| 02 | cvgp-02-dinh-danh-37-sfx-qua-am-thanh-video | **XONG** | (commit "CVGP 02") | 11/10/2026 | 37 SFX: 13 chắc + 7 khả năng + 17 chưa định danh; nhập `Assets/Data/Audio/SFX` (PCM mono) + `eSfx` + `SfxLibrary` + `AudioManager.PlaySfx(eSfx)`; harness CVTI không đổi |
 | 03 | cvgp-03-input-ban-phim-gamepad-xbox-va-replay | CHƯA | — | — | |
 | 04 | cvgp-04-bang-chi-so-config-moi-nhan-vat-va-item | CHƯA | — | — | |
 | 05 | cvgp-05-cat-sprite-simon-enemy-boss-item-animset | CHƯA | — | — | |
@@ -143,7 +143,62 @@ Tên file có khoảng trắng, ngoặc và dấu nháy (`Dracula's`) — cẩn 
 Chung: cả 5 sheet đục hoàn toàn (alpha 255), 11–14 màu NES; chữ nhãn (255,255,255); `#004000` 516 px chỉ ở logo credit; **đen (0,0,0) là màu thật**. Không thấy chỗ sai trong `SHEETS_INVENTORY.md`; chỉ bỏ dòng ghi chú planner và sửa tên công cụ.
 Công cụ kiểm kê dùng lại: `Tools/cvgp/` (`run_all.py` = `inv_sprites.py` + `inv_level1.py` + `make_inventory_md.py`; `sheetlib.py`, `sheet_specs.py`) — từ gốc repo: `python -P -E Tools/cvgp/run_all.py`; đầu vào `Art_Source/spriters-resource/*.png`, đầu ra `ClaudeNotes/cvgp/inventory/` (đổi bằng biến môi trường `CVGP_INV_OUT`). Thư mục `inventory/tools/` đã chuyển (git mv) sang đó.
 
-Sprite đã cắt (CVTI): `Assets/Data/Art/{Title,Intro,Font,Character/Simon}`. Chưa có: tilemap, SFX định danh (routine 02).
+Sprite đã cắt (CVTI): `Assets/Data/Art/{Title,Intro,Font,Character/Simon}`. Chưa có: tilemap.
+
+### SFX đã định danh (routine 02, 11/10/2026)
+**Cách làm:** âm thanh 2 video (`ffmpeg -vn -ac 1 -ar 22050` → `_cache/02/map1.wav`, `boss.wav`) đối chiếu 37 SFX bằng `Tools/cvgp/sfx_match.py` (NCC phổ STFT 500–8000 Hz + NCC dạng sóng; loại đoạn non-game 1:47.7–1:54.5; chạy lại ra y hệt từng byte), `sfx_events.py` (làm giàu theo loại sự kiện HUD/roi lấy từ `_cache/video/work`), `sfx_view.py` (vẽ phổ), `sfx_frames.py` (trích khung quanh mốc), `sfx_describe.py` (md5/thời lượng/âm học). Mọi tên "chắc" và "khả năng" đã được xem khung hình quanh mốc (`_cache/02/fr_*.png`, phổ `seg_*.png`). **Tổng: 13 chắc + 7 khả năng + 17 chưa định danh = 37.**
+*Thang tin cậy:* chắc = khớp ≥ 2 sự kiện cùng loại + đã xem khung; khả năng = 1 sự kiện hoặc gián tiếp; chưa định danh = không đỉnh nổi (không đoán tên).
+*Giới hạn:* SFX noise ngắn (vung roi, bị thương, nhảy/đáp, pause…) bị trống/nhạc nền noise của game che — NCC cho đỉnh ngang nhau cả nhóm `02/03/08/10/13/16/17/19/37`; không gán tên. `20` khớp cả "roi trúng chậu lửa" lẫn "hạ quái" nên có thể là âm "trúng đòn" chung. Điểm: spec = NCC phổ (0–1), z = (điểm − median)/MAD, wave = NCC dạng sóng (0.25–0.5 trên video nén AAC đã là khớp).
+
+| # | File gốc → file Unity | Thời lượng | md5 | Tên | `eSfx` | Độ tin cậy | Bằng chứng (thời điểm video, mô tả khung, điểm) | Đặc điểm phát / âm học |
+|---|---|---|---|---|---|---|---|---|
+| 01 | `01.wav` → `sfx_01_unknown.wav` | 0.56 s | `89286c306a599b201892e808e6193ace` | `eSfx.Unknown01` | chưa định danh | không có đỉnh nổi (spec ≤0.30, z≤4; wave ≤0.18) | pulse 3 bước cao độ rồi giữ ~1 kHz; có thể jingle (1UP/boss chết?) — chưa kiểm chứng |
+| 02 | `02.wav` → `sfx_02_unknown.wav` | 0.10 s | `606648a8fa95f5dd2a9414713b645b0c` | `eSfx.Unknown02` | chưa định danh | click ngắn nhiễu; chỉ wave 0.62 tại 0:02.46 (khung đen/Simon vừa hiện) và 0.52 tại 1:35.65, không thấy sự kiện | noise 0.10 s |
+| 03 | `03.wav` → `sfx_03_unknown.wav` | 0.19 s | `9a75d5ee09ed23c47371b20a5062f9ab` | `eSfx.Unknown03` | chưa định danh | wave 0.75 tại 1:01.15 / 0.63 tại 1:26.09 nhưng khung hình chỉ Simon đi bộ (trùng trống nhạc nền) | noise 0.19 s, ~1.5 kHz |
+| 04 | `04.wav` → `sfx_04_tally_time.wav` | 0.37 s | `6790b0bb857deb44ea858e32ce03ef73` | `eSfx.TallyTime` | chắc | 3:39.49 spec 0.92 z8 wave 0.81 (TIME 0001→0000, khung 219.49 đã xem) + video boss 24.78 s (đếm TIME, spec 0.51 wave 0.33) | phát lại mỗi ~8 tick (0.135 s) suốt lúc đếm; bản cuối phát trọn 0.37 s ngay sau khi TIME về 0 (đo trên phổ 217.4–219.5 s) |
+| 05 | `05.wav` → `sfx_05_tally_heart.wav` | 0.55 s | `83afb2e26bbefba904655004b4bf0f8b` | `eSfx.TallyHeart` | chắc | 3:49.94 spec 0.95 z12 wave 0.86 (tim 01→00, khung 229.94 đã xem); 67/68 mốc đếm tim p>0.95 | lặp mỗi ~8 tick (0.132 s) trong 3:40.5–3:49.9; bản cuối phát trọn (đuôi giữ 1 cao độ ~0.4 s) |
+| 06 | `06.wav` → `sfx_06_tally_heart_alt.wav` | 0.54 s | `a04b8464a334b390587e4d203e9ef3b9` | `eSfx.TallyHeartAlt` | khả năng | 3:49.95 spec 0.82 wave 0.70 — cùng thời điểm với 05 (không tách được 05/06 trong 1 sự kiện) | tonal, đầu giống 05; có thể bản dự phòng/kênh khác của đếm tim |
+| 07 | `07.wav` → `sfx_07_map_step.wav` | 0.11 s | `ddffd586c2a03c25829497325655eaba` | `eSfx.MapStep` | chắc | bản đồ lâu đài 3:55.3–3:58.8: 14/14 nhịp tick (cách 0.267 s = 16 tick) wave 0.26–0.45; khung 235.85 đã xem (chấm Simon nhấp nháy trên bản đồ) | click noise 0.11 s lặp mỗi 16 tick; không có nhạc chồng |
+| 08 | `08.wav` → `sfx_08_unknown.wav` | 0.18 s | `0d14463468a6a60aa33bd32a5270af53` | `eSfx.Unknown08` | chưa định danh | spec ≤0.59 z3, không gắn sự kiện | noise 0.18 s thấp |
+| 09 | `09.wav` → `sfx_09_throw_dagger.wav` | 0.18 s | `a46679ec13b868ba2b78a908699e52fc` | `eSfx.ThrowDagger` | chắc | 1:32.83 +0.26 s (spec 0.69, wave 0.13) và 1:46.83 +0.18 s (spec 0.70, wave 0.17) — hai đỉnh cao nhất toàn video; khung 92.83/106.83 đã xem (tim −1, dao bay ra) | noise 0.18 s; trễ ~0.2 s sau lúc HUD trừ tim; ném rìu (3:22–3:30) không tách được vì chồng boss+nhạc |
+| 10 | `10.wav` → `sfx_10_unknown.wav` | 0.25 s | `d50a2e822557e3284fade599e9e1adea` | `eSfx.Unknown10` | chưa định danh | spec ≤0.64 z5, không gắn sự kiện | noise 0.25 s |
+| 11 | `11.wav` → `sfx_11_unknown.wav` | 2.05 s | `7acc49bf4e2ab9543c1d887f2b284193` | `eSfx.Unknown11` | chưa định danh | không có đỉnh (z≤3) — không xuất hiện trong 2 video | tonal trượt giảm chậm 2.05 s — có thể mất mạng/game over; chưa kiểm chứng |
+| 12 | `12.wav` → `sfx_12_unknown.wav` | 1.64 s | `5776c93a5b2f1b254fcf896415223778` | `eSfx.Unknown12` | chưa định danh | không có đỉnh (z≤4) — không xuất hiện trong 2 video | tonal trượt giảm 1.64 s, tương tự 11 |
+| 13 | `13.wav` → `sfx_13_unknown.wav` | 0.13 s | `7a3654f098818626fea0ce36c9ac60ae` | `eSfx.Unknown13` | chưa định danh | spec ≤0.73 z4, wave ≤0.31 rải rác (trùng trống nhạc); có xu hướng lặp sau cú roi trên không (+0.2 s) nhưng không đủ chắc | noise 0.13 s |
+| 14 | `14.wav` → `sfx_14_fish_jump.wav` | 0.73 s | `b9dba53b274a45c81955a70c874796d2` | `eSfx.FishJump` | chắc | 1:57.17 spec 0.61 (2 Fish Man trồi khỏi nước, bọt tím), 2:06.45, 2:25.67 — khung đã xem cả 3 | noise 0.73 s, 1 lần mỗi Fish Man |
+| 15 | `15.wav` → `sfx_15_fish_splash.wav` | 1.01 s | `99fffc9ce0eb5c009166629b36afe411` | `eSfx.FishSplash` | chắc | 2:11.37 spec 0.58, 2:27.12 spec 0.60 — Fish Man rơi lại mặt nước, bọt tím (khung 131.37/147.12 đã xem) | noise 1.01 s, khớp trong vùng nước Crypt B |
+| 16 | `16.wav` → `sfx_16_unknown.wav` | 0.40 s | `1abc4e93946dd7cf1dc106625ae456c6` | `eSfx.Unknown16` | chưa định danh | z≤3 | noise 0.40 s |
+| 17 | `17.wav` → `sfx_17_unknown.wav` | 0.40 s | `4a194ce5b6f24676ad70bf1597b43094` | `eSfx.Unknown17` | chưa định danh | z≤3 (thấp ở mọi sự kiện đánh trúng nhưng không nổi) | noise 0.40 s |
+| 18 | `18.wav` → `sfx_18_door_alt.wav` | 0.79 s | `eef154aadec729a1f050499c5bc3ca42` | `eSfx.DoorAlt` | khả năng | 1:27.41, 1:29.02, 2:46.35, 2:47.98 (spec 0.45–0.55) trùng 4 mốc cửa như 29 | noise có tiếng trầm, biến thể của 29 |
+| 19 | `19.wav` → `sfx_19_unknown.wav` | 0.45 s | `40de178a75ffc588ebd4390850bb8c3a` | `eSfx.Unknown19` | chưa định danh | z≤4 | noise 0.45 s |
+| 20 | `20.wav` → `sfx_20_hit_flame.wav` | 0.36 s | `8c21631e10b3433efd50e363d2018ed0` | `eSfx.HitFlame` | chắc | roi trúng chậu lửa 0:03.35 và 0:09.05 (spec 0.66/0.64; khung đã xem: tia lửa đỏ bung) + các lần hạ quái (+200/+300…: spec 0.55–0.67, p>0.99 ở 9/13 lần) | noise 0.36 s; đến ~0.03–0.2 s sau khung roi duỗi |
+| 21 | `21.wav` → `sfx_21_break_wall.wav` | 0.60 s | `6b49d959cd96dad37df1b9716af90687` | `eSfx.BreakWall` | chắc | 1:39.61 spec 0.62 (đập tường gạch, mảnh tím), 3:17.62 spec 0.67 (roi vỡ nến → item II), 2:19.05 spec 0.67 (vỡ gạch, mảnh tím) — khung đã xem cả 3 | noise 0.60 s |
+| 22 | `22.wav` → `sfx_22_pickup_heart.wav` | 0.50 s | `95d7ab928bd31a379eeead4de40cc1a1` | `eSfx.PickupHeart` | chắc | 33/38 lần nhặt tim nhỏ/lớn (p≥0.995, spec 0.56–0.75) + video boss 1.45 s (z12); khung 3.93 đã xem (tim 05→10) | vòng cung hài ba 0.50 s; trong lúc phát, vạch nhạc nền biến mất khỏi phổ — xem `_cache/02/seg_a.png` |
+| 23 | `23.wav` → `sfx_23_pickup_bag.wav` | 1.04 s | `a32b044451da616aa3c9b7953718a2eb` | `eSfx.PickupBag` | chắc | túi 700 (5/5 mốc), 400 (0:21.83), 1000 (2:23.80): spec 0.52–0.65; khung 21.83 đã xem (túi hồng biến mất, SCORE +400) | vòng cung hài ba 1.04 s |
+| 24 | `24.wav` → `sfx_24_pickup_weapon.wav` | 0.75 s | `64873fb6c4200ddfd5fd538aebf5c30a` | `eSfx.PickupWeapon` | chắc | nhặt roi #1 0:06.50, roi #2 0:09.78, dao 0:15.55 (khung 6.50 Simon nháy tím, 15.50 dao hiện ở HUD), rìu 3:10.67, nhặt II video boss 7.11 s — spec 0.52–0.61 | vòng cung hài ba 0.75 s; đi kèm Simon đóng băng 0.75 s khi nhặt roi |
+| 25 | `25.wav` → `sfx_25_enter_gate.wav` | 1.22 s | `045b425faf36752acb75452c17a42740` | `eSfx.EnterGate` | khả năng | 0:17.82 spec 0.68 z7 wave 0.17 (Simon bước vào cổng lâu đài, khung 17.35–18.35 đã xem) — chỉ 1 sự kiện | 1.22 s, nhiều bước cao độ |
+| 26 | `26.wav` → `sfx_26_unknown.wav` | 2.40 s | `c7496a7187593fa952dc2cd10468e384` | `eSfx.Unknown26` | chưa định danh | không có đỉnh nổi (chỉ nhận nhầm tick bản đồ); 3 xung rời nhau | tonal thấp ~107 Hz 2.40 s, 3 xung — chưa kiểm chứng |
+| 27 | `27.wav` → `sfx_27_potion_invisible.wav` | 0.83 s | `82aebea8d7f85927fae9d182c2877c13` | `eSfx.PotionInvisible` | khả năng | 2:58.20 spec 0.71 z8 (Simon nhặt bình, khung 177.9–178.2 đã xem) — 1 sự kiện | 0.83 s dạng xung đều |
+| 28 | `28.wav` → `sfx_28_invisible_end.wav` | 0.83 s | `200a739475b17ea59683b6e00ce5d6fe` | `eSfx.InvisibleEnd` | khả năng | 3:02.11 spec 0.49 z7 (Simon hiện lại, khung 181.95–182.25 đã xem) — 1 sự kiện | 0.83 s dạng xung đều, giống 27 |
+| 29 | `29.wav` → `sfx_29_door.wav` | 0.81 s | `b28d71a8d634148dd5c265154aac303b` | `eSfx.Door` | chắc | cửa cuối màn: 1:27.36, 1:28.94, 2:46.38, 2:47.96 (spec 0.57–0.64; khung 87.21–89.4 đã xem: cửa đỏ mở rồi đóng) | 0.81 s; 1 lần lúc mở, 1 lần lúc đóng (cách 1.6 s) |
+| 30 | `30.wav` → `sfx_30_holy_water.wav` | 1.16 s | `4bca08eb62ebb476646b9481cbf6ec2d` | `eSfx.HolyWater` | khả năng | chỉ video boss: 6.31, 8.61, 11.60, 13.97, 16.47, 18.93 s (spec 0.66, wave 0.30–0.38), nhịp ≈ 2.4 s trùng chu kỳ ném nước thánh (khung đã xem); chưa phân biệt ném hay vỡ/cháy | 1.16 s, bước cao độ rồi nhiễu |
+| 31 | `31.wav` → `sfx_31_holy_water_alt.wav` | 1.15 s | `df7851a075c7a3b930e1a9d76625ae85` | `eSfx.HolyWaterAlt` | khả năng | trùng thời điểm 30 trong video boss (spec 0.5, wave thấp) | 1.15 s; mở đầu bằng nhiễu |
+| 32 | `32.wav` → `sfx_32_unknown.wav` | 2.14 s | `43a5ed9ae847f29d460d2beecb37f391` | `eSfx.Unknown32` | chưa định danh | không có đỉnh nổi | noise 2.14 s thấp, phức hợp (có thể boss chết/Dracula) — chưa kiểm chứng |
+| 33 | `33.wav` → `sfx_33_unknown.wav` | 0.50 s | `805f2b56df493e169e3e599fe4b01d53` | `eSfx.Unknown33` | chưa định danh | không có đỉnh | 4 nhịp bíp đều 0.50 s ~2 kHz — có thể pause; video không có pause |
+| 34 | `34.wav` → `sfx_34_unknown.wav` | 1.54 s | `1f98ad45ac7abaf6121fed1519108522` | `eSfx.Unknown34` | chưa định danh | spec ≤0.51 z4 | 1.54 s, nhiều pha |
+| 35 | `35.wav` → `sfx_35_rosary.wav` | 1.62 s | `d369a58fb3b1827cc21e129f535b3dcb` | `eSfx.Rosary` | chắc | 1:15.02 (z9), 1:24.69 (z10), 2:42.76 (z7): spec 0.47–0.64; khung 75.02/84.69/84.79/162.76 đã xem: màn nháy trắng | 1.62 s; kèm nháy trắng 0.40–0.44 s |
+| 36 | `36.wav` → `sfx_36_unknown.wav` | 0.66 s | `58a5d963ca7d08d9fc6d61d517b839d6` | `eSfx.Unknown36` | chưa định danh | chỉ khớp trong khoảng đếm TIME (trùng 04), z≤4 | pulse bước cao độ 0.66 s |
+| 37 | `37.wav` → `sfx_37_unknown.wav` | 0.11 s | `f002d9b8c4499b0117612cd865e1a2b0` | `eSfx.Unknown37` | chưa định danh | spec ≤0.69 z3, wave 0.2–0.33 rải rác | tonal ngắn 0.11 s ~236 Hz |
+
+**Đặc điểm phát đo được (NES):**
+- *Lặp theo nhịp:* đếm TIME (`04`) và đếm tim (`05`) **kích lại mỗi ~8 tick** (0.132–0.135 s) dù giá trị đổi mỗi tick — chỉ đoạn đầu mỗi lần nghe được (lần sau cắt lần trước); lần kích cuối phát trọn (`04` 0.37 s sau TIME=0, `05` đuôi giữ ~0.4 s sau tim=0). Tick bản đồ (`07`) cách 16 tick (0.267 s), không chồng. Cửa (`29`): 1 lần lúc mở, 1 lần lúc đóng, cách 1.6 s.
+- *SFX mới cắt SFX cũ (kênh đơn):* đúng ở các ca lặp trên. **Unity `PlayOneShot` KHÔNG cắt** (chồng lên) ⇒ SFX lặp phải tự `Stop`-rồi-phát hoặc thêm API riêng — chưa làm (ngoài phạm vi, §6).
+- *Nhạc bị tắt kênh khi SFX phát:* trên phổ (`seg_a.png`) lúc nhặt tim (`22`, 3.98–4.4 s) và nhặt vũ khí (`24`, 6.5–7.3 s) vạch nhạc nền biến mất tới khi SFX kết thúc ⇒ game gốc có vẻ **tạm tắt kênh nhạc** khi SFX nhặt đồ phát. Nhạc chưa có ở Unity; ghi cho routine nhạc.
+- *Độ trễ so với sự kiện hình:* `09` ném dao trễ ~0.2 s sau lúc HUD trừ tim; `20` ~0.03–0.2 s sau khung roi duỗi; nhặt đồ (`22/23/24`) +0.0–0.07 s sau HUD đổi.
+- *Không có SFX ở Title* (CVTI) — vẫn đúng: log luồng không có `PlaySfx` trước Stage.
+
+**Nhập Unity:** 37 file `Assets/Data/Audio/SFX/sfx_<NN>_<ten>.wav` (byte y hệt `Art_Source/sounds-resource/393996/NN.wav`; `cmp` 1 mẫu + md5 bảng trên), import PCM · Force To Mono · Decompress On Load · Preserve Sample Rate · preload (preset `Assets/Data/Editor/SfxImporter.cs` — chỉ khi `importSettingsMissing`; kiểm bằng API: 37/37 đúng). `Assets/Data/Script/Audio/eSfx.cs` (giá trị = số file gốc, `None = 0`), `SfxLibrary.cs` (ScriptableObject `Assets/Data/Audio/SfxLibrary.asset`, 37 mục, dựng bằng menu `CVGP/Build SfxLibrary` = `SfxLibraryBuilder.cs`, chạy lại được), `AudioManager.PlaySfx(eSfx)` + `IsSfxPlaying` (giữ nguyên `PlaySfx(AudioClip)`); tham chiếu `sfxLibrary` serialized trên `Assets/Data/Prefabs/GameManager.prefab` (diff 1 dòng).
+
 
 ## §4 Quyết định kỹ thuật đã chốt
 | Quyết định | Giá trị | Lý do | Routine |
@@ -152,6 +207,10 @@ Sprite đã cắt (CVTI): `Assets/Data/Art/{Title,Intro,Font,Character/Simon}`. 
 | .gitignore | `ClaudeNotes/cvgp/_cache/` | ảnh full frame 28 MB + wiki thô (bản quyền) | 00 |
 | Công cụ kiểm kê | `Tools/cvgp/` (git mv từ `inventory/tools/`); `sheetlib.SRC_DIR` = `Art_Source/spriters-resource`, `ORIGINAL_NAMES` giữ tên file tải gốc để JSON (`sheet_file`) y hệt bản planner; `CVGP_INV_OUT` đổi thư mục ra | truy vết + tái lập byte | 01 |
 | Nhạc MP3 | nhập nguyên tên vào `Art_Source/music/` (16 file ~16 MB, commit vào git) | người dùng đã để chung thư mục Sounds; H2 không cần tải thêm | 01 |
+| Định danh SFX | tương quan phổ + dạng sóng 2 video, bằng chứng theo sự kiện HUD, xác nhận bằng khung hình; ca noise ngắn bị nhạc che ⇒ `UnknownNN` (không đoán) | H2/H10: không bịa tên | 02 |
+| `eSfx` | giá trị enum = số file gốc (`None = 0`) | truy vết 1-1 về `NN.wav` | 02 |
+| Tên "khả năng" giữ trong enum (`DoorAlt`, `TallyHeartAlt`, `HolyWaterAlt`) | nhóm biến thể không tách được trong cùng sự kiện | routine sau thử cả hai khi nghe thử | 02 |
+| `PlaySfx(eSfx)` | `PlayOneShot` trên 1 `AudioSource` (chồng, không cắt) | giữ API cũ; SFX lặp/cắt đưa vào nợ §6 | 02 |
 
 ## §5 Câu hỏi cho người dùng (chép từ CVGP_PLAN §9)
 1. ~~Nhạc chưa có~~ — **đã có 16 MP3** ở `Art_Source/music/` (routine 01 tìm thấy trong `Downloads\NES - Castlevania - Sounds`). Còn lại: bài nào cho Stage 2/3 và boss (routine 02 đối chiếu video); không có bài "Life Lost" riêng (có `15. Death`).
@@ -160,6 +219,7 @@ Sprite đã cắt (CVTI): `Assets/Data/Art/{Title,Intro,Font,Character/Simon}`. 
 4. HUD còn sprite TẠM (thanh máu/tim/khung + chữ số Famicom — CVTI_MEMORY §5 #16–17): routine 05 kiểm sheet Items & Objects; muốn tìm thêm sheet HUD bản US không?
 5. `Map_1.mp4` là bản quay lại playthrough YouTube (có non-game ~1:55, nén); nếu có capture 60 fps thì đo nhịp khung chính xác hơn.
 6. (từ CVTI) pixel vuông hay 8:7; Start có bỏ qua Intro không; attract/demo — cụm này giữ mặc định CVTI (vuông, không bỏ qua, không demo).
+8. (mới, routine 02) 17 SFX chưa định danh (`01 02 03 08 10 11 12 13 16 17 19 26 32 33 34 36 37`) — gồm vung roi, bị thương, nhảy/đáp, pause, mất mạng, game over, 1UP, boss chết… Muốn gán tên chắc: người dùng nghe thử từng file (hoặc quay clip có các sự kiện đó: bị thương, chết, pause, 1UP) rồi cho biết; hoặc `cvgp-fix` gắn tên khi các routine gameplay có sự kiện tương ứng.
 7. (mới, routine 00) Console ghi "Joystick disconnected (Controller (Flydigi VADER3))" ⇒ tay cầm báo tên VADER3 — routine 03 nên map theo JoystickButtonN/trục chứ không theo tên.
 
 ## §6 Nợ & việc ngoài phạm vi
@@ -167,6 +227,10 @@ Sprite đã cắt (CVTI): `Assets/Data/Art/{Title,Intro,Font,Character/Simon}`. 
 - Console có lỗi nền từ trước (Odin `PersistentContextCache` path1, GUIClips, Mathematics) — không thuộc cụm.
 - `InputManager.asset` có nhiều mục tên "Debug" (lấy bằng grep `m_Name`) — routine 03 kiểm trước khi thêm trục.
 - `_cache/00/f17_225.png` chưa mở xem riêng.
+- (02) **16 file nhạc MP3 chưa import Unity** — §3 (routine 01) ghi "routine 02 làm" nhưng đề routine 02 chỉ cho kiểm `Art_Source/music/`, không xử lý nhạc (H9) ⇒ chưa làm; cần routine/việc riêng (import `Assets/Data/Audio/Music/`, preset, `eMusic` + bảng, gắn Intro/Stage; Title im lặng). Tên file có khoảng trắng + dấu nháy.
+- (02) `AudioManager.PlaySfx(eSfx)` dùng `PlayOneShot` (chồng); SFX lặp (đếm tally mỗi 8 tick) cần "SFX mới cắt SFX cũ" — routine 12 (tally) nên thêm.
+- (02) `Tools/cvgp/__pycache__/` mới sinh — không commit. `_cache/02/scores*.npz` ~1.5 GB (xoá tay được).
+
 
 ## §7 Nhật ký nghiệm thu
 
@@ -193,3 +257,10 @@ Sprite đã cắt (CVTI): `Assets/Data/Art/{Title,Intro,Font,Character/Simon}`. 
 - Kiểm kê: chạy `Tools/cvgp/run_all.py` (đầu ra tạm qua `CVGP_INV_OUT`) rồi chạy lại in-place: 14 JSON/PNG **y hệt md5** bản planner (git không báo thay đổi); `SHEETS_INVENTORY.md` chỉ khác dòng ghi chú planner (bỏ) + tên công cụ. Đã mở xem 4 ảnh annot + `level1_entrance_annot_1.png`: khung/đánh số đúng, khớp bảng §3.
 - Nhạc: **phát hiện 16 MP3** (§3) — chép + sha256 khớp nguồn; không import Unity (routine 02).
 - 0 file trong `Assets/`; không dùng Unity/MCP (việc thuần file). Thư mục tạm `D:\tmp_inv` (đầu ra so sánh) ngoài repo — có thể xoá tay.
+
+### Routine 02 — 11/10/2026
+- **Kết quả:** 37 SFX → 13 chắc (`TallyTime TallyHeart MapStep ThrowDagger FishJump FishSplash HitFlame BreakWall PickupHeart PickupBag PickupWeapon Door Rosary`) + 7 khả năng (`TallyHeartAlt DoorAlt EnterGate PotionInvisible InvisibleEnd HolyWater HolyWaterAlt`) + 17 chưa định danh (bảng §3). Mọi dòng chắc/khả năng có thời điểm video + khung đã xem.
+- **Ảnh/phổ đã mở xem** (`ClaudeNotes/cvgp/_cache/02/`): `sfx_montage.png` (phổ 37 SFX), `seg_tally_time.png`, `seg_tally_heart.png`, `seg_a.png`, `seg_map.png`, `seg_boss1.png`; khung `fr_03.png` (đối chứng nhiễu: Simon đi bộ), `fr_09.png`, `fr_14.png`, `fr_15.png`, `fr_21.png`, `fr_25.png`, `fr_2728.png`, `fr_door.png`, `fr_35.png`, `fr_pick.png`, `fr_misc.png`, `fr_30.png`; `shots/02/stage1_after_sfx.png` (Stage1Stub sau test, giống baseline).
+- **Chạy lại:** `python -P -E Tools/cvgp/sfx_match.py` (ra `_cache/02/matches.json|txt`; chạy 2 lần `diff` y hệt); cần `_cache/02/{map1,boss}.wav` từ ffmpeg (lệnh ở đầu `sfx_match.py`).
+- **Unity:** 37 clip import đúng thiết lập (API: mono, DecompressOnLoad, PCM, PreserveSampleRate — 37/37); `SfxLibrary` 37 mục, 0 id thiếu clip. Lần compile đầu lỗi (`AudioImporter.preloadAudioData` obsolete) nên 37 WAV import trước khi postprocessor có ⇒ đã xoá `.meta` mới sinh của 37 WAV và nhập lại để preset thực sự chạy; sửa dùng `AudioImporter.defaultSampleSettings.preloadAudioData`.
+- **Play (Main.unity):** `PlaySfx(PickupHeart/Rosary/Unknown37/None)` — không lỗi, `IsSfxPlaying = true`. **Harness H8** (`GoTo(Title,0)` ở abs 852, `InjectStart` L351): Start L352 · đen L432 · Intro L448 · Simon dừng L696 · đen L890 · Stage1 L922 — **khớp tuyệt đối**; không `PlaySfx` nào ở Title. Console chỉ có lỗi nền (Odin path1, GUIClips). Cuối: thoát Play, `CVTI.LogFlow` = false, scene Main không dirty.

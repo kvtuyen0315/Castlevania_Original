@@ -9,6 +9,7 @@ public class AudioManager : ManualSingletonMono<AudioManager>
 {
     [SerializeField] private AudioSource musicSource;
     [SerializeField] private AudioSource sfxSource;
+    [SerializeField] private SfxLibrary sfxLibrary;
 
     public bool IsMusicPlaying => musicSource != null && musicSource.isPlaying;
 
@@ -48,6 +49,21 @@ public class AudioManager : ManualSingletonMono<AudioManager>
         if (clip != null)
             sfxSource.PlayOneShot(clip);
     }
+
+    /// <summary>Phát SFX theo tên (bảng SfxLibrary). Id không có clip ⇒ im lặng.</summary>
+    public void PlaySfx(eSfx id)
+    {
+        if (sfxLibrary == null)
+            return;
+        var clip = sfxLibrary.Get(id);
+        if (clip != null)
+        {
+            sfxSource.PlayOneShot(clip);
+            CvtiDebug.Log("PlaySfx " + id);
+        }
+    }
+
+    public bool IsSfxPlaying => sfxSource != null && sfxSource.isPlaying;
 
     AudioSource CreateSource()
     {
