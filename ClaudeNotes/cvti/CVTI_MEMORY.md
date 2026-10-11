@@ -10,7 +10,7 @@
 | 00 | hạ tầng timeline + sổ | **XONG** (ảnh Play Mode baseline chụp lại 11/10 nhưng ra TRẮNG, xem §7) | (commit "CVTI 00") | 11/10/2026 | đo bằng ffmpeg + python; MCP mất kết nối khi vào Play Mode |
 | 01 | thu thập sprite/sound nguồn | **XONG** | (commit "CVTI 01") | 11/10/2026 | nhập 3 PNG + zip + 37 WAV, sha256/md5 khớp; 3 thứ còn thiếu → §5 |
 | 02 | nền render pixel-perfect NES | **XONG** | (commit "CVTI 02") | 11/10/2026 | 256×240, PPU 16, scale 4× trên 1920×1080 = `1024:960:448:60`; ảnh lưới khớp từng pixel ở 3×/4×/6× |
-| 03 | cắt sprite Title/Intro/HUD/font | CHƯA | | | |
+| 03 | cắt sprite Title/Intro/HUD/font | **XONG phần Title/Intro/Simon/Font; HUD + Stage 1 chờ sheet** | (commit "CVTI 03") | 11/10/2026 | 77 sprite từ manifest `Tools/cvti/slices.json`, chạy 2 lần md5 y hệt; ảnh lưới 0 pixel lệch; `NesFont.asset` 26 glyph |
 | 04 | khung game flow/input/audio/NesText | CHƯA | | | |
 | 05 | màn Title + dơi + nháy PUSH START | CHƯA | | | |
 | 06 | HUD dùng chung | CHƯA | | | cần sheet HUD (§5) |
@@ -71,7 +71,30 @@ Thời lượng: Title im lặng 1.03→6.90 (5.87 s ≈ 352 f) · nháy 6.90→
 
 ## §3 Tài nguyên
 
-Nguồn + sha256 + credit: `Art_Source/SOURCES.md` (và `CVTI_PLAN.md §2`). Đã nhập 11/10/2026, **sha256 cả 4 file khớp planner**; 37 WAV giải nén lại từ zip, md5 từng file khớp `Downloads\393996\`. Sprite đã cắt: *chưa có* (routine 03).
+Nguồn + sha256 + credit: `Art_Source/SOURCES.md` (và `CVTI_PLAN.md §2`). Đã nhập 11/10/2026, **sha256 cả 4 file khớp planner**; 37 WAV giải nén lại từ zip, md5 từng file khớp `Downloads\393996\`. Sprite đã cắt: xem **§3.1** (routine 03).
+
+### 3.1 Bảng sprite đã cắt (routine 03 — 11/10/2026) — routine 05–07 đọc bảng này, KHÔNG mở lại sheet
+
+Sinh bằng `python -P -E Tools/cvti/slice_sprites.py` từ `Tools/cvti/slices.json` (rect, key, ghi chú từng mục ở manifest). Mọi sprite: import Single, PPU 16, Point, Uncompressed, no mip, mesh FullRect. Màu nền sheet đo được = `(0,128,0)` (cả 3 sheet); ô sprite nhỏ Intro/Simon nền `(116,116,116)`. "đục" = không key (giữ cả nền đen).
+
+| tên | file | sheet | rect (x,y,w,h trong sheet) | pivot | key | ghi chú |
+|---|---|---|---|---|---|---|
+| `title_base` | `Assets/Data/Art/Title/title_base.png` | title_screen | (1,1,256,240) | Top-Left | đục | Panel A = toàn màn Title, đặt NES (0,0). **Đã tô đen**: ô ô-liu NES (184,104,72,56), thanh chấm tím/teal NES (72,136,112,8), chữ copyright US NES (32,160,192,32). Kiểm: trước khi tô vùng đó chỉ chứa ô-liu / tím+teal / đen+trắng chữ (không ăn vào C-dao găm, logo); sau khi tô 0 pixel (128,128,0)/(128,0,128)/(0,128,128). 8 màu. |
+| `title_bat_00` … `title_bat_39` | `Assets/Data/Art/Title/title_bat_NN.png` | title_screen | (1+73·c, 256+57·r, 72, 56), NN = 10·r + c | Top-Left | đục | "Bat Animation" khung NN (tháp + dơi ghép sẵn, nền đen) — đè tại NES **(184,104)**. 00 = chỉ tháp (dơi chưa thấy rõ) → dơi bay phải/to dần → sà trước tháp → lên trên-trái → các khung cuối vỗ cánh lơ lửng. Viền 1 px quanh mỗi ô trên sheet là nền xanh ✓. |
+| `push_start_key` | `Assets/Data/Art/Title/push_start_key.png` | title_screen | (558,1,112,8) | Top-Left | đục | Đặt NES **(72,136)**; trạng thái tắt khi nháy = ẩn renderer (nền dưới đã đen). 2 màu (trắng 252 + đen). |
+| `glyph_<k>` (26 cái) | `Assets/Data/Art/Font/glyph_<k>.png` | title_screen | ô 8×8, xem manifest (`char`, `alsoAt`) | Top-Left | **key đen** | Ký tự: `1 7 8 9 A B C D E F H I K L M N O P R S T U Y , . ©` — tên file `<k>` = chính ký tự, riêng `copyright`=©, `period`=., `comma`=,. Mọi lần ký tự lặp lại trên sheet đều trùng từng pixel (kiểm `alsoAt`). Glyph chỉ có 2 màu (trắng + đen nền tile) ⇒ key đen là đúng ngoại lệ H (nền tile đen, glyph không chứa đen). `TM` = 2 glyph `T`+`M` thường; `©` là glyph riêng; `,` và `.` là glyph riêng (`,` = chấm + 1 px đuôi ở dòng 7). P, H lấy từ `PUSH START KEY` (558+8i, 1). |
+| `intro_bg` | `Assets/Data/Art/Intro/intro_bg.png` | cutscenes_credits | (1,1,256,192) | Top-Left | đục | Nền cảnh Intro, đặt NES **(0,48)** (dưới HUD). 11 màu. |
+| `intro_bat_0` / `intro_bat_1` | `Assets/Data/Art/Intro/intro_bat_{0,1}.png` | cutscenes_credits | (1,194,8,16) / (10,194,8,16) | Top-Left | xám 116 | Dơi nhỏ 2 khung (0 = cánh chữ "v", 1 = cánh ngang); hình chỉ chiếm 8×7 trên cùng, phần dưới trong suốt. Đen thật giữ nguyên (30 / 28 px). |
+| `intro_cloud` | `Assets/Data/Art/Intro/intro_cloud.png` | cutscenes_credits | (19,194,32,16) | Top-Left | xám 116 | Mây (đen + tím (204,136,252)), vẽ đè trước mặt trăng. |
+| `idle_0` | `Assets/Data/Art/Character/Simon/idle_0.png` | simon_belmont | (1,21,16,32) | **Bottom-Center** | xám 116 | Simon đứng. |
+| `walk_0` / `walk_1` / `walk_2` | `…/Simon/walk_{0,1,2}.png` | simon_belmont | (29,21) / (46,21) / (63,21), 16×32 | Bottom-Center | xám 116 | 3 khung đi theo thứ tự sheet. **`walk_0` trùng từng byte với `idle_0`** (md5 821c2363…) — đúng như game gốc (khung đứng là 1 pha của chu kỳ đi). |
+| `back_0` | `…/Simon/back_0.png` | simon_belmont | (362,21,16,32) | Bottom-Center | xám 116 | Khung "Intro" quay lưng. |
+
+**Hướng mặt Simon trong sheet: quay TRÁI** (mặt/tay ở bên trái hình). Intro Simon đi sang trái ⇒ routine 07 dùng nguyên, **không flipX**; khi đi phải (gameplay) mới `flipX = true`. Simon dùng 3 màu (124,8,0)/(252,152,56)/(252,216,168) — không có đen.
+
+**Dòng copyright theo video** (ghép bằng glyph, đã thử ghép + so `ref/01` bằng lệnh §3a: khớp, căn lệch tối ưu (1,1) video px giống hệt logo ⇒ vị trí đúng): dòng 1 `TM AND © 1988` tại NES **(72,160)**; dòng 2 `KONAMI INDUSTRY CO.,LTD.` tại **(32,168)**; dòng 3 `LICENSED BY NINTENDO` tại **(48,176)** (thử x 40/44/48/52/56 — 48 là duy nhất khớp). Ô 8 px, không khoảng cách thêm. Ảnh: `_cache/03/cmp_side.png`, `zoom_copy.png`.
+
+**Font (`Assets/Data/Art/Font/NesFont.asset`, class `NesFont` ở `Assets/Data/Script/UI/NesFont.cs`)**: 26 glyph; API `TryGetSprite(char, out Sprite)`, `CanRender(string, out char missing)`, hằng `NesFont.CELL = 8`; dấu cách = tiến 1 ô, không sprite. Dựng lại: menu **CVTI/Build NesFont** (`Assets/Data/Editor/NesFontBuilder.cs`, quét `glyph_*.png`; tên đặc biệt đã khai sẵn `hyphen`→`-`, `heart`→`♥` cho sheet HUD sau này). Kiểm `CanRender`: 3 dòng copyright video ✓, `PUSH START KEY` ✓, `PLAYER` ✓, `ENEMY` ✓; **HUD thiếu `G`, `-`, `0`, `2`–`6` (và icon ♥)** → §5.
 
 ### Bản đồ sheet đã xác nhận (đo bằng ffmpeg rawvideo + python, 11/10/2026)
 
@@ -165,6 +188,19 @@ Nguồn + sha256 + credit: `Art_Source/SOURCES.md` (và `CVTI_PLAN.md §2`). Đ�
 | Scene test | `Assets/Scenes/Test/PixelGrid.unity` (MainCamera + LetterboxClear giống Main + sprite `Assets/Data/Art/_Test/PixelGrid.png` ở NES (0,0), layer Background); ảnh lưới sinh bằng `python -I Tools/cvti/make_pixel_grid.py <out.png>` | Giữ lại để routine sau kiểm nhanh pixel-perfect sau khi đổi camera. Camera trong scene test là BẢN SAO — nếu routine 04 đổi camera Main thì sửa cả bản này. |
 | Kiểm từng pixel ảnh chụp | `python -I Tools/cvti/check_pixel_exact.py <shot> <src.png> <S> <X> <Y> <shotW> <shotH> [srcW srcH]` — so RGBA từng khối S×S với PNG gốc + ngoài vùng game phải đen alpha 255 | 0 lệch ⇒ không nhoè, không lệch nửa pixel. Phải so cả alpha: vùng không ai xoá ra (0,0,0,**0**) — trình xem ảnh hiện TRẮNG, so RGB sẽ lọt. |
 
+### 4.2 Cắt sprite (routine 03 chốt — 11/10/2026)
+
+| Quyết định | Giá trị | Lý do |
+|---|---|---|
+| Công cụ | **python** `Tools/cvti/slice_sprites.py` + manifest `Tools/cvti/slices.json` (nguồn sự thật, 1 mục/dòng). `--check` = chỉ kiểm. Script sinh manifest lần đầu chỉ ở `_cache/03/gen_manifest.py` (không commit) — từ nay **sửa thẳng `slices.json`**. | Kiểm pixel (nền sót, viền rect, glyph lặp) dễ viết bằng Pillow, chạy ngoài Unity, không cần Editor mở. |
+| Pillow | **Đã có sẵn** (12.2.0, user site) — KHÔNG cần pip. Phải chạy `python -P -E` (an toàn đường dẫn), **không `-I`** vì `-I` bỏ user site ⇒ `No module named PIL`. Tool cũ của 02 (ffmpeg) vẫn chạy `-I` được. | |
+| Lặp lại byte | PNG RGBA, `compress_level=9`, không metadata; pixel trong suốt ghi (0,0,0,0). Chạy 2 lần ⇒ md5 77 file y hệt; Unity import không đổi PNG. | |
+| Đầu ra | **mỗi frame một PNG** (Single), tên phẳng trong thư mục nhóm (`title_bat_NN.png`, `walk_N.png`, `glyph_X.png`) — KHÔNG atlas Multiple | Preset `NesSpriteImporter` (02) áp thẳng (PPU/pivot theo thư mục), diff git rõ từng frame, giống quy ước code cũ. 02 viết "Sheet cắt Multiple tự đặt pivot" — không dùng Multiple nên không cần. |
+| Key nền | Chỉ key màu nền ô: xám (116,116,116) cho Intro nhỏ + Simon; **glyph font key đen** (ngoại lệ có kiểm: glyph chỉ 2 màu); Title/push_start/intro_bg **đục**, giữ đen. | H5/§3 đề bài. |
+| Kiểm tự động trong tool | 0 pixel màu nền sheet (0,128,0) trong sprite; viền 1 px ngoài rect = nền sheet (trừ glyph); `fill` chỉ được chứa màu `allow`; `forbidColors`; `allowColors`; `alsoAt` trùng từng pixel; key phải xoá ≥1 và < hết pixel. Lỗi ⇒ không ghi file nào. | |
+| Sprite dơi lẻ hàng y127 (8 cái) | **Không cắt** | 05 dùng 40 khung ghép sẵn (đề bài mặc định). Cần thì thêm dòng vào manifest. |
+| Sprite Simon cũ trong git `2bfd90b^` | **Không dùng** | Đã có sheet gốc, cắt trực tiếp khớp từng pixel; không cần so bản cũ (bản cũ import Bilinear/PPU 100). |
+
 ## §5 Câu hỏi cho người dùng (chép từ CVTI_PLAN §8 + phát sinh)
 
 1. Để yên ở Title lâu thì có cần attract/demo mode không? (video không thể hiện ⇒ mặc định KHÔNG làm)
@@ -174,6 +210,9 @@ Nguồn + sha256 + credit: `Art_Source/SOURCES.md` (và `CVTI_PLAN.md §2`). Đ�
 5. Stage 1 sau intro: chỉ dựng **stub** (màn đầu + HUD + nhạc) để nối luồng; gameplay Stage 1 là cụm khác — xác nhận.
 6. (Mới) Dòng copyright: làm theo video "1988"/3 dòng (mặc định đã chọn theo yêu cầu "như video") — xác nhận được.
 7. (02) Tỷ lệ pixel (= câu 2, chi tiết): routine 02 đã làm **pixel vuông** 256×240 scale nguyên. Nếu muốn giống video 8:7 thì có thể thêm *tuỳ chọn* kéo ngang ×8/7 bằng RT Point (pixel ngang sẽ rộng 4 hoặc 5 px màn hình xen kẽ ở 4×) — có muốn không? Mặc định KHÔNG.
+
+8. (03) **Thiếu cho HUD/font** (sheet Title không có): chữ `G`; dấu `-`; chữ số `0`, `2`, `3`, `4`, `5`, `6` (có `1 7 8 9`); icon tim `♥`; thanh máu PLAYER/ENEMY; khung vũ khí phụ. Cần sheet HUD/font (§5 #4). Khi có: thêm dòng `glyph_<k>` vào `Tools/cvti/slices.json` (tên `hyphen`/`heart` đã khai sẵn trong `NesFontBuilder`), chạy slicer + menu CVTI/Build NesFont. Lưu ý: chữ `O` hiện có KHÔNG được dùng thay số `0` (H2 — không bịa).
+9. (03) **Stage 1**: chưa có sheet ⇒ `Assets/Data/Art/Stage1/` chưa tạo. `Assets/Data/Art/HUD/` cũng chưa tạo.
 
 **Trả lời cho §5 (routine 01, chạy vắng mặt — không hỏi được người dùng):** CHƯA TRẢ LỜI. Cần người dùng cung cấp đúng 3 thứ (chi tiết `Art_Source/_inbox/README.md`): (1) sheet HUD+font — chặn routine 06; (2) sheet Stage 1 — 07 dùng nền đen nếu thiếu; (3) nhạc Prologue + Vampire Killer — 07 không phát nhạc nếu thiếu. Tạm áp dụng phương án Recommended: người dùng tự tải vào `Art_Source/_inbox/`, routine 02–05 làm tiếp phần đã có; 06 tự kiểm sheet HUD.
 
@@ -190,6 +229,8 @@ Nguồn + sha256 + credit: `Art_Source/SOURCES.md` (và `CVTI_PLAN.md §2`). Đ�
 - (02) Build target hiện là **Android** (nhóm Game view = Android; size 1920×1080 Landscape = index 6, 1280×720 = 4, 2560×1440 = 10). `manage_camera screenshot` chụp theo size Game view. Không đổi build target.
 - (02) Ngoài TagManager KHÔNG đổi ProjectSettings. Gợi ý cho **routine 04**: `Time.fixedDeltaTime`/vSync/`Application.targetFrameRate = 60` cho nhịp frame NES (H4).
 - (02) Lỗi nền console không thuộc cụm (có từ trước): Odin `PersistentContextCache` ArgumentNullException `path1`, `Unity.Mathematics module data`, GUIClips — giữ nguyên.
+- (03) `execute_code` của MCP chỉ có **codedom (C# 6)** — Roslyn không cài: không local function, `Object` mơ hồ ⇒ viết `UnityEngine.Object`. `AssetDatabase.DeleteAsset` bị safety check chặn ⇒ `safety_checks=false` (chỉ dùng cho file tạm của chính routine).
+- (03) `manage_camera screenshot` nhận `output_folder` (vd `ClaudeNotes/cvti/_cache/shots/03`) ⇒ không còn rác `Assets/Screenshots/`.
 
 ## §7 Nhật ký nghiệm thu
 
@@ -217,3 +258,13 @@ Nguồn + sha256 + credit: `Art_Source/SOURCES.md` (và `CVTI_PLAN.md §2`). Đ�
 - Sprite tạm `TitlePanelA_tmp.png` + object trong scene test **đã xoá** trước commit (03 cắt bản chính thức).
 - Console sau `refresh_unity`: không có error/warning nào từ file của routine 02; còn lỗi nền §6 (Odin, Mathematics, GUIClips) và 6 warning missing script của `GameManager.prefab` (§6, routine 04).
 - `Main.unity` + `PixelGrid.unity` đã lưu (scene active cuối phiên: Main, không dirty). Game view để lại 1920×1080 Landscape.
+
+### Routine 03 — 11/10/2026
+- Tạo: `Tools/cvti/slices.json` (77 mục), `Tools/cvti/slice_sprites.py`, 77 PNG + `.meta` trong `Assets/Data/Art/{Title,Font,Intro,Character/Simon}/` (Title 42 = base + 40 bat + push_start_key; Font 26 glyph; Intro 4; Simon 5), `Assets/Data/Script/UI/NesFont.cs`, `Assets/Data/Editor/NesFontBuilder.cs`, `Assets/Data/Art/Font/NesFont.asset` (26 glyph). Không đụng `Assets/TuyenAframework`, không đổi scene Main.
+- **Lặp lại**: chạy tool 2 lần ⇒ md5 77 file y hệt (`_cache/03/md5_1.txt` = `md5_2.txt`); sau khi Unity import vẫn y hệt.
+- **Kiểm pixel độc lập** (`_cache/03/verify.py`, so lại với sheet): 0 pixel lệch ở cả 77 sprite (pixel đục = đúng màu sheet; trong suốt ⇔ đúng màu key; vùng `fill` đen). Tool tự kiểm: 0 pixel nền sheet, viền ngoài rect toàn nền sheet (mọi sprite trừ glyph), glyph lặp trùng từng pixel.
+- **Import**: cả 77 Sprite Single, PPU 16, Point, Uncompressed, no mip, FullRect; pivot Top-Left (alignment 1) / Simon Bottom-Center (alignment 7) — kiểm bằng API + `.meta` (`filterMode: 0`, `textureCompression: 0` ở DefaultTexturePlatform, các nền tảng khác `overridden: 0`, `spritePixelsToUnits: 16`, `enableMipMap: 0`).
+- **Ảnh lưới**: scene tạm `Assets/Scenes/Test/SpriteGrid_tmp.unity` (bản sao PixelGrid, refResolution 768×480 ⇒ zoom 2 trên 1920×1080 = vùng (192,60,1536,960), nền xám (160,160,160)), Play, chụp `ClaudeNotes/cvti/_cache/shots/03/sprite_grid_1920x1080.png` (đã xem) — `check_pixel_exact` so với ảnh kỳ vọng ghép từ PNG (`_cache/03/expected_grid.png`): **0/1 474 560 lệch, 0 pixel ngoài vùng không đen**. Xem phóng to `zoom_small_sprites.png` (glyph, dơi nhỏ, mây, 5 Simon — không sót xám 116, đen giữ nguyên, nét) và `zoom_bats.png` (khung bat, nét). Scene tạm **đã xoá**; scene active cuối phiên: Main, không dirty.
+- **So video**: glyph ghép 3 dòng copyright theo video + panel A + bat_00 + push_start → lệnh §3a với `ref/01` (`_cache/03/cmp_side.png`, `cmp_diff.png`, `zoom_copy.png`, đã xem): chữ khớp; độ lệch tối ưu (1,1) video px giống hệt vùng logo ⇒ vị trí dòng đúng (§3.1).
+- Console sau `refresh_unity`: 0 error/warning từ file của routine 03; chỉ còn lỗi nền §6 (warning framework `AnimatorState.cs`/`AFCacheWindow.cs`, Odin path1, Mathematics, GUIClips).
+- **Thiếu** (§5 #8–9): glyph HUD `G - 0 2 3 4 5 6 ♥`, toàn bộ sprite HUD và Stage 1 — chờ sheet.
