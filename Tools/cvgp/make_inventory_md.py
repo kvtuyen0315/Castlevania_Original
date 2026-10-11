@@ -3,7 +3,7 @@
 make_inventory_md.py - SINH BÁO CÁO TỔNG HỢP  ..\\SHEETS_INVENTORY.md  từ các file JSON đã xuất.
 
 Cách chạy (sau khi đã chạy inv_sprites.py và inv_level1.py), KHÔNG dùng -I:
-    python -P -E make_inventory_md.py
+    python -P -E Tools/cvgp/make_inventory_md.py
 Mọi số liệu trong báo cáo được đọc từ JSON nên chạy lại ra y hệt; phần văn bản nhận xét là hằng số trong script này.
 """
 import json
@@ -207,8 +207,8 @@ def build():
     n_cells = sum(x["tong_ket"]["so_o"] for x in (simon, ene, bos, itm))
 
     L += ["# Kiểm kê 5 sprite sheet Castlevania (NES) — rip bởi Mister Mike", ""]
-    L += ["Tạo ngày %s bằng `tools\\run_all.py` (chạy lại ra y hệt). Không sửa file nào trong dự án Unity; mọi thứ nằm trong thư mục này." % NGAY, ""]
-    L += ["Nguồn (chỉ đọc): `C:\\Users\\kvtuy\\Downloads\\NES - Castlevania - ....png` (5 file; hai sheet Title Screen và Cutscenes & Credits đã cắt trước đó, không làm lại).", ""]
+    L += ["Tạo ngày %s bằng `Tools/cvgp/run_all.py` (chạy lại ra y hệt). Không sửa file nào trong dự án Unity; mọi thứ nằm trong thư mục này." % NGAY, ""]
+    L += ["Nguồn (chỉ đọc): `Art_Source/spriters-resource/*.png` (5 file; hai sheet Title Screen và Cutscenes & Credits đã cắt trước đó, không làm lại).", ""]
     L += ["| File | Nội dung |", "|---|---|"]
     for k, t in [("simon_belmont", "Simon Belmont: %d ô / %d nhóm" % (simon["tong_ket"]["so_o"], simon["tong_ket"]["so_nhom"])),
                  ("enemies", "Enemies: %d ô / %d nhóm" % (ene["tong_ket"]["so_o"], ene["tong_ket"]["so_nhom"])),

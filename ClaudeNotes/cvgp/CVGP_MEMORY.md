@@ -24,7 +24,7 @@
 | # | taskId | Trạng thái | Commit | Ngày | Ghi chú |
 |---|---|---|---|---|---|
 | 00 | cvgp-00-ha-tang-so-ghi-nho-va-baseline | **XONG** | (commit "CVGP 00") | 11/10/2026 | sổ + kiểm mẫu 17 mốc video (0 lệch) + baseline luồng CVTI (5 mốc H8 khớp) |
-| 01 | cvgp-01-nhap-sheet-gameplay-va-ban-do-level1 | CHƯA | — | — | |
+| 01 | cvgp-01-nhap-sheet-gameplay-va-ban-do-level1 | **XONG** | (commit "CVGP 01") | 11/10/2026 | 4 sheet nhập nguyên byte (sha256 khớp) + kiểm kê chạy lại y hệt từ `Tools/cvgp/` + **16 bản nhạc MP3 mới** nhập `Art_Source/music/` |
 | 02 | cvgp-02-dinh-danh-37-sfx-qua-am-thanh-video | CHƯA | — | — | |
 | 03 | cvgp-03-input-ban-phim-gamepad-xbox-va-replay | CHƯA | — | — | |
 | 04 | cvgp-04-bang-chi-so-config-moi-nhan-vat-va-item | CHƯA | — | — | |
@@ -104,25 +104,57 @@ Chép từ CVGP_PLAN §3c / `ref/MAP1_TIMELINE.md §4`: Simon đi 1.00 px/tick; 
 
 ## §3 Tài nguyên
 
-### Sheet nguồn (routine 01 chép)
-| File ở Downloads | Đích | sha256 (routine 00 đã kiểm khớp) |
+### Sheet nguồn (routine 01 đã chép nguyên byte vào `Art_Source/spriters-resource/`, sha256 khớp 100 %)
+| File ở Downloads | Đích | sha256 |
 |---|---|---|
 | NES - Castlevania - Enemies & Bosses - Enemies.png | enemies.png | fce5814984bf31a2ee0f689ec9d7a4dde22bde32037e1d8b49dda75bcea3044a |
 | NES - Castlevania - Enemies & Bosses - Bosses.png | bosses.png | 1532ff90baef5e7f62e78bcd7d10a8f045498da7bcef29782ea7793a19092235 |
 | NES - Castlevania - Miscellaneous - Items & Objects.png | items_objects.png | 74704601cc14460ab2242c5f71be4662555d33dd9a01bcd2f96265d6cc37f61e |
 | NES - Castlevania - Stages - Level 1_ Entrance.png | level1_entrance.png | f9f8e348837db0b64f3606dfb9b6cb80daf571791fce3771e13fd50997d90a2f |
 
-Có sẵn từ CVTI: `simon_belmont.png`, `cutscenes_credits.png`, `sounds-resource/393996/01..37.wav`. `Art_Source/_inbox/` chỉ có `README.md` (không có nhạc/file mới). Kiểm kê: `inventory/` (Simon 181 ô, Enemies 71, Bosses 54, Items 65, Level 1 5 vùng); đã mở `enemies_annot.png`, `bosses_annot.png`.
-Sprite đã cắt (CVTI): `Assets/Data/Art/{Title,Intro,Font,Character/Simon}`. Chưa có: tilemap, SFX định danh (routine 02), nhạc.
+`simon_belmont.png`, `cutscenes_credits.png` (+ `title_screen.png`) còn khớp sha256 trong `Art_Source/SOURCES.md`. Thư mục `Downloads\NES - Castlevania - Sounds\01..37.wav` trùng md5 từng file `sounds-resource/393996/` (routine 01 so lại: 0 file khác) — không nhập lại.
+
+### Nhạc (routine 01 tìm thấy — thay đổi so với kế hoạch "chưa có nhạc")
+Thư mục `Downloads\NES - Castlevania - Sounds\` ngoài 37 WAV còn **16 file MP3** (stereo 44.1 kHz ~165 kbps, tên kiểu `NN. Tên (Địa điểm).mp3`) — đã chép nguyên byte vào `Art_Source/music/` (sha256 khớp nguồn, ghi `SOURCES.md`), **chưa import Unity** (routine 02 làm). `Downloads\Music\` rỗng. Bảng (số = số thứ tự trong tên file):
+| # | Bài | Gợi ý dùng (suy từ bản NES gốc, CHƯA đối chiếu video) |
+|---|---|---|
+| 01 | Underground (Name Entry) [Famicom Disk System] | nhập tên (không dùng) |
+| 02 | Prologue (Castle Gate) | Intro |
+| 03 | Vampire Killer (Courtyard) | Stage 1 (dài 67.0 s, đã đo bằng ffmpeg) |
+| 04 | Stalker (Armory) | Stage 2 |
+| 05 | Wicked Child (Upper Yard) | Stage 3 |
+| 06–09 | Walking on the Edge · Heart of Fire · Out of Time · Nothing to Lose (Dracula's Quarters) | các màn sau |
+| 10 | Poison Mind (Boss Theme) | boss thường |
+| 11 | Black Night (Final Battle) | Dracula |
+| 12 | Stage Clear | quả cầu đỏ |
+| 13–14 | Game Complete · Voyager (Ending) | kết game |
+| 15 | Death | mất mạng |
+| 16 | Game Over | game over |
+Tên file có khoảng trắng, ngoặc và dấu nháy (`Dracula's`) — cẩn thận khi import.
+
+### Tóm tắt kiểm kê 4 sheet + Simon (đã mở xem `enemies_annot.png`, `bosses_annot.png`, `items_objects_annot.png`, `level1_entrance_annot_1.png`; JSON/ảnh chạy lại từ `Tools/cvgp/` y hệt byte bản planner)
+| Sheet | Kích thước | Ô | Nhóm | Nền sheet / key ô | Bất thường |
+|---|---|---|---|---|---|
+| simon_belmont | 799×529 | 181 | 43 | (0,128,0) / (116,116,116) | 125 ô là hợp tile 8×16 (fill<1, chủ yếu roi); 12 ô cao >32 px (roi thò); 16 mảnh roi rời; 32 ô có lỗ key khép kín nhỏ |
+| enemies | 474×190 | 71 | 16 | idem | 2 ô DÍNH LIỀN `enemy_dragonskull_0/1` (16×32 = 2 ô 16×16 chồng, gợi ý tách); zombie/fishman/blackknight tầng trên 16×16 có thể là nửa thân (chưa chắc); 3 ô 16×31 (đỉnh thấp 1 px) |
+| bosses | 415×292 | 54 | 9 | idem; riêng **Medusa 2 ô nền đen thật** (không key-out) | 12 ô không đặc (Phantom Bat 2, Reaper 1, Dracula P1 2, Dracula P2 7); Dracula P2 cao tới 80 px; Death Effect 3 cỡ khối ghép sẵn; `boss_unused_*`, `boss_dracula2_7` hình lạ |
+| items_objects | 251×135 | 65 | 10 | idem; **8 khối `obj_block_*` 8×16 không có xám** (đặc) | 1 ô DÍNH LIỀN `obj_brick_set` 32×16 = 4 khối 8×16; tên chưa chắc: `item_stopwatch`, 16 ô `obj_block_*/obj_lean_*`, `obj_purple_orb`, `obj_score_*` (mảnh chữ số) |
+| level1_entrance | 3601×411 | 5 vùng đặc (castle_entrance 768×192, entrance_hall 1536×192, crypt_a 512×192, crypt_b 512×192, phantom_bat 768×192) + logo credit | — | (0,128,0) ngoài vùng; vùng là cảnh thật (không key) | 118 tile 8×8 duy nhất (113 sau gộp lật); 13 cầu thang, 3 hố, 2 đoạn nước; liên kết giữa vùng (c1,c3,c5,c6) suy từ bố cục — chắc trung bình/thấp |
+Chung: cả 5 sheet đục hoàn toàn (alpha 255), 11–14 màu NES; chữ nhãn (255,255,255); `#004000` 516 px chỉ ở logo credit; **đen (0,0,0) là màu thật**. Không thấy chỗ sai trong `SHEETS_INVENTORY.md`; chỉ bỏ dòng ghi chú planner và sửa tên công cụ.
+Công cụ kiểm kê dùng lại: `Tools/cvgp/` (`run_all.py` = `inv_sprites.py` + `inv_level1.py` + `make_inventory_md.py`; `sheetlib.py`, `sheet_specs.py`) — từ gốc repo: `python -P -E Tools/cvgp/run_all.py`; đầu vào `Art_Source/spriters-resource/*.png`, đầu ra `ClaudeNotes/cvgp/inventory/` (đổi bằng biến môi trường `CVGP_INV_OUT`). Thư mục `inventory/tools/` đã chuyển (git mv) sang đó.
+
+Sprite đã cắt (CVTI): `Assets/Data/Art/{Title,Intro,Font,Character/Simon}`. Chưa có: tilemap, SFX định danh (routine 02).
 
 ## §4 Quyết định kỹ thuật đã chốt
 | Quyết định | Giá trị | Lý do | Routine |
 |---|---|---|---|
 | Hiệu chuẩn Map_1 | sx 4.8585, sy 4.1605, ox 8.60, oy −22.55 | khớp glyph HUD 100 % | 00 (kiểm) |
 | .gitignore | `ClaudeNotes/cvgp/_cache/` | ảnh full frame 28 MB + wiki thô (bản quyền) | 00 |
+| Công cụ kiểm kê | `Tools/cvgp/` (git mv từ `inventory/tools/`); `sheetlib.SRC_DIR` = `Art_Source/spriters-resource`, `ORIGINAL_NAMES` giữ tên file tải gốc để JSON (`sheet_file`) y hệt bản planner; `CVGP_INV_OUT` đổi thư mục ra | truy vết + tái lập byte | 01 |
+| Nhạc MP3 | nhập nguyên tên vào `Art_Source/music/` (16 file ~16 MB, commit vào git) | người dùng đã để chung thư mục Sounds; H2 không cần tải thêm | 01 |
 
 ## §5 Câu hỏi cho người dùng (chép từ CVGP_PLAN §9)
-1. **Nhạc vẫn chưa có**: cần Vampire Killer, Poison Mind, Stage Clear, Life Lost, Game Over, Prologue. Bỏ file vào `Art_Source/_inbox/music/`; chưa có ⇒ `PlayMusic(null)` im lặng + log.
+1. ~~Nhạc chưa có~~ — **đã có 16 MP3** ở `Art_Source/music/` (routine 01 tìm thấy trong `Downloads\NES - Castlevania - Sounds`). Còn lại: bài nào cho Stage 2/3 và boss (routine 02 đối chiếu video); không có bài "Life Lost" riêng (có `15. Death`).
 2. Enemy/boss Block 2–6 không có video ⇒ routine 17–20 dựng theo wiki (gần đúng). Có video thì bỏ vào `C:\Users\kvtuy\Videos\Screen Recordings\Castlevania_Original\`.
 3. Kiểm tay gamepad sau routine 03: bật `CVGP/Input/Debug Overlay` trong Play, bấm lần lượt D-pad/cần trái/A/X/B/Y/Menu/View (đặc biệt D-pad Flydigi XInput).
 4. HUD còn sprite TẠM (thanh máu/tim/khung + chữ số Famicom — CVTI_MEMORY §5 #16–17): routine 05 kiểm sheet Items & Objects; muốn tìm thêm sheet HUD bản US không?
@@ -155,3 +187,9 @@ Sprite đã cắt (CVTI): `Assets/Data/Art/{Title,Intro,Font,Character/Simon}`. 
   ```
   Cả 5 mốc H8 khớp tuyệt đối. Ảnh đã mở xem (1920×1080): `_cache/shots/00/base_L10.png` (Title: logo + PUSH START KEY + copyright), `base_L600.png` (Intro: cổng, trăng, Simon, HUD), `base_L930.png` (Stage1Stub: nền đen + HUD + Simon idle).
 - Cuối: `CVTI.LogFlow` = false, thoát Play, scene Main không dirty. 0 file game thay đổi.
+
+### Routine 01 — 11/10/2026
+- Chép 4 sheet nguyên byte vào `Art_Source/spriters-resource/` (`enemies.png` 18 354 B, `bosses.png` 19 791 B, `items_objects.png` 8 841 B, `level1_entrance.png` 83 940 B): sha256 **khớp cả 4** bảng planner; Simon/Cutscenes/Title còn khớp `SOURCES.md`. `SOURCES.md` thêm 4 dòng + ghi chú thư mục Sounds trùng byte + 16 MP3 nhạc.
+- Kiểm kê: chạy `Tools/cvgp/run_all.py` (đầu ra tạm qua `CVGP_INV_OUT`) rồi chạy lại in-place: 14 JSON/PNG **y hệt md5** bản planner (git không báo thay đổi); `SHEETS_INVENTORY.md` chỉ khác dòng ghi chú planner (bỏ) + tên công cụ. Đã mở xem 4 ảnh annot + `level1_entrance_annot_1.png`: khung/đánh số đúng, khớp bảng §3.
+- Nhạc: **phát hiện 16 MP3** (§3) — chép + sha256 khớp nguồn; không import Unity (routine 02).
+- 0 file trong `Assets/`; không dùng Unity/MCP (việc thuần file). Thư mục tạm `D:\tmp_inv` (đầu ra so sánh) ngoài repo — có thể xoá tay.

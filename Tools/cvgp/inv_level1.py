@@ -5,7 +5,7 @@ inv_level1.py - KIỂM KÊ BẢN ĐỒ LEVEL 1 (sheet "Stages - Level 1_ Entranc
 Cách chạy (Git Bash / PowerShell), KHÔNG dùng -I:
     python -P -E inv_level1.py
 
-Đầu vào : C:\\Users\\kvtuy\\Downloads\\NES - Castlevania - Stages - Level 1_ Entrance.png (chỉ đọc)
+Đầu vào : Art_Source/spriters-resource/level1_entrance.png (chỉ đọc)
 Đầu ra  : ..\\level1_entrance.json
           ..\\level1_entrance_annot.png            (toàn bản đồ 1x, tô loại khối)
           ..\\level1_entrance_annot_1..4.png        (4 ảnh phóng 2x có lưới 16 px + toạ độ + ký tự loại khối)
@@ -537,7 +537,7 @@ def analyze():
         r["rect"] = [r["x"], r["y"], r["w"], r["h"]]
         r["ground_row"] = GROUND_ROW[r["id"]]
     result = dict(
-        sheet_file=S.SHEET_FILES[KEY], sheet_key=KEY, size=[W, H], bg_color=list(S.BG),
+        sheet_file=S.ORIGINAL_NAMES[KEY], sheet_key=KEY, size=[W, H], bg_color=list(S.BG),
         logo_credit=dict(rect=[logo["x"], logo["y"], logo["w"], logo["h"]], ghi_chu="khung credit Mister Mike: BỎ QUA khi cắt"),
         bang_mau=bang_mau,
         labels=labels,

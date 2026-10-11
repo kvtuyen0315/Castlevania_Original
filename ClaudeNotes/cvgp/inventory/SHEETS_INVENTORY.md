@@ -1,10 +1,8 @@
 # Kiểm kê 5 sprite sheet Castlevania (NES) — rip bởi Mister Mike
 
-> **Ghi chú planner (11/10/2026):** bản này được chép từ thư mục làm việc tạm của planner vào `ClaudeNotes/cvgp/inventory/`. Script ở `tools/` đang đọc sheet từ thư mục Downloads (`SRC_DIR` trong `tools/sheetlib.py`) — routine **01** trỏ lại vào `Art_Source/spriters-resource/` (tên file đổi snake_case), chạy lại để xác nhận JSON y hệt, rồi chuyển script dùng lại được sang `Tools/cvgp/`.
+Tạo ngày 2026-10-11 bằng `Tools/cvgp/run_all.py` (chạy lại ra y hệt). Không sửa file nào trong dự án Unity; mọi thứ nằm trong thư mục này.
 
-Tạo ngày 2026-10-11 bằng `tools\run_all.py` (chạy lại ra y hệt). Không sửa file nào trong dự án Unity; mọi thứ nằm trong thư mục này.
-
-Nguồn (chỉ đọc): `C:\Users\kvtuy\Downloads\NES - Castlevania - ....png` (5 file; hai sheet Title Screen và Cutscenes & Credits đã cắt trước đó, không làm lại).
+Nguồn (chỉ đọc): `Art_Source/spriters-resource/*.png` (5 file; hai sheet Title Screen và Cutscenes & Credits đã cắt trước đó, không làm lại).
 
 | File | Nội dung |
 |---|---|

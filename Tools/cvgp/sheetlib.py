@@ -32,8 +32,19 @@ TEXT = (255, 255, 255)    # chữ nhãn (trắng tinh) ở sheet 1-4
 BLACK = (0, 0, 0)
 CREDIT_DARK = (0, 64, 0)  # bóng chữ logo credit "Sprites ripped by Mister Mike" (516 px mỗi sheet)
 
-SRC_DIR = r"C:\Users\kvtuy\Downloads"
+# Gốc repo = hai cấp trên Tools/cvgp/; đầu vào = Art_Source/spriters-resource/ (chỉ đọc)
+TOOLS_DIR = os.path.dirname(os.path.abspath(__file__))
+REPO_DIR = os.path.dirname(os.path.dirname(TOOLS_DIR))
+SRC_DIR = os.path.join(REPO_DIR, "Art_Source", "spriters-resource")
 SHEET_FILES = {
+    "simon_belmont": "simon_belmont.png",
+    "enemies": "enemies.png",
+    "bosses": "bosses.png",
+    "items_objects": "items_objects.png",
+    "level1_entrance": "level1_entrance.png",
+}
+# Tên file gốc khi tải về (ghi vào JSON/báo cáo để truy vết; không dùng để mở file)
+ORIGINAL_NAMES = {
     "simon_belmont": "NES - Castlevania - Playable Characters - Simon Belmont.png",
     "enemies": "NES - Castlevania - Enemies & Bosses - Enemies.png",
     "bosses": "NES - Castlevania - Enemies & Bosses - Bosses.png",
@@ -41,9 +52,8 @@ SHEET_FILES = {
     "level1_entrance": "NES - Castlevania - Stages - Level 1_ Entrance.png",
 }
 
-# Thư mục đầu ra = thư mục cha của tools/ (inventory/)
-TOOLS_DIR = os.path.dirname(os.path.abspath(__file__))
-OUT_DIR = os.path.dirname(TOOLS_DIR)
+# Đầu ra mặc định = ClaudeNotes/cvgp/inventory/; đặt biến môi trường CVGP_INV_OUT để ghi chỗ khác (vd để so sánh)
+OUT_DIR = os.environ.get("CVGP_INV_OUT") or os.path.join(REPO_DIR, "ClaudeNotes", "cvgp", "inventory")
 
 
 def sheet_path(key):

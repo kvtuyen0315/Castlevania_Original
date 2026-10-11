@@ -6,7 +6,7 @@ Cách chạy (Git Bash / PowerShell), KHÔNG dùng -I:
     python -P -E inv_sprites.py                 # chạy cả 4 sheet
     python -P -E inv_sprites.py enemies bosses  # chỉ chạy một số sheet (key: simon_belmont enemies bosses items_objects)
 
-Đầu vào : C:\\Users\\kvtuy\\Downloads\\NES - Castlevania - ....png  (chỉ đọc)
+Đầu vào : Art_Source/spriters-resource/{simon_belmont,enemies,bosses,items_objects}.png  (chỉ đọc)
 Đầu ra  : ..\\<sheet_key>.json   và   ..\\<sheet_key>_annot.png   (thư mục cha của tools/ = inventory/)
 
 Thuật toán (mô tả ngắn)
@@ -435,7 +435,7 @@ def analyze(key):
         out_labels.append(dict(text=L["text"], bbox=L["bbox"], loai="tieu_de" if L["kind"] == "H" else "nhom",
                                stem=L["stem"], parent=L["parent"], words=L["words"]))
     result = dict(
-        sheet_file=S.SHEET_FILES[key],
+        sheet_file=S.ORIGINAL_NAMES[key],
         sheet_key=key,
         size=[W, H],
         bg_color=list(S.BG),
