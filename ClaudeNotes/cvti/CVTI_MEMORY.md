@@ -13,7 +13,7 @@
 | 03 | cắt sprite Title/Intro/HUD/font | **XONG phần Title/Intro/Simon/Font; HUD + Stage 1 chờ sheet** | (commit "CVTI 03") | 11/10/2026 | 77 sprite từ manifest `Tools/cvti/slices.json`, chạy 2 lần md5 y hệt; ảnh lưới 0 pixel lệch; `NesFont.asset` 26 glyph |
 | 04 | khung game flow/input/audio/NesText | **XONG** | (commit "CVTI 04") | 11/10/2026 | 1 scene + 3 prefab màn placeholder; NesClock 60 Hz; log frame đúng ±0 (80/16/442/32) ở 20 fps và ~378 fps; 3 ảnh đã xem |
 | 05 | màn Title + dơi + nháy PUSH START | **XONG** | (commit "CVTI 05") | 11/10/2026 | prefab Title thật; 19 ảnh Play khớp 0 pixel lệch với ảnh ghép từ PNG; dơi 37 khung bay 3/4 f xen kẽ (129 f, xấp xỉ) + lơ lửng 37-38-39-38 ×4 f; log nháy 80 / đen 16 ±0 |
-| 06 | HUD dùng chung | CHƯA | | | cần sheet HUD (§5) |
+| 06 | HUD dùng chung | **CHƯA — DỪNG (thiếu sheet HUD)** | (không có commit code) | 11/10/2026 | `Text Font.gif` mới chỉ là bảng chữ, vẫn thiếu thanh máu/tim/khung vũ khí phụ; xem §5 #13, §7 |
 | 07 | Intro Simon + nối Stage 1 stub | CHƯA | | | |
 | 08 | nghiệm thu so với video gốc | CHƯA | | | |
 
@@ -275,6 +275,8 @@ Sinh bằng `python -P -E Tools/cvti/slice_sprites.py` từ `Tools/cvti/slices.j
 11. (05) Bấm Start khi dơi còn đang bay: hiện **cho phép** (dơi bay tiếp trong lúc nháy, rồi đen như thường). Game gốc có chặn/bỏ qua không? Video chỉ bấm khi dơi đã lơ lửng ⇒ không biết.
 12. (05) Thời lượng từng khung bay 3 hay 4 f là xấp xỉ (§2.3). Nếu có nguồn chính xác hơn (capture 60 fps của bản gốc, hoặc dữ liệu ROM) thì sửa `NesTiming.TITLE_BAT_FLIGHT_*`.
 
+13. (06) **Sheet HUD vẫn THIẾU — routine 06 dừng ở Bước 0.** 11/10/2026 12:43 người dùng tải thêm `Downloads/NES - Castlevania - Miscellaneous - Text Font.gif` (104×192, GIF87a, 1 khung, 4 màu: đen / trắng (255,255,254) / xám 176 / xám 120; sha256 `bbf0ddcacd8ddab7ea1b3ace2873d68d69d7dec5cf23cafab905170c20fbed0f`), đã chép nguyên byte vào `Art_Source/_inbox/` (chưa vào `spriters-resource/`, chưa đưa vào `slices.json`). Nội dung (đã xem): font bản **Famicom/Nhật** — hiragana, katakana, kanji, `0–9`, `A–Z` (kiểu cao-đậm), dấu `! ? " - . = :` và `a–z`; **KHÔNG có**: thanh máu PLAYER/ENEMY (ô đầy/rỗng), icon tim, khung vũ khí phụ, icon vũ khí. ⇒ chưa đủ dựng HUD (H2: không vẽ/suy pixel từ video). Cần người dùng tải thêm sheet có HUD từ https://www.spriters-resource.com/nes/cv/ (sheet chứa dải trạng thái `SCORE-000000 TIME 0300 STAGE 01`, thanh máu, tim, `P-03`). Lưu ý khi có: font gif là bản Nhật, kiểu chữ có thể khác glyph US đã cắt từ sheet Title (`1 7 8 9 A B…`) — so từng glyph trước khi trộn nguồn; ưu tiên glyph từ chính sheet HUD US.
+
 **Trả lời cho §5 (routine 01, chạy vắng mặt — không hỏi được người dùng):** CHƯA TRẢ LỜI. Cần người dùng cung cấp đúng 3 thứ (chi tiết `Art_Source/_inbox/README.md`): (1) sheet HUD+font — chặn routine 06; (2) sheet Stage 1 — 07 dùng nền đen nếu thiếu; (3) nhạc Prologue + Vampire Killer — 07 không phát nhạc nếu thiếu. Tạm áp dụng phương án Recommended: người dùng tự tải vào `Art_Source/_inbox/`, routine 02–05 làm tiếp phần đã có; 06 tự kiểm sheet HUD.
 
 ## §6 Nợ & việc ngoài phạm vi
@@ -406,3 +408,8 @@ Sinh bằng `python -P -E Tools/cvti/slice_sprites.py` từ `Tools/cvti/slices.j
   - **Đường bay** (`_cache/05/bat_vs_video.png`, đã xem): 15 cặp game | video cùng thời điểm (t = 1.0 + L/59.24): hình dạng + vị trí dơi trùng ở mọi chặng (ngọn tháp → phải, to dần → sà trước tháp → vọt lên trên-trái → lơ lửng), lệch ≤ 1 khung. Lơ lửng L300 vs 6.06 s khác pha vỗ cánh (trong 4 f).
   - `def_strip.png` (đã xem): giữa nháy chữ tắt / chữ bật, dơi đang vỗ cánh; Intro placeholder sau đen.
 - Cuối phiên: thoát Play, EditorPrefs `CVTI.LogFlow` = false, scene Main không dirty, không có `Assets/Screenshots/`.
+
+### Routine 06 — 11/10/2026 — DỪNG ở Bước 0 (không làm HUD)
+- Điều kiện chặn: `Art_Source/` không có sheet HUD (§3; `Assets/Data/Art/HUD/` chưa tồn tại). Routine 04, 05 đã commit (`5fed9e6`, `01c70ab`); git sạch ngoài nhiễu nền §6.
+- Đã tìm thêm: `Downloads/NES - Castlevania - Miscellaneous - Text Font.gif` (mới, 12:43) — chỉ là bảng chữ Famicom, không có thanh máu/tim/khung vũ khí phụ (chi tiết §5 #13). Đã chép vào `Art_Source/_inbox/`.
+- Không đụng Unity, không tạo script/prefab/sprite, không dựng HUD từ pixel video (H1/H2). Việc tiếp: người dùng tải sheet HUD đầy đủ → nhập vào `Art_Source/spriters-resource/` + `SOURCES.md` → chạy lại routine 06.
