@@ -100,3 +100,6 @@ remote_config_data
 
 # CVTI
 ClaudeNotes/cvti/_cache/
+
+# CVGP
+ClaudeNotes/cvgp/_cache/
