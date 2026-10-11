@@ -12,7 +12,7 @@
 | 02 | nền render pixel-perfect NES | **XONG** | (commit "CVTI 02") | 11/10/2026 | 256×240, PPU 16, scale 4× trên 1920×1080 = `1024:960:448:60`; ảnh lưới khớp từng pixel ở 3×/4×/6× |
 | 03 | cắt sprite Title/Intro/HUD/font | **XONG phần Title/Intro/Simon/Font; HUD + Stage 1 chờ sheet** | (commit "CVTI 03") | 11/10/2026 | 77 sprite từ manifest `Tools/cvti/slices.json`, chạy 2 lần md5 y hệt; ảnh lưới 0 pixel lệch; `NesFont.asset` 26 glyph |
 | 04 | khung game flow/input/audio/NesText | **XONG** | (commit "CVTI 04") | 11/10/2026 | 1 scene + 3 prefab màn placeholder; NesClock 60 Hz; log frame đúng ±0 (80/16/442/32) ở 20 fps và ~378 fps; 3 ảnh đã xem |
-| 05 | màn Title + dơi + nháy PUSH START | CHƯA | | | |
+| 05 | màn Title + dơi + nháy PUSH START | **XONG** | (commit "CVTI 05") | 11/10/2026 | prefab Title thật; 19 ảnh Play khớp 0 pixel lệch với ảnh ghép từ PNG; dơi 37 khung bay 3/4 f xen kẽ (129 f, xấp xỉ) + lơ lửng 37-38-39-38 ×4 f; log nháy 80 / đen 16 ±0 |
 | 06 | HUD dùng chung | CHƯA | | | cần sheet HUD (§5) |
 | 07 | Intro Simon + nối Stage 1 stub | CHƯA | | | |
 | 08 | nghiệm thu so với video gốc | CHƯA | | | |
@@ -68,6 +68,32 @@ Thời lượng: Title im lặng 1.03→6.90 (5.87 s ≈ 352 f) · nháy 6.90→
 
 **Hệ số 8:7 (đo lại)**: ô vuông ngang bắt đầu x=11, 12 ô cách 189 px ⇒ ×1.969 (8 px NES ≈ 15.75); y: dải 1 video 20–32 (NES 16–23), dải 2 335–348 (NES 200–207) ⇒ ×**1.712**, gốc y −7.4; thanh xám NES 216 → video 363 ✓. **Xác nhận** planner (1.96/1.71, gốc 11/−7.4), tinh chỉnh x thành 1.969.
 **Lệnh ghép §3a** chạy thử OK (panel A phóng 4×, đặt (448,60), W:H:X:Y=1024:960:448:60): logo/ô vuông/thanh xám khớp (ảnh hiệu chỉ còn viền 1px do nén h264); sáng ở đúng: dòng copyright, PUSH START KEY (sheet có thanh chấm tím/xanh), vùng tháp ô-liu, chữ "1987" vs "1988". Ảnh: `_cache/shots/00/cmp_side.png`, `cmp_diff.png` (đã xem).
+
+### 2.3 Dơi Title — khung sheet ↔ thời lượng (routine 05 đo 11/10/2026)
+
+**Cách đo**: crop video vùng tháp (x368 y162 150×110) ở **30 fps đầy đủ** (`ffmpeg -ss 0.9 -t 6.2 … -f rawvideo`), mỗi frame video so (MAE) với 40 khung `title_bat_NN` đã chiếu sang toạ độ video theo 8:7 (dịch tối ưu (−2,−1) px video tìm trên khung 00) ⇒ khung khớp nhất. Script + kết quả: `_cache/05/match.py`, `match.txt`, `fit.py`, `sim.py` (không commit).
+- **Sửa số cũ**: ở vùng tháp video đổi hình **mỗi 2 frame video (≈15 fps)**, không phải 7.5 fps — mỗi khung sheet bắt được 1–3 mẫu. Khung 00, 08, 17 không bắt được (lọt giữa 2 mẫu).
+- **Đường bay = khung 00 → 36 chạy tuần tự đúng thứ tự sheet, mỗi khung 1 lần**, bắt đầu ngay khi Title hiện (khung 01 đã thấy ở mẫu Title đầu tiên 1.033 s). Hồi quy thời điểm xuất hiện: **0.0598 s/khung**; quy về đồng hồ NES của video (chu kỳ lơ lửng 0.2701 s = 16 f ⇒ 1 f = 16.9 ms, trình giả lập chạy ~59.2 Hz) ⇒ **≈ 3.54 f/khung**. Khung 37 xuất hiện 3.200 s ⇒ **≈ 129–130 f** sau khi Title hiện.
+- Từng khung là 3 hay 4 f **không phân giải được** (mẫu cách 2 f + jitter capture ±1 mẫu; mô phỏng mọi mẫu lặp 3/4 chỉ khớp tối đa 48/68 mẫu, các mẫu [3,4], [4,3], [3,4,4] ngang nhau) ⇒ **chọn xen kẽ 3,4,3,4… (khung chẵn 3 f, lẻ 4 f) = 129 f — XẤP XỈ**; tổng thời lượng và thứ tự là số đo chắc.
+- **Lơ lửng = 37 → 38 → 39 → 38 lặp**, mỗi tư thế 4 f (chu kỳ 16 f, đo 14 chu kỳ 3.2–7.0 s: 16.21 f, sai lệch tối đa 0.028 s). Khung 36 KHÔNG thuộc vòng lặp. Không dừng/đổi pha tới 7.07 s (hết đoạn crop, đang nháy).
+
+| khung sheet | frame NES bắt đầu (local Title) | giữ (f) | video thấy lần đầu (s, ≈ local f) |
+|---|---|---|---|
+| 00 | 0 | 3 | không bắt được |
+| 01 / 02 / 03 | 3 / 7 / 10 | 4 / 3 / 4 | 1.033 (L1) / 1.067 (L3) / 1.133 (L7) |
+| 04 / 05 / 06 / 07 | 14 / 17 / 21 / 24 | 3 / 4 / 3 / 4 | 1.200 / 1.300 / 1.367 / 1.433 (L11/17/21/25) |
+| 08 / 09 / 10 / 11 | 28 / 31 / 35 / 38 | 3 / 4 / 3 / 4 | — / 1.500 / 1.567 / 1.633 (–/29/33/36) |
+| 12 / 13 / 14 / 15 | 42 / 45 / 49 / 52 | 3 / 4 / 3 / 4 | 1.700 / 1.767 / 1.833 / 1.900 (40/44/48/52) |
+| 16 / 17 / 18 / 19 | 56 / 59 / 63 / 66 | 3 / 4 / 3 / 4 | 1.967 / — / 2.033 / 2.100 (56/–/60/64) |
+| 20 / 21 / 22 / 23 | 70 / 73 / 77 / 80 | 3 / 4 / 3 / 4 | 2.133 / 2.233 / 2.267 / 2.333 (66/72/74/78) |
+| 24 / 25 / 26 / 27 | 84 / 87 / 91 / 94 | 3 / 4 / 3 / 4 | 2.400 / 2.467 / 2.500 / 2.600 (82/86/88/94) |
+| 28 / 29 / 30 / 31 | 98 / 101 / 105 / 108 | 3 / 4 / 3 / 4 | 2.667 / 2.733 / 2.800 / 2.833 (98/102/106/108) |
+| 32 / 33 / 34 / 35 / 36 | 112 / 115 / 119 / 122 / 126 | 3 / 4 / 3 / 4 / 3 | 2.867 / 2.933 / 3.033 / 3.067 / 3.133 (110/114/119/121/125) |
+| **37 → 38 → 39 → 38** (lặp) | **129** | 4 mỗi tư thế | 3.200 (L≈130) |
+
+(Cột cuối: L ≈ (t − 1.017)·59.24, Title hiện giữa 1.000 và 1.033 s.) Mọi khung lệch dự kiến ≤ 4 f — trong sai số mẫu.
+
+**Nháy PUSH START (đo lại `ref/brightness_series.tsv` cột 3)**: tắt (16.0) ở 6.900 / 7.167 / 7.433 / 7.700 / 7.967 s, bật (61.0) ở 7.033 / 7.300 / 7.533 / 7.833 / 8.100 s, đen 8.233 s, Intro 8.500 s ⇒ chu kỳ 0.267 s = 16 f (8 tắt + 8 bật), 5 lần tắt, 80 f, đen 16 f — **khớp hằng số cũ, không đổi**.
 
 ## §3 Tài nguyên
 
@@ -221,6 +247,18 @@ Sinh bằng `python -P -E Tools/cvti/slice_sprites.py` từ `Tools/cvti/slices.j
 | Test qua MCP | `execute_code` (codedom) đăng ký delegate vào `NesClock.OnSystemTick` để `InputController.I.InjectStart()` đúng frame, `GameManager.I.GoTo(eGameScreen.Title, 0)` để chạy lại từ Title trong cùng phiên Play, `Application.targetFrameRate` (runtime, không lưu) để đổi fps. Không đổi `QualitySettings` khi Play (dễ ghi vào asset). | |
 | GameManager.prefab | Đã **xoá 2 con `AnimationManager`, `InputManager` mang script MISSING** (nợ §6 từ 02); thêm con `NesClock`, `InputController`, `AudioManager`. Còn `GlobalInfo` (rỗng, giữ nguyên). | |
 
+### 4.4 Màn Title (routine 05 chốt — 11/10/2026)
+
+| Quyết định | Giá trị | Lý do |
+|---|---|---|
+| Prefab `TitleScreen` | Con (đều localPosition = `NesCoord.ToWorld`): `Base` SpriteRenderer `title_base` NES (0,0) layer **Background**; `TowerBat` SpriteRenderer + `FrameAnimator` (loop ✗, playOnEnable ✗) NES **(184,104)** layer **BackgroundFX**; `PushStartKey` SpriteRenderer `push_start_key` NES **(72,136)** layer **HUD**; `Copyright1..3` `NesText` (layer HUD) tại **(72,160) `TM AND © 1988`**, **(32,168) `KONAMI INDUSTRY CO.,LTD.`**, **(48,176) `LICENSED BY NINTENDO`**. Placeholder `TitleText` của 04 đã xoá. | x/y copyright theo §3.1 (routine 03 đã chốt bằng lệnh ghép); kiểm lại ở 05: lệch tương đối < 1 px NES (§7). |
+| PUSH START KEY | **Sprite** cắt từ sheet (không dựng bằng NesText) — tắt khi nháy = `SpriteRenderer.enabled = false` (nền dưới đã đen). | Pixel đúng sheet (H1); cùng hình với glyph nhưng 1 renderer gọn hơn. |
+| `TitleScreen` | Serialized `pushStart` (SpriteRenderer), `bat` (FrameAnimator), `batFrames[40]` (`title_bat_00..39`). `Awake` dựng mảng bay (khung 0..36, thời lượng xen kẽ `TITLE_BAT_FLIGHT_SHORT/LONG`) + mảng lơ lửng theo `HOVER_ORDER = {37,38,39,38}`. `OnEnter`: hiện PUSH START, `bat.Play(bay, durations, loop ✗, StartHover)`, `StopMusic`. `StartHover` (gọi trong tick khung 36 hết hạn) ⇒ `bat.Play(hover, TITLE_BAT_HOVER_POSE, loop ✓)` ⇒ khung 37 hiện ngay tick đó (local 129). Log `CvtiDebug` "Title: dơi lơ lửng". Logic nháy giữ nguyên 04. | Dùng API có sẵn của FrameAnimator (one-shot + onComplete), **không sửa FrameAnimator/GameManager/NesText**. Vào lại Title (GoTo) ⇒ dơi chạy lại từ khung 00. |
+| Hằng `NesTiming` mới | `TITLE_BAT_FLIGHT_FRAMES 37`, `TITLE_BAT_FLIGHT_SHORT 3`, `TITLE_BAT_FLIGHT_LONG 4` (khung chẵn 3 f, lẻ 4 f ⇒ 129 f); giữ `TITLE_BAT_HOVER_POSE 4`, `TITLE_BLINK_*`, `BLACK_AFTER_TITLE` (đo lại khớp). | §2.3 (xấp xỉ từng khung, tổng đo được). |
+| Start trước khi dơi bay xong | **Hợp lệ** — nhận Start từ local frame 1; dơi tiếp tục bay/lơ lửng trong lúc nháy. | Video không cho thấy cấm (§5 #11). |
+| Âm thanh | Không phát gì ở Title, kể cả khi bấm Start. | Video im lặng. Không làm demo/attract mode (§5 #1). |
+| Test chụp ảnh đúng frame | `execute_code` đăng ký delegate `NesClock.OnTick` gọi `ScreenCapture.CaptureScreenshot(<đường dẫn tuyệt đối>)` ở local frame mong muốn (chạy sau FrameAnimator vì đăng ký sau) — chụp đúng khung đã log. Nhận diện khung dơi trong ảnh: `_cache/05/whichbat.py` (so với ảnh ghép `expected.py`). | `manage_camera screenshot` qua MCP không chọn được frame. Lưu ý: Unity mất focus ⇒ NesClock ngừng (delegate treo tới khi `AppActivate`). |
+
 ## §5 Câu hỏi cho người dùng (chép từ CVTI_PLAN §8 + phát sinh)
 
 1. Để yên ở Title lâu thì có cần attract/demo mode không? (video không thể hiện ⇒ mặc định KHÔNG làm)
@@ -234,6 +272,8 @@ Sinh bằng `python -P -E Tools/cvti/slice_sprites.py` từ `Tools/cvti/slices.j
 8. (03) **Thiếu cho HUD/font** (sheet Title không có): chữ `G`; dấu `-`; chữ số `0`, `2`, `3`, `4`, `5`, `6` (có `1 7 8 9`); icon tim `♥`; thanh máu PLAYER/ENEMY; khung vũ khí phụ. Cần sheet HUD/font (§5 #4). Khi có: thêm dòng `glyph_<k>` vào `Tools/cvti/slices.json` (tên `hyphen`/`heart` đã khai sẵn trong `NesFontBuilder`), chạy slicer + menu CVTI/Build NesFont. Lưu ý: chữ `O` hiện có KHÔNG được dùng thay số `0` (H2 — không bịa).
 9. (03) **Stage 1**: chưa có sheet ⇒ `Assets/Data/Art/Stage1/` chưa tạo. `Assets/Data/Art/HUD/` cũng chưa tạo.
 10. (04) Bấm Start trong Intro có bỏ qua cảnh không? Video không thể hiện ⇒ mặc định KHÔNG (Start bị bỏ qua khi đen/Intro).
+11. (05) Bấm Start khi dơi còn đang bay: hiện **cho phép** (dơi bay tiếp trong lúc nháy, rồi đen như thường). Game gốc có chặn/bỏ qua không? Video chỉ bấm khi dơi đã lơ lửng ⇒ không biết.
+12. (05) Thời lượng từng khung bay 3 hay 4 f là xấp xỉ (§2.3). Nếu có nguồn chính xác hơn (capture 60 fps của bản gốc, hoặc dữ liệu ROM) thì sửa `NesTiming.TITLE_BAT_FLIGHT_*`.
 
 **Trả lời cho §5 (routine 01, chạy vắng mặt — không hỏi được người dùng):** CHƯA TRẢ LỜI. Cần người dùng cung cấp đúng 3 thứ (chi tiết `Art_Source/_inbox/README.md`): (1) sheet HUD+font — chặn routine 06; (2) sheet Stage 1 — 07 dùng nền đen nếu thiếu; (3) nhạc Prologue + Vampire Killer — 07 không phát nhạc nếu thiếu. Tạm áp dụng phương án Recommended: người dùng tự tải vào `Art_Source/_inbox/`, routine 02–05 làm tiếp phần đã có; 06 tự kiểm sheet HUD.
 
@@ -257,6 +297,10 @@ Sinh bằng `python -P -E Tools/cvti/slice_sprites.py` từ `Tools/cvti/slices.j
 - (04) `runInBackground: 0` vẫn giữ: Editor mất focus ⇒ `Update` ngừng ⇒ NesClock ngừng (game "đóng băng", số frame không sai, chỉ thời gian thực dài ra). Test Play qua MCP phải `AppActivate` Unity (§6 mục 02) — đã làm vậy ở 04, MCP không rớt.
 - (04) `NesText` chỉ dựng chữ khi Play (không ExecuteAlways) ⇒ mở prefab màn trong Edit mode không thấy chữ. Nếu 05–07 cần xem trước trong Editor thì thêm `[ExecuteAlways]` cẩn thận (đừng để glyph con bị lưu vào prefab).
 - (04) Câu hỏi mới cho §5 (không chặn): có cần cho Start **bỏ qua Intro** không? Video không thể hiện ⇒ mặc định KHÔNG (Start bị bỏ qua khi đen/Intro).
+- (05) `CVTI_PLAN.md` ghi capture video "~7.5 fps" — ở vùng tháp Title thực tế đổi hình **mỗi 2 frame video (~15 fps)** (§2.3). Routine 07/08 đo chuyển động nên crop đủ 30 fps rồi khớp mẫu thay vì giả định 7.5 fps.
+- (05) Trình giả lập trong video chạy ~**59.2 Hz** (chu kỳ lơ lửng 16 f = 0.270 s; nháy 16 f = 0.267 s) — sai khác ~1 % so với 60 Hz, nhỏ hơn sai số mốc; KHÔNG chỉnh NesClock.
+- (05) `read_console` của MCP trả mục **cũ nhất trước** và cắt theo `count` ⇒ console nhiều log thì phải `clear` trước khi test hoặc lọc `filter_text`.
+- (05) Lệnh ghép §3a cho lệch chung (+1, 0…+2) px video (tăng dần theo y vì 410/240 = 1.708 < 1.712) ⇒ ảnh hiệu luôn còn viền mảnh ở MỌI thành phần (cả dải ô vuông của `title_base`). Muốn ảnh hiệu sạch hơn: overlay `12:-6`. Không phải lệch bố cục.
 
 ## §7 Nhật ký nghiệm thu
 
@@ -339,3 +383,26 @@ Sinh bằng `python -P -E Tools/cvti/slice_sprites.py` từ `Tools/cvti/slices.j
 - **NesText**: `SetText("STAGE 1")` rồi `"STAGE 1 G"` ⇒ đúng **1** warning `[NesText] Không có glyph 'G' …`, không crash; trả lại `SCENE 1`; `SetVisible(false/true)` ✓.
 - **Ảnh** (`ClaudeNotes/cvti/_cache/shots/04/`, 1920×1080, đều đã mở xem): `placeholder_title_1920x1080.png` (TITLE + PUSH START KEY), `placeholder_intro_1920x1080.png` (INTRO), `placeholder_stage1_1920x1080.png` (SCENE 1). Đo bằng python: chữ trắng (252,252,252) duy nhất, bbox NES Title (73,104)–(184,143) = TITLE ô (104,104) + PUSH START KEY ô (72,136) đúng vị trí đặt; 0 pixel khác đen ngoài vùng game (448,60,1024,960).
 - Cuối phiên: thoát Play, `Application.targetFrameRate` = −1, EditorPrefs `CVTI.LogFlow` = false, scene Main không dirty.
+
+### Routine 05 — 11/10/2026
+- Sửa: `Assets/Data/Script/Title/TitleScreen.cs` (dựng thật), `Assets/Data/Script/System/NesTiming.cs` (+3 hằng dơi), `Assets/Data/Prefabs/Screens/TitleScreen.prefab` (Base/TowerBat/PushStartKey/Copyright1..3, xoá placeholder). **Không** đổi `Main.unity`, FrameAnimator, NesText, GameManager, `Assets/TuyenAframework`, ProjectSettings.
+- Console sau `refresh_unity` + suốt Play: 0 error/warning mới (chỉ lỗi nền §6: warning framework, Odin path1, Mathematics, MCP WebSocket). `NesFont.CanRender` 3 dòng copyright = true (không warning thiếu glyph).
+- **Log frame** (Play `Main.unity`, Game view 1920×1080, EditorPrefs LogFlow bật tạm; Start giả lập bằng `InjectStart` từ delegate `NesClock.OnTick`):
+  ```
+  [CVTI] frame 1 (t=2.654s): Boot→Title
+  [CVTI] frame 130 (t=5.183s): Title: dơi lơ lửng            ← +129 f
+  [CVTI] frame 1404 (t=26.426s): Title→Title                  (chạy lại từ Title, t0=1404)
+  [CVTI] frame 1533 (t=29.255s): Title: dơi lơ lửng           ← +129
+  [CVTI] frame 1756 (t=32.950s): Title: Start                 ← local 352 (= video 6.90−1.03 s)
+  [CVTI] frame 1836 (t=34.285s): Title→Black (16f)            ← nháy 80 f, 1.335 s thực
+  [CVTI] frame 1852 (t=34.550s): Black→Intro                  ← đen 16 f
+  ```
+  Đổi khung dơi (local, log từ delegate): `01@3 02@7 03@10 04@14 05@17 06@21 07@24 08@28 09@31 10@35 … 35@122 36@126 37@129 38@133 39@137 38@141 37@145 …` (lặp 16 f tới hết nháy). PUSH START: tắt 352, bật 360, tắt 368, 376 bật, 384, 392, 400, 408, tắt 416, bật 424, đen 432 ⇒ **5 × (8 tắt + 8 bật)** ✓. Start giả lập thêm ở 361/381/411 (đang nháy) và 436/441 (đen) ⇒ bị bỏ qua, không nhảy cóc.
+  - Bấm sớm: Start ở local 5 (dơi khung 01) ⇒ `Title: Start` 8642 → `Black` 8722 (+80) → `Intro` 8738 (+16); dơi vẫn bay trong lúc nháy (khung 11 ở L40, 23 ở L84); Start thêm ở L6/30/84/90 bị bỏ qua ✓.
+  - So §2: Title→lơ lửng 129 f (video ≈ 130 f, ±2), nháy 80 f (video 80), đen 16 f (video 16) ⇒ trong ±1 f với mốc video, trừ thời lượng từng khung bay (xấp xỉ, §2.3).
+- **Ảnh** (`ClaudeNotes/cvti/_cache/shots/05/`, 1920×1080, chụp đúng frame bằng `ScreenCapture` từ delegate): `a_title_L000`, `a_title_L010`, `b_fly_L008…L128` (10 ảnh), `c_hover_L129/133/137/141/300`, `d_blink_off_L354`, `d_blink_on_L362`, `e_black_L436`, `f_intro_L449`. Đã mở xem: `a_title_L000`, các ảnh ghép dưới.
+  - **Kiểm từng pixel**: 19 ảnh Title (mọi ảnh a/b/c/d) so với ảnh ghép kỳ vọng từ PNG nguồn (`_cache/05/expected.py`: title_base + title_bat_NN @ (184,104) + push_start_key @ (72,136) + glyph 3 dòng) ⇒ **0 pixel lệch** ở cả 19 ảnh (khung dơi nhận ra đúng như log, `d_blink_off` = không PUSH START). `check_pixel_exact` cho `a_title_L000`: 0 pixel ngoài vùng game không đen. `e_black_L436`: 0 pixel khác (0,0,0,255). Ghi chú: ảnh `a_title_L000` ra khung 01 (log nói khung 00 giữ L0–L2) — chụp ở lượt Title được bật từ trong `OnSystemTick`; các ảnh khác đều đúng khung log. Không ảnh hưởng game.
+  - **So video** (`_cache/05/cmp_side.png`, `cmp_diff.png`, `cmp_diff_aligned.png`, đã xem; shot L010 vs `ref/01` t1.2 s — cùng khung dơi 03): mọi thành phần trùng; dịch tối ưu theo vùng (px video → NES): logo (+1,0)→(+0.51,0) · ô vuông trên (+1,0) · ô vuông dưới (+1,+2)→(+0.51,+1.17) · PUSH START (+1,+1)→(+0.51,+0.58) · copyright 1/2 (+1,+1) · copyright 3 (+1,+2) · tháp (+1,+1). Lệch giống hệt các phần cố định của `title_base` ở cùng độ cao ⇒ do lệnh ghép (§6), **lệch bố cục tương đối = 0 px NES** (≤ 1 px). Màu mẫu (game/video): tháp (199,75,10)/(206,76,9), cỏ (0,146,0)/(0,149,0), thanh xám 187/189, tím logo (68,0,154)/(65,0,153) ✓.
+  - **Đường bay** (`_cache/05/bat_vs_video.png`, đã xem): 15 cặp game | video cùng thời điểm (t = 1.0 + L/59.24): hình dạng + vị trí dơi trùng ở mọi chặng (ngọn tháp → phải, to dần → sà trước tháp → vọt lên trên-trái → lơ lửng), lệch ≤ 1 khung. Lơ lửng L300 vs 6.06 s khác pha vỗ cánh (trong 4 f).
+  - `def_strip.png` (đã xem): giữa nháy chữ tắt / chữ bật, dơi đang vỗ cánh; Intro placeholder sau đen.
+- Cuối phiên: thoát Play, EditorPrefs `CVTI.LogFlow` = false, scene Main không dirty, không có `Assets/Screenshots/`.
