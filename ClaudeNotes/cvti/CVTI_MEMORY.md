@@ -15,7 +15,7 @@
 | 05 | màn Title + dơi + nháy PUSH START | **XONG** | (commit "CVTI 05") | 11/10/2026 | prefab Title thật; 19 ảnh Play khớp 0 pixel lệch với ảnh ghép từ PNG; dơi 37 khung bay 3/4 f xen kẽ (129 f, xấp xỉ) + lơ lửng 37-38-39-38 ×4 f; log nháy 80 / đen 16 ±0 |
 | 06 | HUD dùng chung | **CHƯA — DỪNG (thiếu sheet HUD)** | (không có commit code) | 11/10/2026 | `Text Font.gif` mới chỉ là bảng chữ, vẫn thiếu thanh máu/tim/khung vũ khí phụ; xem §5 #13, §7 |
 | 07 | Intro Simon + nối Stage 1 stub | **CHƯA — DỪNG ở Bước 0 (cổng 06 chưa đạt)** | (chỉ commit ghi sổ) | 11/10/2026 | 06 chưa XONG, vẫn chưa có sheet HUD; xem §7 |
-| 08 | nghiệm thu so với video gốc | CHƯA | | | |
+| 08 | nghiệm thu so với video gốc | **XONG — kết luận cụm: CHƯA ĐẠT** | (commit "CVTI 08") + sửa nhỏ `7ae4d00` | 11/10/2026 | Title + khung luồng đạt (8/12 mốc ±1.2 f, tất định, pixel-exact ở 4 độ phân giải); Intro/Stage 1 vẫn placeholder (06/07 dừng), không nhạc ⇒ xem §7 "NGHIỆM THU CỤM" + routine đề xuất |
 
 ## §2 Timeline & số đo (video 524×476, 30 fps container, capture thực ~7.5 fps ⇒ sai số mốc ±0.13 s; frame NES = giây × 60)
 
@@ -277,6 +277,9 @@ Sinh bằng `python -P -E Tools/cvti/slice_sprites.py` từ `Tools/cvti/slices.j
 
 13. (06) **Sheet HUD vẫn THIẾU — routine 06 dừng ở Bước 0.** 11/10/2026 12:43 người dùng tải thêm `Downloads/NES - Castlevania - Miscellaneous - Text Font.gif` (104×192, GIF87a, 1 khung, 4 màu: đen / trắng (255,255,254) / xám 176 / xám 120; sha256 `bbf0ddcacd8ddab7ea1b3ace2873d68d69d7dec5cf23cafab905170c20fbed0f`), đã chép nguyên byte vào `Art_Source/_inbox/` (chưa vào `spriters-resource/`, chưa đưa vào `slices.json`). Nội dung (đã xem): font bản **Famicom/Nhật** — hiragana, katakana, kanji, `0–9`, `A–Z` (kiểu cao-đậm), dấu `! ? " - . = :` và `a–z`; **KHÔNG có**: thanh máu PLAYER/ENEMY (ô đầy/rỗng), icon tim, khung vũ khí phụ, icon vũ khí. ⇒ chưa đủ dựng HUD (H2: không vẽ/suy pixel từ video). Cần người dùng tải thêm sheet có HUD từ https://www.spriters-resource.com/nes/cv/ (sheet chứa dải trạng thái `SCORE-000000 TIME 0300 STAGE 01`, thanh máu, tim, `P-03`). Lưu ý khi có: font gif là bản Nhật, kiểu chữ có thể khác glyph US đã cắt từ sheet Title (`1 7 8 9 A B…`) — so từng glyph trước khi trộn nguồn; ưu tiên glyph từ chính sheet HUD US.
 
+14. (08) **Dựng Intro trước, chưa có HUD?** Mọi sprite Intro đã cắt đủ (`intro_bg`, Simon walk/back, mây, 2 dơi nhỏ — §3.1); chỉ HUD, nền Stage 1 và nhạc là thiếu nguồn. Routine 07 đang bị khoá vì cổng "06 phải XONG". Đề xuất `cvti-fix-01` (§7) dựng Intro chừa trống dải HUD y 0–47 — người dùng có đồng ý tách cổng không? (Mặc định đề xuất: CÓ.)
+15. (08) Tình trạng câu hỏi cũ: #1 (attract/demo), #2/#7 (8:7), #3 (nguồn nhạc), #4/#8/#9/#13 (sheet HUD + Stage 1), #5 (Stage 1 chỉ stub), #6 (copyright 1988), #10 (Start bỏ qua Intro), #11 (Start khi dơi đang bay), #12 (3/4 f từng khung dơi) — **vẫn CHƯA được trả lời** tới 11/10/2026; `Downloads/` không có file mới sau `Text Font.gif` (12:43).
+
 **Trả lời cho §5 (routine 01, chạy vắng mặt — không hỏi được người dùng):** CHƯA TRẢ LỜI. Cần người dùng cung cấp đúng 3 thứ (chi tiết `Art_Source/_inbox/README.md`): (1) sheet HUD+font — chặn routine 06; (2) sheet Stage 1 — 07 dùng nền đen nếu thiếu; (3) nhạc Prologue + Vampire Killer — 07 không phát nhạc nếu thiếu. Tạm áp dụng phương án Recommended: người dùng tự tải vào `Art_Source/_inbox/`, routine 02–05 làm tiếp phần đã có; 06 tự kiểm sheet HUD.
 
 ## §6 Nợ & việc ngoài phạm vi
@@ -303,6 +306,12 @@ Sinh bằng `python -P -E Tools/cvti/slice_sprites.py` từ `Tools/cvti/slices.j
 - (05) Trình giả lập trong video chạy ~**59.2 Hz** (chu kỳ lơ lửng 16 f = 0.270 s; nháy 16 f = 0.267 s) — sai khác ~1 % so với 60 Hz, nhỏ hơn sai số mốc; KHÔNG chỉnh NesClock.
 - (05) `read_console` của MCP trả mục **cũ nhất trước** và cắt theo `count` ⇒ console nhiều log thì phải `clear` trước khi test hoặc lọc `filter_text`.
 - (05) Lệnh ghép §3a cho lệch chung (+1, 0…+2) px video (tăng dần theo y vì 410/240 = 1.708 < 1.712) ⇒ ảnh hiệu luôn còn viền mảnh ở MỌI thành phần (cả dải ô vuông của `title_base`). Muốn ảnh hiệu sạch hơn: overlay `12:-6`. Không phải lệch bố cục.
+- (08) **MCP KHÔNG trả lời khi Play bị PAUSE** (`ping not answered` kéo dài, kể cả đã `AppActivate`) — đừng vào Play kiểu "pause trước rồi đăng ký harness". Nếu đã kẹt: `AppActivate` Unity rồi `SendKeys("^+p")` (bỏ pause) ⇒ MCP trả lời lại ngay. Chạy lại từ Title bằng `GoTo(Title,0)` trong `OnSystemTick` (như 05) là đủ tất định.
+- (08) Tick đầu tiên sau một lệnh `execute_code` thường dồn 4 tick vào 1 Update (main thread bị lệnh MCP giữ) ⇒ 2 ảnh hẹn ở L0 và L3 rơi cùng Update, chỉ ra 1 file (L3). Muốn có ảnh L0: hẹn restart vài tick sau khi đăng ký.
+- (08) `ScreenCapture` ở **2560×1440 (6×) chụp trễ 2–3 tick** (hẹn L42 ra khung dơi 13, L131 ra 38) — nội dung vẫn khớp từng pixel một khung hợp lệ. Chuẩn thời gian = log tick; ảnh chỉ dùng làm chuẩn pixel. Ở 3×/4× ảnh đúng khung đã hẹn.
+- (08) Game view nhóm Android không có 1366×768; dùng sẵn **"QA 1600x914" (index 24)** làm tỷ lệ lạ (zoom 3, vùng game (416,97,768,720)). Không thêm custom size (là preference toàn máy). Đổi size trong Play bằng reflection `GameView.SizeSelectionCallback(index, null)`.
+- (08) Đếm GameObject bằng `Resources.FindObjectsOfTypeAll<GameObject>()` + `scene.IsValid()` lẫn cả object preview scene của Editor (SceneLight, Preview Scene Camera…) ⇒ lọc `scene.name == "Main"`.
+- (08) Script kiểm ảnh `ClaudeNotes/cvti/_cache/08/verify_shots.py <dir> <S> <X> <Y> [run log]` (không commit): khối S×S đồng nhất + ngoài vùng đen đặc + so ảnh ghép `_cache/05/expected.py` 40 khung × PUSH bật/tắt + đối chiếu khung theo log. Chạy `python -W ignore -P -E`; `-E` bỏ `PYTHONIOENCODING` ⇒ đừng in tiếng Việt có dấu (cp1252 lỗi).
 
 ## §7 Nhật ký nghiệm thu
 
@@ -419,3 +428,105 @@ Sinh bằng `python -P -E Tools/cvti/slice_sprites.py` từ `Tools/cvti/slices.j
 - Kiểm lại đầu vào: `Downloads/` không có file mới sau `Text Font.gif` (12:43); `Art_Source/spriters-resource/` vẫn chỉ 3 sheet (title/cutscenes/simon); không có sheet HUD, sheet Stage 1 hay nhạc Prologue/Vampire Killer ⇒ chưa có gì để chạy lại 06.
 - Không đụng Unity, không tạo script/prefab/sprite. Ghi chú: `git status` thấy submodule `Assets/TuyenAframework` báo " m" (nội dung trong submodule thay đổi, con trỏ vẫn `4685d33`) — không thuộc cụm, không đụng (H3).
 - Việc tiếp: người dùng tải sheet có HUD (dải `SCORE-000000 TIME 0300 STAGE 01`, thanh máu, tim, `P-03`) → chạy lại 06 → chạy lại 07. (Sheet Stage 1 + nhạc không chặn 07: thiếu thì stub nền đen + không phát nhạc như routine đã dặn.)
+
+### Routine 08 — 11/10/2026 — NGHIỆM THU CỤM — kết luận chung: **CHƯA ĐẠT**
+
+**Bối cảnh**: 00–05 XONG; **06 và 07 DỪNG** (thiếu sheet HUD) ⇒ Intro + Stage 1 vẫn là placeholder của 04 (chữ `INTRO` / `SCENE 1` trên nền đen), không nhạc. Theo Bước 0 ⇒ kết luận chung không thể ĐẠT. Phần đã dựng (Title + khung luồng + nền pixel-perfect) được nghiệm thu đủ 7 mục, có số liệu.
+
+**Cách đo**: Unity MCP `Castlevania_Original-main`, `dataPath` = `D:/Unity/Castlevania_Original-main/Assets`. Play `Main.unity`, Game view 1920×1080 (Android idx 6), EditorPrefs `CVTI.LogFlow` bật tạm. Harness `execute_code`: `NesClock.OnSystemTick` gọi `GoTo(Title,0)` trong tick (= L0) và `InjectStart` ở L351 ⇒ Title đọc Start ở **L352** (= video 6.90 − 1.03 s); `NesClock.OnTick` (đăng ký lại sau mỗi lần đổi màn để chạy sau FrameAnimator) đọc sprite dơi / `PushStartKey.enabled` / `AudioManager.IsMusicPlaying` mỗi tick và `ScreenCapture` đúng frame. **L = frame NES tính từ lúc Title hiện.** Log: `_cache/shots/08/<run>/log.txt` + `console_cvti.txt`. Chuyển cảnh Boot→Title tự nhiên (frame 1) và dơi lơ lửng ở frame 130 (+129) cũng có trong log console của cả 2 phiên Play.
+
+#### Bảng tổng
+
+| Mục | Kết quả | Bằng chứng (thư mục `ClaudeNotes/cvti/_cache/`) |
+|---|---|---|
+| 1 Timing | **CHƯA ĐẠT** — 8/12 mốc ĐẠT (lệch ≤ 1.2 f, ngưỡng ±8 f), 2 lần chạy trùng 100 %; 4 mốc không tồn tại (nhạc Prologue, nhạc Stage 1, Simon dừng, quay lưng) | `shots/08/run1/log.txt`, `run2/log.txt`, `console_cvti.txt` |
+| 2 Pixel & bố cục | **CHƯA ĐẠT** — Title ĐẠT (16/16 ảnh khớp từng pixel ảnh ghép từ PNG nguồn, đúng khung theo log; so video: đủ thành phần, đúng vị trí, copyright 1988 3 dòng). Intro (ref 05/06/07), HUD, Stage 1 (ref 09): **placeholder** — thiếu toàn bộ | `08/verify_run1.txt`, `08/cmp/cmp_side_*.png`, `cmp_diff_*.png`, `montage_06_intro.png` |
+| 3 Chuyển động | **CHƯA ĐẠT** — dơi Title (đường bay + vỗ cánh) ĐẠT, nháy PUSH START ĐẠT; Simon, mây, 2 dơi nhỏ **chưa dựng** | `08/cmp/bat_path_vs_video.png`, `cmp_side_04_*`, log BAT/PUSH |
+| 4 Pixel-perfect & độ phân giải | **ĐẠT phần đã có** (Title ở 1920×1080 / 1280×720 / 2560×1440 / 1600×914: scale nguyên, viền đen đặc, 0 pixel nhoè, 2 frame liền nhau không xê dịch) · **CHƯA KIỂM** rung nửa pixel của vật di chuyển lẻ pixel (Simon 0.49 px/f, mây 0.118 px/f) vì chưa tồn tại | `08/verify_res.txt`, `08/cmp/zoom_consecutive_3x.png`, `shots/08/res_*/log.txt` |
+| 5 Âm thanh | **CHƯA ĐẠT** — Title im lặng ĐẠT; Prologue + Vampire Killer **không có file** (§5 #3) ⇒ Intro/Stage 1 im lặng | log `music playing=0` suốt run; prefab `music: {fileID: 0}` |
+| 6 Hồi quy & độ bền | **ĐẠT** | `shots/08/run3_spam/`, `run4_fps30/`, `run5_fps144/`, `run6_fps60/`, `shots/08/leak_log.txt` |
+| 7 Repo & nguồn | **ĐẠT** (sau 1 sửa nhỏ tài liệu, commit `7ae4d00`) | git, sha256 |
+
+**Kết luận chung: CHƯA ĐẠT.** Màn Title giống video (pixel + timing + chuyển động); luồng Title → đen → Intro → đen → Stage 1 đúng từng frame và tất định; nhưng nội dung Intro, HUD, Stage 1 và toàn bộ nhạc chưa có.
+
+#### 1. Timing (frame NES; video ≈ (t − 1.03) × 60; run1 = phiên Play 1, run2 = phiên Play 2 vào lại từ đầu)
+
+| # | Mốc | video (s) | video (f) | bản dựng run1 = run2 (L) | lệch (f) | KQ |
+|---|---|---|---|---|---|---|
+| 1 | Title hiện | 1.03 | 0 | 0 | 0 | ĐẠT |
+| 2 | Dơi xuất hiện (khung 01 rời ngọn tháp; §2.1 đo 1.07 s — số "1.8 s" của planner đã bác) | 1.07 | 2.4 | 3 | +0.6 | ĐẠT |
+| 3 | Dơi lơ lửng (khung 37) | 3.20 | 130.2 | 129 | −1.2 | ĐẠT |
+| 4 | Bấm Start (tiêm vào — là kích thích, không phải phép đo) | 6.90 | 352.2 | 352 | −0.2 | ĐẠT |
+| 5 | Hết nháy → cắt đen | 8.23 | 432.0 | 432 | 0 | ĐẠT |
+| 6 | Intro hiện | 8.50 | 448.2 | 448 | −0.2 | ĐẠT |
+| 7 | Nhạc Prologue | 8.436 | 444.4 | — (`PlayMusic` gọi ở L448 nhưng clip null ⇒ im lặng) | — | CHƯA ĐẠT |
+| 8 | Simon dừng | 12.70 | 700.2 | — (không có Simon) | — | CHƯA ĐẠT |
+| 9 | Simon quay lưng | 12.70 | 700.2 | — | — | CHƯA ĐẠT |
+| 10 | Intro → đen | 15.87 | 890.4 | 890 | −0.4 | ĐẠT |
+| 11 | Stage 1 hiện | 16.40 | 922.2 | 922 | −0.2 | ĐẠT |
+| 12 | Nhạc Stage 1 (Vampire Killer) | 16.414 | 923.0 | — (clip null) | — | CHƯA ĐẠT |
+
+- Nháy chi tiết: tắt L352/368/384/400/416, bật L360/376/392/408/424, đen L432 — video tắt 352.2/368.2/384.2/400.2/416.2, bật 360.2/376.2/390.2/408.2/424.2 ⇒ lệch tối đa 1.8 f.
+- **Tất định**: run1 và run2 (2 phiên Play khác nhau) trùng hoàn toàn: mọi mốc + 115 lần đổi khung dơi (`00@0 01@3 … 36@126 37@129 38@133 39@137 38@141 …`) + 12 lần đổi PUSH (diff rỗng). Thời gian thực Title→Stage 1: 15.39 s (run1), 15.32 s (run2); video 15.37 s.
+- Nhạc Prologue trong video bắt đầu 4 f TRƯỚC khi Intro hiện; bản dựng gọi `PlayMusic` ở tick bật Intro (+3.6 f) — trong ngưỡng, giữ như §4.3 khi có file.
+
+#### 2. Pixel & bố cục (lệnh ghép §3a, crop `1024:960:448:60`; ảnh ở `_cache/08/cmp/`, đã mở xem từng cặp)
+
+| Cặp | Ảnh Play | Ref | Nhận xét |
+|---|---|---|---|
+| `01_title_t1.2` | run1 L10 (khung dơi 03) | `ref/01` | Trùng mọi thành phần: thanh xám, 2 dải ô vuông, logo + C dao găm, `KONAMI`, `TM`, tháp + cỏ, `PUSH START KEY` (72,136), 3 dòng copyright **1988** (72,160)/(32,168)/(48,176). Ảnh hiệu chỉ còn viền mảnh (h264 + lệch chung của lệnh ghép §6) + dải sáng mép trên (thanh xám NES y0–7 mà trình giả lập cắt — đã biết từ 02). Không thừa/thiếu, thứ tự lớp đúng (dơi/tháp trên nền, chữ trên cùng). |
+| `02_hover_L0236…0248` | run1 L236/240/244/248 (4 tư thế 39/38/37/38) | `ref/02` (5.0 s) | Dơi cùng chỗ, cùng cỡ ở trên-trái tháp; khớp nhất L236 (MAE vùng tháp 9.2 vs 10.6–11.1). Lệch pha vỗ cánh ≤ 4 f (trình giả lập ~59.2 Hz trôi ~1 %). |
+| `04_blink_off_L0354` / `04_blink_on_L0362` | run1 L354 / L362 | khung video 6.993 s / 7.128 s (trích từ `v.mp4`, cùng đoạn `ref/04`) | Trạng thái chữ khớp (tắt / bật); nền + dơi giữ nguyên khi nháy ✓. Tư thế dơi lệch pha (≤ 4 f). |
+| `05_intro_t8.6` | run1 L454 | `ref/05` | **Khác hoàn toàn**: bản dựng chỉ có chữ `INTRO` (141 px NES) — thiếu HUD 3 dòng, nền lâu đài/trăng/cổng/tường, Simon, mây, dơi nhỏ. |
+| `06_intro_t9.0/10.5/12.5` (+`montage_06_intro.png`) | run1 L478/568/688 | khung video 9.0/10.5/12.5 s | Như trên — Simon đi trong video, bản dựng không có. |
+| `07_back_t12.8` | run1 L706 | `ref/07` | Thiếu Simon quay lưng + toàn cảnh. |
+| `09_stage1_t17.9` | run1 L1012 | `ref/09` | Bản dựng chỉ `SCENE 1` (154 px NES) — thiếu HUD (`TIME 0299`), nền Stage 1, Simon, đuốc. |
+
+Kiểm từng pixel (`_cache/08/verify_run1.txt`): 16 ảnh Title (L3…L431) **0 pixel lệch** với ảnh ghép từ PNG nguồn và **đúng khung dơi + trạng thái PUSH theo log**; L432/447/890/921 toàn đen (0 pixel khác đen); 0 pixel ngoài vùng game không đen ở cả 29 ảnh. (Ảnh L0 không ra file — rơi cùng Update với L3, §6.)
+
+#### 3. Chuyển động
+- **Dơi Title** (`bat_path_vs_video.png`: 7 cặp game | video ở L20/40/60/80/100/120/129 ⇔ t = 1.017 + L/59.24): cùng hình, cùng chỗ ở mọi chặng (ngọn tháp → sang phải to dần → sà trước tháp → vọt lên trên-trái → lơ lửng); chặng L120 game chậm hơn ~1 khung (≈ 3–4 f). Lơ lửng 37-38-39-38 × 4 f, chu kỳ 16 f (video 16.2 f). **Đánh giá lại phần "xấp xỉ" của 05** (từng khung bay 3 hay 4 f): sai số mỗi khung ≤ 1 f, tích luỹ ≤ 4 f < ngưỡng 8 f, tổng 129 f khớp video 130 f ⇒ **chấp nhận được, không cần sửa** (chỉ sửa nếu có capture 60 fps/ROM — §5 #12).
+- **Nháy PUSH START**: 5 × (8 tắt + 8 bật), dơi vẫn vỗ cánh khi nháy ✓ (mục 1).
+- **Simon (tốc độ, chu kỳ chân, điểm dừng, quay lưng), mây, 2 dơi nhỏ**: chưa dựng ⇒ CHƯA ĐẠT. Phần "xấp xỉ" ghi sẵn cho 07 (ping-pong 3 khung ≈ 14 f, quỹ đạo dơi nhỏ) chưa có gì để đánh giá.
+
+#### 4. Pixel-perfect & độ phân giải (`_cache/08/verify_res.txt`, `shots/08/res_*`)
+
+| Game view | zoom | vùng game (ảnh, gốc trên-trái) | `cam.pixelRect` | khối nhoè | ngoài vùng không đen | khớp ảnh ghép |
+|---|---|---|---|---|---|---|
+| 1920×1080 | 4 | (448,60,1024,960) | (448,60,1024,960) | 0 | 0 | 16/16 (29 ảnh) |
+| 1280×720 | 3 | (256,0,768,720) | (256,0,768,720) | 0 | 0 | 5/5 Title, đúng khung log |
+| 2560×1440 | 6 | (512,0,1536,1440) | (512,0,1536,1440) | 0 | 0 | 5/5 Title 0 lệch; 2 ảnh trễ 2–3 tick (§6, do ScreenCapture) |
+| **1600×914 (tỷ lệ lạ)** | 3 | (416,97,768,720) | (416,97,768,720) | 0 | 0 | 5/5 Title, đúng khung log |
+
+- 2 frame liền nhau (L41→L42 đổi khung 11→12; L130→L131 cùng khung 37) ở 3× (`zoom_consecutive_3x.png`, đã xem): pixel nét, tháp/nền không xê dịch 1 px nào, chỉ hình dơi đổi.
+- Không có vật nào đặt ở toạ độ lẻ pixel trong phần đã dựng (dơi Title là khung ghép sẵn tại (184,104) cố định) ⇒ **chưa kiểm được** rung nửa pixel của Simon/mây — nghiệm thu lại khi có Intro (upscaleRT + pixelSnapping đã bật từ 02).
+
+#### 5. Âm thanh
+- Title: `IsMusicPlaying` = 0 từ L0 tới hết Title ở mọi run; không có lệnh `PlaySfx` nào trong code ⇒ **im lặng ĐẠT**.
+- Prologue (không loop, Intro) và Vampire Killer (loop, Stage 1): `IntroScreen.music` / `Stage1Stub.music` = `{fileID: 0}`, `Assets/Data/Audio/` chưa tồn tại; log `PlayMusic: chưa có clip — im lặng` ở L448 và L922 ⇒ **CHƯA ĐẠT** (thiếu nguồn, §5 #3).
+
+#### 6. Hồi quy & độ bền
+- `refresh_unity` (force + compile): console chỉ còn lỗi/warning nền §6 (Odin `PersistentContextCache` path1, `Null` từ `ProcessInitializeOnLoadAttributes`, `Unity.Mathematics`, GUIClips, MCP WebSocket) — **0 error/warning từ `Assets/Data/**`**, không có warning mới (không `[NesText]` thiếu glyph). Stacktrace đã xem: các exception đều từ Sirenix/Editor.
+- **Spam Start mọi tick L1…L1000** (`run3_spam`): Start nhận ở L1 (Title, dơi đang bay — hợp lệ §4.4) → đen L81 (+80) → Intro L97 (+16) → đen L539 (+442) → Stage 1 L571 (+32); mọi Start lúc nháy / đen / Intro / Stage 1 bị bỏ qua, không exception.
+- **fps**: `targetFrameRate` 30 / 144 / 60 (đo 30.0 / 144.2 / 59.9 Update/s) và mặc định (337–375 Update/s): mọi mốc + chuỗi khung dơi + chuỗi PUSH **trùng run1 từng frame**; 59.97–60.17 tick/s. VSync không đổi (không chỉnh `QualitySettings` khi Play — §4.3), dùng `targetFrameRate` như đề cho phép.
+- **Rò object**: scene `Main` = 19 GO ở Edit; phiên Play 2 và 3 đều 72 GO lúc ở Title (chưa bật Intro/Stage 1); sau khi đã qua Intro+Stage 1 = 80 GO và giữ **80** sau 2 vòng Title→Stage 1 nữa (`leak_log.txt`); phiên 1 và 2 cùng ra 83 khi đếm lẫn preview scene. Thoát Play về lại 19 GO, scene không dirty; 2 AudioSource.
+
+#### 7. Repo & nguồn
+- `git status`: chỉ nhiễu nền (§6: submodule ` m`, `Assets/TuyenAframework.meta`, `.slnx`, `UserSettings/`). `git diff 38c219c..HEAD --stat -- Assets/TuyenAframework` **rỗng** (con trỏ submodule vẫn `4685d33`).
+- `Art_Source/SOURCES.md`: 4 nguồn đang dùng đủ URL / sha256 / credit — sha256 đo lại 11/10 khớp cả 4. **Thiếu** dòng cho `_inbox/…Text Font.gif` (đã commit ở 06) ⇒ **sửa nhỏ**: thêm 1 dòng (sha256 `bbf0ddca…0fed0f`, khớp bản ở Downloads) — commit riêng `7ae4d00`.
+- Scene/asset test: chỉ `Assets/Scenes/Test/PixelGrid.unity` + `Assets/Data/Art/_Test/PixelGrid.png` (§4.1 quyết giữ). Không có `Assets/Screenshots/`, không scene tạm.
+- `Debug.Log` trong `Assets/Data/Script`: chỉ trong `CvtiDebug.Log` (sau cờ `LogFlow`, mặc định tắt) + `LogError`/`LogWarning` có chủ đích; `Assets/Data/Editor/NesFontBuilder.cs` có 1 `Debug.Log` báo kết quả menu — hợp lệ. Không có log rác.
+- Cuối phiên: EditorPrefs `CVTI.LogFlow` = false, `targetFrameRate` = −1, Game view về 1920×1080 (idx 6), scene Main không dirty, không Play.
+
+#### Sửa nhỏ trong routine 08
+- `Art_Source/SOURCES.md` +1 dòng (Text Font.gif) — commit `7ae4d00`. **Không** đổi hằng `NesTiming`/toạ độ nào: mọi mốc đã dựng lệch ≤ 1.8 f.
+
+#### Routine đề xuất cho phần CHƯA ĐẠT (KHÔNG tự tạo — chờ người dùng duyệt)
+
+| Thứ tự | Tên | Model · effort | Việc (1 dòng) |
+|---|---|---|---|
+| 1 | `cvti-fix-01-dung-intro-chua-co-hud` | Opus 5.5 · high | Dựng thật cảnh Intro bằng sprite đã cắt (`intro_bg` @ (0,48), Simon walk 0.49 px/f từ x≈243 tới 120.6 trong 252 f rồi `back_0`, mây 0.118 px/f đè trăng, 2 dơi nhỏ) và chừa trống dải HUD y 0–47 — tách cổng "07 chờ 06" vì chỉ HUD thiếu sheet (§5 #14). |
+| 2 | `cvti-fix-02-nhap-sheet-hud-stage1-va-nhac` | Sonnet 5.5 · medium | Khi người dùng bỏ file vào `Art_Source/_inbox/`: chép nguyên byte, sha256 + `SOURCES.md`, thêm dòng `slices.json` cho glyph/HUD/Stage 1, cắt sprite, import nhạc vào `Assets/Data/Audio/Music/` (việc cơ học; chặn bởi người dùng). |
+| 3 | (chạy lại) `cvti-06-hud-dung-chung-score-time-stage` | Sonnet 5.5 · high | HUD dùng chung khi đã có sheet (routine sẵn có, không tạo mới). |
+| 4 | `cvti-fix-03-gan-hud-nhac-va-nen-stage1` | Opus 5.5 · high | Gắn HUD vào Intro + Stage 1 stub, gán clip Prologue (không loop) / Vampire Killer (loop) và nền Stage 1, đo lại lệch nhạc so với 8.436 s / 16.414 s. |
+| 5 | (chạy lại) `cvti-08-nghiem-thu-so-khop-video-goc` | Opus 5.5 · xhigh | Nghiệm thu lại cả cụm — nhất là 4 mốc Simon/nhạc, ref 05/06/07/09, rung nửa pixel Simon/mây ở 4 độ phân giải. |
