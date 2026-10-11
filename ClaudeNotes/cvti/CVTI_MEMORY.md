@@ -14,7 +14,7 @@
 | 04 | khung game flow/input/audio/NesText | **XONG** | (commit "CVTI 04") | 11/10/2026 | 1 scene + 3 prefab màn placeholder; NesClock 60 Hz; log frame đúng ±0 (80/16/442/32) ở 20 fps và ~378 fps; 3 ảnh đã xem |
 | 05 | màn Title + dơi + nháy PUSH START | **XONG** | (commit "CVTI 05") | 11/10/2026 | prefab Title thật; 19 ảnh Play khớp 0 pixel lệch với ảnh ghép từ PNG; dơi 37 khung bay 3/4 f xen kẽ (129 f, xấp xỉ) + lơ lửng 37-38-39-38 ×4 f; log nháy 80 / đen 16 ±0 |
 | 06 | HUD dùng chung | **CHƯA — DỪNG (thiếu sheet HUD)** | (không có commit code) | 11/10/2026 | `Text Font.gif` mới chỉ là bảng chữ, vẫn thiếu thanh máu/tim/khung vũ khí phụ; xem §5 #13, §7 |
-| 07 | Intro Simon + nối Stage 1 stub | CHƯA | | | |
+| 07 | Intro Simon + nối Stage 1 stub | **CHƯA — DỪNG ở Bước 0 (cổng 06 chưa đạt)** | (chỉ commit ghi sổ) | 11/10/2026 | 06 chưa XONG, vẫn chưa có sheet HUD; xem §7 |
 | 08 | nghiệm thu so với video gốc | CHƯA | | | |
 
 ## §2 Timeline & số đo (video 524×476, 30 fps container, capture thực ~7.5 fps ⇒ sai số mốc ±0.13 s; frame NES = giây × 60)
@@ -413,3 +413,9 @@ Sinh bằng `python -P -E Tools/cvti/slice_sprites.py` từ `Tools/cvti/slices.j
 - Điều kiện chặn: `Art_Source/` không có sheet HUD (§3; `Assets/Data/Art/HUD/` chưa tồn tại). Routine 04, 05 đã commit (`5fed9e6`, `01c70ab`); git sạch ngoài nhiễu nền §6.
 - Đã tìm thêm: `Downloads/NES - Castlevania - Miscellaneous - Text Font.gif` (mới, 12:43) — chỉ là bảng chữ Famicom, không có thanh máu/tim/khung vũ khí phụ (chi tiết §5 #13). Đã chép vào `Art_Source/_inbox/`.
 - Không đụng Unity, không tạo script/prefab/sprite, không dựng HUD từ pixel video (H1/H2). Việc tiếp: người dùng tải sheet HUD đầy đủ → nhập vào `Art_Source/spriters-resource/` + `SOURCES.md` → chạy lại routine 06.
+
+### Routine 07 — 11/10/2026 — DỪNG ở Bước 0 (cổng phụ thuộc chưa đạt)
+- Bước 0.2 yêu cầu 05 **và 06** đã commit `*add task "CVTI 0x` và §1 = XONG. Thực tế: 05 ✓ (`01c70ab`); 06 **chưa** — commit mới nhất `292239a` chỉ là "ghi sổ CVTI 06: dừng vì thiếu sheet HUD (dở dang)", §1 dòng 06 = "CHƯA — DỪNG".
+- Kiểm lại đầu vào: `Downloads/` không có file mới sau `Text Font.gif` (12:43); `Art_Source/spriters-resource/` vẫn chỉ 3 sheet (title/cutscenes/simon); không có sheet HUD, sheet Stage 1 hay nhạc Prologue/Vampire Killer ⇒ chưa có gì để chạy lại 06.
+- Không đụng Unity, không tạo script/prefab/sprite. Ghi chú: `git status` thấy submodule `Assets/TuyenAframework` báo " m" (nội dung trong submodule thay đổi, con trỏ vẫn `4685d33`) — không thuộc cụm, không đụng (H3).
+- Việc tiếp: người dùng tải sheet có HUD (dải `SCORE-000000 TIME 0300 STAGE 01`, thanh máu, tim, `P-03`) → chạy lại 06 → chạy lại 07. (Sheet Stage 1 + nhạc không chặn 07: thiếu thì stub nền đen + không phát nhạc như routine đã dặn.)
