@@ -7,7 +7,7 @@
 
 | # | Routine | Trạng thái | Commit | Ngày | Ghi chú |
 |---|---|---|---|---|---|
-| 00 | hạ tầng timeline + sổ | **XONG** (trừ 1 mục DỞ nhỏ: ảnh Play Mode baseline, xem §7) | (commit "CVTI 00") | 11/10/2026 | đo bằng ffmpeg + python; MCP mất kết nối khi vào Play Mode |
+| 00 | hạ tầng timeline + sổ | **XONG** (ảnh Play Mode baseline chụp lại 11/10 nhưng ra TRẮNG, xem §7) | (commit "CVTI 00") | 11/10/2026 | đo bằng ffmpeg + python; MCP mất kết nối khi vào Play Mode |
 | 01 | thu thập sprite/sound nguồn | CHƯA | | | |
 | 02 | nền render pixel-perfect NES | CHƯA | | | |
 | 03 | cắt sprite Title/Intro/HUD/font | CHƯA | | | |
@@ -94,7 +94,7 @@ Giữ nguyên bảng nguồn ở `CVTI_PLAN.md §2` (3 sheet + 393996.zip, sha25
 
 ## §6 Nợ & việc ngoài phạm vi
 
-- Ảnh baseline Play Mode chưa chụp được (xem §7) — nếu Editor ổn, routine 02 chụp lại màn trống khi bắt đầu.
+- Ảnh baseline Play Mode ra trắng toàn khung (xem §7) — routine 02 xem lại khi dựng camera. `manage_camera screenshot` mặc định lưu vào `Assets/Screenshots/` (tạo file game + .meta): phải chuyển sang `_cache` và xoá thư mục đó.
 - Nhịp từng tư thế walk của Simon và từng khung dơi Title không đo được ở capture 7.5 fps.
 - Nhiễu nền git (không thuộc cụm): `Assets/TuyenAframework.meta`, `Castlevania_Original-main.slnx`, `UserSettings/`, submodule `Assets/TuyenAframework` hiện cờ ` m`.
 - Camera `MainCamera` Untagged ⇒ `Camera.main` null (routine 02 nên tag lại hoặc không dùng `Camera.main`).
@@ -106,3 +106,7 @@ Giữ nguyên bảng nguồn ở `CVTI_PLAN.md §2` (3 sheet + 393996.zip, sha25
 - Số đo lệch so với planner: dơi Title bắt đầu 1.07 s (không phải 1.8 s); Simon quay lưng 12.70 s (không 12.6 s); chi tiết hệ số x 1.969. Mọi mốc còn lại khớp (±1 frame video): Title 1.03, nháy 6.90–8.23, đen 8.23–8.50, nhạc 8.436, nhạc hết 14.855, đen 15.87–16.40.
 - **BASELINE project**: Unity 2022.3.62f3, MCP kết nối đúng (`dataPath` = `D:/Unity/Castlevania_Original-main/Assets`). Git: HEAD `38c219c`. `Assets/Data`: `Prefabs/GameManager.prefab`, `Script/System/{GameManager,GlobalInfo}.cs`; `Assets/Scenes/Main.unity` có root `GameManager` (Transform+GameManager) và `MainCamera` (ortho, size 1.3, bg RGBA(0.192,0.302,0.475,0), pos (0,0,-10), Untagged). ProjectSettings: `defaultScreenWidth/Height` 1920×1080, `activeInputHandler: 0` (Input Manager cũ), `m_ActiveColorSpace: 0` (Gamma), Quality hiện tại = Ultra (index 5), không có SRP (Built-in). `Packages/manifest.json` có `2d.pixel-perfect 5.1.1`, `2d.sprite 1.0.0`, `2d.spriteshape 9.1.1`, `textmeshpro 3.0.9`, `timeline 1.7.7`, `ugui 1.0.0`, UniTask, unity-mcp (git). Console (Error/Warning) trước Play: **0 mục**.
 - **DỞ**: ảnh Play Mode màn trống KHÔNG chụp được — sau `manage_editor play` kết nối MCP rơi (`no_unity_session`, instances=0) trong >5 phút (Editor.log có "The file 'MemoryStream' is corrupted"/Odin). Không ghi "đã nhìn thấy" (H7).
+
+### Chạy lại routine 00 — 11/10/2026 (phiên 2, bổ sung baseline)
+- MCP kết nối lại bình thường, vào Play Mode không rớt kết nối lần này. Chụp 2 ảnh `manage_camera screenshot` (game view 640×360): **cả 2 ảnh TRẮNG hoàn toàn** dù MainCamera là SolidColor bg RGBA(0.192,0.302,0.475,**0**) — nghi alpha=0 làm game view ra trắng/không render; chưa kết luận nguyên nhân. Ảnh lưu `_cache/shots/00/screenshot-20261011-11495{5,7}.png` (đã xem). Console có lỗi nền không thuộc cụm: Odin `Sirenix.OdinInspector.Editor.dll` broken assembly, `Unity.Mathematics module data`, `ArgumentNullException path1`. Screenshot tự ghi vào `Assets/Screenshots/` — đã chuyển sang `_cache` và xoá thư mục.
+- Baseline hoàn tất, 0 file game thay đổi.
