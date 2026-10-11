@@ -11,7 +11,7 @@
 | 01 | thu thập sprite/sound nguồn | **XONG** | (commit "CVTI 01") | 11/10/2026 | nhập 3 PNG + zip + 37 WAV, sha256/md5 khớp; 3 thứ còn thiếu → §5 |
 | 02 | nền render pixel-perfect NES | **XONG** | (commit "CVTI 02") | 11/10/2026 | 256×240, PPU 16, scale 4× trên 1920×1080 = `1024:960:448:60`; ảnh lưới khớp từng pixel ở 3×/4×/6× |
 | 03 | cắt sprite Title/Intro/HUD/font | **XONG phần Title/Intro/Simon/Font; HUD + Stage 1 chờ sheet** | (commit "CVTI 03") | 11/10/2026 | 77 sprite từ manifest `Tools/cvti/slices.json`, chạy 2 lần md5 y hệt; ảnh lưới 0 pixel lệch; `NesFont.asset` 26 glyph |
-| 04 | khung game flow/input/audio/NesText | CHƯA | | | |
+| 04 | khung game flow/input/audio/NesText | **XONG** | (commit "CVTI 04") | 11/10/2026 | 1 scene + 3 prefab màn placeholder; NesClock 60 Hz; log frame đúng ±0 (80/16/442/32) ở 20 fps và ~378 fps; 3 ảnh đã xem |
 | 05 | màn Title + dơi + nháy PUSH START | CHƯA | | | |
 | 06 | HUD dùng chung | CHƯA | | | cần sheet HUD (§5) |
 | 07 | Intro Simon + nối Stage 1 stub | CHƯA | | | |
@@ -201,6 +201,26 @@ Sinh bằng `python -P -E Tools/cvti/slice_sprites.py` từ `Tools/cvti/slices.j
 | Sprite dơi lẻ hàng y127 (8 cái) | **Không cắt** | 05 dùng 40 khung ghép sẵn (đề bài mặc định). Cần thì thêm dòng vào manifest. |
 | Sprite Simon cũ trong git `2bfd90b^` | **Không dùng** | Đã có sheet gốc, cắt trực tiếp khớp từng pixel; không cần so bản cũ (bản cũ import Bilinear/PPU 100). |
 
+### 4.3 Khung game flow (routine 04 chốt — 11/10/2026)
+
+| Quyết định | Giá trị | Lý do |
+|---|---|---|
+| Kiến trúc màn hình | **1 scene `Main.unity`**: root `GameManager` (prefab) + root `ScreenRoot` chứa 3 prefab màn `Assets/Data/Prefabs/Screens/{TitleScreen,IntroScreen,Stage1Stub}.prefab` (để **inactive** trong scene). Mỗi màn = 1 component kế thừa `GameScreen` (`Id`, `OnEnter()`, `OnTick(localFrame)`, `OnExit()`). `GameManager.Awake` tự gom mọi `GameScreen` trong scene (`FindObjectsOfType(true)`, trùng `Id` ⇒ error) và tắt hết. | Cắt cứng NES = bật/tắt GameObject trong 1 tick, không load scene (load scene không đảm bảo đúng frame). Gom tự động ⇒ routine 05/07 chỉ sửa nội dung prefab/class, không phải nối tham chiếu. |
+| Class màn | `TitleScreen` (`Script/Title/`), `IntroScreen` (`Script/Intro/`), `Stage1Stub` (`Script/Stage1/`) — hiện là **placeholder**; routine 05/07 **sửa thẳng class + prefab này** (giữ tên, giữ `Id`). | Không phải đổi script trên prefab/scene. |
+| State machine | `eGameScreen { Boot, Title, Intro, Stage1 }`; `GameManager.I.State`, `IsTransitioning`; **`GoTo(eGameScreen next, int blackFrames)`** (trả false nếu đang chuyển). Boot → Title ở tick 1 (cắt thẳng). | |
+| Thứ tự trong 1 tick | `NesClock` tăng `Frame` → `OnSystemTick` (chỉ GameManager: `InputController.Tick()` → đếm đen / `current.OnTick(frame − enterFrame)`) → `OnTick` (FrameAnimator, object trong màn). Màn mới: `OnEnter` ở tick bật (localFrame 0), `OnTick` từ localFrame 1. | Input đọc 1 lần/tick như NES; logic luồng chạy trước animation nên màn bật ở tick T vẽ ngay khung đầu ở frame T. |
+| Cắt đen | **Tắt màn cũ, không màn nào bật** ⇒ camera xoá đen (#000, §4.1). `GoTo` ở tick T ⇒ màn đen hiện ở các frame T…T+N−1, màn mới bật ở tick T+N (đúng N frame đen). `blackFrames ≤ 0` = cắt thẳng trong cùng tick. Đang đen: không màn nào nhận tick ⇒ Start bị bỏ qua. | Không cần sprite đen (H2), không phụ thuộc sorting. Layer `Overlay` vẫn để dành nếu sau này cần phủ đen mà giữ object chạy. **HUD dùng chung (06) phải là con của prefab màn** (hoặc tự ẩn theo `GameManager.State`) để tắt cùng lúc khi đen. |
+| Đồng hồ 60 Hz | `NesClock` (`ManualSingletonMono`, `[DefaultExecutionOrder(-100)]`, con `NesClock` của prefab GameManager): accumulator `Time.unscaledDeltaTime` trong `Update`, bước `NesTiming.FRAME_SECONDS = 1/60`, **tối đa 4 tick/Update** (thừa thì bỏ — game chậm lại, không nhảy cóc). Event **static** `NesClock.OnSystemTick` / `NesClock.OnTick`, `NesClock.Frame` static (reset 0 ở Awake). **Không** đổi `ProjectSettings/TimeManager.asset`, không đặt `targetFrameRate`/vSync. | Không đụng setting toàn project; FixedUpdate 0.02 giữ nguyên cho vật lý cụm sau. Đã thử "snap" dt về 1/60 khi lệch < 2 ms ⇒ đoạn nháy 80 f đo được 1.302 s thay vì 1.333 s (đồng hồ nhanh hơn thời gian thực ⇒ lệch nhạc) ⇒ **bỏ snap**. Sau khi bỏ: 59.99–60.11 tick/s, nháy 1.334 s. |
+| Hằng thời lượng | `Assets/Data/Script/System/NesTiming.cs`: `FPS`, `FRAME_SECONDS`, `TITLE_BLINK_HALF 8`, `TITLE_BLINK_COUNT 5`, `TITLE_BLINK_TOTAL 80`, `TITLE_BAT_HOVER_POSE 4`, `BLACK_AFTER_TITLE 16`, `BLACK_AFTER_INTRO 32`, `INTRO_TOTAL 442`, `INTRO_SIMON_WALK 252`, `ToSeconds(int)`. Routine sau thêm hằng mới vào đây (H4). | Số lấy từ §2. |
+| Phím Start | Input Manager cũ, `KeyCode`: **Return, KeypadEnter, Space, JoystickButton7, JoystickButton9**. `InputController` (`[DefaultExecutionOrder(-200)]`, con của prefab GameManager): `Update` chốt `GetKeyDown`; `Tick()` (GameManager gọi đầu tick) tính `StartPressedThisFrame` = chốt ∨ (giữ ∧ tick trước chưa giữ) — đúng 1 tick, giữ không lặp. `StartHeld`. **`InjectStart()`** giả lập 1 lần nhấn (test MCP). | Không dùng axis/Input Manager asset ⇒ không đổi ProjectSettings. Chốt để fps cao (nhiều Update/tick) hay thấp (nhiều tick/Update) đều không lọt/không lặp. |
+| Nháy PUSH START (placeholder) | Tick bấm Start = blinkFrame 0 ⇒ ẩn; hiện khi `(blinkFrame / 8) % 2 == 1`; blinkFrame 80 ⇒ `GoTo(Intro, 16)`. Khớp video: tắt #1 = tick bấm, bật lại sau #5 = +72, đen = +80. | 05 giữ đúng logic này khi dựng thật. |
+| Audio | `AudioManager` (`ManualSingletonMono`, con của prefab GameManager, 2 `AudioSource` gán sẵn: `musicSource`, `sfxSource`, playOnAwake tắt): `PlayMusic(AudioClip, bool loop)` (phát từ đầu, `null` ⇒ chỉ dừng + log debug "chưa có clip"), `StopMusic()`, `PlaySfx(AudioClip)` (PlayOneShot), `IsMusicPlaying`. **Clip serialized trên prefab màn** (`IntroScreen.music`, `Stage1Stub.music`), không Resources.Load. Gọi trong `OnEnter` ⇒ cùng tick bật màn (log ghi frame). `TitleScreen.OnEnter` gọi `StopMusic` (Title im lặng). | Video: nhạc Prologue bắt đầu 8.436 s, Intro hiện 8.50 s (lệch ~4 f, trong sai số capture ±0.13 s) ⇒ mặc định phát cùng tick bật màn; 07/08 chỉnh nếu đo được chắc chắn. |
+| `NesText` | `Assets/Data/Script/UI/NesText.cs`. Serialized: `font` (NesFont.asset), `text`, `color`, `sortingLayer` (mặc định **`HUD`**), `sortingOrder`. Mỗi ký tự 1 SpriteRenderer con `c<i>` (pool, tạo ở runtime trong `Awake`/`SetText`), cách 8 px; `'\n'` xuống 8 px; dấu cách/ký tự thiếu tiến 1 ô. API: `SetText(string)`, `SetVisible(bool)` (bật/tắt renderer, không dựng lại), `SetColor(Color)` (tint — glyph trắng), `SetNesPosition(x, y)` (localPosition = `NesCoord.ToWorld`, giả định cha ở gốc), `Text`, `Visible`. Thiếu glyph ⇒ `LogWarning` **1 lần mỗi ký tự** (static), không crash. Transform = góc trên-trái ô đầu. | Không ExecuteAlways: trong Edit mode chữ không hiện (chỉ thấy khi Play) — chấp nhận để khỏi sinh object con vào prefab. |
+| `FrameAnimator` | `Assets/Data/Script/Anim/FrameAnimator.cs`. Serialized: `target` (SpriteRenderer), `frames`, `durations` (tick/khung; rỗng ⇒ `frameDuration`, mặc định 8), `loop`, `playOnEnable`. API: `Play()`, `Play(Sprite[], int[] durations, bool loop, Action onComplete)`, `Play(Sprite[], int each, bool loop, Action onComplete)`, `Stop()`, `SetFrame(i)`, `IsPlaying`, `CurrentIndex`, event `OnComplete`. Chạy theo `NesClock.OnTick`; tick cùng frame với `Play` bị bỏ qua ⇒ khung 0 giữ đúng `durations[0]` frame. One-shot dừng ở khung cuối sau đủ thời lượng rồi gọi `OnComplete`. | Đã kiểm: durations {2,3,4} one-shot ⇒ đổi khung ở +2, +5, COMPLETE ở +9; loop 4 ⇒ đổi ở +4, +8, +12… |
+| Log mốc frame | `CvtiDebug.Log(msg)` ⇒ `[CVTI] frame N (t=…s): msg` **chỉ khi** `CvtiDebug.LogFlow`. Bật bằng `GameManager.logFlow` (prefab, mặc định tắt) **hoặc menu `CVTI/Log Flow Frames`** (EditorPrefs `CVTI.LogFlow`, không đổi asset; có hiệu lực từ lần vào Play sau). Mốc đang log: `Boot→Title`, `Title: Start`, `X→Black (Nf)`, `Black→Y`, `X→Y` (cắt thẳng), `PlayMusic …`, `StopMusic`. Đo: thời lượng đoạn = hiệu số frame giữa 2 mốc. | Routine 08 bật menu rồi đọc console. Hiện EditorPrefs để **tắt** (đã trả về sau khi test). |
+| Test qua MCP | `execute_code` (codedom) đăng ký delegate vào `NesClock.OnSystemTick` để `InputController.I.InjectStart()` đúng frame, `GameManager.I.GoTo(eGameScreen.Title, 0)` để chạy lại từ Title trong cùng phiên Play, `Application.targetFrameRate` (runtime, không lưu) để đổi fps. Không đổi `QualitySettings` khi Play (dễ ghi vào asset). | |
+| GameManager.prefab | Đã **xoá 2 con `AnimationManager`, `InputManager` mang script MISSING** (nợ §6 từ 02); thêm con `NesClock`, `InputController`, `AudioManager`. Còn `GlobalInfo` (rỗng, giữ nguyên). | |
+
 ## §5 Câu hỏi cho người dùng (chép từ CVTI_PLAN §8 + phát sinh)
 
 1. Để yên ở Title lâu thì có cần attract/demo mode không? (video không thể hiện ⇒ mặc định KHÔNG làm)
@@ -213,6 +233,7 @@ Sinh bằng `python -P -E Tools/cvti/slice_sprites.py` từ `Tools/cvti/slices.j
 
 8. (03) **Thiếu cho HUD/font** (sheet Title không có): chữ `G`; dấu `-`; chữ số `0`, `2`, `3`, `4`, `5`, `6` (có `1 7 8 9`); icon tim `♥`; thanh máu PLAYER/ENEMY; khung vũ khí phụ. Cần sheet HUD/font (§5 #4). Khi có: thêm dòng `glyph_<k>` vào `Tools/cvti/slices.json` (tên `hyphen`/`heart` đã khai sẵn trong `NesFontBuilder`), chạy slicer + menu CVTI/Build NesFont. Lưu ý: chữ `O` hiện có KHÔNG được dùng thay số `0` (H2 — không bịa).
 9. (03) **Stage 1**: chưa có sheet ⇒ `Assets/Data/Art/Stage1/` chưa tạo. `Assets/Data/Art/HUD/` cũng chưa tạo.
+10. (04) Bấm Start trong Intro có bỏ qua cảnh không? Video không thể hiện ⇒ mặc định KHÔNG (Start bị bỏ qua khi đen/Intro).
 
 **Trả lời cho §5 (routine 01, chạy vắng mặt — không hỏi được người dùng):** CHƯA TRẢ LỜI. Cần người dùng cung cấp đúng 3 thứ (chi tiết `Art_Source/_inbox/README.md`): (1) sheet HUD+font — chặn routine 06; (2) sheet Stage 1 — 07 dùng nền đen nếu thiếu; (3) nhạc Prologue + Vampire Killer — 07 không phát nhạc nếu thiếu. Tạm áp dụng phương án Recommended: người dùng tự tải vào `Art_Source/_inbox/`, routine 02–05 làm tiếp phần đã có; 06 tự kiểm sheet HUD.
 
@@ -231,6 +252,11 @@ Sinh bằng `python -P -E Tools/cvti/slice_sprites.py` từ `Tools/cvti/slices.j
 - (02) Lỗi nền console không thuộc cụm (có từ trước): Odin `PersistentContextCache` ArgumentNullException `path1`, `Unity.Mathematics module data`, GUIClips — giữ nguyên.
 - (03) `execute_code` của MCP chỉ có **codedom (C# 6)** — Roslyn không cài: không local function, `Object` mơ hồ ⇒ viết `UnityEngine.Object`. `AssetDatabase.DeleteAsset` bị safety check chặn ⇒ `safety_checks=false` (chỉ dùng cho file tạm của chính routine).
 - (03) `manage_camera screenshot` nhận `output_folder` (vd `ClaudeNotes/cvti/_cache/shots/03`) ⇒ không còn rác `Assets/Screenshots/`.
+- ~~(02) `GameManager.prefab` có 2 con script MISSING~~ — **đã dọn ở routine 04** (Play không còn 6 warning).
+- (04) Thiếu glyph `G` ⇒ placeholder Stage 1 ghi **`SCENE 1`** thay vì "STAGE 1" (để console sạch). Routine 07 thay bằng cảnh thật; khi có sheet HUD (glyph G) thì "STAGE" vẽ được.
+- (04) `runInBackground: 0` vẫn giữ: Editor mất focus ⇒ `Update` ngừng ⇒ NesClock ngừng (game "đóng băng", số frame không sai, chỉ thời gian thực dài ra). Test Play qua MCP phải `AppActivate` Unity (§6 mục 02) — đã làm vậy ở 04, MCP không rớt.
+- (04) `NesText` chỉ dựng chữ khi Play (không ExecuteAlways) ⇒ mở prefab màn trong Edit mode không thấy chữ. Nếu 05–07 cần xem trước trong Editor thì thêm `[ExecuteAlways]` cẩn thận (đừng để glyph con bị lưu vào prefab).
+- (04) Câu hỏi mới cho §5 (không chặn): có cần cho Start **bỏ qua Intro** không? Video không thể hiện ⇒ mặc định KHÔNG (Start bị bỏ qua khi đen/Intro).
 
 ## §7 Nhật ký nghiệm thu
 
@@ -268,3 +294,48 @@ Sinh bằng `python -P -E Tools/cvti/slice_sprites.py` từ `Tools/cvti/slices.j
 - **So video**: glyph ghép 3 dòng copyright theo video + panel A + bat_00 + push_start → lệnh §3a với `ref/01` (`_cache/03/cmp_side.png`, `cmp_diff.png`, `zoom_copy.png`, đã xem): chữ khớp; độ lệch tối ưu (1,1) video px giống hệt vùng logo ⇒ vị trí dòng đúng (§3.1).
 - Console sau `refresh_unity`: 0 error/warning từ file của routine 03; chỉ còn lỗi nền §6 (warning framework `AnimatorState.cs`/`AFCacheWindow.cs`, Odin path1, Mathematics, GUIClips).
 - **Thiếu** (§5 #8–9): glyph HUD `G - 0 2 3 4 5 6 ♥`, toàn bộ sprite HUD và Stage 1 — chờ sheet.
+
+### Routine 04 — 11/10/2026
+- Tạo: `Assets/Data/Script/System/{NesTiming,NesClock,CvtiDebug,InputController,GameScreen}.cs`, `Script/Audio/AudioManager.cs`, `Script/UI/NesText.cs`, `Script/Anim/FrameAnimator.cs`, `Script/Title/TitleScreen.cs`, `Script/Intro/IntroScreen.cs`, `Script/Stage1/Stage1Stub.cs`, `Assets/Data/Editor/CvtiDebugMenu.cs`, `Assets/Data/Prefabs/Screens/{TitleScreen,IntroScreen,Stage1Stub}.prefab`. Sửa: `GameManager.cs` (state machine), `GameManager.prefab` (xoá 2 con MISSING, thêm NesClock/InputController/AudioManager), `Main.unity` (thêm `ScreenRoot` + 3 instance màn, inactive). Không đụng `Assets/TuyenAframework`, không đổi ProjectSettings.
+- Console sau `refresh_unity`: 0 error/warning từ `Assets/Data/**`; chỉ lỗi nền §6 (Odin path1, Mathematics, GUIClips, MCP WebSocket). Play: không còn warning missing script.
+- **Log frame** (Play `Main.unity`, menu log bật tạm qua EditorPrefs, Start giả lập bằng `InjectStart` từ delegate trên `NesClock.OnSystemTick`):
+  - Lượt 1 (fps Editor mặc định, NesClock còn bản có snap):
+    ```
+    [CVTI] frame 1 (t=2.536s): Boot→Title
+    [TEST] frame 1086: InjectStart (Title)
+    [CVTI] frame 1087 (t=22.293s): Title: Start
+    [TEST] frame 1106: InjectStart (Title đang nháy)
+    [CVTI] frame 1167 (t=23.595s): Title→Black (16f)
+    [TEST] frame 1172: InjectStart (đen sau Title)
+    [CVTI] frame 1183 (t=23.861s): Black→Intro
+    [CVTI] frame 1183 (t=23.861s): PlayMusic: chưa có clip — im lặng
+    [TEST] frame 1283: InjectStart (Intro)
+    [TEST] frame 1624: InjectStart (Intro)
+    [CVTI] frame 1625 (t=31.227s): Intro→Black (32f)
+    [TEST] frame 1633: InjectStart (đen sau Intro)
+    [CVTI] frame 1657 (t=31.760s): Black→Stage1
+    ```
+    ⇒ nháy 1167−1087 = **80**, đen 1183−1167 = **16**, Intro 1625−1183 = **442**, đen 1657−1625 = **32** (±0). Start lúc nháy / đen / Intro / đen bị bỏ qua, luồng không vỡ. Thời gian thực nháy 1.302 s (< 1.333) ⇒ phát hiện snap làm đồng hồ nhanh ⇒ bỏ snap (§4.3).
+  - Lượt 2+3 (sau khi bỏ snap; cùng phiên Play, chạy lại bằng `GoTo(Title, 0)`):
+    ```
+    [TEST] run 0 targetFrameRate=20 frame 669: InjectStart
+    [CVTI] frame 670 (t=14.518s): Title: Start
+    [CVTI] frame 750 (t=15.867s): Title→Black (16f)
+    [CVTI] frame 766 (t=16.117s): Black→Intro
+    [CVTI] frame 1208 (t=23.517s): Intro→Black (32f)
+    [CVTI] frame 1240 (t=24.017s): Black→Stage1
+    [TEST] run 0 done: ticks=571 real=9.500s Update/s=20.0 ticks/s=60.11
+    [CVTI] frame 1240 (t=24.017s): Stage1→Title
+    [TEST] run 1 targetFrameRate=-1 frame 1270: InjectStart
+    [CVTI] frame 1271 (t=24.531s): Title: Start
+    [CVTI] frame 1351 (t=25.865s): Title→Black (16f)
+    [CVTI] frame 1367 (t=26.130s): Black→Intro
+    [CVTI] frame 1809 (t=33.496s): Intro→Black (32f)
+    [CVTI] frame 1841 (t=34.030s): Black→Stage1
+    [TEST] run 1 done: ticks=571 real=9.518s Update/s=377.7 ticks/s=59.99
+    ```
+    ⇒ ở **20 Update/s** (3 tick/Update) và **~378 Update/s** đều 80 / 16 / 442 / 32 frame, 60 tick/s; Intro 7.37–7.40 s thực (video 7.37 s).
+- **FrameAnimator** (object tạm, đã xoá): `[TEST] FrameAnimator: f0:title_bat_00 f2:title_bat_01 f5:title_bat_02 COMPLETE@9 | loop each=4: f0:title_bat_00 f4:title_bat_01 f8:title_bat_02 f12:title_bat_00 f16:… f24:title_bat_00` ✓.
+- **NesText**: `SetText("STAGE 1")` rồi `"STAGE 1 G"` ⇒ đúng **1** warning `[NesText] Không có glyph 'G' …`, không crash; trả lại `SCENE 1`; `SetVisible(false/true)` ✓.
+- **Ảnh** (`ClaudeNotes/cvti/_cache/shots/04/`, 1920×1080, đều đã mở xem): `placeholder_title_1920x1080.png` (TITLE + PUSH START KEY), `placeholder_intro_1920x1080.png` (INTRO), `placeholder_stage1_1920x1080.png` (SCENE 1). Đo bằng python: chữ trắng (252,252,252) duy nhất, bbox NES Title (73,104)–(184,143) = TITLE ô (104,104) + PUSH START KEY ô (72,136) đúng vị trí đặt; 0 pixel khác đen ngoài vùng game (448,60,1024,960).
+- Cuối phiên: thoát Play, `Application.targetFrameRate` = −1, EditorPrefs `CVTI.LogFlow` = false, scene Main không dirty.
