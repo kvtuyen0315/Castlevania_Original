@@ -3,7 +3,7 @@ using UnityEngine;
 
 /// <summary>
 /// CVGP 13 — dựng prefab enemy Block 1 (Assets/Data/Prefabs/Enemy/{Ghoul, Panther, Bat, Fishman, FishmanFireball}.prefab);
-/// CVGP 17 thêm Block 2–3 (BuildBlock23).
+/// CVGP 17 thêm Block 2–3 (BuildBlock23); CVGP 18 thêm Block 4–6 (BuildBlock46).
 /// Menu CVGP/Build Enemy Prefabs (chạy lại được: SaveAsPrefabAsset giữ GUID). Thông số dựng (đo/bbox — CVGP_MEMORY §2k/§3):
 ///   • viewOffset: đi đất (0,1) — video: pivot sprite ở hàng mặt sàn + 1 (Zombie/báo/Fish Man pivy 209/145/129 khi sàn 208/144/128 NES);
 ///     bay/đạn (0,0) (pivot tâm). Body = vùng CHÂN 2×2 (tường chỉ chặn ở tầm chân; sàn dò đúng cột pivot — EnemyBase.Grounded).
@@ -42,9 +42,11 @@ public static class CvgpEnemyBuilder
                 so.FindProperty("fireballPrefab").objectReferenceValue = fireball;
             });
         BuildBlock23();
+        BuildBlock46();
         AssetDatabase.SaveAssets();
         return "Enemy prefabs: Ghoul, Panther, Bat, Fishman, FishmanFireball + (CVGP 17) SpearKnight, MedusaHead, BoneTower, BoneTowerFireball, "
-               + "Ghost, Raven, Skeleton, SkeletonBone, Fleaman → " + DIR;
+               + "Ghost, Raven, Skeleton, SkeletonBone, Fleaman + (CVGP 18) Eagle, BoneDragon, BoneDragonFireball, RedSkeleton, AxeKnight, "
+               + "AxeKnightAxe, PhantomBatMinor → " + DIR;
     }
 
     /// <summary>
@@ -83,6 +85,75 @@ public static class CvgpEnemyBuilder
             });
         Make<Fleaman>("Fleaman", eEntityGroup.Enemy, FEET, new Vector2Int(0, 1), Anim("FleamanAnimSet"), ORDER, true, false, 32,
             so => Enemy(so, eEnemyId.Fleaman, new RectInt(-8, -15, 16, 16), -7));
+    }
+
+    /// <summary>Số đốt cổ Bone Dragon dựng sẵn (Config Enemy.BoneDragon.segments ≤ số này).</summary>
+    public const int DRAGON_NECK = 6;
+
+    /// <summary>
+    /// CVGP 18 — enemy Block 4–6 (theo wiki, gần đúng). Hộp = bbox pixel đục sprite (XẤP XỈ): eagle_0/1 hợp 32×32 tâm (−16,−16,32,32);
+    /// redskeleton đi 16×32 (−8,−31,16,32) tâm −15; axeman 24×32 cột đục 2–23, pivot 12 ⇒ (−10,−31,22,32) tâm −15; Phantom Bat thường =
+    /// hộp boss (CvgpBossBuilder.PHANTOM_BAT_BOX). Bone Dragon: pivot = chân cổ ở tường (không sprite); renderer con "Head" (view,
+    /// order −2) + DRAGON_NECK con "Neck_k" (order −3, sprite đốt gán lúc chạy); hộp đầu/đốt BoneDragon.Shape() đặt mỗi tick.
+    /// Đạn order 1: cầu lửa Bone Dragon (lớp BoneTowerFireball, AnimSet SkeleDragon "fireball") — Phantom Bat thường dùng chung (TẠM).
+    /// </summary>
+    static void BuildBlock46()
+    {
+        var dragonAnim = Anim("SkeleDragonAnimSet");
+        var axeAnim = Anim("AxeManAnimSet");
+        var dragonBall = Make<BoneTowerFireball>("BoneDragonFireball", eEntityGroup.EnemyShot, new RectInt(-1, -1, 2, 2), Vector2Int.zero, dragonAnim, 1,
+            false, true, 16, null);
+        var axe = Make<AxeKnightAxe>("AxeKnightAxe", eEntityGroup.EnemyShot, new RectInt(-1, -1, 2, 2), Vector2Int.zero, axeAnim, 1,
+            false, true, 16, null);
+        var flea = Load<Fleaman>("Fleaman");
+        Make<Eagle>("Eagle", eEntityGroup.Enemy, new RectInt(-1, -1, 2, 2), Vector2Int.zero, Anim("EagleAnimSet"), ORDER, false, false, 32,
+            so =>
+            {
+                Enemy(so, eEnemyId.Eagle, new RectInt(-16, -16, 32, 32), 0);
+                so.FindProperty("fleamanPrefab").objectReferenceValue = flea;
+            });
+        Make<BoneDragon>("BoneDragon", eEntityGroup.Enemy, new RectInt(-1, -1, 2, 2), Vector2Int.zero, dragonAnim, ORDER, false, false, 32,
+            so =>
+            {
+                Enemy(so, eEnemyId.BoneDragon, new RectInt(-8, -8, 16, 16), 0);
+                so.FindProperty("fireballPrefab").objectReferenceValue = dragonBall;
+                var root = ((Component)so.targetObject).gameObject;
+                Object.DestroyImmediate(root.GetComponent<SpriteRenderer>());
+                var headGo = new GameObject("Head");
+                headGo.transform.SetParent(root.transform, false);
+                var head = headGo.AddComponent<SpriteRenderer>();
+                head.sortingLayerName = "Character";
+                head.sortingOrder = ORDER;
+                so.FindProperty("view").objectReferenceValue = head;
+                var necks = so.FindProperty("neckViews");
+                necks.arraySize = DRAGON_NECK;
+                for (int i = 0; i < DRAGON_NECK; i++)
+                {
+                    var n = new GameObject("Neck_" + i);
+                    n.transform.SetParent(root.transform, false);
+                    var r = n.AddComponent<SpriteRenderer>();
+                    r.sortingLayerName = "Character";
+                    r.sortingOrder = ORDER - 1;
+                    necks.GetArrayElementAtIndex(i).objectReferenceValue = r;
+                }
+            });
+        Make<RedSkeleton>("RedSkeleton", eEntityGroup.Enemy, FEET, new Vector2Int(0, 1), Anim("RedSkeletonAnimSet"), ORDER, true, false, 32,
+            so => Enemy(so, eEnemyId.RedSkeleton, new RectInt(-8, -31, 16, 32), -15));
+        Make<AxeKnight>("AxeKnight", eEntityGroup.Enemy, FEET, new Vector2Int(0, 1), axeAnim, ORDER, true, false, 32,
+            so =>
+            {
+                Enemy(so, eEnemyId.AxeKnight, new RectInt(-10, -31, 22, 32), -15);
+                so.FindProperty("axePrefab").objectReferenceValue = axe;
+            });
+        Make<PhantomBatMinor>("PhantomBatMinor", eEntityGroup.Enemy, new RectInt(-1, -1, 2, 2), Vector2Int.zero, Anim("PhantomBatAnimSet"), ORDER,
+            false, false, 32,
+            so =>
+            {
+                Enemy(so, eEnemyId.PhantomBatMinor, CvgpBossBuilder.PHANTOM_BAT_BOX, 0);
+                so.FindProperty("bossId").enumValueIndex = System.Array.IndexOf(System.Enum.GetValues(typeof(eBossId)), eBossId.PhantomBat);
+                so.FindProperty("phase").intValue = 1;
+                so.FindProperty("fireballPrefab").objectReferenceValue = dragonBall;
+            });
     }
 
     public static T Load<T>(string name) where T : Entity

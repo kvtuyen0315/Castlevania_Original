@@ -1,0 +1,3 @@
+# 400 tick, hash ec3e6705
+# CVGP 18 EnemyB46Probe kịch bản 'dragon_wave': Bone Dragon chân cổ (300,136) mặt trái, Simon (150,176): thân bất động, đầu ±24 chu kỳ 128; nghỉ 64 ⇒ há miệng 16 ⇒ 2 cầu lửa cách 20 nhắm tâm thân Simon 1.5 px/tick
+-*400

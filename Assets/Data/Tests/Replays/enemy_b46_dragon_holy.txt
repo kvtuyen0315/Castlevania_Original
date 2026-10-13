@@ -1,0 +1,3 @@
+# 153 tick, hash b6b872bf
+# CVGP 18 EnemyB46Probe kịch bản 'dragon_holy': nước thánh đốt đầu rồng rồi hạ (Defeat ở tick 100): rơi thêm Double Shot (wiki)
+-*2 Sub*1 -*150

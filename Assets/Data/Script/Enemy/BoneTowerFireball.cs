@@ -5,6 +5,8 @@ using UnityEngine;
 /// hình, gỡ khi ra khỏi màn / trúng Simon. QUẤT VỠ ĐƯỢC (wiki Enemies#Bone Towers): có Hurtbox lớp Enemy ⇒ mọi đòn của Simon (roi, vũ
 /// khí phụ) phá ⇒ tia lửa "hit" + ConfigScore.EnemyProjectilePoints (wiki Gameplay#Points "một số đạn đáng 100 điểm" — đạn nào wiki
 /// không nói; gán cho đạn phá được là SUY LUẬN). Toạ độ = pivot sprite (tâm ô 8×16; quả cầu ở nửa trên).
+/// CVGP 18: dùng chung cho cầu lửa Bone Dragon (prefab BoneDragonFireball, sprite skeledragon_fireball) và Phantom Bat bản thường
+/// (sheet không có cầu lửa riêng — TẠM dùng sprite Bone Dragon) — bay thẳng (vx, vy).
 /// </summary>
 public class BoneTowerFireball : Entity
 {
@@ -37,6 +39,9 @@ public class BoneTowerFireball : Entity
     public override void OnTick()
     {
         fx += vx;
+        fy += vy;   // CVGP 18: Bone Dragon / Phantom Bat thường bắn theo góc (Bone Tower vy = 0 — World.Spawn đặt 0)
+        if (vy != 0 && World.Tiles != null && (Y > World.Tiles.Height + 16 || Y < -16))
+            Kill(eKillReason.Offscreen);
         base.OnTick();
     }
 

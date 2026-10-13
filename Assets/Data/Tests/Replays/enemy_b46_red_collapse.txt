@@ -1,0 +1,5 @@
+# 360 tick, hash eba54ac5
+# CVGP 18 EnemyB46Probe kịch bản 'red_collapse': roi da: Red Skeleton đổ 8 ⇒ đống xương 90 ⇒ ráp 8 ⇒ đi tiếp (không chết), +400 mỗi lần đổ
+B*1 -*23 B*1 -*23 B*1 -*23 B*1 -*23 B*1 -*23 B*1 -*23
+B*1 -*23 B*1 -*23 B*1 -*23 B*1 -*23 B*1 -*23 B*1 -*23
+B*1 -*23 B*1 -*23 B*1 -*23

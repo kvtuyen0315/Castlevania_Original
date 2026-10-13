@@ -5,6 +5,8 @@ using UnityEngine;
 /// CVGP 17 — menu thử enemy (chỉ Editor, trong Play, scene Arena hoặc màn chơi): CVGP/Spawn/&lt;Enemy&gt; sinh 1 con trước mặt Simon
 /// (enemy đi đất: cùng mặt sàn Simon, cách 96 px; bay: tâm cao hơn chân Simon 24 px; Raven đậu cao hơn 40 px; Medusa Head ở mép màn
 /// trước mặt). Spawn/Medusa Head Spawner thêm 1 EdgeSpawner tạm (FrontOfPlayer) như Stage 5. Không lưu gì vào scene/prefab.
+/// CVGP 18: Eagle (mép trước mặt, chân Simon − 96, mang Fleaman) + Eagle Spawner (EdgeSpawner FrontOfPlayer như Stage 11), Bone Dragon
+/// (chân cổ trước mặt 96 px, cao hơn chân 40, mặt hướng Simon), Red Skeleton, Axe Knight, Phantom Bat (thường) (ngủ, cao hơn chân 64).
 /// </summary>
 public static class CvgpEnemySpawnMenu
 {
@@ -20,6 +22,12 @@ public static class CvgpEnemySpawnMenu
     [MenuItem(ROOT + "Skeleton")] static void SkeletonM() { Ground("Skeleton"); }
     [MenuItem(ROOT + "Fleaman")] static void FleamanM() { Ground("Fleaman"); }
     [MenuItem(ROOT + "Black Bat (treo)")] static void BlackBat() { Air("Bat", 48, true); }
+    [MenuItem(ROOT + "Eagle + Fleaman")] static void EagleM() { EdgeAbove("Eagle", 96); }
+    [MenuItem(ROOT + "Eagle Spawner")] static void EagleSpawner() { AddSpawner("Eagle"); }
+    [MenuItem(ROOT + "Bone Dragon")] static void DragonM() { Air("BoneDragon", 40); }
+    [MenuItem(ROOT + "Red Skeleton")] static void RedM() { Ground("RedSkeleton"); }
+    [MenuItem(ROOT + "Axe Knight")] static void AxeM() { Ground("AxeKnight"); }
+    [MenuItem(ROOT + "Phantom Bat (thường)")] static void PBatM() { Air("PhantomBatMinor", 64); }
 
     static StageWorld W => StageWorld.Current;
 
@@ -49,6 +57,14 @@ public static class CvgpEnemySpawnMenu
         int cx = W.CameraCtl != null ? W.CameraCtl.X : 0;
         int x = p.Facing > 0 ? cx + NesCoord.SCREEN_W - 8 : cx + 8;
         Put(name, x, p.Y - 24, -p.Facing, false);
+    }
+
+    static void EdgeAbove(string name, int above)
+    {
+        var p = W.Player;
+        int cx = W.CameraCtl != null ? W.CameraCtl.X : 0;
+        int x = p.Facing > 0 ? cx + NesCoord.SCREEN_W - 8 : cx + 8;
+        Put(name, x, p.Y - above, -p.Facing, false);
     }
 
     static void Put(string name, int x, int y, int facing, bool perch)
@@ -85,4 +101,10 @@ public static class CvgpEnemySpawnMenu
     [MenuItem(ROOT + "Skeleton", true)] static bool V7() { return Valid(); }
     [MenuItem(ROOT + "Fleaman", true)] static bool V8() { return Valid(); }
     [MenuItem(ROOT + "Black Bat (treo)", true)] static bool V9() { return Valid(); }
+    [MenuItem(ROOT + "Eagle + Fleaman", true)] static bool V10() { return Valid(); }
+    [MenuItem(ROOT + "Eagle Spawner", true)] static bool V11() { return Valid(); }
+    [MenuItem(ROOT + "Bone Dragon", true)] static bool V12() { return Valid(); }
+    [MenuItem(ROOT + "Red Skeleton", true)] static bool V13() { return Valid(); }
+    [MenuItem(ROOT + "Axe Knight", true)] static bool V14() { return Valid(); }
+    [MenuItem(ROOT + "Phantom Bat (thường)", true)] static bool V15() { return Valid(); }
 }

@@ -1,0 +1,3 @@
+# 420 tick, hash 6ea5d195
+# CVGP 18 EnemyB46Probe kịch bản 'eagle_drop': Simon (150,176) quay phải đứng; EdgeSpawner Eagle trước mặt: chim (cx+248, chân − 96) bay −1.5 px/tick mang Fleaman dưới chân +28; |dx| ≤ 28 ⇒ thả, Fleaman rơi thẳng rồi nhảy; chim bay ra khỏi màn
+-*420

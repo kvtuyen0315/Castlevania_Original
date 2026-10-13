@@ -1,0 +1,4 @@
+# 296 tick, hash 5720c6a5
+# CVGP 18 EnemyB46Probe kịch bản 'axe_whip_high': Stage 14: rìu CAO bị roi đứng quất vỡ (+100), Simon không mất máu
+-*56 B*1 -*23 B*1 -*23 B*1 -*23 B*1 -*23 B*1 -*23 B*1
+-*23 B*1 -*23 B*1 -*23 B*1 -*23 B*1 -*23

@@ -53,7 +53,7 @@ Enemy.Fishman,bubbleCenterVx,0.25,,,px/tick,đo:routine 13 cùng lần trồi: b
 Enemy.Fishman,bubbleGravity,0.125,,,px/tick²,đo:routine 13 cùng lần trồi: 2 bọt bên rơi 33 px trong 24 tick — xấp xỉ,
 Enemy.Fishman,bubbleSideTicks,24,,,tick,đo:routine 13 cùng lần trồi (f3519→3531),
 Enemy.Fishman,bubbleCenterTicks,34,,,tick,đo:routine 13 cùng lần trồi (f3522→3539),
-Enemy.RedSkeleton,reviveTicks,,60,120,tick,wiki:Enemies#Red Skeletons; wiki:Stages 13-15 (đứng dậy sau 1–2 s) — chờ đo routine 18,
+Enemy.RedSkeleton,reviveTicks,90,60,120,tick,"wiki:Enemies#Red Skeletons; wiki:Stages 13-15 (""một hai giây"" ⇒ 60–120 tick) — routine 18 chọn giữa khoảng 90 (suy luận: ước lượng, không video)",nằm thành đống xương
 Boss.PhantomBat,sleepX,623,,,px section,"đo:routine 14 khớp mẫu phantombat_0: tâm màn (111,65) cả 2 video (boss f5–65, Map_1 f5942) + cx 512",x pivot (tâm khung bay)
 Boss.PhantomBat,sleepY,41,,,px section,"đo:routine 14: khung bay lúc thức tâm màn (111,73) / (110,73) ⇒ y section 73 − 32",pivot = tâm khung bay; khung ngủ vẽ cao hơn sleepDrawUpPx
 Boss.PhantomBat,sleepDrawUpPx,8,,,px,"đo:routine 14: tâm khung ngủ (111,65) cao hơn tâm khung bay (111,73) 8 px — đỉnh 2 khung trùng nhau (y 57)",
@@ -185,3 +185,79 @@ Enemy.Fleaman,pauseMinTicks,4,,,tick,"suy luận: ước lượng (không video)
 Enemy.Fleaman,pauseSpanTicks,12,,,tick,suy luận: ước lượng (không video) — routine 17; cùng lý do,
 Enemy.Bat,swoopVy,1.5,,,px/tick,"suy luận: ước lượng (không video) — routine 17; Black Bat (wiki Enemies#Bats ""treo trần rồi lao xuống khi Simon lại gần""): sà xuống chéo tới tầm Simon rồi bay sóng như dơi đỏ",dương = xuống
 Enemy.Bat,swoopAboveFeetPx,14,,,px,"suy luận: ước lượng (không video) — routine 17; sà tới tâm = chân Simon − 14 (= mốt lúc dơi đỏ sinh, đo 13)",
+Enemy.Eagle,carryBelowPx,28,,,px,"suy luận: ước lượng (không video) — routine 18; chân Fleaman (pivot đáy 16×16) dưới tâm chim 28 ⇒ đầu Fleaman chạm móng (eagle_0 đáy ô 32 ở tâm + 16, chồng 4 px)",pivot Fleaman = tâm chim + 28
+Enemy.Eagle,dropDistancePx,28,,,px,"suy luận: ước lượng (không video) — routine 18; wiki Stage 11 ""Fleaman hầu như luôn rơi đúng tầm roi"" ⇒ thả khi |dx| ≤ 28 (roi da trúng 12–36 px trước pivot — ConfigWhip đo 09)",chỉ thả khi đang bay TỚI Simon
+Enemy.Eagle,spawnAboveFeetPx,96,,,px,"suy luận: ước lượng (không video) — routine 18; bay cao trên đầu Simon (wiki ""bầu trời đầy Eagle""); Fleaman rơi 68 px ≈ 23 tick (g 0.25 routine 17)",tâm = chân Simon − 96
+Enemy.Eagle,spawnInsetPx,8,,,px,suy luận: ước lượng (không video) — routine 18; như dơi/Zombie (đo 13): hiện sát mép màn,
+Enemy.Eagle,edgeScreenMarginPx,64,,,px,suy luận: ước lượng (không video) — routine 18; EdgeSpawner FrontOfPlayer như dơi 13 / Medusa Head 17 (wiki không nói phía),
+Enemy.Eagle,maxAlive,2,,,con,"suy luận: ước lượng (không video) — routine 18; wiki Stage 11 ""con này nối con kia"" — tối đa 2 chim trên màn",
+Enemy.Eagle,groupSize,1,,,con,suy luận: ước lượng (không video) — routine 18; 1 chim/lần,
+Enemy.Eagle,waveDelayMinTicks,96,,,tick,"suy luận: ước lượng (không video) — routine 18; wiki ""không ngừng xuất hiện tới cuối stage"" — ~1.5–2.5 s giữa 2 chim",
+Enemy.Eagle,waveDelaySpanTicks,64,,,tick,suy luận: ước lượng (không video) — routine 18; cùng lý do,
+Enemy.Eagle,firstDelayMinTicks,32,,,tick,"suy luận: ước lượng (không video) — routine 18; wiki Stage 11 ""lúc đầu tưởng không có kẻ địch rồi Eagle xuất hiện"" — chim đầu sau ~0.5 s khi vào vùng",
+Enemy.Eagle,firstDelaySpanTicks,0,,,tick,suy luận: ước lượng (không video) — routine 18; cùng lý do,
+Enemy.BoneDragon,segments,6,,,đốt,"suy luận: ước lượng (không video) — routine 18; wiki ""cổ dài"" — sheet chỉ có 1 đốt 8×16; 6 đốt ⇒ cổ 48 px + đầu (≈ 1/5 màn)",≤ CvgpEnemyBuilder.DRAGON_NECK
+Enemy.BoneDragon,segmentSpacingPx,8,,,px,suy luận: ước lượng (không video) — routine 18; đốt skeledragon_bone rộng 8 — xếp sát nhau,
+Enemy.BoneDragon,headGapPx,10,,,px,suy luận: ước lượng (không video) — routine 18; tâm đầu 16×16 cách tâm đốt cuối 8 + 2 (đầu chồng nhẹ lên đốt),
+Enemy.BoneDragon,headAmplitudePx,24,,,px,"suy luận: ước lượng (không video) — routine 18; wiki ""đầu ngọ nguậy lên xuống trên cổ dài; chờ đầu hạ thấp rồi quất"" ⇒ ±24: điểm thấp nhất vào dải roi đứng (chân −25..−17) khi chân cổ ngang đầu Simon",đốt k lệch A·k/(N+1)
+Enemy.BoneDragon,wavePeriodTicks,128,,,tick,"suy luận: ước lượng (không video) — routine 18; ngọ nguậy chậm ~2 s/chu kỳ (đủ thời gian ""chờ đầu hạ"" rồi quất)",
+Enemy.BoneDragon,waveLagTicks,6,,,tick,"suy luận: ước lượng (không video) — routine 18; sóng lan từ tường ra đầu — trễ 6 tick/đốt ⇒ cổ uốn lượn (""thân ngọ nguậy thất thường"")",
+Enemy.BoneDragon,firstIdleTicks,64,,,tick,suy luận: ước lượng (không video) — routine 18; nghỉ trước lượt phun đầu (Bone Tower 48 — routine 17; wiki: shot multiplier có thể giết trước khi kịp phun),
+Enemy.BoneDragon,idleMinTicks,96,,,tick,suy luận: ước lượng (không video) — routine 18; như Bone Tower (routine 17),
+Enemy.BoneDragon,idleSpanTicks,64,,,tick,suy luận: ước lượng (không video) — routine 18; như Bone Tower (routine 17),
+Enemy.BoneDragon,warnTicks,16,,,tick,suy luận: ước lượng (không video) — routine 18; há miệng (head_1) trước khi phun — báo hiệu như Bone Tower nháy (wiki không nói),
+Enemy.BoneDragon,burstCount,2,,,quả,"suy luận: ước lượng (không video) — routine 18; wiki ""phun các cầu lửa theo các góc"" (số nhiều) — 2 quả/lượt như Bone Tower",
+Enemy.BoneDragon,burstGapTicks,20,,,tick,"suy luận: ước lượng (không video) — routine 18; 2 quả cách nhau, mỗi quả nhắm lại ⇒ ""các góc khác nhau"" khi Simon di chuyển",
+Enemy.BoneDragon,fireballSpeed,1.5,,,px/tick,suy luận: ước lượng (không video) — routine 18; như cầu lửa Bone Tower (routine 17),"độ lớn vận tốc (vx, vy nguyên)"
+Enemy.BoneDragon,aimAbovePx,16,,,px,suy luận: ước lượng (không video) — routine 18; nhắm tâm thân Simon (chân − 16),
+Enemy.BoneDragon,mouthFrontPx,6,,,px,suy luận: ước lượng (không video) — routine 18; miệng ở mép trước đầu 16×16,
+Enemy.BoneDragon,dropMinCount,5,,,vật,"wiki:Enemies#Bone Dragons ""thường để lại 5–8 túi tiền hoặc tim nhỏ""","số vật = 5 + [0, dropSpanCount]"
+Enemy.BoneDragon,dropSpanCount,3,,,vật,wiki:Enemies#Bone Dragons (5–8),
+Enemy.BoneDragon,dropMoneyPct,50,,,%,"suy luận: ước lượng (không video) — routine 18; wiki ""túi tiền hoặc tim nhỏ"" không nói tỉ lệ/màu túi — 50 % túi đỏ (100 đ, rẻ nhất) / 50 % tim nhỏ",
+Enemy.BoneDragon,hitInvincibleTicks,16,,,tick,suy luận: ước lượng (không video) — routine 18; enemy nhiều đòn như Spear Knight/Bone Tower (routine 17) = bất tử boss 14,
+Enemy.RedSkeleton,collapseTicks,8,,,tick,suy luận: ước lượng (không video) — routine 18; khung redskeleton_1 (đang đổ) 8 tick rồi đống xương _0 (nhịp khung mặc định 8),
+Enemy.RedSkeleton,riseTicks,8,,,tick,suy luận: ước lượng (không video) — routine 18; ráp lại: khung _1 8 tick rồi đi,
+Enemy.RedSkeleton,turnDeadzonePx,16,,,px,"suy luận: ước lượng (không video) — routine 18; ""chậm rãi đuổi theo"": quay lại khi Simon ở phía sau quá 16 px (tránh lắc qua lại khi trùng cột)",
+Enemy.RedSkeleton,fallGravity,0.125,,,px/tick²,suy luận: ước lượng (không video) — routine 18; rơi khỏi gờ như Zombie (đo 13),
+Enemy.AxeKnight,keepMinPx,64,,,px,"suy luận: ước lượng (không video) — routine 18; wiki ""lùi khi Simon tiến, không bao giờ cố tới quá gần"" ⇒ lùi khi gần hơn 64 (ngoài tầm roi xích 52 — đo 09)",
+Enemy.AxeKnight,keepMaxPx,112,,,px,suy luận: ước lượng (không video) — routine 18; tiến khi xa hơn 112 (rìu bay ~85 px rồi quay về — trong dải 64–112 rìu tới Simon),
+Enemy.AxeKnight,decideTicks,32,,,tick,suy luận: ước lượng (không video) — routine 18; chọn hướng mỗi ~0.5 s (Skeleton 24 — Axe Knight chậm hơn),
+Enemy.AxeKnight,edgeProbePx,8,,,px,suy luận: ước lượng (không video) — routine 18; không tự rơi khỏi bục (wiki Stage 14 Knight trên gờ cao đứng tại chỗ) — như Spear Knight 17,
+Enemy.AxeKnight,fallGravity,0.125,,,px/tick²,suy luận: ước lượng (không video) — routine 18; như Zombie (đo 13) khi sinh lơ lửng,
+Enemy.AxeKnight,firstThrowTicks,48,,,tick,suy luận: ước lượng (không video) — routine 18; như Bone Tower/Skeleton (routine 17),
+Enemy.AxeKnight,throwMinTicks,96,,,tick,"suy luận: ước lượng (không video) — routine 18; wiki ""học nhịp ném"" — chu kỳ đều ~1.6–2.7 s, chỉ ném khi rìu trước đã hết",
+Enemy.AxeKnight,throwSpanTicks,64,,,tick,suy luận: ước lượng (không video) — routine 18; cùng lý do,
+Enemy.AxeKnight,throwPoseTicks,16,,,tick,suy luận: ước lượng (không video) — routine 18; tư thế ném (khung axeman_1) — sheet không có khung ném riêng,
+Enemy.AxeKnight,axeSpeed,2.0,,,px/tick,"suy luận: ước lượng (không video) — routine 18; rìu ""y hệt Boomerang của Simon"" — tốc ngang bằng rìu Simon vx 2 (đo 09)",
+Enemy.AxeKnight,axeTurnAccel,0.0234375,,,px/tick²,"suy luận: ước lượng (không video) — routine 18; giảm 6/256 px/tick² ⇒ dừng sau 85 tick, xa ≈ 85 px rồi quay về (thập tự Simon quay ở 112 — routine 09; rìu Knight ngắn hơn)",
+Enemy.AxeKnight,axeHighAbovePx,20,,,px,"suy luận: ước lượng (không video) — routine 18; wiki ""ném cao hoặc thấp — quất đúng độ cao"": rìu cao ở dải roi ĐỨNG (chân −25..−17, ConfigWhip đo 09)",tâm rìu
+Enemy.AxeKnight,axeLowAbovePx,10,,,px,suy luận: ước lượng (không video) — routine 18; rìu thấp ở dải roi NGỒI (khung ngồi thấp 8 — đo 08 ⇒ chân −17..−9); nhảy qua được,tâm rìu
+Enemy.AxeKnight,axeFrontPx,12,,,px,"suy luận: ước lượng (không video) — routine 18; rìu sinh ở mép trước thân (axeman rộng 24, pivot giữa)",
+Enemy.AxeKnight,hitInvincibleTicks,16,,,tick,suy luận: ước lượng (không video) — routine 18; enemy nhiều đòn như Spear Knight/Bone Tower (routine 17),
+Enemy.PhantomBatMinor,wakeDistancePx,96,,,px,suy luận: ước lượng (không video) — routine 18; đặt sẵn theo vị trí đánh số (wiki Stage 16) — thức khi Simon tới gần 96 (như Raven 17),|Simon.X − X| <
+Enemy.PhantomBatMinor,wakeHoverTicks,16,,,tick,"suy luận: ước lượng (không video) — routine 18; boss vỗ tại chỗ 33 (đo 14) — bản thường lao sớm hơn (wiki ""nhắm độ cao cú nhảy"")",
+Enemy.PhantomBatMinor,sleepDrawUpPx,8,,,px,suy luận: bằng boss Phantom Bat (đo routine 14) — routine 18 dùng lại chuyển động; Boss.PhantomBat.sleepDrawUpPx,
+Enemy.PhantomBatMinor,swoopVy0,1.46,,,px/tick,suy luận: bằng boss Phantom Bat (đo routine 14) — routine 18 dùng lại chuyển động; Boss.PhantomBat.swoopVy0,
+Enemy.PhantomBatMinor,swoopDepthPx,41,,,px,suy luận: bằng boss Phantom Bat (đo routine 14) — routine 18 dùng lại chuyển động; Boss.PhantomBat.swoopDepthPx,
+Enemy.PhantomBatMinor,swoopVxMin,1.22,,,px/tick,suy luận: bằng boss Phantom Bat (đo routine 14) — routine 18 dùng lại chuyển động; Boss.PhantomBat.swoopVxMin,
+Enemy.PhantomBatMinor,swoopVxMax,2.1,,,px/tick,suy luận: bằng boss Phantom Bat (đo routine 14) — routine 18 dùng lại chuyển động; Boss.PhantomBat.swoopVxMax,
+Enemy.PhantomBatMinor,sweepTicks,12,,,tick,suy luận: bằng boss Phantom Bat (đo routine 14) — routine 18 dùng lại chuyển động; Boss.PhantomBat.sweepTicks,
+Enemy.PhantomBatMinor,riseAccel,0.039,,,px/tick²,suy luận: bằng boss Phantom Bat (đo routine 14) — routine 18 dùng lại chuyển động; Boss.PhantomBat.riseAccel,
+Enemy.PhantomBatMinor,screenMinX,18,,,px màn,suy luận: bằng boss Phantom Bat (đo routine 14) — routine 18 dùng lại chuyển động; Boss.PhantomBat.screenMinX,
+Enemy.PhantomBatMinor,screenMaxX,238,,,px màn,suy luận: bằng boss Phantom Bat (đo routine 14) — routine 18 dùng lại chuyển động; Boss.PhantomBat.screenMaxX,
+Enemy.PhantomBatMinor,glideSpeed,0.75,,,px/tick,suy luận: bằng boss Phantom Bat (đo routine 14) — routine 18 dùng lại chuyển động; Boss.PhantomBat.glideSpeed,
+Enemy.PhantomBatMinor,glideMinScreenX,24,,,px màn,suy luận: bằng boss Phantom Bat (đo routine 14) — routine 18 dùng lại chuyển động; Boss.PhantomBat.glideMinScreenX,
+Enemy.PhantomBatMinor,glideMaxScreenX,232,,,px màn,suy luận: bằng boss Phantom Bat (đo routine 14) — routine 18 dùng lại chuyển động; Boss.PhantomBat.glideMaxScreenX,
+Enemy.PhantomBatMinor,glideMinSimonDx,64,,,px,suy luận: bằng boss Phantom Bat (đo routine 14) — routine 18 dùng lại chuyển động; Boss.PhantomBat.glideMinSimonDx,
+Enemy.PhantomBatMinor,hoverMinTicks,32,,,tick,suy luận: bằng boss Phantom Bat (đo routine 14) — routine 18 dùng lại chuyển động; Boss.PhantomBat.hoverMinTicks,
+Enemy.PhantomBatMinor,hoverMaxTicks,124,,,tick,suy luận: bằng boss Phantom Bat (đo routine 14) — routine 18 dùng lại chuyển động; Boss.PhantomBat.hoverMaxTicks,
+Enemy.PhantomBatMinor,diveChancePct,100,,,%,suy luận: bằng boss Phantom Bat (đo routine 14) — routine 18 dùng lại chuyển động; Boss.PhantomBat.diveChancePct,
+Enemy.PhantomBatMinor,invincibleTicks,16,,,tick,suy luận: bằng boss Phantom Bat (đo routine 14) — routine 18 dùng lại chuyển động; Boss.PhantomBat.invincibleTicks,
+Enemy.PhantomBatMinor,hitStunTicks,32,,,tick,"suy luận: ước lượng (không video) — routine 18; wiki Stage 16 ""quất 1 phát làm chậm vừa đủ để cuộn chúng ra khỏi màn"" ⇒ khựng dài hơn boss 10 (đo 14)",
+Enemy.PhantomBatMinor,swoopMaxAboveFeetPx,24,,,px,"suy luận: ước lượng (không video) — routine 18; wiki ""nhắm vào độ cao cú nhảy"" ⇒ đáy bổ nhào chạm thân Simon (boss: đáy cố định y 156 phòng boss)",đáy = chân Simon (lúc thức) − 24
+Enemy.PhantomBatMinor,riseTopAboveFeetPx,104,,,px,"suy luận: ước lượng (không video) — routine 18; boss vọt tới y 88 = sàn 208 − 120 (đo 14) — cầu Stage 16 thấp hơn, chọn chân − 104",
+Enemy.PhantomBatMinor,glideLowAboveFeetPx,96,,,px,suy luận: ước lượng (không video) — routine 18; boss lượn thấp y 92 = sàn − 116 (đo 14) — tỉ lệ theo riseTop,
+Enemy.PhantomBatMinor,glideHighAboveFeetPx,72,,,px,suy luận: ước lượng (không video) — routine 18; boss lượn cao y 123 = sàn − 85 (đo 14) — tỉ lệ theo riseTop,
+Enemy.PhantomBatMinor,fireDelayTicks,16,,,tick,"suy luận: ước lượng (không video) — routine 18; wiki ""phun được cầu lửa"" — 1 quả mỗi lần lơ lửng, sau 16 tick (lơ lửng boss ≥ 32)",
+Enemy.PhantomBatMinor,fireballSpeed,1.5,,,px/tick,suy luận: ước lượng (không video) — routine 18; như cầu lửa Bone Tower/Bone Dragon,
+Enemy.PhantomBatMinor,aimAbovePx,16,,,px,suy luận: ước lượng (không video) — routine 18; nhắm tâm thân Simon,

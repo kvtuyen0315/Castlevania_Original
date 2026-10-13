@@ -1,0 +1,3 @@
+# 600 tick, hash 5bf82585
+# CVGP 18 EnemyB46Probe kịch bản 'pbat_wake': Phantom Bat thường ngủ (260,96); Simon đi phải từ 150: thức khi |dx| < 96, lượn 16, bổ nhào đáy ≤ chân − 24, lơ lửng 16 ⇒ phun cầu lửa; không thanh ENEMY, không quả cầu
+R*30 -*570

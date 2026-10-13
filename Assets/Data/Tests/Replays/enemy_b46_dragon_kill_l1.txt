@@ -1,0 +1,4 @@
+# 388 tick, hash 51d496d5
+# CVGP 18 EnemyB46Probe kịch bản 'dragon_kill_l1': rồng (300,136): Stopwatch đúng lúc đầu hạ thấp (~tick 74) + roi da: đúng 8 đòn, +1000, rơi 5–8 túi tiền/tim nhỏ xuống sàn
+-*57 Sub*1 -*30 B*1 -*23 B*1 -*23 B*1 -*23 B*1 -*23 B*1
+-*23 B*1 -*23 B*1 -*23 B*1 -*23 B*1 -*23 B*1 -*83

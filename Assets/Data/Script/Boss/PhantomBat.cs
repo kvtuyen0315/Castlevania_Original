@@ -36,8 +36,10 @@ public class PhantomBat : BossBase
 
     private AnimSet.Anim aSleep, aFly;
     // tham số (fixed 1/256 px trừ tick/px nguyên)
-    private int wakeX, wakeHover, sleepUp, vy0, depth, maxY, vxMin, vxMax, sweepTicks, riseAccel, riseTopY, scrMinX, scrMaxX;
-    private int glideSpeed, glideMinSX, glideMaxSX, glideLowY, glideHighY, glideMinDx, hoverMin, hoverMax, diveChance;
+    private int wakeX, wakeHover, sleepUp, vy0, depth, vxMin, vxMax, sweepTicks, riseAccel, scrMinX, scrMaxX;
+    private int glideSpeed, glideMinSX, glideMaxSX, glideMinDx, hoverMin, hoverMax, diveChance;
+    /// <summary>Độ cao tuyệt đối (px section) — CVGP 18: bản thường đặt lại theo chân Simon lúc thức.</summary>
+    protected int maxY, riseTopY, glideLowY, glideHighY;
     // trạng thái chuyển động
     [System.NonSerialized] public int t, T, x0f, y0f, dxf, dyf, glideLow, hoverLen;
     /// <summary>Số cú lao / lượn đã bắt đầu (harness).</summary>
@@ -59,7 +61,7 @@ public class PhantomBat : BossBase
         public override void CheckNextState()
         {
             var p = owner.World.Player;
-            if (p != null && p.Alive && p.X >= owner.wakeX)
+            if (p != null && p.Alive && owner.ShouldWake(p))
             {
                 owner.Activate();
                 SetState(ePhantomBatState.Wake);
@@ -161,7 +163,7 @@ public class PhantomBat : BossBase
             owner.hoverLen = owner.hoverMin + owner.World.Rng.Next(owner.hoverMax - owner.hoverMin + 1);
         }
 
-        public override void OnExecuteState() { owner.t++; }
+        public override void OnExecuteState() { owner.t++; owner.OnHoverTick(owner.t); }
 
         public override void CheckNextState()
         {
@@ -189,31 +191,35 @@ public class PhantomBat : BossBase
         }
     }
 
+    /// <summary>Điều kiện thức (boss: Simon.X ≥ wakeSimonX — CVGP 18 bản thường override theo khoảng cách).</summary>
+    protected virtual bool ShouldWake(Entity p) { return p.X >= wakeX; }
+    /// <summary>Mỗi tick lơ lửng (CVGP 18: bản thường phun cầu lửa ở đây; boss không bắn — 2 video).</summary>
+    protected virtual void OnHoverTick(int tick) { }
+
     protected override void LoadBoss(GameConfig cfg)
     {
-        var id = bossId;
-        wakeX = BossParams.Int(cfg, id, "wakeSimonX", 693);
-        wakeHover = BossParams.Int(cfg, id, "wakeHoverTicks", 33);
-        sleepUp = BossParams.Int(cfg, id, "sleepDrawUpPx", 8);
-        vy0 = Mathf.Max(1, BossParams.Fixed256(cfg, id, "swoopVy0", 1.46f));
-        depth = BossParams.Int(cfg, id, "swoopDepthPx", 41);
-        maxY = BossParams.Int(cfg, id, "swoopMaxY", 156);
-        vxMin = BossParams.Fixed256(cfg, id, "swoopVxMin", 1.22f);
-        vxMax = BossParams.Fixed256(cfg, id, "swoopVxMax", 2.1f);
-        sweepTicks = BossParams.Int(cfg, id, "sweepTicks", 12);
-        riseAccel = BossParams.Fixed256(cfg, id, "riseAccel", 0.039f);
-        riseTopY = BossParams.Int(cfg, id, "riseTopY", 88);
-        scrMinX = BossParams.Int(cfg, id, "screenMinX", 18);
-        scrMaxX = BossParams.Int(cfg, id, "screenMaxX", 238);
-        glideSpeed = Mathf.Max(1, BossParams.Fixed256(cfg, id, "glideSpeed", 0.75f));
-        glideMinSX = BossParams.Int(cfg, id, "glideMinScreenX", 24);
-        glideMaxSX = BossParams.Int(cfg, id, "glideMaxScreenX", 232);
-        glideLowY = BossParams.Int(cfg, id, "glideLowY", 92);
-        glideHighY = BossParams.Int(cfg, id, "glideHighY", 123);
-        glideMinDx = BossParams.Int(cfg, id, "glideMinSimonDx", 64);
-        hoverMin = BossParams.Int(cfg, id, "hoverMinTicks", 32);
-        hoverMax = Mathf.Max(hoverMin, BossParams.Int(cfg, id, "hoverMaxTicks", 124));
-        diveChance = BossParams.Int(cfg, id, "diveChancePct", 100);
+        wakeX = PInt(cfg, "wakeSimonX", 693);
+        wakeHover = PInt(cfg, "wakeHoverTicks", 33);
+        sleepUp = PInt(cfg, "sleepDrawUpPx", 8);
+        vy0 = Mathf.Max(1, PFixed(cfg, "swoopVy0", 1.46f));
+        depth = PInt(cfg, "swoopDepthPx", 41);
+        maxY = PInt(cfg, "swoopMaxY", 156);
+        vxMin = PFixed(cfg, "swoopVxMin", 1.22f);
+        vxMax = PFixed(cfg, "swoopVxMax", 2.1f);
+        sweepTicks = PInt(cfg, "sweepTicks", 12);
+        riseAccel = PFixed(cfg, "riseAccel", 0.039f);
+        riseTopY = PInt(cfg, "riseTopY", 88);
+        scrMinX = PInt(cfg, "screenMinX", 18);
+        scrMaxX = PInt(cfg, "screenMaxX", 238);
+        glideSpeed = Mathf.Max(1, PFixed(cfg, "glideSpeed", 0.75f));
+        glideMinSX = PInt(cfg, "glideMinScreenX", 24);
+        glideMaxSX = PInt(cfg, "glideMaxScreenX", 232);
+        glideLowY = PInt(cfg, "glideLowY", 92);
+        glideHighY = PInt(cfg, "glideHighY", 123);
+        glideMinDx = PInt(cfg, "glideMinSimonDx", 64);
+        hoverMin = PInt(cfg, "hoverMinTicks", 32);
+        hoverMax = Mathf.Max(hoverMin, PInt(cfg, "hoverMaxTicks", 124));
+        diveChance = PInt(cfg, "diveChancePct", 100);
         t = T = 0;
         vx = vy = 0;
         glideLow = 1;

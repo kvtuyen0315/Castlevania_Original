@@ -1,0 +1,3 @@
+# 200 tick, hash 4a2bb865
+# CVGP 18 EnemyB46Probe kịch bản 'axe_hit': Stage 14: rìu trúng Simon: −4 vạch (EnemyAttack)
+-*200

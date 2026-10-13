@@ -1,0 +1,5 @@
+# 390 tick, hash b4946c7d
+# CVGP 18 EnemyB46Probe kịch bản 'axe_kill_l1': roi da hạ Axe Knight (đứng yên): đúng 10 đòn, +1400
+B*1 -*23 B*1 -*23 B*1 -*23 B*1 -*23 B*1 -*23 B*1 -*23
+B*1 -*23 B*1 -*23 B*1 -*23 B*1 -*23 B*1 -*23 B*1 -*23
+B*1 -*23 B*1 -*23 B*1 -*53

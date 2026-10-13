@@ -1,0 +1,4 @@
+# 313 tick, hash 612f697f
+# CVGP 18 EnemyB46Probe kịch bản 'freeze_whip_axe': Stopwatch + roi da: Axe Knight đứng yên vẫn ăn đủ 10 đòn (bộ đếm bất tử chạy khi đóng băng)
+-*2 Sub*1 -*30 B*1 -*23 B*1 -*23 B*1 -*23 B*1 -*23 B*1
+-*23 B*1 -*23 B*1 -*23 B*1 -*23 B*1 -*23 B*1 -*63

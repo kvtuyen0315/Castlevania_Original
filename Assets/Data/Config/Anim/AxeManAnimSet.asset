@@ -23,18 +23,22 @@ MonoBehaviour:
     overlays: []
     overlayOffsets: []
     overlayOnTop: 
-    note: 
+    note: "routine 18: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video Block 4\u20136)
+      \u2014 nh\u1ECBp 8 tick/khung gi\u1EEF m\u1EB7c \u0111\u1ECBnh; \u0111\u1EE9ng
+      = khung 0, n\xE9m = khung 1"
   - name: axe
     frames:
     - {fileID: 21300000, guid: fbae042b2819cb94a9af55521eef56b6, type: 3}
     - {fileID: 21300000, guid: 2ee07cba038703c47a7a9606a29e1540, type: 3}
     - {fileID: 21300000, guid: 891f3f1e6b5e3c14f869f5011a3f93c5, type: 3}
     - {fileID: 21300000, guid: d8bd978d1314add4c86020dae2eb63da, type: 3}
-    durations: 08000000080000000800000008000000
+    durations: 04000000040000000400000004000000
     loop: 1
     measured: 0
     overlays: []
     overlayOffsets: []
     overlayOnTop: 
-    note: 
+    note: "routine 18: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video Block 4\u20136)
+      \u2014 xoay 4 tick/khung = nh\u1ECBp r\xECu Simon \u0111o routine 09 (r\xECu
+      Knight y h\u1EC7t Boomerang/r\xECu)"
   palettes: []

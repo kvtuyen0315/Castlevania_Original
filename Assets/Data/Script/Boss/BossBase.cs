@@ -64,18 +64,32 @@ public abstract class BossBase : EnemyBase
         deathAge = 0;
         hitsTaken = 0;
         checkOffscreen = false;
-        hitStunTicks = BossParams.Int(cfg, bossId, "hitStunTicks", 10);
-        invincibleTicks = BossParams.Int(cfg, bossId, "invincibleTicks", 16);
-        deathFxTicks = BossParams.Int(cfg, bossId, "deathFxTicks", 62);
-        deathFxUp = BossParams.Int(cfg, bossId, "deathFxUpPx", 8);
+        hitStunTicks = PInt(cfg, "hitStunTicks", 10);
+        invincibleTicks = PInt(cfg, "invincibleTicks", 16);
+        deathFxTicks = PInt(cfg, "deathFxTicks", 62);
+        deathFxUp = PInt(cfg, "deathFxUpPx", 8);
         crystalDelay = Mathf.RoundToInt(ItemPickup.Param(cfg, eItemId.MagicCrystal, "spawnDelayTicks", 152));
         crystalScreenX = Mathf.RoundToInt(ItemPickup.Param(cfg, eItemId.MagicCrystal, "spawnScreenX", 128));
         crystalY = Mathf.RoundToInt(ItemPickup.Param(cfg, eItemId.MagicCrystal, "spawnY", 104));
         InvincibleOnHit = invincibleTicks;
         if (animSet != null && animSet.Has("hurt"))
             aHurt = animSet.Get("hurt");
-        SetEnemyBar(Health.Bars(GameSession.MAX_HP));
+        Bar(Health.Bars(GameSession.MAX_HP));
         LoadBoss(cfg);
+    }
+
+    /// <summary>Tham số hành vi (mặc định ConfigActorParam "Boss.&lt;bossId&gt;"; CVGP 18: Phantom Bat bản thường đọc "Enemy.PhantomBatMinor").</summary>
+    protected virtual int PInt(GameConfig cfg, string key, int fallback) { return BossParams.Int(cfg, bossId, key, fallback); }
+    protected virtual int PFixed(GameConfig cfg, string key, float fallback) { return BossParams.Fixed256(cfg, bossId, key, fallback); }
+    /// <summary>Dùng thanh ENEMY của HUD (CVGP 18: Phantom Bat bản thường là enemy thường ⇒ false).</summary>
+    protected virtual bool UsesEnemyBar => true;
+    /// <summary>Đổi nhạc sang nhạc boss khi bắt đầu đánh (CVGP 18: bản thường ⇒ false).</summary>
+    protected virtual bool PlaysBossMusic => true;
+
+    private void Bar(int bars)
+    {
+        if (UsesEnemyBar)
+            SetEnemyBar(bars);
     }
 
     protected abstract void LoadBoss(GameConfig cfg);
@@ -96,12 +110,14 @@ public abstract class BossBase : EnemyBase
     {
         dormant = false;
         ApplyVisibility();   // bật hộp ngay (boss đang bị Stopwatch giữ thì OnTick không chạy)
-        SetEnemyBar(Health.Bars(GameSession.MAX_HP));
+        Bar(Health.Bars(GameSession.MAX_HP));
     }
 
     /// <summary>Nhạc boss: chưa import nhạc (CVGP_MEMORY §6 nợ 02) ⇒ PlayMusic(null) = im lặng + log (H2 — không thay bài khác).</summary>
     protected void StartBossMusic()
     {
+        if (!PlaysBossMusic)
+            return;
         if (AudioManager.I != null)
             AudioManager.I.PlayMusic(null, true);
         if (CvgpDebug.LogState)
@@ -177,7 +193,7 @@ public abstract class BossBase : EnemyBase
             return false;
         Health.Apply(hit.strength);
         hitsTaken++;
-        SetEnemyBar(Health.Bars(GameSession.MAX_HP));
+        Bar(Health.Bars(GameSession.MAX_HP));
         var cfg = World.Config;
         // tia lửa tại chỗ trúng (video boss f492–530: tia hồng ở mép dơi chỗ roi chạm)
         var a = hit.hitbox != null ? hit.hitbox.SectionRect : new RectInt(X, Y, 0, 0);
@@ -235,7 +251,7 @@ public abstract class BossBase : EnemyBase
     public void DebugSetHp(int hp)
     {
         Health.Set(Mathf.Max(1, hp));
-        SetEnemyBar(Health.Bars(GameSession.MAX_HP));
+        Bar(Health.Bars(GameSession.MAX_HP));
     }
 }
 

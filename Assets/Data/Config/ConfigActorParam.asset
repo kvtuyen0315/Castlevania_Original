@@ -855,8 +855,8 @@ MonoBehaviour:
   - actor: Enemy.RedSkeleton
     key: reviveTicks
     value:
-      has: 0
-      value: 0
+      has: 1
+      value: 90
     min:
       has: 1
       value: 60
@@ -864,9 +864,10 @@ MonoBehaviour:
       has: 1
       value: 120
     unit: tick
-    source: "wiki:Enemies#Red Skeletons; wiki:Stages 13-15 (\u0111\u1EE9ng d\u1EADy
-      sau 1\u20132 s) \u2014 ch\u1EDD \u0111o routine 18"
-    note: 
+    source: "wiki:Enemies#Red Skeletons; wiki:Stages 13-15 (\"m\u1ED9t hai gi\xE2y\"
+      \u21D2 60\u2013120 tick) \u2014 routine 18 ch\u1ECDn gi\u1EEFa kho\u1EA3ng
+      90 (suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng, kh\xF4ng video)"
+    note: "n\u1EB1m th\xE0nh \u0111\u1ED1ng x\u01B0\u01A1ng"
   - actor: Boss.PhantomBat
     key: sleepX
     value:
@@ -2899,4 +2900,1205 @@ MonoBehaviour:
     source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
       routine 17; s\xE0 t\u1EDBi t\xE2m = ch\xE2n Simon \u2212 14 (= m\u1ED1t l\xFAc
       d\u01A1i \u0111\u1ECF sinh, \u0111o 13)"
+    note: 
+  - actor: Enemy.Eagle
+    key: carryBelowPx
+    value:
+      has: 1
+      value: 28
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 18; ch\xE2n Fleaman (pivot \u0111\xE1y 16\xD716) d\u01B0\u1EDBi t\xE2m
+      chim 28 \u21D2 \u0111\u1EA7u Fleaman ch\u1EA1m m\xF3ng (eagle_0 \u0111\xE1y
+      \xF4 32 \u1EDF t\xE2m + 16, ch\u1ED3ng 4 px)"
+    note: "pivot Fleaman = t\xE2m chim + 28"
+  - actor: Enemy.Eagle
+    key: dropDistancePx
+    value:
+      has: 1
+      value: 28
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 18; wiki Stage 11 \"Fleaman h\u1EA7u nh\u01B0 lu\xF4n r\u01A1i \u0111\xFAng
+      t\u1EA7m roi\" \u21D2 th\u1EA3 khi |dx| \u2264 28 (roi da tr\xFAng 12\u201336
+      px tr\u01B0\u1EDBc pivot \u2014 ConfigWhip \u0111o 09)"
+    note: "ch\u1EC9 th\u1EA3 khi \u0111ang bay T\u1EDAI Simon"
+  - actor: Enemy.Eagle
+    key: spawnAboveFeetPx
+    value:
+      has: 1
+      value: 96
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 18; bay cao tr\xEAn \u0111\u1EA7u Simon (wiki \"b\u1EA7u tr\u1EDDi
+      \u0111\u1EA7y Eagle\"); Fleaman r\u01A1i 68 px \u2248 23 tick (g 0.25 routine
+      17)"
+    note: "t\xE2m = ch\xE2n Simon \u2212 96"
+  - actor: Enemy.Eagle
+    key: spawnInsetPx
+    value:
+      has: 1
+      value: 8
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 18; nh\u01B0 d\u01A1i/Zombie (\u0111o 13): hi\u1EC7n s\xE1t m\xE9p
+      m\xE0n"
+    note: 
+  - actor: Enemy.Eagle
+    key: edgeScreenMarginPx
+    value:
+      has: 1
+      value: 64
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 18; EdgeSpawner FrontOfPlayer nh\u01B0 d\u01A1i 13 / Medusa Head 17
+      (wiki kh\xF4ng n\xF3i ph\xEDa)"
+    note: 
+  - actor: Enemy.Eagle
+    key: maxAlive
+    value:
+      has: 1
+      value: 2
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: con
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 18; wiki Stage 11 \"con n\xE0y n\u1ED1i con kia\" \u2014 t\u1ED1i \u0111a
+      2 chim tr\xEAn m\xE0n"
+    note: 
+  - actor: Enemy.Eagle
+    key: groupSize
+    value:
+      has: 1
+      value: 1
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: con
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 18; 1 chim/l\u1EA7n"
+    note: 
+  - actor: Enemy.Eagle
+    key: waveDelayMinTicks
+    value:
+      has: 1
+      value: 96
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 18; wiki \"kh\xF4ng ng\u1EEBng xu\u1EA5t hi\u1EC7n t\u1EDBi cu\u1ED1i
+      stage\" \u2014 ~1.5\u20132.5 s gi\u1EEFa 2 chim"
+    note: 
+  - actor: Enemy.Eagle
+    key: waveDelaySpanTicks
+    value:
+      has: 1
+      value: 64
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 18; c\xF9ng l\xFD do"
+    note: 
+  - actor: Enemy.Eagle
+    key: firstDelayMinTicks
+    value:
+      has: 1
+      value: 32
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 18; wiki Stage 11 \"l\xFAc \u0111\u1EA7u t\u01B0\u1EDFng kh\xF4ng c\xF3
+      k\u1EBB \u0111\u1ECBch r\u1ED3i Eagle xu\u1EA5t hi\u1EC7n\" \u2014 chim \u0111\u1EA7u
+      sau ~0.5 s khi v\xE0o v\xF9ng"
+    note: 
+  - actor: Enemy.Eagle
+    key: firstDelaySpanTicks
+    value:
+      has: 1
+      value: 0
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 18; c\xF9ng l\xFD do"
+    note: 
+  - actor: Enemy.BoneDragon
+    key: segments
+    value:
+      has: 1
+      value: 6
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: "\u0111\u1ED1t"
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 18; wiki \"c\u1ED5 d\xE0i\" \u2014 sheet ch\u1EC9 c\xF3 1 \u0111\u1ED1t
+      8\xD716; 6 \u0111\u1ED1t \u21D2 c\u1ED5 48 px + \u0111\u1EA7u (\u2248 1/5 m\xE0n)"
+    note: "\u2264 CvgpEnemyBuilder.DRAGON_NECK"
+  - actor: Enemy.BoneDragon
+    key: segmentSpacingPx
+    value:
+      has: 1
+      value: 8
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 18; \u0111\u1ED1t skeledragon_bone r\u1ED9ng 8 \u2014 x\u1EBFp s\xE1t
+      nhau"
+    note: 
+  - actor: Enemy.BoneDragon
+    key: headGapPx
+    value:
+      has: 1
+      value: 10
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 18; t\xE2m \u0111\u1EA7u 16\xD716 c\xE1ch t\xE2m \u0111\u1ED1t cu\u1ED1i
+      8 + 2 (\u0111\u1EA7u ch\u1ED3ng nh\u1EB9 l\xEAn \u0111\u1ED1t)"
+    note: 
+  - actor: Enemy.BoneDragon
+    key: headAmplitudePx
+    value:
+      has: 1
+      value: 24
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 18; wiki \"\u0111\u1EA7u ng\u1ECD ngu\u1EADy l\xEAn xu\u1ED1ng tr\xEAn
+      c\u1ED5 d\xE0i; ch\u1EDD \u0111\u1EA7u h\u1EA1 th\u1EA5p r\u1ED3i qu\u1EA5t\"
+      \u21D2 \xB124: \u0111i\u1EC3m th\u1EA5p nh\u1EA5t v\xE0o d\u1EA3i roi \u0111\u1EE9ng
+      (ch\xE2n \u221225..\u221217) khi ch\xE2n c\u1ED5 ngang \u0111\u1EA7u Simon"
+    note: "\u0111\u1ED1t k l\u1EC7ch A\xB7k/(N+1)"
+  - actor: Enemy.BoneDragon
+    key: wavePeriodTicks
+    value:
+      has: 1
+      value: 128
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 18; ng\u1ECD ngu\u1EADy ch\u1EADm ~2 s/chu k\u1EF3 (\u0111\u1EE7 th\u1EDDi
+      gian \"ch\u1EDD \u0111\u1EA7u h\u1EA1\" r\u1ED3i qu\u1EA5t)"
+    note: 
+  - actor: Enemy.BoneDragon
+    key: waveLagTicks
+    value:
+      has: 1
+      value: 6
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 18; s\xF3ng lan t\u1EEB t\u01B0\u1EDDng ra \u0111\u1EA7u \u2014 tr\u1EC5
+      6 tick/\u0111\u1ED1t \u21D2 c\u1ED5 u\u1ED1n l\u01B0\u1EE3n (\"th\xE2n ng\u1ECD
+      ngu\u1EADy th\u1EA5t th\u01B0\u1EDDng\")"
+    note: 
+  - actor: Enemy.BoneDragon
+    key: firstIdleTicks
+    value:
+      has: 1
+      value: 64
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 18; ngh\u1EC9 tr\u01B0\u1EDBc l\u01B0\u1EE3t phun \u0111\u1EA7u (Bone
+      Tower 48 \u2014 routine 17; wiki: shot multiplier c\xF3 th\u1EC3 gi\u1EBFt
+      tr\u01B0\u1EDBc khi k\u1ECBp phun)"
+    note: 
+  - actor: Enemy.BoneDragon
+    key: idleMinTicks
+    value:
+      has: 1
+      value: 96
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 18; nh\u01B0 Bone Tower (routine 17)"
+    note: 
+  - actor: Enemy.BoneDragon
+    key: idleSpanTicks
+    value:
+      has: 1
+      value: 64
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 18; nh\u01B0 Bone Tower (routine 17)"
+    note: 
+  - actor: Enemy.BoneDragon
+    key: warnTicks
+    value:
+      has: 1
+      value: 16
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 18; h\xE1 mi\u1EC7ng (head_1) tr\u01B0\u1EDBc khi phun \u2014 b\xE1o
+      hi\u1EC7u nh\u01B0 Bone Tower nh\xE1y (wiki kh\xF4ng n\xF3i)"
+    note: 
+  - actor: Enemy.BoneDragon
+    key: burstCount
+    value:
+      has: 1
+      value: 2
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: "qu\u1EA3"
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 18; wiki \"phun c\xE1c c\u1EA7u l\u1EEDa theo c\xE1c g\xF3c\" (s\u1ED1
+      nhi\u1EC1u) \u2014 2 qu\u1EA3/l\u01B0\u1EE3t nh\u01B0 Bone Tower"
+    note: 
+  - actor: Enemy.BoneDragon
+    key: burstGapTicks
+    value:
+      has: 1
+      value: 20
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 18; 2 qu\u1EA3 c\xE1ch nhau, m\u1ED7i qu\u1EA3 nh\u1EAFm l\u1EA1i \u21D2
+      \"c\xE1c g\xF3c kh\xE1c nhau\" khi Simon di chuy\u1EC3n"
+    note: 
+  - actor: Enemy.BoneDragon
+    key: fireballSpeed
+    value:
+      has: 1
+      value: 1.5
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px/tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 18; nh\u01B0 c\u1EA7u l\u1EEDa Bone Tower (routine 17)"
+    note: "\u0111\u1ED9 l\u1EDBn v\u1EADn t\u1ED1c (vx, vy nguy\xEAn)"
+  - actor: Enemy.BoneDragon
+    key: aimAbovePx
+    value:
+      has: 1
+      value: 16
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 18; nh\u1EAFm t\xE2m th\xE2n Simon (ch\xE2n \u2212 16)"
+    note: 
+  - actor: Enemy.BoneDragon
+    key: mouthFrontPx
+    value:
+      has: 1
+      value: 6
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 18; mi\u1EC7ng \u1EDF m\xE9p tr\u01B0\u1EDBc \u0111\u1EA7u 16\xD716"
+    note: 
+  - actor: Enemy.BoneDragon
+    key: dropMinCount
+    value:
+      has: 1
+      value: 5
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: "v\u1EADt"
+    source: "wiki:Enemies#Bone Dragons \"th\u01B0\u1EDDng \u0111\u1EC3 l\u1EA1i 5\u20138
+      t\xFAi ti\u1EC1n ho\u1EB7c tim nh\u1ECF\""
+    note: "s\u1ED1 v\u1EADt = 5 + [0, dropSpanCount]"
+  - actor: Enemy.BoneDragon
+    key: dropSpanCount
+    value:
+      has: 1
+      value: 3
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: "v\u1EADt"
+    source: "wiki:Enemies#Bone Dragons (5\u20138)"
+    note: 
+  - actor: Enemy.BoneDragon
+    key: dropMoneyPct
+    value:
+      has: 1
+      value: 50
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: '%'
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 18; wiki \"t\xFAi ti\u1EC1n ho\u1EB7c tim nh\u1ECF\" kh\xF4ng n\xF3i
+      t\u1EC9 l\u1EC7/m\xE0u t\xFAi \u2014 50 % t\xFAi \u0111\u1ECF (100 \u0111,
+      r\u1EBB nh\u1EA5t) / 50 % tim nh\u1ECF"
+    note: 
+  - actor: Enemy.BoneDragon
+    key: hitInvincibleTicks
+    value:
+      has: 1
+      value: 16
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 18; enemy nhi\u1EC1u \u0111\xF2n nh\u01B0 Spear Knight/Bone Tower (routine
+      17) = b\u1EA5t t\u1EED boss 14"
+    note: 
+  - actor: Enemy.RedSkeleton
+    key: collapseTicks
+    value:
+      has: 1
+      value: 8
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 18; khung redskeleton_1 (\u0111ang \u0111\u1ED5) 8 tick r\u1ED3i \u0111\u1ED1ng
+      x\u01B0\u01A1ng _0 (nh\u1ECBp khung m\u1EB7c \u0111\u1ECBnh 8)"
+    note: 
+  - actor: Enemy.RedSkeleton
+    key: riseTicks
+    value:
+      has: 1
+      value: 8
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 18; r\xE1p l\u1EA1i: khung _1 8 tick r\u1ED3i \u0111i"
+    note: 
+  - actor: Enemy.RedSkeleton
+    key: turnDeadzonePx
+    value:
+      has: 1
+      value: 16
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 18; \"ch\u1EADm r\xE3i \u0111u\u1ED5i theo\": quay l\u1EA1i khi Simon
+      \u1EDF ph\xEDa sau qu\xE1 16 px (tr\xE1nh l\u1EAFc qua l\u1EA1i khi tr\xF9ng
+      c\u1ED9t)"
+    note: 
+  - actor: Enemy.RedSkeleton
+    key: fallGravity
+    value:
+      has: 1
+      value: 0.125
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: "px/tick\xB2"
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 18; r\u01A1i kh\u1ECFi g\u1EDD nh\u01B0 Zombie (\u0111o 13)"
+    note: 
+  - actor: Enemy.AxeKnight
+    key: keepMinPx
+    value:
+      has: 1
+      value: 64
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 18; wiki \"l\xF9i khi Simon ti\u1EBFn, kh\xF4ng bao gi\u1EDD c\u1ED1
+      t\u1EDBi qu\xE1 g\u1EA7n\" \u21D2 l\xF9i khi g\u1EA7n h\u01A1n 64 (ngo\xE0i
+      t\u1EA7m roi x\xEDch 52 \u2014 \u0111o 09)"
+    note: 
+  - actor: Enemy.AxeKnight
+    key: keepMaxPx
+    value:
+      has: 1
+      value: 112
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 18; ti\u1EBFn khi xa h\u01A1n 112 (r\xECu bay ~85 px r\u1ED3i quay
+      v\u1EC1 \u2014 trong d\u1EA3i 64\u2013112 r\xECu t\u1EDBi Simon)"
+    note: 
+  - actor: Enemy.AxeKnight
+    key: decideTicks
+    value:
+      has: 1
+      value: 32
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 18; ch\u1ECDn h\u01B0\u1EDBng m\u1ED7i ~0.5 s (Skeleton 24 \u2014 Axe
+      Knight ch\u1EADm h\u01A1n)"
+    note: 
+  - actor: Enemy.AxeKnight
+    key: edgeProbePx
+    value:
+      has: 1
+      value: 8
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 18; kh\xF4ng t\u1EF1 r\u01A1i kh\u1ECFi b\u1EE5c (wiki Stage 14 Knight
+      tr\xEAn g\u1EDD cao \u0111\u1EE9ng t\u1EA1i ch\u1ED7) \u2014 nh\u01B0 Spear
+      Knight 17"
+    note: 
+  - actor: Enemy.AxeKnight
+    key: fallGravity
+    value:
+      has: 1
+      value: 0.125
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: "px/tick\xB2"
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 18; nh\u01B0 Zombie (\u0111o 13) khi sinh l\u01A1 l\u1EEDng"
+    note: 
+  - actor: Enemy.AxeKnight
+    key: firstThrowTicks
+    value:
+      has: 1
+      value: 48
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 18; nh\u01B0 Bone Tower/Skeleton (routine 17)"
+    note: 
+  - actor: Enemy.AxeKnight
+    key: throwMinTicks
+    value:
+      has: 1
+      value: 96
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 18; wiki \"h\u1ECDc nh\u1ECBp n\xE9m\" \u2014 chu k\u1EF3 \u0111\u1EC1u
+      ~1.6\u20132.7 s, ch\u1EC9 n\xE9m khi r\xECu tr\u01B0\u1EDBc \u0111\xE3 h\u1EBFt"
+    note: 
+  - actor: Enemy.AxeKnight
+    key: throwSpanTicks
+    value:
+      has: 1
+      value: 64
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 18; c\xF9ng l\xFD do"
+    note: 
+  - actor: Enemy.AxeKnight
+    key: throwPoseTicks
+    value:
+      has: 1
+      value: 16
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 18; t\u01B0 th\u1EBF n\xE9m (khung axeman_1) \u2014 sheet kh\xF4ng
+      c\xF3 khung n\xE9m ri\xEAng"
+    note: 
+  - actor: Enemy.AxeKnight
+    key: axeSpeed
+    value:
+      has: 1
+      value: 2
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px/tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 18; r\xECu \"y h\u1EC7t Boomerang c\u1EE7a Simon\" \u2014 t\u1ED1c
+      ngang b\u1EB1ng r\xECu Simon vx 2 (\u0111o 09)"
+    note: 
+  - actor: Enemy.AxeKnight
+    key: axeTurnAccel
+    value:
+      has: 1
+      value: 0.0234375
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: "px/tick\xB2"
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 18; gi\u1EA3m 6/256 px/tick\xB2 \u21D2 d\u1EEBng sau 85 tick, xa \u2248
+      85 px r\u1ED3i quay v\u1EC1 (th\u1EADp t\u1EF1 Simon quay \u1EDF 112 \u2014
+      routine 09; r\xECu Knight ng\u1EAFn h\u01A1n)"
+    note: 
+  - actor: Enemy.AxeKnight
+    key: axeHighAbovePx
+    value:
+      has: 1
+      value: 20
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 18; wiki \"n\xE9m cao ho\u1EB7c th\u1EA5p \u2014 qu\u1EA5t \u0111\xFAng
+      \u0111\u1ED9 cao\": r\xECu cao \u1EDF d\u1EA3i roi \u0110\u1EE8NG (ch\xE2n
+      \u221225..\u221217, ConfigWhip \u0111o 09)"
+    note: "t\xE2m r\xECu"
+  - actor: Enemy.AxeKnight
+    key: axeLowAbovePx
+    value:
+      has: 1
+      value: 10
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 18; r\xECu th\u1EA5p \u1EDF d\u1EA3i roi NG\u1ED2I (khung ng\u1ED3i
+      th\u1EA5p 8 \u2014 \u0111o 08 \u21D2 ch\xE2n \u221217..\u22129); nh\u1EA3y
+      qua \u0111\u01B0\u1EE3c"
+    note: "t\xE2m r\xECu"
+  - actor: Enemy.AxeKnight
+    key: axeFrontPx
+    value:
+      has: 1
+      value: 12
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 18; r\xECu sinh \u1EDF m\xE9p tr\u01B0\u1EDBc th\xE2n (axeman r\u1ED9ng
+      24, pivot gi\u1EEFa)"
+    note: 
+  - actor: Enemy.AxeKnight
+    key: hitInvincibleTicks
+    value:
+      has: 1
+      value: 16
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 18; enemy nhi\u1EC1u \u0111\xF2n nh\u01B0 Spear Knight/Bone Tower (routine
+      17)"
+    note: 
+  - actor: Enemy.PhantomBatMinor
+    key: wakeDistancePx
+    value:
+      has: 1
+      value: 96
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 18; \u0111\u1EB7t s\u1EB5n theo v\u1ECB tr\xED \u0111\xE1nh s\u1ED1
+      (wiki Stage 16) \u2014 th\u1EE9c khi Simon t\u1EDBi g\u1EA7n 96 (nh\u01B0 Raven
+      17)"
+    note: "|Simon.X \u2212 X| <"
+  - actor: Enemy.PhantomBatMinor
+    key: wakeHoverTicks
+    value:
+      has: 1
+      value: 16
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 18; boss v\u1ED7 t\u1EA1i ch\u1ED7 33 (\u0111o 14) \u2014 b\u1EA3n
+      th\u01B0\u1EDDng lao s\u1EDBm h\u01A1n (wiki \"nh\u1EAFm \u0111\u1ED9 cao c\xFA
+      nh\u1EA3y\")"
+    note: 
+  - actor: Enemy.PhantomBatMinor
+    key: sleepDrawUpPx
+    value:
+      has: 1
+      value: 8
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "suy lu\u1EADn: b\u1EB1ng boss Phantom Bat (\u0111o routine 14) \u2014
+      routine 18 d\xF9ng l\u1EA1i chuy\u1EC3n \u0111\u1ED9ng; Boss.PhantomBat.sleepDrawUpPx"
+    note: 
+  - actor: Enemy.PhantomBatMinor
+    key: swoopVy0
+    value:
+      has: 1
+      value: 1.46
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px/tick
+    source: "suy lu\u1EADn: b\u1EB1ng boss Phantom Bat (\u0111o routine 14) \u2014
+      routine 18 d\xF9ng l\u1EA1i chuy\u1EC3n \u0111\u1ED9ng; Boss.PhantomBat.swoopVy0"
+    note: 
+  - actor: Enemy.PhantomBatMinor
+    key: swoopDepthPx
+    value:
+      has: 1
+      value: 41
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "suy lu\u1EADn: b\u1EB1ng boss Phantom Bat (\u0111o routine 14) \u2014
+      routine 18 d\xF9ng l\u1EA1i chuy\u1EC3n \u0111\u1ED9ng; Boss.PhantomBat.swoopDepthPx"
+    note: 
+  - actor: Enemy.PhantomBatMinor
+    key: swoopVxMin
+    value:
+      has: 1
+      value: 1.22
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px/tick
+    source: "suy lu\u1EADn: b\u1EB1ng boss Phantom Bat (\u0111o routine 14) \u2014
+      routine 18 d\xF9ng l\u1EA1i chuy\u1EC3n \u0111\u1ED9ng; Boss.PhantomBat.swoopVxMin"
+    note: 
+  - actor: Enemy.PhantomBatMinor
+    key: swoopVxMax
+    value:
+      has: 1
+      value: 2.1
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px/tick
+    source: "suy lu\u1EADn: b\u1EB1ng boss Phantom Bat (\u0111o routine 14) \u2014
+      routine 18 d\xF9ng l\u1EA1i chuy\u1EC3n \u0111\u1ED9ng; Boss.PhantomBat.swoopVxMax"
+    note: 
+  - actor: Enemy.PhantomBatMinor
+    key: sweepTicks
+    value:
+      has: 1
+      value: 12
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "suy lu\u1EADn: b\u1EB1ng boss Phantom Bat (\u0111o routine 14) \u2014
+      routine 18 d\xF9ng l\u1EA1i chuy\u1EC3n \u0111\u1ED9ng; Boss.PhantomBat.sweepTicks"
+    note: 
+  - actor: Enemy.PhantomBatMinor
+    key: riseAccel
+    value:
+      has: 1
+      value: 0.039
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: "px/tick\xB2"
+    source: "suy lu\u1EADn: b\u1EB1ng boss Phantom Bat (\u0111o routine 14) \u2014
+      routine 18 d\xF9ng l\u1EA1i chuy\u1EC3n \u0111\u1ED9ng; Boss.PhantomBat.riseAccel"
+    note: 
+  - actor: Enemy.PhantomBatMinor
+    key: screenMinX
+    value:
+      has: 1
+      value: 18
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: "px m\xE0n"
+    source: "suy lu\u1EADn: b\u1EB1ng boss Phantom Bat (\u0111o routine 14) \u2014
+      routine 18 d\xF9ng l\u1EA1i chuy\u1EC3n \u0111\u1ED9ng; Boss.PhantomBat.screenMinX"
+    note: 
+  - actor: Enemy.PhantomBatMinor
+    key: screenMaxX
+    value:
+      has: 1
+      value: 238
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: "px m\xE0n"
+    source: "suy lu\u1EADn: b\u1EB1ng boss Phantom Bat (\u0111o routine 14) \u2014
+      routine 18 d\xF9ng l\u1EA1i chuy\u1EC3n \u0111\u1ED9ng; Boss.PhantomBat.screenMaxX"
+    note: 
+  - actor: Enemy.PhantomBatMinor
+    key: glideSpeed
+    value:
+      has: 1
+      value: 0.75
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px/tick
+    source: "suy lu\u1EADn: b\u1EB1ng boss Phantom Bat (\u0111o routine 14) \u2014
+      routine 18 d\xF9ng l\u1EA1i chuy\u1EC3n \u0111\u1ED9ng; Boss.PhantomBat.glideSpeed"
+    note: 
+  - actor: Enemy.PhantomBatMinor
+    key: glideMinScreenX
+    value:
+      has: 1
+      value: 24
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: "px m\xE0n"
+    source: "suy lu\u1EADn: b\u1EB1ng boss Phantom Bat (\u0111o routine 14) \u2014
+      routine 18 d\xF9ng l\u1EA1i chuy\u1EC3n \u0111\u1ED9ng; Boss.PhantomBat.glideMinScreenX"
+    note: 
+  - actor: Enemy.PhantomBatMinor
+    key: glideMaxScreenX
+    value:
+      has: 1
+      value: 232
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: "px m\xE0n"
+    source: "suy lu\u1EADn: b\u1EB1ng boss Phantom Bat (\u0111o routine 14) \u2014
+      routine 18 d\xF9ng l\u1EA1i chuy\u1EC3n \u0111\u1ED9ng; Boss.PhantomBat.glideMaxScreenX"
+    note: 
+  - actor: Enemy.PhantomBatMinor
+    key: glideMinSimonDx
+    value:
+      has: 1
+      value: 64
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "suy lu\u1EADn: b\u1EB1ng boss Phantom Bat (\u0111o routine 14) \u2014
+      routine 18 d\xF9ng l\u1EA1i chuy\u1EC3n \u0111\u1ED9ng; Boss.PhantomBat.glideMinSimonDx"
+    note: 
+  - actor: Enemy.PhantomBatMinor
+    key: hoverMinTicks
+    value:
+      has: 1
+      value: 32
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "suy lu\u1EADn: b\u1EB1ng boss Phantom Bat (\u0111o routine 14) \u2014
+      routine 18 d\xF9ng l\u1EA1i chuy\u1EC3n \u0111\u1ED9ng; Boss.PhantomBat.hoverMinTicks"
+    note: 
+  - actor: Enemy.PhantomBatMinor
+    key: hoverMaxTicks
+    value:
+      has: 1
+      value: 124
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "suy lu\u1EADn: b\u1EB1ng boss Phantom Bat (\u0111o routine 14) \u2014
+      routine 18 d\xF9ng l\u1EA1i chuy\u1EC3n \u0111\u1ED9ng; Boss.PhantomBat.hoverMaxTicks"
+    note: 
+  - actor: Enemy.PhantomBatMinor
+    key: diveChancePct
+    value:
+      has: 1
+      value: 100
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: '%'
+    source: "suy lu\u1EADn: b\u1EB1ng boss Phantom Bat (\u0111o routine 14) \u2014
+      routine 18 d\xF9ng l\u1EA1i chuy\u1EC3n \u0111\u1ED9ng; Boss.PhantomBat.diveChancePct"
+    note: 
+  - actor: Enemy.PhantomBatMinor
+    key: invincibleTicks
+    value:
+      has: 1
+      value: 16
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "suy lu\u1EADn: b\u1EB1ng boss Phantom Bat (\u0111o routine 14) \u2014
+      routine 18 d\xF9ng l\u1EA1i chuy\u1EC3n \u0111\u1ED9ng; Boss.PhantomBat.invincibleTicks"
+    note: 
+  - actor: Enemy.PhantomBatMinor
+    key: hitStunTicks
+    value:
+      has: 1
+      value: 32
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 18; wiki Stage 16 \"qu\u1EA5t 1 ph\xE1t l\xE0m ch\u1EADm v\u1EEBa \u0111\u1EE7
+      \u0111\u1EC3 cu\u1ED9n ch\xFAng ra kh\u1ECFi m\xE0n\" \u21D2 kh\u1EF1ng d\xE0i
+      h\u01A1n boss 10 (\u0111o 14)"
+    note: 
+  - actor: Enemy.PhantomBatMinor
+    key: swoopMaxAboveFeetPx
+    value:
+      has: 1
+      value: 24
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 18; wiki \"nh\u1EAFm v\xE0o \u0111\u1ED9 cao c\xFA nh\u1EA3y\" \u21D2
+      \u0111\xE1y b\u1ED5 nh\xE0o ch\u1EA1m th\xE2n Simon (boss: \u0111\xE1y c\u1ED1
+      \u0111\u1ECBnh y 156 ph\xF2ng boss)"
+    note: "\u0111\xE1y = ch\xE2n Simon (l\xFAc th\u1EE9c) \u2212 24"
+  - actor: Enemy.PhantomBatMinor
+    key: riseTopAboveFeetPx
+    value:
+      has: 1
+      value: 104
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 18; boss v\u1ECDt t\u1EDBi y 88 = s\xE0n 208 \u2212 120 (\u0111o 14)
+      \u2014 c\u1EA7u Stage 16 th\u1EA5p h\u01A1n, ch\u1ECDn ch\xE2n \u2212 104"
+    note: 
+  - actor: Enemy.PhantomBatMinor
+    key: glideLowAboveFeetPx
+    value:
+      has: 1
+      value: 96
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 18; boss l\u01B0\u1EE3n th\u1EA5p y 92 = s\xE0n \u2212 116 (\u0111o
+      14) \u2014 t\u1EC9 l\u1EC7 theo riseTop"
+    note: 
+  - actor: Enemy.PhantomBatMinor
+    key: glideHighAboveFeetPx
+    value:
+      has: 1
+      value: 72
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 18; boss l\u01B0\u1EE3n cao y 123 = s\xE0n \u2212 85 (\u0111o 14) \u2014
+      t\u1EC9 l\u1EC7 theo riseTop"
+    note: 
+  - actor: Enemy.PhantomBatMinor
+    key: fireDelayTicks
+    value:
+      has: 1
+      value: 16
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 18; wiki \"phun \u0111\u01B0\u1EE3c c\u1EA7u l\u1EEDa\" \u2014 1 qu\u1EA3
+      m\u1ED7i l\u1EA7n l\u01A1 l\u1EEDng, sau 16 tick (l\u01A1 l\u1EEDng boss \u2265
+      32)"
+    note: 
+  - actor: Enemy.PhantomBatMinor
+    key: fireballSpeed
+    value:
+      has: 1
+      value: 1.5
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px/tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 18; nh\u01B0 c\u1EA7u l\u1EEDa Bone Tower/Bone Dragon"
+    note: 
+  - actor: Enemy.PhantomBatMinor
+    key: aimAbovePx
+    value:
+      has: 1
+      value: 16
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 18; nh\u1EAFm t\xE2m th\xE2n Simon"
     note: 

@@ -1,0 +1,3 @@
+# 700 tick, hash 23e4fa75
+# CVGP 18 EnemyB46Probe kịch bản 'axe_keep': Axe Knight (250,176), Simon (130,176) đứng: tiến tới dải 64–112 rồi đứng; ném rìu (tick 48, rồi 96–160 + tư thế 16) cao/thấp bay −2 px/tick giảm 6/256 rồi quay về
+-*700

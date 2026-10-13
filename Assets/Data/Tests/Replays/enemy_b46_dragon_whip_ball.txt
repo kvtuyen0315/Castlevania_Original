@@ -1,0 +1,4 @@
+# 320 tick, hash 295a9405
+# CVGP 18 EnemyB46Probe kịch bản 'dragon_whip_ball': roi xích quất vỡ cầu lửa Bone Dragon (wiki): +100/quả (suy luận)
+-*80 B*1 -*23 B*1 -*23 B*1 -*23 B*1 -*23 B*1 -*23 B*1
+-*23 B*1 -*23 B*1 -*23 B*1 -*23 B*1 -*23

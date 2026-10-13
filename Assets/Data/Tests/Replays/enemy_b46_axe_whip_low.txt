@@ -1,0 +1,4 @@
+# 304 tick, hash 08da1925
+# CVGP 18 EnemyB46Probe kịch bản 'axe_whip_low': Stage 14: rìu THẤP bị roi NGỒI quất vỡ (+100), Simon không mất máu
+-*56 D*4 D+B*1 D*23 D+B*1 D*23 D+B*1 D*23 D+B*1 D*23 D+B*1 D*27
+D+B*1 D*23 D+B*1 D*23 D+B*1 D*23 D+B*1 D*23 D+B*1 D*23

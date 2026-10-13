@@ -152,10 +152,11 @@ MonoBehaviour:
     projectile: '-'
     dropRule: "kh\xF4ng n\xEAu ri\xEAng"
     moveSpeed:
-      has: 0
-      value: 0
-    src_moveSpeed: "kh\xF4ng r\xF5 \u2014 kh\xF4ng c\xF3 video (routine 18 \u01B0\u1EDBc
-      l\u01B0\u1EE3ng)"
+      has: 1
+      value: 1.5
+    src_moveSpeed: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video)
+      \u2014 routine 18; wiki Enemies#Eagles \"bay ngang qua\" \u2014 nhanh h\u01A1n
+      d\u01A1i 1.125 (\u0111o 13), ch\u1EADm h\u01A1n b\xE1o 2.0"
     behaviorShort: "Bay ngang mang Fleaman v\xE0 th\u1EA3 xu\u1ED1ng g\u1EA7n Simon;
       gi\u1EBFt khi c\xF2n mang th\xEC c\u1EA3 hai c\xF9ng ch\u1EBFt"
     source: wiki:Enemies#Eagles
@@ -297,10 +298,12 @@ MonoBehaviour:
     projectile: '-'
     dropRule: "kh\xF4ng n\xEAu ri\xEAng"
     moveSpeed:
-      has: 0
-      value: 0
-    src_moveSpeed: "kh\xF4ng r\xF5 \u2014 kh\xF4ng c\xF3 video (routine 18 \u01B0\u1EDBc
-      l\u01B0\u1EE3ng)"
+      has: 1
+      value: 0.5
+    src_moveSpeed: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video)
+      \u2014 routine 18; wiki Stages 13-15 \"ch\u1EADm r\xE3i \u0111u\u1ED5i theo\"
+      \u21D2 b\u1EB1ng Spear Knight 0.5 (routine 17), ch\u1EADm h\u01A1n Zombie 0.875
+      (\u0111o 13)"
     behaviorShort: "\u0110i ch\u1EADm \u0111u\u1ED5i theo; b\u1ECB \u0111\xE1nh th\xEC
       \u0111\u1ED5 th\xE0nh \u0111\u1ED1ng x\u01B0\u01A1ng r\u1ED3i \u0111\u1EE9ng
       d\u1EADy sau 1\u20132 s (kh\xF4ng gi\u1EBFt \u0111\u01B0\u1EE3c)"
@@ -416,7 +419,8 @@ MonoBehaviour:
     moveSpeed:
       has: 0
       value: 0
-    src_moveSpeed: 
+    src_moveSpeed: "wiki:Enemies#Bone Dragons (g\u1EAFn t\u01B0\u1EDDng, th\xE2n
+      b\u1EA5t \u0111\u1ED9ng \u2014 ch\u1EC9 c\u1ED5 ng\u1ECD ngu\u1EADy)"
     behaviorShort: "G\u1EAFn v\xE0o t\u01B0\u1EDDng; th\xE2n b\u1EA5t \u0111\u1ED9ng;
       c\u1ED5 ng\u1ECD ngu\u1EADy; phun c\u1EA7u l\u1EEDa (c\u1EA3 game ch\u1EC9
       3 con)"
@@ -444,10 +448,12 @@ MonoBehaviour:
       Boomerang (qu\u1EA5t v\u1EE1 \u0111\u01B0\u1EE3c)"
     dropRule: "kh\xF4ng n\xEAu ri\xEAng"
     moveSpeed:
-      has: 0
-      value: 0
-    src_moveSpeed: "kh\xF4ng r\xF5 \u2014 kh\xF4ng c\xF3 video (routine 18 \u01B0\u1EDBc
-      l\u01B0\u1EE3ng)"
+      has: 1
+      value: 0.5
+    src_moveSpeed: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video)
+      \u2014 routine 18; wiki: l\xF9i/ti\u1EBFn gi\u1EEF kho\u1EA3ng c\xE1ch, Simon
+      \u0111\u1EA9y \u0111\u01B0\u1EE3c kh\u1ECFi m\xE0n \u21D2 ch\u1EADm h\u01A1n
+      Simon 1.0 (\u0111o 08) \u2014 b\u1EB1ng Spear Knight 0.5"
     behaviorShort: "Gi\u1EEF kho\u1EA3ng c\xE1ch; l\xF9i khi Simon ti\u1EBFn; b\u1ECB
       \u0111\u1EA9y kh\u1ECFi m\xE9p m\xE0n th\xEC kh\xF4ng quay l\u1EA1i"
     source: wiki:Enemies#Axe Knights
@@ -458,25 +464,31 @@ MonoBehaviour:
     kind: 1
     stages: 16
     hitsWeak:
-      has: 0
-      value: 0
+      has: 1
+      value: 3
     hitsStrong:
-      has: 0
-      value: 0
-    src_hits: "kh\xF4ng r\xF5 \u2014 wiki kh\xF4ng n\xEAu s\u1ED1 \u0111\xF2n b\u1EA3n
-      th\u01B0\u1EDDng"
+      has: 1
+      value: 2
+    src_hits: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 18; wiki KH\xD4NG n\xEAu: Stage 16 \"1 \u0111\xF2n ch\u1EC9 l\xE0m
+      ch\u1EADm\" \u21D2 > 1 \u0111\xF2n, \"gi\u1EBFt \u0111\u01B0\u1EE3c nh\u01B0ng
+      kh\xF4ng \u0111\xE1ng\" \u21D2 \xEDt h\u01A1n boss 12/8 \u2014 ch\u1ECDn nh\u01B0
+      enemy nhi\u1EC1u \u0111\xF2n ph\u1ED5 bi\u1EBFn (Ghost/Spear Knight 3/2); h\u1ECFi
+      \xA75"
     score:
-      has: 0
-      value: 0
-    src_score: "kh\xF4ng r\xF5 \u2014 wiki kh\xF4ng n\xEAu \u0111i\u1EC3m"
+      has: 1
+      value: 200
+    src_score: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 18; wiki KH\xD4NG n\xEAu \u0111i\u1EC3m: ch\u1ECDn b\u1EB1ng Bat 200
+      (c\xF9ng lo\xE0i d\u01A1i); h\u1ECFi \xA75"
     canDie: 1
     projectile: "C\u1EA7u l\u1EEDa"
     dropRule: "kh\xF4ng n\xEAu"
     moveSpeed:
       has: 0
       value: 0
-    src_moveSpeed: "kh\xF4ng r\xF5 \u2014 kh\xF4ng c\xF3 video (routine 18 \u01B0\u1EDBc
-      l\u01B0\u1EE3ng)"
+    src_moveSpeed: "routine 18: chuy\u1EC3n \u0111\u1ED9ng = PhantomBat (\u0111o
+      14) \u2014 t\u1ED1c \u0111\u1ED9 \u1EDF ConfigActorParam Enemy.PhantomBatMinor.*"
     behaviorShort: "5 con \u1EDF Stage 16; bay t\u1EDBi theo v\u1ECB tr\xED kh\u1EDFi
       \u0111\u1EA7u v\xE0 phun c\u1EA7u l\u1EEDa; n\xEAn tr\xE1nh h\u01A1n l\xE0
       \u0111\xE1nh"

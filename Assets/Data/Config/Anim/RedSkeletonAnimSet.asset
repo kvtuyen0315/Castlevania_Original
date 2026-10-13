@@ -24,7 +24,9 @@ MonoBehaviour:
     overlayOffsets: []
     overlayOnTop: 
     note: "\u0111\u1ED1ng x\u01B0\u01A1ng \u2192 \u0111ang r\xE1p (ch\u1EA1y ng\u01B0\u1EE3c
-      \u0111\u1EC3 r\xE1p l\u1EA1i)"
+      \u0111\u1EC3 r\xE1p l\u1EA1i); routine 18: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng
+      video Block 4\u20136) \u2014 code \u0111\u1EB7t khung t\u0129nh: _1 l\xFAc
+      \u0111\u1ED5/r\xE1p 8 tick, _0 n\u1EB1m"
   - name: walk
     frames:
     - {fileID: 21300000, guid: 2270b5898ae0fbd49b6060dbafde2666, type: 3}
@@ -35,5 +37,6 @@ MonoBehaviour:
     overlays: []
     overlayOffsets: []
     overlayOnTop: 
-    note: 
+    note: "routine 18: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video Block 4\u20136)
+      \u2014 nh\u1ECBp 8 tick/khung gi\u1EEF m\u1EB7c \u0111\u1ECBnh"
   palettes: []

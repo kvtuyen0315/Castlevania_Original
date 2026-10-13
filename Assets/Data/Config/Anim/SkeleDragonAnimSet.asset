@@ -23,7 +23,9 @@ MonoBehaviour:
     overlays: []
     overlayOffsets: []
     overlayOnTop: 
-    note: 
+    note: "routine 18: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video Block 4\u20136)
+      \u2014 code \u0111\u1EB7t khung t\u0129nh: head_0 mi\u1EC7ng \u0111\xF3ng,
+      head_1 h\xE1 khi s\u1EAFp phun (suy lu\u1EADn theo h\xECnh)"
   - name: bone
     frames:
     - {fileID: 21300000, guid: 6159826b01b459e45a45984c377c9752, type: 3}
@@ -33,7 +35,8 @@ MonoBehaviour:
     overlays: []
     overlayOffsets: []
     overlayOnTop: 
-    note: 
+    note: "routine 18: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video Block 4\u20136)
+      \u2014 \u0111\u1ED1t c\u1ED5 \u2014 BoneDragon v\u1EBD N renderer con"
   - name: fireball
     frames:
     - {fileID: 21300000, guid: b42583f7b609fa04e915c997d60d7574, type: 3}

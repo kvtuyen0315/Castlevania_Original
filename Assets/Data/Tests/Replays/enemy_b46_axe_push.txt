@@ -1,0 +1,3 @@
+# 260 tick, hash 3010dc15
+# CVGP 18 EnemyB46Probe kịch bản 'axe_push': camera khoá cx 100; Simon tiến: Axe Knight lùi, bị đẩy khỏi mép phải màn ⇒ gỡ, không quay lại (wiki)
+R*260

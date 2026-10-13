@@ -1,0 +1,3 @@
+# 500 tick, hash fa823dd5
+# CVGP 18 EnemyB46Probe kịch bản 'red_walk': Red Skeleton (300,176), Simon (100,176): đi 0.5 px/tick về phía Simon, không rời sàn
+-*500

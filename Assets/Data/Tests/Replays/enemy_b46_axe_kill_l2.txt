@@ -1,0 +1,5 @@
+# 390 tick, hash b4946c7d
+# CVGP 18 EnemyB46Probe kịch bản 'axe_kill_l2': roi xích: đúng 9 đòn
+B*1 -*23 B*1 -*23 B*1 -*23 B*1 -*23 B*1 -*23 B*1 -*23
+B*1 -*23 B*1 -*23 B*1 -*23 B*1 -*23 B*1 -*23 B*1 -*23
+B*1 -*23 B*1 -*23 B*1 -*53
