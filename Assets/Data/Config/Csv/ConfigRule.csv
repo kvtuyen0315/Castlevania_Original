@@ -17,10 +17,10 @@ StopwatchItemsStillExpire,1,,,bool,wiki:Items#Stopwatch,
 FrozenEnemiesStillHurt,1,,,bool,wiki:Items#Stopwatch (chạm enemy/gai đóng băng vẫn mất máu),
 RosaryFlashTicks,26,22,28,tick,"đo:routine 11 video Map_1 3 lần nhặt Rosary: màu đen nền của CẢ MÀN (kể cả HUD) đổi xám f2252–2264 (13 frame), f2543–2553 (11), f4883–4896 (14) ⇒ 22–28 tick; chọn 26 (planner 0.40–0.44 s)",xám/thường xen kẽ — RosaryFlashPeriodTicks
 CameraFollowScreenX,128,,,px màn,đo:routine 07 Tools/cvgp/measure_camera.py (Map_1: pivot Simon = x_med màu − lệch sprite (trái −2/phải +1); cuộn phải n=1452 trung vị x_med 129 ⇒ pivot 128; cuộn trái n=293 x_med 126 ⇒ pivot 128; cả cầu thang),camera X = kẹp(Simon.X − 128); không vùng chết; không trễ; cùng luật 2 hướng
-DoorScrollPx,128,,,px,video:planner (cửa cuối stage: cuộn 128 px hai lần) — chờ đo routine 15,
-DoorScrollSpeed,,0.90,0.91,px/tick,video:planner — chờ đo routine 15,
-DoorPauseTicks,,138,140,tick,video:planner (dừng 2.30–2.33 s) — chờ đo routine 15,
-DoorAutoWalkPx,68,,,px,video:planner (Simon tự đi 68 px @ 1 px/tick) — chờ đo routine 15,
+DoorScrollPx,128,,,px,"đo:routine 15 (MAP1_PLACEMENT §3: cuộn 128 px hai lần, 2 cửa)","code dùng hằng Map1FlowTiming.DOOR_SCROLL_PX (CVGP 16: đồng bộ số đo vào Config)"
+DoorScrollSpeed,1.00,,,px/tick,"đo:routine 15 (hồi quy 4 đoạn cuộn 0.999/1.000/1.002/0.995 px/tick — planner 0.90–0.91 SAI)","code dùng Map1FlowTiming.DOOR_SCROLL_SPEED_FIXED 256 (CVGP 16: đồng bộ)"
+DoorPauseTicks,152,,,tick,"đo:routine 15 (camera dừng 152.8/151.9 tick giữa 2 lần cuộn — planner 2.30–2.33 s SAI)","code dùng Map1FlowTiming.DOOR_SCROLL2_TICK (CVGP 16: đồng bộ)"
+DoorAutoWalkPx,68,,,px,"đo:routine 15 (Simon tự đi 68 px @ 1 px/tick: 68.3/67.4 tick)","code dùng Map1FlowTiming.DOOR_WALK_PX (CVGP 16: đồng bộ)"
 StageClearToTallyTicks,260,220,260,tick,"đo:routine 12 Tools/cvgp/hud_rules.py: Map_1 nhặt cầu f6391 (= lúc nhạc Stage Clear bắt đầu — tương quan âm thanh 213.05 s NCC 0.81) → TIME giảm đầu f6521 = 260 tick; video boss: hồi máu bắt đầu f627 → f737 = 220 tick","2 video lệch 40 tick chưa giải thích (nhạc Stage Clear kêu 4.10 s = 246 tick); theo Map_1 (video chính)"
 ItemGravity,0.25,,,px/tick²,"đo:routine 11 Tools/cvgp/item_fit.py — 4 lần item rơi khỏi chậu lửa CE (f110–115, f190–193, f378–384, f452–456) + nước thánh rơi 48 px ở EH (f1713–1723): y = g·t(t−1)/2 dư ≤ 1 px; không thấy vận tốc trần tới 4.75 px/tick",mọi item trừ tim nhỏ (đung đưa); vận tốc đầu 0
 ItemLifetimeTicks,188,182,190,tick,"đo:routine 11 video Map_1 f874→f968: đồng hồ (rơi từ Zombie) nằm sàn rồi biến mất giữa màn, KHÔNG nháy trước (f940–967 hiện đủ) — 1 mẫu (91–95 frame)",tính từ lúc item hiện; wiki chỉ nói biến mất sau thời gian ngắn

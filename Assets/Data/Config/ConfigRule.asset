@@ -279,36 +279,40 @@ MonoBehaviour:
       has: 0
       value: 0
     unit: px
-    source: "video:planner (c\u1EEDa cu\u1ED1i stage: cu\u1ED9n 128 px hai l\u1EA7n)
-      \u2014 ch\u1EDD \u0111o routine 15"
-    note: 
+    source: "\u0111o:routine 15 (MAP1_PLACEMENT \xA73: cu\u1ED9n 128 px hai l\u1EA7n,
+      2 c\u1EEDa)"
+    note: "code d\xF9ng h\u1EB1ng Map1FlowTiming.DOOR_SCROLL_PX (CVGP 16: \u0111\u1ED3ng
+      b\u1ED9 s\u1ED1 \u0111o v\xE0o Config)"
   - key: DoorScrollSpeed
     value:
+      has: 1
+      value: 1
+    min:
       has: 0
       value: 0
-    min:
-      has: 1
-      value: 0.9
     max:
-      has: 1
-      value: 0.91
+      has: 0
+      value: 0
     unit: px/tick
-    source: "video:planner \u2014 ch\u1EDD \u0111o routine 15"
-    note: 
+    source: "\u0111o:routine 15 (h\u1ED3i quy 4 \u0111o\u1EA1n cu\u1ED9n 0.999/1.000/1.002/0.995
+      px/tick \u2014 planner 0.90\u20130.91 SAI)"
+    note: "code d\xF9ng Map1FlowTiming.DOOR_SCROLL_SPEED_FIXED 256 (CVGP 16: \u0111\u1ED3ng
+      b\u1ED9)"
   - key: DoorPauseTicks
     value:
+      has: 1
+      value: 152
+    min:
       has: 0
       value: 0
-    min:
-      has: 1
-      value: 138
     max:
-      has: 1
-      value: 140
+      has: 0
+      value: 0
     unit: tick
-    source: "video:planner (d\u1EEBng 2.30\u20132.33 s) \u2014 ch\u1EDD \u0111o routine
-      15"
-    note: 
+    source: "\u0111o:routine 15 (camera d\u1EEBng 152.8/151.9 tick gi\u1EEFa 2 l\u1EA7n
+      cu\u1ED9n \u2014 planner 2.30\u20132.33 s SAI)"
+    note: "code d\xF9ng Map1FlowTiming.DOOR_SCROLL2_TICK (CVGP 16: \u0111\u1ED3ng
+      b\u1ED9)"
   - key: DoorAutoWalkPx
     value:
       has: 1
@@ -320,9 +324,9 @@ MonoBehaviour:
       has: 0
       value: 0
     unit: px
-    source: "video:planner (Simon t\u1EF1 \u0111i 68 px @ 1 px/tick) \u2014 ch\u1EDD
-      \u0111o routine 15"
-    note: 
+    source: "\u0111o:routine 15 (Simon t\u1EF1 \u0111i 68 px @ 1 px/tick: 68.3/67.4
+      tick)"
+    note: "code d\xF9ng Map1FlowTiming.DOOR_WALK_PX (CVGP 16: \u0111\u1ED3ng b\u1ED9)"
   - key: StageClearToTallyTicks
     value:
       has: 1

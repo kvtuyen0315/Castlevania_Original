@@ -374,10 +374,10 @@ Máu = **số đòn** để hạ: *yếu* (roi da, Holy Water, Dagger) / *mạnh
 | FrozenEnemiesStillHurt | 1 |  | bool | wiki:Items#Stopwatch (chạm enemy/gai đóng băng vẫn mất máu) |  |
 | RosaryFlashTicks | 26 | 22–28 | tick | đo:routine 11 video Map_1 3 lần nhặt Rosary: màu đen nền của CẢ MÀN (kể cả HUD) đổi xám f2252–2264 (13 frame), f2543–2553 (11), f4883–4896 (14) ⇒ 22–28 tick; chọn 26 (planner 0.40–0.44 s) | xám/thường xen kẽ — RosaryFlashPeriodTicks |
 | CameraFollowScreenX | 128 |  | px màn | đo:routine 07 Tools/cvgp/measure_camera.py (Map_1: pivot Simon = x_med màu − lệch sprite (trái −2/phải +1); cuộn phải n=1452 trung vị x_med 129 ⇒ pivot 128; cuộn trái n=293 x_med 126 ⇒ pivot 128; cả cầu thang) | camera X = kẹp(Simon.X − 128); không vùng chết; không trễ; cùng luật 2 hướng |
-| DoorScrollPx | 128 |  | px | video:planner (cửa cuối stage: cuộn 128 px hai lần) — chờ đo routine 15 |  |
-| DoorScrollSpeed | *chờ đo routine 15* | 0.9–0.91 | px/tick | video:planner — chờ đo routine 15 |  |
-| DoorPauseTicks | *chờ đo routine 15* | 138–140 | tick | video:planner (dừng 2.30–2.33 s) — chờ đo routine 15 |  |
-| DoorAutoWalkPx | 68 |  | px | video:planner (Simon tự đi 68 px @ 1 px/tick) — chờ đo routine 15 |  |
+| DoorScrollPx | 128 |  | px | đo:routine 15 (MAP1_PLACEMENT §3: cuộn 128 px hai lần, 2 cửa) | code dùng hằng Map1FlowTiming.DOOR_SCROLL_PX (CVGP 16: đồng bộ số đo vào Config) |
+| DoorScrollSpeed | 1.00 |  | px/tick | đo:routine 15 (hồi quy 4 đoạn cuộn 0.999/1.000/1.002/0.995 px/tick — planner 0.90–0.91 SAI) | code dùng Map1FlowTiming.DOOR_SCROLL_SPEED_FIXED 256 (CVGP 16: đồng bộ) |
+| DoorPauseTicks | 152 |  | tick | đo:routine 15 (camera dừng 152.8/151.9 tick giữa 2 lần cuộn — planner 2.30–2.33 s SAI) | code dùng Map1FlowTiming.DOOR_SCROLL2_TICK (CVGP 16: đồng bộ) |
+| DoorAutoWalkPx | 68 |  | px | đo:routine 15 (Simon tự đi 68 px @ 1 px/tick: 68.3/67.4 tick) | code dùng Map1FlowTiming.DOOR_WALK_PX (CVGP 16: đồng bộ) |
 | StageClearToTallyTicks | 260 | 220–260 | tick | đo:routine 12 Tools/cvgp/hud_rules.py: Map_1 nhặt cầu f6391 (= lúc nhạc Stage Clear bắt đầu — tương quan âm thanh 213.05 s NCC 0.81) → TIME giảm đầu f6521 = 260 tick; video boss: hồi máu bắt đầu f627 → f737 = 220 tick | 2 video lệch 40 tick chưa giải thích (nhạc Stage Clear kêu 4.10 s = 246 tick); theo Map_1 (video chính) |
 | ItemGravity | 0.25 |  | px/tick² | đo:routine 11 Tools/cvgp/item_fit.py — 4 lần item rơi khỏi chậu lửa CE (f110–115, f190–193, f378–384, f452–456) + nước thánh rơi 48 px ở EH (f1713–1723): y = g·t(t−1)/2 dư ≤ 1 px; không thấy vận tốc trần tới 4.75 px/tick | mọi item trừ tim nhỏ (đung đưa); vận tốc đầu 0 |
 | ItemLifetimeTicks | 188 | 182–190 | tick | đo:routine 11 video Map_1 f874→f968: đồng hồ (rơi từ Zombie) nằm sàn rồi biến mất giữa màn, KHÔNG nháy trước (f940–967 hiện đủ) — 1 mẫu (91–95 frame) | tính từ lúc item hiện; wiki chỉ nói biến mất sau thời gian ngắn |
@@ -406,22 +406,67 @@ Máu = **số đòn** để hạ: *yếu* (roi da, Holy Water, Dagger) / *mạnh
 
 | Vật | Stage | Vật chứa | Item | Ghi chú | Nguồn |
 |---|---|---|---|---|---|
-| CE_T1 | 1 | Torch | LargeHeart | chậu lửa 1 (x≈95) | wiki:Stages 1-3 ảnh bản đồ (CV_WIKI_DATA §6); video:Map_1 0:03.2 (tim lớn) |
-| CE_T2 | 1 | Torch | MorningStar | chậu lửa 2 (x≈223) | wiki:Stages 1-3 ảnh bản đồ (CV_WIKI_DATA §6); video:Map_1 0:05.8 |
-| CE_T3 | 1 | Torch | MorningStar | chậu lửa 3 (x≈351) | wiki:Stages 1-3 ảnh bản đồ (CV_WIKI_DATA §6); video:Map_1 0:08.9 |
-| CE_T4 | 1 | Torch | LargeHeart | chậu lửa 4 (x≈479) | wiki:Stages 1-3 ảnh bản đồ (CV_WIKI_DATA §6); video:Map_1 0:12.1 |
-| CE_T5 | 1 | Torch | Dagger | chậu lửa 5 (x≈607) | wiki:Stages 1-3 ảnh bản đồ (CV_WIKI_DATA §6); video:Map_1 0:14.5 |
-| EH_C02 | 1 | WallCandle | Stopwatch | nến #2 (wiki x 96) — video 0:29.5 đồng hồ rơi ra ở x≈254 khi Zombie chết (15 đối chiếu) | wiki:Stages 1-3 ảnh bản đồ (CV_WIKI_DATA §6) |
-| EH_C14 | 1 | WallCandle | HolyWater | nến #14 đỉnh cầu thang Bục B (wiki x 864; video rơi ở x≈799) | wiki:Stages 1-3 ảnh bản đồ (CV_WIKI_DATA §6); video:Map_1 0:57.3 |
-| EH_C23 | 1 | WallCandle | Rosary | nến #23 Bục D (wiki x 1440) | wiki:Stages 1-3 ảnh bản đồ (CV_WIKI_DATA §6); video:Map_1 1:23.5 (rosary rơi, nhặt 1:24.73) |
-| EH_X63_7 | 1 | BreakableBlock | PurpleMoneyBag | khối phải nhất bục Panther 3 (ô lưới 06 (63,7)) | wiki:Secrets#Miscellaneous (Purple money bag 400) — video không phá |
-| CA_X16_10 | 2 | BreakableBlock | PotRoast | tường khối nhỏ — khối thấp nhất (ô (16,10)) | video:Map_1 1:39.6 (roi khi ngồi, lộ thịt nướng NGAY); wiki:Secrets Pot Roast Stage 2 |
-| CA_X16_9 | 2 | BreakableBlock | None | khối trên (ô (16,9)) — vỡ không ra gì | video:Map_1 1:40.55 (đập vỡ, không item) |
-| CB_X29_6 | 2 | BreakableBlock | None | khối trên-phải (ô (29,6)) — phá để thả xuống, bí mật = ngồi trên khối thấp (SecretTrigger) | video:Map_1 2:19.05; wiki:Secrets Bonuses Stage 2 |
-| ST2_C10 | 2 | WallCandle | Stopwatch | nến #10 tầng dưới | wiki:Stages 1-3 ảnh bản đồ (CV_WIKI_DATA §6) |
-| ST2_C13 | 2 | WallCandle | Rosary | nến #13 tầng trên-phải | wiki:Stages 1-3 ảnh bản đồ (CV_WIKI_DATA §6); video:Map_1 2:42.7 (rosary trên lối đi) |
-| PB_C06 | 3 | WallCandle | Axe | nến #6 giữa cầu thang cuối | wiki:Stages 1-3 ảnh bản đồ (CV_WIKI_DATA §6); wiki:Stages 1-3 note 2; video:Map_1 3:09.5 |
-| PB_POTION | 3 | WallCandle | InvisibilityPotion | nến giấu bình giữa cầu thang (wiki: ứng viên #3/#4) | wiki:Stages 1-3 note 1; video:Map_1 2:57.3 |
-| PB_X43_9 | 3 | BreakableBlock | DoubleShot | khối PHẢI bệ chân thang phòng boss (ô (43,9)) | video:Map_1 3:17.62–3:18.0 (II rơi ra); wiki:Secrets Shot Multiplier Stage 3 |
+| CE_T1 | 1 | Torch | LargeHeart | chậu lửa CastleEntrance x 96 y 160 | video:Map_1 0:03.2 vỡ → tim lớn, +5 0:03.93; wiki #B1 Large Heart |
+| CE_T2 | 1 | Torch | MorningStar | chậu lửa CastleEntrance x 224 y 160 | video:Map_1 0:05.8 → roi, nhặt 0:06.5; wiki #B2 Morning Star |
+| CE_T3 | 1 | Torch | MorningStar | chậu lửa CastleEntrance x 352 y 160 | video:Map_1 0:08.9 → roi, nhặt 0:09.8; wiki #B3 Morning Star |
+| CE_T4 | 1 | Torch | LargeHeart | chậu lửa CastleEntrance x 480 y 160 | video:Map_1 0:12.1 → tim lớn, +5 0:12.97; wiki #B4 Large Heart |
+| CE_T5 | 1 | Torch | Dagger | chậu lửa CastleEntrance x 608 y 160 | video:Map_1 0:14.5 → dao, nhặt 0:15.50; wiki #B5 Dagger |
+| EH_C01 | 1 | WallCandle | PurpleMoneyBag | nến EntranceHall x 32 y 160 | video:Map_1 vỡ f631 → túi tím, +400 f655 (0:21.83); wiki §6.1 nến #1 |
+| EH_C02 | 1 | WallCandle | SmallHeart | nến EntranceHall x 96 y 128 | video:Map_1 vỡ f724 → tim nhỏ đung đưa, tim 15→16 f762 — wiki ghi Stopwatch (H1: theo video); wiki §6.1 nến #2 |
+| EH_C03 | 1 | WallCandle | SmallHeart | nến EntranceHall x 160 y 160 | video:Map_1 vỡ f761 → tim nhỏ, 16→17 f788; wiki §6.1 nến #3 |
+| EH_C04 | 1 | WallCandle | RedMoneyBag | nến EntranceHall x 224 y 128 | video:Map_1 vỡ f821 → túi đỏ, +100 f847; wiki §6.1 nến #4 |
+| EH_C05 | 1 | WallCandle | SmallHeart | nến EntranceHall x 288 y 160 | video:Map_1 vỡ f930 → nhặt ngay, tim 18→19 f950; wiki §6.1 nến #5 |
+| EH_C06 | 1 | WallCandle | RedMoneyBag | nến EntranceHall x 352 y 128 | video:Map_1 vỡ f979 → túi đỏ, +100 f1001; wiki §6.1 nến #6 |
+| EH_C07 | 1 | WallCandle | SmallHeart | nến EntranceHall x 416 y 160 | video:Map_1 vỡ f1008 → tim 19→20 f1071; wiki §6.1 nến #7 |
+| EH_C08 | 1 | WallCandle | SmallHeart | nến EntranceHall x 480 y 128 | video:Map_1 vỡ f1089 → tim 20→21 f1125; wiki §6.1 nến #8 |
+| EH_C09 | 1 | WallCandle | SmallHeart | nến EntranceHall x 544 y 160 | video:Map_1 vỡ f1166 → tim 21→22 f1190; wiki §6.1 nến #9 |
+| EH_C10 | 1 | WallCandle | SmallHeart | nến EntranceHall x 608 y 128 | video:Map_1 vỡ f1210 → tim 22→23 f1248; wiki §6.1 nến #10 |
+| EH_C11 | 1 | WallCandle | SmallHeart | nến EntranceHall x 672 y 64 | video:Map_1 vỡ f1493 → tim 23→24 f1564; wiki §6.1 nến #11 |
+| EH_C12 | 1 | WallCandle | WhiteMoneyBag | nến EntranceHall x 736 y 160 | video:Map_1 vỡ f1319 → túi trắng, +700 f1340 (0:44.67); wiki §6.1 nến #12 |
+| EH_C13 | 1 | WallCandle | HolyWater | nến EntranceHall x 800 y 32 | video:Map_1 vỡ f1698 → nước thánh rơi xuống lối đi (0:57.3, không nhặt) — wiki gán Holy Water cho #14 (H1: theo video); wiki §6.1 nến #13 |
+| EH_C14 | 1 | WallCandle | LargeHeart | nến EntranceHall x 864 y 64 | video:Map_1 vỡ f1641 → tim lớn, +5 f1676 (0:55.87) — wiki ghi Holy Water; wiki §6.1 nến #14 |
+| EH_C15 | 1 | WallCandle | WhiteMoneyBag | nến EntranceHall x 928 y 160 | video:Map_1 vỡ f1914 → túi trắng, +700 f1935 (1:04.50); wiki §6.1 nến #15 |
+| EH_C16 | 1 | WallCandle | SmallHeart | nến EntranceHall x 992 y 64 | video:Map_1 vỡ f1809 → tim 29→30 f1845; wiki §6.1 nến #16 |
+| EH_C17 | 1 | WallCandle | SmallHeart | nến EntranceHall x 1056 y 160 | video:Map_1 vỡ f1991 → tim 30→31 f2016; wiki §6.1 nến #17 |
+| EH_C18 | 1 | WallCandle | SmallHeart | nến EntranceHall x 1120 y 160 | video:Map_1 vỡ f2030 → tim 31→32 f2058; wiki §6.1 nến #18 |
+| EH_C19 | 1 | WallCandle | SmallHeart | nến EntranceHall x 1184 y 160 | video:Map_1 vỡ f2069 → tim nhỏ (dải ảnh), 32→33 f2135; wiki §6.1 nến #19 |
+| EH_C20 | 1 | WallCandle | SmallHeart | nến EntranceHall x 1248 y 160 | video:Map_1 vỡ f2150 → tim 33→34 f2178; wiki §6.1 nến #20 |
+| EH_C21 | 1 | WallCandle | SmallHeart | nến EntranceHall x 1312 y 160 | video:Map_1 vỡ f2190 → tim 34→35 f2232; wiki §6.1 nến #21 |
+| EH_C22 | 1 | WallCandle | SmallHeart | nến EntranceHall x 1376 y 128 | video:Map_1 KHẢ NĂNG: vỡ sau f2268 (bị rosary nháy che), tim 35→36 f2311 — rosary 1:15.03 là Zombie chết rơi ra; wiki §6.1 nến #22 |
+| EH_C23 | 1 | WallCandle | SmallHeart | nến EntranceHall x 1440 y 64 | video:Map_1 vỡ f2463 → tim 36→37 f2488 — wiki gán Rosary cho #23; wiki §6.1 nến #23 |
+| EH_C24 | 1 | WallCandle | Rosary | nến EntranceHall x 1504 y 32 | video:Map_1 vỡ f2505 (1:23.5) → rosary, nhặt 1:24.73 — wiki: Rosary ở #23 (H1: theo video); wiki §6.1 nến #24 |
+| CA_C1 | 2 | WallCandle | WhiteMoneyBag | nến CryptA x 32 y 160 | video:Map_1 vỡ f3152 → +700 f3177 (1:45.90); wiki §6.2 tầng trên #1 |
+| CA_C2 | 2 | WallCandle | LargeHeart | nến CryptA x 96 y 64 | video:Map_1 vỡ f2778 → +5 f2827 (1:34.23); wiki §6.2 tầng trên #3 |
+| CA_C3 | 2 | WallCandle | SmallHeart | nến CryptA x 160 y 48 | video:Map_1 vỡ f2856 → tim 41→42 f2895; wiki §6.2 tầng trên #5 |
+| CA_C4 | 2 | WallCandle | RedMoneyBag | nến CryptA x 224 y 128 | video:Map_1 vỡ f2968 (roi trên thang, dải ảnh _cache/15/ca_bag.png) → túi đỏ, +100 f3004 (1:40.13); wiki §6.2 tầng trên #7 |
+| CA_C5 | 2 | WallCandle | LargeHeart | nến CryptA x 304 y 48 | video:Map_1 vỡ f4691 → +5 f4728 (2:37.60); wiki §6.2 tầng trên #9 |
+| CA_C6 | 2 | WallCandle | RedMoneyBag | nến CryptA x 352 y 160 | video:Map_1 vỡ f4467 → +100 f4503 (2:30.10); wiki §6.2 tầng trên #11 |
+| CA_C7 | 2 | WallCandle | Rosary | nến CryptA x 416 y 32 | video:Map_1 vỡ f4830 → rosary trên lối đi, nhặt 2:42.7 — wiki #13 Rosary (khớp); wiki §6.2 tầng trên #13 |
+| CA_C8 | 2 | WallCandle | RedMoneyBag | nến CryptA x 480 y 64 | video:Map_1 vỡ f4798 → túi đỏ, +100 f4859 (2:41.97); wiki §6.2 tầng trên #15 |
+| CB_C1 | 2 | WallCandle | WhiteMoneyBag | nến CryptB x 32 y 48 | video:Map_1 KHẢ NĂNG: vỡ sau f3666 (dải ảnh), +700 f3690 (2:03.0); wiki §6.2 tầng dưới #2 (toạ độ wiki − (16,160)) |
+| CB_C2 | 2 | WallCandle | RedMoneyBag | nến CryptB x 96 y 48 | video:Map_1 vỡ f3485–3500 (ảnh _cache/15/cb_start.png) → túi đỏ, +100 f3502 (1:56.73); wiki §6.2 tầng dưới #4 (toạ độ wiki − (16,160)) |
+| CB_C3 | 2 | WallCandle | RedMoneyBag | nến CryptB x 160 y 48 | video:Map_1 vỡ f3739 → +100 f3768; wiki §6.2 tầng dưới #6 (toạ độ wiki − (16,160)) |
+| CB_C4 | 2 | WallCandle | WhiteMoneyBag | nến CryptB x 224 y 48 | video:Map_1 vỡ f3849 → +700 f3868 (2:08.93); wiki §6.2 tầng dưới #8 (toạ độ wiki − (16,160)) |
+| CB_C5 | 2 | WallCandle | Stopwatch | nến CryptB x 288 y 48 | video:Map_1 vỡ f3917 → đồng hồ (không nhặt) — wiki #10 Stopwatch (khớp); wiki §6.2 tầng dưới #10 (toạ độ wiki − (16,160)) |
+| CB_C6 | 2 | WallCandle | SmallHeart | nến CryptB x 352 y 48 | video:Map_1 KHẢ NĂNG: tim 47→48 f4007 (vỡ không bắt được — dải ảnh); wiki §6.2 tầng dưới #12 (toạ độ wiki − (16,160)) |
+| CB_C7 | 2 | WallCandle | SmallHeart | nến CryptB x 416 y 48 | video:Map_1 vỡ f4032 → tim 48→49 f4069; wiki §6.2 tầng dưới #14 (toạ độ wiki − (16,160)) |
+| CB_C8 | 2 | WallCandle | LargeHeart | nến CryptB x 496 y 48 | video:Map_1 vỡ f4114 → +5 f4155 (2:18.50); wiki §6.2 tầng dưới #16 (toạ độ wiki − (16,160)) |
+| PB_C01 | 3 | WallCandle | LargeHeart | nến PhantomBat x 32 y 128 | video:Map_1 vỡ f5434 → +5 f5456 (3:01.87); wiki §6.3 nến #1 |
+| PB_C02 | 3 | WallCandle | SmallHeart | nến PhantomBat x 96 y 64 | video:Map_1 vỡ f5137 → tim 60→61 f5170; wiki §6.3 nến #2 |
+| PB_C03 | 3 | WallCandle | RedMoneyBag | nến PhantomBat x 160 y 96 | video:Map_1 vỡ f5249 → +100 f5274; wiki §6.3 nến #3 |
+| PB_C04 | 3 | WallCandle | InvisibilityPotion | nến PhantomBat x 224 y 64 | video:Map_1 vỡ f5315 (2:57.2) → bình, nhặt 2:58.2 — wiki: bình "giữa cầu thang", ứng viên #3/#4; wiki §6.3 nến #4 |
+| PB_C05 | 3 | WallCandle | SmallHeart | nến PhantomBat x 288 y 160 | video:Map_1 vỡ f5594 → tim 66→67 f5624; wiki §6.3 nến #5 |
+| PB_C06 | 3 | WallCandle | Axe | nến PhantomBat x 352 y 128 | video:Map_1 vỡ f5663 → rìu, nhặt 3:10.67 — wiki #6 Axe (khớp); wiki §6.3 nến #6 |
+| PB_C07 | 3 | WallCandle | SmallHeart | nến PhantomBat x 416 y 160 | video:Map_1 vỡ f5739 → tim 67→68 f5769; wiki §6.3 nến #7 |
+| PB_C08 | 3 | WallCandle | SmallHeart | nến PhantomBat x 480 y 160 | video:Map_1 vỡ f5782 → tim 68→69 f5813; wiki §6.3 nến #8 |
+| PB_C09 | 3 | WallCandle | LargeHeart | nến PhantomBat x 544 y 128 | video:Map_1 vỡ f5829 → +5 f5858 (3:15.27); wiki §6.3 nến #9 |
+| PB_C10 | 3 | WallCandle | SmallHeart | nến PhantomBat x 608 y 160 | video:Map_1 vỡ f5880 → tim 74→75 f5907; wiki §6.3 nến #10 |
+| PB_C11 | 3 | WallCandle | SmallHeart | nến PhantomBat x 672 y 128 | video:Map_1 vỡ f5943 → tim 75→76 f5973; wiki §6.3 nến #11 |
+| PB_C12 | 3 | WallCandle | LargeHeart | nến PhantomBat x 736 y 128 | video:Map_1 vỡ f6000 → +5 f6040 (3:21.33); wiki §6.3 nến #12 |
+| EntranceHall_X63_7 | 1 | BreakableBlock | PurpleMoneyBag | khối phải nhất bục Panther 3 (ô lưới 06 (63,7)) | wiki:Secrets#Miscellaneous (Purple money bag 400) — video không phá |
+| CryptA_X16_10 | 2 | BreakableBlock | PotRoast | tường khối nhỏ — khối thấp nhất (ô (16,10)) | video:Map_1 1:39.6 (roi khi ngồi, lộ thịt nướng NGAY); wiki:Secrets Pot Roast Stage 2 |
+| CryptA_X16_9 | 2 | BreakableBlock | None | khối trên (ô (16,9)) — vỡ không ra gì | video:Map_1 1:40.55 (đập vỡ, không item) |
+| CryptB_X29_6 | 2 | BreakableBlock | None | khối trên-phải (ô (29,6)) — phá để thả xuống, bí mật = ngồi trên khối thấp (SecretTrigger) | video:Map_1 2:19.05; wiki:Secrets Bonuses Stage 2 |
+| PhantomBat_X43_9 | 3 | BreakableBlock | DoubleShot | khối PHẢI bệ chân thang phòng boss (ô (43,9)) | video:Map_1 3:17.62–3:18.0 (II rơi ra); wiki:Secrets Shot Multiplier Stage 3 |
 
 
