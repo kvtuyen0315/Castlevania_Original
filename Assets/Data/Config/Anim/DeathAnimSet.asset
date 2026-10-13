@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4609f48437c260d489dcb25f5b7539fe, type: 3}
+  m_Name: DeathAnimSet
+  m_EditorClassIdentifier: 
+  anims:
+  - name: fly
+    frames:
+    - {fileID: 21300000, guid: 20c84bafd6bdaa54db40968605e90407, type: 3}
+    durations: 08000000
+    loop: 1
+    measured: 0
+    overlays: []
+    overlayOffsets: []
+    overlayOnTop: 
+    note: 
+  - name: scythe
+    frames:
+    - {fileID: 21300000, guid: fa2e66aba2331944aa88ca61540260a9, type: 3}
+    - {fileID: 21300000, guid: 87d6ba1cac00d8d48a925c5b3a819fb7, type: 3}
+    - {fileID: 21300000, guid: e15857b5681df984f96546ec53f3d473, type: 3}
+    - {fileID: 21300000, guid: 4a35a85b2125e5b4eb1df235eefd5f61, type: 3}
+    durations: 08000000080000000800000008000000
+    loop: 1
+    measured: 0
+    overlays: []
+    overlayOffsets: []
+    overlayOnTop: 
+    note: 
+  palettes: []

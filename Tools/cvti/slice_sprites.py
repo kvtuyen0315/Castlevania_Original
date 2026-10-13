@@ -3,14 +3,17 @@
 Mỗi mục: crop `rect` → tô đen các vùng `fill` (kiểm vùng đó chỉ chứa màu `allow`) → màu `keyColor` thành
 trong suốt (0,0,0,0) → kiểm → ghi `<outDir>/<name>.png` (RGBA, không metadata ⇒ chạy lại ra byte y hệt).
 Kiểm (lỗi nào cũng dừng, không ghi đè nửa chừng):
-  - rect nằm trong sheet; 0 pixel màu nền sheet (`sheetBg`) trong sprite ⇒ rect không ăn vào lưới/nền;
+  - rect nằm trong sheet; 0 pixel màu nền sheet (`sheetBg`) trong sprite ⇒ rect không ăn vào lưới/nền
+    (trừ mục `bgIsKey: true` — ô hợp tile 8x16 có góc trống màu nền sheet trong bbox: nền sheet cũng thành trong suốt);
   - `edgeCheck` (mặc định bật): viền 1 px ngay ngoài rect toàn màu nền sheet ⇒ rect không hụt mép ô;
   - `forbidColors`: 0 pixel các màu này sau khi tô; `allowColors`: chỉ có các màu này (trước khi key);
   - `alsoAt`: các chỗ khác trên sheet (cùng w×h) phải trùng từng pixel (glyph font lặp lại).
   - `recolor`: [[từ, thành], …] đổi màu ngay sau `fill` (chuẩn hoá palette giữa các sheet rip khác nhau,
     vd trắng (255,255,254) của sheet Text Font → (252,252,252) như sheet Title); `allowColors` kiểm SAU khi đổi.
 Cần Pillow (máy này cài ở user site ⇒ chạy `python -P -E`, KHÔNG `-I` vì `-I` bỏ user site):
-  python -P -E Tools/cvti/slice_sprites.py [--check]      (--check: chỉ kiểm, không ghi file)
+  python -P -E Tools/cvti/slice_sprites.py [--check] [--manifest <path>]
+    --check: chỉ kiểm, không ghi file; --manifest: manifest khác (mặc định Tools/cvti/slices.json; gameplay CVGP =
+    Tools/cvgp/slices_gameplay.json). Trường lạ trong mục (pivot, src, group…) được bỏ qua.
 Chạy từ thư mục gốc repo. In md5 từng file để so hai lần chạy.
 """
 import hashlib
@@ -71,7 +74,7 @@ def process(e, sheet, bg):
             c = rgb(px[i, j])
             colors[c] = colors.get(c, 0) + 1
 
-    if bg in colors:
+    if bg in colors and not e.get("bgIsKey"):
         errs.append(f"{colors[bg]} pixel màu nền sheet {bg} trong sprite (rect dính lưới/nền)")
     for c in e.get("forbidColors", []):
         if tuple(c) in colors:
@@ -94,7 +97,7 @@ def process(e, sheet, bg):
     keyed = 0
     for j in range(h):
         for i in range(w):
-            if key is not None and rgb(px[i, j]) == key:
+            if (key is not None and rgb(px[i, j]) == key) or (e.get("bgIsKey") and rgb(px[i, j]) == bg):
                 px[i, j] = (0, 0, 0, 0)
                 keyed += 1
             else:
@@ -118,7 +121,8 @@ def encode(img):
 def main():
     sys.stdout.reconfigure(encoding="utf-8")
     check_only = "--check" in sys.argv
-    doc = json.load(open(MANIFEST, encoding="utf-8"))
+    manifest = sys.argv[sys.argv.index("--manifest") + 1] if "--manifest" in sys.argv else MANIFEST
+    doc = json.load(open(manifest, encoding="utf-8"))
     bg = tuple(doc["sheetBg"])
     sheets = {}
     outputs = []

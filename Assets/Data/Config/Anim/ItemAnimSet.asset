@@ -1,0 +1,273 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4609f48437c260d489dcb25f5b7539fe, type: 3}
+  m_Name: ItemAnimSet
+  m_EditorClassIdentifier: 
+  anims:
+  - name: whip
+    frames:
+    - {fileID: 21300000, guid: 9e7964ee2b5ec42418deb4225aad3cce, type: 3}
+    durations: 08000000
+    loop: 1
+    measured: 0
+    overlays: []
+    overlayOffsets: []
+    overlayOnTop: 
+    note: 
+  - name: heart_small
+    frames:
+    - {fileID: 21300000, guid: 3f6304c0093014e45a66971c3c7b4b12, type: 3}
+    durations: 08000000
+    loop: 1
+    measured: 0
+    overlays: []
+    overlayOffsets: []
+    overlayOnTop: 
+    note: 
+  - name: heart_large
+    frames:
+    - {fileID: 21300000, guid: 689cbb6ffc083574787e8d242cfa0acc, type: 3}
+    durations: 08000000
+    loop: 1
+    measured: 0
+    overlays: []
+    overlayOffsets: []
+    overlayOnTop: 
+    note: 
+  - name: moneybag_red
+    frames:
+    - {fileID: 21300000, guid: d6ba523de58848e4c9b19cb53c1ad883, type: 3}
+    durations: 08000000
+    loop: 1
+    measured: 0
+    overlays: []
+    overlayOffsets: []
+    overlayOnTop: 
+    note: 
+  - name: moneybag_purple
+    frames:
+    - {fileID: 21300000, guid: 22af48b92694a0b489bf0dc1d58855ab, type: 3}
+    durations: 08000000
+    loop: 1
+    measured: 0
+    overlays: []
+    overlayOffsets: []
+    overlayOnTop: 
+    note: 
+  - name: moneybag_white
+    frames:
+    - {fileID: 21300000, guid: ae14fb3d324ccbe4d93b0ad3a25814c1, type: 3}
+    durations: 08000000
+    loop: 1
+    measured: 0
+    overlays: []
+    overlayOffsets: []
+    overlayOnTop: 
+    note: 
+  - name: dagger
+    frames:
+    - {fileID: 21300000, guid: db696cf6e30804a4783fb3f715bb00e6, type: 3}
+    durations: 08000000
+    loop: 1
+    measured: 0
+    overlays: []
+    overlayOffsets: []
+    overlayOnTop: 
+    note: 
+  - name: axe
+    frames:
+    - {fileID: 21300000, guid: 60ab1c47dc3828943aab238ffa4e90f6, type: 3}
+    durations: 08000000
+    loop: 1
+    measured: 0
+    overlays: []
+    overlayOffsets: []
+    overlayOnTop: 
+    note: 
+  - name: holywater
+    frames:
+    - {fileID: 21300000, guid: f3ad62b1ef26d4c439b28df167a10d63, type: 3}
+    durations: 08000000
+    loop: 1
+    measured: 0
+    overlays: []
+    overlayOffsets: []
+    overlayOnTop: 
+    note: 
+  - name: cross
+    frames:
+    - {fileID: 21300000, guid: c5958de90e2749249ae2cee89045ce99, type: 3}
+    durations: 08000000
+    loop: 1
+    measured: 0
+    overlays: []
+    overlayOffsets: []
+    overlayOnTop: 
+    note: 
+  - name: stopwatch
+    frames:
+    - {fileID: 21300000, guid: dda03581e1d707f4baf754467aaa6711, type: 3}
+    durations: 08000000
+    loop: 1
+    measured: 0
+    overlays: []
+    overlayOffsets: []
+    overlayOnTop: 
+    note: 
+  - name: double
+    frames:
+    - {fileID: 21300000, guid: 91032733474f0d64080bd2f6dc2e7013, type: 3}
+    durations: 08000000
+    loop: 1
+    measured: 0
+    overlays: []
+    overlayOffsets: []
+    overlayOnTop: 
+    note: 
+  - name: triple
+    frames:
+    - {fileID: 21300000, guid: 5c51859e204f1014c861849ea9c7f632, type: 3}
+    durations: 08000000
+    loop: 1
+    measured: 0
+    overlays: []
+    overlayOffsets: []
+    overlayOnTop: 
+    note: 
+  - name: roast
+    frames:
+    - {fileID: 21300000, guid: fd2bdf0bc80d64f48a32c939873f24c7, type: 3}
+    durations: 08000000
+    loop: 1
+    measured: 0
+    overlays: []
+    overlayOffsets: []
+    overlayOnTop: 
+    note: 
+  - name: jar
+    frames:
+    - {fileID: 21300000, guid: fd0d363c2bded5047b2d6538b1a80b19, type: 3}
+    durations: 08000000
+    loop: 1
+    measured: 0
+    overlays: []
+    overlayOffsets: []
+    overlayOnTop: 
+    note: 
+  - name: rosary
+    frames:
+    - {fileID: 21300000, guid: 32f240e37d77fa54fb4c749a83d44093, type: 3}
+    durations: 08000000
+    loop: 1
+    measured: 0
+    overlays: []
+    overlayOffsets: []
+    overlayOnTop: 
+    note: 
+  - name: 1up
+    frames:
+    - {fileID: 21300000, guid: afc0d5692083d5640816292fe1358d82, type: 3}
+    durations: 08000000
+    loop: 1
+    measured: 0
+    overlays: []
+    overlayOffsets: []
+    overlayOnTop: 
+    note: 
+  - name: cross_spin
+    frames:
+    - {fileID: 21300000, guid: 270ef104d26cab346b5f79f754025dd8, type: 3}
+    - {fileID: 21300000, guid: d43dbd4355a948146b3fd6da3440e8bf, type: 3}
+    durations: 0800000008000000
+    loop: 1
+    measured: 0
+    overlays: []
+    overlayOffsets: []
+    overlayOnTop: 
+    note: "bi\u1EC3u t\u01B0\u1EE3ng th\u1EADp t\u1EF1 xoay (sheet Items)"
+  - name: moneybag_flash
+    frames:
+    - {fileID: 21300000, guid: d6ba523de58848e4c9b19cb53c1ad883, type: 3}
+    - {fileID: 21300000, guid: 22af48b92694a0b489bf0dc1d58855ab, type: 3}
+    - {fileID: 21300000, guid: ae14fb3d324ccbe4d93b0ad3a25814c1, type: 3}
+    durations: 080000000800000008000000
+    loop: 1
+    measured: 0
+    overlays: []
+    overlayOffsets: []
+    overlayOnTop: 
+    note: "t\xFAi ti\u1EC1n nh\u1EA5p nh\xE1y (bonus 1000) \u2014 th\u1EE9 t\u1EF1
+      suy lu\u1EADn"
+  - name: crystal
+    frames:
+    - {fileID: 21300000, guid: 18e3f038e265b0440a85171bfcc930d3, type: 3}
+    - {fileID: 21300000, guid: 72bf6f734f4fc2c4fa4d699c167fec9e, type: 3}
+    durations: 0800000008000000
+    loop: 1
+    measured: 0
+    overlays: []
+    overlayOffsets: []
+    overlayOnTop: 
+    note: "Magic Crystal nh\u1EA5p nh\xE1y"
+  - name: crown
+    frames:
+    - {fileID: 21300000, guid: fdabeffcebc253a449b08b03d84cd4cb, type: 3}
+    - {fileID: 21300000, guid: 8155bdfc2890ec04b87022cda6804787, type: 3}
+    - {fileID: 21300000, guid: 68f5837c5fc4b6e498c8b224a0b3624c, type: 3}
+    - {fileID: 21300000, guid: 42889dbfd6b3c8f42a8ffff195c098b2, type: 3}
+    durations: 08000000080000000800000008000000
+    loop: 1
+    measured: 0
+    overlays: []
+    overlayOffsets: []
+    overlayOnTop: 
+    note: "4 b\u1EA3ng m\xE0u nh\u1EA5p nh\xE1y"
+  - name: chest
+    frames:
+    - {fileID: 21300000, guid: a7892489447b9f04786ae8badfb37b15, type: 3}
+    - {fileID: 21300000, guid: a0fa210ec395e0c4bbe172fdfb2bc2b0, type: 3}
+    - {fileID: 21300000, guid: 5bbccb9649eb3be46a8ddc24c5965eb6, type: 3}
+    - {fileID: 21300000, guid: dd3c20c171721be4aa4de935de815390, type: 3}
+    durations: 08000000080000000800000008000000
+    loop: 1
+    measured: 0
+    overlays: []
+    overlayOffsets: []
+    overlayOnTop: 
+    note: "4 b\u1EA3ng m\xE0u nh\u1EA5p nh\xE1y"
+  - name: moai
+    frames:
+    - {fileID: 21300000, guid: a4c3303990d16914896be9e78d5c29a1, type: 3}
+    - {fileID: 21300000, guid: 3acca661116798f4eaa3556a354a3724, type: 3}
+    - {fileID: 21300000, guid: 7618eeb22c7a001419d98b38d60c1ba9, type: 3}
+    - {fileID: 21300000, guid: bcb8994937ddcd34da2fe66733aeec65, type: 3}
+    - {fileID: 21300000, guid: 4fc96d649fef71240b4fcd42063ec2bb, type: 3}
+    - {fileID: 21300000, guid: 945593fa0ebaa6941b2056cd450b8d7a, type: 3}
+    - {fileID: 21300000, guid: 37f9e5fe5e48d9f4293a3fe3197a31ea, type: 3}
+    - {fileID: 21300000, guid: deda93af4c7a4674cbd27dde4ca5cf67, type: 3}
+    - {fileID: 21300000, guid: c8962e56591872e47bda2672fc6a27d9, type: 3}
+    - {fileID: 21300000, guid: ee8d3c893efac4b49a4f1e90823aaa3d, type: 3}
+    - {fileID: 21300000, guid: 2779f4532b397fa4682d18f505e3df10, type: 3}
+    - {fileID: 21300000, guid: 7868021840b43024cb9e4c0e98836ef3, type: 3}
+    - {fileID: 21300000, guid: a5b9cc8593cb1964186b2bb9ba2d87d4, type: 3}
+    - {fileID: 21300000, guid: 36655bf858fd1964e9bd94497bdf79d2, type: 3}
+    - {fileID: 21300000, guid: a164136a4c6db31448eff03db4c7a3c3, type: 3}
+    - {fileID: 21300000, guid: 0910f1a9039d0dc4e84ece6f3f3294d9, type: 3}
+    durations: 08000000080000000800000008000000080000000800000008000000080000000800000008000000080000000800000008000000080000000800000008000000
+    loop: 0
+    measured: 0
+    overlays: []
+    overlayOffsets: []
+    overlayOnTop: 
+    note: "16 sprite Moai (suy lu\u1EADn) theo th\u1EE9 t\u1EF1 sheet \u2014 kh\xF4ng
+      ph\u1EA3i chu\u1ED7i"
+  palettes: []

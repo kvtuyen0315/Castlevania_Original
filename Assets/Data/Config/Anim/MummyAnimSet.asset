@@ -1,0 +1,51 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4609f48437c260d489dcb25f5b7539fe, type: 3}
+  m_Name: MummyAnimSet
+  m_EditorClassIdentifier: 
+  anims:
+  - name: walk_purple
+    frames:
+    - {fileID: 21300000, guid: e95780a6a08ba2849828d777bd746949, type: 3}
+    - {fileID: 21300000, guid: 8108df00ab6726f43a79b9bca1d67130, type: 3}
+    - {fileID: 21300000, guid: 3094750ea64b16b4bb67afaf3620deef, type: 3}
+    durations: 080000000800000008000000
+    loop: 1
+    measured: 0
+    overlays: []
+    overlayOffsets: []
+    overlayOnTop: 
+    note: 
+  - name: walk_red
+    frames:
+    - {fileID: 21300000, guid: ef4982edfde9df0408bf8b345a83d7c7, type: 3}
+    - {fileID: 21300000, guid: ebd2d00bcbe33474580196141f24a20b, type: 3}
+    - {fileID: 21300000, guid: 7d61763a676135646b716376add1773c, type: 3}
+    durations: 080000000800000008000000
+    loop: 1
+    measured: 0
+    overlays: []
+    overlayOffsets: []
+    overlayOnTop: 
+    note: 
+  - name: bandage
+    frames:
+    - {fileID: 21300000, guid: fb1aa569e9cb4994d8f0ab8009281b50, type: 3}
+    - {fileID: 21300000, guid: 1968eac4ecb749845ad0652b2946c9a9, type: 3}
+    durations: 0800000008000000
+    loop: 1
+    measured: 0
+    overlays: []
+    overlayOffsets: []
+    overlayOnTop: 
+    note: 
+  palettes: []

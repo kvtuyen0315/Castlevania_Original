@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4609f48437c260d489dcb25f5b7539fe, type: 3}
+  m_Name: FishManAnimSet
+  m_EditorClassIdentifier: 
+  anims:
+  - name: walk
+    frames:
+    - {fileID: 21300000, guid: 1b0c5c13151168f439fd8043355dd372, type: 3}
+    - {fileID: 21300000, guid: 31a804140d44d594d81608db20a26978, type: 3}
+    durations: 0800000008000000
+    loop: 1
+    measured: 0
+    overlays: []
+    overlayOffsets: []
+    overlayOnTop: 
+    note: 
+  - name: shoot
+    frames:
+    - {fileID: 21300000, guid: 268a70537fc9472418edadbce0e1ac77, type: 3}
+    durations: 08000000
+    loop: 0
+    measured: 0
+    overlays: []
+    overlayOffsets: []
+    overlayOnTop: 
+    note: "suy lu\u1EADn t\u1EEB h\xECnh"
+  - name: jump
+    frames:
+    - {fileID: 21300000, guid: 3d864ddd2af52f94c922a9afbf958660, type: 3}
+    durations: 08000000
+    loop: 0
+    measured: 0
+    overlays: []
+    overlayOffsets: []
+    overlayOnTop: 
+    note: "suy lu\u1EADn t\u1EEB h\xECnh"
+  - name: piece
+    frames:
+    - {fileID: 21300000, guid: f739d0f89d1119446a6e655fbab2b087, type: 3}
+    durations: 08000000
+    loop: 0
+    measured: 0
+    overlays: []
+    overlayOffsets: []
+    overlayOnTop: 
+    note: "m\u1EA3nh l\u1EA1 \u2014 xem ghi ch\xFA sprite"
+  - name: fireball
+    frames:
+    - {fileID: 21300000, guid: ca1b7fe1afa61af4cb3bc5058e0f7461, type: 3}
+    durations: 08000000
+    loop: 1
+    measured: 0
+    overlays: []
+    overlayOffsets: []
+    overlayOnTop: 
+    note: 
+  palettes: []

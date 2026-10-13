@@ -1,0 +1,744 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4609f48437c260d489dcb25f5b7539fe, type: 3}
+  m_Name: SimonAnimSet
+  m_EditorClassIdentifier: 
+  anims:
+  - name: idle
+    frames:
+    - {fileID: 21300000, guid: ca7ed04b0eeb3fe4c9d41729981ac8f2, type: 3}
+    durations: 08000000
+    loop: 1
+    measured: 0
+    overlays: []
+    overlayOffsets: []
+    overlayOnTop: 
+    note: 
+  - name: walk
+    frames:
+    - {fileID: 21300000, guid: 5b3793abe09431148be8c52973e5bebc, type: 3}
+    - {fileID: 21300000, guid: 7354c8862bd8de1478d55857667dc9c7, type: 3}
+    - {fileID: 21300000, guid: 3c9598bdeee57044585c7af355225289, type: 3}
+    - {fileID: 21300000, guid: 7354c8862bd8de1478d55857667dc9c7, type: 3}
+    durations: 08000000080000000800000008000000
+    loop: 1
+    measured: 0
+    overlays: []
+    overlayOffsets: []
+    overlayOnTop: 
+    note: "ping-pong nh\u01B0 Intro CVTI (WALK_ORDER 0,1,2,1); nh\u1ECBp ch\u1EDD
+      \u0111o routine 08"
+  - name: jump
+    frames:
+    - {fileID: 21300000, guid: a351e724ca313a645ad6106f26d7fb67, type: 3}
+    durations: 08000000
+    loop: 0
+    measured: 0
+    overlays: []
+    overlayOffsets: []
+    overlayOnTop: 
+    note: "d\xF9ng chung sprite v\u1EDBi duck"
+  - name: duck
+    frames:
+    - {fileID: 21300000, guid: a351e724ca313a645ad6106f26d7fb67, type: 3}
+    durations: 08000000
+    loop: 0
+    measured: 0
+    overlays: []
+    overlayOffsets: []
+    overlayOnTop: 
+    note: 
+  - name: stairs_up
+    frames:
+    - {fileID: 21300000, guid: 366d821c7f3d8f5489fbd223bf85ddd7, type: 3}
+    - {fileID: 21300000, guid: 458b03cab3926494c980ea2a93e8f8ac, type: 3}
+    durations: 0800000008000000
+    loop: 1
+    measured: 0
+    overlays: []
+    overlayOffsets: []
+    overlayOnTop: 
+    note: 
+  - name: stairs_down
+    frames:
+    - {fileID: 21300000, guid: 2e69c9f64e20f324d87a00caf2fdbcef, type: 3}
+    - {fileID: 21300000, guid: 5f58380629e469445b2ec478b73740b9, type: 3}
+    durations: 0800000008000000
+    loop: 1
+    measured: 0
+    overlays: []
+    overlayOffsets: []
+    overlayOnTop: 
+    note: 
+  - name: hurt
+    frames:
+    - {fileID: 21300000, guid: eaa5989c12aefe34190b3f30bcbd3db5, type: 3}
+    durations: 08000000
+    loop: 0
+    measured: 0
+    overlays: []
+    overlayOffsets: []
+    overlayOnTop: 
+    note: 
+  - name: death
+    frames:
+    - {fileID: 21300000, guid: dd3ad2c1afe925048b6750f85a62988b, type: 3}
+    - {fileID: 21300000, guid: a90e4be2236034241878763524c71301, type: 3}
+    durations: 0800000008000000
+    loop: 0
+    measured: 0
+    overlays: []
+    overlayOffsets: []
+    overlayOnTop: 
+    note: 
+  - name: back
+    frames:
+    - {fileID: 21300000, guid: dac316e2a276d2b45a85371c564216ff, type: 3}
+    durations: 08000000
+    loop: 0
+    measured: 0
+    overlays: []
+    overlayOffsets: []
+    overlayOnTop: 
+    note: "quay l\u01B0ng (Intro)"
+  - name: throw_stand
+    frames:
+    - {fileID: 21300000, guid: 687706a567e89de45be825be20e35962, type: 3}
+    - {fileID: 21300000, guid: 603a38a63e84dac4fa59ca904790c21f, type: 3}
+    - {fileID: 21300000, guid: 8315c33b7f256114aabd853b02ba38f1, type: 3}
+    durations: 080000000800000008000000
+    loop: 0
+    measured: 0
+    overlays: []
+    overlayOffsets: []
+    overlayOnTop: 
+    note: "n\xE9m v\u0169 kh\xED ph\u1EE5: 3 th\xE2n nh\u01B0 vung roi, kh\xF4ng
+      l\u1EDBp roi; nh\u1EA3y d\xF9ng stand"
+  - name: throw_duck
+    frames:
+    - {fileID: 21300000, guid: 30bb37ddcb08e6d488f884681d996e7f, type: 3}
+    - {fileID: 21300000, guid: cef5f6265caa16b44b437b79bfa7c88f, type: 3}
+    - {fileID: 21300000, guid: 1ad09a2bd65a57c4ab4d505ea8f98f6d, type: 3}
+    durations: 080000000800000008000000
+    loop: 0
+    measured: 0
+    overlays: []
+    overlayOffsets: []
+    overlayOnTop: 
+    note: "n\xE9m v\u0169 kh\xED ph\u1EE5: 3 th\xE2n nh\u01B0 vung roi, kh\xF4ng
+      l\u1EDBp roi"
+  - name: throw_stairs_up
+    frames:
+    - {fileID: 21300000, guid: 92fa03b1a4e4efc4fa7c33e59dacb33f, type: 3}
+    - {fileID: 21300000, guid: cd4eca613ac39224884232a5ba1b866c, type: 3}
+    - {fileID: 21300000, guid: 29c63c5cd717b754fac41f94ef02cffb, type: 3}
+    durations: 080000000800000008000000
+    loop: 0
+    measured: 0
+    overlays: []
+    overlayOffsets: []
+    overlayOnTop: 
+    note: "n\xE9m v\u0169 kh\xED ph\u1EE5: 3 th\xE2n nh\u01B0 vung roi, kh\xF4ng
+      l\u1EDBp roi"
+  - name: throw_stairs_down
+    frames:
+    - {fileID: 21300000, guid: bc1504d0328087a46829b934800d2331, type: 3}
+    - {fileID: 21300000, guid: 43e6cbb344ce0e846884a2d175cbf2e1, type: 3}
+    - {fileID: 21300000, guid: b257da5440faad84bb0dadb8ab74c58b, type: 3}
+    durations: 080000000800000008000000
+    loop: 0
+    measured: 0
+    overlays: []
+    overlayOffsets: []
+    overlayOnTop: 
+    note: "n\xE9m v\u0169 kh\xED ph\u1EE5: 3 th\xE2n nh\u01B0 vung roi, kh\xF4ng
+      l\u1EDBp roi"
+  - name: whip_l1_stand
+    frames:
+    - {fileID: 21300000, guid: 687706a567e89de45be825be20e35962, type: 3}
+    - {fileID: 21300000, guid: 603a38a63e84dac4fa59ca904790c21f, type: 3}
+    - {fileID: 21300000, guid: 8315c33b7f256114aabd853b02ba38f1, type: 3}
+    durations: 080000000800000008000000
+    loop: 0
+    measured: 0
+    overlays:
+    - {fileID: 21300000, guid: 4b2c982db70ed314080ad525e0ae69a0, type: 3}
+    - {fileID: 21300000, guid: 61976b0e0e85243489c3c2eab14b5723, type: 3}
+    - {fileID: 21300000, guid: 607717ff19b7bcd4281a02b2c31e9beb, type: 3}
+    overlayOffsets:
+    - {x: 16, y: -32}
+    - {x: 8, y: -32}
+    - {x: -36, y: -33}
+    overlayOnTop: 000000
+    note: "th\xE2n + roi t\xE1ch l\u1EDBp; overlayOffsets = g\xF3c tr\xEAn-tr\xE1i
+      m\u1EA3nh roi \u2212 pivot th\xE2n (px NES, y xu\u1ED1ng, quay TR\xC1I). Khung
+      gh\xE9p s\u1EB5n _3 tr\xEAn sheet = khung 2 v\u1EDBi roi v\u1EBD \u0110\xC8
+      th\xE2n (whipOnTop) \u2014 routine 09 ch\u1ECDn theo video; nh\u1EA3y d\xF9ng
+      stand"
+  - name: whip_l1_duck
+    frames:
+    - {fileID: 21300000, guid: 30bb37ddcb08e6d488f884681d996e7f, type: 3}
+    - {fileID: 21300000, guid: cef5f6265caa16b44b437b79bfa7c88f, type: 3}
+    - {fileID: 21300000, guid: 1ad09a2bd65a57c4ab4d505ea8f98f6d, type: 3}
+    durations: 080000000800000008000000
+    loop: 0
+    measured: 0
+    overlays:
+    - {fileID: 21300000, guid: 4b2c982db70ed314080ad525e0ae69a0, type: 3}
+    - {fileID: 21300000, guid: 61976b0e0e85243489c3c2eab14b5723, type: 3}
+    - {fileID: 21300000, guid: 607717ff19b7bcd4281a02b2c31e9beb, type: 3}
+    overlayOffsets:
+    - {x: 16, y: -32}
+    - {x: 8, y: -32}
+    - {x: -36, y: -33}
+    overlayOnTop: 000000
+    note: "th\xE2n + roi t\xE1ch l\u1EDBp; overlayOffsets = g\xF3c tr\xEAn-tr\xE1i
+      m\u1EA3nh roi \u2212 pivot th\xE2n (px NES, y xu\u1ED1ng, quay TR\xC1I). Khung
+      gh\xE9p s\u1EB5n _3 tr\xEAn sheet = khung 2 v\u1EDBi roi v\u1EBD \u0110\xC8
+      th\xE2n (whipOnTop) \u2014 routine 09 ch\u1ECDn theo video"
+  - name: whip_l1_stairs_up
+    frames:
+    - {fileID: 21300000, guid: 92fa03b1a4e4efc4fa7c33e59dacb33f, type: 3}
+    - {fileID: 21300000, guid: cd4eca613ac39224884232a5ba1b866c, type: 3}
+    - {fileID: 21300000, guid: 29c63c5cd717b754fac41f94ef02cffb, type: 3}
+    durations: 080000000800000008000000
+    loop: 0
+    measured: 0
+    overlays:
+    - {fileID: 21300000, guid: 4b2c982db70ed314080ad525e0ae69a0, type: 3}
+    - {fileID: 21300000, guid: 61976b0e0e85243489c3c2eab14b5723, type: 3}
+    - {fileID: 21300000, guid: 607717ff19b7bcd4281a02b2c31e9beb, type: 3}
+    overlayOffsets:
+    - {x: 16, y: -30}
+    - {x: 8, y: -30}
+    - {x: -36, y: -31}
+    overlayOnTop: 000000
+    note: "th\xE2n + roi t\xE1ch l\u1EDBp; overlayOffsets = g\xF3c tr\xEAn-tr\xE1i
+      m\u1EA3nh roi \u2212 pivot th\xE2n (px NES, y xu\u1ED1ng, quay TR\xC1I). Khung
+      gh\xE9p s\u1EB5n _3 tr\xEAn sheet = khung 2 v\u1EDBi roi v\u1EBD \u0110\xC8
+      th\xE2n (whipOnTop) \u2014 routine 09 ch\u1ECDn theo video"
+  - name: whip_l1_stairs_down
+    frames:
+    - {fileID: 21300000, guid: bc1504d0328087a46829b934800d2331, type: 3}
+    - {fileID: 21300000, guid: 43e6cbb344ce0e846884a2d175cbf2e1, type: 3}
+    - {fileID: 21300000, guid: b257da5440faad84bb0dadb8ab74c58b, type: 3}
+    durations: 080000000800000008000000
+    loop: 0
+    measured: 0
+    overlays:
+    - {fileID: 21300000, guid: 4b2c982db70ed314080ad525e0ae69a0, type: 3}
+    - {fileID: 21300000, guid: 61976b0e0e85243489c3c2eab14b5723, type: 3}
+    - {fileID: 21300000, guid: 607717ff19b7bcd4281a02b2c31e9beb, type: 3}
+    overlayOffsets:
+    - {x: 16, y: -32}
+    - {x: 8, y: -32}
+    - {x: -36, y: -33}
+    overlayOnTop: 000000
+    note: "th\xE2n + roi t\xE1ch l\u1EDBp; overlayOffsets = g\xF3c tr\xEAn-tr\xE1i
+      m\u1EA3nh roi \u2212 pivot th\xE2n (px NES, y xu\u1ED1ng, quay TR\xC1I). Khung
+      gh\xE9p s\u1EB5n _3 tr\xEAn sheet = khung 2 v\u1EDBi roi v\u1EBD \u0110\xC8
+      th\xE2n (whipOnTop) \u2014 routine 09 ch\u1ECDn theo video"
+  - name: whip_l2_stand
+    frames:
+    - {fileID: 21300000, guid: 687706a567e89de45be825be20e35962, type: 3}
+    - {fileID: 21300000, guid: 603a38a63e84dac4fa59ca904790c21f, type: 3}
+    - {fileID: 21300000, guid: 8315c33b7f256114aabd853b02ba38f1, type: 3}
+    durations: 080000000800000008000000
+    loop: 0
+    measured: 0
+    overlays:
+    - {fileID: 21300000, guid: a3a8c51d538e3ec40bc75a124fedfe81, type: 3}
+    - {fileID: 21300000, guid: 7b9e567969da7af4c932eb7483a92a2d, type: 3}
+    - {fileID: 21300000, guid: b682136bcb1ac2d4d9723b1cf183d733, type: 3}
+    overlayOffsets:
+    - {x: 16, y: -32}
+    - {x: 8, y: -32}
+    - {x: -36, y: -32}
+    overlayOnTop: 000000
+    note: "th\xE2n + roi t\xE1ch l\u1EDBp; overlayOffsets = g\xF3c tr\xEAn-tr\xE1i
+      m\u1EA3nh roi \u2212 pivot th\xE2n (px NES, y xu\u1ED1ng, quay TR\xC1I). Khung
+      gh\xE9p s\u1EB5n _3 tr\xEAn sheet = khung 2 v\u1EDBi roi v\u1EBD \u0110\xC8
+      th\xE2n (whipOnTop) \u2014 routine 09 ch\u1ECDn theo video; nh\u1EA3y d\xF9ng
+      stand"
+  - name: whip_l2_duck
+    frames:
+    - {fileID: 21300000, guid: 30bb37ddcb08e6d488f884681d996e7f, type: 3}
+    - {fileID: 21300000, guid: cef5f6265caa16b44b437b79bfa7c88f, type: 3}
+    - {fileID: 21300000, guid: 1ad09a2bd65a57c4ab4d505ea8f98f6d, type: 3}
+    durations: 080000000800000008000000
+    loop: 0
+    measured: 0
+    overlays:
+    - {fileID: 21300000, guid: a3a8c51d538e3ec40bc75a124fedfe81, type: 3}
+    - {fileID: 21300000, guid: 7b9e567969da7af4c932eb7483a92a2d, type: 3}
+    - {fileID: 21300000, guid: b682136bcb1ac2d4d9723b1cf183d733, type: 3}
+    overlayOffsets:
+    - {x: 16, y: -32}
+    - {x: 8, y: -32}
+    - {x: -36, y: -32}
+    overlayOnTop: 000000
+    note: "th\xE2n + roi t\xE1ch l\u1EDBp; overlayOffsets = g\xF3c tr\xEAn-tr\xE1i
+      m\u1EA3nh roi \u2212 pivot th\xE2n (px NES, y xu\u1ED1ng, quay TR\xC1I). Khung
+      gh\xE9p s\u1EB5n _3 tr\xEAn sheet = khung 2 v\u1EDBi roi v\u1EBD \u0110\xC8
+      th\xE2n (whipOnTop) \u2014 routine 09 ch\u1ECDn theo video"
+  - name: whip_l2_stairs_up
+    frames:
+    - {fileID: 21300000, guid: 92fa03b1a4e4efc4fa7c33e59dacb33f, type: 3}
+    - {fileID: 21300000, guid: cd4eca613ac39224884232a5ba1b866c, type: 3}
+    - {fileID: 21300000, guid: 29c63c5cd717b754fac41f94ef02cffb, type: 3}
+    durations: 080000000800000008000000
+    loop: 0
+    measured: 0
+    overlays:
+    - {fileID: 21300000, guid: a3a8c51d538e3ec40bc75a124fedfe81, type: 3}
+    - {fileID: 21300000, guid: 7b9e567969da7af4c932eb7483a92a2d, type: 3}
+    - {fileID: 21300000, guid: b682136bcb1ac2d4d9723b1cf183d733, type: 3}
+    overlayOffsets:
+    - {x: 16, y: -30}
+    - {x: 8, y: -30}
+    - {x: -36, y: -30}
+    overlayOnTop: 000000
+    note: "th\xE2n + roi t\xE1ch l\u1EDBp; overlayOffsets = g\xF3c tr\xEAn-tr\xE1i
+      m\u1EA3nh roi \u2212 pivot th\xE2n (px NES, y xu\u1ED1ng, quay TR\xC1I). Khung
+      gh\xE9p s\u1EB5n _3 tr\xEAn sheet = khung 2 v\u1EDBi roi v\u1EBD \u0110\xC8
+      th\xE2n (whipOnTop) \u2014 routine 09 ch\u1ECDn theo video"
+  - name: whip_l2_stairs_down
+    frames:
+    - {fileID: 21300000, guid: bc1504d0328087a46829b934800d2331, type: 3}
+    - {fileID: 21300000, guid: 43e6cbb344ce0e846884a2d175cbf2e1, type: 3}
+    - {fileID: 21300000, guid: b257da5440faad84bb0dadb8ab74c58b, type: 3}
+    durations: 080000000800000008000000
+    loop: 0
+    measured: 0
+    overlays:
+    - {fileID: 21300000, guid: a3a8c51d538e3ec40bc75a124fedfe81, type: 3}
+    - {fileID: 21300000, guid: 7b9e567969da7af4c932eb7483a92a2d, type: 3}
+    - {fileID: 21300000, guid: b682136bcb1ac2d4d9723b1cf183d733, type: 3}
+    overlayOffsets:
+    - {x: 16, y: -32}
+    - {x: 8, y: -32}
+    - {x: -36, y: -32}
+    overlayOnTop: 000000
+    note: "th\xE2n + roi t\xE1ch l\u1EDBp; overlayOffsets = g\xF3c tr\xEAn-tr\xE1i
+      m\u1EA3nh roi \u2212 pivot th\xE2n (px NES, y xu\u1ED1ng, quay TR\xC1I). Khung
+      gh\xE9p s\u1EB5n _3 tr\xEAn sheet = khung 2 v\u1EDBi roi v\u1EBD \u0110\xC8
+      th\xE2n (whipOnTop) \u2014 routine 09 ch\u1ECDn theo video"
+  - name: whip_l3c1_stand
+    frames:
+    - {fileID: 21300000, guid: 687706a567e89de45be825be20e35962, type: 3}
+    - {fileID: 21300000, guid: 603a38a63e84dac4fa59ca904790c21f, type: 3}
+    - {fileID: 21300000, guid: 8315c33b7f256114aabd853b02ba38f1, type: 3}
+    durations: 080000000800000008000000
+    loop: 0
+    measured: 0
+    overlays:
+    - {fileID: 21300000, guid: ecbd3c2389324f04e9b1214a9be38559, type: 3}
+    - {fileID: 21300000, guid: 1c4f302c155823344b011a7ede5a282a, type: 3}
+    - {fileID: 21300000, guid: 869c7241e51df48458f8afe6df7f6ac0, type: 3}
+    overlayOffsets:
+    - {x: 16, y: -32}
+    - {x: 8, y: -32}
+    - {x: -52, y: -32}
+    overlayOnTop: 000000
+    note: "th\xE2n + roi t\xE1ch l\u1EDBp; overlayOffsets = g\xF3c tr\xEAn-tr\xE1i
+      m\u1EA3nh roi \u2212 pivot th\xE2n (px NES, y xu\u1ED1ng, quay TR\xC1I). Khung
+      gh\xE9p s\u1EB5n _3 tr\xEAn sheet = khung 2 v\u1EDBi roi v\u1EBD \u0110\xC8
+      th\xE2n (whipOnTop) \u2014 routine 09 ch\u1ECDn theo video; nh\u1EA3y d\xF9ng
+      stand"
+  - name: whip_l3c1_duck
+    frames:
+    - {fileID: 21300000, guid: 30bb37ddcb08e6d488f884681d996e7f, type: 3}
+    - {fileID: 21300000, guid: cef5f6265caa16b44b437b79bfa7c88f, type: 3}
+    - {fileID: 21300000, guid: 1ad09a2bd65a57c4ab4d505ea8f98f6d, type: 3}
+    durations: 080000000800000008000000
+    loop: 0
+    measured: 0
+    overlays:
+    - {fileID: 21300000, guid: ecbd3c2389324f04e9b1214a9be38559, type: 3}
+    - {fileID: 21300000, guid: 1c4f302c155823344b011a7ede5a282a, type: 3}
+    - {fileID: 21300000, guid: 869c7241e51df48458f8afe6df7f6ac0, type: 3}
+    overlayOffsets:
+    - {x: 16, y: -32}
+    - {x: 8, y: -32}
+    - {x: -52, y: -32}
+    overlayOnTop: 000000
+    note: "th\xE2n + roi t\xE1ch l\u1EDBp; overlayOffsets = g\xF3c tr\xEAn-tr\xE1i
+      m\u1EA3nh roi \u2212 pivot th\xE2n (px NES, y xu\u1ED1ng, quay TR\xC1I). Khung
+      gh\xE9p s\u1EB5n _3 tr\xEAn sheet = khung 2 v\u1EDBi roi v\u1EBD \u0110\xC8
+      th\xE2n (whipOnTop) \u2014 routine 09 ch\u1ECDn theo video"
+  - name: whip_l3c1_stairs_up
+    frames:
+    - {fileID: 21300000, guid: 92fa03b1a4e4efc4fa7c33e59dacb33f, type: 3}
+    - {fileID: 21300000, guid: cd4eca613ac39224884232a5ba1b866c, type: 3}
+    - {fileID: 21300000, guid: 29c63c5cd717b754fac41f94ef02cffb, type: 3}
+    durations: 080000000800000008000000
+    loop: 0
+    measured: 0
+    overlays:
+    - {fileID: 21300000, guid: ecbd3c2389324f04e9b1214a9be38559, type: 3}
+    - {fileID: 21300000, guid: 1c4f302c155823344b011a7ede5a282a, type: 3}
+    - {fileID: 21300000, guid: 869c7241e51df48458f8afe6df7f6ac0, type: 3}
+    overlayOffsets:
+    - {x: 16, y: -30}
+    - {x: 8, y: -30}
+    - {x: -52, y: -30}
+    overlayOnTop: 000000
+    note: "th\xE2n + roi t\xE1ch l\u1EDBp; overlayOffsets = g\xF3c tr\xEAn-tr\xE1i
+      m\u1EA3nh roi \u2212 pivot th\xE2n (px NES, y xu\u1ED1ng, quay TR\xC1I). Khung
+      gh\xE9p s\u1EB5n _3 tr\xEAn sheet = khung 2 v\u1EDBi roi v\u1EBD \u0110\xC8
+      th\xE2n (whipOnTop) \u2014 routine 09 ch\u1ECDn theo video"
+  - name: whip_l3c1_stairs_down
+    frames:
+    - {fileID: 21300000, guid: bc1504d0328087a46829b934800d2331, type: 3}
+    - {fileID: 21300000, guid: 43e6cbb344ce0e846884a2d175cbf2e1, type: 3}
+    - {fileID: 21300000, guid: b257da5440faad84bb0dadb8ab74c58b, type: 3}
+    durations: 080000000800000008000000
+    loop: 0
+    measured: 0
+    overlays:
+    - {fileID: 21300000, guid: ecbd3c2389324f04e9b1214a9be38559, type: 3}
+    - {fileID: 21300000, guid: 1c4f302c155823344b011a7ede5a282a, type: 3}
+    - {fileID: 21300000, guid: 869c7241e51df48458f8afe6df7f6ac0, type: 3}
+    overlayOffsets:
+    - {x: 16, y: -32}
+    - {x: 8, y: -32}
+    - {x: -52, y: -32}
+    overlayOnTop: 000000
+    note: "th\xE2n + roi t\xE1ch l\u1EDBp; overlayOffsets = g\xF3c tr\xEAn-tr\xE1i
+      m\u1EA3nh roi \u2212 pivot th\xE2n (px NES, y xu\u1ED1ng, quay TR\xC1I). Khung
+      gh\xE9p s\u1EB5n _3 tr\xEAn sheet = khung 2 v\u1EDBi roi v\u1EBD \u0110\xC8
+      th\xE2n (whipOnTop) \u2014 routine 09 ch\u1ECDn theo video"
+  - name: whip_l3c2_stand
+    frames:
+    - {fileID: 21300000, guid: 687706a567e89de45be825be20e35962, type: 3}
+    - {fileID: 21300000, guid: 603a38a63e84dac4fa59ca904790c21f, type: 3}
+    - {fileID: 21300000, guid: 932c9298bcd3c034fa04cbf21c8229a6, type: 3}
+    durations: 080000000800000008000000
+    loop: 0
+    measured: 0
+    overlays:
+    - {fileID: 21300000, guid: a3a8c51d538e3ec40bc75a124fedfe81, type: 3}
+    - {fileID: 21300000, guid: 7b9e567969da7af4c932eb7483a92a2d, type: 3}
+    - {fileID: 21300000, guid: 6698b01576ec1b34280086b93a1af202, type: 3}
+    overlayOffsets:
+    - {x: 16, y: -32}
+    - {x: 8, y: -32}
+    - {x: -52, y: -32}
+    overlayOnTop: 000000
+    note: "th\xE2n + roi t\xE1ch l\u1EDBp; overlayOffsets = g\xF3c tr\xEAn-tr\xE1i
+      m\u1EA3nh roi \u2212 pivot th\xE2n (px NES, y xu\u1ED1ng, quay TR\xC1I). Khung
+      gh\xE9p s\u1EB5n _3 tr\xEAn sheet = khung 2 v\u1EDBi roi v\u1EBD \u0110\xC8
+      th\xE2n (whipOnTop) \u2014 routine 09 ch\u1ECDn theo video; nh\u1EA3y d\xF9ng
+      stand"
+  - name: whip_l3c2_duck
+    frames:
+    - {fileID: 21300000, guid: 30bb37ddcb08e6d488f884681d996e7f, type: 3}
+    - {fileID: 21300000, guid: cef5f6265caa16b44b437b79bfa7c88f, type: 3}
+    - {fileID: 21300000, guid: a723a8b4fb0cfdd438b0bc51b2638230, type: 3}
+    durations: 080000000800000008000000
+    loop: 0
+    measured: 0
+    overlays:
+    - {fileID: 21300000, guid: a3a8c51d538e3ec40bc75a124fedfe81, type: 3}
+    - {fileID: 21300000, guid: 7b9e567969da7af4c932eb7483a92a2d, type: 3}
+    - {fileID: 21300000, guid: 6698b01576ec1b34280086b93a1af202, type: 3}
+    overlayOffsets:
+    - {x: 16, y: -32}
+    - {x: 8, y: -32}
+    - {x: -52, y: -32}
+    overlayOnTop: 000000
+    note: "th\xE2n + roi t\xE1ch l\u1EDBp; overlayOffsets = g\xF3c tr\xEAn-tr\xE1i
+      m\u1EA3nh roi \u2212 pivot th\xE2n (px NES, y xu\u1ED1ng, quay TR\xC1I). Khung
+      gh\xE9p s\u1EB5n _3 tr\xEAn sheet = khung 2 v\u1EDBi roi v\u1EBD \u0110\xC8
+      th\xE2n (whipOnTop) \u2014 routine 09 ch\u1ECDn theo video"
+  - name: whip_l3c2_stairs_up
+    frames:
+    - {fileID: 21300000, guid: 92fa03b1a4e4efc4fa7c33e59dacb33f, type: 3}
+    - {fileID: 21300000, guid: cd4eca613ac39224884232a5ba1b866c, type: 3}
+    - {fileID: 21300000, guid: 8f55f30ad5d3eb14ba2026ec964de1dd, type: 3}
+    durations: 080000000800000008000000
+    loop: 0
+    measured: 0
+    overlays:
+    - {fileID: 21300000, guid: a3a8c51d538e3ec40bc75a124fedfe81, type: 3}
+    - {fileID: 21300000, guid: 7b9e567969da7af4c932eb7483a92a2d, type: 3}
+    - {fileID: 21300000, guid: 6698b01576ec1b34280086b93a1af202, type: 3}
+    overlayOffsets:
+    - {x: 16, y: -30}
+    - {x: 8, y: -30}
+    - {x: -52, y: -30}
+    overlayOnTop: 000000
+    note: "th\xE2n + roi t\xE1ch l\u1EDBp; overlayOffsets = g\xF3c tr\xEAn-tr\xE1i
+      m\u1EA3nh roi \u2212 pivot th\xE2n (px NES, y xu\u1ED1ng, quay TR\xC1I). Khung
+      gh\xE9p s\u1EB5n _3 tr\xEAn sheet = khung 2 v\u1EDBi roi v\u1EBD \u0110\xC8
+      th\xE2n (whipOnTop) \u2014 routine 09 ch\u1ECDn theo video"
+  - name: whip_l3c2_stairs_down
+    frames:
+    - {fileID: 21300000, guid: bc1504d0328087a46829b934800d2331, type: 3}
+    - {fileID: 21300000, guid: 43e6cbb344ce0e846884a2d175cbf2e1, type: 3}
+    - {fileID: 21300000, guid: d4ca95cc89ca5c74a856fe8cfe202b2f, type: 3}
+    durations: 080000000800000008000000
+    loop: 0
+    measured: 0
+    overlays:
+    - {fileID: 21300000, guid: a3a8c51d538e3ec40bc75a124fedfe81, type: 3}
+    - {fileID: 21300000, guid: 7b9e567969da7af4c932eb7483a92a2d, type: 3}
+    - {fileID: 21300000, guid: 6698b01576ec1b34280086b93a1af202, type: 3}
+    overlayOffsets:
+    - {x: 16, y: -32}
+    - {x: 8, y: -32}
+    - {x: -52, y: -32}
+    overlayOnTop: 000000
+    note: "th\xE2n + roi t\xE1ch l\u1EDBp; overlayOffsets = g\xF3c tr\xEAn-tr\xE1i
+      m\u1EA3nh roi \u2212 pivot th\xE2n (px NES, y xu\u1ED1ng, quay TR\xC1I). Khung
+      gh\xE9p s\u1EB5n _3 tr\xEAn sheet = khung 2 v\u1EDBi roi v\u1EBD \u0110\xC8
+      th\xE2n (whipOnTop) \u2014 routine 09 ch\u1ECDn theo video"
+  - name: whip_l3c3_stand
+    frames:
+    - {fileID: 21300000, guid: 687706a567e89de45be825be20e35962, type: 3}
+    - {fileID: 21300000, guid: 603a38a63e84dac4fa59ca904790c21f, type: 3}
+    - {fileID: 21300000, guid: bacee83de85f5f84181a75a482e1c475, type: 3}
+    durations: 080000000800000008000000
+    loop: 0
+    measured: 0
+    overlays:
+    - {fileID: 21300000, guid: ac5302fd89dd27543827906ac925988b, type: 3}
+    - {fileID: 21300000, guid: 772ece0e9af10b045b12df4d52871820, type: 3}
+    - {fileID: 21300000, guid: 9dace5187b8e22649a22838cc6405793, type: 3}
+    overlayOffsets:
+    - {x: 16, y: -32}
+    - {x: 8, y: -32}
+    - {x: -52, y: -32}
+    overlayOnTop: 000000
+    note: "th\xE2n + roi t\xE1ch l\u1EDBp; overlayOffsets = g\xF3c tr\xEAn-tr\xE1i
+      m\u1EA3nh roi \u2212 pivot th\xE2n (px NES, y xu\u1ED1ng, quay TR\xC1I). Khung
+      gh\xE9p s\u1EB5n _3 tr\xEAn sheet = khung 2 v\u1EDBi roi v\u1EBD \u0110\xC8
+      th\xE2n (whipOnTop) \u2014 routine 09 ch\u1ECDn theo video; nh\u1EA3y d\xF9ng
+      stand"
+  - name: whip_l3c3_duck
+    frames:
+    - {fileID: 21300000, guid: 30bb37ddcb08e6d488f884681d996e7f, type: 3}
+    - {fileID: 21300000, guid: cef5f6265caa16b44b437b79bfa7c88f, type: 3}
+    - {fileID: 21300000, guid: 8cfca531aaf352847ba4cc7efcc5d83f, type: 3}
+    durations: 080000000800000008000000
+    loop: 0
+    measured: 0
+    overlays:
+    - {fileID: 21300000, guid: ac5302fd89dd27543827906ac925988b, type: 3}
+    - {fileID: 21300000, guid: 772ece0e9af10b045b12df4d52871820, type: 3}
+    - {fileID: 21300000, guid: 9dace5187b8e22649a22838cc6405793, type: 3}
+    overlayOffsets:
+    - {x: 16, y: -32}
+    - {x: 8, y: -32}
+    - {x: -52, y: -32}
+    overlayOnTop: 000000
+    note: "th\xE2n + roi t\xE1ch l\u1EDBp; overlayOffsets = g\xF3c tr\xEAn-tr\xE1i
+      m\u1EA3nh roi \u2212 pivot th\xE2n (px NES, y xu\u1ED1ng, quay TR\xC1I). Khung
+      gh\xE9p s\u1EB5n _3 tr\xEAn sheet = khung 2 v\u1EDBi roi v\u1EBD \u0110\xC8
+      th\xE2n (whipOnTop) \u2014 routine 09 ch\u1ECDn theo video"
+  - name: whip_l3c3_stairs_up
+    frames:
+    - {fileID: 21300000, guid: 92fa03b1a4e4efc4fa7c33e59dacb33f, type: 3}
+    - {fileID: 21300000, guid: cd4eca613ac39224884232a5ba1b866c, type: 3}
+    - {fileID: 21300000, guid: c09ef6f158cb9954d86ce3933ced562b, type: 3}
+    durations: 080000000800000008000000
+    loop: 0
+    measured: 0
+    overlays:
+    - {fileID: 21300000, guid: ac5302fd89dd27543827906ac925988b, type: 3}
+    - {fileID: 21300000, guid: 772ece0e9af10b045b12df4d52871820, type: 3}
+    - {fileID: 21300000, guid: 9dace5187b8e22649a22838cc6405793, type: 3}
+    overlayOffsets:
+    - {x: 16, y: -30}
+    - {x: 8, y: -30}
+    - {x: -52, y: -30}
+    overlayOnTop: 000000
+    note: "th\xE2n + roi t\xE1ch l\u1EDBp; overlayOffsets = g\xF3c tr\xEAn-tr\xE1i
+      m\u1EA3nh roi \u2212 pivot th\xE2n (px NES, y xu\u1ED1ng, quay TR\xC1I). Khung
+      gh\xE9p s\u1EB5n _3 tr\xEAn sheet = khung 2 v\u1EDBi roi v\u1EBD \u0110\xC8
+      th\xE2n (whipOnTop) \u2014 routine 09 ch\u1ECDn theo video"
+  - name: whip_l3c3_stairs_down
+    frames:
+    - {fileID: 21300000, guid: bc1504d0328087a46829b934800d2331, type: 3}
+    - {fileID: 21300000, guid: 43e6cbb344ce0e846884a2d175cbf2e1, type: 3}
+    - {fileID: 21300000, guid: a69bdb6a47f1c8744942c32bc5ef2362, type: 3}
+    durations: 080000000800000008000000
+    loop: 0
+    measured: 0
+    overlays:
+    - {fileID: 21300000, guid: ac5302fd89dd27543827906ac925988b, type: 3}
+    - {fileID: 21300000, guid: 772ece0e9af10b045b12df4d52871820, type: 3}
+    - {fileID: 21300000, guid: 9dace5187b8e22649a22838cc6405793, type: 3}
+    overlayOffsets:
+    - {x: 16, y: -32}
+    - {x: 8, y: -32}
+    - {x: -52, y: -32}
+    overlayOnTop: 000000
+    note: "th\xE2n + roi t\xE1ch l\u1EDBp; overlayOffsets = g\xF3c tr\xEAn-tr\xE1i
+      m\u1EA3nh roi \u2212 pivot th\xE2n (px NES, y xu\u1ED1ng, quay TR\xC1I). Khung
+      gh\xE9p s\u1EB5n _3 tr\xEAn sheet = khung 2 v\u1EDBi roi v\u1EBD \u0110\xC8
+      th\xE2n (whipOnTop) \u2014 routine 09 ch\u1ECDn theo video"
+  - name: whip_l3c4_stand
+    frames:
+    - {fileID: 21300000, guid: 687706a567e89de45be825be20e35962, type: 3}
+    - {fileID: 21300000, guid: 603a38a63e84dac4fa59ca904790c21f, type: 3}
+    - {fileID: 21300000, guid: 401c1ba61426b5a42a7ffe998a8ab51c, type: 3}
+    durations: 080000000800000008000000
+    loop: 0
+    measured: 0
+    overlays:
+    - {fileID: 21300000, guid: 5ffc9b834841a4443b255f667b585727, type: 3}
+    - {fileID: 21300000, guid: db4f9d8616c77fa4f9e54b9fb7c39ad9, type: 3}
+    - {fileID: 21300000, guid: c07724432d6e904459b19d4c2de1a437, type: 3}
+    overlayOffsets:
+    - {x: 16, y: -32}
+    - {x: 8, y: -32}
+    - {x: -52, y: -32}
+    overlayOnTop: 000000
+    note: "th\xE2n + roi t\xE1ch l\u1EDBp; overlayOffsets = g\xF3c tr\xEAn-tr\xE1i
+      m\u1EA3nh roi \u2212 pivot th\xE2n (px NES, y xu\u1ED1ng, quay TR\xC1I). Khung
+      gh\xE9p s\u1EB5n _3 tr\xEAn sheet = khung 2 v\u1EDBi roi v\u1EBD \u0110\xC8
+      th\xE2n (whipOnTop) \u2014 routine 09 ch\u1ECDn theo video; nh\u1EA3y d\xF9ng
+      stand"
+  - name: whip_l3c4_duck
+    frames:
+    - {fileID: 21300000, guid: 30bb37ddcb08e6d488f884681d996e7f, type: 3}
+    - {fileID: 21300000, guid: cef5f6265caa16b44b437b79bfa7c88f, type: 3}
+    - {fileID: 21300000, guid: b081b15e5e042a543aaf444df3b1beb1, type: 3}
+    durations: 080000000800000008000000
+    loop: 0
+    measured: 0
+    overlays:
+    - {fileID: 21300000, guid: 5ffc9b834841a4443b255f667b585727, type: 3}
+    - {fileID: 21300000, guid: db4f9d8616c77fa4f9e54b9fb7c39ad9, type: 3}
+    - {fileID: 21300000, guid: c07724432d6e904459b19d4c2de1a437, type: 3}
+    overlayOffsets:
+    - {x: 16, y: -32}
+    - {x: 8, y: -32}
+    - {x: -52, y: -32}
+    overlayOnTop: 000000
+    note: "th\xE2n + roi t\xE1ch l\u1EDBp; overlayOffsets = g\xF3c tr\xEAn-tr\xE1i
+      m\u1EA3nh roi \u2212 pivot th\xE2n (px NES, y xu\u1ED1ng, quay TR\xC1I). Khung
+      gh\xE9p s\u1EB5n _3 tr\xEAn sheet = khung 2 v\u1EDBi roi v\u1EBD \u0110\xC8
+      th\xE2n (whipOnTop) \u2014 routine 09 ch\u1ECDn theo video"
+  - name: whip_l3c4_stairs_up
+    frames:
+    - {fileID: 21300000, guid: 92fa03b1a4e4efc4fa7c33e59dacb33f, type: 3}
+    - {fileID: 21300000, guid: cd4eca613ac39224884232a5ba1b866c, type: 3}
+    - {fileID: 21300000, guid: 051d514f15f32764696b75db138c05cd, type: 3}
+    durations: 080000000800000008000000
+    loop: 0
+    measured: 0
+    overlays:
+    - {fileID: 21300000, guid: 5ffc9b834841a4443b255f667b585727, type: 3}
+    - {fileID: 21300000, guid: db4f9d8616c77fa4f9e54b9fb7c39ad9, type: 3}
+    - {fileID: 21300000, guid: c07724432d6e904459b19d4c2de1a437, type: 3}
+    overlayOffsets:
+    - {x: 16, y: -30}
+    - {x: 8, y: -30}
+    - {x: -52, y: -30}
+    overlayOnTop: 000000
+    note: "th\xE2n + roi t\xE1ch l\u1EDBp; overlayOffsets = g\xF3c tr\xEAn-tr\xE1i
+      m\u1EA3nh roi \u2212 pivot th\xE2n (px NES, y xu\u1ED1ng, quay TR\xC1I). Khung
+      gh\xE9p s\u1EB5n _3 tr\xEAn sheet = khung 2 v\u1EDBi roi v\u1EBD \u0110\xC8
+      th\xE2n (whipOnTop) \u2014 routine 09 ch\u1ECDn theo video; \xF4 gh\xE9p s\u1EB5n
+      _0 tr\xEAn sheet b\u1ECB c\u1EE5t \u0111\xE1y (8 px c\u1EE7a m\u1EA3nh treo
+      n\u1EB1m ngo\xE0i \xF4)"
+  - name: whip_l3c4_stairs_down
+    frames:
+    - {fileID: 21300000, guid: bc1504d0328087a46829b934800d2331, type: 3}
+    - {fileID: 21300000, guid: 43e6cbb344ce0e846884a2d175cbf2e1, type: 3}
+    - {fileID: 21300000, guid: 7d877bf73bdaffc4abb909c3a1b56426, type: 3}
+    durations: 080000000800000008000000
+    loop: 0
+    measured: 0
+    overlays:
+    - {fileID: 21300000, guid: 5ffc9b834841a4443b255f667b585727, type: 3}
+    - {fileID: 21300000, guid: db4f9d8616c77fa4f9e54b9fb7c39ad9, type: 3}
+    - {fileID: 21300000, guid: c07724432d6e904459b19d4c2de1a437, type: 3}
+    overlayOffsets:
+    - {x: 16, y: -32}
+    - {x: 8, y: -32}
+    - {x: -52, y: -32}
+    overlayOnTop: 000000
+    note: "th\xE2n + roi t\xE1ch l\u1EDBp; overlayOffsets = g\xF3c tr\xEAn-tr\xE1i
+      m\u1EA3nh roi \u2212 pivot th\xE2n (px NES, y xu\u1ED1ng, quay TR\xC1I). Khung
+      gh\xE9p s\u1EB5n _3 tr\xEAn sheet = khung 2 v\u1EDBi roi v\u1EBD \u0110\xC8
+      th\xE2n (whipOnTop) \u2014 routine 09 ch\u1ECDn theo video"
+  palettes:
+  - name: purple
+    from:
+    - serializedVersion: 2
+      rgba: 4278192252
+    - serializedVersion: 2
+      rgba: 4289255676
+    - serializedVersion: 2
+      rgba: 4281899260
+    to:
+    - serializedVersion: 2
+      rgba: 4278190080
+    - serializedVersion: 2
+      rgba: 4294755580
+    - serializedVersion: 2
+      rgba: 4294740172
+    note: "h\xE0ng Colors khung 1 \u2014 nh\xE1y khi nh\u1EB7t roi (video Map_1 0:06.5\u20130:07.3:
+      m\u1EB7c \u0111\u1ECBnh/\u0111\u1ECF/t\xEDm/xanh)"
+  - name: blue
+    from:
+    - serializedVersion: 2
+      rgba: 4278192252
+    - serializedVersion: 2
+      rgba: 4289255676
+    - serializedVersion: 2
+      rgba: 4281899260
+    to:
+    - serializedVersion: 2
+      rgba: 4278190080
+    - serializedVersion: 2
+      rgba: 4293685248
+    - serializedVersion: 2
+      rgba: 4289255676
+    note: "h\xE0ng Colors khung 2 \u2014 nh\xE1y khi nh\u1EB7t roi (video Map_1 0:06.5\u20130:07.3:
+      m\u1EB7c \u0111\u1ECBnh/\u0111\u1ECF/t\xEDm/xanh)"
+  - name: red
+    from:
+    - serializedVersion: 2
+      rgba: 4278192252
+    - serializedVersion: 2
+      rgba: 4289255676
+    - serializedVersion: 2
+      rgba: 4281899260
+    to:
+    - serializedVersion: 2
+      rgba: 4278190080
+    - serializedVersion: 2
+      rgba: 4290016508
+    - serializedVersion: 2
+      rgba: 4278200536
+    note: "h\xE0ng Colors khung 3 \u2014 nh\xE1y khi nh\u1EB7t roi (video Map_1 0:06.5\u20130:07.3:
+      m\u1EB7c \u0111\u1ECBnh/\u0111\u1ECF/t\xEDm/xanh)"
+  - name: white
+    from:
+    - serializedVersion: 2
+      rgba: 4278192252
+    - serializedVersion: 2
+      rgba: 4289255676
+    - serializedVersion: 2
+      rgba: 4281899260
+    to:
+    - serializedVersion: 2
+      rgba: 4294763688
+    - serializedVersion: 2
+      rgba: 4281899260
+    - serializedVersion: 2
+      rgba: 4289255676
+    note: "h\xE0ng Colors khung 4 \u2014 ch\u01B0a th\u1EA5y trong video Map_1"

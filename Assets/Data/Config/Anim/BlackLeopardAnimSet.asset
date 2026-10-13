@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4609f48437c260d489dcb25f5b7539fe, type: 3}
+  m_Name: BlackLeopardAnimSet
+  m_EditorClassIdentifier: 
+  anims:
+  - name: sit
+    frames:
+    - {fileID: 21300000, guid: dae23391b02b8ee43b7b8bbb5365fb67, type: 3}
+    durations: 08000000
+    loop: 1
+    measured: 0
+    overlays: []
+    overlayOffsets: []
+    overlayOnTop: 
+    note: 
+  - name: run
+    frames:
+    - {fileID: 21300000, guid: 9d7e2ddec723b3348b9112c5acc047ef, type: 3}
+    - {fileID: 21300000, guid: 8efd9ba9e306e904496fb77505dbc6dd, type: 3}
+    durations: 0800000008000000
+    loop: 1
+    measured: 0
+    overlays: []
+    overlayOffsets: []
+    overlayOnTop: 
+    note: "nh\xE3n suy lu\u1EADn t\u1EEB h\xECnh"
+  - name: jump
+    frames:
+    - {fileID: 21300000, guid: e0189ac48ff2b2e4ea4ab2f59ae2c5b6, type: 3}
+    durations: 08000000
+    loop: 0
+    measured: 0
+    overlays: []
+    overlayOffsets: []
+    overlayOnTop: 
+    note: "khung du\u1ED7i d\xE0i \u2014 suy lu\u1EADn"
+  palettes: []

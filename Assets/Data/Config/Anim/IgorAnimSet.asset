@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4609f48437c260d489dcb25f5b7539fe, type: 3}
+  m_Name: IgorAnimSet
+  m_EditorClassIdentifier: 
+  anims:
+  - name: hop
+    frames:
+    - {fileID: 21300000, guid: 7abbcb6a33198df4bbb85fc0ce029e04, type: 3}
+    - {fileID: 21300000, guid: 1b8620a225db03b4c813eec90d9881eb, type: 3}
+    durations: 0800000008000000
+    loop: 1
+    measured: 0
+    overlays: []
+    overlayOffsets: []
+    overlayOnTop: 
+    note: 
+  - name: fireball
+    frames:
+    - {fileID: 21300000, guid: 5211073a6d1b9d042b953c83c2554829, type: 3}
+    durations: 08000000
+    loop: 1
+    measured: 0
+    overlays: []
+    overlayOffsets: []
+    overlayOnTop: 
+    note: 
+  palettes: []

@@ -1,0 +1,75 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4609f48437c260d489dcb25f5b7539fe, type: 3}
+  m_Name: SubWeaponAnimSet
+  m_EditorClassIdentifier: 
+  anims:
+  - name: dagger
+    frames:
+    - {fileID: 21300000, guid: 4b8c3ece703e593448cbb1abedc7ab10, type: 3}
+    durations: 08000000
+    loop: 1
+    measured: 0
+    overlays: []
+    overlayOffsets: []
+    overlayOnTop: 
+    note: 
+  - name: cross
+    frames:
+    - {fileID: 21300000, guid: 52d9d8eb90627314e9e66e37707ca771, type: 3}
+    - {fileID: 21300000, guid: 3d28acd1b06b48d4f90a91cdf4394453, type: 3}
+    - {fileID: 21300000, guid: 2dc86b01ad9ff4949a85b747821fb74b, type: 3}
+    durations: 080000000800000008000000
+    loop: 1
+    measured: 0
+    overlays: []
+    overlayOffsets: []
+    overlayOnTop: 
+    note: "th\u1EADp t\u1EF1 xoay"
+  - name: axe
+    frames:
+    - {fileID: 21300000, guid: 503b123bd4920d74a8351b5956bb8ffa, type: 3}
+    - {fileID: 21300000, guid: 1f5995ad2be7c6a4b8b548bf9023c85a, type: 3}
+    - {fileID: 21300000, guid: 038af6d5867e2904ca30dcb1da17f24f, type: 3}
+    - {fileID: 21300000, guid: 5b3a6d72f21eb7245947245aff5e79ab, type: 3}
+    durations: 08000000080000000800000008000000
+    loop: 1
+    measured: 0
+    overlays: []
+    overlayOffsets: []
+    overlayOnTop: 
+    note: 
+  - name: holywater_bottle
+    frames:
+    - {fileID: 21300000, guid: 20a480f9385877f4c819ea253283ce2d, type: 3}
+    durations: 08000000
+    loop: 1
+    measured: 0
+    overlays: []
+    overlayOffsets: []
+    overlayOnTop: 
+    note: 
+  - name: holywater_fire
+    frames:
+    - {fileID: 21300000, guid: ab8867f897583334c89be849fe90b5a2, type: 3}
+    - {fileID: 21300000, guid: 0702f1f8404ea8c4a9e9ea2d30afeb2a, type: 3}
+    - {fileID: 21300000, guid: a0763f3ef0a396c408976ea51d192b25, type: 3}
+    - {fileID: 21300000, guid: 25f7ec3f23772e646824fc8826b57152, type: 3}
+    - {fileID: 21300000, guid: ed64320ef16fe6a48b2175fa36a43569, type: 3}
+    durations: 0800000008000000080000000800000008000000
+    loop: 0
+    measured: 0
+    overlays: []
+    overlayOffsets: []
+    overlayOnTop: 
+    note: "l\u1EEDa l\u1EDBn d\u1EA7n"
+  palettes: []

@@ -1,0 +1,74 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4609f48437c260d489dcb25f5b7539fe, type: 3}
+  m_Name: ObjectAnimSet
+  m_EditorClassIdentifier: 
+  anims:
+  - name: candle
+    frames:
+    - {fileID: 21300000, guid: 0307f1559db28074ebe78da91832ef1a, type: 3}
+    - {fileID: 21300000, guid: ee5b9853bdf0f7b43806b3d26dafcf7a, type: 3}
+    durations: 0800000008000000
+    loop: 1
+    measured: 0
+    overlays: []
+    overlayOffsets: []
+    overlayOnTop: 
+    note: 
+  - name: torch
+    frames:
+    - {fileID: 21300000, guid: 33db21a6e199ca5429a81b43877a9e19, type: 3}
+    - {fileID: 21300000, guid: e3c768cf19f445148ab175b7527fd155, type: 3}
+    durations: 0800000008000000
+    loop: 1
+    measured: 0
+    overlays: []
+    overlayOffsets: []
+    overlayOnTop: 
+    note: 
+  - name: door
+    frames:
+    - {fileID: 21300000, guid: b57adfc5f22b9bd46a743f9e28e1b237, type: 3}
+    - {fileID: 21300000, guid: 1fe0d254a6e26f44fade2abc91adf5e8, type: 3}
+    durations: 0800000008000000
+    loop: 0
+    measured: 0
+    overlays: []
+    overlayOffsets: []
+    overlayOnTop: 
+    note: "2 sprite c\u1EEDa (16x48, 24x48) \u2014 vai tr\xF2 ch\u1EDD routine 15"
+  - name: score_parts
+    frames:
+    - {fileID: 21300000, guid: 27dbcfc7089e44d4ea966275fa0fb70e, type: 3}
+    - {fileID: 21300000, guid: e8ce483b6293fac44859ffefa8f83e5b, type: 3}
+    - {fileID: 21300000, guid: a65a85a117060c440a7054fa93b65c1e, type: 3}
+    - {fileID: 21300000, guid: d08a065b93d8b7e478129de9691aa3a7, type: 3}
+    - {fileID: 21300000, guid: 291f6b9ce04d9b6449db2db159c0eb67, type: 3}
+    - {fileID: 21300000, guid: fb956a007c055c242ad4ddd85c58e8bf, type: 3}
+    durations: 080000000800000008000000080000000800000008000000
+    loop: 0
+    measured: 0
+    overlays: []
+    overlayOffsets: []
+    overlayOnTop: 
+    note: "m\u1EA3nh s\u1ED1 \u0111i\u1EC3m (kh\xF4ng ph\u1EA3i chu\u1ED7i)"
+  - name: brick
+    frames:
+    - {fileID: 21300000, guid: 14a7f15b0427d5643ab34f91ea8f95fd, type: 3}
+    durations: 08000000
+    loop: 0
+    measured: 0
+    overlays: []
+    overlayOffsets: []
+    overlayOnTop: 
+    note: 
+  palettes: []
