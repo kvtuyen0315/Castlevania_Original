@@ -35,10 +35,12 @@ MonoBehaviour:
       value: 0
     src_effectTicks: 
     lifetimeTicks:
-      has: 0
-      value: 0
-    src_lifetimeTicks: "ch\u1EDD \u0111o routine 11"
-    fallStyle: "r\u01A1i ch\u1EADm \u0111ung \u0111\u01B0a"
+      has: 1
+      value: 188
+    src_lifetimeTicks: "\u0111o:routine 11 (ConfigRule.ItemLifetimeTicks \u2014 video
+      Map_1 f874\u2013968; 1 m\u1EABu)"
+    fallStyle: "r\u01A1i 0.5 px/tick + \u0111ung \u0111\u01B0a ngang (ConfigActorParam
+      Item.SmallHeart \u2014 \u0111o:routine 11 f4046\u20134069)"
     effectShort: "+1 tim (\u0111\u1EA1n v\u0169 kh\xED ph\u1EE5)"
     source: wiki:Items#Small Heart
   - id: 2
@@ -63,10 +65,12 @@ MonoBehaviour:
       value: 0
     src_effectTicks: 
     lifetimeTicks:
-      has: 0
-      value: 0
-    src_lifetimeTicks: "ch\u1EDD \u0111o routine 11"
-    fallStyle: "r\u01A1i nhanh th\u1EB3ng xu\u1ED1ng s\xE0n"
+      has: 1
+      value: 188
+    src_lifetimeTicks: "\u0111o:routine 11 (ConfigRule.ItemLifetimeTicks \u2014 video
+      Map_1 f874\u2013968; 1 m\u1EABu)"
+    fallStyle: "r\u01A1i tr\u1ECDng l\u1EF1c ConfigRule.ItemGravity (\u0111o:routine
+      11)"
     effectShort: +5 tim
     source: "wiki:Items#Large Heart; video:Map_1 0:03.93 (tim 05\u219210)"
   - id: 3
@@ -80,7 +84,7 @@ MonoBehaviour:
     score:
       has: 1
       value: 100
-    src_score: 
+    src_score: "wiki:Items#Red Money Bag; video:Map_1 (+100 nhi\u1EC1u l\u1EA7n kh\u1EDBp)"
     healBars:
       has: 0
       value: 0
@@ -90,10 +94,12 @@ MonoBehaviour:
       value: 0
     src_effectTicks: 
     lifetimeTicks:
-      has: 0
-      value: 0
-    src_lifetimeTicks: "ch\u1EDD \u0111o routine 11"
-    fallStyle: "ch\u1EDD \u0111o routine 11"
+      has: 1
+      value: 188
+    src_lifetimeTicks: "\u0111o:routine 11 (ConfigRule.ItemLifetimeTicks \u2014 video
+      Map_1 f874\u2013968; 1 m\u1EABu)"
+    fallStyle: "r\u01A1i tr\u1ECDng l\u1EF1c ConfigRule.ItemGravity (\u0111o:routine
+      11)"
     effectShort: "+100 \u0111i\u1EC3m"
     source: wiki:Items#Red Money Bag
   - id: 4
@@ -117,10 +123,12 @@ MonoBehaviour:
       value: 0
     src_effectTicks: 
     lifetimeTicks:
-      has: 0
-      value: 0
-    src_lifetimeTicks: "ch\u1EDD \u0111o routine 11"
-    fallStyle: "ch\u1EDD \u0111o routine 11"
+      has: 1
+      value: 188
+    src_lifetimeTicks: "\u0111o:routine 11 (ConfigRule.ItemLifetimeTicks \u2014 video
+      Map_1 f874\u2013968; 1 m\u1EABu)"
+    fallStyle: "r\u01A1i tr\u1ECDng l\u1EF1c ConfigRule.ItemGravity (\u0111o:routine
+      11)"
     effectShort: "+400 \u0111i\u1EC3m"
     source: wiki:Items#Purple Money Bag
   - id: 5
@@ -145,10 +153,12 @@ MonoBehaviour:
       value: 0
     src_effectTicks: 
     lifetimeTicks:
-      has: 0
-      value: 0
-    src_lifetimeTicks: "ch\u1EDD \u0111o routine 11"
-    fallStyle: "ch\u1EDD \u0111o routine 11"
+      has: 1
+      value: 188
+    src_lifetimeTicks: "\u0111o:routine 11 (ConfigRule.ItemLifetimeTicks \u2014 video
+      Map_1 f874\u2013968; 1 m\u1EABu)"
+    fallStyle: "r\u01A1i tr\u1ECDng l\u1EF1c ConfigRule.ItemGravity (\u0111o:routine
+      11)"
     effectShort: "+700 \u0111i\u1EC3m"
     source: wiki:Items#White Money Bag
   - id: 6
@@ -172,11 +182,14 @@ MonoBehaviour:
       value: 0
     src_effectTicks: 
     lifetimeTicks:
-      has: 0
-      value: 0
-    src_lifetimeTicks: "ch\u1EDD \u0111o routine 11 (wiki Stage 7: c\xF3 th\u1EC3
-      bi\u1EBFn m\u1EA5t sau th\u1EDDi gian ng\u1EAFn)"
-    fallStyle: "hi\u1EC7n t\u1EA1i ch\u1ED7 b\xED m\u1EADt"
+      has: 1
+      value: 188
+    src_lifetimeTicks: "\u0111o:routine 11 (ConfigRule.ItemLifetimeTicks \u2014 video
+      Map_1 f874\u2013968; 1 m\u1EABu); wiki Stage 7/25: bi\u1EBFn m\u1EA5t sau ch\u1ED1c
+      l\xE1t"
+    fallStyle: "tr\u1ED3i l\xEAn t\u1EA1i ch\u1ED7 b\xED m\u1EADt (ConfigRule.SecretRiseSpeed/SecretRisePx
+      \u2014 \u0111o:routine 11 f4200\u20134226); ra t\u1EEB v\u1EADt ch\u1EE9a th\xEC
+      r\u01A1i th\u01B0\u1EDDng"
     effectShort: "+1000 \u0111i\u1EC3m"
     source: wiki:Items#Bonuses; wiki:Secrets#Bonuses
   - id: 7
@@ -190,7 +203,7 @@ MonoBehaviour:
     score:
       has: 1
       value: 2000
-    src_score: 
+    src_score: wiki:Items#Bonuses
     healBars:
       has: 0
       value: 0
@@ -200,10 +213,13 @@ MonoBehaviour:
       value: 0
     src_effectTicks: 
     lifetimeTicks:
-      has: 0
-      value: 0
-    src_lifetimeTicks: "kh\xF4ng r\xF5 \u2014 kh\xF4ng c\xF3 video"
-    fallStyle: "hi\u1EC7n t\u1EA1i ch\u1ED7 b\xED m\u1EADt (Stage 4)"
+      has: 1
+      value: 188
+    src_lifetimeTicks: "\u0111o:routine 11 (ConfigRule.ItemLifetimeTicks \u2014 video
+      Map_1 f874\u2013968; 1 m\u1EABu)"
+    fallStyle: "tr\u1ED3i l\xEAn t\u1EA1i ch\u1ED7 b\xED m\u1EADt (ConfigRule.SecretRiseSpeed/SecretRisePx
+      \u2014 \u0111o:routine 11 f4200\u20134226); ra t\u1EEB v\u1EADt ch\u1EE9a th\xEC
+      r\u01A1i th\u01B0\u1EDDng"
     effectShort: "+2000 \u0111i\u1EC3m"
     source: wiki:Items#Bonuses; wiki:Secrets#Bonuses
   - id: 8
@@ -217,7 +233,7 @@ MonoBehaviour:
     score:
       has: 1
       value: 2000
-    src_score: 
+    src_score: wiki:Items#Bonuses
     healBars:
       has: 0
       value: 0
@@ -227,10 +243,13 @@ MonoBehaviour:
       value: 0
     src_effectTicks: 
     lifetimeTicks:
-      has: 0
-      value: 0
-    src_lifetimeTicks: "kh\xF4ng r\xF5 \u2014 kh\xF4ng c\xF3 video"
-    fallStyle: "hi\u1EC7n t\u1EA1i ch\u1ED7 b\xED m\u1EADt (Stage 5)"
+      has: 1
+      value: 188
+    src_lifetimeTicks: "\u0111o:routine 11 (ConfigRule.ItemLifetimeTicks \u2014 video
+      Map_1 f874\u2013968; 1 m\u1EABu)"
+    fallStyle: "tr\u1ED3i l\xEAn t\u1EA1i ch\u1ED7 b\xED m\u1EADt (ConfigRule.SecretRiseSpeed/SecretRisePx
+      \u2014 \u0111o:routine 11 f4200\u20134226); ra t\u1EEB v\u1EADt ch\u1EE9a th\xEC
+      r\u01A1i th\u01B0\u1EDDng"
     effectShort: "+2000 \u0111i\u1EC3m"
     source: wiki:Items#Bonuses; wiki:Secrets#Bonuses
   - id: 9
@@ -244,7 +263,7 @@ MonoBehaviour:
     score:
       has: 1
       value: 4000
-    src_score: 
+    src_score: wiki:Items#Bonuses
     healBars:
       has: 0
       value: 0
@@ -254,10 +273,13 @@ MonoBehaviour:
       value: 0
     src_effectTicks: 
     lifetimeTicks:
-      has: 0
-      value: 0
-    src_lifetimeTicks: "kh\xF4ng r\xF5 \u2014 kh\xF4ng c\xF3 video"
-    fallStyle: "ch\u1EC9 Second Quest (Stage 24/26/27)"
+      has: 1
+      value: 188
+    src_lifetimeTicks: "\u0111o:routine 11 (ConfigRule.ItemLifetimeTicks \u2014 video
+      Map_1 f874\u2013968; 1 m\u1EABu)"
+    fallStyle: "tr\u1ED3i l\xEAn t\u1EA1i ch\u1ED7 b\xED m\u1EADt (ConfigRule.SecretRiseSpeed/SecretRisePx
+      \u2014 \u0111o:routine 11 f4200\u20134226); ra t\u1EEB v\u1EADt ch\u1EE9a th\xEC
+      r\u01A1i th\u01B0\u1EDDng"
     effectShort: "+4000 \u0111i\u1EC3m"
     source: wiki:Secrets#Bonuses
   - id: 10
@@ -281,10 +303,12 @@ MonoBehaviour:
       value: 0
     src_effectTicks: 
     lifetimeTicks:
-      has: 0
-      value: 0
-    src_lifetimeTicks: "ch\u1EDD \u0111o routine 11"
-    fallStyle: "ch\u1EDD \u0111o routine 11"
+      has: 1
+      value: 188
+    src_lifetimeTicks: "\u0111o:routine 11 (ConfigRule.ItemLifetimeTicks \u2014 video
+      Map_1 f874\u2013968; 1 m\u1EABu)"
+    fallStyle: "r\u01A1i tr\u1ECDng l\u1EF1c ConfigRule.ItemGravity (\u0111o:routine
+      11)"
     effectShort: "Roi l\xEAn 1 c\u1EA5p (t\u1ED1i \u0111a c\u1EA5p 3); ch\u1EBFt
       \u21D2 v\u1EC1 c\u1EA5p 1; nh\u1EB7t \u21D2 c\u1EA3 th\u1EBF gi\u1EDBi \u0111\xF3ng
       b\u0103ng (ConfigSimon.WhipPickupFreezeTicks)"
@@ -310,10 +334,12 @@ MonoBehaviour:
       value: 0
     src_effectTicks: 
     lifetimeTicks:
-      has: 0
-      value: 0
-    src_lifetimeTicks: "ch\u1EDD \u0111o routine 11"
-    fallStyle: "ch\u1EDD \u0111o routine 11"
+      has: 1
+      value: 188
+    src_lifetimeTicks: "\u0111o:routine 11 (ConfigRule.ItemLifetimeTicks \u2014 video
+      Map_1 f874\u2013968; 1 m\u1EABu)"
+    fallStyle: "r\u01A1i tr\u1ECDng l\u1EF1c ConfigRule.ItemGravity (\u0111o:routine
+      11)"
     effectShort: "V\u0169 kh\xED ph\u1EE5 Dagger (ConfigSubWeapon)"
     source: wiki:Items#Dagger
   - id: 12
@@ -325,9 +351,10 @@ MonoBehaviour:
       has: 0
       value: 0
     score:
-      has: 0
+      has: 1
       value: 0
-    src_score: "ch\u1EDD \u0111o routine 11 (video Map_1 3:10.67 nh\u1EB7t r\xECu)"
+    src_score: "video:Map_1 (nh\u1EB7t Axe \u2014 SCORE kh\xF4ng \u0111\u1ED5i; \u0111o:routine
+      11 HUD csv)"
     healBars:
       has: 0
       value: 0
@@ -337,11 +364,12 @@ MonoBehaviour:
       value: 0
     src_effectTicks: 
     lifetimeTicks:
-      has: 0
-      value: 0
-    src_lifetimeTicks: "ch\u1EDD \u0111o routine 11 (wiki Stage 7: r\u01A1i m\u1EA5t
-      n\u1EBFu kh\xF4ng nh\u1EB7t ngay)"
-    fallStyle: "ch\u1EDD \u0111o routine 11"
+      has: 1
+      value: 188
+    src_lifetimeTicks: "\u0111o:routine 11 (ConfigRule.ItemLifetimeTicks \u2014 video
+      Map_1 f874\u2013968; 1 m\u1EABu)"
+    fallStyle: "r\u01A1i tr\u1ECDng l\u1EF1c ConfigRule.ItemGravity (\u0111o:routine
+      11)"
     effectShort: "V\u0169 kh\xED ph\u1EE5 Axe (ConfigSubWeapon)"
     source: wiki:Items#Axe
   - id: 13
@@ -353,9 +381,10 @@ MonoBehaviour:
       has: 0
       value: 0
     score:
-      has: 0
+      has: 1
       value: 0
-    src_score: "ch\u1EDD \u0111o routine 11 (kh\xF4ng nh\u1EB7t trong video)"
+    src_score: "suy lu\u1EADn: wiki ch\u1EC9 n\xEAu \u0111i\u1EC3m cho t\xFAi/bonus/multiplier
+      (CV_WIKI_DATA \xA72.1) \u2014 routine 11"
     healBars:
       has: 0
       value: 0
@@ -365,10 +394,12 @@ MonoBehaviour:
       value: 0
     src_effectTicks: 
     lifetimeTicks:
-      has: 0
-      value: 0
-    src_lifetimeTicks: "ch\u1EDD \u0111o routine 11"
-    fallStyle: "ch\u1EDD \u0111o routine 11"
+      has: 1
+      value: 188
+    src_lifetimeTicks: "\u0111o:routine 11 (ConfigRule.ItemLifetimeTicks \u2014 video
+      Map_1 f874\u2013968; 1 m\u1EABu)"
+    fallStyle: "r\u01A1i tr\u1ECDng l\u1EF1c ConfigRule.ItemGravity (\u0111o:routine
+      11)"
     effectShort: "V\u0169 kh\xED ph\u1EE5 Holy Water (ConfigSubWeapon)"
     source: wiki:Items#Holy Water
   - id: 14
@@ -380,9 +411,10 @@ MonoBehaviour:
       has: 0
       value: 0
     score:
-      has: 0
+      has: 1
       value: 0
-    src_score: "kh\xF4ng r\xF5 \u2014 kh\xF4ng c\xF3 trong video"
+    src_score: "suy lu\u1EADn: wiki ch\u1EC9 n\xEAu \u0111i\u1EC3m cho t\xFAi/bonus/multiplier
+      (CV_WIKI_DATA \xA72.1) \u2014 routine 11"
     healBars:
       has: 0
       value: 0
@@ -392,10 +424,12 @@ MonoBehaviour:
       value: 0
     src_effectTicks: 
     lifetimeTicks:
-      has: 0
-      value: 0
-    src_lifetimeTicks: "kh\xF4ng r\xF5 \u2014 kh\xF4ng c\xF3 trong video"
-    fallStyle: "ch\u1EDD \u0111o routine 11"
+      has: 1
+      value: 188
+    src_lifetimeTicks: "\u0111o:routine 11 (ConfigRule.ItemLifetimeTicks \u2014 video
+      Map_1 f874\u2013968; 1 m\u1EABu)"
+    fallStyle: "r\u01A1i tr\u1ECDng l\u1EF1c ConfigRule.ItemGravity (\u0111o:routine
+      11)"
     effectShort: "V\u0169 kh\xED ph\u1EE5 Cross (ConfigSubWeapon)"
     source: wiki:Items#Cross
   - id: 15
@@ -407,9 +441,10 @@ MonoBehaviour:
       has: 0
       value: 0
     score:
-      has: 0
+      has: 1
       value: 0
-    src_score: "ch\u1EDD \u0111o routine 11 (kh\xF4ng nh\u1EB7t trong video)"
+    src_score: "suy lu\u1EADn: wiki ch\u1EC9 n\xEAu \u0111i\u1EC3m cho t\xFAi/bonus/multiplier
+      (CV_WIKI_DATA \xA72.1) \u2014 routine 11"
     healBars:
       has: 0
       value: 0
@@ -419,10 +454,12 @@ MonoBehaviour:
       value: 0
     src_effectTicks: 
     lifetimeTicks:
-      has: 0
-      value: 0
-    src_lifetimeTicks: "ch\u1EDD \u0111o routine 11"
-    fallStyle: "ch\u1EDD \u0111o routine 11"
+      has: 1
+      value: 188
+    src_lifetimeTicks: "\u0111o:routine 11 (ConfigRule.ItemLifetimeTicks \u2014 video
+      Map_1 f874\u2013968; 1 m\u1EABu)"
+    fallStyle: "r\u01A1i tr\u1ECDng l\u1EF1c ConfigRule.ItemGravity (\u0111o:routine
+      11)"
     effectShort: "V\u0169 kh\xED ph\u1EE5 Stopwatch (ConfigSubWeapon)"
     source: wiki:Items#Stopwatch
   - id: 16
@@ -446,10 +483,12 @@ MonoBehaviour:
       value: 0
     src_effectTicks: 
     lifetimeTicks:
-      has: 0
-      value: 0
-    src_lifetimeTicks: "ch\u1EDD \u0111o routine 11"
-    fallStyle: "ch\u1EDD \u0111o routine 11"
+      has: 1
+      value: 188
+    src_lifetimeTicks: "\u0111o:routine 11 (ConfigRule.ItemLifetimeTicks \u2014 video
+      Map_1 f874\u2013968; 1 m\u1EABu)"
+    fallStyle: "r\u01A1i tr\u1ECDng l\u1EF1c ConfigRule.ItemGravity (\u0111o:routine
+      11)"
     effectShort: "2 v\u0169 kh\xED ph\u1EE5 c\xF9ng l\xFAc tr\xEAn m\xE0n; m\u1EA5t
       khi nh\u1EB7t v\u0169 kh\xED ph\u1EE5 kh\xE1c; r\u01A1i khi tr\xFAng enemy
       10 l\u1EA7n b\u1EB1ng c\xF9ng v\u0169 kh\xED ph\u1EE5"
@@ -475,10 +514,12 @@ MonoBehaviour:
       value: 0
     src_effectTicks: 
     lifetimeTicks:
-      has: 0
-      value: 0
-    src_lifetimeTicks: "kh\xF4ng r\xF5 \u2014 kh\xF4ng c\xF3 trong video"
-    fallStyle: "ch\u1EDD \u0111o routine 11"
+      has: 1
+      value: 188
+    src_lifetimeTicks: "\u0111o:routine 11 (ConfigRule.ItemLifetimeTicks \u2014 video
+      Map_1 f874\u2013968; 1 m\u1EABu)"
+    fallStyle: "r\u01A1i tr\u1ECDng l\u1EF1c ConfigRule.ItemGravity (\u0111o:routine
+      11)"
     effectShort: "3 v\u0169 kh\xED ph\u1EE5 c\xF9ng l\xFAc tr\xEAn m\xE0n; m\u1EA5t
       khi nh\u1EB7t v\u0169 kh\xED ph\u1EE5 kh\xE1c"
     source: wiki:Items#Triple Shot
@@ -491,9 +532,10 @@ MonoBehaviour:
       has: 0
       value: 0
     score:
-      has: 0
+      has: 1
       value: 0
-    src_score: "ch\u1EDD \u0111o routine 11 (video Map_1 1:15.02/1:24.69/2:42.76)"
+    src_score: "video:Map_1 (nh\u1EB7t Rosary \u2014 SCORE kh\xF4ng \u0111\u1ED5i;
+      \u0111o:routine 11 HUD csv)"
     healBars:
       has: 0
       value: 0
@@ -503,10 +545,12 @@ MonoBehaviour:
       value: 0
     src_effectTicks: 
     lifetimeTicks:
-      has: 0
-      value: 0
-    src_lifetimeTicks: "ch\u1EDD \u0111o routine 11"
-    fallStyle: "ch\u1EDD \u0111o routine 11"
+      has: 1
+      value: 188
+    src_lifetimeTicks: "\u0111o:routine 11 (ConfigRule.ItemLifetimeTicks \u2014 video
+      Map_1 f874\u2013968; 1 m\u1EABu)"
+    fallStyle: "r\u01A1i tr\u1ECDng l\u1EF1c ConfigRule.ItemGravity (\u0111o:routine
+      11)"
     effectShort: "Di\u1EC7t m\u1ECDi enemy tr\xEAn m\xE0n (tr\u1EEB boss; kh\xF4ng
       cho \u0111i\u1EC3m); ph\xE1 \u0111\u1EA1n c\u1EE7a boss; m\xE0n nh\xE1y tr\u1EAFng
       (ConfigRule.RosaryFlashTicks)"
@@ -520,25 +564,28 @@ MonoBehaviour:
       has: 0
       value: 0
     score:
-      has: 0
+      has: 1
       value: 0
-    src_score: "ch\u1EDD \u0111o routine 11 (video Map_1 2:58.20)"
+    src_score: "video:Map_1 (nh\u1EB7t InvisibilityPotion \u2014 SCORE kh\xF4ng \u0111\u1ED5i;
+      \u0111o:routine 11 HUD csv)"
     healBars:
       has: 0
       value: 0
     healFull: 0
     effectTicks:
-      has: 0
-      value: 0
-    src_effectTicks: "ch\u1EDD \u0111o routine 11 \u2014 wiki \u2248 5 s (300 tick)
-      nh\u01B0ng video Map_1: Simon trong su\u1ED1t \u2248 2.6 s (planner) v\xE0
-      SFX 27\u219228 c\xE1ch 3.9 s (2:58.20\u21923:02.11) \u2014 ng\u1EAFn h\u01A1n
-      wiki (H1: theo video)"
+      has: 1
+      value: 232
+    src_effectTicks: "\u0111o:routine 11 video Map_1 nh\u1EB7t f5347 \u2192 Simon
+      hi\u1EC7n l\u1EA1i th\u01B0\u1EDDng f5463 (116 frame; SFX 27\u219228 c\xE1ch
+      3.9 s) \u2014 wiki \u2248 5 s nh\u01B0ng theo video (H1); pha xem ConfigActorParam
+      Item.InvisibilityPotion"
     lifetimeTicks:
-      has: 0
-      value: 0
-    src_lifetimeTicks: "ch\u1EDD \u0111o routine 11"
-    fallStyle: "ch\u1EDD \u0111o routine 11"
+      has: 1
+      value: 188
+    src_lifetimeTicks: "\u0111o:routine 11 (ConfigRule.ItemLifetimeTicks \u2014 video
+      Map_1 f874\u2013968; 1 m\u1EABu)"
+    fallStyle: "r\u01A1i tr\u1ECDng l\u1EF1c ConfigRule.ItemGravity (\u0111o:routine
+      11)"
     effectShort: "T\xE0ng h\xECnh (l\u1EA5p l\xE1nh): \u0111i xuy\xEAn enemy kh\xF4ng
       b\u1ECB th\u01B0\u01A1ng; v\u1EABn ch\u1EBFt khi r\u01A1i h\u1ED1"
     source: wiki:Items#Invisibility Potion
@@ -551,10 +598,10 @@ MonoBehaviour:
       has: 0
       value: 0
     score:
-      has: 0
+      has: 1
       value: 0
-    src_score: "ch\u1EDD \u0111o routine 11 (video Map_1 1:39 nh\u1EB7t sau khi \u0111\u1EADp
-      t\u01B0\u1EDDng)"
+    src_score: "suy lu\u1EADn: wiki ch\u1EC9 n\xEAu \u0111i\u1EC3m cho t\xFAi/bonus/multiplier
+      (CV_WIKI_DATA \xA72.1) \u2014 routine 11"
     healBars:
       has: 1
       value: 6
@@ -564,10 +611,12 @@ MonoBehaviour:
       value: 0
     src_effectTicks: 
     lifetimeTicks:
-      has: 0
-      value: 0
-    src_lifetimeTicks: "ch\u1EDD \u0111o routine 11"
-    fallStyle: "ch\u1EDD \u0111o routine 11"
+      has: 1
+      value: 188
+    src_lifetimeTicks: "\u0111o:routine 11 (ConfigRule.ItemLifetimeTicks \u2014 video
+      Map_1 f874\u2013968; 1 m\u1EABu)"
+    fallStyle: "r\u01A1i tr\u1ECDng l\u1EF1c ConfigRule.ItemGravity (\u0111o:routine
+      11)"
     effectShort: "H\u1ED3i 6 v\u1EA1ch m\xE1u; ch\u1EC9 c\xF3 trong kh\u1ED1i g\u1EA1ch
       ph\xE1 b\u1EB1ng roi"
     source: wiki:Items#Pork Chop
@@ -580,9 +629,10 @@ MonoBehaviour:
       has: 0
       value: 0
     score:
-      has: 0
+      has: 1
       value: 0
-    src_score: "kh\xF4ng r\xF5 \u2014 kh\xF4ng c\xF3 trong video"
+    src_score: "suy lu\u1EADn: wiki ch\u1EC9 n\xEAu \u0111i\u1EC3m cho t\xFAi/bonus/multiplier
+      (CV_WIKI_DATA \xA72.1) \u2014 routine 11"
     healBars:
       has: 0
       value: 0
@@ -592,11 +642,14 @@ MonoBehaviour:
       value: 0
     src_effectTicks: 
     lifetimeTicks:
-      has: 0
-      value: 0
-    src_lifetimeTicks: "kh\xF4ng r\xF5 (wiki Stage 25: bi\u1EBFn m\u1EA5t sau ch\u1ED1c
-      l\xE1t)"
-    fallStyle: "ch\u1EDD \u0111o routine 11"
+      has: 1
+      value: 188
+    src_lifetimeTicks: "\u0111o:routine 11 (ConfigRule.ItemLifetimeTicks \u2014 video
+      Map_1 f874\u2013968; 1 m\u1EABu); wiki Stage 7/25: bi\u1EBFn m\u1EA5t sau ch\u1ED1c
+      l\xE1t"
+    fallStyle: "tr\u1ED3i l\xEAn t\u1EA1i ch\u1ED7 b\xED m\u1EADt (ConfigRule.SecretRiseSpeed/SecretRisePx
+      \u2014 \u0111o:routine 11 f4200\u20134226); ra t\u1EEB v\u1EADt ch\u1EE9a th\xEC
+      r\u01A1i th\u01B0\u1EDDng"
     effectShort: "+1 m\u1EA1ng; ch\u1EC9 hi\u1EC7n khi k\xEDch ho\u1EA1t b\xED m\u1EADt"
     source: wiki:Items#1up; wiki:Secrets
   - id: 22

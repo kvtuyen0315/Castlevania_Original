@@ -34,6 +34,8 @@ public class StageWorld : MonoBehaviour
     [SerializeField] private int rngSeed = NesRandom.DEFAULT_SEED;
     [Tooltip("Stage đang chơi (sát thương lên Simon theo GameConfig.DamageToSimon).")]
     [SerializeField] private int stage = 1;
+    [Tooltip("CVGP 11 — prefab item/FX/vật chứa + vật liệu đổi màu (CVGP/Build Item Prefabs). Có blockPrefab ⇒ tự sinh khối phá được.")]
+    [SerializeField] private ItemCatalog itemCatalog;
 
     private readonly List<Entity>[] groups = new List<Entity>[Entity.GROUP_COUNT];
     private readonly List<SpawnPoint> spawnPoints = new List<SpawnPoint>();
@@ -44,6 +46,8 @@ public class StageWorld : MonoBehaviour
     private bool initialized;
     private int worldFreezeFrom = 1, worldFreezeTo;
     private int enemyFreezeFrom = 1, enemyFreezeTo;
+    private int flashFrom = 1, flashTo, flashHalf = 2;
+    private ScreenFlash screenFlash;
 
     public NesRandom Rng { get; } = new NesRandom();
     public LevelSection Section { get; private set; }
@@ -52,6 +56,7 @@ public class StageWorld : MonoBehaviour
     public CombatResolver Combat => combat;
     public EntityPool Pool => pool;
     public GameConfig Config => GameConfig.Current;
+    public ItemCatalog Items { get => itemCatalog; set => itemCatalog = value; }
     public int Stage { get => stage; set => stage = value; }
     /// <summary>Số tick đã Step (không tính tick Paused). 0 trước tick đầu.</summary>
     public int TickCount { get; private set; }
@@ -130,6 +135,8 @@ public class StageWorld : MonoBehaviour
         TickCount = 0;
         worldFreezeFrom = enemyFreezeFrom = 1;
         worldFreezeTo = enemyFreezeTo = 0;
+        flashFrom = 1;
+        flashTo = 0;
         Paused = false;
 
         sections.Clear();
@@ -154,6 +161,7 @@ public class StageWorld : MonoBehaviour
                     Register(scratch[i]);
             scratch.Clear();
         }
+        SpawnSectionProps();
         if (cameraController != null)
         {
             cameraController.Target = Player;
@@ -182,6 +190,9 @@ public class StageWorld : MonoBehaviour
         }
         Player = null;
         spawnPoints.Clear();
+        SetScreenFlash(false);
+        if (Section != null)
+            Section.RestoreCells();
         if (cameraController != null)
             cameraController.ResetHome();
     }
@@ -198,6 +209,7 @@ public class StageWorld : MonoBehaviour
             s.gameObject.SetActive(true);
         Section = s;
         s.PlaceForCamera(0);
+        s.RestoreCells();   // lưới va chạm dựng mới ⇒ khối đã phá hiện lại trên Tilemap (CVGP 11)
         Tiles = new TileCollision(s.data);
         spawnPoints.Clear();
         s.GetComponentsInChildren(true, spawnPoints);
@@ -212,6 +224,7 @@ public class StageWorld : MonoBehaviour
     {
         ClearNonPlayer();
         LoadSection(s);
+        SpawnSectionProps();
         if (Player != null)
             Player.SetPositionPx(x, y);
         if (cameraController != null)
@@ -231,6 +244,25 @@ public class StageWorld : MonoBehaviour
         Cleanup();
         for (int i = 0; i < spawnPoints.Count; i++)
             spawnPoints[i].ResetSpawn();
+    }
+
+    /// <summary>
+    /// Sinh thực thể địa hình của section (CVGP 11): 1 BreakableBlock cho mỗi ô Breakable chưa vỡ (ItemCatalog.blockPrefab).
+    /// Init/Warp tự gọi; harness gọi lại sau ClearNonPlayer + LoadSection để đặt lại.
+    /// </summary>
+    public void SpawnSectionProps()
+    {
+        if (itemCatalog == null || itemCatalog.blockPrefab == null || Section == null || Tiles == null)
+            return;
+        var d = Section.data;
+        for (int r = 0; r < d.rows; r++)
+            for (int c = 0; c < d.cols; c++)
+                if (Tiles.CellType(c, r) == eTileCollision.Breakable && !Tiles.IsBroken(c, r))
+                {
+                    var b = Spawn(itemCatalog.blockPrefab, 0, 0, -1) as BreakableBlock;
+                    if (b != null)
+                        b.Bind(c, r);
+                }
     }
 
     // ---------------------------------------------------------------- thực thể
@@ -274,6 +306,57 @@ public class StageWorld : MonoBehaviour
                 n++;
             }
         return n;
+    }
+
+    /// <summary>
+    /// Rosary (CVGP 11, wiki Items#Rosary): diệt mọi Enemy trên màn trừ boss (IsBoss) + phá mọi đạn enemy/boss trên màn; KHÔNG cho
+    /// điểm (Kill thẳng, không qua OnHurt). Trả số thực thể đã gỡ. Video 1:15.0: Zombie biến mất ngay, không lửa.
+    /// </summary>
+    public int RosaryClear()
+    {
+        int cx = cameraController != null ? cameraController.X : 0, n = 0;
+        for (int g = (int)eEntityGroup.Enemy; g <= (int)eEntityGroup.EnemyShot; g++)
+        {
+            var list = groups[g];
+            for (int i = 0; i < list.Count; i++)
+            {
+                var e = list[i];
+                if (!e.Alive || (g == (int)eEntityGroup.Enemy && e.IsBoss))
+                    continue;
+                if (e.X < cx || e.X >= cx + NesCoord.SCREEN_W)
+                    continue;
+                e.Kill(eKillReason.Killed);
+                n++;
+            }
+        }
+        return n;
+    }
+
+    /// <summary>Nháy màn (Rosary): từ tick kế tiếp, <paramref name="ticks"/> tick, xám/thường mỗi nửa chu kỳ <paramref name="period"/>.</summary>
+    public void FlashScreen(int ticks, int period)
+    {
+        flashFrom = TickCount + 1;
+        flashTo = TickCount + ticks;
+        flashHalf = Mathf.Max(1, period / 2);
+    }
+
+    /// <summary>Tick hiện tại đang ở pha xám của nháy màn?</summary>
+    public bool IsScreenFlashOn => TickCount >= flashFrom && TickCount <= flashTo && ((TickCount - flashFrom) / flashHalf) % 2 == 0;
+
+    private void SetScreenFlash(bool on)
+    {
+        if (screenFlash == null)
+        {
+            if (!on || cameraController == null || cameraController.Cam == null || itemCatalog == null)
+                return;
+            screenFlash = cameraController.Cam.GetComponent<ScreenFlash>();
+            if (screenFlash == null)
+                screenFlash = cameraController.Cam.gameObject.AddComponent<ScreenFlash>();
+            screenFlash.material = itemCatalog.flashMaterial;
+            screenFlash.flashColor = itemCatalog.flashColor;
+        }
+        if (screenFlash.enabled != on)
+            screenFlash.enabled = on;
     }
 
     /// <summary>Đặt lại RNG về seed của stage (Init tự gọi; harness gọi để so tất định giữa các lần chạy).</summary>
@@ -360,6 +443,7 @@ public class StageWorld : MonoBehaviour
         }
         Cleanup();
         SyncViews();
+        SetScreenFlash(IsScreenFlashOn);
 
         if (MeasurePerf)
         {

@@ -1,0 +1,3 @@
+# 120 tick, hash 59bc6805
+# CVGP 11 ItemProbe kịch bản 'subweapons': nhặt Dagger (đang Shot II ⇒ đổi vũ khí mất multiplier), Axe, Holy Water, Cross, Stopwatch; rồi Double khi cầm Stopwatch ⇒ +700
+R*110 -*10

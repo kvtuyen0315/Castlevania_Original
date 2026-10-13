@@ -839,6 +839,7 @@ MonoBehaviour:
   entityRoot: {fileID: 1516683172}
   rngSeed: 10845
   stage: 1
+  itemCatalog: {fileID: 11400000, guid: 77c21ce0ce3c37d45bf85ff73606d8c3, type: 2}
 --- !u!4 &1363769703
 Transform:
   m_ObjectHideFlags: 0

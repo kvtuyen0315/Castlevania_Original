@@ -42,3 +42,15 @@ SubWeapon.Dagger,offscreenMarginPx,8,,,px,quy ước routine 09 (vũ khí biến
 SubWeapon.Axe,offscreenMarginPx,8,,,px,quy ước routine 09 (vũ khí biến mất khi tâm ra khỏi màn quá nửa sprite 16 px),
 SubWeapon.HolyWater,offscreenMarginPx,8,,,px,quy ước routine 09 (vũ khí biến mất khi tâm ra khỏi màn quá nửa sprite 16 px),
 SubWeapon.Cross,offscreenMarginPx,8,,,px,quy ước routine 09 (vũ khí biến mất khi tâm ra khỏi màn quá nửa sprite 16 px),
+Item.SmallHeart,fallSpeed,0.5,,,px/tick,đo:routine 11 video Map_1 f4046–4069 (CB): y tăng đều 0.477 px/tick (22 px / 46 tick),"rơi đều, không gia tốc"
+Item.SmallHeart,swayVx0,1.125,1.0,1.2,px/tick,"đo:routine 11 cùng vết: mô hình vận tốc ngang đổi đều khớp rms 0.44 px (v0 1.10, a 0.045) — làm tròn 288/256",lần đầu sang PHẢI (1 mẫu — suy luận)
+Item.SmallHeart,swayAccel,0.046875,0.04,0.05,px/tick²,đo:routine 11 cùng vết (a 0.045) — làm tròn 12/256; biên độ v0²/2a = 13.5 px (video lệch tối đa +14),vận tốc ngang đổi chiều quanh điểm sinh (chu kỳ 4·v0/a = 96 tick)
+Item.InvisibilityPotion,visibleTicks,84,80,86,tick,"đo:routine 11 video Map_1 f5347 (nhặt) → f5389 (Simon hết vẽ màu thường; trước đó vẫn hiện, chỉ mất vài frame do nhấp nháy sprite)",pha 1: vẽ thường nhưng đã xuyên enemy (suy luận)
+Item.InvisibilityPotion,glintFromTick,160,,,tick,"đo:routine 11 video Map_1: lóe bảng màu white thưa ở t 106/142, dày từ t 168 (168–178, 184, 196, 206, 212) — xấp xỉ",pha 2: ẩn; từ tick này lóe white
+Item.InvisibilityPotion,glintPeriodTicks,10,,,tick,đo:routine 11 cùng cửa sổ (lóe cách ~10 tick) — xấp xỉ,
+Item.InvisibilityPotion,glintOnTicks,3,,,tick,đo:routine 11 cùng cửa sổ (mỗi lần lóe 1–2 frame video) — xấp xỉ,
+Item.BreakableBlock,debrisVxTop,0.75,,,px/tick,đo:routine 11 video Map_1 1:39.6 f2989–3004 (mảnh tím bay ngang ≈ 0.76 px/tick) — xấp xỉ ±0.3,2 mảnh trên: ±vx
+Item.BreakableBlock,debrisVyTop,-1.5,,,px/tick,"đo:routine 11 cùng cửa sổ (mảnh lên rồi rơi, đỉnh ~10 tick) — xấp xỉ",
+Item.BreakableBlock,debrisVxBottom,0.375,,,px/tick,đo:routine 11 cùng cửa sổ (mảnh dưới ≈ ±0.3 px/tick) — xấp xỉ,2 mảnh dưới
+Item.BreakableBlock,debrisVyBottom,-0.75,,,px/tick,đo:routine 11 cùng cửa sổ — xấp xỉ,
+Item.BreakableBlock,debrisGravity,0.1875,0.15,0.25,px/tick²,đo:routine 11 cùng cửa sổ (khớp parabol 1 mảnh ≈ 0.19) — xấp xỉ,"mảnh xuyên địa hình, biến mất khi ra khỏi màn"

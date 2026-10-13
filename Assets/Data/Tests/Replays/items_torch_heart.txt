@@ -1,0 +1,3 @@
+# 93 tick, hash e26d773f
+# CVGP 11 ItemProbe kịch bản 'torch_heart': chậu lửa (Torch) x 336 chứa Large Heart: roi cấp 1 ⇒ lửa ⇒ item sau 20 tick ⇒ rơi g 0.25 ⇒ đi tới nhặt (+5 tim)
+-*2 B*1 -*40 R*30 -*20

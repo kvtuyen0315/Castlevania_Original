@@ -227,6 +227,7 @@ public static class CvgpArenaBuilder
         wso.FindProperty("cameraController").objectReferenceValue = camCtl;
         wso.FindProperty("startSection").objectReferenceValue = arena.GetComponent<LevelSection>();
         wso.FindProperty("entityRoot").objectReferenceValue = entities.transform;
+        wso.FindProperty("itemCatalog").objectReferenceValue = AssetDatabase.LoadAssetAtPath<ItemCatalog>(CvgpItemBuilder.CATALOG);   // CVGP 11
         wso.ApplyModifiedPropertiesWithoutUndo();
 
         var cso = new SerializedObject(camCtl);

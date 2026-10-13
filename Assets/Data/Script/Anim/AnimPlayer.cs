@@ -22,6 +22,8 @@ public class AnimPlayer
     private int playTick = int.MinValue;
 
     public AnimSet Set { get; set; }
+    /// <summary>Renderer lớp phủ (roi) — null tới lần đầu có lớp phủ (CVGP 11 đổi bảng màu cả roi).</summary>
+    public SpriteRenderer Overlay => overlay;
     public AnimSet.Anim Current { get; private set; }
     public int FrameIndex { get; private set; }
     public bool FrameChanged { get; private set; }
@@ -158,5 +160,6 @@ public class AnimPlayer
         var go = new GameObject("Overlay");
         go.transform.SetParent(body.transform, false);
         overlay = go.AddComponent<SpriteRenderer>();
+        overlay.sharedMaterial = body.sharedMaterial;
     }
 }

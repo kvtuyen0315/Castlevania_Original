@@ -1,0 +1,3 @@
+# 80 tick, hash f70f6305
+# CVGP 11 ItemProbe kịch bản 'heal_life': Pot Roast +6 vạch (6→12, 14→16), 1UP +1 mạng, Magic Crystal hồi đầy + sự kiện
+R*60 -*20

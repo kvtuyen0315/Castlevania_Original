@@ -1,0 +1,3 @@
+# 77 tick, hash 50924c4f
+# CVGP 11 ItemProbe kịch bản 'mult_rule': luật multiplier: cầm Dagger đã trúng 10 lần ⇒ nến tim nhỏ ra Double Shot ⇒ nhặt ⇒ Shot II
+-*2 B*1 -*30 R*40 -*4

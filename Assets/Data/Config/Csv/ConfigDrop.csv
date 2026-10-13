@@ -1,1 +1,18 @@
 objectId,stage,container,item,note,source
+CE_T1,1,Torch,LargeHeart,chậu lửa 1 (x≈95),wiki:Stages 1-3 ảnh bản đồ (CV_WIKI_DATA §6); video:Map_1 0:03.2 (tim lớn)
+CE_T2,1,Torch,MorningStar,chậu lửa 2 (x≈223),wiki:Stages 1-3 ảnh bản đồ (CV_WIKI_DATA §6); video:Map_1 0:05.8
+CE_T3,1,Torch,MorningStar,chậu lửa 3 (x≈351),wiki:Stages 1-3 ảnh bản đồ (CV_WIKI_DATA §6); video:Map_1 0:08.9
+CE_T4,1,Torch,LargeHeart,chậu lửa 4 (x≈479),wiki:Stages 1-3 ảnh bản đồ (CV_WIKI_DATA §6); video:Map_1 0:12.1
+CE_T5,1,Torch,Dagger,chậu lửa 5 (x≈607),wiki:Stages 1-3 ảnh bản đồ (CV_WIKI_DATA §6); video:Map_1 0:14.5
+EH_C02,1,WallCandle,Stopwatch,nến #2 (wiki x 96) — video 0:29.5 đồng hồ rơi ra ở x≈254 khi Zombie chết (15 đối chiếu),wiki:Stages 1-3 ảnh bản đồ (CV_WIKI_DATA §6)
+EH_C14,1,WallCandle,HolyWater,nến #14 đỉnh cầu thang Bục B (wiki x 864; video rơi ở x≈799),wiki:Stages 1-3 ảnh bản đồ (CV_WIKI_DATA §6); video:Map_1 0:57.3
+EH_C23,1,WallCandle,Rosary,nến #23 Bục D (wiki x 1440),"wiki:Stages 1-3 ảnh bản đồ (CV_WIKI_DATA §6); video:Map_1 1:23.5 (rosary rơi, nhặt 1:24.73)"
+EH_X63_7,1,BreakableBlock,PurpleMoneyBag,"khối phải nhất bục Panther 3 (ô lưới 06 (63,7))",wiki:Secrets#Miscellaneous (Purple money bag 400) — video không phá
+CA_X16_10,2,BreakableBlock,PotRoast,"tường khối nhỏ — khối thấp nhất (ô (16,10))","video:Map_1 1:39.6 (roi khi ngồi, lộ thịt nướng NGAY); wiki:Secrets Pot Roast Stage 2"
+CA_X16_9,2,BreakableBlock,None,"khối trên (ô (16,9)) — vỡ không ra gì","video:Map_1 1:40.55 (đập vỡ, không item)"
+CB_X29_6,2,BreakableBlock,None,"khối trên-phải (ô (29,6)) — phá để thả xuống, bí mật = ngồi trên khối thấp (SecretTrigger)",video:Map_1 2:19.05; wiki:Secrets Bonuses Stage 2
+ST2_C10,2,WallCandle,Stopwatch,nến #10 tầng dưới,wiki:Stages 1-3 ảnh bản đồ (CV_WIKI_DATA §6)
+ST2_C13,2,WallCandle,Rosary,nến #13 tầng trên-phải,wiki:Stages 1-3 ảnh bản đồ (CV_WIKI_DATA §6); video:Map_1 2:42.7 (rosary trên lối đi)
+PB_C06,3,WallCandle,Axe,nến #6 giữa cầu thang cuối,wiki:Stages 1-3 ảnh bản đồ (CV_WIKI_DATA §6); wiki:Stages 1-3 note 2; video:Map_1 3:09.5
+PB_POTION,3,WallCandle,InvisibilityPotion,nến giấu bình giữa cầu thang (wiki: ứng viên #3/#4),wiki:Stages 1-3 note 1; video:Map_1 2:57.3
+PB_X43_9,3,BreakableBlock,DoubleShot,"khối PHẢI bệ chân thang phòng boss (ô (43,9))",video:Map_1 3:17.62–3:18.0 (II rơi ra); wiki:Secrets Shot Multiplier Stage 3

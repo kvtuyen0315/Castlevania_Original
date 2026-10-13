@@ -1,0 +1,3 @@
+# 121 tick, hash 94fbc86f
+# CVGP 11 ItemProbe kịch bản 'block': khối phá được Arena (63,7) (StageWorld tự sinh): nhảy + roi cấp 3 ⇒ vỡ, ô hết đặc, tile xoá, 4 mảnh, item ra NGAY tại ô rồi rơi
+-*2 A*1 -*9 B*1 -*80 L*8 -*20

@@ -650,3 +650,189 @@ MonoBehaviour:
     source: "quy \u01B0\u1EDBc routine 09 (v\u0169 kh\xED bi\u1EBFn m\u1EA5t khi
       t\xE2m ra kh\u1ECFi m\xE0n qu\xE1 n\u1EEDa sprite 16 px)"
     note: 
+  - actor: Item.SmallHeart
+    key: fallSpeed
+    value:
+      has: 1
+      value: 0.5
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px/tick
+    source: "\u0111o:routine 11 video Map_1 f4046\u20134069 (CB): y t\u0103ng \u0111\u1EC1u
+      0.477 px/tick (22 px / 46 tick)"
+    note: "r\u01A1i \u0111\u1EC1u, kh\xF4ng gia t\u1ED1c"
+  - actor: Item.SmallHeart
+    key: swayVx0
+    value:
+      has: 1
+      value: 1.125
+    min:
+      has: 1
+      value: 1
+    max:
+      has: 1
+      value: 1.2
+    unit: px/tick
+    source: "\u0111o:routine 11 c\xF9ng v\u1EBFt: m\xF4 h\xECnh v\u1EADn t\u1ED1c
+      ngang \u0111\u1ED5i \u0111\u1EC1u kh\u1EDBp rms 0.44 px (v0 1.10, a 0.045)
+      \u2014 l\xE0m tr\xF2n 288/256"
+    note: "l\u1EA7n \u0111\u1EA7u sang PH\u1EA2I (1 m\u1EABu \u2014 suy lu\u1EADn)"
+  - actor: Item.SmallHeart
+    key: swayAccel
+    value:
+      has: 1
+      value: 0.046875
+    min:
+      has: 1
+      value: 0.04
+    max:
+      has: 1
+      value: 0.05
+    unit: "px/tick\xB2"
+    source: "\u0111o:routine 11 c\xF9ng v\u1EBFt (a 0.045) \u2014 l\xE0m tr\xF2n
+      12/256; bi\xEAn \u0111\u1ED9 v0\xB2/2a = 13.5 px (video l\u1EC7ch t\u1ED1i
+      \u0111a +14)"
+    note: "v\u1EADn t\u1ED1c ngang \u0111\u1ED5i chi\u1EC1u quanh \u0111i\u1EC3m
+      sinh (chu k\u1EF3 4\xB7v0/a = 96 tick)"
+  - actor: Item.InvisibilityPotion
+    key: visibleTicks
+    value:
+      has: 1
+      value: 84
+    min:
+      has: 1
+      value: 80
+    max:
+      has: 1
+      value: 86
+    unit: tick
+    source: "\u0111o:routine 11 video Map_1 f5347 (nh\u1EB7t) \u2192 f5389 (Simon
+      h\u1EBFt v\u1EBD m\xE0u th\u01B0\u1EDDng; tr\u01B0\u1EDBc \u0111\xF3 v\u1EABn
+      hi\u1EC7n, ch\u1EC9 m\u1EA5t v\xE0i frame do nh\u1EA5p nh\xE1y sprite)"
+    note: "pha 1: v\u1EBD th\u01B0\u1EDDng nh\u01B0ng \u0111\xE3 xuy\xEAn enemy (suy
+      lu\u1EADn)"
+  - actor: Item.InvisibilityPotion
+    key: glintFromTick
+    value:
+      has: 1
+      value: 160
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "\u0111o:routine 11 video Map_1: l\xF3e b\u1EA3ng m\xE0u white th\u01B0a
+      \u1EDF t 106/142, d\xE0y t\u1EEB t 168 (168\u2013178, 184, 196, 206, 212) \u2014
+      x\u1EA5p x\u1EC9"
+    note: "pha 2: \u1EA9n; t\u1EEB tick n\xE0y l\xF3e white"
+  - actor: Item.InvisibilityPotion
+    key: glintPeriodTicks
+    value:
+      has: 1
+      value: 10
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "\u0111o:routine 11 c\xF9ng c\u1EEDa s\u1ED5 (l\xF3e c\xE1ch ~10 tick)
+      \u2014 x\u1EA5p x\u1EC9"
+    note: 
+  - actor: Item.InvisibilityPotion
+    key: glintOnTicks
+    value:
+      has: 1
+      value: 3
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "\u0111o:routine 11 c\xF9ng c\u1EEDa s\u1ED5 (m\u1ED7i l\u1EA7n l\xF3e
+      1\u20132 frame video) \u2014 x\u1EA5p x\u1EC9"
+    note: 
+  - actor: Item.BreakableBlock
+    key: debrisVxTop
+    value:
+      has: 1
+      value: 0.75
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px/tick
+    source: "\u0111o:routine 11 video Map_1 1:39.6 f2989\u20133004 (m\u1EA3nh t\xEDm
+      bay ngang \u2248 0.76 px/tick) \u2014 x\u1EA5p x\u1EC9 \xB10.3"
+    note: "2 m\u1EA3nh tr\xEAn: \xB1vx"
+  - actor: Item.BreakableBlock
+    key: debrisVyTop
+    value:
+      has: 1
+      value: -1.5
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px/tick
+    source: "\u0111o:routine 11 c\xF9ng c\u1EEDa s\u1ED5 (m\u1EA3nh l\xEAn r\u1ED3i
+      r\u01A1i, \u0111\u1EC9nh ~10 tick) \u2014 x\u1EA5p x\u1EC9"
+    note: 
+  - actor: Item.BreakableBlock
+    key: debrisVxBottom
+    value:
+      has: 1
+      value: 0.375
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px/tick
+    source: "\u0111o:routine 11 c\xF9ng c\u1EEDa s\u1ED5 (m\u1EA3nh d\u01B0\u1EDBi
+      \u2248 \xB10.3 px/tick) \u2014 x\u1EA5p x\u1EC9"
+    note: "2 m\u1EA3nh d\u01B0\u1EDBi"
+  - actor: Item.BreakableBlock
+    key: debrisVyBottom
+    value:
+      has: 1
+      value: -0.75
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px/tick
+    source: "\u0111o:routine 11 c\xF9ng c\u1EEDa s\u1ED5 \u2014 x\u1EA5p x\u1EC9"
+    note: 
+  - actor: Item.BreakableBlock
+    key: debrisGravity
+    value:
+      has: 1
+      value: 0.1875
+    min:
+      has: 1
+      value: 0.15
+    max:
+      has: 1
+      value: 0.25
+    unit: "px/tick\xB2"
+    source: "\u0111o:routine 11 c\xF9ng c\u1EEDa s\u1ED5 (kh\u1EDBp parabol 1 m\u1EA3nh
+      \u2248 0.19) \u2014 x\u1EA5p x\u1EC9"
+    note: "m\u1EA3nh xuy\xEAn \u0111\u1ECBa h\xECnh, bi\u1EBFn m\u1EA5t khi ra kh\u1ECFi
+      m\xE0n"

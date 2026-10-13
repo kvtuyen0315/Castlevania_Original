@@ -12,4 +12,124 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d70c4aad77e6b464a871021e70a9b016, type: 3}
   m_Name: ConfigDrop
   m_EditorClassIdentifier: 
-  rows: []
+  rows:
+  - objectId: CE_T1
+    stage: 1
+    container: 101
+    item: 2
+    note: "ch\u1EADu l\u1EEDa 1 (x\u224895)"
+    source: "wiki:Stages 1-3 \u1EA3nh b\u1EA3n \u0111\u1ED3 (CV_WIKI_DATA \xA76);
+      video:Map_1 0:03.2 (tim l\u1EDBn)"
+  - objectId: CE_T2
+    stage: 1
+    container: 101
+    item: 10
+    note: "ch\u1EADu l\u1EEDa 2 (x\u2248223)"
+    source: "wiki:Stages 1-3 \u1EA3nh b\u1EA3n \u0111\u1ED3 (CV_WIKI_DATA \xA76);
+      video:Map_1 0:05.8"
+  - objectId: CE_T3
+    stage: 1
+    container: 101
+    item: 10
+    note: "ch\u1EADu l\u1EEDa 3 (x\u2248351)"
+    source: "wiki:Stages 1-3 \u1EA3nh b\u1EA3n \u0111\u1ED3 (CV_WIKI_DATA \xA76);
+      video:Map_1 0:08.9"
+  - objectId: CE_T4
+    stage: 1
+    container: 101
+    item: 2
+    note: "ch\u1EADu l\u1EEDa 4 (x\u2248479)"
+    source: "wiki:Stages 1-3 \u1EA3nh b\u1EA3n \u0111\u1ED3 (CV_WIKI_DATA \xA76);
+      video:Map_1 0:12.1"
+  - objectId: CE_T5
+    stage: 1
+    container: 101
+    item: 11
+    note: "ch\u1EADu l\u1EEDa 5 (x\u2248607)"
+    source: "wiki:Stages 1-3 \u1EA3nh b\u1EA3n \u0111\u1ED3 (CV_WIKI_DATA \xA76);
+      video:Map_1 0:14.5"
+  - objectId: EH_C02
+    stage: 1
+    container: 102
+    item: 15
+    note: "n\u1EBFn #2 (wiki x 96) \u2014 video 0:29.5 \u0111\u1ED3ng h\u1ED3 r\u01A1i
+      ra \u1EDF x\u2248254 khi Zombie ch\u1EBFt (15 \u0111\u1ED1i chi\u1EBFu)"
+    source: "wiki:Stages 1-3 \u1EA3nh b\u1EA3n \u0111\u1ED3 (CV_WIKI_DATA \xA76)"
+  - objectId: EH_C14
+    stage: 1
+    container: 102
+    item: 13
+    note: "n\u1EBFn #14 \u0111\u1EC9nh c\u1EA7u thang B\u1EE5c B (wiki x 864; video
+      r\u01A1i \u1EDF x\u2248799)"
+    source: "wiki:Stages 1-3 \u1EA3nh b\u1EA3n \u0111\u1ED3 (CV_WIKI_DATA \xA76);
+      video:Map_1 0:57.3"
+  - objectId: EH_C23
+    stage: 1
+    container: 102
+    item: 18
+    note: "n\u1EBFn #23 B\u1EE5c D (wiki x 1440)"
+    source: "wiki:Stages 1-3 \u1EA3nh b\u1EA3n \u0111\u1ED3 (CV_WIKI_DATA \xA76);
+      video:Map_1 1:23.5 (rosary r\u01A1i, nh\u1EB7t 1:24.73)"
+  - objectId: EH_X63_7
+    stage: 1
+    container: 103
+    item: 4
+    note: "kh\u1ED1i ph\u1EA3i nh\u1EA5t b\u1EE5c Panther 3 (\xF4 l\u01B0\u1EDBi
+      06 (63,7))"
+    source: "wiki:Secrets#Miscellaneous (Purple money bag 400) \u2014 video kh\xF4ng
+      ph\xE1"
+  - objectId: CA_X16_10
+    stage: 2
+    container: 103
+    item: 20
+    note: "t\u01B0\u1EDDng kh\u1ED1i nh\u1ECF \u2014 kh\u1ED1i th\u1EA5p nh\u1EA5t
+      (\xF4 (16,10))"
+    source: "video:Map_1 1:39.6 (roi khi ng\u1ED3i, l\u1ED9 th\u1ECBt n\u01B0\u1EDBng
+      NGAY); wiki:Secrets Pot Roast Stage 2"
+  - objectId: CA_X16_9
+    stage: 2
+    container: 103
+    item: 0
+    note: "kh\u1ED1i tr\xEAn (\xF4 (16,9)) \u2014 v\u1EE1 kh\xF4ng ra g\xEC"
+    source: "video:Map_1 1:40.55 (\u0111\u1EADp v\u1EE1, kh\xF4ng item)"
+  - objectId: CB_X29_6
+    stage: 2
+    container: 103
+    item: 0
+    note: "kh\u1ED1i tr\xEAn-ph\u1EA3i (\xF4 (29,6)) \u2014 ph\xE1 \u0111\u1EC3 th\u1EA3
+      xu\u1ED1ng, b\xED m\u1EADt = ng\u1ED3i tr\xEAn kh\u1ED1i th\u1EA5p (SecretTrigger)"
+    source: video:Map_1 2:19.05; wiki:Secrets Bonuses Stage 2
+  - objectId: ST2_C10
+    stage: 2
+    container: 102
+    item: 15
+    note: "n\u1EBFn #10 t\u1EA7ng d\u01B0\u1EDBi"
+    source: "wiki:Stages 1-3 \u1EA3nh b\u1EA3n \u0111\u1ED3 (CV_WIKI_DATA \xA76)"
+  - objectId: ST2_C13
+    stage: 2
+    container: 102
+    item: 18
+    note: "n\u1EBFn #13 t\u1EA7ng tr\xEAn-ph\u1EA3i"
+    source: "wiki:Stages 1-3 \u1EA3nh b\u1EA3n \u0111\u1ED3 (CV_WIKI_DATA \xA76);
+      video:Map_1 2:42.7 (rosary tr\xEAn l\u1ED1i \u0111i)"
+  - objectId: PB_C06
+    stage: 3
+    container: 102
+    item: 12
+    note: "n\u1EBFn #6 gi\u1EEFa c\u1EA7u thang cu\u1ED1i"
+    source: "wiki:Stages 1-3 \u1EA3nh b\u1EA3n \u0111\u1ED3 (CV_WIKI_DATA \xA76);
+      wiki:Stages 1-3 note 2; video:Map_1 3:09.5"
+  - objectId: PB_POTION
+    stage: 3
+    container: 102
+    item: 19
+    note: "n\u1EBFn gi\u1EA5u b\xECnh gi\u1EEFa c\u1EA7u thang (wiki: \u1EE9ng vi\xEAn
+      #3/#4)"
+    source: wiki:Stages 1-3 note 1; video:Map_1 2:57.3
+  - objectId: PB_X43_9
+    stage: 3
+    container: 103
+    item: 16
+    note: "kh\u1ED1i PH\u1EA2I b\u1EC7 ch\xE2n thang ph\xF2ng boss (\xF4 (43,9))"
+    source: "video:Map_1 3:17.62\u20133:18.0 (II r\u01A1i ra); wiki:Secrets Shot
+      Multiplier Stage 3"

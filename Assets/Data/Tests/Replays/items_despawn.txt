@@ -1,0 +1,3 @@
+# 42 tick, hash faf0cfed
+# CVGP 11 ItemProbe kịch bản 'despawn': item nằm sàn gần mép trái màn: camera cuộn ⇒ gỡ khi tâm cách mép < 8 px
+-*20 R*12 -*10

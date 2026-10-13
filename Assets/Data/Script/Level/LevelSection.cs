@@ -24,6 +24,44 @@ public class LevelSection : MonoBehaviour
         transform.localPosition = NesCoord.ToWorld(-cx, LevelSectionData.SCREEN_Y);
     }
 
+    // ---------------------------------------------------------------- khối phá được (CVGP 11)
+
+    private struct ClearedTile
+    {
+        public Vector3Int cell;
+        public TileBase tile;
+    }
+
+    private readonly System.Collections.Generic.List<ClearedTile> cleared = new System.Collections.Generic.List<ClearedTile>(8);
+
+    /// <summary>Xoá 4 tile 8×8 của ô va chạm 16×16 (col, row) trên BG (lỗ đen như video 1:39.6) — nhớ để RestoreCells.</summary>
+    public void ClearCell(int col, int row)
+    {
+        if (bg == null)
+            return;
+        for (int dy = 0; dy < 2; dy++)
+            for (int dx = 0; dx < 2; dx++)
+            {
+                // ô tile (c, −r−1) ⇒ góc tile = px (8c, 8r) (CVGP 06)
+                var cell = new Vector3Int(col * 2 + dx, -(row * 2 + dy) - 1, 0);
+                var t = bg.GetTile(cell);
+                if (t == null)
+                    continue;
+                cleared.Add(new ClearedTile { cell = cell, tile = t });
+                bg.SetTile(cell, null);
+            }
+    }
+
+    /// <summary>Trả lại mọi tile đã xoá (nạp lại section ⇒ lưới va chạm mới, khối nguyên vẹn).</summary>
+    public void RestoreCells()
+    {
+        if (bg == null || cleared.Count == 0)
+            return;
+        for (int i = 0; i < cleared.Count; i++)
+            bg.SetTile(cleared[i].cell, cleared[i].tile);
+        cleared.Clear();
+    }
+
     /// <summary>cx kẹp trong biên camera của section (bossLockCx ≥ 0 thì chỉ kẹp — khoá do người gọi quyết định).</summary>
     public int ClampCamera(int cx)
     {

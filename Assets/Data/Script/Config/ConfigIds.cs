@@ -192,4 +192,18 @@ public enum eRuleParam
     DoorPauseTicks,
     DoorAutoWalkPx,
     StageClearToTallyTicks,
+    // CVGP 11 — item, vật chứa, bí mật
+    ItemGravity,
+    ItemLifetimeTicks,
+    ItemDespawnInsetPx,
+    BreakItemDelayTicks,
+    HitSparkTicks,
+    ScorePopupTicks,
+    ScorePopupFlashTicks,
+    RosaryFlashPeriodTicks,
+    WhipPickupPaletteTicks,
+    SecretCrouchTicks,
+    SecretRiseSpeed,
+    SecretRisePx,
+    MorningStarNeedsHearts,
 }

@@ -1,0 +1,3 @@
+# 89 tick, hash ac849aff
+# CVGP 11 ItemProbe kịch bản 'star_rule': luật Morning Star: nến tim nhỏ, roi 1 — tim 3 ⇒ tim nhỏ; tim 4 ⇒ Morning Star (ConfigWhip.upgradeHearts)
+-*2 B*1 -*40 B*1 -*45

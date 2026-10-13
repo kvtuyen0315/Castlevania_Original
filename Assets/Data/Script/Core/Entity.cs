@@ -93,6 +93,9 @@ public class Entity : MonoBehaviour
     /// <summary>Tên state hiện tại cho debug overlay.</summary>
     public virtual string DebugState => "";
 
+    /// <summary>Boss (và thực thể chính của boss): Rosary không diệt (wiki Items#Rosary) — routine 14/19/20 override.</summary>
+    public virtual bool IsBoss => false;
+
     protected virtual void Awake()
     {
         EnsureBuilt();

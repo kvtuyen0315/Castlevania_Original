@@ -17,24 +17,27 @@ MonoBehaviour:
     frames:
     - {fileID: 21300000, guid: 0307f1559db28074ebe78da91832ef1a, type: 3}
     - {fileID: 21300000, guid: ee5b9853bdf0f7b43806b3d26dafcf7a, type: 3}
-    durations: 0800000008000000
+    durations: 0900000009000000
     loop: 1
-    measured: 0
+    measured: 1
     overlays: []
     overlayOffsets: []
     overlayOnTop: 
-    note: 
+    note: "l\u1EEDa 2 khung \u0111\u1ED5i m\u1ED7i 9 tick, m\u1ECDi v\u1EADt c\xF9ng
+      pha (\u0111o routine 11: video Map_1 f68\u2013166 ch\u1EADu l\u1EEDa + f4013\u20134030
+      n\u1EBFn, TB 8.9 tick/khung)"
   - name: torch
     frames:
     - {fileID: 21300000, guid: 33db21a6e199ca5429a81b43877a9e19, type: 3}
     - {fileID: 21300000, guid: e3c768cf19f445148ab175b7527fd155, type: 3}
-    durations: 0800000008000000
+    durations: 0900000009000000
     loop: 1
-    measured: 0
+    measured: 1
     overlays: []
     overlayOffsets: []
     overlayOnTop: 
-    note: 
+    note: "l\u1EEDa 2 khung \u0111\u1ED5i m\u1ED7i 9 tick, m\u1ECDi v\u1EADt c\xF9ng
+      pha (\u0111o routine 11: video Map_1 f68\u2013166, 11 chu k\u1EF3 / 98 frame)"
   - name: door
     frames:
     - {fileID: 21300000, guid: b57adfc5f22b9bd46a743f9e28e1b237, type: 3}

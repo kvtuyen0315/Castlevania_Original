@@ -231,18 +231,20 @@ MonoBehaviour:
     note: 
   - key: RosaryFlashTicks
     value:
-      has: 0
-      value: 0
-    min:
-      has: 1
-      value: 24
-    max:
       has: 1
       value: 26
+    min:
+      has: 1
+      value: 22
+    max:
+      has: 1
+      value: 28
     unit: tick
-    source: "video:planner (m\xE0n nh\xE1y tr\u1EAFng 0.40\u20130.44 s; 3 l\u1EA7n)
-      \u2014 ch\u1EDD \u0111o routine 11"
-    note: 
+    source: "\u0111o:routine 11 video Map_1 3 l\u1EA7n nh\u1EB7t Rosary: m\xE0u \u0111en
+      n\u1EC1n c\u1EE7a C\u1EA2 M\xC0N (k\u1EC3 c\u1EA3 HUD) \u0111\u1ED5i x\xE1m
+      f2252\u20132264 (13 frame), f2543\u20132553 (11), f4883\u20134896 (14) \u21D2
+      22\u201328 tick; ch\u1ECDn 26 (planner 0.40\u20130.44 s)"
+    note: "x\xE1m/th\u01B0\u1EDDng xen k\u1EBD \u2014 RosaryFlashPeriodTicks"
   - key: CameraFollowScreenX
     value:
       has: 1
@@ -329,3 +331,203 @@ MonoBehaviour:
     source: "video:planner (3.8\u20134.4 s sau khi nh\u1EB7t qu\u1EA3 c\u1EA7u; 2
       l\u1EA7n kh\xE1c nhau) \u2014 ch\u1EDD \u0111o routine 12"
     note: 
+  - key: ItemGravity
+    value:
+      has: 1
+      value: 0.25
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: "px/tick\xB2"
+    source: "\u0111o:routine 11 Tools/cvgp/item_fit.py \u2014 4 l\u1EA7n item r\u01A1i
+      kh\u1ECFi ch\u1EADu l\u1EEDa CE (f110\u2013115, f190\u2013193, f378\u2013384,
+      f452\u2013456) + n\u01B0\u1EDBc th\xE1nh r\u01A1i 48 px \u1EDF EH (f1713\u20131723):
+      y = g\xB7t(t\u22121)/2 d\u01B0 \u2264 1 px; kh\xF4ng th\u1EA5y v\u1EADn t\u1ED1c
+      tr\u1EA7n t\u1EDBi 4.75 px/tick"
+    note: "m\u1ECDi item tr\u1EEB tim nh\u1ECF (\u0111ung \u0111\u01B0a); v\u1EADn
+      t\u1ED1c \u0111\u1EA7u 0"
+  - key: ItemLifetimeTicks
+    value:
+      has: 1
+      value: 188
+    min:
+      has: 1
+      value: 182
+    max:
+      has: 1
+      value: 190
+    unit: tick
+    source: "\u0111o:routine 11 video Map_1 f874\u2192f968: \u0111\u1ED3ng h\u1ED3
+      (r\u01A1i t\u1EEB Zombie) n\u1EB1m s\xE0n r\u1ED3i bi\u1EBFn m\u1EA5t gi\u1EEFa
+      m\xE0n, KH\xD4NG nh\xE1y tr\u01B0\u1EDBc (f940\u2013967 hi\u1EC7n \u0111\u1EE7)
+      \u2014 1 m\u1EABu (91\u201395 frame)"
+    note: "t\xEDnh t\u1EEB l\xFAc item hi\u1EC7n; wiki ch\u1EC9 n\xF3i bi\u1EBFn
+      m\u1EA5t sau th\u1EDDi gian ng\u1EAFn"
+  - key: ItemDespawnInsetPx
+    value:
+      has: 1
+      value: 8
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "\u0111o:routine 11 video Map_1 f1796\u21921797: n\u01B0\u1EDBc th\xE1nh
+      tr\xF4i theo camera v\xE0 bi\u1EBFn m\u1EA5t khi m\xE9p tr\xE1i sprite ch\u1EA1m
+      m\xE9p m\xE0n (t\xE2m c\xE1ch m\xE9p 8 px)"
+    note: "g\u1EE1 item khi t\xE2m c\xE1ch m\xE9p m\xE0n < 8 px (ph\xEDa ph\u1EA3i:
+      suy lu\u1EADn \u0111\u1ED1i x\u1EE9ng)"
+  - key: BreakItemDelayTicks
+    value:
+      has: 1
+      value: 20
+    min:
+      has: 1
+      value: 18
+    max:
+      has: 1
+      value: 24
+    unit: tick
+    source: "\u0111o:routine 11 video Map_1 5 ch\u1EADu l\u1EEDa CE: frame l\u1EEDa
+      v\u1EE1 \u0111\u1EA7u ti\xEAn \u2192 item hi\u1EC7n = 10/12/11/9/9 frame (TB
+      10.2 \u21D2 ~20 tick)"
+    note: "n\u1EBFn/ch\u1EADu: h\u1EBFt hi\u1EC7u \u1EE9ng l\u1EEDa m\u1EDBi hi\u1EC7n
+      item; kh\u1ED1i g\u1EA1ch: item hi\u1EC7n NGAY (1:39.6)"
+  - key: HitSparkTicks
+    value:
+      has: 1
+      value: 16
+    min:
+      has: 1
+      value: 10
+    max:
+      has: 1
+      value: 18
+    unit: tick
+    source: "\u0111o:routine 11 Tools/cvgp/item_fit.py ch\u1EC9 m\u1EABu hit_0: tia
+      l\u1EEDa h\u1ED3ng th\u1EA5y c\xF9ng l\xFAc l\u1EEDa khung 0\u20131 \u1EDF
+      4 ch\u1EADu CE (f104\u2013108, f271\u2013279, f371\u2013377, f443\u2013449
+      = 5\u20139 frame) r\u1ED3i t\u1EAFt khi l\u1EEDa khung 2 hi\u1EC7n"
+    note: "v\u1EBD c\xF9ng \xF4 v\u1EDBi l\u1EEDa v\u1EE1 (t\xE2m v\u1EADt)"
+  - key: ScorePopupTicks
+    value:
+      has: 1
+      value: 36
+    min:
+      has: 1
+      value: 32
+    max:
+      has: 1
+      value: 36
+    unit: tick
+    source: "\u0111o:routine 11 video Map_1 ch\u1EEF 100 f886\u2013903, ch\u1EEF
+      700 f1339\u20131355, ch\u1EEF 100 f3005\u20133020 (16\u201318 frame)"
+    note: "ch\u1EEF \u0111i\u1EC3m \u0111\u1EE9ng y\xEAn t\u1EA1i ch\u1ED7 item"
+  - key: ScorePopupFlashTicks
+    value:
+      has: 1
+      value: 48
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "\u0111o:routine 11 video Map_1 ch\u1EEF 1000 f4315\u20134338 (24 frame,
+      \u0111\u1ED5i m\xE0u) \u2014 1 m\u1EABu"
+    note: "t\xFAi nh\u1EA5p nh\xE1y 1000"
+  - key: RosaryFlashPeriodTicks
+    value:
+      has: 1
+      value: 4
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "\u0111o:routine 11 video Map_1 f4883\u20134896: x\xE1m/\u0111en xen
+      k\u1EBD t\u1EEBng frame video (2 tick) \u21D2 chu k\u1EF3 4 tick"
+    note: "2 tick x\xE1m + 2 tick th\u01B0\u1EDDng"
+  - key: WhipPickupPaletteTicks
+    value:
+      has: 1
+      value: 2
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "\u0111o:routine 11 video Map_1 f193\u2013217: \u0111\u1ED5i m\xE0u li\u1EC1n
+      k\u1EC1 (\u0111\u1ECF\u2192t\xEDm\u2192xanh\u2192th\u01B0\u1EDDng) chi\u1EBFm
+      8/14 l\u1EA7n \u0111\u1ED5i gi\u1EEFa 2 frame video li\xEAn ti\u1EBFp \u21D2
+      \u0111\u1ED5i m\u1ED7i 2 tick (th\u1EE9 t\u1EF1 SUY LU\u1EACN)"
+    note: "Simon nh\xE1y 4 b\u1EA3ng: th\u01B0\u1EDDng\u2192\u0111\u1ECF\u2192t\xEDm\u2192xanh"
+  - key: SecretCrouchTicks
+    value:
+      has: 1
+      value: 4
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "\u0111o:routine 11 video Map_1 f4196 (Simon ng\u1ED3i tr\xEAn kh\u1ED1i
+      CB) \u2192 f4200 t\xFAi b\u1EAFt \u0111\u1EA7u tr\u1ED3i \u21D2 ~8 tick tr\u1EEB
+      ~3 tick tr\u1ED3i pixel \u0111\u1EA7u (x\u1EA5p x\u1EC9 \xB13)"
+    note: "ng\u1ED3i gi\u1EEF \u2265 N tick trong v\xF9ng b\xED m\u1EADt"
+  - key: SecretRiseSpeed
+    value:
+      has: 1
+      value: 0.3125
+    min:
+      has: 1
+      value: 0.25
+    max:
+      has: 1
+      value: 0.38
+    unit: px/tick
+    source: "\u0111o:routine 11 video Map_1 f4200\u20134226: t\xFAi 1000 tr\u1ED3i
+      t\u1EEB sau s\xE0n 16 px trong ~26 frame"
+    note: "item b\xED m\u1EADt tr\u1ED3i l\xEAn (s\xE0n che ph\u1EA7n d\u01B0\u1EDBi)"
+  - key: SecretRisePx
+    value:
+      has: 1
+      value: 16
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "\u0111o:routine 11 video Map_1 f4200\u20134226 (tr\u1ED3i h\u1EBFt chi\u1EC1u
+      cao t\xFAi)"
+    note: 
+  - key: MorningStarNeedsHearts
+    value:
+      has: 1
+      value: 1
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: bool
+    source: "suy lu\u1EADn: wiki Items#Morning Star (n\u1EBFn v\u1ED1n ch\u1EE9a
+      tim nh\u1ECF \u0111\u1ED5i th\xE0nh Morning Star khi \u0111\xE3 thu \u0111\u1EE7
+      tim 4 / 8) \u2014 ch\u1ECDn so v\u1EDBi S\u1ED0 TIM \u0110ANG C\xD3 (ConfigWhip.upgradeHearts)
+      \u2014 CVGP_MEMORY \xA75"
+    note: "0 = lu\xF4n \u0111\u1ED5i khi roi < 3"

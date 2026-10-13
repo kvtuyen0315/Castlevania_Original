@@ -1,0 +1,3 @@
+# 60 tick, hash 51a6d775
+# CVGP 11 ItemProbe kịch bản 'rosary': Rosary: diệt 2 bia trên màn (0 điểm), bia ngoài màn còn; nháy màn 26 tick (xám/thường mỗi 2 tick)
+R*20 -*40

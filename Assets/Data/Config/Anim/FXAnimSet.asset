@@ -16,25 +16,29 @@ MonoBehaviour:
   - name: hit
     frames:
     - {fileID: 21300000, guid: b6aa7e882bf974143b1674f8ece08f57, type: 3}
-    durations: 08000000
+    durations: 10000000
     loop: 0
-    measured: 0
+    measured: 1
     overlays: []
     overlayOffsets: []
     overlayOnTop: 
-    note: 
+    note: "tia l\u1EEDa tr\xFAng v\u1EADt (\u0111o routine 11: th\u1EA5y c\xF9ng
+      l\u1EEDa khung 0\u20131 \u1EDF 4 ch\u1EADu CE, 5\u20139 frame \u21D2 16 tick
+      = ConfigRule.HitSparkTicks)"
   - name: death
     frames:
     - {fileID: 21300000, guid: cc694ac9a02306c4593130d692d3e950, type: 3}
     - {fileID: 21300000, guid: a527e3ec6db329744bf3afb9c6c745df, type: 3}
     - {fileID: 21300000, guid: 9d36799ef703eae42af08eb1eb47300c, type: 3}
-    durations: 080000000800000008000000
+    durations: 080000000900000003000000
     loop: 0
-    measured: 0
+    measured: 1
     overlays: []
     overlayOffsets: []
     overlayOnTop: 
-    note: 
+    note: "l\u1EEDa v\u1EE1 n\u1EBFn/ch\u1EADu (\u0111o routine 11: 5 ch\u1EADu CE
+      \u2014 khung 1 t\u1EEB ~frame 4, khung 2 ~frame 9, item ~frame 10 sau v\u1EE1);
+      enemy ch\u1EBFt d\xF9ng chung \u2014 routine 13 ki\u1EC3m"
   - name: bossdeath_s
     frames:
     - {fileID: 21300000, guid: 3b79501aec5644b4986954767885c46e, type: 3}

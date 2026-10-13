@@ -1,0 +1,3 @@
+# 280 tick, hash e93c17a5
+# CVGP 11 ItemProbe kịch bản 'potion': bình tàng hình: 232 tick không nhận đòn (bia chạm thân), 84 tick đầu vẽ thường rồi ẩn + lóe white
+R*20 -*260

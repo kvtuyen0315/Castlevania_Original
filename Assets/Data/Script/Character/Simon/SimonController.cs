@@ -86,6 +86,11 @@ public class SimonController : Entity
     /// <summary>Phần vẽ thêm (px NES) của tư thế hiện tại — state đặt mỗi tick; SyncView cộng vào viewOffset.</summary>
     [NonSerialized] public Vector2Int drawOffset;
 
+    // CVGP 11 — nháy màu khi nhặt roi, tàng hình
+    private int flashFrom = 1, flashTo, flashStep = 2;
+    private int invisibleLeft, invisibleAge, invisVisibleTicks, invisGlintFrom, invisGlintPeriod = 1, invisGlintOn;
+    private Material defaultMaterial;
+
     // anim (cache ở OnBuild — không tra chuỗi mỗi tick)
     public AnimSet.Anim aIdle, aWalk, aTuck, aDuck, aStairsUp, aStairsDown, aHurt, aDeath;
     /// <summary>Roi [cấp 1..3, màu 0..3 (chỉ cấp 3 dùng 1..3), tư thế eAttackPose]; ném [tư thế].</summary>
@@ -153,6 +158,8 @@ public class SimonController : Entity
         Hurt = AddHurtbox(eHurtLayer.Player, new RectInt(-8, -30, 16, 30));
         WhipHit = AddHitbox(eHitLayer.PlayerAttack, new RectInt(0, 0, 0, 0));
         WhipHit.singleHit = true;
+        if (view != null)
+            defaultMaterial = view.sharedMaterial;
         if (animSet != null)
         {
             aIdle = animSet.Get("idle");
@@ -282,6 +289,9 @@ public class SimonController : Entity
         drawOffset = Vector2Int.zero;
         movedXTick = movedYTick = -1;
         InvincibleTicks = 0;
+        invisibleLeft = invisibleAge = 0;
+        flashFrom = 1;
+        flashTo = 0;
         WhipHit.Deactivate();
         Hurt.active = true;
         Hurt.local = standHurt;
@@ -310,13 +320,20 @@ public class SimonController : Entity
     {
         Fsm.Tick();
         base.OnTick();
+        if (invisibleLeft > 0)
+        {
+            invisibleAge++;
+            if (--invisibleLeft == 0 && AudioManager.I != null)
+                AudioManager.I.PlaySfx(eSfx.InvisibleEnd);   // video Map_1 3:02.11 (SFX 28) đúng lúc Simon hiện lại
+        }
     }
 
     // ---------------------------------------------------------------- combat
 
     public override bool OnHurt(ref HitInfo hit)
     {
-        if (IsDying || Fsm.Is(eSimonState.Hurt))
+        // tàng hình (CVGP 11, wiki Items#Invisibility Potion): đi xuyên enemy/đạn không bị thương (nước/hố vẫn chết — OnDeadlyTile)
+        if (IsDying || Fsm.Is(eSimonState.Hurt) || invisibleLeft > 0)
             return false;
         hitsTaken++;
         var session = GameSession.Current;
@@ -782,6 +799,55 @@ public class SimonController : Entity
             World.FreezeWorld(s.GetInt(eSimonParam.WhipPickupFreezeTicks));
     }
 
+    // ---------------------------------------------------------------- item (CVGP 11)
+
+    /// <summary>Nháy 4 bảng màu khi nhặt Morning Star: tick fromTick..fromTick+ticks−1 (trùng đóng băng thế giới), mỗi
+    /// ConfigRule.WhipPickupPaletteTicks tick đổi 1 bảng theo thứ tự thường→đỏ→tím→xanh (video Map_1 f193–217; thứ tự SUY LUẬN).</summary>
+    public void StartPickupFlash(int fromTick, int ticks)
+    {
+        flashFrom = fromTick;
+        flashTo = fromTick + ticks - 1;
+        var cfg = World.Config;
+        flashStep = cfg != null ? Mathf.Max(1, cfg.rules.GetInt(eRuleParam.WhipPickupPaletteTicks, 2)) : 2;
+    }
+
+    /// <summary>Uống bình tàng hình (ConfigItem.effectTicks): pha 1 vẽ thường (visibleTicks), pha 2 ẩn + lóe bảng màu white
+    /// (glint*) — video Map_1 2:58.2–3:02.1; suốt thời gian không nhận đòn.</summary>
+    public void StartInvisible(int ticks)
+    {
+        invisibleLeft = ticks;
+        invisibleAge = 0;
+        var cfg = World.Config;
+        invisVisibleTicks = Mathf.RoundToInt(ItemPickup.Param(cfg, eItemId.InvisibilityPotion, "visibleTicks", 84));
+        invisGlintFrom = Mathf.RoundToInt(ItemPickup.Param(cfg, eItemId.InvisibilityPotion, "glintFromTick", 160));
+        invisGlintPeriod = Mathf.Max(1, Mathf.RoundToInt(ItemPickup.Param(cfg, eItemId.InvisibilityPotion, "glintPeriodTicks", 10)));
+        invisGlintOn = Mathf.RoundToInt(ItemPickup.Param(cfg, eItemId.InvisibilityPotion, "glintOnTicks", 3));
+    }
+
+    public bool IsInvisible => invisibleLeft > 0;
+    public int InvisibleLeft => invisibleLeft;
+    public bool IsPickupFlashing => World != null && World.TickCount >= flashFrom && World.TickCount <= flashTo;
+
+    /// <summary>Bảng màu đang vẽ (null = gốc) — harness đọc.</summary>
+    public AnimSet.Palette CurrentPalette { get; private set; }
+
+    private AnimSet.Palette PaletteNow(out bool hide)
+    {
+        hide = false;
+        if (IsPickupFlashing)
+        {
+            int k = ((World.TickCount - flashFrom) / flashStep) % 4;   // 0 thường, 1 đỏ, 2 tím, 3 xanh
+            return k == 0 ? null : animSet.GetPalette(k == 1 ? "red" : k == 2 ? "purple" : "blue");
+        }
+        if (invisibleLeft > 0 && invisibleAge >= invisVisibleTicks)
+        {
+            bool glint = invisibleAge >= invisGlintFrom && (invisibleAge - invisGlintFrom) % invisGlintPeriod < invisGlintOn;
+            hide = !glint;
+            return glint ? animSet.GetPalette("white") : null;
+        }
+        return null;
+    }
+
     /// <summary>Nhặt vũ khí phụ (routine 11 gọi): thay vũ khí; khác loại ⇒ mất multiplier (GameSession.SetSubWeapon).</summary>
     public void PickupSubWeapon(eSubWeapon w)
     {
@@ -800,6 +866,17 @@ public class SimonController : Entity
         bool visible = InvincibleTicks <= 0 || Fsm.Is(eSimonState.Hurt) || IsDying || InvincibleTicks % blinkPeriod == 0;
         if (Fsm.Is(eSimonState.FallDeath) && Y - 32 >= (World != null && World.Tiles != null ? World.Tiles.Height : 192))
             visible = false;
+        bool hide;
+        var pal = PaletteNow(out hide);
+        if (hide)
+            visible = false;
         Anim.Visible = visible;
+        if (pal != CurrentPalette)
+        {
+            CurrentPalette = pal;
+            var mat = World != null && World.Items != null ? World.Items.paletteMaterial : null;
+            SpritePalette.Apply(view, pal, mat, defaultMaterial);
+            SpritePalette.Apply(Anim.Overlay, pal, mat, defaultMaterial);
+        }
     }
 }

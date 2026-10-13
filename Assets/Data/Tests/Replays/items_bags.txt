@@ -1,0 +1,3 @@
+# 160 tick, hash 7c694845
+# CVGP 11 ItemProbe kịch bản 'bags': túi đỏ/tím/trắng (+100/+400/+700) + chữ điểm 36 tick; vương miện/rương/Moai +2000/+2000/+4000
+R*120 -*40
