@@ -151,6 +151,12 @@ public class CombatHealth
         return d;
     }
 
+    /// <summary>Đặt máu hiện tại (cheat "Boss HP 1" — CVGP 14), kẹp [0, Max].</summary>
+    public void Set(int hp)
+    {
+        Current = Mathf.Clamp(hp, 0, Max);
+    }
+
     /// <summary>Số vạch hiển thị (thanh ENEMY 16 vạch) = làm tròn LÊN.</summary>
     public int Bars(int segments)
     {

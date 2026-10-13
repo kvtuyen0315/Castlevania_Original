@@ -1,0 +1,3 @@
+# 61 tick, hash cae5ac8f
+# CVGP 14 BossProbe kịch bản 'stun': roi trúng dơi đang bay ngang ⇒ đứng yên 10 tick (khung hurt) rồi bay tiếp; bất tử 16 tick
+B*1 -*60

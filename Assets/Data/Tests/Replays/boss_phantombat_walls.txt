@@ -1,0 +1,3 @@
+# 220 tick, hash 97191fe5
+# CVGP 14 BossProbe kịch bản 'walls': camera khoá cx 512 ⇒ tường vô hình mép màn: Simon đi trái dừng ở x 520 (cx + 8)
+L*220

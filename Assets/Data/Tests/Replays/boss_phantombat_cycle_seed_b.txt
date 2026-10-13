@@ -1,0 +1,3 @@
+# 1600 tick, hash 72a5a2c5
+# CVGP 14 BossProbe kịch bản 'cycle_seed_b': như cycle_floor nhưng seed RNG khác ⇒ đích lượn / thời gian lơ lửng khác, luật như nhau (tất định theo seed)
+-*1600

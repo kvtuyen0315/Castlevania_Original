@@ -25,7 +25,7 @@ public abstract class EnemyBase : Entity
     public Hurtbox Hurt { get; private set; }
     public Hitbox Touch { get; private set; }
     public eEnemyId EnemyId => enemyId;
-    public int Score { get; private set; }
+    public int Score { get; protected set; }
     public int CenterY => Y + centerDy;
 
     /// <summary>Item rơi khi chết (mặc định None — wiki/video không cho bảng rơi; nơi đặt enemy (15) gán nếu video có).</summary>
@@ -51,6 +51,15 @@ public abstract class EnemyBase : Entity
         BuildStates();
     }
 
+    /// <summary>Máu + điểm từ ConfigEnemy (CVGP 14: boss đọc ConfigBoss — BossBase override).</summary>
+    protected virtual void ResetHealth(GameConfig cfg)
+    {
+        var row = cfg != null ? cfg.GetEnemy(enemyId) : null;
+        string ctx = "ConfigEnemy." + enemyId;
+        Health.Reset(row != null ? row.hitsWeak.Get(ctx + ".hitsWeak", 1) : 1, row != null ? row.hitsStrong.Get(ctx + ".hitsStrong", 1) : 1);
+        Score = row != null && row.score.has ? row.score.value : 0;
+    }
+
     protected abstract void BuildStates();
     protected abstract void LoadTuning(GameConfig cfg);
     protected abstract void TickStates();
@@ -58,10 +67,7 @@ public abstract class EnemyBase : Entity
     protected override void OnSpawned()
     {
         var cfg = World.Config;
-        var row = cfg != null ? cfg.GetEnemy(enemyId) : null;
-        string ctx = "ConfigEnemy." + enemyId;
-        Health.Reset(row != null ? row.hitsWeak.Get(ctx + ".hitsWeak", 1) : 1, row != null ? row.hitsStrong.Get(ctx + ".hitsStrong", 1) : 1);
-        Score = row != null && row.score.has ? row.score.value : 0;
+        ResetHealth(cfg);
         Touch.damage = World.DamageToPlayer();
         Hurt.local = hurtBox;
         Touch.local = touchBox;
@@ -87,7 +93,7 @@ public abstract class EnemyBase : Entity
         base.OnTick();
     }
 
-    protected void ApplyVisibility()
+    protected virtual void ApplyVisibility()
     {
         bool on = !hidden && Alive;
         Hurt.active = on;
@@ -136,6 +142,13 @@ public abstract class EnemyBase : Entity
             flame.onDone = f => ItemDrops.Spawn(f.World, ItemDrops.Resolve(f.World, item), x, y);
         }
         Kill();
+        if (Defeated != null)
+            Defeated(this);
+    }
+
+    /// <summary>Bắn sự kiện Defeated (lớp con tự làm chuỗi chết — BossBase).</summary>
+    protected void RaiseDefeated()
+    {
         if (Defeated != null)
             Defeated(this);
     }

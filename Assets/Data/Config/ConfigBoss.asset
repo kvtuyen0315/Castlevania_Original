@@ -39,10 +39,11 @@ MonoBehaviour:
     itemsInRoom: "Double Shot (kh\u1ED1i ph\u1EA3i nh\u1EA5t \u1EDF ch\xE2n c\u1EA7u
       thang)"
     moveSpeed:
-      has: 0
-      value: 0
-    src_moveSpeed: "ch\u1EDD \u0111o routine 14 (nhi\u1EC1u pha t\u1ED1c \u0111\u1ED9
-      \u2014 xem ConfigActorParam Boss.PhantomBat)"
+      has: 1
+      value: 0.75
+    src_moveSpeed: "\u0111o:routine 14 \u2014 t\u1ED1c \u0111\u1ED9 bay l\u01B0\u1EE3n
+      (tr\u1EE5c tr\u1ED9i 0.72\u20130.77; 5 l\u1EA7n 2 video); c\xE1c pha kh\xE1c
+      \u1EDF ConfigActorParam Boss.PhantomBat"
     source: wiki:Bosses#Phantom Bat
   - id: 2
     phase: 1

@@ -1,0 +1,4 @@
+# 472 tick, hash 825c8ea5
+# CVGP 14 BossProbe kịch bản 'strong_kill': roi cấp 2 (mạnh) × 8 vào dơi bị Stopwatch giữ: −2 vạch/đòn (video Map_1 rìu), +3000, lửa 62 tick, quả cầu sau 152 tick ở (640,104) rơi xuống sàn, Simon nhặt ⇒ TIME đứng + tally
+B*1 -*23 B*1 -*23 B*1 -*23 B*1 -*23 B*1 -*23 B*1 -*23
+B*1 -*23 B*1 -*223 R*40 -*40

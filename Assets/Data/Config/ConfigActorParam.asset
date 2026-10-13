@@ -865,177 +865,431 @@ MonoBehaviour:
       sau 1\u20132 s) \u2014 ch\u1EDD \u0111o routine 18"
     note: 
   - actor: Boss.PhantomBat
-    key: sleepScreenX
+    key: sleepX
     value:
       has: 1
-      value: 110.5
+      value: 623
     min:
       has: 0
       value: 0
     max:
       has: 0
       value: 0
-    unit: "px m\xE0n"
-    source: "video:planner MAP1_TIMELINE \xA75 (t\xE2m sprite khi ng\u1EE7; world
-      PB x \u2248 622) \u2014 ch\u1EDD \u0111o routine 14"
+    unit: px section
+    source: "\u0111o:routine 14 kh\u1EDBp m\u1EABu phantombat_0: t\xE2m m\xE0n (111,65)
+      c\u1EA3 2 video (boss f5\u201365, Map_1 f5942) + cx 512"
+    note: "x pivot (t\xE2m khung bay)"
+  - actor: Boss.PhantomBat
+    key: sleepY
+    value:
+      has: 1
+      value: 41
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px section
+    source: "\u0111o:routine 14: khung bay l\xFAc th\u1EE9c t\xE2m m\xE0n (111,73)
+      / (110,73) \u21D2 y section 73 \u2212 32"
+    note: "pivot = t\xE2m khung bay; khung ng\u1EE7 v\u1EBD cao h\u01A1n sleepDrawUpPx"
+  - actor: Boss.PhantomBat
+    key: sleepDrawUpPx
+    value:
+      has: 1
+      value: 8
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "\u0111o:routine 14: t\xE2m khung ng\u1EE7 (111,65) cao h\u01A1n t\xE2m
+      khung bay (111,73) 8 px \u2014 \u0111\u1EC9nh 2 khung tr\xF9ng nhau (y 57)"
     note: 
   - actor: Boss.PhantomBat
-    key: sleepScreenY
+    key: wakeSimonX
     value:
       has: 1
-      value: 64.5
-    min:
-      has: 0
-      value: 0
-    max:
-      has: 0
-      value: 0
-    unit: "px m\xE0n"
-    source: "video:planner \u2014 ch\u1EDD \u0111o routine 14"
-    note: 
-  - actor: Boss.PhantomBat
-    key: wakeSimonScreenX
-    value:
-      has: 0
-      value: 0
+      value: 693
     min:
       has: 1
-      value: 181
+      value: 693
     max:
       has: 1
-      value: 184
-    unit: "px m\xE0n"
-    source: "video:planner (2 l\u1EA7n; Simon tr\xEAn c\u1EA7u thang ph\u1EA3i) \u2014
-      ch\u1EDD \u0111o routine 14"
-    note: 
+      value: 696
+    unit: px section
+    source: "\u0111o:routine 14 simon_fit: Map_1 d\u01A1i th\u1EE9c f5984 khi Simon
+      x m\xE0n 180\u2192182 (f5983/5984); video boss Simon t\u1EDBi 181 \u1EDF f57,
+      184 \u1EDF f60, d\u01A1i th\u1EE9c f66 (tr\u1EC5 ~12\u201318 tick ch\u01B0a
+      gi\u1EA3i th\xEDch)"
+    note: "Simon.X \u2265 ng\u01B0\u1EE1ng \u21D2 th\u1EE9c"
   - actor: Boss.PhantomBat
     key: wakeHoverTicks
     value:
       has: 1
-      value: 30
+      value: 33
     min:
-      has: 0
-      value: 0
-    max:
-      has: 0
-      value: 0
-    unit: tick
-    source: "video:planner (\u2248 0.5 s l\u01B0\u1EE3n t\u1EA1i ch\u1ED7) \u2014
-      ch\u1EDD \u0111o routine 14"
-    note: 
-  - actor: Boss.PhantomBat
-    key: firstDiveSpeed
-    value:
-      has: 0
-      value: 0
-    min:
-      has: 1
-      value: 1.44
-    max:
-      has: 1
-      value: 1.5
-    unit: px/tick
-    source: "video:planner (2 video) \u2014 ch\u1EDD \u0111o routine 14"
-    note: "h\u01B0\u1EDBng \u2248 +31\xB0"
-  - actor: Boss.PhantomBat
-    key: firstDiveAngleDeg
-    value:
       has: 1
       value: 31
+    max:
+      has: 1
+      value: 35
+    unit: tick
+    source: "\u0111o:routine 14: v\u1ED7 c\xE1nh t\u1EA1i ch\u1ED7 t\u1EEB l\xFAc
+      th\u1EE9c t\u1EDBi l\xFAc b\u1EAFt \u0111\u1EA7u lao \u2014 boss f66\u2192f83.5
+      (35), Map_1 f5984\u2192f5999.5 (31)"
+    note: "xong \u21D2 nh\u1EA1c boss + c\xFA lao \u0111\u1EA7u"
+  - actor: Boss.PhantomBat
+    key: swoopVy0
+    value:
+      has: 1
+      value: 1.46
+    min:
+      has: 1
+      value: 1.4
+    max:
+      has: 1
+      value: 1.52
+    unit: px/tick
+    source: "\u0111o:routine 14 fitdive (5 c\xFA lao: y = y0 + d(2s \u2212 s\xB2),
+      s = t/T, rms y 0.4\u20131.1 px): vy \u0111\u1EA7u = 2d/T = 1.52 / 1.40 / 1.52
+      / 1.47 / 1.41"
+    note: "d\u1ECDc gi\u1EA3m \u0111\u1EC1u v\u1EC1 0 \u1EDF \u0111\xE1y"
+  - actor: Boss.PhantomBat
+    key: swoopDepthPx
+    value:
+      has: 1
+      value: 41
+    min:
+      has: 1
+      value: 41
+    max:
+      has: 1
+      value: 44
+    unit: px
+    source: "\u0111o:routine 14 fitdive: d = 41 (boss lao \u0111\u1EA7u), 42 (Map_1
+      lao \u0111\u1EA7u), 41 (boss lao 2), 44 (Map_1 lao); lao 3 boss 31 = ch\u1EA1m
+      swoopMaxY"
+    note: 
+  - actor: Boss.PhantomBat
+    key: swoopMaxY
+    value:
+      has: 1
+      value: 156
     min:
       has: 0
       value: 0
     max:
       has: 0
       value: 0
-    unit: "\u0111\u1ED9"
-    source: "video:planner (2 video gi\u1ED1ng nhau) \u2014 ch\u1EDD \u0111o routine
-      14"
-    note: 
+    unit: px section
+    source: "\u0111o:routine 14: \u0111\xE1y c\xFA lao 3 boss (t\u1EEB y m\xE0n 157)
+      d\u1EEBng \u1EDF y m\xE0n 188 (= s\xE0n 208 \u2212 20)"
+    note: "\u0111\xE1y kh\xF4ng th\u1EA5p h\u01A1n"
   - actor: Boss.PhantomBat
-    key: slowFlySpeed
+    key: swoopVxMin
     value:
+      has: 1
+      value: 1.22
+    min:
       has: 0
       value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px/tick
+    source: "\u0111o:routine 14 fitdive: vx nh\u1ECF nh\u1EA5t 5 c\xFA lao (Map_1
+      lao \u0111\u1EA7u 1.222)"
+    note: "vx = (Simon.X \u2212 x0)/T k\u1EB9p"
+  - actor: Boss.PhantomBat
+    key: swoopVxMax
+    value:
+      has: 1
+      value: 2.1
     min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px/tick
+    source: "\u0111o:routine 14 fitdive: vx l\u1EDBn nh\u1EA5t (boss lao 3 2.10;
+      lao 4 v\xE0o l\u1EEDa 2.0)"
+    note: 
+  - actor: Boss.PhantomBat
+    key: sweepTicks
+    value:
+      has: 1
+      value: 12
+    min:
+      has: 1
+      value: 8
+    max:
+      has: 1
+      value: 14
+    unit: tick
+    source: "\u0111o:routine 14: bay ngang sau \u0111\xE1y tr\u01B0\u1EDBc khi v\u1ECDt
+      l\xEAn \u2014 boss lao 2 f246\u2192f250\u2013253, Map_1 f6201\u2192f6206"
+    note: 
+  - actor: Boss.PhantomBat
+    key: riseAccel
+    value:
+      has: 1
+      value: 0.039
+    min:
+      has: 1
+      value: 0.033
+    max:
+      has: 1
+      value: 0.042
+    unit: "px/tick\xB2"
+    source: "\u0111o:routine 14: v\u1ECDt l\xEAn y = y0 \u2212 a\xB7t\xB2/2 \u2014
+      Map_1 f6206\u20136230 0.039, boss f369\u2013398 0.033, boss f251\u2013274 0.042"
+    note: "vx gi\u1EEF nguy\xEAn"
+  - actor: Boss.PhantomBat
+    key: riseTopY
+    value:
+      has: 1
+      value: 88
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px section
+    source: "\u0111o:routine 14: h\u1EBFt v\u1ECDt l\xEAn \u1EDF y m\xE0n 120 c\u1EA3
+      3 l\u1EA7n (boss (188,120) f274, (118,120) f399; Map_1 (192,120) f6230)"
+    note: "\u21D2 bay l\u01B0\u1EE3n"
+  - actor: Boss.PhantomBat
+    key: screenMinX
+    value:
+      has: 1
+      value: 18
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: "px m\xE0n"
+    source: "suy lu\u1EADn: \u0111\u1ED1i x\u1EE9ng screenMaxX (video kh\xF4ng c\xF3
+      c\u1EA3nh ch\u1EA1m m\xE9p tr\xE1i)"
+    note: "\u0111\u1ED5i chi\u1EC1u ngang"
+  - actor: Boss.PhantomBat
+    key: screenMaxX
+    value:
+      has: 1
+      value: 238
+    min:
+      has: 1
+      value: 237
+    max:
+      has: 1
+      value: 238
+    unit: "px m\xE0n"
+    source: "\u0111o:routine 14: video boss quay \u0111\u1EA7u \u1EDF x m\xE0n 237
+      (f259) v\xE0 238 (f369)"
+    note: "\u0111\u1ED5i chi\u1EC1u ngang"
+  - actor: Boss.PhantomBat
+    key: glideSpeed
+    value:
       has: 1
       value: 0.75
+    min:
+      has: 1
+      value: 0.72
     max:
       has: 1
-      value: 1
+      value: 0.77
     unit: px/tick
-    source: "video:planner \u2014 ch\u1EDD \u0111o routine 14"
-    note: 
+    source: "\u0111o:routine 14: bay th\u1EB3ng t\u1EDBi \u0111i\u1EC3m, TR\u1EE4C
+      TR\u1ED8I 0.75 (5 l\u1EA7n: vx \u22120.755 / \u22120.756 / \u22120.767, vx
+      0.723, vy 0.740)"
+    note: "tr\u1EE5c kia t\u1EC9 l\u1EC7"
   - actor: Boss.PhantomBat
-    key: hoverTicks
+    key: glideMinScreenX
     value:
+      has: 1
+      value: 24
+    min:
       has: 0
       value: 0
+    max:
+      has: 0
+      value: 0
+    unit: "px m\xE0n"
+    source: "suy lu\u1EADn: \u0111i\u1EC3m t\u1EDBi video x m\xE0n 26\u2013211 (5
+      l\u1EA7n); bi\xEAn = n\u1EEDa s\u1EA3i c\xE1nh 24"
+    note: 
+  - actor: Boss.PhantomBat
+    key: glideMaxScreenX
+    value:
+      has: 1
+      value: 232
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: "px m\xE0n"
+    source: "suy lu\u1EADn: \u0111\u1ED1i x\u1EE9ng glideMinScreenX"
+    note: 
+  - actor: Boss.PhantomBat
+    key: glideLowY
+    value:
+      has: 1
+      value: 92
     min:
       has: 1
-      value: 30
+      value: 92
     max:
       has: 1
-      value: 96
+      value: 93
+    unit: px section
+    source: "\u0111o:routine 14: \u0111i\u1EC3m t\u1EDBi sau c\xFA lao \u0110\u1EA6U
+      y m\xE0n 124 (boss) / 125 (Map_1)"
+    note: 
+  - actor: Boss.PhantomBat
+    key: glideHighY
+    value:
+      has: 1
+      value: 123
+    min:
+      has: 1
+      value: 121
+    max:
+      has: 1
+      value: 125
+    unit: px section
+    source: "\u0111o:routine 14: \u0111i\u1EC3m t\u1EDBi sau khi v\u1ECDt l\xEAn
+      y m\xE0n 157 / 156 (boss), 153 (Map_1)"
+    note: 
+  - actor: Boss.PhantomBat
+    key: glideMinSimonDx
+    value:
+      has: 1
+      value: 64
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "suy lu\u1EADn: 5/5 \u0111i\u1EC3m t\u1EDBi c\xE1ch Simon 68\u2013180
+      px (video)"
+    note: "x ng\u1EABu nhi\xEAn \u0111\u1EC1u ph\u1EA7n h\u1EE3p l\u1EC7"
+  - actor: Boss.PhantomBat
+    key: hoverMinTicks
+    value:
+      has: 1
+      value: 32
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
     unit: tick
-    source: "video:planner (0.5\u20131.6 s) \u2014 ch\u1EDD \u0111o routine 14"
-    note: 
+    source: "\u0111o:routine 14: l\u01B0\u1EE3n t\u1EA1i ch\u1ED7 33 (boss f316\u2013332),
+      55 (Map_1 tr\u1EEB 2 l\u1EA7n kh\u1EF1ng), 59 (boss f430\u2013459), 122 (boss
+      f157\u2013218)"
+    note: "ng\u1EABu nhi\xEAn \u0111\u1EC1u"
   - actor: Boss.PhantomBat
-    key: diveSpeed
+    key: hoverMaxTicks
     value:
+      has: 1
+      value: 124
+    min:
       has: 0
       value: 0
-    min:
-      has: 1
-      value: 1.5
     max:
-      has: 1
-      value: 1.6
-    unit: px/tick
-    source: "video:planner (c\xF3 l\u1EA7n 2.46) \u2014 ch\u1EDD \u0111o routine
-      14"
-    note: "g\xF3c 27\u201340\xB0"
-  - actor: Boss.PhantomBat
-    key: retreatSpeed
-    value:
       has: 0
       value: 0
-    min:
-      has: 1
-      value: 2
-    max:
-      has: 1
-      value: 2.3
-    unit: px/tick
-    source: "video:planner \u2014 ch\u1EDD \u0111o routine 14"
-    note: 
-  - actor: Boss.PhantomBat
-    key: diveCycleTicks
-    value:
-      has: 0
-      value: 0
-    min:
-      has: 1
-      value: 240
-    max:
-      has: 1
-      value: 258
     unit: tick
-    source: "video:planner (4.0\u20134.3 s) \u2014 ch\u1EDD \u0111o routine 14"
+    source: "\u0111o:routine 14 (xem hoverMinTicks)"
     note: 
   - actor: Boss.PhantomBat
-    key: deathFlameTicks
+    key: diveChancePct
     value:
+      has: 1
+      value: 100
+    min:
       has: 0
       value: 0
+    max:
+      has: 0
+      value: 0
+    unit: '%'
+    source: "video:4/4 l\u1EA7n h\u1EBFt l\u01B0\u1EE3n t\u1EA1i ch\u1ED7 \u0111\u1EC1u
+      b\u1ED5 nh\xE0o (wiki: th\u1EC9nh tho\u1EA3ng)"
+    note: 
+  - actor: Boss.PhantomBat
+    key: hitStunTicks
+    value:
+      has: 1
+      value: 10
     min:
       has: 1
-      value: 42
+      value: 8
     max:
       has: 1
-      value: 48
+      value: 14
     unit: tick
-    source: "video:planner (0.7\u20130.8 s) \u2014 ch\u1EDD \u0111o routine 14"
+    source: "\u0111o:routine 14: Map_1 d\u01A1i \u0111\u1EE9ng y\xEAn khi tr\xFAng
+      r\xECu f6179\u20136184, f6191\u20136197, f6247\u20136252 (\u2248 5 frame)"
+    note: khung hurt
+  - actor: Boss.PhantomBat
+    key: invincibleTicks
+    value:
+      has: 1
+      value: 16
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "suy lu\u1EADn: video boss h\u1EA1 d\u01A1i (16 v\u1EA1ch) trong 130
+      tick (f469\u2013f534) b\u1EB1ng roi x\xEDch + l\u1EEDa n\u01B0\u1EDBc th\xE1nh
+      \u2014 l\u1EEDa \u0111\xE1nh l\u1EA1i m\u1ED7i 8 tick th\xEC c\u1EA7n b\u1EA5t
+      t\u1EED 12\u201319 tick"
+    note: 
+  - actor: Boss.PhantomBat
+    key: deathFxTicks
+    value:
+      has: 1
+      value: 62
+    min:
+      has: 1
+      value: 60
+    max:
+      has: 1
+      value: 62
+    unit: tick
+    source: "\u0111o:routine 14 boss_fit fx: c\u1EE5m l\u1EEDa bossdeath_m 7 khung
+      (0,1,2,0,1,2,0) \u2014 Map_1 f6306\u20136336 (62), boss f534\u2013563 (60)"
+    note: 
+  - actor: Boss.PhantomBat
+    key: deathFxUpPx
+    value:
+      has: 1
+      value: 8
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "\u0111o:routine 14: t\xE2m c\u1EE5m l\u1EEDa (211,145) / (204,184) =
+      t\xE2m d\u01A1i l\xFAc ch\u1EBFt (211,153) / (204,192) \u2212 8"
     note: 
   - actor: Boss.Death
     key: maxScythes
@@ -1143,42 +1397,26 @@ MonoBehaviour:
       \u21D2 pivot t\xE2m sprite = Y\u221226 (bbox axe_0 l\u1EC7ch \u22121.5 so v\u1EDBi
       pivot)"
     note: "pivot (t\xE2m sprite) r\xECu"
-  - actor: SubWeapon.HolyWater
-    key: flameHoldTicks
-    value:
-      has: 0
-      value: 0
-    min:
-      has: 1
-      value: 138
-    max:
-      has: 1
-      value: 144
-    unit: tick
-    source: "video:planner (\u2248 2.3\u20132.4 s = kho\u1EA3ng gi\u1EEFa 2 l\u1EA7n
-      n\xE9m trong video boss \u2014 KH\xD4NG ph\u1EA3i th\u1EDDi gian ch\xE1y; xem
-      fireTicks) \u2014 ch\u1EDD \u0111o routine 14"
-    note: "boss b\u1ECB l\u1EEDa gi\u1EEF ch\xE2n"
   - actor: Item.MagicCrystal
     key: spawnDelayTicks
     value:
       has: 1
-      value: 150
+      value: 152
     min:
-      has: 0
-      value: 0
+      has: 1
+      value: 150
     max:
-      has: 0
-      value: 0
+      has: 1
+      value: 154
     unit: tick
-    source: "video:planner (2.5 s sau khi boss ch\u1EBFt; 2 video) \u2014 ch\u1EDD
-      \u0111o routine 14"
-    note: 
+    source: "\u0111o:routine 14: +3000 \u2192 qu\u1EA3 c\u1EA7u hi\u1EC7n: Map_1
+      f6305\u2192f6380 (150), boss f534\u2192f611 (154)"
+    note: "t\u1EEB tick boss h\u1EBFt m\xE1u"
   - actor: Item.MagicCrystal
     key: spawnScreenX
     value:
       has: 1
-      value: 127.5
+      value: 128
     min:
       has: 0
       value: 0
@@ -1186,36 +1424,39 @@ MonoBehaviour:
       has: 0
       value: 0
     unit: "px m\xE0n"
-    source: "video:planner (2 video) \u2014 ch\u1EDD \u0111o routine 14"
+    source: "\u0111o:routine 14 boss_fit orb: pivot (\u0111\xE1y-gi\u1EEFa) x m\xE0n
+      128 c\u1EA3 2 video"
     note: 
   - actor: Item.MagicCrystal
-    key: spawnScreenY
+    key: spawnY
     value:
       has: 1
-      value: 128.5
+      value: 104
     min:
       has: 0
       value: 0
     max:
       has: 0
       value: 0
-    unit: "px m\xE0n"
-    source: "video:planner (2 video) \u2014 ch\u1EDD \u0111o routine 14"
-    note: 
+    unit: px section
+    source: "\u0111o:routine 14: h\xE0ng \u0111\xE1y sprite y m\xE0n 136 (pivot kh\u1EDBp
+      137 c\u1EA3 2 video) \u21D2 section 104"
+    note: "pivot item = \u0111\xE1y \xF4 16"
   - actor: Item.MagicCrystal
     key: gravity
     value:
-      has: 0
-      value: 0
+      has: 1
+      value: 0.25
     min:
       has: 1
-      value: 0.23
+      value: 0.21
     max:
       has: 1
-      value: 0.26
+      value: 0.25
     unit: "px/tick\xB2"
-    source: "video:planner \u2014 ch\u1EDD \u0111o routine 14"
-    note: 
+    source: "\u0111o:routine 14: r\u01A1i Map_1 f6380\u20136390 +44 px trong ~20
+      tick kh\u1EDBp y = 0.25\xB7t(t\u22121)/2 (\xB11 tick l\xFAc hi\u1EC7n)"
+    note: "ItemPickup d\xF9ng ConfigRule.ItemGravity (c\xF9ng gi\xE1 tr\u1ECB)"
   - actor: SubWeapon.HolyWater
     key: spawnHeightAboveFeet
     value:
@@ -1260,8 +1501,10 @@ MonoBehaviour:
       value: 0
     unit: tick
     source: "quy \u01B0\u1EDBc routine 09 (l\u1EEDa \u0111\xE1nh l\u1EA1i m\u1ED7i
-      8 tick) \u2014 video boss: thanh ENEMY t\u1EE5t \u0111\u1EC1u khi trong l\u1EEDa;
-      ch\u1EDD \u0111o routine 14"
+      8 tick); routine 14 kh\xF4ng \u0111o \u0111\u01B0\u1EE3c nh\u1ECBp th\u1EADt
+      \u2014 thanh ENEMY hi\u1EC7n ch\u1EA1y d\u1EA7n 8 tick/v\u1EA1ch che nh\u1ECBp;
+      t\u1ED5ng th\u1EDDi gian h\u1EA1 130 tick kh\u1EDBp b\u1EA5t t\u1EED boss 16
+      tick"
     note: "Hitbox.Activate l\u1EA1i \u21D2 m\u1EE5c ti\xEAu tr\xFAng l\u1EA7n n\u1EEFa
       n\u1EBFu h\u1EBFt b\u1EA5t t\u1EED"
   - actor: SubWeapon.Cross

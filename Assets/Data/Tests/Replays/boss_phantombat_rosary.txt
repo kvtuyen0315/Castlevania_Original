@@ -1,0 +1,3 @@
+# 60 tick, hash f1fc1875
+# CVGP 14 BossProbe kịch bản 'rosary': Rosary không diệt boss (wiki Items#Rosary)
+-*60

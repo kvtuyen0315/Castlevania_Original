@@ -1,0 +1,3 @@
+# 240 tick, hash 8261a685
+# CVGP 14 BossProbe kịch bản 'death_video': như Map_1 f6305: dơi lơ lửng (723,121), Simon (655,176) — hạ ở tick 10 ⇒ chụp lửa chết + quả cầu (so video)
+-*240

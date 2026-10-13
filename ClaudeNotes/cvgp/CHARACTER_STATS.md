@@ -122,7 +122,7 @@ Máu = **số đòn** để hạ: *yếu* (roi da, Holy Water, Dagger) / *mạnh
 
 | Boss | Pha | Stage | Số thực thể | Đòn yếu | Đòn mạnh | Đòn tính cho | Điểm | Stopwatch tác dụng | Điểm yếu | Đòn tấn công | Item trong phòng | Nguồn |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
-| PhantomBat | 1 | 3 | 1 | 12 | 8 | Single | 3000 | có | toàn thân | Bay tới điểm ngẫu nhiên; thỉnh thoảng bổ nhào về phía Simon; video: không bắn đạn | Double Shot (khối phải nhất ở chân cầu thang) | wiki:Bosses#Phantom Bat · *hits:* wiki:Bosses#Phantom Bat; video:Map_1 3:19–3:30 rìu −2 vạch/lần ⇒ 8 đòn mạnh hết 16 vạch (khớp) · *score:* wiki:Bosses#Phantom Bat; video:Map_1 3:30.17 +3000 (khớp) · *moveSpeed:* chờ đo routine 14 (nhiều pha tốc độ — xem ConfigActorParam Boss.PhantomBat) |
+| PhantomBat | 1 | 3 | 1 | 12 | 8 | Single | 3000 | có | toàn thân | Bay tới điểm ngẫu nhiên; thỉnh thoảng bổ nhào về phía Simon; video: không bắn đạn | Double Shot (khối phải nhất ở chân cầu thang) | wiki:Bosses#Phantom Bat · *hits:* wiki:Bosses#Phantom Bat; video:Map_1 3:19–3:30 rìu −2 vạch/lần ⇒ 8 đòn mạnh hết 16 vạch (khớp) · *score:* wiki:Bosses#Phantom Bat; video:Map_1 3:30.17 +3000 (khớp) · *moveSpeed:* đo:routine 14 — tốc độ bay lượn (trục trội 0.72–0.77; 5 lần 2 video); các pha khác ở ConfigActorParam Boss.PhantomBat |
 | QueenMedusa | 1 | 6 | 1 | 12 | 8 | Single | 3000 | có | toàn thân | Lao thẳng vào Simon (bay thấp); thả rắn bò trên sàn về phía Simon | Không | wiki:Bosses#Queen Medusa · *moveSpeed:* không rõ — không có video (routine 19 ước lượng) |
 | MummyMan | 1 | 9 | 2 | 48 | 32 | TotalAllEntities | 3000 | không | toàn thân | Lang thang trong phòng; thỉnh thoảng ném băng gạc; kẹp Simon từ hai phía | Pot Roast (khối thấp nhất cầu thang trái) | wiki:Bosses#Mummy Men · *hits:* wiki:Bosses#Mummy Men (48/32 không nói tổng hay mỗi con — chọn TỔNG 2 con theo suy luận 48 = 2 × 24; §4) · *moveSpeed:* không rõ — không có video (routine 19 ước lượng) |
 | Frankenstein | 1 | 12 | 2 | 24 | 16 | MainEntityOnly | 5000 | không | toàn thân (Monster) | Monster đi lang thang (thường nửa phải); Igor nhảy qua lại và ném cầu lửa | Không (Dagger ở ngoài phòng) | wiki:Bosses#Frankenstein & Igor · *hits:* wiki:Bosses#Frankenstein & Igor (chỉ Monster; Igor bất tử ⇒ ConfigEnemy.Igor) · *moveSpeed:* không rõ — không có video (routine 19 ước lượng) |
@@ -189,18 +189,34 @@ Máu = **số đòn** để hạ: *yếu* (roi da, Holy Water, Dagger) / *mạnh
 | Enemy.Fishman | bubbleSideTicks | 24 |  |  | tick |  | đo:routine 13 cùng lần trồi (f3519→3531) |
 | Enemy.Fishman | bubbleCenterTicks | 34 |  |  | tick |  | đo:routine 13 cùng lần trồi (f3522→3539) |
 | Enemy.RedSkeleton | reviveTicks | *chờ đo routine 18* | 60 | 120 | tick |  | wiki:Enemies#Red Skeletons; wiki:Stages 13-15 (đứng dậy sau 1–2 s) — chờ đo routine 18 |
-| Boss.PhantomBat | sleepScreenX | 110.5 |  |  | px màn |  | video:planner MAP1_TIMELINE §5 (tâm sprite khi ngủ; world PB x ≈ 622) — chờ đo routine 14 |
-| Boss.PhantomBat | sleepScreenY | 64.5 |  |  | px màn |  | video:planner — chờ đo routine 14 |
-| Boss.PhantomBat | wakeSimonScreenX | *chờ đo routine 14* | 181 | 184 | px màn |  | video:planner (2 lần; Simon trên cầu thang phải) — chờ đo routine 14 |
-| Boss.PhantomBat | wakeHoverTicks | 30 |  |  | tick |  | video:planner (≈ 0.5 s lượn tại chỗ) — chờ đo routine 14 |
-| Boss.PhantomBat | firstDiveSpeed | *chờ đo routine 14* | 1.44 | 1.5 | px/tick | hướng ≈ +31° | video:planner (2 video) — chờ đo routine 14 |
-| Boss.PhantomBat | firstDiveAngleDeg | 31 |  |  | độ |  | video:planner (2 video giống nhau) — chờ đo routine 14 |
-| Boss.PhantomBat | slowFlySpeed | *chờ đo routine 14* | 0.75 | 1.0 | px/tick |  | video:planner — chờ đo routine 14 |
-| Boss.PhantomBat | hoverTicks | *chờ đo routine 14* | 30 | 96 | tick |  | video:planner (0.5–1.6 s) — chờ đo routine 14 |
-| Boss.PhantomBat | diveSpeed | *chờ đo routine 14* | 1.5 | 1.6 | px/tick | góc 27–40° | video:planner (có lần 2.46) — chờ đo routine 14 |
-| Boss.PhantomBat | retreatSpeed | *chờ đo routine 14* | 2.0 | 2.3 | px/tick |  | video:planner — chờ đo routine 14 |
-| Boss.PhantomBat | diveCycleTicks | *chờ đo routine 14* | 240 | 258 | tick |  | video:planner (4.0–4.3 s) — chờ đo routine 14 |
-| Boss.PhantomBat | deathFlameTicks | *chờ đo routine 14* | 42 | 48 | tick |  | video:planner (0.7–0.8 s) — chờ đo routine 14 |
+| Boss.PhantomBat | sleepX | 623 |  |  | px section | x pivot (tâm khung bay) | đo:routine 14 khớp mẫu phantombat_0: tâm màn (111,65) cả 2 video (boss f5–65, Map_1 f5942) + cx 512 |
+| Boss.PhantomBat | sleepY | 41 |  |  | px section | pivot = tâm khung bay; khung ngủ vẽ cao hơn sleepDrawUpPx | đo:routine 14: khung bay lúc thức tâm màn (111,73) / (110,73) ⇒ y section 73 − 32 |
+| Boss.PhantomBat | sleepDrawUpPx | 8 |  |  | px |  | đo:routine 14: tâm khung ngủ (111,65) cao hơn tâm khung bay (111,73) 8 px — đỉnh 2 khung trùng nhau (y 57) |
+| Boss.PhantomBat | wakeSimonX | 693 | 693 | 696 | px section | Simon.X ≥ ngưỡng ⇒ thức | đo:routine 14 simon_fit: Map_1 dơi thức f5984 khi Simon x màn 180→182 (f5983/5984); video boss Simon tới 181 ở f57, 184 ở f60, dơi thức f66 (trễ ~12–18 tick chưa giải thích) |
+| Boss.PhantomBat | wakeHoverTicks | 33 | 31 | 35 | tick | xong ⇒ nhạc boss + cú lao đầu | đo:routine 14: vỗ cánh tại chỗ từ lúc thức tới lúc bắt đầu lao — boss f66→f83.5 (35), Map_1 f5984→f5999.5 (31) |
+| Boss.PhantomBat | swoopVy0 | 1.46 | 1.40 | 1.52 | px/tick | dọc giảm đều về 0 ở đáy | đo:routine 14 fitdive (5 cú lao: y = y0 + d(2s − s²), s = t/T, rms y 0.4–1.1 px): vy đầu = 2d/T = 1.52 / 1.40 / 1.52 / 1.47 / 1.41 |
+| Boss.PhantomBat | swoopDepthPx | 41 | 41 | 44 | px |  | đo:routine 14 fitdive: d = 41 (boss lao đầu), 42 (Map_1 lao đầu), 41 (boss lao 2), 44 (Map_1 lao); lao 3 boss 31 = chạm swoopMaxY |
+| Boss.PhantomBat | swoopMaxY | 156 |  |  | px section | đáy không thấp hơn | đo:routine 14: đáy cú lao 3 boss (từ y màn 157) dừng ở y màn 188 (= sàn 208 − 20) |
+| Boss.PhantomBat | swoopVxMin | 1.22 |  |  | px/tick | vx = (Simon.X − x0)/T kẹp | đo:routine 14 fitdive: vx nhỏ nhất 5 cú lao (Map_1 lao đầu 1.222) |
+| Boss.PhantomBat | swoopVxMax | 2.1 |  |  | px/tick |  | đo:routine 14 fitdive: vx lớn nhất (boss lao 3 2.10; lao 4 vào lửa 2.0) |
+| Boss.PhantomBat | sweepTicks | 12 | 8 | 14 | tick |  | đo:routine 14: bay ngang sau đáy trước khi vọt lên — boss lao 2 f246→f250–253, Map_1 f6201→f6206 |
+| Boss.PhantomBat | riseAccel | 0.039 | 0.033 | 0.042 | px/tick² | vx giữ nguyên | đo:routine 14: vọt lên y = y0 − a·t²/2 — Map_1 f6206–6230 0.039, boss f369–398 0.033, boss f251–274 0.042 |
+| Boss.PhantomBat | riseTopY | 88 |  |  | px section | ⇒ bay lượn | đo:routine 14: hết vọt lên ở y màn 120 cả 3 lần (boss (188,120) f274, (118,120) f399; Map_1 (192,120) f6230) |
+| Boss.PhantomBat | screenMinX | 18 |  |  | px màn | đổi chiều ngang | suy luận: đối xứng screenMaxX (video không có cảnh chạm mép trái) |
+| Boss.PhantomBat | screenMaxX | 238 | 237 | 238 | px màn | đổi chiều ngang | đo:routine 14: video boss quay đầu ở x màn 237 (f259) và 238 (f369) |
+| Boss.PhantomBat | glideSpeed | 0.75 | 0.72 | 0.77 | px/tick | trục kia tỉ lệ | đo:routine 14: bay thẳng tới điểm, TRỤC TRỘI 0.75 (5 lần: vx −0.755 / −0.756 / −0.767, vx 0.723, vy 0.740) |
+| Boss.PhantomBat | glideMinScreenX | 24 |  |  | px màn |  | suy luận: điểm tới video x màn 26–211 (5 lần); biên = nửa sải cánh 24 |
+| Boss.PhantomBat | glideMaxScreenX | 232 |  |  | px màn |  | suy luận: đối xứng glideMinScreenX |
+| Boss.PhantomBat | glideLowY | 92 | 92 | 93 | px section |  | đo:routine 14: điểm tới sau cú lao ĐẦU y màn 124 (boss) / 125 (Map_1) |
+| Boss.PhantomBat | glideHighY | 123 | 121 | 125 | px section |  | đo:routine 14: điểm tới sau khi vọt lên y màn 157 / 156 (boss), 153 (Map_1) |
+| Boss.PhantomBat | glideMinSimonDx | 64 |  |  | px | x ngẫu nhiên đều phần hợp lệ | suy luận: 5/5 điểm tới cách Simon 68–180 px (video) |
+| Boss.PhantomBat | hoverMinTicks | 32 |  |  | tick | ngẫu nhiên đều | đo:routine 14: lượn tại chỗ 33 (boss f316–332), 55 (Map_1 trừ 2 lần khựng), 59 (boss f430–459), 122 (boss f157–218) |
+| Boss.PhantomBat | hoverMaxTicks | 124 |  |  | tick |  | đo:routine 14 (xem hoverMinTicks) |
+| Boss.PhantomBat | diveChancePct | 100 |  |  | % |  | video:4/4 lần hết lượn tại chỗ đều bổ nhào (wiki: thỉnh thoảng) |
+| Boss.PhantomBat | hitStunTicks | 10 | 8 | 14 | tick | khung hurt | đo:routine 14: Map_1 dơi đứng yên khi trúng rìu f6179–6184, f6191–6197, f6247–6252 (≈ 5 frame) |
+| Boss.PhantomBat | invincibleTicks | 16 |  |  | tick |  | suy luận: video boss hạ dơi (16 vạch) trong 130 tick (f469–f534) bằng roi xích + lửa nước thánh — lửa đánh lại mỗi 8 tick thì cần bất tử 12–19 tick |
+| Boss.PhantomBat | deathFxTicks | 62 | 60 | 62 | tick |  | đo:routine 14 boss_fit fx: cụm lửa bossdeath_m 7 khung (0,1,2,0,1,2,0) — Map_1 f6306–6336 (62), boss f534–563 (60) |
+| Boss.PhantomBat | deathFxUpPx | 8 |  |  | px |  | đo:routine 14: tâm cụm lửa (211,145) / (204,184) = tâm dơi lúc chết (211,153) / (204,192) − 8 |
 | Boss.Death | maxScythes | 3 |  |  | cái |  | wiki:Bosses#Death |
 | Boss.Death | scytheIdleTicks | 60 |  |  | tick |  | wiki:Bosses#Death (đứng yên khoảng 1 giây × 60) |
 | Boss.Dracula | fireballsPerVolley | 3 |  |  | cái |  | wiki:Bosses#The Count |
@@ -208,14 +224,13 @@ Máu = **số đòn** để hạ: *yếu* (roi da, Holy Water, Dagger) / *mạnh
 | SubWeapon.Axe | apexPx | 50 |  |  | px | thông tin | đo:routine 09 (= vy0²/2g với vy0 −5.0 g 0.25; video:Map_1 đỉnh tâm rìu Y−80.5 ≈ 28 + 50 + 2) |
 | SubWeapon.Axe | apexTicks | 20 |  |  | tick | thông tin | đo:routine 09 (= \|vy0\|/g) |
 | SubWeapon.Axe | spawnHeightAboveFeet | 26 |  |  | px | pivot (tâm sprite) rìu | đo:routine 09 khớp parabol 2 quỹ đạo (g cố định 0.25): tâm bbox rìu lúc sinh Y−27.5 / Y−27.8 ⇒ pivot tâm sprite = Y−26 (bbox axe_0 lệch −1.5 so với pivot) |
-| SubWeapon.HolyWater | flameHoldTicks | *chờ đo routine 14* | 138 | 144 | tick | boss bị lửa giữ chân | video:planner (≈ 2.3–2.4 s = khoảng giữa 2 lần ném trong video boss — KHÔNG phải thời gian cháy; xem fireTicks) — chờ đo routine 14 |
-| Item.MagicCrystal | spawnDelayTicks | 150 |  |  | tick |  | video:planner (2.5 s sau khi boss chết; 2 video) — chờ đo routine 14 |
-| Item.MagicCrystal | spawnScreenX | 127.5 |  |  | px màn |  | video:planner (2 video) — chờ đo routine 14 |
-| Item.MagicCrystal | spawnScreenY | 128.5 |  |  | px màn |  | video:planner (2 video) — chờ đo routine 14 |
-| Item.MagicCrystal | gravity | *chờ đo routine 14* | 0.23 | 0.26 | px/tick² |  | video:planner — chờ đo routine 14 |
+| Item.MagicCrystal | spawnDelayTicks | 152 | 150 | 154 | tick | từ tick boss hết máu | đo:routine 14: +3000 → quả cầu hiện: Map_1 f6305→f6380 (150), boss f534→f611 (154) |
+| Item.MagicCrystal | spawnScreenX | 128 |  |  | px màn |  | đo:routine 14 boss_fit orb: pivot (đáy-giữa) x màn 128 cả 2 video |
+| Item.MagicCrystal | spawnY | 104 |  |  | px section | pivot item = đáy ô 16 | đo:routine 14: hàng đáy sprite y màn 136 (pivot khớp 137 cả 2 video) ⇒ section 104 |
+| Item.MagicCrystal | gravity | 0.25 | 0.21 | 0.25 | px/tick² | ItemPickup dùng ConfigRule.ItemGravity (cùng giá trị) | đo:routine 14: rơi Map_1 f6380–6390 +44 px trong ~20 tick khớp y = 0.25·t(t−1)/2 (±1 tick lúc hiện) |
 | SubWeapon.HolyWater | spawnHeightAboveFeet | 23 |  |  | px | tâm lọ | suy luận: = dao (video boss Simon đang nháy bất tử — không thấy điểm sinh) |
 | SubWeapon.HolyWater | fireTicks | 80 | 80 | 94 | tick | sau đó lửa biến mất; anim holywater_fire lặp | đo:routine 09 proj_fit.py video:Boss: lửa vỡ ~f348 tắt sau f389; lọ cuối chạm sàn ~f570 lửa tắt sau f609 (≈ 40 frame video) |
-| SubWeapon.HolyWater | fireRehitTicks | 8 |  |  | tick | Hitbox.Activate lại ⇒ mục tiêu trúng lần nữa nếu hết bất tử | quy ước routine 09 (lửa đánh lại mỗi 8 tick) — video boss: thanh ENEMY tụt đều khi trong lửa; chờ đo routine 14 |
+| SubWeapon.HolyWater | fireRehitTicks | 8 |  |  | tick | Hitbox.Activate lại ⇒ mục tiêu trúng lần nữa nếu hết bất tử | quy ước routine 09 (lửa đánh lại mỗi 8 tick); routine 14 không đo được nhịp thật — thanh ENEMY hiện chạy dần 8 tick/vạch che nhịp; tổng thời gian hạ 130 tick khớp bất tử boss 16 tick |
 | SubWeapon.Cross | spawnHeightAboveFeet | 23 |  |  | px | tâm thập tự | suy luận: = dao (Cross không có trong video) |
 | SubWeapon.Cross | turnDistancePx | 112 |  |  | px | quay đầu khi đi đủ xa hoặc gần mép màn (turnScreenMarginPx) | quy ước routine 09 — wiki Items#Cross chỉ nói bay ra rồi quay về; không có video |
 | SubWeapon.Cross | turnScreenMarginPx | 8 |  |  | px | tâm cách mép màn ≤ N px thì quay đầu | quy ước routine 09 (không có video) |

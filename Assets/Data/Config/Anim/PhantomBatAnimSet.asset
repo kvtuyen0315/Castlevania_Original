@@ -18,20 +18,35 @@ MonoBehaviour:
     - {fileID: 21300000, guid: ec3d3f8e4b2b95a438929cb057b3a7d6, type: 3}
     durations: 08000000
     loop: 1
-    measured: 0
+    measured: 1
     overlays: []
     overlayOffsets: []
     overlayOnTop: 
-    note: 
+    note: "t\u0129nh \u2014 \u0111o routine 14: video boss f0\u201365 / Map_1 f5935\u20135983
+      khung ng\u1EE7 \u0111\u1EE9ng y\xEAn t\xE2m m\xE0n (111,65)"
   - name: fly
     frames:
     - {fileID: 21300000, guid: a927bcbc14030b44787f9f3322be9514, type: 3}
     - {fileID: 21300000, guid: 27b6dced2d82e9a4baf0f92b7e9b2fbb, type: 3}
-    durations: 0800000008000000
+    durations: 0900000009000000
     loop: 1
-    measured: 0
+    measured: 1
     overlays: []
     overlayOffsets: []
     overlayOnTop: 
-    note: 
+    note: "\u0111o routine 14 (boss_fit.py): video boss f66\u2013159 \u0111\u1ED5i
+      _1\u2192_2 m\u1ED7i 8.9 frame video = 17.8 tick/chu k\u1EF3; b\u1EAFt \u0111\u1EA7u
+      khung _1 l\xFAc th\u1EE9c (2 video)"
+  - name: hurt
+    frames:
+    - {fileID: 21300000, guid: 27b6dced2d82e9a4baf0f92b7e9b2fbb, type: 3}
+    durations: 08000000
+    loop: 1
+    measured: 1
+    overlays: []
+    overlayOffsets: []
+    overlayOnTop: 
+    note: "kh\u1EF1ng khi tr\xFAng \u0111\xF2n / ch\u1EA1m n\u01B0\u1EDBc th\xE1nh:
+      \u0111o routine 14 \u2014 13/13 frame kh\u1EF1ng (Map_1 f6179\u20136183, f6191\u20136196,
+      f6247\u20136251; boss f344\u2013352) \u0111\u1EC1u khung _2"
   palettes: []

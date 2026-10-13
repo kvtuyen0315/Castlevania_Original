@@ -56,13 +56,20 @@ MonoBehaviour:
     - {fileID: 21300000, guid: 2a224de0fdd32d640ab3c172d0ece806, type: 3}
     - {fileID: 21300000, guid: 5f5770ca2b412b04b8bcd911b9ca077e, type: 3}
     - {fileID: 21300000, guid: 5192279955f0d8e44abad6c653d6f2d4, type: 3}
-    durations: 080000000800000008000000
+    - {fileID: 21300000, guid: 2a224de0fdd32d640ab3c172d0ece806, type: 3}
+    - {fileID: 21300000, guid: 5f5770ca2b412b04b8bcd911b9ca077e, type: 3}
+    - {fileID: 21300000, guid: 5192279955f0d8e44abad6c653d6f2d4, type: 3}
+    - {fileID: 21300000, guid: 2a224de0fdd32d640ab3c172d0ece806, type: 3}
+    durations: 09000000090000000900000009000000090000000900000008000000
     loop: 0
-    measured: 0
+    measured: 1
     overlays: []
     overlayOffsets: []
     overlayOnTop: 
-    note: 
+    note: "ch\u1EBFt Phantom Bat (\u0111o routine 14 boss_fit): 0,1,2,0,1,2,0 \u2014
+      Map_1 f6306\u20136336 m\u1ED7i khung 4\u20135 frame (8.9 tick), video boss
+      f534\u2013563 (8.6 tick); t\u1ED5ng 62 / 60 tick; t\xE2m c\u1EE5m = t\xE2m
+      d\u01A1i (0, \u22128)"
   - name: bossdeath_l
     frames:
     - {fileID: 21300000, guid: 5497605301c159d4aab356692e7c1ffc, type: 3}

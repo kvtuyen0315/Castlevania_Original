@@ -68,6 +68,9 @@ public class TileCollision
 
     public int Width { get; }
     public int Height { get; }
+    /// <summary>CVGP 14 — tường vô hình (px): cột x &lt; WallMinX hoặc ≥ WallMaxX coi là đặc khi đi ngang (BossArena: mép màn khi camera khoá).
+    /// Dựng lại mỗi LoadSection ⇒ mặc định không có.</summary>
+    public int WallMinX = int.MinValue, WallMaxX = int.MaxValue;
     public int StairCount => stairs.Length;
 
     public TileCollision(LevelSectionData data)
@@ -126,6 +129,8 @@ public class TileCollision
     /// <summary>Có pixel đặc nào trên cột x, hàng y0..y1 (gồm 2 đầu).</summary>
     public bool ColumnHitsSolid(int x, int y0, int y1)
     {
+        if (x < WallMinX || x >= WallMaxX)
+            return true;
         int c = FloorDiv(x, CELL);
         int r1 = FloorDiv(y1, CELL);
         for (int r = FloorDiv(y0, CELL); r <= r1; r++)

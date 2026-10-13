@@ -1,0 +1,3 @@
+# 900 tick, hash a6f38b15
+# CVGP 14 BossProbe kịch bản 'touch': Simon (739,176) KHÔNG bất tử: cú bổ nhào từ đích cao (y 123) chạm thân ⇒ −2 vạch (Stage 3), Simon văng (video boss 11.87 s)
+-*900
