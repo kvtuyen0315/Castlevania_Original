@@ -1,0 +1,3 @@
+# 180 tick, hash dc217ad5
+# CVGP 08 SimonProbe kịch bản 'water': Teleport (530,176) phải; đi vào nước (544–575) ⇒ FallDeath Water ⇒ Died sau DeathTicks ⇒ hồi sinh
+R*40 -*140

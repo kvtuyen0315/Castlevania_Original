@@ -9,9 +9,11 @@ using UnityEngine.SceneManagement;
 ///   MainCamera      : BẢN SAO từ Main.unity (PixelPerfectCamera + con LetterboxClear — CVTI §4.1 "scene test là bản sao")
 ///   Systems         : NesClock + NesPad (InputBindings.asset) — không có GameManager ⇒ StageWorld tự gọi NesPad.Tick
 ///   StageWorld      : StageWorld + NesCameraController + CvgpDebugOverlay; con: section Arena (bật) + 5 section Map 1 (tắt, để
-///                     warp/chụp overlay — "1 prefab section Map 1 đặt tạm"); Entities/ArenaDummy; SpawnPoint bia ở Arena x 860
+///                     warp/chụp overlay — "1 prefab section Map 1 đặt tạm"); Entities/{Simon (bật), ArenaDummy (tắt)} + ArenaPlayerSelect
+///                     (CVGP 08: menu CVGP/Arena/Player = ArenaDummy để chạy lại bộ kiểm 07); SpawnPoint bia ở Arena x 860
 ///   HUD             : instance HUD.prefab ở NES (0,0), là follower của camera (kiểm HUD bám camera khi cuộn)
-/// Prefab thử: Assets/Data/Prefabs/Test/{ArenaDummy,ArenaTarget}.prefab (tạo nếu thiếu, cập nhật trường nếu đã có).
+/// Prefab: Assets/Data/Prefabs/Character/Simon.prefab (CVGP 08 — Simon thật) + prefab thử Assets/Data/Prefabs/Test/{ArenaDummy,ArenaTarget}.prefab
+/// (tạo nếu thiếu, cập nhật trường nếu đã có).
 /// Cần chạy trước: CVGP/Build Map1 Tilemaps (tileset) — builder tự gọi CVGP/Build Arena Section.
 /// </summary>
 public static class CvgpArenaBuilder
@@ -21,6 +23,7 @@ public static class CvgpArenaBuilder
     const string PREFAB_DIR = "Assets/Data/Prefabs/Test";
     const string DUMMY_PREFAB = PREFAB_DIR + "/ArenaDummy.prefab";
     const string TARGET_PREFAB = PREFAB_DIR + "/ArenaTarget.prefab";
+    public const string SIMON_PREFAB = "Assets/Data/Prefabs/Character/Simon.prefab";
     const string ARENA_SECTION = "Assets/Data/Prefabs/Level/Test/Arena.prefab";
     const string MAP1_DIR = "Assets/Data/Prefabs/Level/Block1/";
     static readonly string[] MAP1_SECTIONS = { "CastleEntrance", "EntranceHall", "CryptA", "CryptB", "PhantomBat" };
@@ -51,6 +54,7 @@ public static class CvgpArenaBuilder
         EnsureFolder(PREFAB_DIR);
         BuildDummyPrefab();
         BuildTargetPrefab();
+        BuildSimonPrefab();
         if (File.Exists(SCENE) && !overwrite)
             return arenaMsg + "; prefab thử OK; scene giữ nguyên";
         if (!EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo())
@@ -78,6 +82,34 @@ public static class CvgpArenaBuilder
             so.FindProperty("checkDeadlyTiles").boolValue = true;
             so.ApplyModifiedPropertiesWithoutUndo();
             PrefabUtility.SaveAsPrefabAsset(go, DUMMY_PREFAB);
+        }
+        finally
+        {
+            Object.DestroyImmediate(go);
+        }
+    }
+
+    /// <summary>Simon thật (CVGP 08): nhóm Player, body 16×32, pivot vẽ (0,1) như sprite CVTI, SimonAnimSet, chết khi chạm nước/hố.</summary>
+    public static void BuildSimonPrefab()
+    {
+        EnsureFolder(Path.GetDirectoryName(SIMON_PREFAB).Replace('\\', '/'));
+        var go = new GameObject("Simon");
+        try
+        {
+            var sr = go.AddComponent<SpriteRenderer>();
+            sr.sortingLayerName = "Character";
+            var c = go.AddComponent<SimonController>();
+            var so = new SerializedObject(c);
+            so.FindProperty("group").enumValueIndex = (int)eEntityGroup.Player;
+            so.FindProperty("body").rectIntValue = new RectInt(-8, -32, 16, 32);
+            so.FindProperty("view").objectReferenceValue = sr;
+            so.FindProperty("viewOffset").vector2IntValue = new Vector2Int(0, 1);
+            so.FindProperty("animSet").objectReferenceValue = AssetDatabase.LoadAssetAtPath<AnimSet>(SIMON_ANIM);
+            so.FindProperty("checkDeadlyTiles").boolValue = true;
+            so.FindProperty("despawnOffscreen").boolValue = false;
+            so.FindProperty("autoRespawn").boolValue = false;
+            so.ApplyModifiedPropertiesWithoutUndo();
+            PrefabUtility.SaveAsPrefabAsset(go, SIMON_PREFAB);
         }
         finally
         {
@@ -117,6 +149,7 @@ public static class CvgpArenaBuilder
         // nạp lại SAU NewScene (scene mới Single giải phóng asset không dùng ⇒ tham chiếu cũ chết)
         var dummyPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(DUMMY_PREFAB);
         var targetPrefab = AssetDatabase.LoadAssetAtPath<ArenaTarget>(TARGET_PREFAB);
+        var simonPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(SIMON_PREFAB);
 
         // camera: bản sao từ Main.unity
         var main = EditorSceneManager.OpenScene(MAIN_SCENE, OpenSceneMode.Additive);
@@ -165,8 +198,20 @@ public static class CvgpArenaBuilder
         var entities = new GameObject("Entities");
         entities.transform.SetParent(worldGo.transform, false);
         entities.transform.localPosition = NesCoord.ToWorld(0, LevelSectionData.SCREEN_Y);
+        // Simon (Player mặc định) trước, ArenaDummy tắt — ArenaPlayerSelect bật 1 trong 2 ở Awake theo EditorPrefs
+        var simon = (GameObject)PrefabUtility.InstantiatePrefab(simonPrefab, scene);
+        simon.transform.SetParent(entities.transform, false);
+        var simonSo = new SerializedObject(simon.GetComponent<SimonController>());
+        simonSo.FindProperty("autoRespawn").boolValue = true;
+        simonSo.ApplyModifiedPropertiesWithoutUndo();
         var dummy = (GameObject)PrefabUtility.InstantiatePrefab(dummyPrefab, scene);
         dummy.transform.SetParent(entities.transform, false);
+        dummy.SetActive(false);
+        var sel = entities.AddComponent<ArenaPlayerSelect>();
+        var selSo = new SerializedObject(sel);
+        selSo.FindProperty("simon").objectReferenceValue = simon;
+        selSo.FindProperty("dummy").objectReferenceValue = dummy;
+        selSo.ApplyModifiedPropertiesWithoutUndo();
 
         var hud = (GameObject)PrefabUtility.InstantiatePrefab(AssetDatabase.LoadAssetAtPath<GameObject>(HUD_PREFAB), scene);
         hud.transform.position = Vector3.zero;

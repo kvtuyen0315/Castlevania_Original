@@ -90,47 +90,47 @@ MonoBehaviour:
       has: 1
       value: 1
     min:
-      has: 0
-      value: 0
+      has: 1
+      value: 0.978
     max:
-      has: 0
-      value: 0
+      has: 1
+      value: 1.02
     unit: px/tick
-    source: "video:planner MAP1_TIMELINE \xA74 (11 \u0111o\u1EA1n; 0.987\u20131.028)
-      \u2014 ch\u1EDD \u0111o routine 08"
-    note: 
+    source: "\u0111o:routine 08 kh\u1EDBp m\u1EABu sprite 11 \u0111o\u1EA1n \u0111i
+      video:Map_1 0:03.6\u20133:06.1 (TB 1.006; d\u01B0 rms 1 px)"
+    note: "kh\xF4ng gia t\u1ED1c; d\u1EEBng ngay khi th\u1EA3"
   - key: JumpAirTicks
     value:
-      has: 0
-      value: 0
-    min:
-      has: 1
-      value: 38
-    max:
       has: 1
       value: 40
-    unit: tick
-    source: "video:planner (\u0111\u1ED3ng h\u1ED3 camera + 25 c\xFA nh\u1EA3y; trung
-      v\u1ECB 40) \u2014 ch\u1EDD \u0111o routine 08"
-    note: 
-  - key: JumpHeight
-    value:
+    min:
       has: 0
       value: 0
-    min:
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "\u0111o:routine 08 \u0111\u1ED3ng h\u1ED3 x video:Map_1 2:14.0 (f4021
+      ch\u1EA1m \u0111\u1EA5t tick 40-41) + b\u1EA3ng nh\u1EA3y \u0111\u1ED1i x\u1EE9ng"
+    note: "tr\xEAn s\xE0n ph\u1EB3ng"
+  - key: JumpHeight
+    value:
       has: 1
       value: 36
+    min:
+      has: 0
+      value: 0
     max:
-      has: 1
-      value: 38
+      has: 0
+      value: 0
     unit: px
-    source: "video:planner (ch\xE2n l\xEAn kh\u1ECFi \u0111\u1EA5t) \u2014 ch\u1EDD
-      \u0111o routine 08"
-    note: 
+    source: "\u0111o:routine 08 (pivot ch\xE2n; khung roi tr\xEAn kh\xF4ng \u1EDF
+      \u0111\u1EC9nh = m\u1EB7t s\xE0n \u2212 36 \u1EDF 9 c\xFA nh\u1EA3y video:Map_1)"
+    note: "khung co ch\xE2n v\u1EBD th\u1EA5p 4 px n\xEAn tr\xF4ng nh\u01B0 32"
   - key: JumpRiseSpeedAvg
     value:
       has: 1
-      value: 2.3
+      value: 2.25
     min:
       has: 0
       value: 0
@@ -138,10 +138,8 @@ MonoBehaviour:
       has: 0
       value: 0
     unit: px/tick
-    source: "video:planner (\u2248 trung b\xECnh ~16 tick \u0111\u1EA7u) \u2014 ch\u1EDD
-      \u0111o routine 08"
-    note: "kh\xF4ng ph\u1EA3i parabol: l\xEAn ~16 tick \u2192 \u0111\u1EC9nh ph\u1EB3ng
-      ~10 tick \u2192 r\u01A1i"
+    source: "\u0111o:routine 08 (36 px / 16 tick)"
+    note: "th\xF4ng tin \u2014 code d\xF9ng JumpRise01..16"
   - key: JumpRiseTicks
     value:
       has: 1
@@ -153,12 +151,12 @@ MonoBehaviour:
       has: 0
       value: 0
     unit: tick
-    source: "video:planner (\u2248) \u2014 ch\u1EDD \u0111o routine 08"
+    source: "\u0111o:routine 08 b\u1EA3ng JumpRise (tick 16 l\xEAn t\u1EDBi 36 px)"
     note: 
   - key: JumpApexTicks
     value:
       has: 1
-      value: 10
+      value: 8
     min:
       has: 0
       value: 0
@@ -166,35 +164,37 @@ MonoBehaviour:
       has: 0
       value: 0
     unit: tick
-    source: "video:planner (\u2248 \u0111\u1EC9nh ph\u1EB3ng \xB11 px) \u2014 ch\u1EDD
-      \u0111o routine 08"
-    note: 
+    source: "\u0111o:routine 08 video:Map_1 2:03.7/2:14.0/3:23.6 (cao 36 t\u1EEB
+      tick 16 t\u1EDBi tick 24)"
+    note: "s\u1ED1 tick v\u1EADn t\u1ED1c 0 \u1EDF \u0111\u1EC9nh (tick 17\u201324);
+      r\u01A1i = g\u01B0\u01A1ng c\u1EE7a pha l\xEAn"
   - key: JumpFallSpeed
     value:
+      has: 1
+      value: 5
+    min:
       has: 0
       value: 0
-    min:
-      has: 1
-      value: 2.5
     max:
-      has: 1
-      value: 3
+      has: 0
+      value: 0
     unit: px/tick
-    source: "video:planner \u2014 ch\u1EDD \u0111o routine 08"
-    note: 
+    source: "\u0111o:routine 08 (2 tick cu\u1ED1i b\u1EA3ng nh\u1EA3y = g\u01B0\u01A1ng
+      JumpRise02/01)"
+    note: "sau tick 40 ch\u01B0a ch\u1EA1m \u0111\u1EA5t \u21D2 r\u01A1i FallSpeed"
   - key: JumpDistance
     value:
+      has: 1
+      value: 40
+    min:
       has: 0
       value: 0
-    min:
-      has: 1
-      value: 39
     max:
-      has: 1
-      value: 43
+      has: 0
+      value: 0
     unit: px
-    source: "video:planner (trung v\u1ECB 42; = 1 px/tick \xD7 th\u1EDDi gian bay)
-      \u2014 ch\u1EDD \u0111o routine 08"
+    source: "\u0111o:routine 08 (1 px/tick \xD7 40 tick; video:Map_1 2:03.7 x 68\u2192
+      ti\u1EBFp \u0111\u1EA5t b\u1EE5c \u1EDF tick 30)"
     note: 
   - key: JumpAirControl
     value:
@@ -209,7 +209,8 @@ MonoBehaviour:
     unit: bool
     source: "video:planner (kh\xF4ng \u0111\u1ED5i h\u01B0\u1EDBng gi\u1EEFa kh\xF4ng
       trung \u1EDF m\u1ECDi m\u1EABu); wiki:Gameplay (h\u01B0\u1EDBng ch\u1ED1t l\xFAc
-      b\u1EA5m A)"
+      b\u1EA5m A); \u0111o:routine 08 (x t\u0103ng \u0111\u1EC1u 1 px/tick su\u1ED1t
+      c\xFA nh\u1EA3y 2:03.7)"
     note: "0 = kh\xF4ng \u0111i\u1EC1u khi\u1EC3n tr\xEAn kh\xF4ng"
   - key: StairSpeedX
     value:
@@ -222,9 +223,9 @@ MonoBehaviour:
       has: 0
       value: 0
     unit: px/tick
-    source: "video:planner (5 c\u1EEDa s\u1ED5; 0.497\u20130.503) \u2014 ch\u1EDD
-      \u0111o routine 08"
-    note: 
+    source: "\u0111o:routine 08 kh\u1EDBp m\u1EABu 4 c\u1EEDa s\u1ED5 l\xEAn thang
+      video:Map_1 0:46.7/1:18.6/2:25.7/2:32.3 (+1 px m\u1ED7i frame video)"
+    note: "li\xEAn t\u1EE5c \u2014 kh\xF4ng nh\u1EA3y b\u1EADc"
   - key: StairSpeedY
     value:
       has: 1
@@ -236,8 +237,7 @@ MonoBehaviour:
       has: 0
       value: 0
     unit: px/tick
-    source: "video:planner (5 c\u1EEDa s\u1ED5; 0.48\u20130.504) \u2014 ch\u1EDD
-      \u0111o routine 08"
+    source: "\u0111o:routine 08 (nh\u01B0 StairSpeedX; ch\xE9o 45\xB0)"
     note: 
   - key: StairKnockOff
     value:
@@ -252,11 +252,11 @@ MonoBehaviour:
     unit: bool
     source: "wiki:Stages 16-18#Stage 17 (tr\xEAn c\u1EA7u thang kh\xF4ng bao gi\u1EDD
       b\u1ECB \u0111\xE1nh v\u0103ng kh\u1ECFi b\u1EADc)"
-    note: 
+    note: "tr\xFAng \u0111\xF2n tr\xEAn thang: ch\u1EC9 m\u1EA5t m\xE1u + nh\xE1y"
   - key: KnockbackDx
     value:
-      has: 0
-      value: 0
+      has: 1
+      value: 12
     min:
       has: 1
       value: 11
@@ -264,51 +264,52 @@ MonoBehaviour:
       has: 1
       value: 13
     unit: px
-    source: "video:planner (video boss f356\u2013379; 1 m\u1EABu) \u2014 ch\u1EDD
-      \u0111o routine 08"
-    note: "l\xF9i ng\u01B0\u1EE3c h\u01B0\u1EDBng m\u1EB7t"
+    source: "\u0111o:routine 08 kh\u1EDBp m\u1EABu video:Boss_Map_1 11.9\u201312.6
+      s (f363\u2013380: x +4/+10/+12 r\u1ED3i \u0111\u1EE9ng)"
+    note: "l\xF9i NG\u01AF\u1EE2C h\u01B0\u1EDBng m\u1EB7t"
   - key: KnockbackDy
     value:
       has: 1
-      value: 20
+      value: 15
     min:
-      has: 0
-      value: 0
+      has: 1
+      value: 14
     max:
-      has: 0
-      value: 0
+      has: 1
+      value: 15
     unit: px
-    source: "video:planner (\u2248 n\u1EA3y l\xEAn 20 px; 1 m\u1EABu) \u2014 ch\u1EDD
-      \u0111o routine 08"
-    note: 
+    source: "\u0111o:routine 08 video:Boss_Map_1 f363\u2013380 (h 8/13/14/13/8; khung
+      hurt_0)"
+    note: "1 m\u1EABu"
   - key: KnockbackAirTicks
     value:
-      has: 0
-      value: 0
+      has: 1
+      value: 35
     min:
       has: 1
-      value: 24
+      value: 32
     max:
       has: 1
-      value: 30
+      value: 38
     unit: tick
-    source: "video:planner (\u2248 0.4\u20130.5 s; kh\xF4ng ch\u1EAFc) \u2014 ch\u1EDD
-      \u0111o routine 08"
-    note: 
+    source: "\u0111o:routine 08 video:Boss_Map_1 (tr\xFAng f362.5 \u2192 bi\u1EBFn
+      m\u1EA5t nh\xE1y t\u1EEB f381 \u2248 36 tick)"
+    note: "= 2\xB7|KnockbackVy0|/KnockbackGravity"
   - key: InvincibleTicks
     value:
       has: 1
-      value: 92
+      value: 94
     min:
-      has: 0
-      value: 0
+      has: 1
+      value: 92
     max:
-      has: 0
-      value: 0
+      has: 1
+      value: 96
     unit: tick
-    source: "video:planner (\u2248 1.5 s nh\u1EA5p nh\xE1y; video boss 12.67\u219214.20
-      s) \u2014 ch\u1EDD \u0111o routine 08"
-    note: 
+    source: "\u0111o:routine 08 video:Boss_Map_1 f381\u2013427 (47 frame kh\xF4ng
+      th\u1EA5y Simon sau khi \u0111\xE1p)"
+    note: "\u0111\u1EBFm t\u1EEB l\xFAc \u0110\xC1P sau knockback (trong l\xFAc bay
+      hi\u1EC7n hurt_0 kh\xF4ng nh\xE1y)"
   - key: WhipTotalTicks
     value:
       has: 0
@@ -405,9 +406,9 @@ MonoBehaviour:
     unit: px
     source: "\u0111o:routine 07 bbox pixel \u0111\u1EE5c sprite idle_0 (c\u1ED9t
       0\u201315)"
-    note: "X\u1EA4P X\u1EC8 = khung sprite; h\u1ED9p tr\xFAng th\u1EADt c\u1EE7a
-      ROM ch\u01B0a \u0111o \u0111\u01B0\u1EE3c (Map_1 kh\xF4ng c\xF3 l\u1EA7n tr\xFAng)
-      \u2014 routine 08 ki\u1EC3m video boss f356"
+    note: "X\u1EA4P X\u1EC8 = khung sprite; routine 08: video boss f362 Simon tr\xFAng
+      khi ch\u1EA1m th\xE2n d\u01A1i \u2014 h\u1ED9p ROM v\u1EABn kh\xF4ng \u0111o
+      \u0111\u01B0\u1EE3c"
   - key: HurtboxHeight
     value:
       has: 1
@@ -434,5 +435,524 @@ MonoBehaviour:
       value: 0
     unit: px
     source: "\u0111o:routine 07 bbox pixel \u0111\u1EE5c sprite jumpduck_0 (h\xE0ng
-      1\u201323)"
-    note: "X\u1EA4P X\u1EC8 nh\u01B0 HurtboxWidth"
+      1\u201323); \u0111o:routine 08 khung ng\u1ED3i v\u1EBD l\u1EC7ch +8 (video:Map_1
+      1:02.8)"
+    note: "X\u1EA4P X\u1EC8 nh\u01B0 HurtboxWidth; d\xF9ng c\u1EA3 cho t\u01B0 th\u1EBF
+      co ch\xE2n khi nh\u1EA3y (v\u1EBD +4)"
+  - key: JumpRise01
+    value:
+      has: 1
+      value: 5
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "\u0111o:routine 08 \u0111\u1ED3ng h\u1ED3 x video:Map_1 2:03.7 (f3712)
+      v\xE0 3:23.6 (f6111) + 14 c\xFA nh\u1EA3y gh\xE9p theo th\u1EDDi gian video"
+    note: "\u0111\u1ED9 cao tick 1 = 5 (khung \u0111\u1EE9ng)"
+  - key: JumpRise02
+    value:
+      has: 1
+      value: 5
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "\u0111o:routine 08 (nh\u01B0 JumpRise01)"
+    note: "cao 10 (khung \u0111\u1EE9ng)"
+  - key: JumpRise03
+    value:
+      has: 1
+      value: 3
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "\u0111o:routine 08 (nh\u01B0 JumpRise01)"
+    note: "cao 13 (khung co ch\xE2n \u0111\u1EA7u ti\xEAn)"
+  - key: JumpRise04
+    value:
+      has: 1
+      value: 3
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "\u0111o:routine 08 (nh\u01B0 JumpRise01)"
+    note: cao 16
+  - key: JumpRise05
+    value:
+      has: 1
+      value: 3
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "\u0111o:routine 08 (nh\u01B0 JumpRise01)"
+    note: cao 19
+  - key: JumpRise06
+    value:
+      has: 1
+      value: 3
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "\u0111o:routine 08 (nh\u01B0 JumpRise01)"
+    note: cao 22
+  - key: JumpRise07
+    value:
+      has: 1
+      value: 3
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "\u0111o:routine 08 (nh\u01B0 JumpRise01)"
+    note: cao 25
+  - key: JumpRise08
+    value:
+      has: 1
+      value: 2
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "\u0111o:routine 08 (nh\u01B0 JumpRise01)"
+    note: cao 27
+  - key: JumpRise09
+    value:
+      has: 1
+      value: 2
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "\u0111o:routine 08 (nh\u01B0 JumpRise01)"
+    note: cao 29
+  - key: JumpRise10
+    value:
+      has: 1
+      value: 2
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "\u0111o:routine 08 (nh\u01B0 JumpRise01)"
+    note: cao 31
+  - key: JumpRise11
+    value:
+      has: 1
+      value: 1
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "\u0111o:routine 08 (nh\u01B0 JumpRise01)"
+    note: cao 32
+  - key: JumpRise12
+    value:
+      has: 1
+      value: 1
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "\u0111o:routine 08 (nh\u01B0 JumpRise01)"
+    note: cao 33
+  - key: JumpRise13
+    value:
+      has: 1
+      value: 1
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "\u0111o:routine 08 (nh\u01B0 JumpRise01)"
+    note: cao 34
+  - key: JumpRise14
+    value:
+      has: 1
+      value: 1
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "\u0111o:routine 08 (nh\u01B0 JumpRise01)"
+    note: cao 35
+  - key: JumpRise15
+    value:
+      has: 1
+      value: 0
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "\u0111o:routine 08 (nh\u01B0 JumpRise01)"
+    note: cao 35
+  - key: JumpRise16
+    value:
+      has: 1
+      value: 1
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "\u0111o:routine 08 (nh\u01B0 JumpRise01)"
+    note: "cao 36 = \u0111\u1EC9nh; r\u01A1i tick 25\u201340 = g\u01B0\u01A1ng (\u2212JumpRise16
+      \u2026 \u2212JumpRise01)"
+  - key: JumpTuckStartTick
+    value:
+      has: 1
+      value: 3
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "\u0111o:routine 08 (khung \u0111\u1EE9ng \u1EDF cao 5/10 = tick 1\u20132;
+      co ch\xE2n t\u1EEB cao 13 = tick 3; 14 c\xFA nh\u1EA3y video:Map_1)"
+    note: 
+  - key: JumpUntuckTick
+    value:
+      has: 1
+      value: 30
+    min:
+      has: 1
+      value: 29
+    max:
+      has: 1
+      value: 31
+    unit: tick
+    source: "\u0111o:routine 08 (co ch\xE2n cu\u1ED1i c\xF9ng cao 32\u201333 = tick
+      28\u201329; khung \u0111\u1EE9ng t\u1EEB cao 29\u201325; video:Map_1 0:30.5/0:37.6/2:54.0/3:21.2)"
+    note: "sau roi tr\xEAn kh\xF4ng quay v\u1EC1 khung co ch\xE2n (video:Map_1 2:14.6/2:36.8)
+      \u2014 routine 09"
+  - key: JumpTuckDrawY
+    value:
+      has: 1
+      value: 4
+    min:
+      has: 1
+      value: 3
+    max:
+      has: 1
+      value: 5
+    unit: px
+    source: "\u0111o:routine 08 (gh\xE9p 14 c\xFA nh\u1EA3y: t\u1ED5ng d\u01B0 nh\u1ECF
+      nh\u1EA5t \u1EDF +4 = 161 px so v\u1EDBi +3/+5 = 193/192)"
+    note: "khung co ch\xE2n v\u1EBD th\u1EA5p h\u01A1n pivot 4 px"
+  - key: CrouchDrawY
+    value:
+      has: 1
+      value: 8
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "\u0111o:routine 08 kh\u1EDBp m\u1EABu video:Map_1 1:02.8 (f1886\u20131896
+      jumpduck_0 t\u1EA1i m\u1EB7t s\xE0n + 8; err 0.019\u20130.022)"
+    note: "khung ng\u1ED3i = jumpduck_0 v\u1EBD th\u1EA5p 8 px (ch\xE2n ch\u1EA1m
+      s\xE0n)"
+  - key: FallSpeed
+    value:
+      has: 1
+      value: 8
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px/tick
+    source: "\u0111o:routine 08 video:Map_1 2:05.3 (f3757\u20133760 r\u01A1i 32 px
+      trong 4 tick) v\xE0 3:24.1 (f6129\u20136132: h\u1EBFt b\u1EA3ng nh\u1EA3y r\u01A1i
+      32 px trong 4 tick)"
+    note: "h\u1EB1ng \u2014 kh\xF4ng gia t\u1ED1c; gi\u1EEF v\u1EADn t\u1ED1c ngang
+      l\xFAc r\u1EDDi m\xE9p"
+  - key: LandCrouchMinFallTicks
+    value:
+      has: 1
+      value: 5
+    min:
+      has: 1
+      value: 5
+    max:
+      has: 1
+      value: 8
+    unit: tick
+    source: "\u0111o:routine 08 video:Map_1 1:02.8 (r\u01A1i 64 px = 8 tick \u21D2
+      ng\u1ED3i kh\u1EF1ng) v\xE0 2:05.3 (r\u01A1i 32 px = 4 tick \u21D2 kh\xF4ng)"
+    note: "ng\u01B0\u1EE1ng th\u1EADt trong 5\u20138"
+  - key: LandCrouchTicks
+    value:
+      has: 1
+      value: 20
+    min:
+      has: 1
+      value: 18
+    max:
+      has: 1
+      value: 22
+    unit: tick
+    source: "\u0111o:routine 08 video:Map_1 1:02.8 (f1886\u20131896 ng\u1ED3i 10\u201311
+      frame video)"
+    note: "kh\xF4ng \u0111i\u1EC1u khi\u1EC3n trong l\xFAc ng\u1ED3i kh\u1EF1ng"
+  - key: WalkFrameTicks
+    value:
+      has: 1
+      value: 7
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "\u0111o:routine 08 (11 \u0111o\u1EA1n \u0111i: th\u1EE9 t\u1EF1 walk_0/1/2/1
+      m\u1ED7i 7 tick kh\u1EDBp 84.5 %; 6 tick 48 % / 8 tick 63 %)"
+    note: "AnimSet walk b\u1EAFt \u0111\u1EA7u \u1EDF walk_2 (3/4 l\u1EA7n b\u1EAFt
+      \u0111\u1EA7u \u0111i trong video)"
+  - key: StairFrameTicks
+    value:
+      has: 1
+      value: 8
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "\u0111o:routine 08 (4 c\u1EEDa s\u1ED5 l\xEAn thang: m\u1ED7i khung
+      4 px = 8 tick; khung theo V\u1ECA TR\xCD tr\xEAn thang)"
+    note: "l\xEAn: stairs_up_0 khi (t\u22121) mod 8 < 4; xu\u1ED1ng: stairs_down_0
+      khi t mod 8 < 4; c\xF2n l\u1EA1i walk_1"
+  - key: StairStepPx
+    value:
+      has: 1
+      value: 8
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "suy lu\u1EADn: b\u1EADc 8\xD78 (CVGP 06) \u2014 video kh\xF4ng c\xF3
+      c\u1EA3nh d\u1EEBng gi\u1EEFa thang"
+    note: "th\u1EA3 n\xFAt \u21D2 \u0111i n\u1ED1t t\u1EDBi b\u1ED9i 8 px r\u1ED3i
+      \u0111\u1EE9ng"
+  - key: StairEnterRange
+    value:
+      has: 1
+      value: 8
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "quy \u01B0\u1EDBc \u2014 video:Map_1 0:46.7/1:18.6/2:25.7/2:32.3 b\u1EA5m
+      L\xEAn khi c\xE1ch ch\xE2n thang 3\u20134 px"
+    note: "ph\xEDa d\u01B0\u1EDBi g\u1EA7m thang: k\u1EB9p l\xEAn \u0111\u01B0\u1EDDng
+      thang t\u1EA1i x hi\u1EC7n t\u1EA1i; ph\xEDa kia: t\u1EF1 \u0111i t\u1EDBi
+      ch\xE2n r\u1ED3i leo"
+  - key: StairLineOffsetUpRight
+    value:
+      has: 1
+      value: 3
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "\u0111o:routine 08 (thang \u2197 EH stair0/stair3: x + y c\u1EE7a pivot
+      = \u0111\u01B0\u1EDDng t\xE2m b\u1EADc + 3; ra \u0111\u1EC9nh x = \u0111\u1EC9nh
+      + 3 \u1EDF 0:48.9)"
+    note: "pivot Simon tr\xEAn thang \u2197 l\u1EC7ch +3 px theo x so v\u1EDBi StairPath"
+  - key: StairLineOffsetUpLeft
+    value:
+      has: 1
+      value: 0
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "\u0111o:routine 08 (thang \u2196 CB stair1 + CA stair3: x \u2212 y \u0111\xFAng
+      \u0111\u01B0\u1EDDng t\xE2m b\u1EADc; ra \u0111\u1EC9nh 2:34.3)"
+    note: 
+  - key: StairWalkPoseDrawY
+    value:
+      has: 1
+      value: 2
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "\u0111o:routine 08 (khi l\xEAn thang khung walk_1 v\u1EBD th\u1EA5p
+      h\u01A1n stairs_up_0 2 px \u1EDF c\u1EA3 4 c\u1EEDa s\u1ED5)"
+    note: "ch\u1EC9 khi l\xEAn thang"
+  - key: StairDownDrawBack
+    value:
+      has: 1
+      value: 3
+    min:
+      has: 1
+      value: 2
+    max:
+      has: 1
+      value: 4
+    unit: px
+    source: "\u0111o:routine 08 video:Map_1 1:47.5 (CA stair0 \u22122.5) v\xE0 1:54.4
+      (CB stair0 \u22123.6) khi xu\u1ED1ng thang \u2196"
+    note: "v\u1EBD l\xF9i 3 px ng\u01B0\u1EE3c h\u01B0\u1EDBng di chuy\u1EC3n ngang
+      khi xu\u1ED1ng \u2014 thang \u2197 l\u1EA5y \u0111\u1ED1i x\u1EE9ng (ch\u01B0a
+      c\xF3 video)"
+  - key: KnockbackVy0
+    value:
+      has: 1
+      value: -1.75
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px/tick
+    source: "\u0111o:routine 08 kh\u1EDBp parabol video:Boss_Map_1 f363\u2013380
+      (h 8/13/14/13/8)"
+    note: "c\xF9ng KnockbackGravity \u21D2 cao \u2248 15 px; bay \u2248 35 tick"
+  - key: KnockbackGravity
+    value:
+      has: 1
+      value: 0.1
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: "px/tick\xB2"
+    source: "\u0111o:routine 08 (nh\u01B0 KnockbackVy0)"
+    note: 
+  - key: KnockbackDxTicks
+    value:
+      has: 1
+      value: 12
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "\u0111o:routine 08 video:Boss_Map_1 (x +12 r\u1ED3i \u0111\u1EE9ng y\xEAn
+      d\xF9 c\xF2n tr\xEAn kh\xF4ng \u2014 f369\u2013380)"
+    note: "l\xF9i 1 px/tick trong 12 tick \u0111\u1EA7u"
+  - key: InvincibleBlinkPeriod
+    value:
+      has: 1
+      value: 2
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "suy lu\u1EADn: video:Boss_Map_1 f381\u2013427 KH\xD4NG th\u1EA5y Simon
+      \u1EDF c\u1EA3 47 frame \u21D2 nh\xE1y 1 tick hi\u1EC7n / 1 tick \u1EA9n (b\u1EA3n
+      quay 30 fps b\u1EAFt tr\xFAng pha \u1EA9n)"
+    note: 
+  - key: DeathKneelTicks
+    value:
+      has: 1
+      value: 16
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "quy \u01B0\u1EDBc \u2014 video/wiki kh\xF4ng c\xF3 c\u1EA3nh ch\u1EBFt
+      (routine 12 xem l\u1EA1i)"
+    note: "khung death_0 (qu\u1EF3) tr\u01B0\u1EDBc death_1 (n\u1EB1m)"
+  - key: DeathTicks
+    value:
+      has: 1
+      value: 124
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "suy lu\u1EADn: \u0111\u1ED9 d\xE0i nh\u1EA1c Art_Source/music/15. Death.mp3
+      = 2.07 s; video kh\xF4ng c\xF3 c\u1EA3nh ch\u1EBFt"
+    note: "t\u1EEB l\xFAc ng\xE3 (ho\u1EB7c r\u01A1i h\u1ED1) t\u1EDBi khi b\xE1o
+      s\u1EF1 ki\u1EC7n Died (routine 12 h\u1ED3i sinh)"

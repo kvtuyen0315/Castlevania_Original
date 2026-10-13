@@ -2,7 +2,8 @@ using UnityEditor;
 using UnityEngine;
 
 /// <summary>
-/// Menu CVGP/Debug/* (overlay hitbox, overlay lưới va chạm, log đổi state) và CVGP/Cheat/* (chỉ Editor, CVGP 07).
+/// Menu CVGP/Debug/* (overlay hitbox, overlay lưới va chạm, log đổi state) và CVGP/Cheat/* (chỉ Editor, CVGP 07);
+/// CVGP/Arena/Player = ArenaDummy (CVGP 08 — chọn Player của scene Arena).
 /// Cờ lưu EditorPrefs (CvgpDebug.PREF_*), có hiệu lực ngay trong Play; build thường không có menu ⇒ mọi cờ tắt.
 /// </summary>
 public static class CvgpDebugMenu
@@ -16,6 +17,7 @@ public static class CvgpDebugMenu
     const string M_KILL = "CVGP/Cheat/Kill All Enemies";
     const string M_WARP = "CVGP/Cheat/Warp Next Section";
     const string M_FREEZE = "CVGP/Cheat/Freeze Enemies 300 ticks";
+    const string M_ARENA_DUMMY = "CVGP/Arena/Player = ArenaDummy (bộ kiểm 07)";
 
     static void Toggle(string pref)
     {
@@ -34,6 +36,10 @@ public static class CvgpDebugMenu
 
     [MenuItem(M_INVINCIBLE)] static void Invincible() { Toggle(CvgpDebug.PREF_CHEAT_INVINCIBLE); }
     [MenuItem(M_INVINCIBLE, true)] static bool InvincibleV() { Menu.SetChecked(M_INVINCIBLE, EditorPrefs.GetBool(CvgpDebug.PREF_CHEAT_INVINCIBLE, false)); return true; }
+
+    // CVGP 08: scene Arena mặc định chơi Simon thật; bật mục này (trước khi Play) để chạy lại bộ kiểm lõi 07 (CvgpCoreProbe) trên ArenaDummy
+    [MenuItem(M_ARENA_DUMMY)] static void ArenaUseDummy() { Toggle(ArenaPlayerSelect.PREF_USE_DUMMY); }
+    [MenuItem(M_ARENA_DUMMY, true)] static bool ArenaUseDummyV() { Menu.SetChecked(M_ARENA_DUMMY, EditorPrefs.GetBool(ArenaPlayerSelect.PREF_USE_DUMMY, false)); return !Application.isPlaying; }
 
     static bool InStage()
     {

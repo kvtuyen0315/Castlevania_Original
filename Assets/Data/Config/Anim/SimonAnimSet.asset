@@ -25,81 +25,92 @@ MonoBehaviour:
     note: 
   - name: walk
     frames:
-    - {fileID: 21300000, guid: 5b3793abe09431148be8c52973e5bebc, type: 3}
-    - {fileID: 21300000, guid: 7354c8862bd8de1478d55857667dc9c7, type: 3}
     - {fileID: 21300000, guid: 3c9598bdeee57044585c7af355225289, type: 3}
     - {fileID: 21300000, guid: 7354c8862bd8de1478d55857667dc9c7, type: 3}
-    durations: 08000000080000000800000008000000
+    - {fileID: 21300000, guid: 5b3793abe09431148be8c52973e5bebc, type: 3}
+    - {fileID: 21300000, guid: 7354c8862bd8de1478d55857667dc9c7, type: 3}
+    durations: 07000000070000000700000007000000
     loop: 1
-    measured: 0
+    measured: 1
     overlays: []
     overlayOffsets: []
     overlayOnTop: 
-    note: "ping-pong nh\u01B0 Intro CVTI (WALK_ORDER 0,1,2,1); nh\u1ECBp ch\u1EDD
-      \u0111o routine 08"
+    note: "routine 08: chu k\u1EF3 walk_0,1,2,1 m\u1ED7i khung 7 tick (11 \u0111o\u1EA1n
+      video Map_1, kh\u1EDBp 84.5 %); b\u1EAFt \u0111\u1EA7u \u1EDF walk_2 (3/4 l\u1EA7n
+      b\u1EAFt \u0111\u1EA7u \u0111i trong video) \u2014 walk_0 = idle_0 t\u1EEBng
+      pixel"
   - name: jump
     frames:
     - {fileID: 21300000, guid: a351e724ca313a645ad6106f26d7fb67, type: 3}
     durations: 08000000
     loop: 0
-    measured: 0
+    measured: 1
     overlays: []
     overlayOffsets: []
     overlayOnTop: 
-    note: "d\xF9ng chung sprite v\u1EDBi duck"
+    note: "routine 08: khung co ch\xE2n khi nh\u1EA3y (tick JumpTuckStartTick..JumpUntuckTick\u22121),
+      v\u1EBD th\u1EA5p h\u01A1n pivot JumpTuckDrawY = 4 px; tick kh\xE1c d\xF9ng
+      idle \u2014 1 khung t\u0129nh, durations kh\xF4ng d\xF9ng"
   - name: duck
     frames:
     - {fileID: 21300000, guid: a351e724ca313a645ad6106f26d7fb67, type: 3}
     durations: 08000000
     loop: 0
-    measured: 0
+    measured: 1
     overlays: []
     overlayOffsets: []
     overlayOnTop: 
-    note: 
+    note: "routine 08: ng\u1ED3i = jumpduck_0 v\u1EBD th\u1EA5p CrouchDrawY = 8 px
+      (video Map_1 1:02.8) \u2014 1 khung t\u0129nh"
   - name: stairs_up
     frames:
     - {fileID: 21300000, guid: 366d821c7f3d8f5489fbd223bf85ddd7, type: 3}
     - {fileID: 21300000, guid: 458b03cab3926494c980ea2a93e8f8ac, type: 3}
     durations: 0800000008000000
     loop: 1
-    measured: 0
+    measured: 1
     overlays: []
     overlayOffsets: []
     overlayOnTop: 
-    note: 
+    note: "routine 08: m\u1ED7i khung 4 px = 8 tick, ch\u1ECDn khung theo V\u1ECA
+      TR\xCD t tr\xEAn thang (stairs_up_0 khi (t\u22121) mod 8 < 4); stairs_up_1
+      = walk_1 t\u1EEBng pixel, v\u1EBD th\u1EA5p 2 px"
   - name: stairs_down
     frames:
     - {fileID: 21300000, guid: 2e69c9f64e20f324d87a00caf2fdbcef, type: 3}
     - {fileID: 21300000, guid: 5f58380629e469445b2ec478b73740b9, type: 3}
     durations: 0800000008000000
     loop: 1
-    measured: 0
+    measured: 1
     overlays: []
     overlayOffsets: []
     overlayOnTop: 
-    note: 
+    note: "routine 08: m\u1ED7i khung 4 px = 8 tick theo v\u1ECB tr\xED (stairs_down_0
+      khi t mod 8 < 4); stairs_down_1 = walk_1 t\u1EEBng pixel"
   - name: hurt
     frames:
     - {fileID: 21300000, guid: eaa5989c12aefe34190b3f30bcbd3db5, type: 3}
     durations: 08000000
     loop: 0
-    measured: 0
+    measured: 1
     overlays: []
     overlayOffsets: []
     overlayOnTop: 
-    note: 
+    note: "routine 08: su\u1ED1t cung knockback (video boss f363\u2013380) \u2014
+      1 khung t\u0129nh"
   - name: death
     frames:
     - {fileID: 21300000, guid: dd3ad2c1afe925048b6750f85a62988b, type: 3}
     - {fileID: 21300000, guid: a90e4be2236034241878763524c71301, type: 3}
-    durations: 0800000008000000
+    durations: 100000006c000000
     loop: 0
     measured: 0
     overlays: []
     overlayOffsets: []
     overlayOnTop: 
-    note: 
+    note: "routine 08: video/wiki kh\xF4ng c\xF3 c\u1EA3nh ch\u1EBFt \u2014 16 =
+      ConfigSimon.DeathKneelTicks (quy \u01B0\u1EDBc), t\u1ED5ng 124 = DeathTicks
+      (\u0111\u1ED9 d\xE0i nh\u1EA1c 15. Death.mp3)"
   - name: back
     frames:
     - {fileID: 21300000, guid: dac316e2a276d2b45a85371c564216ff, type: 3}

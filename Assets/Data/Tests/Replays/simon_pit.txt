@@ -1,0 +1,3 @@
+# 180 tick, hash 2300bab5
+# CVGP 08 SimonProbe kịch bản 'pit': Teleport (470,176) phải; đi vào hố (480–511) ⇒ rơi khỏi đáy ⇒ FallDeath Pit
+R*30 -*150

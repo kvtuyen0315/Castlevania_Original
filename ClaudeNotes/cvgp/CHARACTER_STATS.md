@@ -15,31 +15,68 @@
 | StartHearts | 5 |  | tim | video:Map_1 0:02.2 (tim 05 → 10 sau Large Heart lúc 0:03.93); CVTI GameSession | khớp suy luận wiki (♥15 = 5 + 2×5) |
 | HeartsOnNewBlock | 5 |  | tim | video:Map_1 3:52.3 (HUD STAGE 04 tim về 05 sau tally) — chờ đo routine 12 | tim đặt lại khi sang block mới |
 | MaxHearts | *không rõ* | 76–? | tim | không rõ — wiki chỉ cho thấy ≥ 70 (ảnh Stage 3); video:Map_1 3:19 đạt 76; trần thật chưa biết | min = giá trị lớn nhất đã thấy (không phải trần) |
-| WalkSpeed | 1.0 |  | px/tick | video:planner MAP1_TIMELINE §4 (11 đoạn; 0.987–1.028) — chờ đo routine 08 |  |
-| JumpAirTicks | *chờ đo routine 08* | 38–40 | tick | video:planner (đồng hồ camera + 25 cú nhảy; trung vị 40) — chờ đo routine 08 |  |
-| JumpHeight | *chờ đo routine 08* | 36–38 | px | video:planner (chân lên khỏi đất) — chờ đo routine 08 |  |
-| JumpRiseSpeedAvg | 2.3 |  | px/tick | video:planner (≈ trung bình ~16 tick đầu) — chờ đo routine 08 | không phải parabol: lên ~16 tick → đỉnh phẳng ~10 tick → rơi |
-| JumpRiseTicks | 16 |  | tick | video:planner (≈) — chờ đo routine 08 |  |
-| JumpApexTicks | 10 |  | tick | video:planner (≈ đỉnh phẳng ±1 px) — chờ đo routine 08 |  |
-| JumpFallSpeed | *chờ đo routine 08* | 2.5–3 | px/tick | video:planner — chờ đo routine 08 |  |
-| JumpDistance | *chờ đo routine 08* | 39–43 | px | video:planner (trung vị 42; = 1 px/tick × thời gian bay) — chờ đo routine 08 |  |
-| JumpAirControl | 0 |  | bool | video:planner (không đổi hướng giữa không trung ở mọi mẫu); wiki:Gameplay (hướng chốt lúc bấm A) | 0 = không điều khiển trên không |
-| StairSpeedX | 0.5 |  | px/tick | video:planner (5 cửa sổ; 0.497–0.503) — chờ đo routine 08 |  |
-| StairSpeedY | 0.5 |  | px/tick | video:planner (5 cửa sổ; 0.48–0.504) — chờ đo routine 08 |  |
-| StairKnockOff | 0 |  | bool | wiki:Stages 16-18#Stage 17 (trên cầu thang không bao giờ bị đánh văng khỏi bậc) |  |
-| KnockbackDx | *chờ đo routine 08* | 11–13 | px | video:planner (video boss f356–379; 1 mẫu) — chờ đo routine 08 | lùi ngược hướng mặt |
-| KnockbackDy | 20 |  | px | video:planner (≈ nảy lên 20 px; 1 mẫu) — chờ đo routine 08 |  |
-| KnockbackAirTicks | *chờ đo routine 08* | 24–30 | tick | video:planner (≈ 0.4–0.5 s; không chắc) — chờ đo routine 08 |  |
-| InvincibleTicks | 92 |  | tick | video:planner (≈ 1.5 s nhấp nháy; video boss 12.67→14.20 s) — chờ đo routine 08 |  |
+| WalkSpeed | 1.0 | 0.978–1.02 | px/tick | đo:routine 08 khớp mẫu sprite 11 đoạn đi video:Map_1 0:03.6–3:06.1 (TB 1.006; dư rms 1 px) | không gia tốc; dừng ngay khi thả |
+| JumpAirTicks | 40 |  | tick | đo:routine 08 đồng hồ x video:Map_1 2:14.0 (f4021 chạm đất tick 40-41) + bảng nhảy đối xứng | trên sàn phẳng |
+| JumpHeight | 36 |  | px | đo:routine 08 (pivot chân; khung roi trên không ở đỉnh = mặt sàn − 36 ở 9 cú nhảy video:Map_1) | khung co chân vẽ thấp 4 px nên trông như 32 |
+| JumpRiseSpeedAvg | 2.25 |  | px/tick | đo:routine 08 (36 px / 16 tick) | thông tin — code dùng JumpRise01..16 |
+| JumpRiseTicks | 16 |  | tick | đo:routine 08 bảng JumpRise (tick 16 lên tới 36 px) |  |
+| JumpApexTicks | 8 |  | tick | đo:routine 08 video:Map_1 2:03.7/2:14.0/3:23.6 (cao 36 từ tick 16 tới tick 24) | số tick vận tốc 0 ở đỉnh (tick 17–24); rơi = gương của pha lên |
+| JumpFallSpeed | 5 |  | px/tick | đo:routine 08 (2 tick cuối bảng nhảy = gương JumpRise02/01) | sau tick 40 chưa chạm đất ⇒ rơi FallSpeed |
+| JumpDistance | 40 |  | px | đo:routine 08 (1 px/tick × 40 tick; video:Map_1 2:03.7 x 68→ tiếp đất bục ở tick 30) |  |
+| JumpAirControl | 0 |  | bool | video:planner (không đổi hướng giữa không trung ở mọi mẫu); wiki:Gameplay (hướng chốt lúc bấm A); đo:routine 08 (x tăng đều 1 px/tick suốt cú nhảy 2:03.7) | 0 = không điều khiển trên không |
+| StairSpeedX | 0.5 |  | px/tick | đo:routine 08 khớp mẫu 4 cửa sổ lên thang video:Map_1 0:46.7/1:18.6/2:25.7/2:32.3 (+1 px mỗi frame video) | liên tục — không nhảy bậc |
+| StairSpeedY | 0.5 |  | px/tick | đo:routine 08 (như StairSpeedX; chéo 45°) |  |
+| StairKnockOff | 0 |  | bool | wiki:Stages 16-18#Stage 17 (trên cầu thang không bao giờ bị đánh văng khỏi bậc) | trúng đòn trên thang: chỉ mất máu + nháy |
+| KnockbackDx | 12 | 11–13 | px | đo:routine 08 khớp mẫu video:Boss_Map_1 11.9–12.6 s (f363–380: x +4/+10/+12 rồi đứng) | lùi NGƯỢC hướng mặt |
+| KnockbackDy | 15 | 14–15 | px | đo:routine 08 video:Boss_Map_1 f363–380 (h 8/13/14/13/8; khung hurt_0) | 1 mẫu |
+| KnockbackAirTicks | 35 | 32–38 | tick | đo:routine 08 video:Boss_Map_1 (trúng f362.5 → biến mất nháy từ f381 ≈ 36 tick) | = 2·\|KnockbackVy0\|/KnockbackGravity |
+| InvincibleTicks | 94 | 92–96 | tick | đo:routine 08 video:Boss_Map_1 f381–427 (47 frame không thấy Simon sau khi đáp) | đếm từ lúc ĐÁP sau knockback (trong lúc bay hiện hurt_0 không nháy) |
 | WhipTotalTicks | *chờ đo routine 09* | 18–22 | tick | video:planner (trung vị ~20) — chờ đo routine 09 |  |
 | WhipWindupTicks | *chờ đo routine 09* | 4–6 | tick | video:planner (khung 1 vung ra sau) — chờ đo routine 09 |  |
 | WhipRaiseTicks | *chờ đo routine 09* | 4–8 | tick | video:planner (khung 2 giơ cao; điển hình 6) — chờ đo routine 09 |  |
 | WhipExtendTicks | *chờ đo routine 09* | 6–10 | tick | video:planner (khung 3 duỗi thẳng) — chờ đo routine 09 |  |
 | WhipHeightAboveFeet | 16 |  | px | video:planner (≈ đỉnh đầu + 9–10 px) — chờ đo routine 09 |  |
 | WhipPickupFreezeTicks | *chờ đo routine 09* | 46–48 | tick | video:planner (0.73–0.80 s; f194–217 và f293–315) — chờ đo routine 09 | camera + Simon đứng; TIME vẫn chạy |
-| HurtboxWidth | 16 |  | px | đo:routine 07 bbox pixel đục sprite idle_0 (cột 0–15) | XẤP XỈ = khung sprite; hộp trúng thật của ROM chưa đo được (Map_1 không có lần trúng) — routine 08 kiểm video boss f356 |
+| HurtboxWidth | 16 |  | px | đo:routine 07 bbox pixel đục sprite idle_0 (cột 0–15) | XẤP XỈ = khung sprite; routine 08: video boss f362 Simon trúng khi chạm thân dơi — hộp ROM vẫn không đo được |
 | HurtboxHeight | 30 |  | px | đo:routine 07 bbox pixel đục sprite idle_0 (hàng 1–30 của khung 32) | XẤP XỈ như HurtboxWidth; chân ở hàng Y−1 |
-| CrouchHurtboxHeight | 23 |  | px | đo:routine 07 bbox pixel đục sprite jumpduck_0 (hàng 1–23) | XẤP XỈ như HurtboxWidth |
+| CrouchHurtboxHeight | 23 |  | px | đo:routine 07 bbox pixel đục sprite jumpduck_0 (hàng 1–23); đo:routine 08 khung ngồi vẽ lệch +8 (video:Map_1 1:02.8) | XẤP XỈ như HurtboxWidth; dùng cả cho tư thế co chân khi nhảy (vẽ +4) |
+| JumpRise01 | 5 |  | px | đo:routine 08 đồng hồ x video:Map_1 2:03.7 (f3712) và 3:23.6 (f6111) + 14 cú nhảy ghép theo thời gian video | độ cao tick 1 = 5 (khung đứng) |
+| JumpRise02 | 5 |  | px | đo:routine 08 (như JumpRise01) | cao 10 (khung đứng) |
+| JumpRise03 | 3 |  | px | đo:routine 08 (như JumpRise01) | cao 13 (khung co chân đầu tiên) |
+| JumpRise04 | 3 |  | px | đo:routine 08 (như JumpRise01) | cao 16 |
+| JumpRise05 | 3 |  | px | đo:routine 08 (như JumpRise01) | cao 19 |
+| JumpRise06 | 3 |  | px | đo:routine 08 (như JumpRise01) | cao 22 |
+| JumpRise07 | 3 |  | px | đo:routine 08 (như JumpRise01) | cao 25 |
+| JumpRise08 | 2 |  | px | đo:routine 08 (như JumpRise01) | cao 27 |
+| JumpRise09 | 2 |  | px | đo:routine 08 (như JumpRise01) | cao 29 |
+| JumpRise10 | 2 |  | px | đo:routine 08 (như JumpRise01) | cao 31 |
+| JumpRise11 | 1 |  | px | đo:routine 08 (như JumpRise01) | cao 32 |
+| JumpRise12 | 1 |  | px | đo:routine 08 (như JumpRise01) | cao 33 |
+| JumpRise13 | 1 |  | px | đo:routine 08 (như JumpRise01) | cao 34 |
+| JumpRise14 | 1 |  | px | đo:routine 08 (như JumpRise01) | cao 35 |
+| JumpRise15 | 0 |  | px | đo:routine 08 (như JumpRise01) | cao 35 |
+| JumpRise16 | 1 |  | px | đo:routine 08 (như JumpRise01) | cao 36 = đỉnh; rơi tick 25–40 = gương (−JumpRise16 … −JumpRise01) |
+| JumpTuckStartTick | 3 |  | tick | đo:routine 08 (khung đứng ở cao 5/10 = tick 1–2; co chân từ cao 13 = tick 3; 14 cú nhảy video:Map_1) |  |
+| JumpUntuckTick | 30 | 29–31 | tick | đo:routine 08 (co chân cuối cùng cao 32–33 = tick 28–29; khung đứng từ cao 29–25; video:Map_1 0:30.5/0:37.6/2:54.0/3:21.2) | sau roi trên không quay về khung co chân (video:Map_1 2:14.6/2:36.8) — routine 09 |
+| JumpTuckDrawY | 4 | 3–5 | px | đo:routine 08 (ghép 14 cú nhảy: tổng dư nhỏ nhất ở +4 = 161 px so với +3/+5 = 193/192) | khung co chân vẽ thấp hơn pivot 4 px |
+| CrouchDrawY | 8 |  | px | đo:routine 08 khớp mẫu video:Map_1 1:02.8 (f1886–1896 jumpduck_0 tại mặt sàn + 8; err 0.019–0.022) | khung ngồi = jumpduck_0 vẽ thấp 8 px (chân chạm sàn) |
+| FallSpeed | 8 |  | px/tick | đo:routine 08 video:Map_1 2:05.3 (f3757–3760 rơi 32 px trong 4 tick) và 3:24.1 (f6129–6132: hết bảng nhảy rơi 32 px trong 4 tick) | hằng — không gia tốc; giữ vận tốc ngang lúc rời mép |
+| LandCrouchMinFallTicks | 5 | 5–8 | tick | đo:routine 08 video:Map_1 1:02.8 (rơi 64 px = 8 tick ⇒ ngồi khựng) và 2:05.3 (rơi 32 px = 4 tick ⇒ không) | ngưỡng thật trong 5–8 |
+| LandCrouchTicks | 20 | 18–22 | tick | đo:routine 08 video:Map_1 1:02.8 (f1886–1896 ngồi 10–11 frame video) | không điều khiển trong lúc ngồi khựng |
+| WalkFrameTicks | 7 |  | tick | đo:routine 08 (11 đoạn đi: thứ tự walk_0/1/2/1 mỗi 7 tick khớp 84.5 %; 6 tick 48 % / 8 tick 63 %) | AnimSet walk bắt đầu ở walk_2 (3/4 lần bắt đầu đi trong video) |
+| StairFrameTicks | 8 |  | tick | đo:routine 08 (4 cửa sổ lên thang: mỗi khung 4 px = 8 tick; khung theo VỊ TRÍ trên thang) | lên: stairs_up_0 khi (t−1) mod 8 < 4; xuống: stairs_down_0 khi t mod 8 < 4; còn lại walk_1 |
+| StairStepPx | 8 |  | px | suy luận: bậc 8×8 (CVGP 06) — video không có cảnh dừng giữa thang | thả nút ⇒ đi nốt tới bội 8 px rồi đứng |
+| StairEnterRange | 8 |  | px | quy ước — video:Map_1 0:46.7/1:18.6/2:25.7/2:32.3 bấm Lên khi cách chân thang 3–4 px | phía dưới gầm thang: kẹp lên đường thang tại x hiện tại; phía kia: tự đi tới chân rồi leo |
+| StairLineOffsetUpRight | 3 |  | px | đo:routine 08 (thang ↗ EH stair0/stair3: x + y của pivot = đường tâm bậc + 3; ra đỉnh x = đỉnh + 3 ở 0:48.9) | pivot Simon trên thang ↗ lệch +3 px theo x so với StairPath |
+| StairLineOffsetUpLeft | 0 |  | px | đo:routine 08 (thang ↖ CB stair1 + CA stair3: x − y đúng đường tâm bậc; ra đỉnh 2:34.3) |  |
+| StairWalkPoseDrawY | 2 |  | px | đo:routine 08 (khi lên thang khung walk_1 vẽ thấp hơn stairs_up_0 2 px ở cả 4 cửa sổ) | chỉ khi lên thang |
+| StairDownDrawBack | 3 | 2–4 | px | đo:routine 08 video:Map_1 1:47.5 (CA stair0 −2.5) và 1:54.4 (CB stair0 −3.6) khi xuống thang ↖ | vẽ lùi 3 px ngược hướng di chuyển ngang khi xuống — thang ↗ lấy đối xứng (chưa có video) |
+| KnockbackVy0 | -1.75 |  | px/tick | đo:routine 08 khớp parabol video:Boss_Map_1 f363–380 (h 8/13/14/13/8) | cùng KnockbackGravity ⇒ cao ≈ 15 px; bay ≈ 35 tick |
+| KnockbackGravity | 0.1 |  | px/tick² | đo:routine 08 (như KnockbackVy0) |  |
+| KnockbackDxTicks | 12 |  | tick | đo:routine 08 video:Boss_Map_1 (x +12 rồi đứng yên dù còn trên không — f369–380) | lùi 1 px/tick trong 12 tick đầu |
+| InvincibleBlinkPeriod | 2 |  | tick | suy luận: video:Boss_Map_1 f381–427 KHÔNG thấy Simon ở cả 47 frame ⇒ nháy 1 tick hiện / 1 tick ẩn (bản quay 30 fps bắt trúng pha ẩn) |  |
+| DeathKneelTicks | 16 |  | tick | quy ước — video/wiki không có cảnh chết (routine 12 xem lại) | khung death_0 (quỳ) trước death_1 (nằm) |
+| DeathTicks | 124 |  | tick | suy luận: độ dài nhạc Art_Source/music/15. Death.mp3 = 2.07 s; video không có cảnh chết | từ lúc ngã (hoặc rơi hố) tới khi báo sự kiện Died (routine 12 hồi sinh) |
 
 ### Sát thương Simon nhận mỗi lần trúng đòn (theo STAGE, mọi loại đòn như nhau — wiki Gameplay#Damage)
 

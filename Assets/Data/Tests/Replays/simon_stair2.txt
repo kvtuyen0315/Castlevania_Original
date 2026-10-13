@@ -1,0 +1,3 @@
+# 156 tick, hash 0eac7b4b
+# CVGP 08 SimonProbe kịch bản 'stair2': Teleport (945,112) phải — gầm stair2 ↖ cách chân 3 px; lên rồi xuống
+U*70 -*8 D*70 -*8

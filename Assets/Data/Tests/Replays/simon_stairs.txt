@@ -1,0 +1,3 @@
+# 286 tick, hash 4ca3aa77
+# CVGP 08 SimonProbe kịch bản 'stairs': Teleport (626,176) trái — gầm stair0 ↗ cách chân Simon 3 px như video 0:46.7; lên rồi xuống
+U*130 -*8 D*140 -*8

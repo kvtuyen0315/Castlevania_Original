@@ -1,0 +1,3 @@
+# 130 tick, hash dce39bcd
+# CVGP 08 SimonProbe kịch bản 'walk': Teleport (100,176) phải; đi 120 tick
+R*120 -*10

@@ -1,0 +1,3 @@
+# 63 tick, hash 7404e62f
+# CVGP 08 SimonProbe kịch bản 'jumpwall': Teleport (380,176) phải; nhảy lên tường thấp 32 px (x 416–431)
+-*2 R+A*1 R*50 -*10

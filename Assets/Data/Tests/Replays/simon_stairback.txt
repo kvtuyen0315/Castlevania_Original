@@ -1,0 +1,3 @@
+# 44 tick, hash a537d2dd
+# CVGP 08 SimonProbe kịch bản 'stairback': Teleport (616,176) phải — PHÍA SAU chân stair0 (7 px) ⇒ tự đi tới chân rồi leo
+U*40 -*4

@@ -1,0 +1,3 @@
+# 70 tick, hash c53505b5
+# CVGP 08 SimonProbe kịch bản 'ledge64': Teleport (940,112) trái trên Bục C; bước khỏi mép trái x 928 như video 1:02.8 (rơi 64 px ⇒ ngồi khựng; đầu chạm bục y 80 phía trên 1 tick)
+L*30 -*40
