@@ -1,0 +1,433 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0f747237178fc74980cc2957a5c295e, type: 3}
+  m_Name: ConfigSimon
+  m_EditorClassIdentifier: 
+  rows:
+  - key: MaxHp
+    value:
+      has: 1
+      value: 16
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: "v\u1EA1ch"
+    source: "wiki:Gameplay#Damage (16 v\u1EA1ch); video:Map_1 (PLAYER 16 su\u1ED1t
+      video)"
+    note: 
+  - key: StartLives
+    value:
+      has: 1
+      value: 3
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: "m\u1EA1ng"
+    source: "suy lu\u1EADn: wiki \u1EA3nh HUD P-03; video:Map_1 P=03 su\u1ED1t video;
+      CVTI GameSession"
+    note: "wiki kh\xF4ng n\xEAu s\u1ED1 m\u1EA1ng kh\u1EDFi \u0111\u1EA7u"
+  - key: StartHearts
+    value:
+      has: 1
+      value: 5
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tim
+    source: "video:Map_1 0:02.2 (tim 05 \u2192 10 sau Large Heart l\xFAc 0:03.93);
+      CVTI GameSession"
+    note: "kh\u1EDBp suy lu\u1EADn wiki (\u266515 = 5 + 2\xD75)"
+  - key: HeartsOnNewBlock
+    value:
+      has: 1
+      value: 5
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tim
+    source: "video:Map_1 3:52.3 (HUD STAGE 04 tim v\u1EC1 05 sau tally) \u2014 ch\u1EDD
+      \u0111o routine 12"
+    note: "tim \u0111\u1EB7t l\u1EA1i khi sang block m\u1EDBi"
+  - key: MaxHearts
+    value:
+      has: 0
+      value: 0
+    min:
+      has: 1
+      value: 76
+    max:
+      has: 0
+      value: 0
+    unit: tim
+    source: "kh\xF4ng r\xF5 \u2014 wiki ch\u1EC9 cho th\u1EA5y \u2265 70 (\u1EA3nh
+      Stage 3); video:Map_1 3:19 \u0111\u1EA1t 76; tr\u1EA7n th\u1EADt ch\u01B0a
+      bi\u1EBFt"
+    note: "min = gi\xE1 tr\u1ECB l\u1EDBn nh\u1EA5t \u0111\xE3 th\u1EA5y (kh\xF4ng
+      ph\u1EA3i tr\u1EA7n)"
+  - key: WalkSpeed
+    value:
+      has: 1
+      value: 1
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px/tick
+    source: "video:planner MAP1_TIMELINE \xA74 (11 \u0111o\u1EA1n; 0.987\u20131.028)
+      \u2014 ch\u1EDD \u0111o routine 08"
+    note: 
+  - key: JumpAirTicks
+    value:
+      has: 0
+      value: 0
+    min:
+      has: 1
+      value: 38
+    max:
+      has: 1
+      value: 40
+    unit: tick
+    source: "video:planner (\u0111\u1ED3ng h\u1ED3 camera + 25 c\xFA nh\u1EA3y; trung
+      v\u1ECB 40) \u2014 ch\u1EDD \u0111o routine 08"
+    note: 
+  - key: JumpHeight
+    value:
+      has: 0
+      value: 0
+    min:
+      has: 1
+      value: 36
+    max:
+      has: 1
+      value: 38
+    unit: px
+    source: "video:planner (ch\xE2n l\xEAn kh\u1ECFi \u0111\u1EA5t) \u2014 ch\u1EDD
+      \u0111o routine 08"
+    note: 
+  - key: JumpRiseSpeedAvg
+    value:
+      has: 1
+      value: 2.3
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px/tick
+    source: "video:planner (\u2248 trung b\xECnh ~16 tick \u0111\u1EA7u) \u2014 ch\u1EDD
+      \u0111o routine 08"
+    note: "kh\xF4ng ph\u1EA3i parabol: l\xEAn ~16 tick \u2192 \u0111\u1EC9nh ph\u1EB3ng
+      ~10 tick \u2192 r\u01A1i"
+  - key: JumpRiseTicks
+    value:
+      has: 1
+      value: 16
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "video:planner (\u2248) \u2014 ch\u1EDD \u0111o routine 08"
+    note: 
+  - key: JumpApexTicks
+    value:
+      has: 1
+      value: 10
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "video:planner (\u2248 \u0111\u1EC9nh ph\u1EB3ng \xB11 px) \u2014 ch\u1EDD
+      \u0111o routine 08"
+    note: 
+  - key: JumpFallSpeed
+    value:
+      has: 0
+      value: 0
+    min:
+      has: 1
+      value: 2.5
+    max:
+      has: 1
+      value: 3
+    unit: px/tick
+    source: "video:planner \u2014 ch\u1EDD \u0111o routine 08"
+    note: 
+  - key: JumpDistance
+    value:
+      has: 0
+      value: 0
+    min:
+      has: 1
+      value: 39
+    max:
+      has: 1
+      value: 43
+    unit: px
+    source: "video:planner (trung v\u1ECB 42; = 1 px/tick \xD7 th\u1EDDi gian bay)
+      \u2014 ch\u1EDD \u0111o routine 08"
+    note: 
+  - key: JumpAirControl
+    value:
+      has: 1
+      value: 0
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: bool
+    source: "video:planner (kh\xF4ng \u0111\u1ED5i h\u01B0\u1EDBng gi\u1EEFa kh\xF4ng
+      trung \u1EDF m\u1ECDi m\u1EABu); wiki:Gameplay (h\u01B0\u1EDBng ch\u1ED1t l\xFAc
+      b\u1EA5m A)"
+    note: "0 = kh\xF4ng \u0111i\u1EC1u khi\u1EC3n tr\xEAn kh\xF4ng"
+  - key: StairSpeedX
+    value:
+      has: 1
+      value: 0.5
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px/tick
+    source: "video:planner (5 c\u1EEDa s\u1ED5; 0.497\u20130.503) \u2014 ch\u1EDD
+      \u0111o routine 08"
+    note: 
+  - key: StairSpeedY
+    value:
+      has: 1
+      value: 0.5
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px/tick
+    source: "video:planner (5 c\u1EEDa s\u1ED5; 0.48\u20130.504) \u2014 ch\u1EDD
+      \u0111o routine 08"
+    note: 
+  - key: StairKnockOff
+    value:
+      has: 1
+      value: 0
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: bool
+    source: "wiki:Stages 16-18#Stage 17 (tr\xEAn c\u1EA7u thang kh\xF4ng bao gi\u1EDD
+      b\u1ECB \u0111\xE1nh v\u0103ng kh\u1ECFi b\u1EADc)"
+    note: 
+  - key: KnockbackDx
+    value:
+      has: 0
+      value: 0
+    min:
+      has: 1
+      value: 11
+    max:
+      has: 1
+      value: 13
+    unit: px
+    source: "video:planner (video boss f356\u2013379; 1 m\u1EABu) \u2014 ch\u1EDD
+      \u0111o routine 08"
+    note: "l\xF9i ng\u01B0\u1EE3c h\u01B0\u1EDBng m\u1EB7t"
+  - key: KnockbackDy
+    value:
+      has: 1
+      value: 20
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "video:planner (\u2248 n\u1EA3y l\xEAn 20 px; 1 m\u1EABu) \u2014 ch\u1EDD
+      \u0111o routine 08"
+    note: 
+  - key: KnockbackAirTicks
+    value:
+      has: 0
+      value: 0
+    min:
+      has: 1
+      value: 24
+    max:
+      has: 1
+      value: 30
+    unit: tick
+    source: "video:planner (\u2248 0.4\u20130.5 s; kh\xF4ng ch\u1EAFc) \u2014 ch\u1EDD
+      \u0111o routine 08"
+    note: 
+  - key: InvincibleTicks
+    value:
+      has: 1
+      value: 92
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "video:planner (\u2248 1.5 s nh\u1EA5p nh\xE1y; video boss 12.67\u219214.20
+      s) \u2014 ch\u1EDD \u0111o routine 08"
+    note: 
+  - key: WhipTotalTicks
+    value:
+      has: 0
+      value: 0
+    min:
+      has: 1
+      value: 18
+    max:
+      has: 1
+      value: 22
+    unit: tick
+    source: "video:planner (trung v\u1ECB ~20) \u2014 ch\u1EDD \u0111o routine 09"
+    note: 
+  - key: WhipWindupTicks
+    value:
+      has: 0
+      value: 0
+    min:
+      has: 1
+      value: 4
+    max:
+      has: 1
+      value: 6
+    unit: tick
+    source: "video:planner (khung 1 vung ra sau) \u2014 ch\u1EDD \u0111o routine
+      09"
+    note: 
+  - key: WhipRaiseTicks
+    value:
+      has: 0
+      value: 0
+    min:
+      has: 1
+      value: 4
+    max:
+      has: 1
+      value: 8
+    unit: tick
+    source: "video:planner (khung 2 gi\u01A1 cao; \u0111i\u1EC3n h\xECnh 6) \u2014
+      ch\u1EDD \u0111o routine 09"
+    note: 
+  - key: WhipExtendTicks
+    value:
+      has: 0
+      value: 0
+    min:
+      has: 1
+      value: 6
+    max:
+      has: 1
+      value: 10
+    unit: tick
+    source: "video:planner (khung 3 du\u1ED7i th\u1EB3ng) \u2014 ch\u1EDD \u0111o
+      routine 09"
+    note: 
+  - key: WhipHeightAboveFeet
+    value:
+      has: 1
+      value: 16
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "video:planner (\u2248 \u0111\u1EC9nh \u0111\u1EA7u + 9\u201310 px) \u2014
+      ch\u1EDD \u0111o routine 09"
+    note: 
+  - key: WhipPickupFreezeTicks
+    value:
+      has: 0
+      value: 0
+    min:
+      has: 1
+      value: 46
+    max:
+      has: 1
+      value: 48
+    unit: tick
+    source: "video:planner (0.73\u20130.80 s; f194\u2013217 v\xE0 f293\u2013315)
+      \u2014 ch\u1EDD \u0111o routine 09"
+    note: "camera + Simon \u0111\u1EE9ng; TIME v\u1EABn ch\u1EA1y"
+  - key: HurtboxWidth
+    value:
+      has: 0
+      value: 0
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "ch\u1EDD \u0111o routine 07"
+    note: 
+  - key: HurtboxHeight
+    value:
+      has: 0
+      value: 0
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "ch\u1EDD \u0111o routine 07"
+    note: 
+  - key: CrouchHurtboxHeight
+    value:
+      has: 0
+      value: 0
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "ch\u1EDD \u0111o routine 07"
+    note: 

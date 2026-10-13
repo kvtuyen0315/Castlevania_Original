@@ -52,6 +52,8 @@ URL bản lưu đầy đủ (kèm timestamp) của từng trang nằm trong `wik
 
 Lưu ý độ cập nhật: bản lưu có thể cũ hơn trang đang chạy; sửa đổi sau ngày snapshot (đặc biệt Enemies sau 2026-04-16) sẽ không có mặt. Ngày sửa cuối của mọi trang đều trước ngày snapshot.
 
+**Kiểm lại 13/10/2026 (routine CVGP 04)** với `text_<Trang>.txt`: số đòn yếu/mạnh + điểm 15 enemy (bảng từng loại và bảng Comparison), 6 boss (số đòn, điểm, Stopwatch), giá tim (1 / Stopwatch 5), tim nhỏ/lớn 1/5, túi 100/400/700, bonus 1000/2000, Moai 4000, multiplier 700, Pot Roast 6 vạch, sát thương theo stage 2/3/4, 1UP 30 000 / 80 000 / mỗi 50 000, tally 10/giây + 100/tim, giết nhiều 1000/2000/4000, Dracula dạng 2 "32 lần", Death tối đa 3 lưỡi hái — **0 sai**, không sửa số nào. Ghi thêm: trang Gameplay mục Points viết lại luật 1UP là "30,000 rồi mỗi 50,000" (cùng nghĩa với 30 000 → 80 000 → +50 000). Số liệu này đã vào `Assets/Data/Config/Csv/*.csv` (báo cáo `ClaudeNotes/cvgp/CHARACTER_STATS.md`).
+
 Ảnh đã đọc (nội dung của trang, không phải chữ): bản đồ Stage 1 (Part A, Part B), Stage 2, Stage 3 có chấm số cyan khớp với các ghi chú đánh số; 3 ảnh chụp màn hình Stage 1/2/3 (cho thấy HUD thật); 19 icon vật phẩm trên trang Items; ảnh bản đồ lâu đài của Walkthrough (6 ô đỏ = vị trí 6 boss, không có chữ). Ảnh bản đồ Stage 4-18 chưa phân tích (không thuộc yêu cầu Map 1).
 
 ---

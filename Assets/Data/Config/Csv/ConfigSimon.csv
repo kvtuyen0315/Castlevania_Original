@@ -1,0 +1,31 @@
+key,value,min,max,unit,source,note
+MaxHp,16,,,vạch,wiki:Gameplay#Damage (16 vạch); video:Map_1 (PLAYER 16 suốt video),
+StartLives,3,,,mạng,suy luận: wiki ảnh HUD P-03; video:Map_1 P=03 suốt video; CVTI GameSession,wiki không nêu số mạng khởi đầu
+StartHearts,5,,,tim,video:Map_1 0:02.2 (tim 05 → 10 sau Large Heart lúc 0:03.93); CVTI GameSession,khớp suy luận wiki (♥15 = 5 + 2×5)
+HeartsOnNewBlock,5,,,tim,video:Map_1 3:52.3 (HUD STAGE 04 tim về 05 sau tally) — chờ đo routine 12,tim đặt lại khi sang block mới
+MaxHearts,,76,,tim,không rõ — wiki chỉ cho thấy ≥ 70 (ảnh Stage 3); video:Map_1 3:19 đạt 76; trần thật chưa biết,min = giá trị lớn nhất đã thấy (không phải trần)
+WalkSpeed,1.0,,,px/tick,video:planner MAP1_TIMELINE §4 (11 đoạn; 0.987–1.028) — chờ đo routine 08,
+JumpAirTicks,,38,40,tick,video:planner (đồng hồ camera + 25 cú nhảy; trung vị 40) — chờ đo routine 08,
+JumpHeight,,36,38,px,video:planner (chân lên khỏi đất) — chờ đo routine 08,
+JumpRiseSpeedAvg,2.3,,,px/tick,video:planner (≈ trung bình ~16 tick đầu) — chờ đo routine 08,không phải parabol: lên ~16 tick → đỉnh phẳng ~10 tick → rơi
+JumpRiseTicks,16,,,tick,video:planner (≈) — chờ đo routine 08,
+JumpApexTicks,10,,,tick,video:planner (≈ đỉnh phẳng ±1 px) — chờ đo routine 08,
+JumpFallSpeed,,2.5,3,px/tick,video:planner — chờ đo routine 08,
+JumpDistance,,39,43,px,video:planner (trung vị 42; = 1 px/tick × thời gian bay) — chờ đo routine 08,
+JumpAirControl,0,,,bool,video:planner (không đổi hướng giữa không trung ở mọi mẫu); wiki:Gameplay (hướng chốt lúc bấm A),0 = không điều khiển trên không
+StairSpeedX,0.5,,,px/tick,video:planner (5 cửa sổ; 0.497–0.503) — chờ đo routine 08,
+StairSpeedY,0.5,,,px/tick,video:planner (5 cửa sổ; 0.48–0.504) — chờ đo routine 08,
+StairKnockOff,0,,,bool,wiki:Stages 16-18#Stage 17 (trên cầu thang không bao giờ bị đánh văng khỏi bậc),
+KnockbackDx,,11,13,px,video:planner (video boss f356–379; 1 mẫu) — chờ đo routine 08,lùi ngược hướng mặt
+KnockbackDy,20,,,px,video:planner (≈ nảy lên 20 px; 1 mẫu) — chờ đo routine 08,
+KnockbackAirTicks,,24,30,tick,video:planner (≈ 0.4–0.5 s; không chắc) — chờ đo routine 08,
+InvincibleTicks,92,,,tick,video:planner (≈ 1.5 s nhấp nháy; video boss 12.67→14.20 s) — chờ đo routine 08,
+WhipTotalTicks,,18,22,tick,video:planner (trung vị ~20) — chờ đo routine 09,
+WhipWindupTicks,,4,6,tick,video:planner (khung 1 vung ra sau) — chờ đo routine 09,
+WhipRaiseTicks,,4,8,tick,video:planner (khung 2 giơ cao; điển hình 6) — chờ đo routine 09,
+WhipExtendTicks,,6,10,tick,video:planner (khung 3 duỗi thẳng) — chờ đo routine 09,
+WhipHeightAboveFeet,16,,,px,video:planner (≈ đỉnh đầu + 9–10 px) — chờ đo routine 09,
+WhipPickupFreezeTicks,,46,48,tick,video:planner (0.73–0.80 s; f194–217 và f293–315) — chờ đo routine 09,camera + Simon đứng; TIME vẫn chạy
+HurtboxWidth,,,,px,chờ đo routine 07,
+HurtboxHeight,,,,px,chờ đo routine 07,
+CrouchHurtboxHeight,,,,px,chờ đo routine 07,

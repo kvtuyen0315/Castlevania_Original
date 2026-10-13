@@ -1,0 +1,328 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84cf24d7cdd83f34b8d46c5d49b71c00, type: 3}
+  m_Name: ConfigRule
+  m_EditorClassIdentifier: 
+  rows:
+  - key: TimeUnitTicks
+    value:
+      has: 1
+      value: 64
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "video:planner MAP1_TIMELINE \xA74 (time_rate 5 \u0111o\u1EA1n; 1 \u0111v
+      = 1.065 s) \u2014 ch\u1EDD \u0111o routine 12"
+    note: 
+  - key: PlayerBarSegments
+    value:
+      has: 1
+      value: 16
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: "v\u1EA1ch"
+    source: wiki:Gameplay#Damage; video:Map_1 HUD
+    note: 
+  - key: EnemyBarSegments
+    value:
+      has: 1
+      value: 16
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: "v\u1EA1ch"
+    source: "suy lu\u1EADn: wiki \u1EA3nh HUD (16 \u0111o\u1EA1n); video:Map_1 HUD"
+    note: 
+  - key: DamageDisplayTicksPerBar
+    value:
+      has: 1
+      value: 8
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "video:planner (\u2248 thanh m\xE1u t\u1EE5t d\u1EA7n 1 v\u1EA1ch / 8
+      tick) \u2014 ch\u1EDD \u0111o routine 12"
+    note: 
+  - key: HealDisplayTicksPerBar
+    value:
+      has: 1
+      value: 7
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "video:planner (\u2248 h\u1ED3i 8\u219216 trong 0.9 s sau qu\u1EA3 c\u1EA7u)
+      \u2014 ch\u1EDD \u0111o routine 12"
+    note: 
+  - key: DamageSecondQuest
+    value:
+      has: 1
+      value: 4
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: "v\u1EA1ch"
+    source: "wiki:Secrets; wiki:Stages 16-18 (Second Quest m\u1ECDi \u0111\xF2n 4
+      v\u1EA1ch)"
+    note: 
+  - key: SubWeaponOnScreenBase
+    value:
+      has: 1
+      value: 1
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: "c\xE1i"
+    source: wiki:Gameplay; wiki:Items#Double Shot
+    note: 
+  - key: DoubleShotOnScreen
+    value:
+      has: 1
+      value: 2
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: "c\xE1i"
+    source: wiki:Items#Double Shot
+    note: 
+  - key: TripleShotOnScreen
+    value:
+      has: 1
+      value: 3
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: "c\xE1i"
+    source: wiki:Items#Triple Shot
+    note: 
+  - key: MultiplierHitsToDrop
+    value:
+      has: 1
+      value: 10
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: "l\u1EA7n tr\xFAng"
+    source: "wiki:Items#Double Shot (tr\xFAng enemy 10 l\u1EA7n b\u1EB1ng c\xF9ng
+      v\u0169 kh\xED ph\u1EE5)"
+    note: 
+  - key: WhipLevelOnDeath
+    value:
+      has: 1
+      value: 1
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: "c\u1EA5p"
+    source: "wiki:Items#Morning Star (ch\u1EBFt \u21D2 roi v\u1EC1 d\u1EA1ng ban
+      \u0111\u1EA7u)"
+    note: 
+  - key: LoseSubWeaponOnDeath
+    value:
+      has: 1
+      value: 1
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: bool
+    source: "suy lu\u1EADn: CV_WIKI_DATA \xA71.4 (wiki Stages 13-15 v\xE0 Bosses)"
+    note: "wiki kh\xF4ng n\xF3i th\u1EB3ng"
+  - key: ContinueAtStageStart
+    value:
+      has: 1
+      value: 1
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: bool
+    source: "wiki:Gameplay#Simon Belmont (h\u1EBFt m\u1EA1ng \u21D2 Continue v\u1EC1
+      \u0111\u1EA7u stage \u0111ang ch\u01A1i)"
+    note: 
+  - key: PitWaterSpikeInstantKill
+    value:
+      has: 1
+      value: 1
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: bool
+    source: wiki:Gameplay#Damage
+    note: 
+  - key: StopwatchItemsStillExpire
+    value:
+      has: 1
+      value: 1
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: bool
+    source: wiki:Items#Stopwatch
+    note: 
+  - key: FrozenEnemiesStillHurt
+    value:
+      has: 1
+      value: 1
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: bool
+    source: "wiki:Items#Stopwatch (ch\u1EA1m enemy/gai \u0111\xF3ng b\u0103ng v\u1EABn
+      m\u1EA5t m\xE1u)"
+    note: 
+  - key: RosaryFlashTicks
+    value:
+      has: 0
+      value: 0
+    min:
+      has: 1
+      value: 24
+    max:
+      has: 1
+      value: 26
+    unit: tick
+    source: "video:planner (m\xE0n nh\xE1y tr\u1EAFng 0.40\u20130.44 s; 3 l\u1EA7n)
+      \u2014 ch\u1EDD \u0111o routine 11"
+    note: 
+  - key: CameraFollowScreenX
+    value:
+      has: 0
+      value: 0
+    min:
+      has: 1
+      value: 128
+    max:
+      has: 1
+      value: 129
+    unit: "px m\xE0n"
+    source: "video:planner (Simon gi\u1EEF \u1EDF x m\xE0n \u2248 128\u2013129 khi
+      cu\u1ED9n) \u2014 ch\u1EDD \u0111o routine 07"
+    note: 
+  - key: DoorScrollPx
+    value:
+      has: 1
+      value: 128
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "video:planner (c\u1EEDa cu\u1ED1i stage: cu\u1ED9n 128 px hai l\u1EA7n)
+      \u2014 ch\u1EDD \u0111o routine 15"
+    note: 
+  - key: DoorScrollSpeed
+    value:
+      has: 0
+      value: 0
+    min:
+      has: 1
+      value: 0.9
+    max:
+      has: 1
+      value: 0.91
+    unit: px/tick
+    source: "video:planner \u2014 ch\u1EDD \u0111o routine 15"
+    note: 
+  - key: DoorPauseTicks
+    value:
+      has: 0
+      value: 0
+    min:
+      has: 1
+      value: 138
+    max:
+      has: 1
+      value: 140
+    unit: tick
+    source: "video:planner (d\u1EEBng 2.30\u20132.33 s) \u2014 ch\u1EDD \u0111o routine
+      15"
+    note: 
+  - key: DoorAutoWalkPx
+    value:
+      has: 1
+      value: 68
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "video:planner (Simon t\u1EF1 \u0111i 68 px @ 1 px/tick) \u2014 ch\u1EDD
+      \u0111o routine 15"
+    note: 
+  - key: StageClearToTallyTicks
+    value:
+      has: 0
+      value: 0
+    min:
+      has: 1
+      value: 228
+    max:
+      has: 1
+      value: 264
+    unit: tick
+    source: "video:planner (3.8\u20134.4 s sau khi nh\u1EB7t qu\u1EA3 c\u1EA7u; 2
+      l\u1EA7n kh\xE1c nhau) \u2014 ch\u1EDD \u0111o routine 12"
+    note: 

@@ -1,0 +1,229 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 990ff064b74de43428b6a2c810b3a660, type: 3}
+  m_Name: ConfigBoss
+  m_EditorClassIdentifier: 
+  rows:
+  - id: 1
+    phase: 1
+    nameEn: Phantom Bat
+    sheetName: boss_phantombat
+    stage: 3
+    entityCount: 1
+    hitsWeak:
+      has: 1
+      value: 12
+    hitsStrong:
+      has: 1
+      value: 8
+    hitsScope: 0
+    src_hits: "wiki:Bosses#Phantom Bat; video:Map_1 3:19\u20133:30 r\xECu \u22122
+      v\u1EA1ch/l\u1EA7n \u21D2 8 \u0111\xF2n m\u1EA1nh h\u1EBFt 16 v\u1EA1ch (kh\u1EDBp)"
+    score:
+      has: 1
+      value: 3000
+    src_score: "wiki:Bosses#Phantom Bat; video:Map_1 3:30.17 +3000 (kh\u1EDBp)"
+    stopwatchAffects: 1
+    weakPoint: "to\xE0n th\xE2n"
+    attacks: "Bay t\u1EDBi \u0111i\u1EC3m ng\u1EABu nhi\xEAn; th\u1EC9nh tho\u1EA3ng
+      b\u1ED5 nh\xE0o v\u1EC1 ph\xEDa Simon; video: kh\xF4ng b\u1EAFn \u0111\u1EA1n"
+    itemsInRoom: "Double Shot (kh\u1ED1i ph\u1EA3i nh\u1EA5t \u1EDF ch\xE2n c\u1EA7u
+      thang)"
+    moveSpeed:
+      has: 0
+      value: 0
+    src_moveSpeed: "ch\u1EDD \u0111o routine 14 (nhi\u1EC1u pha t\u1ED1c \u0111\u1ED9
+      \u2014 xem ConfigActorParam Boss.PhantomBat)"
+    source: wiki:Bosses#Phantom Bat
+  - id: 2
+    phase: 1
+    nameEn: Queen Medusa
+    sheetName: boss_medusa
+    stage: 6
+    entityCount: 1
+    hitsWeak:
+      has: 1
+      value: 12
+    hitsStrong:
+      has: 1
+      value: 8
+    hitsScope: 0
+    src_hits: 
+    score:
+      has: 1
+      value: 3000
+    src_score: 
+    stopwatchAffects: 1
+    weakPoint: "to\xE0n th\xE2n"
+    attacks: "Lao th\u1EB3ng v\xE0o Simon (bay th\u1EA5p); th\u1EA3 r\u1EAFn b\xF2
+      tr\xEAn s\xE0n v\u1EC1 ph\xEDa Simon"
+    itemsInRoom: "Kh\xF4ng"
+    moveSpeed:
+      has: 0
+      value: 0
+    src_moveSpeed: "kh\xF4ng r\xF5 \u2014 kh\xF4ng c\xF3 video (routine 19 \u01B0\u1EDBc
+      l\u01B0\u1EE3ng)"
+    source: wiki:Bosses#Queen Medusa
+  - id: 3
+    phase: 1
+    nameEn: Mummy Men
+    sheetName: boss_mummy (Mummy Man)
+    stage: 9
+    entityCount: 2
+    hitsWeak:
+      has: 1
+      value: 48
+    hitsStrong:
+      has: 1
+      value: 32
+    hitsScope: 1
+    src_hits: "wiki:Bosses#Mummy Men (48/32 kh\xF4ng n\xF3i t\u1ED5ng hay m\u1ED7i
+      con \u2014 ch\u1ECDn T\u1ED4NG 2 con theo suy lu\u1EADn 48 = 2 \xD7 24; \xA74)"
+    score:
+      has: 1
+      value: 3000
+    src_score: 
+    stopwatchAffects: 0
+    weakPoint: "to\xE0n th\xE2n"
+    attacks: "Lang thang trong ph\xF2ng; th\u1EC9nh tho\u1EA3ng n\xE9m b\u0103ng
+      g\u1EA1c; k\u1EB9p Simon t\u1EEB hai ph\xEDa"
+    itemsInRoom: "Pot Roast (kh\u1ED1i th\u1EA5p nh\u1EA5t c\u1EA7u thang tr\xE1i)"
+    moveSpeed:
+      has: 0
+      value: 0
+    src_moveSpeed: "kh\xF4ng r\xF5 \u2014 kh\xF4ng c\xF3 video (routine 19 \u01B0\u1EDBc
+      l\u01B0\u1EE3ng)"
+    source: wiki:Bosses#Mummy Men
+  - id: 4
+    phase: 1
+    nameEn: Frankenstein's Monster & Igor
+    sheetName: boss_frankenstein (Frankenstein & Igor)
+    stage: 12
+    entityCount: 2
+    hitsWeak:
+      has: 1
+      value: 24
+    hitsStrong:
+      has: 1
+      value: 16
+    hitsScope: 2
+    src_hits: "wiki:Bosses#Frankenstein & Igor (ch\u1EC9 Monster; Igor b\u1EA5t t\u1EED
+      \u21D2 ConfigEnemy.Igor)"
+    score:
+      has: 1
+      value: 5000
+    src_score: 
+    stopwatchAffects: 0
+    weakPoint: "to\xE0n th\xE2n (Monster)"
+    attacks: "Monster \u0111i lang thang (th\u01B0\u1EDDng n\u1EEDa ph\u1EA3i); Igor
+      nh\u1EA3y qua l\u1EA1i v\xE0 n\xE9m c\u1EA7u l\u1EEDa"
+    itemsInRoom: "Kh\xF4ng (Dagger \u1EDF ngo\xE0i ph\xF2ng)"
+    moveSpeed:
+      has: 0
+      value: 0
+    src_moveSpeed: "kh\xF4ng r\xF5 \u2014 kh\xF4ng c\xF3 video (routine 19 \u01B0\u1EDBc
+      l\u01B0\u1EE3ng)"
+    source: wiki:Bosses#Frankenstein & Igor
+  - id: 5
+    phase: 1
+    nameEn: Death
+    sheetName: boss_reaper (Grim Reaper/Death)
+    stage: 15
+    entityCount: 1
+    hitsWeak:
+      has: 1
+      value: 24
+    hitsStrong:
+      has: 1
+      value: 16
+    hitsScope: 0
+    src_hits: 
+    score:
+      has: 1
+      value: 7000
+    src_score: 
+    stopwatchAffects: 0
+    weakPoint: "to\xE0n th\xE2n"
+    attacks: "L\u01A1 l\u1EEDng ng\u1EABu nhi\xEAn (\u01B0a c\xE1c g\xF3c); t\u1EA1o
+      t\u1ED1i \u0111a 3 l\u01B0\u1EE1i h\xE1i \u0111\u1EE9ng ~1 s r\u1ED3i \u0111u\u1ED5i
+      Simon v\xE0 nhanh d\u1EA7n"
+    itemsInRoom: "Kh\xF4ng"
+    moveSpeed:
+      has: 0
+      value: 0
+    src_moveSpeed: "kh\xF4ng r\xF5 \u2014 kh\xF4ng c\xF3 video (routine 20 \u01B0\u1EDBc
+      l\u01B0\u1EE3ng)"
+    source: wiki:Bosses#Death
+  - id: 6
+    phase: 1
+    nameEn: Count Dracula
+    sheetName: boss_dracula1 (Dracula Phase 1)
+    stage: 18
+    entityCount: 1
+    hitsWeak:
+      has: 1
+      value: 24
+    hitsStrong:
+      has: 1
+      value: 16
+    hitsScope: 0
+    src_hits: "wiki:Bosses#The Count (b\u1EA3ng kh\xF4ng n\xF3i d\u1EA1ng n\xE0o
+      \u2014 g\xE1n d\u1EA1ng 1; \xA74)"
+    score:
+      has: 0
+      value: 0
+    src_score: "kh\xF4ng r\xF5 \u2014 wiki kh\xF4ng n\xEAu \u0111i\u1EC3m ri\xEAng
+      d\u1EA1ng 1"
+    stopwatchAffects: 0
+    weakPoint: "ch\u1EC9 \u0111\u1EA7u"
+    attacks: "D\u1ECBch chuy\u1EC3n t\u1EDBi ch\u1ED7 ng\u1EABu nhi\xEAn; m\u1EDF
+      \xE1o cho\xE0ng b\u1EAFn 3 c\u1EA7u l\u1EEDa r\u1ED3i bi\u1EBFn m\u1EA5t"
+    itemsInRoom: "Holy Water (n\u1EBFn tr\xE1i c\xF9ng)"
+    moveSpeed:
+      has: 0
+      value: 0
+    src_moveSpeed: "kh\xF4ng r\xF5 \u2014 kh\xF4ng c\xF3 video (routine 20 \u01B0\u1EDBc
+      l\u01B0\u1EE3ng)"
+    source: wiki:Bosses#The Count
+  - id: 6
+    phase: 2
+    nameEn: Dracula (demon)
+    sheetName: boss_dracula2 (Dracula Phase 2)
+    stage: 18
+    entityCount: 1
+    hitsWeak:
+      has: 0
+      value: 0
+    hitsStrong:
+      has: 1
+      value: 32
+    hitsScope: 0
+    src_hits: "wiki:Stages 16-18#Stage 18 ('32 l\u1EA7n' v\xE0o \u0111\u1EA7u; v\u0169
+      kh\xED kh\xF4ng n\xEAu \u2014 g\xE1n \u0111\xF2n m\u1EA1nh l\xE0 suy lu\u1EADn);
+      \u0111\xF2n y\u1EBFu kh\xF4ng r\xF5 (g\u1EE3i \xFD t\u1EC9 l\u1EC7 3:2 \u21D2
+      48 \u2014 routine 20 ch\u1ED1t)"
+    score:
+      has: 1
+      value: 50000
+    src_score: "wiki:Bosses#The Count \u2014 m\xE2u thu\u1EABn wiki:Gameplay#Points
+      (Dracula kh\xF4ng cho \u0111i\u1EC3m); ch\u1ECDn Bosses (\xA74)"
+    stopwatchAffects: 0
+    weakPoint: "ch\u1EC9 \u0111\u1EA7u (ch\xE2n kh\xF4ng nh\u1EADn s\xE1t th\u01B0\u01A1ng)"
+    attacks: "Nh\u1EA3y quanh ph\xF2ng (cao/th\u1EA5p); th\u1EC9nh tho\u1EA3ng phun
+      l\u1EEDa; Holy Water l\xE0m cho\xE1ng nh\u01B0ng kh\xF4ng g\xE2y s\xE1t th\u01B0\u01A1ng"
+    itemsInRoom: '-'
+    moveSpeed:
+      has: 0
+      value: 0
+    src_moveSpeed: "kh\xF4ng r\xF5 \u2014 kh\xF4ng c\xF3 video (routine 20 \u01B0\u1EDBc
+      l\u01B0\u1EE3ng)"
+    source: wiki:Bosses#The Count; wiki:Stages 16-18#Stage 18

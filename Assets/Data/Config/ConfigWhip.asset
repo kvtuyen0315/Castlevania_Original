@@ -1,0 +1,88 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07e479265670fa847b2096f7868a558d, type: 3}
+  m_Name: ConfigWhip
+  m_EditorClassIdentifier: 
+  rows:
+  - level: 1
+    nameEn: Leather Whip
+    strength: 1
+    damageVsLeather:
+      has: 1
+      value: 1
+    src_damage: "quy \u01B0\u1EDBc: m\u1ED1c so s\xE1nh 1\xD7"
+    spriteLenPx:
+      has: 1
+      value: 24
+    src_spriteLenPx: "\u0111o: ki\u1EC3m k\xEA sheet routine 01 (simon_whippart m\u1EA3nh
+      du\u1ED7i L1 24\xD716) \u2014 ch\u1EDD 05 ch\u1ED1t hitbox"
+    reachPx:
+      has: 1
+      value: 22
+    src_reachPx: "video:planner tay\u2192\u0111\u1EA7u roi \u2248 22 px (f178\u2013180;
+      \xB12 px) \u2014 ch\u1EDD \u0111o routine 09"
+    upgradeHearts:
+      has: 0
+      value: 0
+    src_upgradeHearts: 
+    colorCount: 1
+    source: "wiki:Items#Morning Star; wiki:Enemies (nh\xF3m y\u1EBFu)"
+  - level: 2
+    nameEn: "Chain Whip (ng\u1EAFn)"
+    strength: 2
+    damageVsLeather:
+      has: 1
+      value: 1.5
+    src_damage: "wiki:Items#Morning Star (g\u1EA5p 1.5 l\u1EA7n roi da)"
+    spriteLenPx:
+      has: 1
+      value: 24
+    src_spriteLenPx: "\u0111o: ki\u1EC3m k\xEA sheet routine 01 (simon_whippart m\u1EA3nh
+      du\u1ED7i L2 24\xD716) \u2014 ch\u1EDD 05 ch\u1ED1t hitbox"
+    reachPx:
+      has: 0
+      value: 0
+    src_reachPx: "video:planner 24\u201325 px (f270\u2013272) \u2014 ch\u1EDD \u0111o
+      routine 09"
+    upgradeHearts:
+      has: 1
+      value: 4
+    src_upgradeHearts: "wiki:Items#Morning Star (\u0111\u1EE7 4 tim cho l\u1EA7n
+      n\xE2ng 1 \u2014 c\u01A1 ch\u1EBF kh\xF4ng gi\u1EA3i th\xEDch; \xA77.1 #5)"
+    colorCount: 1
+    source: "wiki:Items#Morning Star; wiki:Enemies (nh\xF3m m\u1EA1nh)"
+  - level: 3
+    nameEn: "Chain Whip (d\xE0i)"
+    strength: 2
+    damageVsLeather:
+      has: 0
+      value: 0
+    src_damage: "kh\xF4ng r\xF5 \u2014 wiki kh\xF4ng n\xEAu ri\xEAng (c\xF9ng nh\xF3m
+      m\u1EA1nh)"
+    spriteLenPx:
+      has: 1
+      value: 40
+    src_spriteLenPx: "\u0111o: ki\u1EC3m k\xEA sheet routine 01 (simon_whippart m\u1EA3nh
+      du\u1ED7i L3 40\xD716) \u2014 ch\u1EDD 05 ch\u1ED1t hitbox"
+    reachPx:
+      has: 1
+      value: 43
+    src_reachPx: "video:planner \u2248 43 px (57 \u0111\xF2n) \u2014 ch\u1EDD \u0111o
+      routine 09"
+    upgradeHearts:
+      has: 1
+      value: 8
+    src_upgradeHearts: "wiki:Items#Morning Star (\u0111\u1EE7 8 tim cho l\u1EA7n
+      n\xE2ng 2)"
+    colorCount: 4
+    source: "wiki:Items#Morning Star; \u0111o: ki\u1EC3m k\xEA sheet routine 01 (L3
+      c\xF3 4 b\u1EA3ng m\xE0u)"

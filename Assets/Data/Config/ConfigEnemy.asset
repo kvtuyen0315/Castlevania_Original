@@ -1,0 +1,533 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80fbb4d76cb39fb4a9712f369e7f9820, type: 3}
+  m_Name: ConfigEnemy
+  m_EditorClassIdentifier: 
+  rows:
+  - id: 1
+    nameEn: Ghoul
+    nameAlt: Zombie (lost souls)
+    sheetName: enemy_zombie
+    kind: 0
+    stages: 1;3
+    hitsWeak:
+      has: 1
+      value: 1
+    hitsStrong:
+      has: 1
+      value: 1
+    src_hits: 
+    score:
+      has: 1
+      value: 100
+    src_score: 
+    canDie: 1
+    projectile: '-'
+    dropRule: "kh\xF4ng n\xEAu ri\xEAng (wiki Items: tim nh\u1ECF/t\xFAi ti\u1EC1n
+      hay do k\u1EBB \u0111\u1ECBch r\u01A1i)"
+    moveSpeed:
+      has: 1
+      value: 0.875
+    src_moveSpeed: "video:planner MAP1_TIMELINE \xA74 (4 v\u1EBFt f600\u2013759;
+      d\u01B0 \u2264 3.3 px) \u2014 ch\u1EDD \u0111o routine 13"
+    behaviorShort: "\u0110i th\u1EB3ng m\u1ED9t h\u01B0\u1EDBng qua m\xE0n r\u1ED3i
+      r\u1EDDi \u0111i; nh\xF3m 2\u20133 con t\u1EEB c\u1EA3 hai ph\xEDa (Stage 3
+      r\u01A1i t\u1EEB tr\xEAn xu\u1ED1ng)"
+    source: wiki:Enemies#Ghouls
+  - id: 2
+    nameEn: Bat
+    nameAlt: Black Bat / Red Bat
+    sheetName: enemy_bat (Vampire Bat)
+    kind: 0
+    stages: 2;4;10
+    hitsWeak:
+      has: 1
+      value: 1
+    hitsStrong:
+      has: 1
+      value: 1
+    src_hits: 
+    score:
+      has: 1
+      value: 200
+    src_score: 
+    canDie: 1
+    projectile: '-'
+    dropRule: "kh\xF4ng n\xEAu ri\xEAng"
+    moveSpeed:
+      has: 0
+      value: 0
+    src_moveSpeed: "video:planner 1.0\u20131.12 px/tick v\u1EC1 ph\xEDa Simon (th\xF4)
+      \u2014 ch\u1EDD \u0111o routine 13"
+    behaviorShort: "D\u01A1i \u0111en treo tr\u1EA7n r\u1ED3i lao xu\u1ED1ng khi
+      Simon l\u1EA1i g\u1EA7n; d\u01A1i \u0111\u1ECF bay s\xF3ng l\xEAn xu\u1ED1ng"
+    source: wiki:Enemies#Bats
+  - id: 3
+    nameEn: Panther
+    nameAlt: Black Leopard
+    sheetName: enemy_leopard (Black Leopard)
+    kind: 0
+    stages: 1
+    hitsWeak:
+      has: 1
+      value: 1
+    hitsStrong:
+      has: 1
+      value: 1
+    src_hits: 
+    score:
+      has: 1
+      value: 200
+    src_score: 
+    canDie: 1
+    projectile: '-'
+    dropRule: "kh\xF4ng n\xEAu ri\xEAng"
+    moveSpeed:
+      has: 1
+      value: 2
+    src_moveSpeed: "video:planner ch\u1EA1y 2.0 px/tick (f1266\u20131856) \u2014
+      ch\u1EDD \u0111o routine 13"
+    behaviorShort: "N\u1EB1m ch\u1EDD t\u1EDBi khi Simon v\xE0o t\u1EA7m r\u1ED3i
+      nh\u1EA3y v\u1ECDt; r\u01A1i xu\u1ED1ng t\u1EA7ng th\u1EA5p v\xE0 lu\xF4n quay
+      v\u1EC1 ph\xEDa Simon"
+    source: wiki:Enemies#Panthers
+  - id: 4
+    nameEn: Raven
+    nameAlt: 
+    sheetName: enemy_raven
+    kind: 0
+    stages: 7;8;9
+    hitsWeak:
+      has: 1
+      value: 1
+    hitsStrong:
+      has: 1
+      value: 1
+    src_hits: 
+    score:
+      has: 1
+      value: 200
+    src_score: 
+    canDie: 1
+    projectile: '-'
+    dropRule: "kh\xF4ng n\xEAu ri\xEAng"
+    moveSpeed:
+      has: 0
+      value: 0
+    src_moveSpeed: "kh\xF4ng r\xF5 \u2014 kh\xF4ng c\xF3 video (routine 17 \u01B0\u1EDBc
+      l\u01B0\u1EE3ng)"
+    behaviorShort: "\u0110\u1EADu ch\u1EDD; c\u1EA5t c\xE1nh khi Simon l\u1EA1i g\u1EA7n;
+      kh\u1EF1ng m\u1ED9t ch\xFAt r\u1ED3i b\u1ED5 nh\xE0o; tr\u01B0\u1EE3t th\xEC
+      quay l\u1EA1i \u0111\xE1nh t\u1EEB sau"
+    source: wiki:Enemies#Ravens
+  - id: 5
+    nameEn: Eagle
+    nameAlt: giant Eagle
+    sheetName: enemy_eagle
+    kind: 0
+    stages: 11;17
+    hitsWeak:
+      has: 1
+      value: 1
+    hitsStrong:
+      has: 1
+      value: 1
+    src_hits: 
+    score:
+      has: 1
+      value: 300
+    src_score: 
+    canDie: 1
+    projectile: '-'
+    dropRule: "kh\xF4ng n\xEAu ri\xEAng"
+    moveSpeed:
+      has: 0
+      value: 0
+    src_moveSpeed: "kh\xF4ng r\xF5 \u2014 kh\xF4ng c\xF3 video (routine 18 \u01B0\u1EDBc
+      l\u01B0\u1EE3ng)"
+    behaviorShort: "Bay ngang mang Fleaman v\xE0 th\u1EA3 xu\u1ED1ng g\u1EA7n Simon;
+      gi\u1EBFt khi c\xF2n mang th\xEC c\u1EA3 hai c\xF9ng ch\u1EBFt"
+    source: wiki:Enemies#Eagles
+  - id: 6
+    nameEn: Fishman
+    nameAlt: Fish Man
+    sheetName: enemy_fishman (Fish Man)
+    kind: 0
+    stages: 2;10
+    hitsWeak:
+      has: 1
+      value: 1
+    hitsStrong:
+      has: 1
+      value: 1
+    src_hits: 
+    score:
+      has: 1
+      value: 300
+    src_score: 
+    canDie: 1
+    projectile: "C\u1EA7u l\u1EEDa (ch\u1EC9 khi \u0111\xE3 l\xEAn \u0111\u1EA5t;
+      video Map_1 kh\xF4ng th\u1EA5y b\u1EAFn)"
+    dropRule: "kh\xF4ng n\xEAu ri\xEAng"
+    moveSpeed:
+      has: 0
+      value: 0
+    src_moveSpeed: "video:planner \u0111i ~0.8 px/tick (nhi\u1EC5u) \u2014 ch\u1EDD
+      \u0111o routine 13"
+    behaviorShort: "Nh\u1EA3y l\xEAn t\u1EEB m\u1EB7t n\u01B0\u1EDBc; ch\u1EA1m \u0111\u1EA5t
+      th\xEC \u0111i b\u1ED9 v\xE0 b\u1EAFn c\u1EA7u l\u1EEDa"
+    source: wiki:Enemies#Fishmen
+  - id: 7
+    nameEn: Medusa Head
+    nameAlt: gorgon heads
+    sheetName: enemy_medusahead
+    kind: 0
+    stages: 5;6;8;9;15
+    hitsWeak:
+      has: 1
+      value: 1
+    hitsStrong:
+      has: 1
+      value: 1
+    src_hits: 
+    score:
+      has: 1
+      value: 300
+    src_score: 
+    canDie: 1
+    projectile: '-'
+    dropRule: "kh\xF4ng n\xEAu ri\xEAng"
+    moveSpeed:
+      has: 0
+      value: 0
+    src_moveSpeed: "kh\xF4ng r\xF5 \u2014 kh\xF4ng c\xF3 video (routine 17 \u01B0\u1EDBc
+      l\u01B0\u1EE3ng)"
+    behaviorShort: "Xu\u1EA5t hi\u1EC7n t\u1EEB ph\xEDa Simon \u0111ang nh\xECn;
+      bay ngang theo \u0111\u01B0\u1EDDng s\xF3ng; quay l\u01B0ng th\xEC t\u1EDBi
+      t\u1EEB c\u1EA3 hai ph\xEDa"
+    source: wiki:Enemies#Medusa Heads
+  - id: 8
+    nameEn: Skeleton
+    nameAlt: White Skeleton
+    sheetName: enemy_skeleton (White Skeleton)
+    kind: 0
+    stages: 7;8;9;13;17
+    hitsWeak:
+      has: 1
+      value: 1
+    hitsStrong:
+      has: 1
+      value: 1
+    src_hits: 
+    score:
+      has: 1
+      value: 300
+    src_score: 
+    canDie: 1
+    projectile: "X\u01B0\u01A1ng n\xE9m v\xF2ng cung (2\u20133 c\xE1i c\xF9ng l\xFAc)"
+    dropRule: "kh\xF4ng n\xEAu ri\xEAng"
+    moveSpeed:
+      has: 0
+      value: 0
+    src_moveSpeed: "kh\xF4ng r\xF5 \u2014 kh\xF4ng c\xF3 video (routine 17 \u01B0\u1EDBc
+      l\u01B0\u1EE3ng)"
+    behaviorShort: "Nhanh v\xE0 nh\u1EA3y nhi\u1EC1u; n\xE9m x\u01B0\u01A1ng theo
+      v\xF2ng cung v\u1EDBi c\xE1c qu\u1EF9 \u0111\u1EA1o kh\xE1c nhau"
+    source: wiki:Enemies#Skeletons
+  - id: 9
+    nameEn: Ghost
+    nameAlt: souls of lost men
+    sheetName: enemy_ghost
+    kind: 0
+    stages: 6;7;15
+    hitsWeak:
+      has: 1
+      value: 3
+    hitsStrong:
+      has: 1
+      value: 2
+    src_hits: 
+    score:
+      has: 1
+      value: 300
+    src_score: 
+    canDie: 1
+    projectile: '-'
+    dropRule: "kh\xF4ng n\xEAu ri\xEAng"
+    moveSpeed:
+      has: 0
+      value: 0
+    src_moveSpeed: "kh\xF4ng r\xF5 \u2014 kh\xF4ng c\xF3 video (routine 17 \u01B0\u1EDBc
+      l\u01B0\u1EE3ng)"
+    behaviorShort: "Xu\u1EA5t hi\u1EC7n \u1EDF \u0111i\u1EC3m c\u1ED1 \u0111\u1ECBnh;
+      ch\u1EADm nh\u01B0ng b\xE1m theo v\u1ECB tr\xED Simon t\u1EEB g\xF3c l\u1EA1"
+    source: wiki:Enemies#Ghosts
+  - id: 10
+    nameEn: Red Skeleton
+    nameAlt: enchanted skeleton
+    sheetName: enemy_redskeleton
+    kind: 0
+    stages: 13;14;15
+    hitsWeak:
+      has: 1
+      value: 1
+    hitsStrong:
+      has: 1
+      value: 1
+    src_hits: 
+    score:
+      has: 1
+      value: 400
+    src_score: 
+    canDie: 0
+    projectile: '-'
+    dropRule: "kh\xF4ng n\xEAu ri\xEAng"
+    moveSpeed:
+      has: 0
+      value: 0
+    src_moveSpeed: "kh\xF4ng r\xF5 \u2014 kh\xF4ng c\xF3 video (routine 18 \u01B0\u1EDBc
+      l\u01B0\u1EE3ng)"
+    behaviorShort: "\u0110i ch\u1EADm \u0111u\u1ED5i theo; b\u1ECB \u0111\xE1nh th\xEC
+      \u0111\u1ED5 th\xE0nh \u0111\u1ED1ng x\u01B0\u01A1ng r\u1ED3i \u0111\u1EE9ng
+      d\u1EADy sau 1\u20132 s (kh\xF4ng gi\u1EBFt \u0111\u01B0\u1EE3c)"
+    source: wiki:Enemies#Red Skeletons
+  - id: 11
+    nameEn: Spear Knight
+    nameAlt: Black Knight
+    sheetName: enemy_blackknight (Black Knight)
+    kind: 0
+    stages: 4;5
+    hitsWeak:
+      has: 1
+      value: 3
+    hitsStrong:
+      has: 1
+      value: 2
+    src_hits: 
+    score:
+      has: 1
+      value: 400
+    src_score: 
+    canDie: 1
+    projectile: '-'
+    dropRule: "kh\xF4ng n\xEAu ri\xEAng"
+    moveSpeed:
+      has: 0
+      value: 0
+    src_moveSpeed: "kh\xF4ng r\xF5 \u2014 kh\xF4ng c\xF3 video (routine 17 \u01B0\u1EDBc
+      l\u01B0\u1EE3ng)"
+    behaviorShort: "\u0110i t\u1EDBi lui ch\u1EADm; c\xF3 th\u1EC3 quay \u0111\u1EA7u
+      b\u1EA5t c\u1EE9 l\xFAc n\xE0o; ch\u1EC9 g\xE2y h\u1EA1i khi va ch\u1EA1m"
+    source: wiki:Enemies#Spear Knights
+  - id: 12
+    nameEn: Bone Tower
+    nameAlt: Dragon Skull Cannon
+    sheetName: enemy_dragonskull (Dragon Skull Cannon)
+    kind: 0
+    stages: 6;8;9;15
+    hitsWeak:
+      has: 1
+      value: 8
+    hitsStrong:
+      has: 1
+      value: 6
+    src_hits: 
+    score:
+      has: 1
+      value: 400
+    src_score: 
+    canDie: 1
+    projectile: "2 c\u1EA7u l\u1EEDa m\u1ED7i l\u01B0\u1EE3t (qu\u1EA5t v\u1EE1 \u0111\u01B0\u1EE3c)"
+    dropRule: "kh\xF4ng n\xEAu ri\xEAng"
+    moveSpeed:
+      has: 0
+      value: 0
+    src_moveSpeed: 
+    behaviorShort: "B\u1EA5t \u0111\u1ED9ng; nh\u1EA5p nh\xE1y r\u1ED3i phun 2 c\u1EA7u
+      l\u1EEDa theo chu k\u1EF3"
+    source: wiki:Enemies#Bone Towers
+  - id: 13
+    nameEn: Fleaman
+    nameAlt: Hunchback
+    sheetName: enemy_fleaman (Hunchback/Fleaman)
+    kind: 0
+    stages: 7;11;13;14;17
+    hitsWeak:
+      has: 1
+      value: 1
+    hitsStrong:
+      has: 1
+      value: 1
+    src_hits: 
+    score:
+      has: 1
+      value: 500
+    src_score: 
+    canDie: 1
+    projectile: '-'
+    dropRule: "kh\xF4ng n\xEAu ri\xEAng"
+    moveSpeed:
+      has: 0
+      value: 0
+    src_moveSpeed: "kh\xF4ng r\xF5 \u2014 kh\xF4ng c\xF3 video (routine 17 \u01B0\u1EDBc
+      l\u01B0\u1EE3ng)"
+    behaviorShort: "Nh\u1EA3y nh\u01B0 ng\u1EABu nhi\xEAn: th\u01B0\u1EDDng 2 b\u01B0\u1EDBc
+      nh\u1EA3y ng\u1EAFn r\u1ED3i 1 c\xFA nh\u1EA3y v\u1ECDt; Stage 11/17 do Eagle
+      th\u1EA3"
+    source: wiki:Enemies#Fleamen
+  - id: 14
+    nameEn: Bone Dragon
+    nameAlt: Skele-Dragon
+    sheetName: enemy_skeledragon (Skele-Dragon)
+    kind: 0
+    stages: 11;12
+    hitsWeak:
+      has: 1
+      value: 8
+    hitsStrong:
+      has: 1
+      value: 7
+    src_hits: "wiki:Enemies#Bone Dragons (8/7 kh\xF4ng \u0111\xFAng t\u1EC9 l\u1EC7
+      1.5\xD7 \u2014 gi\u1EEF nguy\xEAn s\u1ED1 wiki; CV_WIKI_DATA \xA77.1 #6)"
+    score:
+      has: 1
+      value: 1000
+    src_score: 
+    canDie: 1
+    projectile: "C\u1EA7u l\u1EEDa t\u1EEB mi\u1EC7ng theo nhi\u1EC1u g\xF3c"
+    dropRule: "5\u20138 t\xFAi ti\u1EC1n ho\u1EB7c tim nh\u1ECF khi ch\u1EBFt; tr\xFAng
+      Holy Water \u21D2 r\u01A1i shot multiplier"
+    moveSpeed:
+      has: 0
+      value: 0
+    src_moveSpeed: 
+    behaviorShort: "G\u1EAFn v\xE0o t\u01B0\u1EDDng; th\xE2n b\u1EA5t \u0111\u1ED9ng;
+      c\u1ED5 ng\u1ECD ngu\u1EADy; phun c\u1EA7u l\u1EEDa (c\u1EA3 game ch\u1EC9
+      3 con)"
+    source: wiki:Enemies#Bone Dragons
+  - id: 15
+    nameEn: Axe Knight
+    nameAlt: Axe-Man
+    sheetName: enemy_axeman (Axe-Man)
+    kind: 0
+    stages: 14;15
+    hitsWeak:
+      has: 1
+      value: 10
+    hitsStrong:
+      has: 1
+      value: 9
+    src_hits: "wiki:Enemies#Axe Knights (10/9 kh\xF4ng \u0111\xFAng t\u1EC9 l\u1EC7
+      1.5\xD7 \u2014 gi\u1EEF nguy\xEAn s\u1ED1 wiki; CV_WIKI_DATA \xA77.1 #6)"
+    score:
+      has: 1
+      value: 1400
+    src_score: 
+    canDie: 1
+    projectile: "R\xECu n\xE9m cao ho\u1EB7c th\u1EA5p r\u1ED3i bay v\u1EC1 nh\u01B0
+      Boomerang (qu\u1EA5t v\u1EE1 \u0111\u01B0\u1EE3c)"
+    dropRule: "kh\xF4ng n\xEAu ri\xEAng"
+    moveSpeed:
+      has: 0
+      value: 0
+    src_moveSpeed: "kh\xF4ng r\xF5 \u2014 kh\xF4ng c\xF3 video (routine 18 \u01B0\u1EDBc
+      l\u01B0\u1EE3ng)"
+    behaviorShort: "Gi\u1EEF kho\u1EA3ng c\xE1ch; l\xF9i khi Simon ti\u1EBFn; b\u1ECB
+      \u0111\u1EA9y kh\u1ECFi m\xE9p m\xE0n th\xEC kh\xF4ng quay l\u1EA1i"
+    source: wiki:Enemies#Axe Knights
+  - id: 16
+    nameEn: "Phantom Bat (th\u01B0\u1EDDng)"
+    nameAlt: 
+    sheetName: boss_phantombat
+    kind: 1
+    stages: 16
+    hitsWeak:
+      has: 0
+      value: 0
+    hitsStrong:
+      has: 0
+      value: 0
+    src_hits: "kh\xF4ng r\xF5 \u2014 wiki kh\xF4ng n\xEAu s\u1ED1 \u0111\xF2n b\u1EA3n
+      th\u01B0\u1EDDng"
+    score:
+      has: 0
+      value: 0
+    src_score: "kh\xF4ng r\xF5 \u2014 wiki kh\xF4ng n\xEAu \u0111i\u1EC3m"
+    canDie: 1
+    projectile: "C\u1EA7u l\u1EEDa"
+    dropRule: "kh\xF4ng n\xEAu"
+    moveSpeed:
+      has: 0
+      value: 0
+    src_moveSpeed: "kh\xF4ng r\xF5 \u2014 kh\xF4ng c\xF3 video (routine 18 \u01B0\u1EDBc
+      l\u01B0\u1EE3ng)"
+    behaviorShort: "5 con \u1EDF Stage 16; bay t\u1EDBi theo v\u1ECB tr\xED kh\u1EDFi
+      \u0111\u1EA7u v\xE0 phun c\u1EA7u l\u1EEDa; n\xEAn tr\xE1nh h\u01A1n l\xE0
+      \u0111\xE1nh"
+    source: wiki:Bosses#Phantom Bat; wiki:Stages 16-18#Stage 16
+  - id: 17
+    nameEn: Igor
+    nameAlt: 
+    sheetName: "boss_frankenstein (\xF4 Igor)"
+    kind: 1
+    stages: 12
+    hitsWeak:
+      has: 0
+      value: 0
+    hitsStrong:
+      has: 0
+      value: 0
+    src_hits: 
+    score:
+      has: 0
+      value: 0
+    src_score: 
+    canDie: 0
+    projectile: "C\u1EA7u l\u1EEDa"
+    dropRule: '-'
+    moveSpeed:
+      has: 0
+      value: 0
+    src_moveSpeed: "kh\xF4ng r\xF5 \u2014 kh\xF4ng c\xF3 video (routine 19 \u01B0\u1EDBc
+      l\u01B0\u1EE3ng)"
+    behaviorShort: "B\u1EA5t t\u1EED; nh\u1EA3y qua l\u1EA1i hai b\xEAn ph\xF2ng
+      v\xE0 n\xE9m c\u1EA7u l\u1EEDa; qu\u1EA5t 1 l\u1EA7n \u21D2 cho\xE1ng"
+    source: wiki:Bosses#Frankenstein & Igor; wiki:Stages 10-12#Stage 12
+  - id: 18
+    nameEn: Snake
+    nameAlt: 
+    sheetName: "boss_medusa (\xF4 r\u1EAFn)"
+    kind: 1
+    stages: 6
+    hitsWeak:
+      has: 1
+      value: 1
+    hitsStrong:
+      has: 1
+      value: 1
+    src_hits: "wiki:Bosses#Queen Medusa (ch\u1EBFt b\u1EB1ng 1 \u0111\xF2n roi; \u0111\xF2n
+      m\u1EA1nh = 1 l\xE0 suy lu\u1EADn)"
+    score:
+      has: 0
+      value: 0
+    src_score: "kh\xF4ng r\xF5 \u2014 wiki kh\xF4ng n\xEAu \u0111i\u1EC3m"
+    canDie: 1
+    projectile: '-'
+    dropRule: "kh\xF4ng n\xEAu"
+    moveSpeed:
+      has: 0
+      value: 0
+    src_moveSpeed: "kh\xF4ng r\xF5 \u2014 kh\xF4ng c\xF3 video (routine 19 \u01B0\u1EDBc
+      l\u01B0\u1EE3ng)"
+    behaviorShort: "Do Queen Medusa th\u1EA3 xu\u1ED1ng; b\xF2 tr\xEAn s\xE0n v\u1EC1
+      ph\xEDa Simon"
+    source: wiki:Bosses#Queen Medusa

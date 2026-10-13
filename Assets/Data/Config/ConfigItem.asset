@@ -1,0 +1,715 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fec440ff49228e418dde79909f68876, type: 3}
+  m_Name: ConfigItem
+  m_EditorClassIdentifier: 
+  rows:
+  - id: 1
+    nameEn: Small Heart
+    nameAlt: Heart
+    kind: 0
+    sheetGroup: item_misc
+    hearts:
+      has: 1
+      value: 1
+    score:
+      has: 1
+      value: 0
+    src_score: "wiki:Gameplay#Points (nh\u1EB7t tim gi\u1EEFa stage kh\xF4ng cho
+      \u0111i\u1EC3m)"
+    healBars:
+      has: 0
+      value: 0
+    healFull: 0
+    effectTicks:
+      has: 0
+      value: 0
+    src_effectTicks: 
+    lifetimeTicks:
+      has: 0
+      value: 0
+    src_lifetimeTicks: "ch\u1EDD \u0111o routine 11"
+    fallStyle: "r\u01A1i ch\u1EADm \u0111ung \u0111\u01B0a"
+    effectShort: "+1 tim (\u0111\u1EA1n v\u0169 kh\xED ph\u1EE5)"
+    source: wiki:Items#Small Heart
+  - id: 2
+    nameEn: Large Heart
+    nameAlt: "Heart (l\u1EDBn)"
+    kind: 0
+    sheetGroup: item_misc
+    hearts:
+      has: 1
+      value: 5
+    score:
+      has: 1
+      value: 0
+    src_score: "wiki:Gameplay#Points (nh\u1EB7t tim gi\u1EEFa stage kh\xF4ng cho
+      \u0111i\u1EC3m)"
+    healBars:
+      has: 0
+      value: 0
+    healFull: 0
+    effectTicks:
+      has: 0
+      value: 0
+    src_effectTicks: 
+    lifetimeTicks:
+      has: 0
+      value: 0
+    src_lifetimeTicks: "ch\u1EDD \u0111o routine 11"
+    fallStyle: "r\u01A1i nhanh th\u1EB3ng xu\u1ED1ng s\xE0n"
+    effectShort: +5 tim
+    source: "wiki:Items#Large Heart; video:Map_1 0:03.93 (tim 05\u219210)"
+  - id: 3
+    nameEn: Red Money Bag
+    nameAlt: "Moneybag (\u0111\u1ECF)"
+    kind: 1
+    sheetGroup: item_misc
+    hearts:
+      has: 0
+      value: 0
+    score:
+      has: 1
+      value: 100
+    src_score: 
+    healBars:
+      has: 0
+      value: 0
+    healFull: 0
+    effectTicks:
+      has: 0
+      value: 0
+    src_effectTicks: 
+    lifetimeTicks:
+      has: 0
+      value: 0
+    src_lifetimeTicks: "ch\u1EDD \u0111o routine 11"
+    fallStyle: "ch\u1EDD \u0111o routine 11"
+    effectShort: "+100 \u0111i\u1EC3m"
+    source: wiki:Items#Red Money Bag
+  - id: 4
+    nameEn: Purple Money Bag
+    nameAlt: "Moneybag (t\xEDm)"
+    kind: 1
+    sheetGroup: item_misc
+    hearts:
+      has: 0
+      value: 0
+    score:
+      has: 1
+      value: 400
+    src_score: "wiki:Items#Purple Money Bag; video:Map_1 0:21.83 (+400 kh\u1EDBp)"
+    healBars:
+      has: 0
+      value: 0
+    healFull: 0
+    effectTicks:
+      has: 0
+      value: 0
+    src_effectTicks: 
+    lifetimeTicks:
+      has: 0
+      value: 0
+    src_lifetimeTicks: "ch\u1EDD \u0111o routine 11"
+    fallStyle: "ch\u1EDD \u0111o routine 11"
+    effectShort: "+400 \u0111i\u1EC3m"
+    source: wiki:Items#Purple Money Bag
+  - id: 5
+    nameEn: White Money Bag
+    nameAlt: "Moneybag (tr\u1EAFng)"
+    kind: 1
+    sheetGroup: item_misc
+    hearts:
+      has: 0
+      value: 0
+    score:
+      has: 1
+      value: 700
+    src_score: "wiki:Items#White Money Bag; video:Map_1 (5 l\u1EA7n +700 kh\u1EDBp;
+      CVGP_MEMORY \xA73 SFX 23)"
+    healBars:
+      has: 0
+      value: 0
+    healFull: 0
+    effectTicks:
+      has: 0
+      value: 0
+    src_effectTicks: 
+    lifetimeTicks:
+      has: 0
+      value: 0
+    src_lifetimeTicks: "ch\u1EDD \u0111o routine 11"
+    fallStyle: "ch\u1EDD \u0111o routine 11"
+    effectShort: "+700 \u0111i\u1EC3m"
+    source: wiki:Items#White Money Bag
+  - id: 6
+    nameEn: Flashing Money Bag
+    nameAlt: Bonus / hidden money bag
+    kind: 1
+    sheetGroup: item_misc
+    hearts:
+      has: 0
+      value: 0
+    score:
+      has: 1
+      value: 1000
+    src_score: "wiki:Items#Bonuses; video:Map_1 2:23.80 (+1000 kh\u1EDBp)"
+    healBars:
+      has: 0
+      value: 0
+    healFull: 0
+    effectTicks:
+      has: 0
+      value: 0
+    src_effectTicks: 
+    lifetimeTicks:
+      has: 0
+      value: 0
+    src_lifetimeTicks: "ch\u1EDD \u0111o routine 11 (wiki Stage 7: c\xF3 th\u1EC3
+      bi\u1EBFn m\u1EA5t sau th\u1EDDi gian ng\u1EAFn)"
+    fallStyle: "hi\u1EC7n t\u1EA1i ch\u1ED7 b\xED m\u1EADt"
+    effectShort: "+1000 \u0111i\u1EC3m"
+    source: wiki:Items#Bonuses; wiki:Secrets#Bonuses
+  - id: 7
+    nameEn: Crown
+    nameAlt: Bonus
+    kind: 1
+    sheetGroup: item_treasure
+    hearts:
+      has: 0
+      value: 0
+    score:
+      has: 1
+      value: 2000
+    src_score: 
+    healBars:
+      has: 0
+      value: 0
+    healFull: 0
+    effectTicks:
+      has: 0
+      value: 0
+    src_effectTicks: 
+    lifetimeTicks:
+      has: 0
+      value: 0
+    src_lifetimeTicks: "kh\xF4ng r\xF5 \u2014 kh\xF4ng c\xF3 video"
+    fallStyle: "hi\u1EC7n t\u1EA1i ch\u1ED7 b\xED m\u1EADt (Stage 4)"
+    effectShort: "+2000 \u0111i\u1EC3m"
+    source: wiki:Items#Bonuses; wiki:Secrets#Bonuses
+  - id: 8
+    nameEn: Treasure Chest
+    nameAlt: Treasure Box
+    kind: 1
+    sheetGroup: item_treasure
+    hearts:
+      has: 0
+      value: 0
+    score:
+      has: 1
+      value: 2000
+    src_score: 
+    healBars:
+      has: 0
+      value: 0
+    healFull: 0
+    effectTicks:
+      has: 0
+      value: 0
+    src_effectTicks: 
+    lifetimeTicks:
+      has: 0
+      value: 0
+    src_lifetimeTicks: "kh\xF4ng r\xF5 \u2014 kh\xF4ng c\xF3 video"
+    fallStyle: "hi\u1EC7n t\u1EA1i ch\u1ED7 b\xED m\u1EADt (Stage 5)"
+    effectShort: "+2000 \u0111i\u1EC3m"
+    source: wiki:Items#Bonuses; wiki:Secrets#Bonuses
+  - id: 9
+    nameEn: Moai figure
+    nameAlt: 
+    kind: 1
+    sheetGroup: "ch\u01B0a t\xECm th\u1EA5y tr\xEAn sheet (routine 05)"
+    hearts:
+      has: 0
+      value: 0
+    score:
+      has: 1
+      value: 4000
+    src_score: 
+    healBars:
+      has: 0
+      value: 0
+    healFull: 0
+    effectTicks:
+      has: 0
+      value: 0
+    src_effectTicks: 
+    lifetimeTicks:
+      has: 0
+      value: 0
+    src_lifetimeTicks: "kh\xF4ng r\xF5 \u2014 kh\xF4ng c\xF3 video"
+    fallStyle: "ch\u1EC9 Second Quest (Stage 24/26/27)"
+    effectShort: "+4000 \u0111i\u1EC3m"
+    source: wiki:Secrets#Bonuses
+  - id: 10
+    nameEn: Morning Star
+    nameAlt: Whip upgrade
+    kind: 2
+    sheetGroup: item_misc
+    hearts:
+      has: 0
+      value: 0
+    score:
+      has: 1
+      value: 0
+    src_score: "wiki:Stages 1-3 \u1EA3nh HUD (SCORE 000000 sau 2 Morning Star + Dagger)"
+    healBars:
+      has: 0
+      value: 0
+    healFull: 0
+    effectTicks:
+      has: 0
+      value: 0
+    src_effectTicks: 
+    lifetimeTicks:
+      has: 0
+      value: 0
+    src_lifetimeTicks: "ch\u1EDD \u0111o routine 11"
+    fallStyle: "ch\u1EDD \u0111o routine 11"
+    effectShort: "Roi l\xEAn 1 c\u1EA5p (t\u1ED1i \u0111a c\u1EA5p 3); ch\u1EBFt
+      \u21D2 v\u1EC1 c\u1EA5p 1; nh\u1EB7t \u21D2 c\u1EA3 th\u1EBF gi\u1EDBi \u0111\xF3ng
+      b\u0103ng (ConfigSimon.WhipPickupFreezeTicks)"
+    source: wiki:Items#Morning Star
+  - id: 11
+    nameEn: Dagger
+    nameAlt: 
+    kind: 3
+    sheetGroup: item_weapon
+    hearts:
+      has: 0
+      value: 0
+    score:
+      has: 1
+      value: 0
+    src_score: "wiki:Stages 1-3 \u1EA3nh HUD (SCORE 000000 khi \u0111\xE3 c\xF3 Dagger)"
+    healBars:
+      has: 0
+      value: 0
+    healFull: 0
+    effectTicks:
+      has: 0
+      value: 0
+    src_effectTicks: 
+    lifetimeTicks:
+      has: 0
+      value: 0
+    src_lifetimeTicks: "ch\u1EDD \u0111o routine 11"
+    fallStyle: "ch\u1EDD \u0111o routine 11"
+    effectShort: "V\u0169 kh\xED ph\u1EE5 Dagger (ConfigSubWeapon)"
+    source: wiki:Items#Dagger
+  - id: 12
+    nameEn: Axe
+    nameAlt: Throwing Axe
+    kind: 3
+    sheetGroup: item_weapon
+    hearts:
+      has: 0
+      value: 0
+    score:
+      has: 0
+      value: 0
+    src_score: "ch\u1EDD \u0111o routine 11 (video Map_1 3:10.67 nh\u1EB7t r\xECu)"
+    healBars:
+      has: 0
+      value: 0
+    healFull: 0
+    effectTicks:
+      has: 0
+      value: 0
+    src_effectTicks: 
+    lifetimeTicks:
+      has: 0
+      value: 0
+    src_lifetimeTicks: "ch\u1EDD \u0111o routine 11 (wiki Stage 7: r\u01A1i m\u1EA5t
+      n\u1EBFu kh\xF4ng nh\u1EB7t ngay)"
+    fallStyle: "ch\u1EDD \u0111o routine 11"
+    effectShort: "V\u0169 kh\xED ph\u1EE5 Axe (ConfigSubWeapon)"
+    source: wiki:Items#Axe
+  - id: 13
+    nameEn: Holy Water
+    nameAlt: Fire Bomb
+    kind: 3
+    sheetGroup: item_weapon
+    hearts:
+      has: 0
+      value: 0
+    score:
+      has: 0
+      value: 0
+    src_score: "ch\u1EDD \u0111o routine 11 (kh\xF4ng nh\u1EB7t trong video)"
+    healBars:
+      has: 0
+      value: 0
+    healFull: 0
+    effectTicks:
+      has: 0
+      value: 0
+    src_effectTicks: 
+    lifetimeTicks:
+      has: 0
+      value: 0
+    src_lifetimeTicks: "ch\u1EDD \u0111o routine 11"
+    fallStyle: "ch\u1EDD \u0111o routine 11"
+    effectShort: "V\u0169 kh\xED ph\u1EE5 Holy Water (ConfigSubWeapon)"
+    source: wiki:Items#Holy Water
+  - id: 14
+    nameEn: Cross
+    nameAlt: Boomerang
+    kind: 3
+    sheetGroup: item_weapon
+    hearts:
+      has: 0
+      value: 0
+    score:
+      has: 0
+      value: 0
+    src_score: "kh\xF4ng r\xF5 \u2014 kh\xF4ng c\xF3 trong video"
+    healBars:
+      has: 0
+      value: 0
+    healFull: 0
+    effectTicks:
+      has: 0
+      value: 0
+    src_effectTicks: 
+    lifetimeTicks:
+      has: 0
+      value: 0
+    src_lifetimeTicks: "kh\xF4ng r\xF5 \u2014 kh\xF4ng c\xF3 trong video"
+    fallStyle: "ch\u1EDD \u0111o routine 11"
+    effectShort: "V\u0169 kh\xED ph\u1EE5 Cross (ConfigSubWeapon)"
+    source: wiki:Items#Cross
+  - id: 15
+    nameEn: Stopwatch
+    nameAlt: Stop Watch
+    kind: 3
+    sheetGroup: "item_weapon (item_stopwatch \u2014 t\xEAn ch\u01B0a ch\u1EAFc)"
+    hearts:
+      has: 0
+      value: 0
+    score:
+      has: 0
+      value: 0
+    src_score: "ch\u1EDD \u0111o routine 11 (kh\xF4ng nh\u1EB7t trong video)"
+    healBars:
+      has: 0
+      value: 0
+    healFull: 0
+    effectTicks:
+      has: 0
+      value: 0
+    src_effectTicks: 
+    lifetimeTicks:
+      has: 0
+      value: 0
+    src_lifetimeTicks: "ch\u1EDD \u0111o routine 11"
+    fallStyle: "ch\u1EDD \u0111o routine 11"
+    effectShort: "V\u0169 kh\xED ph\u1EE5 Stopwatch (ConfigSubWeapon)"
+    source: wiki:Items#Stopwatch
+  - id: 16
+    nameEn: Double Shot
+    nameAlt: "Shot Multiplier \xD72"
+    kind: 4
+    sheetGroup: item_weapon
+    hearts:
+      has: 0
+      value: 0
+    score:
+      has: 0
+      value: 0
+    src_score: "n/a: \u0111i\u1EC3m c\xF3 \u0111i\u1EC1u ki\u1EC7n \u21D2 ConfigScore.MultiplierPickupBonus"
+    healBars:
+      has: 0
+      value: 0
+    healFull: 0
+    effectTicks:
+      has: 0
+      value: 0
+    src_effectTicks: 
+    lifetimeTicks:
+      has: 0
+      value: 0
+    src_lifetimeTicks: "ch\u1EDD \u0111o routine 11"
+    fallStyle: "ch\u1EDD \u0111o routine 11"
+    effectShort: "2 v\u0169 kh\xED ph\u1EE5 c\xF9ng l\xFAc tr\xEAn m\xE0n; m\u1EA5t
+      khi nh\u1EB7t v\u0169 kh\xED ph\u1EE5 kh\xE1c; r\u01A1i khi tr\xFAng enemy
+      10 l\u1EA7n b\u1EB1ng c\xF9ng v\u0169 kh\xED ph\u1EE5"
+    source: wiki:Items#Double Shot
+  - id: 17
+    nameEn: Triple Shot
+    nameAlt: "Shot Multiplier \xD73"
+    kind: 4
+    sheetGroup: item_weapon
+    hearts:
+      has: 0
+      value: 0
+    score:
+      has: 0
+      value: 0
+    src_score: "n/a: \u0111i\u1EC3m c\xF3 \u0111i\u1EC1u ki\u1EC7n \u21D2 ConfigScore.MultiplierPickupBonus"
+    healBars:
+      has: 0
+      value: 0
+    healFull: 0
+    effectTicks:
+      has: 0
+      value: 0
+    src_effectTicks: 
+    lifetimeTicks:
+      has: 0
+      value: 0
+    src_lifetimeTicks: "kh\xF4ng r\xF5 \u2014 kh\xF4ng c\xF3 trong video"
+    fallStyle: "ch\u1EDD \u0111o routine 11"
+    effectShort: "3 v\u0169 kh\xED ph\u1EE5 c\xF9ng l\xFAc tr\xEAn m\xE0n; m\u1EA5t
+      khi nh\u1EB7t v\u0169 kh\xED ph\u1EE5 kh\xE1c"
+    source: wiki:Items#Triple Shot
+  - id: 18
+    nameEn: Rosary
+    nameAlt: "Cross (b\u1EA3ng Items)"
+    kind: 5
+    sheetGroup: item_treasure
+    hearts:
+      has: 0
+      value: 0
+    score:
+      has: 0
+      value: 0
+    src_score: "ch\u1EDD \u0111o routine 11 (video Map_1 1:15.02/1:24.69/2:42.76)"
+    healBars:
+      has: 0
+      value: 0
+    healFull: 0
+    effectTicks:
+      has: 0
+      value: 0
+    src_effectTicks: 
+    lifetimeTicks:
+      has: 0
+      value: 0
+    src_lifetimeTicks: "ch\u1EDD \u0111o routine 11"
+    fallStyle: "ch\u1EDD \u0111o routine 11"
+    effectShort: "Di\u1EC7t m\u1ECDi enemy tr\xEAn m\xE0n (tr\u1EEB boss; kh\xF4ng
+      cho \u0111i\u1EC3m); ph\xE1 \u0111\u1EA1n c\u1EE7a boss; m\xE0n nh\xE1y tr\u1EAFng
+      (ConfigRule.RosaryFlashTicks)"
+    source: wiki:Items#Rosary
+  - id: 19
+    nameEn: Invisibility Potion
+    nameAlt: 
+    kind: 5
+    sheetGroup: item_treasure
+    hearts:
+      has: 0
+      value: 0
+    score:
+      has: 0
+      value: 0
+    src_score: "ch\u1EDD \u0111o routine 11 (video Map_1 2:58.20)"
+    healBars:
+      has: 0
+      value: 0
+    healFull: 0
+    effectTicks:
+      has: 0
+      value: 0
+    src_effectTicks: "ch\u1EDD \u0111o routine 11 \u2014 wiki \u2248 5 s (300 tick)
+      nh\u01B0ng video Map_1: Simon trong su\u1ED1t \u2248 2.6 s (planner) v\xE0
+      SFX 27\u219228 c\xE1ch 3.9 s (2:58.20\u21923:02.11) \u2014 ng\u1EAFn h\u01A1n
+      wiki (H1: theo video)"
+    lifetimeTicks:
+      has: 0
+      value: 0
+    src_lifetimeTicks: "ch\u1EDD \u0111o routine 11"
+    fallStyle: "ch\u1EDD \u0111o routine 11"
+    effectShort: "T\xE0ng h\xECnh (l\u1EA5p l\xE1nh): \u0111i xuy\xEAn enemy kh\xF4ng
+      b\u1ECB th\u01B0\u01A1ng; v\u1EABn ch\u1EBFt khi r\u01A1i h\u1ED1"
+    source: wiki:Items#Invisibility Potion
+  - id: 20
+    nameEn: Pot Roast
+    nameAlt: Pork Chop
+    kind: 6
+    sheetGroup: item_treasure
+    hearts:
+      has: 0
+      value: 0
+    score:
+      has: 0
+      value: 0
+    src_score: "ch\u1EDD \u0111o routine 11 (video Map_1 1:39 nh\u1EB7t sau khi \u0111\u1EADp
+      t\u01B0\u1EDDng)"
+    healBars:
+      has: 1
+      value: 6
+    healFull: 0
+    effectTicks:
+      has: 0
+      value: 0
+    src_effectTicks: 
+    lifetimeTicks:
+      has: 0
+      value: 0
+    src_lifetimeTicks: "ch\u1EDD \u0111o routine 11"
+    fallStyle: "ch\u1EDD \u0111o routine 11"
+    effectShort: "H\u1ED3i 6 v\u1EA1ch m\xE1u; ch\u1EC9 c\xF3 trong kh\u1ED1i g\u1EA1ch
+      ph\xE1 b\u1EB1ng roi"
+    source: wiki:Items#Pork Chop
+  - id: 21
+    nameEn: 1UP
+    nameAlt: 
+    kind: 7
+    sheetGroup: item_treasure
+    hearts:
+      has: 0
+      value: 0
+    score:
+      has: 0
+      value: 0
+    src_score: "kh\xF4ng r\xF5 \u2014 kh\xF4ng c\xF3 trong video"
+    healBars:
+      has: 0
+      value: 0
+    healFull: 0
+    effectTicks:
+      has: 0
+      value: 0
+    src_effectTicks: 
+    lifetimeTicks:
+      has: 0
+      value: 0
+    src_lifetimeTicks: "kh\xF4ng r\xF5 (wiki Stage 25: bi\u1EBFn m\u1EA5t sau ch\u1ED1c
+      l\xE1t)"
+    fallStyle: "ch\u1EDD \u0111o routine 11"
+    effectShort: "+1 m\u1EA1ng; ch\u1EC9 hi\u1EC7n khi k\xEDch ho\u1EA1t b\xED m\u1EADt"
+    source: wiki:Items#1up; wiki:Secrets
+  - id: 22
+    nameEn: Magic Crystal
+    nameAlt: Crystal Ball
+    kind: 8
+    sheetGroup: item_misc
+    hearts:
+      has: 0
+      value: 0
+    score:
+      has: 0
+      value: 0
+    src_score: 
+    healBars:
+      has: 0
+      value: 0
+    healFull: 1
+    effectTicks:
+      has: 0
+      value: 0
+    src_effectTicks: 
+    lifetimeTicks:
+      has: 0
+      value: 0
+    src_lifetimeTicks: 
+    fallStyle: "r\u01A1i theo tr\u1ECDng l\u1EF1c (ConfigActorParam Item.MagicCrystal)"
+    effectShort: "H\u1ED3i \u0111\u1EA7y m\xE1u + t\xEDnh tally (ConfigScore); k\u1EBFt
+      th\xFAc block"
+    source: "wiki:Items#Magic Crystal; wiki:Walkthrough; video:Boss_Map_1 20.33\u201321.80
+      s"
+  - id: 101
+    nameEn: Torch / brazier
+    nameAlt: "ch\u1EADu l\u1EEDa (\u0111u\u1ED1c)"
+    kind: 9
+    sheetGroup: obj_torch
+    hearts:
+      has: 0
+      value: 0
+    score:
+      has: 0
+      value: 0
+    src_score: 
+    healBars:
+      has: 0
+      value: 0
+    healFull: 0
+    effectTicks:
+      has: 0
+      value: 0
+    src_effectTicks: 
+    lifetimeTicks:
+      has: 0
+      value: 0
+    src_lifetimeTicks: 
+    fallStyle: '-'
+    effectShort: "V\u1EADt ch\u1EE9a ph\xE1 b\u1EB1ng roi (Stage 1 ngo\xE0i tr\u1EDDi:
+      5 c\xE1i); n\u1ED9i dung \u1EDF ConfigDrop"
+    source: "wiki:Stages 1-3#Stage 1 (\u1EA3nh b\u1EA3n \u0111\u1ED3); video:Map_1
+      0:02\u20130:16"
+  - id: 102
+    nameEn: Wall candle
+    nameAlt: "n\u1EBFn t\u01B0\u1EDDng"
+    kind: 9
+    sheetGroup: obj_candle
+    hearts:
+      has: 0
+      value: 0
+    score:
+      has: 0
+      value: 0
+    src_score: 
+    healBars:
+      has: 0
+      value: 0
+    healFull: 0
+    effectTicks:
+      has: 0
+      value: 0
+    src_effectTicks: 
+    lifetimeTicks:
+      has: 0
+      value: 0
+    src_lifetimeTicks: 
+    fallStyle: '-'
+    effectShort: "V\u1EADt ch\u1EE9a ph\xE1 b\u1EB1ng roi/v\u0169 kh\xED ph\u1EE5;
+      n\u1ED9i dung \u1EDF ConfigDrop"
+    source: wiki:Items; wiki:Stages 1-3
+  - id: 103
+    nameEn: Breakable block
+    nameAlt: "kh\u1ED1i g\u1EA1ch ph\xE1 \u0111\u01B0\u1EE3c"
+    kind: 9
+    sheetGroup: obj_brick
+    hearts:
+      has: 0
+      value: 0
+    score:
+      has: 0
+      value: 0
+    src_score: 
+    healBars:
+      has: 0
+      value: 0
+    healFull: 0
+    effectTicks:
+      has: 0
+      value: 0
+    src_effectTicks: 
+    lifetimeTicks:
+      has: 0
+      value: 0
+    src_lifetimeTicks: 
+    fallStyle: '-'
+    effectShort: "Kh\u1ED1i/t\u01B0\u1EDDng g\u1EA1ch ph\xE1 b\u1EB1ng roi gi\u1EA5u
+      Pot Roast / multiplier / t\xFAi ti\u1EC1n; n\u1ED9i dung \u1EDF ConfigDrop"
+    source: wiki:Items#Pork Chop; wiki:Secrets; video:Map_1 1:39.61

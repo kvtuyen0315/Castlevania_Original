@@ -12,6 +12,9 @@ public class GameManager : ManualSingletonMono<GameManager>
     [Tooltip("Log mốc chuyển cảnh theo frame (cũng bật được bằng menu CVTI/Log Flow Frames).")]
     [SerializeField] private bool logFlow;
 
+    [Tooltip("Bảng chỉ số gốc (CVGP 04) — Assets/Data/Config/GameConfig.asset, dựng bằng menu CVGP/Import Config.")]
+    [SerializeField] private GameConfig gameConfig;
+
     private readonly Dictionary<eGameScreen, GameScreen> screens = new Dictionary<eGameScreen, GameScreen>();
 
     private GameScreen current;
@@ -22,10 +25,14 @@ public class GameManager : ManualSingletonMono<GameManager>
 
     public eGameScreen State { get; private set; }
     public bool IsTransitioning => transitioning;
+    public GameConfig Config => gameConfig;
 
     protected override void Awake()
     {
         base.Awake();
+        if (gameConfig == null)
+            Debug.LogError("[GameManager] Chưa gán GameConfig (chạy CVGP/Import Config rồi gán vào prefab GameManager)");
+        GameConfig.SetCurrent(gameConfig);
 #if UNITY_EDITOR
         CvtiDebug.LogFlow = logFlow || UnityEditor.EditorPrefs.GetBool(CvtiDebug.PREF_KEY, false);
 #else

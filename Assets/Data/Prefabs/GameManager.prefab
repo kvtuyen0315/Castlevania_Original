@@ -379,6 +379,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   logFlow: 0
+  gameConfig: {fileID: 11400000, guid: 6c1693d8ea3ebed4f892edf152904050, type: 2}
 --- !u!1 &7880655180234719544
 GameObject:
   m_ObjectHideFlags: 0

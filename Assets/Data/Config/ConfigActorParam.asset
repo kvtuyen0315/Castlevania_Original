@@ -1,0 +1,480 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6aac8014d30108b45a2cff4c4391587f, type: 3}
+  m_Name: ConfigActorParam
+  m_EditorClassIdentifier: 
+  rows:
+  - actor: Enemy.Ghoul
+    key: groupSize
+    value:
+      has: 0
+      value: 0
+    min:
+      has: 1
+      value: 2
+    max:
+      has: 1
+      value: 3
+    unit: con
+    source: "wiki:Enemies#Ghouls (nh\xF3m 2\u20133) \u2014 ch\u1EDD \u0111o routine
+      13"
+    note: 
+  - actor: Enemy.Bat
+    key: bobAmplitudePx
+    value:
+      has: 0
+      value: 0
+    min:
+      has: 1
+      value: 6
+    max:
+      has: 1
+      value: 9
+    unit: px
+    source: "video:planner (dao \u0111\u1ED9ng d\u1ECDc; th\xF4) \u2014 ch\u1EDD
+      \u0111o routine 13"
+    note: 
+  - actor: Enemy.Bat
+    key: bobPeriodTicks
+    value:
+      has: 0
+      value: 0
+    min:
+      has: 1
+      value: 78
+    max:
+      has: 1
+      value: 120
+    unit: tick
+    source: "video:planner (~1.3\u20132 s; th\xF4) \u2014 ch\u1EDD \u0111o routine
+      13"
+    note: 
+  - actor: Enemy.Panther
+    key: jumpVx
+    value:
+      has: 0
+      value: 0
+    min:
+      has: 1
+      value: 1.9
+    max:
+      has: 1
+      value: 2
+    unit: px/tick
+    source: "video:planner (nh\u1EA3y ngang + cung r\u01A1i) \u2014 ch\u1EDD \u0111o
+      routine 13"
+    note: 
+  - actor: Enemy.Fishman
+    key: jumpVy0
+    value:
+      has: 1
+      value: -5.6
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px/tick
+    source: "video:planner (f3515\u20133547 kh\u1EDBp parabol; d\u01B0 \u2264 1.6
+      px) \u2014 ch\u1EDD \u0111o routine 13"
+    note: "\xE2m = \u0111i l\xEAn (NES y xu\u1ED1ng)"
+  - actor: Enemy.Fishman
+    key: gravity
+    value:
+      has: 1
+      value: 0.124
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: "px/tick\xB2"
+    source: "video:planner \u2014 ch\u1EDD \u0111o routine 13"
+    note: 
+  - actor: Enemy.Fishman
+    key: jumpApexPx
+    value:
+      has: 1
+      value: 129
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "video:planner (\u0111\u1EC9nh tr\xEAn m\u1EB7t n\u01B0\u1EDBc) \u2014
+      ch\u1EDD \u0111o routine 13"
+    note: 
+  - actor: Enemy.Fishman
+    key: jumpApexTicks
+    value:
+      has: 1
+      value: 46
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "video:planner \u2014 ch\u1EDD \u0111o routine 13"
+    note: 
+  - actor: Enemy.RedSkeleton
+    key: reviveTicks
+    value:
+      has: 0
+      value: 0
+    min:
+      has: 1
+      value: 60
+    max:
+      has: 1
+      value: 120
+    unit: tick
+    source: "wiki:Enemies#Red Skeletons; wiki:Stages 13-15 (\u0111\u1EE9ng d\u1EADy
+      sau 1\u20132 s) \u2014 ch\u1EDD \u0111o routine 18"
+    note: 
+  - actor: Boss.PhantomBat
+    key: sleepScreenX
+    value:
+      has: 1
+      value: 110.5
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: "px m\xE0n"
+    source: "video:planner MAP1_TIMELINE \xA75 (t\xE2m sprite khi ng\u1EE7; world
+      PB x \u2248 622) \u2014 ch\u1EDD \u0111o routine 14"
+    note: 
+  - actor: Boss.PhantomBat
+    key: sleepScreenY
+    value:
+      has: 1
+      value: 64.5
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: "px m\xE0n"
+    source: "video:planner \u2014 ch\u1EDD \u0111o routine 14"
+    note: 
+  - actor: Boss.PhantomBat
+    key: wakeSimonScreenX
+    value:
+      has: 0
+      value: 0
+    min:
+      has: 1
+      value: 181
+    max:
+      has: 1
+      value: 184
+    unit: "px m\xE0n"
+    source: "video:planner (2 l\u1EA7n; Simon tr\xEAn c\u1EA7u thang ph\u1EA3i) \u2014
+      ch\u1EDD \u0111o routine 14"
+    note: 
+  - actor: Boss.PhantomBat
+    key: wakeHoverTicks
+    value:
+      has: 1
+      value: 30
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "video:planner (\u2248 0.5 s l\u01B0\u1EE3n t\u1EA1i ch\u1ED7) \u2014
+      ch\u1EDD \u0111o routine 14"
+    note: 
+  - actor: Boss.PhantomBat
+    key: firstDiveSpeed
+    value:
+      has: 0
+      value: 0
+    min:
+      has: 1
+      value: 1.44
+    max:
+      has: 1
+      value: 1.5
+    unit: px/tick
+    source: "video:planner (2 video) \u2014 ch\u1EDD \u0111o routine 14"
+    note: "h\u01B0\u1EDBng \u2248 +31\xB0"
+  - actor: Boss.PhantomBat
+    key: firstDiveAngleDeg
+    value:
+      has: 1
+      value: 31
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: "\u0111\u1ED9"
+    source: "video:planner (2 video gi\u1ED1ng nhau) \u2014 ch\u1EDD \u0111o routine
+      14"
+    note: 
+  - actor: Boss.PhantomBat
+    key: slowFlySpeed
+    value:
+      has: 0
+      value: 0
+    min:
+      has: 1
+      value: 0.75
+    max:
+      has: 1
+      value: 1
+    unit: px/tick
+    source: "video:planner \u2014 ch\u1EDD \u0111o routine 14"
+    note: 
+  - actor: Boss.PhantomBat
+    key: hoverTicks
+    value:
+      has: 0
+      value: 0
+    min:
+      has: 1
+      value: 30
+    max:
+      has: 1
+      value: 96
+    unit: tick
+    source: "video:planner (0.5\u20131.6 s) \u2014 ch\u1EDD \u0111o routine 14"
+    note: 
+  - actor: Boss.PhantomBat
+    key: diveSpeed
+    value:
+      has: 0
+      value: 0
+    min:
+      has: 1
+      value: 1.5
+    max:
+      has: 1
+      value: 1.6
+    unit: px/tick
+    source: "video:planner (c\xF3 l\u1EA7n 2.46) \u2014 ch\u1EDD \u0111o routine
+      14"
+    note: "g\xF3c 27\u201340\xB0"
+  - actor: Boss.PhantomBat
+    key: retreatSpeed
+    value:
+      has: 0
+      value: 0
+    min:
+      has: 1
+      value: 2
+    max:
+      has: 1
+      value: 2.3
+    unit: px/tick
+    source: "video:planner \u2014 ch\u1EDD \u0111o routine 14"
+    note: 
+  - actor: Boss.PhantomBat
+    key: diveCycleTicks
+    value:
+      has: 0
+      value: 0
+    min:
+      has: 1
+      value: 240
+    max:
+      has: 1
+      value: 258
+    unit: tick
+    source: "video:planner (4.0\u20134.3 s) \u2014 ch\u1EDD \u0111o routine 14"
+    note: 
+  - actor: Boss.PhantomBat
+    key: deathFlameTicks
+    value:
+      has: 0
+      value: 0
+    min:
+      has: 1
+      value: 42
+    max:
+      has: 1
+      value: 48
+    unit: tick
+    source: "video:planner (0.7\u20130.8 s) \u2014 ch\u1EDD \u0111o routine 14"
+    note: 
+  - actor: Boss.Death
+    key: maxScythes
+    value:
+      has: 1
+      value: 3
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: "c\xE1i"
+    source: wiki:Bosses#Death
+    note: 
+  - actor: Boss.Death
+    key: scytheIdleTicks
+    value:
+      has: 1
+      value: 60
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "wiki:Bosses#Death (\u0111\u1EE9ng y\xEAn kho\u1EA3ng 1 gi\xE2y \xD7
+      60)"
+    note: 
+  - actor: Boss.Dracula
+    key: fireballsPerVolley
+    value:
+      has: 1
+      value: 3
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: "c\xE1i"
+    source: wiki:Bosses#The Count
+    note: 
+  - actor: SubWeapon.Dagger
+    key: spawnHeightAboveFeet
+    value:
+      has: 1
+      value: 21
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "video:planner (\u2248 \u0111\u1EC9nh \u0111\u1EA7u + 4\u20135 px) \u2014
+      ch\u1EDD \u0111o routine 09"
+    note: 
+  - actor: SubWeapon.Axe
+    key: apexPx
+    value:
+      has: 1
+      value: 55
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "video:planner (\u2248 sau ~21 tick) \u2014 ch\u1EDD \u0111o routine
+      09"
+    note: 
+  - actor: SubWeapon.Axe
+    key: apexTicks
+    value:
+      has: 1
+      value: 21
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "video:planner (\u2248) \u2014 ch\u1EDD \u0111o routine 09"
+    note: 
+  - actor: SubWeapon.HolyWater
+    key: flameHoldTicks
+    value:
+      has: 1
+      value: 144
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "video:planner (\u2248 2.4 s l\u1EEDa gi\u1EEF ch\xE2n boss) \u2014 ch\u1EDD
+      \u0111o routine 09"
+    note: 
+  - actor: Item.MagicCrystal
+    key: spawnDelayTicks
+    value:
+      has: 1
+      value: 150
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "video:planner (2.5 s sau khi boss ch\u1EBFt; 2 video) \u2014 ch\u1EDD
+      \u0111o routine 14"
+    note: 
+  - actor: Item.MagicCrystal
+    key: spawnScreenX
+    value:
+      has: 1
+      value: 127.5
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: "px m\xE0n"
+    source: "video:planner (2 video) \u2014 ch\u1EDD \u0111o routine 14"
+    note: 
+  - actor: Item.MagicCrystal
+    key: spawnScreenY
+    value:
+      has: 1
+      value: 128.5
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: "px m\xE0n"
+    source: "video:planner (2 video) \u2014 ch\u1EDD \u0111o routine 14"
+    note: 
+  - actor: Item.MagicCrystal
+    key: gravity
+    value:
+      has: 0
+      value: 0
+    min:
+      has: 1
+      value: 0.23
+    max:
+      has: 1
+      value: 0.26
+    unit: "px/tick\xB2"
+    source: "video:planner \u2014 ch\u1EDD \u0111o routine 14"
+    note: 

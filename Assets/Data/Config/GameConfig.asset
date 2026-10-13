@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2ca3756cf7b2c648bf1c2246afce655, type: 3}
+  m_Name: GameConfig
+  m_EditorClassIdentifier: 
+  simon: {fileID: 11400000, guid: bfc3520348545614ba35f239641f27a3, type: 2}
+  enemies: {fileID: 11400000, guid: 3a4d6a3787267f140aed7821fcfd5426, type: 2}
+  bosses: {fileID: 11400000, guid: 802aaae76f544964eab4ca60a9bac7f8, type: 2}
+  actorParams: {fileID: 11400000, guid: 43b2cbfe12186c04d836bee8ecab29fc, type: 2}
+  items: {fileID: 11400000, guid: 44b6a00bd58a70145be25ad62645fdd8, type: 2}
+  subWeapons: {fileID: 11400000, guid: 9472e72eaf98d5645b03dcea87ee6959, type: 2}
+  whips: {fileID: 11400000, guid: e62dbd526e325aa4ea7a1f431e61d667, type: 2}
+  blocks: {fileID: 11400000, guid: deecfe479ac73b24c9ecd8a66f5da2d4, type: 2}
+  stages: {fileID: 11400000, guid: 5176436dd9d5fed4f956f3e8e8e9e665, type: 2}
+  score: {fileID: 11400000, guid: f233f4ad4c909ad49b230bd2fcc18e1a, type: 2}
+  rules: {fileID: 11400000, guid: a677564105fd93b438729008106d4716, type: 2}
+  drops: {fileID: 11400000, guid: e00c1bd8b56304949ad790dfad82b2d9, type: 2}

@@ -1,0 +1,19 @@
+stage,block,areaShort,enemies,boss,music,src_music,source
+1,1,Sân ngoài lâu đài (không enemy) + sảnh vào lâu đài,Ghoul;Panther,None,M03_VampireKiller,suy luận: tên file Art_Source/music (Courtyard) — CHƯA đối chiếu video,wiki:Stages 1-3#Stage 1
+2,1,Hầm ngầm có nước (rơi nước chết),Fishman;Bat,None,M03_VampireKiller,suy luận: tên file Art_Source/music — CHƯA đối chiếu video,wiki:Stages 1-3#Stage 2
+3,1,Hành lang cầu thang xuống phòng boss,Ghoul,PhantomBat,M03_VampireKiller,suy luận: tên file Art_Source/music — CHƯA đối chiếu video,wiki:Stages 1-3#Stage 3
+4,2,Ngắn; Spear Knight canh cửa cuối,SpearKnight;Bat,None,M04_Stalker,suy luận: tên file Art_Source/music (Armory) — CHƯA đối chiếu video,wiki:Stages 4-6#Stage 4; wiki:Enemies
+5,2,Nhiều hố; Medusa Head ngay từ đầu,MedusaHead;SpearKnight,None,M04_Stalker,suy luận: tên file Art_Source/music — CHƯA đối chiếu video,wiki:Stages 4-6#Stage 5; wiki:Enemies
+6,2,Bẫy gai và sảnh vòm,BoneTower;Ghost;MedusaHead,QueenMedusa,M04_Stalker,suy luận: tên file Art_Source/music — CHƯA đối chiếu video,wiki:Stages 4-6#Stage 6; wiki:Enemies
+7,3,Bục và khối nhô; sát thương 3 vạch,Ghost;Fleaman;Skeleton;Raven,None,M05_WickedChild,suy luận: tên file Art_Source/music (Upper Yard) — CHƯA đối chiếu video,wiki:Stages 7-9#Stage 7; wiki:Enemies
+8,3,Tầng dưới + tầng trên,MedusaHead;Skeleton;BoneTower;Raven,None,M05_WickedChild,suy luận: tên file Art_Source/music — CHƯA đối chiếu video,wiki:Stages 7-9#Stage 8
+9,3,Cầu hỏng; phòng Mummy,Raven;Skeleton;BoneTower;MedusaHead,MummyMan,M05_WickedChild,suy luận: tên file Art_Source/music — CHƯA đối chiếu video,wiki:Stages 7-9#Stage 9; wiki:Enemies
+10,4,Hầm nước có bệ nổi; trần thấp,Fishman;Bat,None,M06_WalkingOnTheEdge,suy luận: tên file Art_Source/music (Castle Swamp) — CHƯA đối chiếu video,wiki:Stages 10-12#Stage 10
+11,4,Trên mặt đất; Eagle liên tục; 1 Bone Dragon,Eagle;Fleaman;BoneDragon,None,M06_WalkingOnTheEdge,suy luận: tên file Art_Source/music — CHƯA đối chiếu video,wiki:Stages 10-12#Stage 11; wiki:Enemies
+12,4,Cống ngầm; 2 Bone Dragon,BoneDragon,Frankenstein,M06_WalkingOnTheEdge,suy luận: tên file Art_Source/music — CHƯA đối chiếu video,wiki:Stages 10-12#Stage 12
+13,5,Sảnh không có hố khó; sát thương 4 vạch,Fleaman;Skeleton;RedSkeleton,None,M07_HeartOfFire,suy luận: tên file Art_Source/music (Prisonhold) — CHƯA đối chiếu video,wiki:Stages 13-15#Stage 13; wiki:Enemies
+14,5,Nhiều Axe Knight,AxeKnight;RedSkeleton;Fleaman,None,M07_HeartOfFire,suy luận: tên file Art_Source/music — CHƯA đối chiếu video,wiki:Stages 13-15#Stage 14; wiki:Enemies
+15,5,Bậc thang qua Bone Tower rồi hành lang cuối,BoneTower;AxeKnight;MedusaHead;Ghost;RedSkeleton,Death,M07_HeartOfFire,suy luận: tên file Art_Source/music — CHƯA đối chiếu video,wiki:Stages 13-15#Stage 15; wiki:Enemies
+16,6,Cầu dài tới tháp chuông,PhantomBatMinor,None,M08_OutOfTime,suy luận: tên file Art_Source/music (Upper Terrace) — CHƯA đối chiếu video,wiki:Stages 16-18#Stage 16
+17,6,Tháp đồng hồ (bánh răng),Skeleton;Eagle;Fleaman,None,M08_OutOfTime,suy luận: tên file Art_Source/music — CHƯA đối chiếu video,wiki:Stages 16-18#Stage 17
+18,6,Phòng Dracula (đỉnh lâu đài),,Dracula,M09_NothingToLose,suy luận: tên file Art_Source/music (Dracula's Quarters) — CHƯA đối chiếu video,wiki:Stages 16-18#Stage 18

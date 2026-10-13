@@ -1,0 +1,15 @@
+key,value,min,max,unit,source,note
+OneUpFirst,30000,,,điểm,wiki:Gameplay#Simon Belmont,
+OneUpSecond,80000,,,điểm,wiki:Gameplay#Simon Belmont,
+OneUpEvery,50000,,,điểm,wiki:Gameplay#Simon Belmont,sau 80000: 130000; 180000 … (suy luận)
+TallyPointsPerTimeUnit,10,,,điểm/đv TIME,wiki:Gameplay#Points; video:Map_1 3:37.4 (+10 mỗi đơn vị),
+TallyPointsPerHeart,100,,,điểm/tim,wiki:Gameplay#Points; video:Map_1 3:40.5–3:49.9 (+100 mỗi tim),
+TallyTicksPerTimeUnit,1,,,tick,video:planner (HUD từng frame) — chờ đo routine 12,
+TallyTicksPerHeart,8,,,tick,video:planner (HUD từng frame) — chờ đo routine 12,
+TallyGapTicks,,,,tick,video:planner ≈ 0.9 s giữa đếm TIME và đếm tim — chờ đo routine 12,
+MultiKill2,1000,,,điểm,wiki:Gameplay#Points (Special — 1 lần ném vũ khí phụ hạ 2 enemy),không tính roi
+MultiKill3,2000,,,điểm,wiki:Gameplay#Points,
+MultiKill4,4000,,,điểm,wiki:Gameplay#Points,
+MultiplierPickupBonus,700,,,điểm,wiki:Items#Double Shot (khi đang cầm Stopwatch); wiki:Gameplay#Points (hoặc không có vũ khí phụ),2 trang nói khác điều kiện — CV_WIKI_DATA §7.1 #3
+RosaryKillPoints,0,,,điểm,wiki:Items#Rosary (enemy bị Rosary diệt không cho điểm),
+EnemyProjectilePoints,100,,,điểm,wiki:Gameplay#Points (một số đạn đáng 100 điểm),đạn nào: không rõ
