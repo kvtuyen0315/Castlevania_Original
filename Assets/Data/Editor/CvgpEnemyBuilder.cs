@@ -2,7 +2,8 @@ using UnityEditor;
 using UnityEngine;
 
 /// <summary>
-/// CVGP 13 — dựng prefab enemy Block 1 (Assets/Data/Prefabs/Enemy/{Ghoul, Panther, Bat, Fishman, FishmanFireball}.prefab).
+/// CVGP 13 — dựng prefab enemy Block 1 (Assets/Data/Prefabs/Enemy/{Ghoul, Panther, Bat, Fishman, FishmanFireball}.prefab);
+/// CVGP 17 thêm Block 2–3 (BuildBlock23).
 /// Menu CVGP/Build Enemy Prefabs (chạy lại được: SaveAsPrefabAsset giữ GUID). Thông số dựng (đo/bbox — CVGP_MEMORY §2k/§3):
 ///   • viewOffset: đi đất (0,1) — video: pivot sprite ở hàng mặt sàn + 1 (Zombie/báo/Fish Man pivy 209/145/129 khi sàn 208/144/128 NES);
 ///     bay/đạn (0,0) (pivot tâm). Body = vùng CHÂN 2×2 (tường chỉ chặn ở tầm chân; sàn dò đúng cột pivot — EnemyBase.Grounded).
@@ -40,8 +41,48 @@ public static class CvgpEnemyBuilder
                 Enemy(so, eEnemyId.Fishman, new RectInt(-8, -31, 16, 32), -15);
                 so.FindProperty("fireballPrefab").objectReferenceValue = fireball;
             });
+        BuildBlock23();
         AssetDatabase.SaveAssets();
-        return "Enemy prefabs: Ghoul, Panther, Bat, Fishman, FishmanFireball → " + DIR;
+        return "Enemy prefabs: Ghoul, Panther, Bat, Fishman, FishmanFireball + (CVGP 17) SpearKnight, MedusaHead, BoneTower, BoneTowerFireball, "
+               + "Ghost, Raven, Skeleton, SkeletonBone, Fleaman → " + DIR;
+    }
+
+    /// <summary>
+    /// CVGP 17 — enemy Block 2–3 (theo wiki, gần đúng). Hộp nhận/gây đòn = bbox pixel đục sprite (Tools: _cache/17 — XẤP XỈ):
+    /// blackknight 16×31/32, skeleton 16×32 (đi đất, viewOffset (0,1) như Zombie ⇒ hộp (−8,−31,16,32), tâm −15); 2 đầu lâu Bone Tower
+    /// 16×32 (−8,−31,16,32) tâm −15; fleaman 16×16 (−8,−15,16,16) tâm −7; bay (pivot tâm, viewOffset 0): Medusa Head/Ghost/Raven
+    /// (−8,−8,16,16) — Raven đậu cũng dùng hộp này (raven_0 bbox y 3–14). Đạn order 1 như cầu lửa Fish Man.
+    /// </summary>
+    static void BuildBlock23()
+    {
+        var skull = Anim("DragonSkullCannonAnimSet");
+        var skel = Anim("WhiteSkeletonAnimSet");
+        var towerBall = Make<BoneTowerFireball>("BoneTowerFireball", eEntityGroup.EnemyShot, new RectInt(-1, -1, 2, 2), Vector2Int.zero, skull, 1,
+            false, true, 16, null);
+        var bone = Make<SkeletonBone>("SkeletonBone", eEntityGroup.EnemyShot, new RectInt(-1, -1, 2, 2), Vector2Int.zero, skel, 1,
+            false, true, 16, null);
+        Make<SpearKnight>("SpearKnight", eEntityGroup.Enemy, FEET, new Vector2Int(0, 1), Anim("BlackKnightAnimSet"), ORDER, true, false, 32,
+            so => Enemy(so, eEnemyId.SpearKnight, new RectInt(-8, -31, 16, 32), -15));
+        Make<MedusaHead>("MedusaHead", eEntityGroup.Enemy, new RectInt(-1, -1, 2, 2), Vector2Int.zero, Anim("MedusaHeadAnimSet"), ORDER, false, false, 32,
+            so => Enemy(so, eEnemyId.MedusaHead, new RectInt(-8, -8, 16, 16), 0));
+        Make<BoneTower>("BoneTower", eEntityGroup.Enemy, FEET, new Vector2Int(0, 1), skull, ORDER, false, false, 32,
+            so =>
+            {
+                Enemy(so, eEnemyId.BoneTower, new RectInt(-8, -31, 16, 32), -15);
+                so.FindProperty("fireballPrefab").objectReferenceValue = towerBall;
+            });
+        Make<Ghost>("Ghost", eEntityGroup.Enemy, new RectInt(-1, -1, 2, 2), Vector2Int.zero, Anim("GhostAnimSet"), ORDER, false, false, 32,
+            so => Enemy(so, eEnemyId.Ghost, new RectInt(-8, -8, 16, 16), 0));
+        Make<Raven>("Raven", eEntityGroup.Enemy, new RectInt(-1, -1, 2, 2), Vector2Int.zero, Anim("RavenAnimSet"), ORDER, false, false, 32,
+            so => Enemy(so, eEnemyId.Raven, new RectInt(-8, -8, 16, 16), 0));
+        Make<Skeleton>("Skeleton", eEntityGroup.Enemy, FEET, new Vector2Int(0, 1), skel, ORDER, true, false, 32,
+            so =>
+            {
+                Enemy(so, eEnemyId.Skeleton, new RectInt(-8, -31, 16, 32), -15);
+                so.FindProperty("bonePrefab").objectReferenceValue = bone;
+            });
+        Make<Fleaman>("Fleaman", eEntityGroup.Enemy, FEET, new Vector2Int(0, 1), Anim("FleamanAnimSet"), ORDER, true, false, 32,
+            so => Enemy(so, eEnemyId.Fleaman, new RectInt(-8, -15, 16, 16), -7));
     }
 
     public static T Load<T>(string name) where T : Entity

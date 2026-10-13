@@ -1,0 +1,4 @@
+# 270 tick, hash 6d2d957d
+# CVGP 17 EnemyB23Probe kịch bản 'tower_kill_l1': roi da hạ Bone Tower: đúng 8 đòn, +400
+B*1 -*23 B*1 -*23 B*1 -*23 B*1 -*23 B*1 -*23 B*1 -*23
+B*1 -*23 B*1 -*23 B*1 -*23 B*1 -*53

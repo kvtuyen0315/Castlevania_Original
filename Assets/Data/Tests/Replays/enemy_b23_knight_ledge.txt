@@ -1,0 +1,3 @@
+# 400 tick, hash ec3e6705
+# CVGP 17 EnemyB23Probe kịch bản 'knight_ledge': Spear Knight trên đỉnh tường thấp (424,144) — quay đầu ở mép, không rơi
+-*400

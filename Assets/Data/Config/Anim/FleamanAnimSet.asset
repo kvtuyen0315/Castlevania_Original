@@ -23,5 +23,8 @@ MonoBehaviour:
     overlays: []
     overlayOffsets: []
     overlayOnTop: 
-    note: 
+    note: "routine 17: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video Block 2\u20133)
+      \u2014 nh\u1ECBp 8 tick/khung gi\u1EEF m\u1EB7c \u0111\u1ECBnh; Fleaman: code
+      \u0111\u1EB7t khung t\u0129nh \u2014 fleaman_0 tr\xEAn \u0111\u1EA5t, fleaman_1
+      khi \u0111ang nh\u1EA3y (suy lu\u1EADn theo h\xECnh)"
   palettes: []

@@ -122,10 +122,11 @@ MonoBehaviour:
     projectile: '-'
     dropRule: "kh\xF4ng n\xEAu ri\xEAng"
     moveSpeed:
-      has: 0
-      value: 0
-    src_moveSpeed: "kh\xF4ng r\xF5 \u2014 kh\xF4ng c\xF3 video (routine 17 \u01B0\u1EDBc
-      l\u01B0\u1EE3ng)"
+      has: 1
+      value: 2
+    src_moveSpeed: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video)
+      \u2014 routine 17; wiki Enemies#Ravens b\u1ED5 nh\xE0o nhanh \u2014 t\u1ED1c
+      \u0111\u1ED9 lao (\u2248 b\xE1o ch\u1EA1y 2.0 \u0111o 13)"
     behaviorShort: "\u0110\u1EADu ch\u1EDD; c\u1EA5t c\xE1nh khi Simon l\u1EA1i g\u1EA7n;
       kh\u1EF1ng m\u1ED9t ch\xFAt r\u1ED3i b\u1ED5 nh\xE0o; tr\u01B0\u1EE3t th\xEC
       quay l\u1EA1i \u0111\xE1nh t\u1EEB sau"
@@ -208,10 +209,11 @@ MonoBehaviour:
     projectile: '-'
     dropRule: "kh\xF4ng n\xEAu ri\xEAng"
     moveSpeed:
-      has: 0
-      value: 0
-    src_moveSpeed: "kh\xF4ng r\xF5 \u2014 kh\xF4ng c\xF3 video (routine 17 \u01B0\u1EDBc
-      l\u01B0\u1EE3ng)"
+      has: 1
+      value: 1
+    src_moveSpeed: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video)
+      \u2014 routine 17; wiki Enemies#Medusa Heads bay ngang theo s\xF3ng \u2014
+      ch\u1ECDn 1.0 (gi\u1EEFa d\u01A1i 1.125 v\xE0 Zombie 0.875)"
     behaviorShort: "Xu\u1EA5t hi\u1EC7n t\u1EEB ph\xEDa Simon \u0111ang nh\xECn;
       bay ngang theo \u0111\u01B0\u1EDDng s\xF3ng; quay l\u01B0ng th\xEC t\u1EDBi
       t\u1EEB c\u1EA3 hai ph\xEDa"
@@ -237,10 +239,11 @@ MonoBehaviour:
     projectile: "X\u01B0\u01A1ng n\xE9m v\xF2ng cung (2\u20133 c\xE1i c\xF9ng l\xFAc)"
     dropRule: "kh\xF4ng n\xEAu ri\xEAng"
     moveSpeed:
-      has: 0
-      value: 0
-    src_moveSpeed: "kh\xF4ng r\xF5 \u2014 kh\xF4ng c\xF3 video (routine 17 \u01B0\u1EDBc
-      l\u01B0\u1EE3ng)"
+      has: 1
+      value: 1
+    src_moveSpeed: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video)
+      \u2014 routine 17; wiki Enemies#Skeletons \"nhanh\" \u21D2 nhanh h\u01A1n Zombie
+      0.875 \u2014 ch\u1ECDn 1.0"
     behaviorShort: "Nhanh v\xE0 nh\u1EA3y nhi\u1EC1u; n\xE9m x\u01B0\u01A1ng theo
       v\xF2ng cung v\u1EDBi c\xE1c qu\u1EF9 \u0111\u1EA1o kh\xE1c nhau"
     source: wiki:Enemies#Skeletons
@@ -265,10 +268,11 @@ MonoBehaviour:
     projectile: '-'
     dropRule: "kh\xF4ng n\xEAu ri\xEAng"
     moveSpeed:
-      has: 0
-      value: 0
-    src_moveSpeed: "kh\xF4ng r\xF5 \u2014 kh\xF4ng c\xF3 video (routine 17 \u01B0\u1EDBc
-      l\u01B0\u1EE3ng)"
+      has: 1
+      value: 0.625
+    src_moveSpeed: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video)
+      \u2014 routine 17; wiki Enemies#Ghosts \"ch\u1EADm nh\u01B0ng b\xE1m theo\"
+      \u2014 t\u1ED1c \u0111\u1ED9 tr\u1EA7n khi \u0111u\u1ED5i (gia t\u1ED1c chaseAccel)"
     behaviorShort: "Xu\u1EA5t hi\u1EC7n \u1EDF \u0111i\u1EC3m c\u1ED1 \u0111\u1ECBnh;
       ch\u1EADm nh\u01B0ng b\xE1m theo v\u1ECB tr\xED Simon t\u1EEB g\xF3c l\u1EA1"
     source: wiki:Enemies#Ghosts
@@ -322,10 +326,11 @@ MonoBehaviour:
     projectile: '-'
     dropRule: "kh\xF4ng n\xEAu ri\xEAng"
     moveSpeed:
-      has: 0
-      value: 0
-    src_moveSpeed: "kh\xF4ng r\xF5 \u2014 kh\xF4ng c\xF3 video (routine 17 \u01B0\u1EDBc
-      l\u01B0\u1EE3ng)"
+      has: 1
+      value: 0.5
+    src_moveSpeed: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video)
+      \u2014 routine 17; wiki Enemies#Spear Knights \"\u0111i t\u1EDBi lui, ch\u1EADm\"
+      \u21D2 ch\u1EADm h\u01A1n Zombie 0.875 (\u0111o 13) \u2014 ch\u1ECDn 0.5"
     behaviorShort: "\u0110i t\u1EDBi lui ch\u1EADm; c\xF3 th\u1EC3 quay \u0111\u1EA7u
       b\u1EA5t c\u1EE9 l\xFAc n\xE0o; ch\u1EC9 g\xE2y h\u1EA1i khi va ch\u1EA1m"
     source: wiki:Enemies#Spear Knights
@@ -352,7 +357,7 @@ MonoBehaviour:
     moveSpeed:
       has: 0
       value: 0
-    src_moveSpeed: 
+    src_moveSpeed: "wiki:Enemies#Bone Towers (b\u1EA5t \u0111\u1ED9ng)"
     behaviorShort: "B\u1EA5t \u0111\u1ED9ng; nh\u1EA5p nh\xE1y r\u1ED3i phun 2 c\u1EA7u
       l\u1EEDa theo chu k\u1EF3"
     source: wiki:Enemies#Bone Towers
@@ -377,10 +382,11 @@ MonoBehaviour:
     projectile: '-'
     dropRule: "kh\xF4ng n\xEAu ri\xEAng"
     moveSpeed:
-      has: 0
-      value: 0
-    src_moveSpeed: "kh\xF4ng r\xF5 \u2014 kh\xF4ng c\xF3 video (routine 17 \u01B0\u1EDBc
-      l\u01B0\u1EE3ng)"
+      has: 1
+      value: 1
+    src_moveSpeed: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video)
+      \u2014 routine 17; t\u1ED1c \u0111\u1ED9 ngang nh\u1EA3y ng\u1EAFn (nh\u1EA3y
+      v\u1ECDt 2.0 \u1EDF ConfigActorParam)"
     behaviorShort: "Nh\u1EA3y nh\u01B0 ng\u1EABu nhi\xEAn: th\u01B0\u1EDDng 2 b\u01B0\u1EDBc
       nh\u1EA3y ng\u1EAFn r\u1ED3i 1 c\xFA nh\u1EA3y v\u1ECDt; Stage 11/17 do Eagle
       th\u1EA3"

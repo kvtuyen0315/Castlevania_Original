@@ -38,6 +38,9 @@ public abstract class EnemyBase : Entity
     [NonSerialized] public bool checkOffscreen;
     /// <summary>Đã bị hạ bằng đòn (khác bị gỡ vì ra khỏi màn / Rosary).</summary>
     [NonSerialized] public bool defeated;
+    /// <summary>Enemy nhiều đòn (CVGP 17 — Block 1 chết 1 đòn nên không dùng): đòn chưa hạ ⇒ tia lửa "hit" tại tâm thân (SUY LUẬN);
+    /// tự xử lý Stopwatch như BossBase (đứng yên nhưng bộ đếm bất tử vẫn chạy ⇒ "dùng Stopwatch rồi quất tới khi hết" — wiki).</summary>
+    [NonSerialized] public bool multiHit;
     protected int despawnInset = 4;
 
     /// <summary>Enemy vừa bị hạ (harness + luật chơi).</summary>
@@ -75,6 +78,7 @@ public abstract class EnemyBase : Entity
         ageTicks = 0;
         hidden = false;
         defeated = false;
+        multiHit = false;
         checkOffscreen = true;
         despawnInset = Mathf.RoundToInt(EnemyParams.Get(cfg, eEnemyId.Ghoul, "despawnInsetPx", 4f));
         if (Anim != null)
@@ -83,8 +87,18 @@ public abstract class EnemyBase : Entity
         ApplyVisibility();
     }
 
+    public override bool IsFrozenBy(bool worldFrozen, bool enemyFrozen)
+    {
+        return multiHit ? worldFrozen : base.IsFrozenBy(worldFrozen, enemyFrozen);
+    }
+
     public override void OnTick()
     {
+        if (multiHit && World.IsEnemyFrozen)
+        {
+            ApplyVisibility();   // Stopwatch: đứng yên, anim dừng; vẫn nhận đòn (bất tử vẫn đếm — StageWorld giảm trước OnTick)
+            return;
+        }
         ageTicks++;
         TickStates();
         if (Alive && checkOffscreen && IsOutsideScreen())
@@ -116,7 +130,18 @@ public abstract class EnemyBase : Entity
         Health.Apply(hit.strength);
         if (Health.IsDead)
             Die();
+        else if (multiHit)
+        {
+            var cfg = World.Config;
+            FxSprite.Spawn(World, "hit", X, CenterY, cfg != null ? cfg.rules.GetInt(eRuleParam.HitSparkTicks, 16) : 16);
+        }
         return true;
+    }
+
+    /// <summary>Số nguyên ngẫu nhiên đều [min, min + span] bằng RNG thế giới (H7).</summary>
+    protected int Roll(int min, int span)
+    {
+        return span > 0 ? min + World.Rng.Next(span + 1) : min;
     }
 
     /// <summary>Hạ: FX + SFX + điểm + (rơi item khi lửa tắt) + Kill ngay.</summary>

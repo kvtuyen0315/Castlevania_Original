@@ -1,0 +1,3 @@
+# 300 tick, hash b756f035
+# CVGP 17 EnemyB23Probe kịch bản 'bat_black': Black Bat treo (300,96); Simon đi phải từ 150: |dx| < 64 ⇒ sà xuống 1.5 px/tick tới chân Simon − 14 rồi bay sóng như dơi đỏ
+R*100 -*200

@@ -22,7 +22,9 @@ MonoBehaviour:
     overlays: []
     overlayOffsets: []
     overlayOnTop: 
-    note: 
+    note: "routine 17: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video Block 2\u20133)
+      \u2014 nh\u1ECBp 8 tick/khung gi\u1EEF m\u1EB7c \u0111\u1ECBnh; Raven \u0111\u1EADu
+      (raven_0 c\xE1nh kh\xE9p)"
   - name: fly
     frames:
     - {fileID: 21300000, guid: 6db3e9da57f4d4c4bb5e551b961f72de, type: 3}
@@ -34,5 +36,7 @@ MonoBehaviour:
     overlays: []
     overlayOffsets: []
     overlayOnTop: 
-    note: 
+    note: "routine 17: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video Block 2\u20133)
+      \u2014 nh\u1ECBp 8 tick/khung gi\u1EEF m\u1EB7c \u0111\u1ECBnh; Raven bay/l\u01B0\u1EE3n/b\u1ED5
+      nh\xE0o (raven_1..3)"
   palettes: []

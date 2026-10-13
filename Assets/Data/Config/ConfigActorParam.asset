@@ -494,9 +494,12 @@ MonoBehaviour:
       has: 0
       value: 0
     unit: px
-    source: "quy \u01B0\u1EDBc routine 13 \u2014 d\u01A1i treo (Black Bat, wiki Enemies#Bats)
-      KH\xD4NG c\xF3 trong video Map 1 \u21D2 routine 17 \u0111o/ch\u1EC9nh"
-    note: "treo \u2192 |dx| < gi\xE1 tr\u1ECB \u21D2 bay nh\u01B0 d\u01A1i \u0111\u1ECF"
+    source: "quy \u01B0\u1EDBc routine 13; routine 17 gi\u1EEF 64 \u2014 suy lu\u1EADn:
+      \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video Stage 4 \u2014 Black Bat wiki
+      Enemies#Bats): treo t\u1EDBi khi |dx| < 64 r\u1ED3i Swoop (s\xE0 xu\u1ED1ng
+      swoopVy t\u1EDBi ch\xE2n Simon \u2212 swoopAboveFeetPx) \u21D2 bay s\xF3ng
+      nh\u01B0 d\u01A1i \u0111\u1ECF"
+    note: "treo \u2192 Swoop \u2192 Fly"
   - actor: Enemy.Fishman
     key: walkSpeed
     value:
@@ -1797,3 +1800,1103 @@ MonoBehaviour:
       \u2248 0.19) \u2014 x\u1EA5p x\u1EC9"
     note: "m\u1EA3nh xuy\xEAn \u0111\u1ECBa h\xECnh, bi\u1EBFn m\u1EA5t khi ra kh\u1ECFi
       m\xE0n"
+  - actor: Enemy.SpearKnight
+    key: turnMinTicks
+    value:
+      has: 1
+      value: 64
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 17; wiki \"c\xF3 th\u1EC3 quay l\u1EA1i b\u1EA5t c\u1EE9 l\xFAc n\xE0o\"
+      \u21D2 \u0111\u1ED5i h\u01B0\u1EDBng ng\u1EABu nhi\xEAn sau m\u1ED7i \u0111o\u1EA1n
+      tu\u1EA7n tra"
+    note: "\u0111o\u1EA1n = Roll(min, min + span) tick"
+  - actor: Enemy.SpearKnight
+    key: turnSpanTicks
+    value:
+      has: 1
+      value: 128
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 17; c\xF9ng l\xFD do (64\u2013192 tick \u2248 1\u20133 s, 32\u201396
+      px \u1EDF 0.5 px/tick)"
+    note: 
+  - actor: Enemy.SpearKnight
+    key: edgeProbePx
+    value:
+      has: 1
+      value: 8
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 17; wiki tu\u1EA7n tra tr\xEAn b\u1EE5c (Stage 4: \u0111\u1EE9ng d\u01B0\u1EDBi
+      h\u1ED1, ch\u1EAFn c\u1EEDa) \u21D2 kh\xF4ng t\u1EF1 \u0111i r\u01A1i kh\u1ECFi
+      m\xE9p: d\xF2 s\xE0n c\xE1ch pivot 8 px theo h\u01B0\u1EDBng \u0111i"
+    note: "\u0111\u1EE5ng t\u01B0\u1EDDng / h\u1EBFt s\xE0n \u21D2 quay \u0111\u1EA7u"
+  - actor: Enemy.SpearKnight
+    key: fallGravity
+    value:
+      has: 1
+      value: 0.125
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: "px/tick\xB2"
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 17; r\u01A1i khi sinh l\u01A1 l\u1EEDng \u2014 nh\u01B0 Zombie (\u0111o
+      13)"
+    note: 
+  - actor: Enemy.SpearKnight
+    key: hitInvincibleTicks
+    value:
+      has: 1
+      value: 16
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 17; enemy nhi\u1EC1u \u0111\xF2n: b\u1EA5t t\u1EED sau m\u1ED7i \u0111\xF2n
+      nh\u01B0 boss (routine 14 suy lu\u1EADn 16)"
+    note: "1 c\xFA roi ch\u1EC9 tr\xFAng 1 l\u1EA7n d\xF9 h\u1ED9p roi du\u1ED7i
+      9 tick"
+  - actor: Enemy.MedusaHead
+    key: waveAmplitudePx
+    value:
+      has: 1
+      value: 24
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 17; wiki \"bay theo s\xF3ng; nh\u1EA3y qua ho\u1EB7c \u0111i/ng\u1ED3i
+      d\u01B0\u1EDBi\" \u21D2 bi\xEAn \u0111\u1ED9 \u0111\u1EE7 \u0111\u1EC3 \u0111\u1EC9nh
+      s\xF3ng qua \u0111\u1EA7u Simon (cao 32) v\xE0 \u0111\xE1y ch\u1EA1m ch\xE2n"
+    note: "y = y0 \u2212 A\xB7sin(2\u03C0t/P): sinh \u1EDF t\xE2m r\u1ED3i \u0111i
+      L\xCAN"
+  - actor: Enemy.MedusaHead
+    key: wavePeriodTicks
+    value:
+      has: 1
+      value: 96
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 17; \u2248 2.7 s\xF3ng tr\xEAn 256 px \u1EDF 1.0 px/tick"
+    note: 
+  - actor: Enemy.MedusaHead
+    key: spawnInsetPx
+    value:
+      has: 1
+      value: 8
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 17; nh\u01B0 d\u01A1i/Zombie (\u0111o 13): hi\u1EC7n nguy\xEAn h\xECnh
+      s\xE1t m\xE9p"
+    note: 
+  - actor: Enemy.MedusaHead
+    key: spawnAboveFeetPx
+    value:
+      has: 1
+      value: 24
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 17; t\xE2m s\xF3ng = ch\xE2n Simon \u2212 24 \u21D2 \u0111\u1EC9nh
+      \u221248 (qua \u0111\u1EA7u), \u0111\xE1y 0 (ch\u1EA1m ch\xE2n)"
+    note: 
+  - actor: Enemy.MedusaHead
+    key: edgeScreenMarginPx
+    value:
+      has: 1
+      value: 64
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 17; wiki \"t\u1EEB h\u01B0\u1EDBng Simon \u0111ang nh\xECn\" \u2014
+      lu\u1EADt m\xE9p nh\u01B0 d\u01A1i (13)"
+    note: 
+  - actor: Enemy.MedusaHead
+    key: maxAlive
+    value:
+      has: 1
+      value: 2
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: con
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 17; Stage 5 nhi\u1EC1u Medusa Head li\xEAn ti\u1EBFp \u2014 ch\u1ECDn
+      2 c\xF9ng l\xFAc"
+    note: 
+  - actor: Enemy.MedusaHead
+    key: groupSize
+    value:
+      has: 1
+      value: 1
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: con
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 17; 1 con/l\u1EA7n"
+    note: 
+  - actor: Enemy.MedusaHead
+    key: waveDelayMinTicks
+    value:
+      has: 1
+      value: 64
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 17; nh\u1ECBp sinh li\xEAn t\u1EE5c ~1\u20132 s"
+    note: "ng\u1EABu nhi\xEAn \u0111\u1EC1u [64, 128]"
+  - actor: Enemy.MedusaHead
+    key: waveDelaySpanTicks
+    value:
+      has: 1
+      value: 64
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 17; c\xF9ng l\xFD do"
+    note: 
+  - actor: Enemy.MedusaHead
+    key: firstDelayMinTicks
+    value:
+      has: 1
+      value: 32
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 17; wiki Stage 5 \"xu\u1EA5t hi\u1EC7n ngay t\u1EEB \u0111\u1EA7u\"
+      \u21D2 tr\u1EC5 ng\u1EAFn"
+    note: 
+  - actor: Enemy.MedusaHead
+    key: firstDelaySpanTicks
+    value:
+      has: 1
+      value: 0
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 17; c\xF9ng l\xFD do"
+    note: 
+  - actor: Enemy.BoneTower
+    key: firstIdleTicks
+    value:
+      has: 1
+      value: 48
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 17; l\u01B0\u1EE3t b\u1EAFn \u0111\u1EA7u sau khi hi\u1EC7n"
+    note: 
+  - actor: Enemy.BoneTower
+    key: idleMinTicks
+    value:
+      has: 1
+      value: 96
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 17; wiki \"theo chu k\u1EF3\" \u2014 ngh\u1EC9 gi\u1EEFa 2 l\u01B0\u1EE3t"
+    note: "ng\u1EABu nhi\xEAn \u0111\u1EC1u [96, 160]"
+  - actor: Enemy.BoneTower
+    key: idleSpanTicks
+    value:
+      has: 1
+      value: 64
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 17; c\xF9ng l\xFD do"
+    note: 
+  - actor: Enemy.BoneTower
+    key: warnTicks
+    value:
+      has: 1
+      value: 32
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 17; wiki \"nh\u1EA5p nh\xE1y ngay tr\u01B0\u1EDBc khi b\u1EAFn\""
+    note: "\u0111\u1ED5i b\u1EA3ng t\xEDm \u2194 \u0111\u1ECF (2 b\u1ED9 m\xE0u c\xF3
+      tr\xEAn sheet)"
+  - actor: Enemy.BoneTower
+    key: warnBlinkTicks
+    value:
+      has: 1
+      value: 4
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 17; nh\u1ECBp nh\xE1y"
+    note: 
+  - actor: Enemy.BoneTower
+    key: fireGapTicks
+    value:
+      has: 1
+      value: 16
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 17; wiki \"2 c\u1EA7u l\u1EEDa m\u1ED7i l\u01B0\u1EE3t\" \u2014 \u0111\u1EA7u
+      tr\xEAn r\u1ED3i \u0111\u1EA7u d\u01B0\u1EDBi c\xE1ch 16 tick"
+    note: 
+  - actor: Enemy.BoneTower
+    key: fireballSpeed
+    value:
+      has: 1
+      value: 1.5
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px/tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 17; c\u1EA7u l\u1EEDa bay ngang v\u1EC1 ph\xEDa Simon (nhanh h\u01A1n
+      Simon \u0111i 1.0 \u0111\u1EC3 kh\xF4ng n\xE9 b\u1EB1ng c\xE1ch \u0111i)"
+    note: 
+  - actor: Enemy.BoneTower
+    key: fireballFrontPx
+    value:
+      has: 1
+      value: 8
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 17; mi\u1EC7ng \u0111\u1EA7u l\xE2u \u1EDF m\xE9p tr\u01B0\u1EDBc sprite
+      16 px"
+    note: 
+  - actor: Enemy.BoneTower
+    key: fireballTopAbovePx
+    value:
+      has: 1
+      value: 16
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 17; qu\u1EA3 c\u1EA7u (\xF4 8\xD716 pivot t\xE2m; pixel \u0111\u1EE5c
+      h\xE0ng \u22127..\u22122) ngang mi\u1EC7ng \u0111\u1EA7u l\xE2u tr\xEAn \u21D2
+      h\xE0ng y\u221223..y\u221218 = trong d\u1EA3i roi \u0111\u1EE9ng (ConfigWhip
+      hitY: ch\xE2n \u221222..\u221217) \u21D2 qu\u1EA5t v\u1EE1 \u0111\u01B0\u1EE3c
+      khi \u0111\u1EE9ng (wiki)"
+    note: "l\u1EA7n th\u1EED \u0111\u1EA7u 20 n\u1EB1m tr\xEAn d\u1EA3i roi 1 h\xE0ng
+      \u2014 roi \u0111\u1EE9ng kh\xF4ng ph\xE1 \u0111\u01B0\u1EE3c"
+  - actor: Enemy.BoneTower
+    key: fireballBottomAbovePx
+    value:
+      has: 1
+      value: 0
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 17; c\xF9ng c\xE1ch t\xEDnh cho mi\u1EC7ng \u0111\u1EA7u l\xE2u d\u01B0\u1EDBi
+      \u21D2 qu\u1EA3 c\u1EA7u h\xE0ng y\u22127..y\u22122 (ngang \u1ED1ng ch\xE2n
+      \u2014 nh\u1EA3y qua ho\u1EB7c ng\u1ED3i)"
+    note: 
+  - actor: Enemy.BoneTower
+    key: hitInvincibleTicks
+    value:
+      has: 1
+      value: 16
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 17; nh\u01B0 SpearKnight"
+    note: 
+  - actor: Enemy.Ghost
+    key: chaseAccel
+    value:
+      has: 1
+      value: 0.015625
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: "px/tick\xB2"
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 17; wiki \"ch\u1EADm nh\u01B0ng b\xE1m theo v\u1ECB tr\xED Simon, \u0111\u1EBFn
+      t\u1EEB g\xF3c l\u1EA1\" \u21D2 gia t\u1ED1c nh\u1ECF t\u1EEBng tr\u1EE5c \u21D2
+      v\u01B0\u1EE3t qu\xE1 r\u1ED3i v\xF2ng l\u1EA1i"
+    note: "1/64 px/tick\xB2"
+  - actor: Enemy.Ghost
+    key: maxVy
+    value:
+      has: 1
+      value: 0.5
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px/tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 17; tr\u1EA7n t\u1ED1c \u0111\u1ED9 d\u1ECDc (ngang d\xF9ng ConfigEnemy.moveSpeed
+      0.625)"
+    note: 
+  - actor: Enemy.Ghost
+    key: targetAboveFeetPx
+    value:
+      has: 1
+      value: 16
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 17; \u0111u\u1ED5i theo t\xE2m th\xE2n Simon"
+    note: 
+  - actor: Enemy.Ghost
+    key: hitInvincibleTicks
+    value:
+      has: 1
+      value: 16
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 17; nh\u01B0 SpearKnight"
+    note: 
+  - actor: Enemy.Raven
+    key: triggerDistancePx
+    value:
+      has: 1
+      value: 96
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 17; wiki \"c\u1EA5t c\xE1nh khi Simon l\u1EA1i g\u1EA7n\" \u2014 xa
+      h\u01A1n b\xE1o 70 (\u0111o 13) \u0111\u1EC3 k\u1ECBp l\u01B0\u1EE3n"
+    note: "|Simon.X \u2212 X| <"
+  - actor: Enemy.Raven
+    key: riseVy
+    value:
+      has: 1
+      value: -1
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px/tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 17; c\u1EA5t c\xE1nh th\u1EB3ng l\xEAn"
+    note: "\xE2m = l\xEAn"
+  - actor: Enemy.Raven
+    key: riseTicks
+    value:
+      has: 1
+      value: 16
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 17; l\xEAn 16 px"
+    note: 
+  - actor: Enemy.Raven
+    key: firstHoverTicks
+    value:
+      has: 1
+      value: 24
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 17; wiki \"treo gi\xE2y l\xE1t r\u1ED3i b\u1ED5 nh\xE0o\""
+    note: 
+  - actor: Enemy.Raven
+    key: hoverTicks
+    value:
+      has: 1
+      value: 12
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 17; wiki \"tr\u01B0\u1EE3t th\xEC quay \u0111\u1EA7u r\u1EA5t nhanh\"
+      \u21D2 kh\u1EF1ng ng\u1EAFn h\u01A1n l\u1EA7n \u0111\u1EA7u"
+    note: 
+  - actor: Enemy.Raven
+    key: diveOvershootPx
+    value:
+      has: 1
+      value: 32
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 17; lao qu\xE1 \u0111i\u1EC3m nh\u1EAFm r\u1ED3i m\u1EDBi kh\u1EF1ng
+      quay l\u1EA1i"
+    note: 
+  - actor: Enemy.Raven
+    key: maxDiveTicks
+    value:
+      has: 1
+      value: 96
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 17; ch\u1EB7n c\xFA lao d\xE0i"
+    note: 
+  - actor: Enemy.Raven
+    key: targetAboveFeetPx
+    value:
+      has: 1
+      value: 16
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 17; nh\u1EAFm t\xE2m th\xE2n Simon l\xFAc b\u1EAFt \u0111\u1EA7u lao"
+    note: 
+  - actor: Enemy.Raven
+    key: diveFloorAboveFeetPx
+    value:
+      has: 1
+      value: 8
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 17; c\xFA lao xu\u1ED1ng d\u1EEBng khi t\xE2m Raven (sprite 16) ch\u1EA1m
+      ch\xE2n Simon \u2212 8 \u21D2 \u0111\xE1y sprite ngang m\u1EB7t s\xE0n, kh\xF4ng
+      lao xuy\xEAn s\xE0n (\u1EA3nh Arena routine 17 raven_dive r160)"
+    note: 
+  - actor: Enemy.Skeleton
+    key: keepMinPx
+    value:
+      has: 1
+      value: 48
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 17; wiki Stages 13-15 \"ch\u1ECDn kho\u1EA3ng c\xE1ch thu\u1EADn l\u1EE3i
+      \u0111\u1EC3 t\u1EA5n c\xF4ng\", \"\u0111\u1EA9y ch\xFAng \u0111i\" \u21D2
+      l\xF9i khi Simon g\u1EA7n h\u01A1n"
+    note: 
+  - actor: Enemy.Skeleton
+    key: keepMaxPx
+    value:
+      has: 1
+      value: 96
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 17; ti\u1EBFn khi Simon xa h\u01A1n"
+    note: 
+  - actor: Enemy.Skeleton
+    key: decideTicks
+    value:
+      has: 1
+      value: 24
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 17; \u0111\u1ED5i \xFD m\u1ED7i 24 tick (trong d\u1EA3i: ng\u1EABu
+      nhi\xEAn t\u1EDBi/lui)"
+    note: 
+  - actor: Enemy.Skeleton
+    key: jumpChancePct
+    value:
+      has: 1
+      value: 20
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: '%'
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 17; wiki \"nh\u1EA3y nhi\u1EC1u\""
+    note: "m\u1ED7i l\u1EA7n \u0111\u1ED5i \xFD; \u0111\u1EE5ng t\u01B0\u1EDDng \u21D2
+      nh\u1EA3y lu\xF4n"
+  - actor: Enemy.Skeleton
+    key: jumpVy0
+    value:
+      has: 1
+      value: -3.25
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px/tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 17; \u0111\u1EC9nh 42 px \u21D2 l\xEAn \u0111\u01B0\u1EE3c b\u1EE5c
+      32 px"
+    note: "\xE2m = l\xEAn"
+  - actor: Enemy.Skeleton
+    key: jumpVx
+    value:
+      has: 1
+      value: 1
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px/tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 17; nh\u01B0 t\u1ED1c \u0111\u1ED9 \u0111i"
+    note: 
+  - actor: Enemy.Skeleton
+    key: gravity
+    value:
+      has: 1
+      value: 0.125
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: "px/tick\xB2"
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 17; nh\u01B0 enemy Block 1 (\u0111o 13)"
+    note: 
+  - actor: Enemy.Skeleton
+    key: firstThrowTicks
+    value:
+      has: 1
+      value: 48
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 17; n\xE9m s\u1EDBm sau khi hi\u1EC7n"
+    note: 
+  - actor: Enemy.Skeleton
+    key: throwMinTicks
+    value:
+      has: 1
+      value: 80
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 17; ngh\u1EC9 gi\u1EEFa 2 lo\u1EA1t"
+    note: "ng\u1EABu nhi\xEAn \u0111\u1EC1u [80, 144]"
+  - actor: Enemy.Skeleton
+    key: throwSpanTicks
+    value:
+      has: 1
+      value: 64
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 17; c\xF9ng l\xFD do"
+    note: 
+  - actor: Enemy.Skeleton
+    key: burstMin
+    value:
+      has: 1
+      value: 2
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: "x\u01B0\u01A1ng"
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 17; wiki \"hay 2\u20133 x\u01B0\u01A1ng c\xF9ng l\xFAc\""
+    note: 2 + Roll(0..burstSpan)
+  - actor: Enemy.Skeleton
+    key: burstSpan
+    value:
+      has: 1
+      value: 1
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: "x\u01B0\u01A1ng"
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 17; c\xF9ng l\xFD do"
+    note: 
+  - actor: Enemy.Skeleton
+    key: burstGapTicks
+    value:
+      has: 1
+      value: 10
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 17; x\u01B0\u01A1ng trong lo\u1EA1t c\xE1ch nhau"
+    note: 
+  - actor: Enemy.Skeleton
+    key: boneVx
+    value:
+      has: 1
+      value: 1
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px/tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 17; wiki \"v\xF2ng cung theo c\xE1c \u0111\u01B0\u1EDDng kh\xE1c nhau\"
+      \u21D2 x\u01B0\u01A1ng k: vx = boneVx + k\xB7boneVxStep"
+    note: 
+  - actor: Enemy.Skeleton
+    key: boneVxStep
+    value:
+      has: 1
+      value: 0.375
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px/tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 17; c\xF9ng l\xFD do"
+    note: 
+  - actor: Enemy.Skeleton
+    key: boneVy0
+    value:
+      has: 1
+      value: -3.5
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px/tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 17; x\u01B0\u01A1ng k: vy0 = boneVy0 \u2212 k\xB7boneVyStep"
+    note: "\xE2m = l\xEAn"
+  - actor: Enemy.Skeleton
+    key: boneVyStep
+    value:
+      has: 1
+      value: 0.5
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px/tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 17; c\xF9ng l\xFD do"
+    note: 
+  - actor: Enemy.Skeleton
+    key: boneGravity
+    value:
+      has: 1
+      value: 0.125
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: "px/tick\xB2"
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 17; nh\u01B0 enemy Block 1"
+    note: 
+  - actor: Enemy.Skeleton
+    key: boneHandAbovePx
+    value:
+      has: 1
+      value: 24
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 17; tay gi\u01A1 cao tr\xEAn sprite 32 px"
+    note: 
+  - actor: Enemy.Fleaman
+    key: triggerDistancePx
+    value:
+      has: 1
+      value: 112
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 17; wiki Stage 13 \"ch\u1EDD s\u1EB5n\" \u21D2 b\u1EAFt \u0111\u1EA7u
+      nh\u1EA3y khi Simon t\u1EDBi g\u1EA7n"
+    note: "|Simon.X \u2212 X| <"
+  - actor: Enemy.Fleaman
+    key: shortVx
+    value:
+      has: 1
+      value: 1
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px/tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 17; wiki \"2 b\u01B0\u1EDBc nh\u1EA3y ng\u1EAFn r\u1ED3i 1 c\xFA nh\u1EA3y
+      v\u1ECDt\""
+    note: 
+  - actor: Enemy.Fleaman
+    key: shortVy0
+    value:
+      has: 1
+      value: -2
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px/tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 17; nh\u1EA3y ng\u1EAFn: \u0111\u1EC9nh 8 px, 16 tick"
+    note: "\xE2m = l\xEAn"
+  - actor: Enemy.Fleaman
+    key: longVx
+    value:
+      has: 1
+      value: 2
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px/tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 17; nh\u1EA3y v\u1ECDt qua \u0111\u1EA7u Simon (wiki \"ch\u1EA1y chui
+      d\u01B0\u1EDBi c\xFA nh\u1EA3y cao\")"
+    note: 
+  - actor: Enemy.Fleaman
+    key: longVy0
+    value:
+      has: 1
+      value: -4.5
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px/tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 17; nh\u1EA3y v\u1ECDt: \u0111\u1EC9nh 40 px, 36 tick"
+    note: "\xE2m = l\xEAn"
+  - actor: Enemy.Fleaman
+    key: gravity
+    value:
+      has: 1
+      value: 0.25
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: "px/tick\xB2"
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 17; nh\u1EA3y nhanh, d\u1EE9t kho\xE1t (b\u1EB1ng g r\xECu/item \u0111o
+      09/11)"
+    note: 
+  - actor: Enemy.Fleaman
+    key: longEvery
+    value:
+      has: 1
+      value: 3
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: "l\u1EA7n"
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 17; c\xFA th\u1EE9 3 c\u1EE7a m\u1ED7i chu k\u1EF3 l\xE0 nh\u1EA3y
+      v\u1ECDt"
+    note: 
+  - actor: Enemy.Fleaman
+    key: pauseMinTicks
+    value:
+      has: 1
+      value: 4
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 17; wiki \"nh\xECn nh\u01B0 ng\u1EABu nhi\xEAn\" \u21D2 ngh\u1EC9 ng\u1EABu
+      nhi\xEAn gi\u1EEFa 2 c\xFA"
+    note: "ng\u1EABu nhi\xEAn \u0111\u1EC1u [4, 16]"
+  - actor: Enemy.Fleaman
+    key: pauseSpanTicks
+    value:
+      has: 1
+      value: 12
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 17; c\xF9ng l\xFD do"
+    note: 
+  - actor: Enemy.Bat
+    key: swoopVy
+    value:
+      has: 1
+      value: 1.5
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px/tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 17; Black Bat (wiki Enemies#Bats \"treo tr\u1EA7n r\u1ED3i lao xu\u1ED1ng
+      khi Simon l\u1EA1i g\u1EA7n\"): s\xE0 xu\u1ED1ng ch\xE9o t\u1EDBi t\u1EA7m
+      Simon r\u1ED3i bay s\xF3ng nh\u01B0 d\u01A1i \u0111\u1ECF"
+    note: "d\u01B0\u01A1ng = xu\u1ED1ng"
+  - actor: Enemy.Bat
+    key: swoopAboveFeetPx
+    value:
+      has: 1
+      value: 14
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 17; s\xE0 t\u1EDBi t\xE2m = ch\xE2n Simon \u2212 14 (= m\u1ED1t l\xFAc
+      d\u01A1i \u0111\u1ECF sinh, \u0111o 13)"
+    note: 

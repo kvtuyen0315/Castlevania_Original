@@ -1,0 +1,3 @@
+# 190 tick, hash 5123fb5d
+# CVGP 17 EnemyB23Probe kịch bản 'medusa_kill': roi cấp 3 hạ Medusa Head bay ngang tầm: 1 đòn, +300
+-*30 B*1 -*23 B*1 -*23 B*1 -*23 B*1 -*23 B*1 -*63
