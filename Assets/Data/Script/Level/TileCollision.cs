@@ -52,7 +52,8 @@ public struct StairPath
 /// Va chạm địa hình lúc chạy cho 1 section (CVGP 07) — đọc lưới 16×16 của LevelSectionData (CVGP 06), giữ trạng thái khối đã phá.
 /// Quy ước toạ độ: px section (gốc trên-trái vùng 192 dòng, y xuống). Ngoài lưới: trái/phải = Solid (mép section là tường),
 /// trên = Empty (nhảy lên trên được), dưới = Empty (rơi khỏi đáy ⇒ CheckDeadly trả Pit khi hộp ra hẳn khỏi đáy).
-/// Đặc (IsSolid) = Solid, StairFloor, Door, Breakable chưa vỡ. Chết = Water, Pit, Hazard.
+/// Đặc (IsSolid) = Solid, StairFloor, Breakable chưa vỡ. Chết = Water, Pit, Hazard. Door KHÔNG đặc (CVGP 15: video Map_1 f2551/f4919
+/// Simon đứng ở x 1516 / 492 — thân 16 px đã lấn ô cửa 16×16 (1520 / 496) khi chuỗi qua cửa bắt đầu ⇒ cửa là vùng kích hoạt, không phải tường).
 /// Di chuyển (MoveX/MoveY) chặn TỪNG PX nên không xuyên tường ở mọi tốc độ; chạm tường/sàn ⇒ dừng sát, phần lẻ = 0.
 /// Đáp sàn chỉ ở MẶT TRÊN ô đặc (ô ngay trên không đặc) ⇒ đi xuyên từ dưới lên (collideCeiling=false) thì rơi lại đúng mặt trên.
 /// </summary>
@@ -113,7 +114,7 @@ public class TileCollision
 
     public static bool IsSolidType(eTileCollision t)
     {
-        return t == eTileCollision.Solid || t == eTileCollision.StairFloor || t == eTileCollision.Door || t == eTileCollision.Breakable;
+        return t == eTileCollision.Solid || t == eTileCollision.StairFloor || t == eTileCollision.Breakable;
     }
 
     public static bool IsDeadlyType(eTileCollision t)

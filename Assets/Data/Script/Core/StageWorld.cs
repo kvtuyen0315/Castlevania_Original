@@ -59,6 +59,10 @@ public class StageWorld : MonoBehaviour
     public GameConfig Config => GameConfig.Current;
     public ItemCatalog Items { get => itemCatalog; set => itemCatalog = value; }
     public int Stage { get => stage; set => stage = value; }
+    /// <summary>CVGP 15: section nạp ở Init (màn chơi đặt theo stage đang chơi trước khi bật — StageScreen).</summary>
+    public LevelSection StartSection { get => startSection; set => startSection = value; }
+    /// <summary>CVGP 15: dừng mọi bộ sinh enemy (chuỗi cổng/cửa/chuyển tầng — luồng stage).</summary>
+    public bool SpawnersPaused { get; set; }
     /// <summary>Số tick đã Step (không tính tick Paused). 0 trước tick đầu.</summary>
     public int TickCount { get; private set; }
     public bool Paused { get; set; }
@@ -130,9 +134,17 @@ public class StageWorld : MonoBehaviour
 
     // ---------------------------------------------------------------- khởi tạo / tắt
 
+    /// <summary>CVGP 15: khởi tạo ngay (màn chơi đặt Simon/camera trước tick đầu) — Step tự gọi nếu chưa.</summary>
+    public void EnsureInit()
+    {
+        if (!initialized)
+            Init();
+    }
+
     private void Init()
     {
         initialized = true;
+        SpawnersPaused = false;
         CvgpDebug.LoadPrefs();
         if (GameConfig.Current == null && fallbackConfig != null)
             GameConfig.SetCurrent(fallbackConfig);
@@ -239,6 +251,18 @@ public class StageWorld : MonoBehaviour
             Player.SetPositionPx(x, y);
         if (cameraController != null)
             cameraController.SnapToTarget();
+        SyncViews();
+    }
+
+    /// <summary>
+    /// CVGP 15: cho SpawnPoint của section xét khung camera NGAY (luồng stage nạp section mới ở cuối tick — sau bước 8 — mà khung hình
+    /// đó đã phải thấy nến/chậu như video) rồi đặt lại hình. Không đổi Warp (bộ kiểm 07–14 giữ nguyên).
+    /// </summary>
+    public void RefreshSpawnPoints()
+    {
+        int cx = cameraController != null ? cameraController.X : 0;
+        for (int i = 0; i < spawnPoints.Count; i++)
+            spawnPoints[i].UpdateSpawn(this, cx);
         SyncViews();
     }
 
@@ -468,7 +492,7 @@ public class StageWorld : MonoBehaviour
             for (int i = 0; i < spawnPoints.Count; i++)
                 spawnPoints[i].UpdateSpawn(this, cx);
             // CVGP 13: bộ sinh enemy — dừng khi đóng băng thế giới / Stopwatch (QUY ƯỚC)
-            if (!IsWorldFrozen && !IsEnemyFrozen)
+            if (!IsWorldFrozen && !IsEnemyFrozen && !SpawnersPaused)
                 for (int i = 0; i < spawners.Count; i++)
                     spawners[i].Tick(this, cx);
             DespawnOffscreen(cx);

@@ -17,60 +17,406 @@ MonoBehaviour:
     stage: 1
     container: 101
     item: 2
-    note: "ch\u1EADu l\u1EEDa 1 (x\u224895)"
-    source: "wiki:Stages 1-3 \u1EA3nh b\u1EA3n \u0111\u1ED3 (CV_WIKI_DATA \xA76);
-      video:Map_1 0:03.2 (tim l\u1EDBn)"
+    note: "ch\u1EADu l\u1EEDa CastleEntrance x 96 y 160"
+    source: "video:Map_1 0:03.2 v\u1EE1 \u2192 tim l\u1EDBn, +5 0:03.93; wiki #B1
+      Large Heart"
   - objectId: CE_T2
     stage: 1
     container: 101
     item: 10
-    note: "ch\u1EADu l\u1EEDa 2 (x\u2248223)"
-    source: "wiki:Stages 1-3 \u1EA3nh b\u1EA3n \u0111\u1ED3 (CV_WIKI_DATA \xA76);
-      video:Map_1 0:05.8"
+    note: "ch\u1EADu l\u1EEDa CastleEntrance x 224 y 160"
+    source: "video:Map_1 0:05.8 \u2192 roi, nh\u1EB7t 0:06.5; wiki #B2 Morning Star"
   - objectId: CE_T3
     stage: 1
     container: 101
     item: 10
-    note: "ch\u1EADu l\u1EEDa 3 (x\u2248351)"
-    source: "wiki:Stages 1-3 \u1EA3nh b\u1EA3n \u0111\u1ED3 (CV_WIKI_DATA \xA76);
-      video:Map_1 0:08.9"
+    note: "ch\u1EADu l\u1EEDa CastleEntrance x 352 y 160"
+    source: "video:Map_1 0:08.9 \u2192 roi, nh\u1EB7t 0:09.8; wiki #B3 Morning Star"
   - objectId: CE_T4
     stage: 1
     container: 101
     item: 2
-    note: "ch\u1EADu l\u1EEDa 4 (x\u2248479)"
-    source: "wiki:Stages 1-3 \u1EA3nh b\u1EA3n \u0111\u1ED3 (CV_WIKI_DATA \xA76);
-      video:Map_1 0:12.1"
+    note: "ch\u1EADu l\u1EEDa CastleEntrance x 480 y 160"
+    source: "video:Map_1 0:12.1 \u2192 tim l\u1EDBn, +5 0:12.97; wiki #B4 Large Heart"
   - objectId: CE_T5
     stage: 1
     container: 101
     item: 11
-    note: "ch\u1EADu l\u1EEDa 5 (x\u2248607)"
-    source: "wiki:Stages 1-3 \u1EA3nh b\u1EA3n \u0111\u1ED3 (CV_WIKI_DATA \xA76);
-      video:Map_1 0:14.5"
+    note: "ch\u1EADu l\u1EEDa CastleEntrance x 608 y 160"
+    source: "video:Map_1 0:14.5 \u2192 dao, nh\u1EB7t 0:15.50; wiki #B5 Dagger"
+  - objectId: EH_C01
+    stage: 1
+    container: 102
+    item: 4
+    note: "n\u1EBFn EntranceHall x 32 y 160"
+    source: "video:Map_1 v\u1EE1 f631 \u2192 t\xFAi t\xEDm, +400 f655 (0:21.83);
+      wiki \xA76.1 n\u1EBFn #1"
   - objectId: EH_C02
     stage: 1
     container: 102
-    item: 15
-    note: "n\u1EBFn #2 (wiki x 96) \u2014 video 0:29.5 \u0111\u1ED3ng h\u1ED3 r\u01A1i
-      ra \u1EDF x\u2248254 khi Zombie ch\u1EBFt (15 \u0111\u1ED1i chi\u1EBFu)"
-    source: "wiki:Stages 1-3 \u1EA3nh b\u1EA3n \u0111\u1ED3 (CV_WIKI_DATA \xA76)"
-  - objectId: EH_C14
+    item: 1
+    note: "n\u1EBFn EntranceHall x 96 y 128"
+    source: "video:Map_1 v\u1EE1 f724 \u2192 tim nh\u1ECF \u0111ung \u0111\u01B0a,
+      tim 15\u219216 f762 \u2014 wiki ghi Stopwatch (H1: theo video); wiki \xA76.1
+      n\u1EBFn #2"
+  - objectId: EH_C03
+    stage: 1
+    container: 102
+    item: 1
+    note: "n\u1EBFn EntranceHall x 160 y 160"
+    source: "video:Map_1 v\u1EE1 f761 \u2192 tim nh\u1ECF, 16\u219217 f788; wiki
+      \xA76.1 n\u1EBFn #3"
+  - objectId: EH_C04
+    stage: 1
+    container: 102
+    item: 3
+    note: "n\u1EBFn EntranceHall x 224 y 128"
+    source: "video:Map_1 v\u1EE1 f821 \u2192 t\xFAi \u0111\u1ECF, +100 f847; wiki
+      \xA76.1 n\u1EBFn #4"
+  - objectId: EH_C05
+    stage: 1
+    container: 102
+    item: 1
+    note: "n\u1EBFn EntranceHall x 288 y 160"
+    source: "video:Map_1 v\u1EE1 f930 \u2192 nh\u1EB7t ngay, tim 18\u219219 f950;
+      wiki \xA76.1 n\u1EBFn #5"
+  - objectId: EH_C06
+    stage: 1
+    container: 102
+    item: 3
+    note: "n\u1EBFn EntranceHall x 352 y 128"
+    source: "video:Map_1 v\u1EE1 f979 \u2192 t\xFAi \u0111\u1ECF, +100 f1001; wiki
+      \xA76.1 n\u1EBFn #6"
+  - objectId: EH_C07
+    stage: 1
+    container: 102
+    item: 1
+    note: "n\u1EBFn EntranceHall x 416 y 160"
+    source: "video:Map_1 v\u1EE1 f1008 \u2192 tim 19\u219220 f1071; wiki \xA76.1
+      n\u1EBFn #7"
+  - objectId: EH_C08
+    stage: 1
+    container: 102
+    item: 1
+    note: "n\u1EBFn EntranceHall x 480 y 128"
+    source: "video:Map_1 v\u1EE1 f1089 \u2192 tim 20\u219221 f1125; wiki \xA76.1
+      n\u1EBFn #8"
+  - objectId: EH_C09
+    stage: 1
+    container: 102
+    item: 1
+    note: "n\u1EBFn EntranceHall x 544 y 160"
+    source: "video:Map_1 v\u1EE1 f1166 \u2192 tim 21\u219222 f1190; wiki \xA76.1
+      n\u1EBFn #9"
+  - objectId: EH_C10
+    stage: 1
+    container: 102
+    item: 1
+    note: "n\u1EBFn EntranceHall x 608 y 128"
+    source: "video:Map_1 v\u1EE1 f1210 \u2192 tim 22\u219223 f1248; wiki \xA76.1
+      n\u1EBFn #10"
+  - objectId: EH_C11
+    stage: 1
+    container: 102
+    item: 1
+    note: "n\u1EBFn EntranceHall x 672 y 64"
+    source: "video:Map_1 v\u1EE1 f1493 \u2192 tim 23\u219224 f1564; wiki \xA76.1
+      n\u1EBFn #11"
+  - objectId: EH_C12
+    stage: 1
+    container: 102
+    item: 5
+    note: "n\u1EBFn EntranceHall x 736 y 160"
+    source: "video:Map_1 v\u1EE1 f1319 \u2192 t\xFAi tr\u1EAFng, +700 f1340 (0:44.67);
+      wiki \xA76.1 n\u1EBFn #12"
+  - objectId: EH_C13
     stage: 1
     container: 102
     item: 13
-    note: "n\u1EBFn #14 \u0111\u1EC9nh c\u1EA7u thang B\u1EE5c B (wiki x 864; video
-      r\u01A1i \u1EDF x\u2248799)"
-    source: "wiki:Stages 1-3 \u1EA3nh b\u1EA3n \u0111\u1ED3 (CV_WIKI_DATA \xA76);
-      video:Map_1 0:57.3"
+    note: "n\u1EBFn EntranceHall x 800 y 32"
+    source: "video:Map_1 v\u1EE1 f1698 \u2192 n\u01B0\u1EDBc th\xE1nh r\u01A1i xu\u1ED1ng
+      l\u1ED1i \u0111i (0:57.3, kh\xF4ng nh\u1EB7t) \u2014 wiki g\xE1n Holy Water
+      cho #14 (H1: theo video); wiki \xA76.1 n\u1EBFn #13"
+  - objectId: EH_C14
+    stage: 1
+    container: 102
+    item: 2
+    note: "n\u1EBFn EntranceHall x 864 y 64"
+    source: "video:Map_1 v\u1EE1 f1641 \u2192 tim l\u1EDBn, +5 f1676 (0:55.87) \u2014
+      wiki ghi Holy Water; wiki \xA76.1 n\u1EBFn #14"
+  - objectId: EH_C15
+    stage: 1
+    container: 102
+    item: 5
+    note: "n\u1EBFn EntranceHall x 928 y 160"
+    source: "video:Map_1 v\u1EE1 f1914 \u2192 t\xFAi tr\u1EAFng, +700 f1935 (1:04.50);
+      wiki \xA76.1 n\u1EBFn #15"
+  - objectId: EH_C16
+    stage: 1
+    container: 102
+    item: 1
+    note: "n\u1EBFn EntranceHall x 992 y 64"
+    source: "video:Map_1 v\u1EE1 f1809 \u2192 tim 29\u219230 f1845; wiki \xA76.1
+      n\u1EBFn #16"
+  - objectId: EH_C17
+    stage: 1
+    container: 102
+    item: 1
+    note: "n\u1EBFn EntranceHall x 1056 y 160"
+    source: "video:Map_1 v\u1EE1 f1991 \u2192 tim 30\u219231 f2016; wiki \xA76.1
+      n\u1EBFn #17"
+  - objectId: EH_C18
+    stage: 1
+    container: 102
+    item: 1
+    note: "n\u1EBFn EntranceHall x 1120 y 160"
+    source: "video:Map_1 v\u1EE1 f2030 \u2192 tim 31\u219232 f2058; wiki \xA76.1
+      n\u1EBFn #18"
+  - objectId: EH_C19
+    stage: 1
+    container: 102
+    item: 1
+    note: "n\u1EBFn EntranceHall x 1184 y 160"
+    source: "video:Map_1 v\u1EE1 f2069 \u2192 tim nh\u1ECF (d\u1EA3i \u1EA3nh), 32\u219233
+      f2135; wiki \xA76.1 n\u1EBFn #19"
+  - objectId: EH_C20
+    stage: 1
+    container: 102
+    item: 1
+    note: "n\u1EBFn EntranceHall x 1248 y 160"
+    source: "video:Map_1 v\u1EE1 f2150 \u2192 tim 33\u219234 f2178; wiki \xA76.1
+      n\u1EBFn #20"
+  - objectId: EH_C21
+    stage: 1
+    container: 102
+    item: 1
+    note: "n\u1EBFn EntranceHall x 1312 y 160"
+    source: "video:Map_1 v\u1EE1 f2190 \u2192 tim 34\u219235 f2232; wiki \xA76.1
+      n\u1EBFn #21"
+  - objectId: EH_C22
+    stage: 1
+    container: 102
+    item: 1
+    note: "n\u1EBFn EntranceHall x 1376 y 128"
+    source: "video:Map_1 KH\u1EA2 N\u0102NG: v\u1EE1 sau f2268 (b\u1ECB rosary nh\xE1y
+      che), tim 35\u219236 f2311 \u2014 rosary 1:15.03 l\xE0 Zombie ch\u1EBFt r\u01A1i
+      ra; wiki \xA76.1 n\u1EBFn #22"
   - objectId: EH_C23
     stage: 1
     container: 102
+    item: 1
+    note: "n\u1EBFn EntranceHall x 1440 y 64"
+    source: "video:Map_1 v\u1EE1 f2463 \u2192 tim 36\u219237 f2488 \u2014 wiki g\xE1n
+      Rosary cho #23; wiki \xA76.1 n\u1EBFn #23"
+  - objectId: EH_C24
+    stage: 1
+    container: 102
     item: 18
-    note: "n\u1EBFn #23 B\u1EE5c D (wiki x 1440)"
-    source: "wiki:Stages 1-3 \u1EA3nh b\u1EA3n \u0111\u1ED3 (CV_WIKI_DATA \xA76);
-      video:Map_1 1:23.5 (rosary r\u01A1i, nh\u1EB7t 1:24.73)"
-  - objectId: EH_X63_7
+    note: "n\u1EBFn EntranceHall x 1504 y 32"
+    source: "video:Map_1 v\u1EE1 f2505 (1:23.5) \u2192 rosary, nh\u1EB7t 1:24.73
+      \u2014 wiki: Rosary \u1EDF #23 (H1: theo video); wiki \xA76.1 n\u1EBFn #24"
+  - objectId: CA_C1
+    stage: 2
+    container: 102
+    item: 5
+    note: "n\u1EBFn CryptA x 32 y 160"
+    source: "video:Map_1 v\u1EE1 f3152 \u2192 +700 f3177 (1:45.90); wiki \xA76.2
+      t\u1EA7ng tr\xEAn #1"
+  - objectId: CA_C2
+    stage: 2
+    container: 102
+    item: 2
+    note: "n\u1EBFn CryptA x 96 y 64"
+    source: "video:Map_1 v\u1EE1 f2778 \u2192 +5 f2827 (1:34.23); wiki \xA76.2 t\u1EA7ng
+      tr\xEAn #3"
+  - objectId: CA_C3
+    stage: 2
+    container: 102
+    item: 1
+    note: "n\u1EBFn CryptA x 160 y 48"
+    source: "video:Map_1 v\u1EE1 f2856 \u2192 tim 41\u219242 f2895; wiki \xA76.2
+      t\u1EA7ng tr\xEAn #5"
+  - objectId: CA_C4
+    stage: 2
+    container: 102
+    item: 3
+    note: "n\u1EBFn CryptA x 224 y 128"
+    source: "video:Map_1 v\u1EE1 f2968 (roi tr\xEAn thang, d\u1EA3i \u1EA3nh _cache/15/ca_bag.png)
+      \u2192 t\xFAi \u0111\u1ECF, +100 f3004 (1:40.13); wiki \xA76.2 t\u1EA7ng tr\xEAn
+      #7"
+  - objectId: CA_C5
+    stage: 2
+    container: 102
+    item: 2
+    note: "n\u1EBFn CryptA x 304 y 48"
+    source: "video:Map_1 v\u1EE1 f4691 \u2192 +5 f4728 (2:37.60); wiki \xA76.2 t\u1EA7ng
+      tr\xEAn #9"
+  - objectId: CA_C6
+    stage: 2
+    container: 102
+    item: 3
+    note: "n\u1EBFn CryptA x 352 y 160"
+    source: "video:Map_1 v\u1EE1 f4467 \u2192 +100 f4503 (2:30.10); wiki \xA76.2
+      t\u1EA7ng tr\xEAn #11"
+  - objectId: CA_C7
+    stage: 2
+    container: 102
+    item: 18
+    note: "n\u1EBFn CryptA x 416 y 32"
+    source: "video:Map_1 v\u1EE1 f4830 \u2192 rosary tr\xEAn l\u1ED1i \u0111i, nh\u1EB7t
+      2:42.7 \u2014 wiki #13 Rosary (kh\u1EDBp); wiki \xA76.2 t\u1EA7ng tr\xEAn #13"
+  - objectId: CA_C8
+    stage: 2
+    container: 102
+    item: 3
+    note: "n\u1EBFn CryptA x 480 y 64"
+    source: "video:Map_1 v\u1EE1 f4798 \u2192 t\xFAi \u0111\u1ECF, +100 f4859 (2:41.97);
+      wiki \xA76.2 t\u1EA7ng tr\xEAn #15"
+  - objectId: CB_C1
+    stage: 2
+    container: 102
+    item: 5
+    note: "n\u1EBFn CryptB x 32 y 48"
+    source: "video:Map_1 KH\u1EA2 N\u0102NG: v\u1EE1 sau f3666 (d\u1EA3i \u1EA3nh),
+      +700 f3690 (2:03.0); wiki \xA76.2 t\u1EA7ng d\u01B0\u1EDBi #2 (to\u1EA1 \u0111\u1ED9
+      wiki \u2212 (16,160))"
+  - objectId: CB_C2
+    stage: 2
+    container: 102
+    item: 3
+    note: "n\u1EBFn CryptB x 96 y 48"
+    source: "video:Map_1 v\u1EE1 f3485\u20133500 (\u1EA3nh _cache/15/cb_start.png)
+      \u2192 t\xFAi \u0111\u1ECF, +100 f3502 (1:56.73); wiki \xA76.2 t\u1EA7ng d\u01B0\u1EDBi
+      #4 (to\u1EA1 \u0111\u1ED9 wiki \u2212 (16,160))"
+  - objectId: CB_C3
+    stage: 2
+    container: 102
+    item: 3
+    note: "n\u1EBFn CryptB x 160 y 48"
+    source: "video:Map_1 v\u1EE1 f3739 \u2192 +100 f3768; wiki \xA76.2 t\u1EA7ng
+      d\u01B0\u1EDBi #6 (to\u1EA1 \u0111\u1ED9 wiki \u2212 (16,160))"
+  - objectId: CB_C4
+    stage: 2
+    container: 102
+    item: 5
+    note: "n\u1EBFn CryptB x 224 y 48"
+    source: "video:Map_1 v\u1EE1 f3849 \u2192 +700 f3868 (2:08.93); wiki \xA76.2
+      t\u1EA7ng d\u01B0\u1EDBi #8 (to\u1EA1 \u0111\u1ED9 wiki \u2212 (16,160))"
+  - objectId: CB_C5
+    stage: 2
+    container: 102
+    item: 15
+    note: "n\u1EBFn CryptB x 288 y 48"
+    source: "video:Map_1 v\u1EE1 f3917 \u2192 \u0111\u1ED3ng h\u1ED3 (kh\xF4ng nh\u1EB7t)
+      \u2014 wiki #10 Stopwatch (kh\u1EDBp); wiki \xA76.2 t\u1EA7ng d\u01B0\u1EDBi
+      #10 (to\u1EA1 \u0111\u1ED9 wiki \u2212 (16,160))"
+  - objectId: CB_C6
+    stage: 2
+    container: 102
+    item: 1
+    note: "n\u1EBFn CryptB x 352 y 48"
+    source: "video:Map_1 KH\u1EA2 N\u0102NG: tim 47\u219248 f4007 (v\u1EE1 kh\xF4ng
+      b\u1EAFt \u0111\u01B0\u1EE3c \u2014 d\u1EA3i \u1EA3nh); wiki \xA76.2 t\u1EA7ng
+      d\u01B0\u1EDBi #12 (to\u1EA1 \u0111\u1ED9 wiki \u2212 (16,160))"
+  - objectId: CB_C7
+    stage: 2
+    container: 102
+    item: 1
+    note: "n\u1EBFn CryptB x 416 y 48"
+    source: "video:Map_1 v\u1EE1 f4032 \u2192 tim 48\u219249 f4069; wiki \xA76.2
+      t\u1EA7ng d\u01B0\u1EDBi #14 (to\u1EA1 \u0111\u1ED9 wiki \u2212 (16,160))"
+  - objectId: CB_C8
+    stage: 2
+    container: 102
+    item: 2
+    note: "n\u1EBFn CryptB x 496 y 48"
+    source: "video:Map_1 v\u1EE1 f4114 \u2192 +5 f4155 (2:18.50); wiki \xA76.2 t\u1EA7ng
+      d\u01B0\u1EDBi #16 (to\u1EA1 \u0111\u1ED9 wiki \u2212 (16,160))"
+  - objectId: PB_C01
+    stage: 3
+    container: 102
+    item: 2
+    note: "n\u1EBFn PhantomBat x 32 y 128"
+    source: "video:Map_1 v\u1EE1 f5434 \u2192 +5 f5456 (3:01.87); wiki \xA76.3 n\u1EBFn
+      #1"
+  - objectId: PB_C02
+    stage: 3
+    container: 102
+    item: 1
+    note: "n\u1EBFn PhantomBat x 96 y 64"
+    source: "video:Map_1 v\u1EE1 f5137 \u2192 tim 60\u219261 f5170; wiki \xA76.3
+      n\u1EBFn #2"
+  - objectId: PB_C03
+    stage: 3
+    container: 102
+    item: 3
+    note: "n\u1EBFn PhantomBat x 160 y 96"
+    source: "video:Map_1 v\u1EE1 f5249 \u2192 +100 f5274; wiki \xA76.3 n\u1EBFn #3"
+  - objectId: PB_C04
+    stage: 3
+    container: 102
+    item: 19
+    note: "n\u1EBFn PhantomBat x 224 y 64"
+    source: "video:Map_1 v\u1EE1 f5315 (2:57.2) \u2192 b\xECnh, nh\u1EB7t 2:58.2
+      \u2014 wiki: b\xECnh \"gi\u1EEFa c\u1EA7u thang\", \u1EE9ng vi\xEAn #3/#4;
+      wiki \xA76.3 n\u1EBFn #4"
+  - objectId: PB_C05
+    stage: 3
+    container: 102
+    item: 1
+    note: "n\u1EBFn PhantomBat x 288 y 160"
+    source: "video:Map_1 v\u1EE1 f5594 \u2192 tim 66\u219267 f5624; wiki \xA76.3
+      n\u1EBFn #5"
+  - objectId: PB_C06
+    stage: 3
+    container: 102
+    item: 12
+    note: "n\u1EBFn PhantomBat x 352 y 128"
+    source: "video:Map_1 v\u1EE1 f5663 \u2192 r\xECu, nh\u1EB7t 3:10.67 \u2014 wiki
+      #6 Axe (kh\u1EDBp); wiki \xA76.3 n\u1EBFn #6"
+  - objectId: PB_C07
+    stage: 3
+    container: 102
+    item: 1
+    note: "n\u1EBFn PhantomBat x 416 y 160"
+    source: "video:Map_1 v\u1EE1 f5739 \u2192 tim 67\u219268 f5769; wiki \xA76.3
+      n\u1EBFn #7"
+  - objectId: PB_C08
+    stage: 3
+    container: 102
+    item: 1
+    note: "n\u1EBFn PhantomBat x 480 y 160"
+    source: "video:Map_1 v\u1EE1 f5782 \u2192 tim 68\u219269 f5813; wiki \xA76.3
+      n\u1EBFn #8"
+  - objectId: PB_C09
+    stage: 3
+    container: 102
+    item: 2
+    note: "n\u1EBFn PhantomBat x 544 y 128"
+    source: "video:Map_1 v\u1EE1 f5829 \u2192 +5 f5858 (3:15.27); wiki \xA76.3 n\u1EBFn
+      #9"
+  - objectId: PB_C10
+    stage: 3
+    container: 102
+    item: 1
+    note: "n\u1EBFn PhantomBat x 608 y 160"
+    source: "video:Map_1 v\u1EE1 f5880 \u2192 tim 74\u219275 f5907; wiki \xA76.3
+      n\u1EBFn #10"
+  - objectId: PB_C11
+    stage: 3
+    container: 102
+    item: 1
+    note: "n\u1EBFn PhantomBat x 672 y 128"
+    source: "video:Map_1 v\u1EE1 f5943 \u2192 tim 75\u219276 f5973; wiki \xA76.3
+      n\u1EBFn #11"
+  - objectId: PB_C12
+    stage: 3
+    container: 102
+    item: 2
+    note: "n\u1EBFn PhantomBat x 736 y 128"
+    source: "video:Map_1 v\u1EE1 f6000 \u2192 +5 f6040 (3:21.33); wiki \xA76.3 n\u1EBFn
+      #12"
+  - objectId: EntranceHall_X63_7
     stage: 1
     container: 103
     item: 4
@@ -78,7 +424,7 @@ MonoBehaviour:
       06 (63,7))"
     source: "wiki:Secrets#Miscellaneous (Purple money bag 400) \u2014 video kh\xF4ng
       ph\xE1"
-  - objectId: CA_X16_10
+  - objectId: CryptA_X16_10
     stage: 2
     container: 103
     item: 20
@@ -86,47 +432,20 @@ MonoBehaviour:
       (\xF4 (16,10))"
     source: "video:Map_1 1:39.6 (roi khi ng\u1ED3i, l\u1ED9 th\u1ECBt n\u01B0\u1EDBng
       NGAY); wiki:Secrets Pot Roast Stage 2"
-  - objectId: CA_X16_9
+  - objectId: CryptA_X16_9
     stage: 2
     container: 103
     item: 0
     note: "kh\u1ED1i tr\xEAn (\xF4 (16,9)) \u2014 v\u1EE1 kh\xF4ng ra g\xEC"
     source: "video:Map_1 1:40.55 (\u0111\u1EADp v\u1EE1, kh\xF4ng item)"
-  - objectId: CB_X29_6
+  - objectId: CryptB_X29_6
     stage: 2
     container: 103
     item: 0
     note: "kh\u1ED1i tr\xEAn-ph\u1EA3i (\xF4 (29,6)) \u2014 ph\xE1 \u0111\u1EC3 th\u1EA3
       xu\u1ED1ng, b\xED m\u1EADt = ng\u1ED3i tr\xEAn kh\u1ED1i th\u1EA5p (SecretTrigger)"
     source: video:Map_1 2:19.05; wiki:Secrets Bonuses Stage 2
-  - objectId: ST2_C10
-    stage: 2
-    container: 102
-    item: 15
-    note: "n\u1EBFn #10 t\u1EA7ng d\u01B0\u1EDBi"
-    source: "wiki:Stages 1-3 \u1EA3nh b\u1EA3n \u0111\u1ED3 (CV_WIKI_DATA \xA76)"
-  - objectId: ST2_C13
-    stage: 2
-    container: 102
-    item: 18
-    note: "n\u1EBFn #13 t\u1EA7ng tr\xEAn-ph\u1EA3i"
-    source: "wiki:Stages 1-3 \u1EA3nh b\u1EA3n \u0111\u1ED3 (CV_WIKI_DATA \xA76);
-      video:Map_1 2:42.7 (rosary tr\xEAn l\u1ED1i \u0111i)"
-  - objectId: PB_C06
-    stage: 3
-    container: 102
-    item: 12
-    note: "n\u1EBFn #6 gi\u1EEFa c\u1EA7u thang cu\u1ED1i"
-    source: "wiki:Stages 1-3 \u1EA3nh b\u1EA3n \u0111\u1ED3 (CV_WIKI_DATA \xA76);
-      wiki:Stages 1-3 note 2; video:Map_1 3:09.5"
-  - objectId: PB_POTION
-    stage: 3
-    container: 102
-    item: 19
-    note: "n\u1EBFn gi\u1EA5u b\xECnh gi\u1EEFa c\u1EA7u thang (wiki: \u1EE9ng vi\xEAn
-      #3/#4)"
-    source: wiki:Stages 1-3 note 1; video:Map_1 2:57.3
-  - objectId: PB_X43_9
+  - objectId: PhantomBat_X43_9
     stage: 3
     container: 103
     item: 16

@@ -399,6 +399,12 @@ public class StageRules : MonoBehaviour
         unpauseNext = true;   // stage mới hiện ở tick này, thực thể chạy từ tick sau (như GameManager: OnEnter rồi OnTick)
     }
 
+    /// <summary>CVGP 15: màn đen của luồng stage (cổng, chuyển tầng) — cùng cơ chế camera cullingMask 0 với màn đen hồi sinh.</summary>
+    public void SetBlackScreen(bool on)
+    {
+        SetBlack(on);
+    }
+
     private void SetBlack(bool on)
     {
         if (on)

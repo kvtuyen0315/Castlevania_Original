@@ -41,6 +41,9 @@ public class CandleProp : Entity
 
     protected override void OnSpawned()
     {
+        // CVGP 15: đặt trên map bằng SpawnPoint (MAP1_PLACEMENT) ⇒ objectId theo SpawnPoint.dataKey
+        if (Spawner != null && !string.IsNullOrEmpty(Spawner.dataKey))
+            objectId = Spawner.dataKey;
         broken = false;
         breakAge = 0;
         dropped = eItemId.None;

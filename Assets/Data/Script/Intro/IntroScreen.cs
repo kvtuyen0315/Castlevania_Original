@@ -65,6 +65,7 @@ public class IntroScreen : GameScreen
 
     public override void OnEnter()
     {
+        GameRules.NewGame();   // CVGP 15: ván mới (Title → Intro) — giá trị đầu ván y như GameSession mặc định ⇒ HUD Intro không đổi
         ShowFrame(0);
         CvtiDebug.Log("Intro: Simon bắt đầu đi");
         if (AudioManager.I != null)

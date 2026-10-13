@@ -32,10 +32,15 @@ public class SpawnPoint : MonoBehaviour
     [Tooltip("Tham số tự do cho loại thực thể (vd item rơi, biến thể).")]
     public int param;
     public bool respawn = true;
+    [Tooltip("CVGP 15: thực thể bị gỡ vì RA KHỎI MÀN (không phải bị phá) ⇒ vẫn sinh lại khi vào màn lại dù respawn = false (nến: phá rồi thì thôi).")]
+    public bool keepIfOffscreen;
+    [Tooltip("CVGP 15: khoá dữ liệu cho thực thể sinh ra (nến/chậu: objectId ConfigDrop).")]
+    public string dataKey = "";
     public int activateMargin = DEFAULT_ACTIVATE_MARGIN;
     public int despawnMargin = DEFAULT_DESPAWN_MARGIN;
 
     public eState State { get; private set; }
+    private bool lastRemovedOffscreen;
     public Entity Live { get; private set; }
     public int SpawnCount { get; private set; }
 
@@ -44,6 +49,7 @@ public class SpawnPoint : MonoBehaviour
         State = eState.Ready;
         Live = null;
         SpawnCount = 0;
+        lastRemovedOffscreen = false;
     }
 
     internal void UpdateSpawn(StageWorld world, int cx)
@@ -71,7 +77,7 @@ public class SpawnPoint : MonoBehaviour
                 break;
             case eState.Consumed:
                 if (!inWindow)
-                    State = respawn ? eState.Ready : eState.Done;
+                    State = respawn || (keepIfOffscreen && lastRemovedOffscreen) ? eState.Ready : eState.Done;
                 break;
         }
     }
@@ -81,6 +87,7 @@ public class SpawnPoint : MonoBehaviour
     {
         if (e != Live)
             return;
+        lastRemovedOffscreen = e.KillReason == eKillReason.Offscreen;
         Live = null;
         State = eState.Consumed;
     }

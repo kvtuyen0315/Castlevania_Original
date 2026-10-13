@@ -5,8 +5,10 @@ public enum eGameScreen
     Boot,
     Title,
     Intro,
-    Stage1,
+    Stage1,     // màn chơi Map 1 (CVGP 15: StageScreen thay Stage1Stub — giữ tên id để GoTo cũ không đổi)
     GameOver,   // CVGP 12
+    CastleMap,  // CVGP 15: bản đồ lâu đài sau Block 1
+    Stage4Stub, // CVGP 15: STAGE 04 (chờ cụm Map 2)
 }
 
 /// <summary>

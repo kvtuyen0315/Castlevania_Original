@@ -76,6 +76,7 @@ public class SimonController : Entity
     [NonSerialized] public int kbDir, kbVy;
     [NonSerialized] public bool kbLanded;
     [NonSerialized] public int autoWalkDir, autoWalkTarget, autoWalkSpeed;
+    [NonSerialized] public bool autoWalkNoClip;      // CVGP 15: đi xuyên địa hình (qua cửa sang section kế)
     [NonSerialized] public Vector2Int home;
     // đòn đang đánh (SimonAttackState đọc/ghi)
     [NonSerialized] public eAttackPose atkPose;
@@ -394,13 +395,32 @@ public class SimonController : Entity
             AutoWalkDone(this);
     }
 
-    /// <summary>Kịch bản (cửa/cổng — routine 15): tự đi tới targetX với tốc độ speed (fixed/tick; 0 = WalkSpeed), bỏ qua input.</summary>
-    public void StartAutoWalk(int targetX, int speed = 0)
+    /// <summary>Kịch bản (cửa/cổng — routine 15): tự đi tới targetX với tốc độ speed (fixed/tick; 0 = WalkSpeed), bỏ qua input.
+    /// noClip ⇒ không va địa hình (qua cửa: Simon đi sang phần section kế đang hiện cạnh — CVGP 15).</summary>
+    public void StartAutoWalk(int targetX, int speed = 0, bool noClip = false)
     {
         autoWalkTarget = targetX;
         autoWalkDir = targetX >= X ? 1 : -1;
         autoWalkSpeed = speed > 0 ? speed : walkSpeed;
+        autoWalkNoClip = noClip;
         Fsm.SetState(eSimonState.AutoWalk);
+    }
+
+    /// <summary>
+    /// CVGP 15 — đổi tầng qua cầu thang cắt mép section (Crypt A ↔ B): đặt Simon lên thang <paramref name="p"/> tại tham số t px
+    /// (đã nạp section đích + đọc lại Config như Teleport), giữ hướng đi (dir +1 lên / −1 xuống) ⇒ StairIdle (giữ nút thì đi tiếp ngay).
+    /// </summary>
+    public void PlaceOnStair(StairPath p, int tPx, int dir)
+    {
+        LoadTuning(World.Config);
+        ResetMotion();
+        stair = p;
+        SetStairT(Fixed.FromPx(tPx));
+        home = new Vector2Int(X, Y);
+        stairMoveDir = dir >= 0 ? 1 : -1;
+        Facing = stairMoveDir * p.upDx;
+        ApplyStairPose();
+        Fsm.SetState(eSimonState.StairIdle);
     }
 
     // ---------------------------------------------------------------- vật lý dùng chung (state + routine 09 gọi)

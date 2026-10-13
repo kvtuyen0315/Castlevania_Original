@@ -52,6 +52,26 @@ public class LevelSection : MonoBehaviour
             }
     }
 
+    /// <summary>
+    /// CVGP 15: xoá mọi tile 8×8 nằm trong vùng px (x, y, w, h) của section trên BG (cột cửa đỏ-trắng biến mất khi cánh cửa hiện —
+    /// video Map_1 f2621: chỗ cột thành đen) — nhớ để RestoreCells. Vùng nên căn lưới 8.
+    /// </summary>
+    public void ClearTileRect(int x, int y, int w, int h)
+    {
+        if (bg == null)
+            return;
+        for (int r = y / 8; r < (y + h + 7) / 8; r++)
+            for (int c = x / 8; c < (x + w + 7) / 8; c++)
+            {
+                var cell = new Vector3Int(c, -r - 1, 0);
+                var t = bg.GetTile(cell);
+                if (t == null)
+                    continue;
+                cleared.Add(new ClearedTile { cell = cell, tile = t });
+                bg.SetTile(cell, null);
+            }
+    }
+
     /// <summary>Trả lại mọi tile đã xoá (nạp lại section ⇒ lưới va chạm mới, khối nguyên vẹn).</summary>
     public void RestoreCells()
     {

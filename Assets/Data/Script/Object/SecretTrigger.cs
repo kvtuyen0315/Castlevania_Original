@@ -37,6 +37,17 @@ public class SecretTrigger : Entity
 
     protected override void OnSpawned()
     {
+        // CVGP 15: đặt trên map bằng SpawnPoint + SecretTriggerSpec (MAP1_PLACEMENT) ⇒ chép tham số của điểm sinh
+        var spec = Spawner != null ? Spawner.GetComponent<SecretTriggerSpec>() : null;
+        if (spec != null)
+        {
+            area = spec.area;
+            condition = spec.condition;
+            holdTicks = spec.holdTicks;
+            item = spec.item;
+            spawnAt = spec.spawnAt;
+            rise = spec.rise;
+        }
         held = 0;
         fired = false;
         spawnedItem = null;
@@ -47,7 +58,8 @@ public class SecretTrigger : Entity
         if (fired)
             return;
         var p = World.Player as SimonController;
-        if (p == null || !p.Alive || p.IsDying)
+        // CVGP 15: Simon đang bị kịch bản điều khiển (tự đi vào cổng) không tính — chỉ người chơi tự nhảy vượt cổng mới lộ túi
+        if (p == null || !p.Alive || p.IsDying || p.Fsm.Is(eSimonState.AutoWalk))
             return;
         bool inArea = area.Contains(new Vector2Int(p.X, p.Y));
         bool ok;

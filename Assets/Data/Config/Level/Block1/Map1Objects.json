@@ -1,0 +1,669 @@
+{
+ "note": "CVGP 15 — vật thể Map 1 đặt theo video (MAP1_PLACEMENT.md). Sinh bởi Tools/cvgp/gen_map1_objects.py; menu CVGP/Build Map1 Objects dựng Assets/Data/Prefabs/Level/Block1/Objects/<Section>_Objects.prefab. Toạ độ px section (x tâm, y = mặt đáy pivot). Nội dung nến = ConfigDrop.csv theo id.",
+ "sections": [
+  {
+   "id": "CastleEntrance",
+   "candles": [
+    {
+     "id": "CE_T1",
+     "kind": "torch",
+     "x": 96,
+     "y": 160,
+     "content": "LargeHeart",
+     "src": "video:Map_1 khớp mẫu candle_*/torch_* (Tools/cvgp/map1_props.py, camera planner) — x 96 (lưới 96+128k, ±1), y đáy 160; nội dung: video:Map_1 0:03.2 vỡ → tim lớn, +5 0:03.93; wiki #B1 Large Heart"
+    },
+    {
+     "id": "CE_T2",
+     "kind": "torch",
+     "x": 224,
+     "y": 160,
+     "content": "MorningStar",
+     "src": "video:Map_1 khớp mẫu candle_*/torch_* (Tools/cvgp/map1_props.py, camera planner) — x 224 (lưới 96+128k, ±1), y đáy 160; nội dung: video:Map_1 0:05.8 → roi, nhặt 0:06.5; wiki #B2 Morning Star"
+    },
+    {
+     "id": "CE_T3",
+     "kind": "torch",
+     "x": 352,
+     "y": 160,
+     "content": "MorningStar",
+     "src": "video:Map_1 khớp mẫu candle_*/torch_* (Tools/cvgp/map1_props.py, camera planner) — x 352 (lưới 96+128k, ±1), y đáy 160; nội dung: video:Map_1 0:08.9 → roi, nhặt 0:09.8; wiki #B3 Morning Star"
+    },
+    {
+     "id": "CE_T4",
+     "kind": "torch",
+     "x": 480,
+     "y": 160,
+     "content": "LargeHeart",
+     "src": "video:Map_1 khớp mẫu candle_*/torch_* (Tools/cvgp/map1_props.py, camera planner) — x 480 (lưới 96+128k, ±1), y đáy 160; nội dung: video:Map_1 0:12.1 → tim lớn, +5 0:12.97; wiki #B4 Large Heart"
+    },
+    {
+     "id": "CE_T5",
+     "kind": "torch",
+     "x": 608,
+     "y": 160,
+     "content": "Dagger",
+     "src": "video:Map_1 khớp mẫu candle_*/torch_* (Tools/cvgp/map1_props.py, camera planner) — x 608 (lưới 96+128k, ±1), y đáy 160; nội dung: video:Map_1 0:14.5 → dao, nhặt 0:15.50; wiki #B5 Dagger"
+    }
+   ],
+   "spawnPoints": [],
+   "edgeSpawners": [],
+   "waterSpawners": [],
+   "secrets": [
+    {
+     "name": "Secret_GateBag",
+     "x": 704,
+     "y": 160,
+     "area": [
+      704,
+      0,
+      64,
+      161
+     ],
+     "condition": "Enter",
+     "holdTicks": 0,
+     "item": "FlashingMoneyBag",
+     "spawnAt": [
+      632,
+      160
+     ],
+     "rise": true,
+     "src": "wiki Secrets/Stages 1-3 note 1: nhảy VƯỢT cửa lâu đài ⇒ túi 1000 nhấp nháy hiện phía sau (ảnh wiki: bên trái cửa x≈632); video không có. Vùng = qua mép FG vòm cổng (x ≥ 704 — CVGP 06) mà không bị cổng kéo vào (Map1FlowTiming.GATE_WINDOW_MAX_X): SUY LUẬN"
+    }
+   ],
+   "bossArenas": []
+  },
+  {
+   "id": "EntranceHall",
+   "candles": [
+    {
+     "id": "EH_C01",
+     "kind": "candle",
+     "x": 32,
+     "y": 160,
+     "content": "PurpleMoneyBag",
+     "src": "video:Map_1 khớp mẫu candle_*/torch_* (Tools/cvgp/map1_props.py, camera planner) — x 32 (lưới 32+64k, ±1), y đáy 160; nội dung: video:Map_1 vỡ f631 → túi tím, +400 f655 (0:21.83); wiki §6.1 nến #1"
+    },
+    {
+     "id": "EH_C02",
+     "kind": "candle",
+     "x": 96,
+     "y": 128,
+     "content": "SmallHeart",
+     "src": "video:Map_1 khớp mẫu candle_*/torch_* (Tools/cvgp/map1_props.py, camera planner) — x 96 (lưới 32+64k, ±1), y đáy 128; nội dung: video:Map_1 vỡ f724 → tim nhỏ đung đưa, tim 15→16 f762 — wiki ghi Stopwatch (H1: theo video); wiki §6.1 nến #2"
+    },
+    {
+     "id": "EH_C03",
+     "kind": "candle",
+     "x": 160,
+     "y": 160,
+     "content": "SmallHeart",
+     "src": "video:Map_1 khớp mẫu candle_*/torch_* (Tools/cvgp/map1_props.py, camera planner) — x 160 (lưới 32+64k, ±1), y đáy 160; nội dung: video:Map_1 vỡ f761 → tim nhỏ, 16→17 f788; wiki §6.1 nến #3"
+    },
+    {
+     "id": "EH_C04",
+     "kind": "candle",
+     "x": 224,
+     "y": 128,
+     "content": "RedMoneyBag",
+     "src": "video:Map_1 khớp mẫu candle_*/torch_* (Tools/cvgp/map1_props.py, camera planner) — x 224 (lưới 32+64k, ±1), y đáy 128; nội dung: video:Map_1 vỡ f821 → túi đỏ, +100 f847; wiki §6.1 nến #4"
+    },
+    {
+     "id": "EH_C05",
+     "kind": "candle",
+     "x": 288,
+     "y": 160,
+     "content": "SmallHeart",
+     "src": "video:Map_1 khớp mẫu candle_*/torch_* (Tools/cvgp/map1_props.py, camera planner) — x 288 (lưới 32+64k, ±1), y đáy 160; nội dung: video:Map_1 vỡ f930 → nhặt ngay, tim 18→19 f950; wiki §6.1 nến #5"
+    },
+    {
+     "id": "EH_C06",
+     "kind": "candle",
+     "x": 352,
+     "y": 128,
+     "content": "RedMoneyBag",
+     "src": "video:Map_1 khớp mẫu candle_*/torch_* (Tools/cvgp/map1_props.py, camera planner) — x 352 (lưới 32+64k, ±1), y đáy 128; nội dung: video:Map_1 vỡ f979 → túi đỏ, +100 f1001; wiki §6.1 nến #6"
+    },
+    {
+     "id": "EH_C07",
+     "kind": "candle",
+     "x": 416,
+     "y": 160,
+     "content": "SmallHeart",
+     "src": "video:Map_1 khớp mẫu candle_*/torch_* (Tools/cvgp/map1_props.py, camera planner) — x 416 (lưới 32+64k, ±1), y đáy 160; nội dung: video:Map_1 vỡ f1008 → tim 19→20 f1071; wiki §6.1 nến #7"
+    },
+    {
+     "id": "EH_C08",
+     "kind": "candle",
+     "x": 480,
+     "y": 128,
+     "content": "SmallHeart",
+     "src": "video:Map_1 khớp mẫu candle_*/torch_* (Tools/cvgp/map1_props.py, camera planner) — x 480 (lưới 32+64k, ±1), y đáy 128; nội dung: video:Map_1 vỡ f1089 → tim 20→21 f1125; wiki §6.1 nến #8"
+    },
+    {
+     "id": "EH_C09",
+     "kind": "candle",
+     "x": 544,
+     "y": 160,
+     "content": "SmallHeart",
+     "src": "video:Map_1 khớp mẫu candle_*/torch_* (Tools/cvgp/map1_props.py, camera planner) — x 544 (lưới 32+64k, ±1), y đáy 160; nội dung: video:Map_1 vỡ f1166 → tim 21→22 f1190; wiki §6.1 nến #9"
+    },
+    {
+     "id": "EH_C10",
+     "kind": "candle",
+     "x": 608,
+     "y": 128,
+     "content": "SmallHeart",
+     "src": "video:Map_1 khớp mẫu candle_*/torch_* (Tools/cvgp/map1_props.py, camera planner) — x 608 (lưới 32+64k, ±1), y đáy 128; nội dung: video:Map_1 vỡ f1210 → tim 22→23 f1248; wiki §6.1 nến #10"
+    },
+    {
+     "id": "EH_C11",
+     "kind": "candle",
+     "x": 672,
+     "y": 64,
+     "content": "SmallHeart",
+     "src": "video:Map_1 khớp mẫu candle_*/torch_* (Tools/cvgp/map1_props.py, camera planner) — x 672 (lưới 32+64k, ±1), y đáy 64; nội dung: video:Map_1 vỡ f1493 → tim 23→24 f1564; wiki §6.1 nến #11"
+    },
+    {
+     "id": "EH_C12",
+     "kind": "candle",
+     "x": 736,
+     "y": 160,
+     "content": "WhiteMoneyBag",
+     "src": "video:Map_1 khớp mẫu candle_*/torch_* (Tools/cvgp/map1_props.py, camera planner) — x 736 (lưới 32+64k, ±1), y đáy 160; nội dung: video:Map_1 vỡ f1319 → túi trắng, +700 f1340 (0:44.67); wiki §6.1 nến #12"
+    },
+    {
+     "id": "EH_C13",
+     "kind": "candle",
+     "x": 800,
+     "y": 32,
+     "content": "HolyWater",
+     "src": "video:Map_1 khớp mẫu candle_*/torch_* (Tools/cvgp/map1_props.py, camera planner) — x 800 (lưới 32+64k, ±1), y đáy 32; nội dung: video:Map_1 vỡ f1698 → nước thánh rơi xuống lối đi (0:57.3, không nhặt) — wiki gán Holy Water cho #14 (H1: theo video); wiki §6.1 nến #13"
+    },
+    {
+     "id": "EH_C14",
+     "kind": "candle",
+     "x": 864,
+     "y": 64,
+     "content": "LargeHeart",
+     "src": "video:Map_1 khớp mẫu candle_*/torch_* (Tools/cvgp/map1_props.py, camera planner) — x 864 (lưới 32+64k, ±1), y đáy 64; nội dung: video:Map_1 vỡ f1641 → tim lớn, +5 f1676 (0:55.87) — wiki ghi Holy Water; wiki §6.1 nến #14"
+    },
+    {
+     "id": "EH_C15",
+     "kind": "candle",
+     "x": 928,
+     "y": 160,
+     "content": "WhiteMoneyBag",
+     "src": "video:Map_1 khớp mẫu candle_*/torch_* (Tools/cvgp/map1_props.py, camera planner) — x 928 (lưới 32+64k, ±1), y đáy 160; nội dung: video:Map_1 vỡ f1914 → túi trắng, +700 f1935 (1:04.50); wiki §6.1 nến #15"
+    },
+    {
+     "id": "EH_C16",
+     "kind": "candle",
+     "x": 992,
+     "y": 64,
+     "content": "SmallHeart",
+     "src": "video:Map_1 khớp mẫu candle_*/torch_* (Tools/cvgp/map1_props.py, camera planner) — x 992 (lưới 32+64k, ±1), y đáy 64; nội dung: video:Map_1 vỡ f1809 → tim 29→30 f1845; wiki §6.1 nến #16"
+    },
+    {
+     "id": "EH_C17",
+     "kind": "candle",
+     "x": 1056,
+     "y": 160,
+     "content": "SmallHeart",
+     "src": "video:Map_1 khớp mẫu candle_*/torch_* (Tools/cvgp/map1_props.py, camera planner) — x 1056 (lưới 32+64k, ±1), y đáy 160; nội dung: video:Map_1 vỡ f1991 → tim 30→31 f2016; wiki §6.1 nến #17"
+    },
+    {
+     "id": "EH_C18",
+     "kind": "candle",
+     "x": 1120,
+     "y": 160,
+     "content": "SmallHeart",
+     "src": "video:Map_1 khớp mẫu candle_*/torch_* (Tools/cvgp/map1_props.py, camera planner) — x 1120 (lưới 32+64k, ±1), y đáy 160; nội dung: video:Map_1 vỡ f2030 → tim 31→32 f2058; wiki §6.1 nến #18"
+    },
+    {
+     "id": "EH_C19",
+     "kind": "candle",
+     "x": 1184,
+     "y": 160,
+     "content": "SmallHeart",
+     "src": "video:Map_1 khớp mẫu candle_*/torch_* (Tools/cvgp/map1_props.py, camera planner) — x 1184 (lưới 32+64k, ±1), y đáy 160; nội dung: video:Map_1 vỡ f2069 → tim nhỏ (dải ảnh), 32→33 f2135; wiki §6.1 nến #19"
+    },
+    {
+     "id": "EH_C20",
+     "kind": "candle",
+     "x": 1248,
+     "y": 160,
+     "content": "SmallHeart",
+     "src": "video:Map_1 khớp mẫu candle_*/torch_* (Tools/cvgp/map1_props.py, camera planner) — x 1248 (lưới 32+64k, ±1), y đáy 160; nội dung: video:Map_1 vỡ f2150 → tim 33→34 f2178; wiki §6.1 nến #20"
+    },
+    {
+     "id": "EH_C21",
+     "kind": "candle",
+     "x": 1312,
+     "y": 160,
+     "content": "SmallHeart",
+     "src": "video:Map_1 khớp mẫu candle_*/torch_* (Tools/cvgp/map1_props.py, camera planner) — x 1312 (lưới 32+64k, ±1), y đáy 160; nội dung: video:Map_1 vỡ f2190 → tim 34→35 f2232; wiki §6.1 nến #21"
+    },
+    {
+     "id": "EH_C22",
+     "kind": "candle",
+     "x": 1376,
+     "y": 128,
+     "content": "SmallHeart",
+     "src": "video:Map_1 khớp mẫu candle_*/torch_* (Tools/cvgp/map1_props.py, camera planner) — x 1376 (lưới 32+64k, ±1), y đáy 128; nội dung: video:Map_1 KHẢ NĂNG: vỡ sau f2268 (bị rosary nháy che), tim 35→36 f2311 — rosary 1:15.03 là Zombie chết rơi ra; wiki §6.1 nến #22"
+    },
+    {
+     "id": "EH_C23",
+     "kind": "candle",
+     "x": 1440,
+     "y": 64,
+     "content": "SmallHeart",
+     "src": "video:Map_1 khớp mẫu candle_*/torch_* (Tools/cvgp/map1_props.py, camera planner) — x 1440 (lưới 32+64k, ±1), y đáy 64; nội dung: video:Map_1 vỡ f2463 → tim 36→37 f2488 — wiki gán Rosary cho #23; wiki §6.1 nến #23"
+    },
+    {
+     "id": "EH_C24",
+     "kind": "candle",
+     "x": 1504,
+     "y": 32,
+     "content": "Rosary",
+     "src": "video:Map_1 khớp mẫu candle_*/torch_* (Tools/cvgp/map1_props.py, camera planner) — x 1504 (lưới 32+64k, ±1), y đáy 32; nội dung: video:Map_1 vỡ f2505 (1:23.5) → rosary, nhặt 1:24.73 — wiki: Rosary ở #23 (H1: theo video); wiki §6.1 nến #24"
+    }
+   ],
+   "spawnPoints": [
+    {
+     "name": "Panther_1",
+     "prefab": "Assets/Data/Prefabs/Enemy/Panther.prefab",
+     "x": 699,
+     "y": 112,
+     "facing": -1,
+     "respawn": true,
+     "src": "CVGP 13 §4b \"Enemy\" — báo nằm chờ trên gờ (video 0:42.0 / 0:54.0)"
+    },
+    {
+     "name": "Panther_2",
+     "prefab": "Assets/Data/Prefabs/Enemy/Panther.prefab",
+     "x": 891,
+     "y": 80,
+     "facing": -1,
+     "respawn": true,
+     "src": "CVGP 13 §4b \"Enemy\" — báo nằm chờ trên gờ (video 0:42.0 / 0:54.0)"
+    },
+    {
+     "name": "Panther_3",
+     "prefab": "Assets/Data/Prefabs/Enemy/Panther.prefab",
+     "x": 955,
+     "y": 112,
+     "facing": -1,
+     "respawn": true,
+     "src": "CVGP 13 §4b \"Enemy\" — báo nằm chờ trên gờ (video 0:42.0 / 0:54.0)"
+    }
+   ],
+   "edgeSpawners": [
+    {
+     "name": "Ghoul_Hall",
+     "prefab": "Assets/Data/Prefabs/Enemy/Ghoul.prefab",
+     "side": "Right",
+     "rows": [
+      176
+     ],
+     "playerRelativeY": false,
+     "zoneMinX": 0,
+     "zoneMaxX": 383,
+     "releaseOnBlock": "",
+     "src": "video:Map_1 trk_z_eh (CVGP 13): 12 Zombie sinh khi Simon x 42–364 (cx 0–236), không sinh khi Simon 365–730 (f1021–1340, > nghỉ tối đa 288 tick) ⇒ vùng = màn đầu (Simon ≤ cx 255 + 128 = 383) — biên XẤP XỈ"
+    },
+    {
+     "name": "Ghoul_Stairs",
+     "prefab": "Assets/Data/Prefabs/Enemy/Ghoul.prefab",
+     "side": "Right",
+     "rows": [
+      176
+     ],
+     "playerRelativeY": false,
+     "zoneMinX": 1130,
+     "zoneMaxX": 1536,
+     "releaseOnBlock": "",
+     "src": "video:Map_1 trk_z_eh: Zombie đầu nhóm sau f2062 lúc Simon x 1132 (f2060 x 1128, firstDelay 0) — không sinh khi Simon 899–1128 (f1900–2060, 320 tick); sinh tới hết cầu thang dài (Simon 1352, f2270; sau đó đủ 3 con) ⇒ [1130, hết section]"
+    }
+   ],
+   "waterSpawners": [],
+   "secrets": [],
+   "bossArenas": []
+  },
+  {
+   "id": "CryptA",
+   "candles": [
+    {
+     "id": "CA_C1",
+     "kind": "candle",
+     "x": 32,
+     "y": 160,
+     "content": "WhiteMoneyBag",
+     "src": "video:Map_1 khớp mẫu candle_*/torch_* (Tools/cvgp/map1_props.py, camera planner) — x 32 (lưới 32+64k, ±1), y đáy 160; nội dung: video:Map_1 vỡ f3152 → +700 f3177 (1:45.90); wiki §6.2 tầng trên #1"
+    },
+    {
+     "id": "CA_C2",
+     "kind": "candle",
+     "x": 96,
+     "y": 64,
+     "content": "LargeHeart",
+     "src": "video:Map_1 khớp mẫu candle_*/torch_* (Tools/cvgp/map1_props.py, camera planner) — x 96 (lưới 32+64k, ±1), y đáy 64; nội dung: video:Map_1 vỡ f2778 → +5 f2827 (1:34.23); wiki §6.2 tầng trên #3"
+    },
+    {
+     "id": "CA_C3",
+     "kind": "candle",
+     "x": 160,
+     "y": 48,
+     "content": "SmallHeart",
+     "src": "video:Map_1 khớp mẫu candle_*/torch_* (Tools/cvgp/map1_props.py, camera planner) — x 160 (lưới 32+64k, ±1), y đáy 48; nội dung: video:Map_1 vỡ f2856 → tim 41→42 f2895; wiki §6.2 tầng trên #5"
+    },
+    {
+     "id": "CA_C4",
+     "kind": "candle",
+     "x": 224,
+     "y": 128,
+     "content": "RedMoneyBag",
+     "src": "video:Map_1 khớp mẫu candle_*/torch_* (Tools/cvgp/map1_props.py, camera planner) — x 224 (lưới 32+64k, ±1), y đáy 128; nội dung: video:Map_1 vỡ f2968 (roi trên thang, dải ảnh _cache/15/ca_bag.png) → túi đỏ, +100 f3004 (1:40.13); wiki §6.2 tầng trên #7"
+    },
+    {
+     "id": "CA_C5",
+     "kind": "candle",
+     "x": 304,
+     "y": 48,
+     "content": "LargeHeart",
+     "src": "video:Map_1 khớp mẫu candle_*/torch_* (Tools/cvgp/map1_props.py, camera planner) — x 304 (lưới 32+64k, ±1), y đáy 48; nội dung: video:Map_1 vỡ f4691 → +5 f4728 (2:37.60); wiki §6.2 tầng trên #9"
+    },
+    {
+     "id": "CA_C6",
+     "kind": "candle",
+     "x": 352,
+     "y": 160,
+     "content": "RedMoneyBag",
+     "src": "video:Map_1 khớp mẫu candle_*/torch_* (Tools/cvgp/map1_props.py, camera planner) — x 352 (lưới 32+64k, ±1), y đáy 160; nội dung: video:Map_1 vỡ f4467 → +100 f4503 (2:30.10); wiki §6.2 tầng trên #11"
+    },
+    {
+     "id": "CA_C7",
+     "kind": "candle",
+     "x": 416,
+     "y": 32,
+     "content": "Rosary",
+     "src": "video:Map_1 khớp mẫu candle_*/torch_* (Tools/cvgp/map1_props.py, camera planner) — x 416 (lưới 32+64k, ±1), y đáy 32; nội dung: video:Map_1 vỡ f4830 → rosary trên lối đi, nhặt 2:42.7 — wiki #13 Rosary (khớp); wiki §6.2 tầng trên #13"
+    },
+    {
+     "id": "CA_C8",
+     "kind": "candle",
+     "x": 480,
+     "y": 64,
+     "content": "RedMoneyBag",
+     "src": "video:Map_1 khớp mẫu candle_*/torch_* (Tools/cvgp/map1_props.py, camera planner) — x 480 (lưới 32+64k, ±1), y đáy 64; nội dung: video:Map_1 vỡ f4798 → túi đỏ, +100 f4859 (2:41.97); wiki §6.2 tầng trên #15"
+    }
+   ],
+   "spawnPoints": [],
+   "edgeSpawners": [
+    {
+     "name": "Bat_Crypt",
+     "prefab": "Assets/Data/Prefabs/Enemy/Bat.prefab",
+     "side": "FrontOfPlayer",
+     "rows": [],
+     "playerRelativeY": true,
+     "zoneMinX": 0,
+     "zoneMaxX": 512,
+     "releaseOnBlock": "",
+     "src": "CVGP 13: dơi CA cả section (video 1:32.0–1:47.4 lần 1, 2:28.5–2:42.7 lần 2), trước mặt Simon"
+    },
+    {
+     "name": "Bat_PotRoastWall",
+     "prefab": "Assets/Data/Prefabs/Enemy/Bat.prefab",
+     "side": "FrontOfPlayer",
+     "rows": [],
+     "playerRelativeY": true,
+     "zoneMinX": 99999,
+     "zoneMaxX": 99999,
+     "releaseOnBlock": "CryptA_X16_10",
+     "src": "wiki Secrets: phá tường Pot Roast thả 1 dơi (CVGP 13 releaseOnBlock) — video không thấy (dơi lúc đó đã có)"
+    }
+   ],
+   "waterSpawners": [],
+   "secrets": [],
+   "bossArenas": []
+  },
+  {
+   "id": "CryptB",
+   "candles": [
+    {
+     "id": "CB_C1",
+     "kind": "candle",
+     "x": 32,
+     "y": 48,
+     "content": "WhiteMoneyBag",
+     "src": "video:Map_1 khớp mẫu candle_*/torch_* (Tools/cvgp/map1_props.py, camera planner) — x 32 (lưới 32+64k, ±1), y đáy 48; nội dung: video:Map_1 KHẢ NĂNG: vỡ sau f3666 (dải ảnh), +700 f3690 (2:03.0); wiki §6.2 tầng dưới #2 (toạ độ wiki − (16,160))"
+    },
+    {
+     "id": "CB_C2",
+     "kind": "candle",
+     "x": 96,
+     "y": 48,
+     "content": "RedMoneyBag",
+     "src": "video:Map_1 khớp mẫu candle_*/torch_* (Tools/cvgp/map1_props.py, camera planner) — x 96 (lưới 32+64k, ±1), y đáy 48; nội dung: video:Map_1 vỡ f3485–3500 (ảnh _cache/15/cb_start.png) → túi đỏ, +100 f3502 (1:56.73); wiki §6.2 tầng dưới #4 (toạ độ wiki − (16,160))"
+    },
+    {
+     "id": "CB_C3",
+     "kind": "candle",
+     "x": 160,
+     "y": 48,
+     "content": "RedMoneyBag",
+     "src": "video:Map_1 khớp mẫu candle_*/torch_* (Tools/cvgp/map1_props.py, camera planner) — x 160 (lưới 32+64k, ±1), y đáy 48; nội dung: video:Map_1 vỡ f3739 → +100 f3768; wiki §6.2 tầng dưới #6 (toạ độ wiki − (16,160))"
+    },
+    {
+     "id": "CB_C4",
+     "kind": "candle",
+     "x": 224,
+     "y": 48,
+     "content": "WhiteMoneyBag",
+     "src": "video:Map_1 khớp mẫu candle_*/torch_* (Tools/cvgp/map1_props.py, camera planner) — x 224 (lưới 32+64k, ±1), y đáy 48; nội dung: video:Map_1 vỡ f3849 → +700 f3868 (2:08.93); wiki §6.2 tầng dưới #8 (toạ độ wiki − (16,160))"
+    },
+    {
+     "id": "CB_C5",
+     "kind": "candle",
+     "x": 288,
+     "y": 48,
+     "content": "Stopwatch",
+     "src": "video:Map_1 khớp mẫu candle_*/torch_* (Tools/cvgp/map1_props.py, camera planner) — x 288 (lưới 32+64k, ±1), y đáy 48; nội dung: video:Map_1 vỡ f3917 → đồng hồ (không nhặt) — wiki #10 Stopwatch (khớp); wiki §6.2 tầng dưới #10 (toạ độ wiki − (16,160))"
+    },
+    {
+     "id": "CB_C6",
+     "kind": "candle",
+     "x": 352,
+     "y": 48,
+     "content": "SmallHeart",
+     "src": "video:Map_1 khớp mẫu candle_*/torch_* (Tools/cvgp/map1_props.py, camera planner) — x 352 (lưới 32+64k, ±1), y đáy 48; nội dung: video:Map_1 KHẢ NĂNG: tim 47→48 f4007 (vỡ không bắt được — dải ảnh); wiki §6.2 tầng dưới #12 (toạ độ wiki − (16,160))"
+    },
+    {
+     "id": "CB_C7",
+     "kind": "candle",
+     "x": 416,
+     "y": 48,
+     "content": "SmallHeart",
+     "src": "video:Map_1 khớp mẫu candle_*/torch_* (Tools/cvgp/map1_props.py, camera planner) — x 416 (lưới 32+64k, ±1), y đáy 48; nội dung: video:Map_1 vỡ f4032 → tim 48→49 f4069; wiki §6.2 tầng dưới #14 (toạ độ wiki − (16,160))"
+    },
+    {
+     "id": "CB_C8",
+     "kind": "candle",
+     "x": 496,
+     "y": 48,
+     "content": "LargeHeart",
+     "src": "video:Map_1 khớp mẫu candle_*/torch_* (Tools/cvgp/map1_props.py, camera planner) — x 496 (lưới 32+64k, ±1), y đáy 48; nội dung: video:Map_1 vỡ f4114 → +5 f4155 (2:18.50); wiki §6.2 tầng dưới #16 (toạ độ wiki − (16,160))"
+    }
+   ],
+   "spawnPoints": [],
+   "edgeSpawners": [],
+   "waterSpawners": [
+    {
+     "name": "Fishman_Water",
+     "prefab": "Assets/Data/Prefabs/Enemy/Fishman.prefab",
+     "surfaceY": 160,
+     "zoneMinX": 0,
+     "zoneMaxX": 512,
+     "src": "CVGP 13 §4b \"Enemy\": Fish Man cả Crypt B (video 1:57.2–2:26.7), mặt nước y 160"
+    }
+   ],
+   "secrets": [
+    {
+     "name": "Secret_LowBlocks",
+     "x": 464,
+     "y": 160,
+     "area": [
+      448,
+      144,
+      32,
+      17
+     ],
+     "condition": "Crouch",
+     "holdTicks": 0,
+     "item": "FlashingMoneyBag",
+     "spawnAt": [
+      352,
+      96
+     ],
+     "rise": true,
+     "src": "video:Map_1 2:19.7–2:24.7: Simon ngồi trên khối thấp (28–29,10) ở x 471 Y 160 (f4196, khớp mẫu jumpduck_0) ⇒ túi 1000 trồi ở pivot (352,96) (f4226 khớp mẫu moneybag, đứng lối đi y 96); wiki Secrets Bonuses Stage 2"
+    }
+   ],
+   "bossArenas": []
+  },
+  {
+   "id": "PhantomBat",
+   "candles": [
+    {
+     "id": "PB_C01",
+     "kind": "candle",
+     "x": 32,
+     "y": 128,
+     "content": "LargeHeart",
+     "src": "video:Map_1 khớp mẫu candle_*/torch_* (Tools/cvgp/map1_props.py, camera planner) — x 32 (lưới 32+64k, ±1), y đáy 128; nội dung: video:Map_1 vỡ f5434 → +5 f5456 (3:01.87); wiki §6.3 nến #1"
+    },
+    {
+     "id": "PB_C02",
+     "kind": "candle",
+     "x": 96,
+     "y": 64,
+     "content": "SmallHeart",
+     "src": "video:Map_1 khớp mẫu candle_*/torch_* (Tools/cvgp/map1_props.py, camera planner) — x 96 (lưới 32+64k, ±1), y đáy 64; nội dung: video:Map_1 vỡ f5137 → tim 60→61 f5170; wiki §6.3 nến #2"
+    },
+    {
+     "id": "PB_C03",
+     "kind": "candle",
+     "x": 160,
+     "y": 96,
+     "content": "RedMoneyBag",
+     "src": "video:Map_1 khớp mẫu candle_*/torch_* (Tools/cvgp/map1_props.py, camera planner) — x 160 (lưới 32+64k, ±1), y đáy 96; nội dung: video:Map_1 vỡ f5249 → +100 f5274; wiki §6.3 nến #3"
+    },
+    {
+     "id": "PB_C04",
+     "kind": "candle",
+     "x": 224,
+     "y": 64,
+     "content": "InvisibilityPotion",
+     "src": "video:Map_1 khớp mẫu candle_*/torch_* (Tools/cvgp/map1_props.py, camera planner) — x 224 (lưới 32+64k, ±1), y đáy 64; nội dung: video:Map_1 vỡ f5315 (2:57.2) → bình, nhặt 2:58.2 — wiki: bình \"giữa cầu thang\", ứng viên #3/#4; wiki §6.3 nến #4"
+    },
+    {
+     "id": "PB_C05",
+     "kind": "candle",
+     "x": 288,
+     "y": 160,
+     "content": "SmallHeart",
+     "src": "video:Map_1 khớp mẫu candle_*/torch_* (Tools/cvgp/map1_props.py, camera planner) — x 288 (lưới 32+64k, ±1), y đáy 160; nội dung: video:Map_1 vỡ f5594 → tim 66→67 f5624; wiki §6.3 nến #5"
+    },
+    {
+     "id": "PB_C06",
+     "kind": "candle",
+     "x": 352,
+     "y": 128,
+     "content": "Axe",
+     "src": "video:Map_1 khớp mẫu candle_*/torch_* (Tools/cvgp/map1_props.py, camera planner) — x 352 (lưới 32+64k, ±1), y đáy 128; nội dung: video:Map_1 vỡ f5663 → rìu, nhặt 3:10.67 — wiki #6 Axe (khớp); wiki §6.3 nến #6"
+    },
+    {
+     "id": "PB_C07",
+     "kind": "candle",
+     "x": 416,
+     "y": 160,
+     "content": "SmallHeart",
+     "src": "video:Map_1 khớp mẫu candle_*/torch_* (Tools/cvgp/map1_props.py, camera planner) — x 416 (lưới 32+64k, ±1), y đáy 160; nội dung: video:Map_1 vỡ f5739 → tim 67→68 f5769; wiki §6.3 nến #7"
+    },
+    {
+     "id": "PB_C08",
+     "kind": "candle",
+     "x": 480,
+     "y": 160,
+     "content": "SmallHeart",
+     "src": "video:Map_1 khớp mẫu candle_*/torch_* (Tools/cvgp/map1_props.py, camera planner) — x 480 (lưới 32+64k, ±1), y đáy 160; nội dung: video:Map_1 vỡ f5782 → tim 68→69 f5813; wiki §6.3 nến #8"
+    },
+    {
+     "id": "PB_C09",
+     "kind": "candle",
+     "x": 544,
+     "y": 128,
+     "content": "LargeHeart",
+     "src": "video:Map_1 khớp mẫu candle_*/torch_* (Tools/cvgp/map1_props.py, camera planner) — x 544 (lưới 32+64k, ±1), y đáy 128; nội dung: video:Map_1 vỡ f5829 → +5 f5858 (3:15.27); wiki §6.3 nến #9"
+    },
+    {
+     "id": "PB_C10",
+     "kind": "candle",
+     "x": 608,
+     "y": 160,
+     "content": "SmallHeart",
+     "src": "video:Map_1 khớp mẫu candle_*/torch_* (Tools/cvgp/map1_props.py, camera planner) — x 608 (lưới 32+64k, ±1), y đáy 160; nội dung: video:Map_1 vỡ f5880 → tim 74→75 f5907; wiki §6.3 nến #10"
+    },
+    {
+     "id": "PB_C11",
+     "kind": "candle",
+     "x": 672,
+     "y": 128,
+     "content": "SmallHeart",
+     "src": "video:Map_1 khớp mẫu candle_*/torch_* (Tools/cvgp/map1_props.py, camera planner) — x 672 (lưới 32+64k, ±1), y đáy 128; nội dung: video:Map_1 vỡ f5943 → tim 75→76 f5973; wiki §6.3 nến #11"
+    },
+    {
+     "id": "PB_C12",
+     "kind": "candle",
+     "x": 736,
+     "y": 128,
+     "content": "LargeHeart",
+     "src": "video:Map_1 khớp mẫu candle_*/torch_* (Tools/cvgp/map1_props.py, camera planner) — x 736 (lưới 32+64k, ±1), y đáy 128; nội dung: video:Map_1 vỡ f6000 → +5 f6040 (3:21.33); wiki §6.3 nến #12"
+    }
+   ],
+   "spawnPoints": [],
+   "edgeSpawners": [
+    {
+     "name": "Ghoul_Corridor",
+     "prefab": "Assets/Data/Prefabs/Enemy/Ghoul.prefab",
+     "side": "Right",
+     "rows": [
+      112,
+      176
+     ],
+     "playerRelativeY": false,
+     "zoneMinX": 0,
+     "zoneMaxX": 320,
+     "releaseOnBlock": "",
+     "src": "video:Map_1 trk_z_pb (CVGP 13): Zombie gờ y 112 + sàn y 176 khi Simon x 49–310 (cx 0–185); không sinh khi Simon > 344 (3:10.67 →) tới phòng boss ⇒ [0, 320] — biên XẤP XỈ"
+    }
+   ],
+   "waterSpawners": [],
+   "secrets": [],
+   "bossArenas": [
+    {
+     "name": "BossArena_PhantomBat",
+     "prefab": "Assets/Data/Prefabs/Boss/PhantomBat.prefab",
+     "zoneMinX": 0,
+     "zoneMaxX": 4096,
+     "useConfigPosition": true,
+     "bossPosition": [
+      623,
+      41
+     ],
+     "screenWalls": true,
+     "src": "CVGP 14 §4b \"Boss\": dơi treo trần (623,41) sinh khi vào section (video 3:15 thấy từ hành lang), camera khoá cx 512"
+    }
+   ]
+  }
+ ]
+}
