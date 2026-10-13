@@ -111,6 +111,11 @@ MonoBehaviour:
   offscreenMargin: 32
   invincibleOnHit: 0
   autoRespawn: 0
+  daggerPrefab: {fileID: 3855523106571745476, guid: 379a4ccd7435ca64a93a22a3321e3f56, type: 3}
+  axePrefab: {fileID: 3987586321467690227, guid: aff2099c0d82940468149efac7e0267b, type: 3}
+  holyWaterPrefab: {fileID: 2951720125738910433, guid: ab3f095d8f0d62e4d84ad9666d75174e, type: 3}
+  crossPrefab: {fileID: 4013108265648987539, guid: bc85071b376bad040a832ad72796df65, type: 3}
+  stopwatchPrefab: {fileID: 7023890680199627228, guid: a136fc67a8aa4324699a2136747e8051, type: 3}
   aIdle:
     name: 
     frames: []

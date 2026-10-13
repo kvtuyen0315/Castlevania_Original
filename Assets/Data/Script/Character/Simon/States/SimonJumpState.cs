@@ -26,6 +26,8 @@ public class SimonJumpState : SimonState
 
     public override void CheckNextState()
     {
+        if (!owner.jumpLanded && owner.TryAttack())
+            return;
         if (owner.jumpLanded)
             owner.ToGroundState();
         else if (owner.jumpTick >= owner.jumpTicks)

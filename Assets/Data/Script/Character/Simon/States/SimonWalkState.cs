@@ -23,6 +23,8 @@ public class SimonWalkState : SimonState
 
     public override void CheckNextState()
     {
+        if (owner.TryAttack())
+            return;
         int dir = owner.InputX;
         if (owner.GroundTransitions(dir * owner.walkSpeed))
             return;

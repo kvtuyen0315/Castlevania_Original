@@ -18,6 +18,8 @@ public class SimonIdleState : SimonState
 
     public override void CheckNextState()
     {
+        if (owner.TryAttack())
+            return;
         if (owner.GroundTransitions(0))
             return;
         if (owner.Held(eNesButton.Down))

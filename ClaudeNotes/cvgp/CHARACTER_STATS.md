@@ -31,12 +31,12 @@
 | KnockbackDy | 15 | 14–15 | px | đo:routine 08 video:Boss_Map_1 f363–380 (h 8/13/14/13/8; khung hurt_0) | 1 mẫu |
 | KnockbackAirTicks | 35 | 32–38 | tick | đo:routine 08 video:Boss_Map_1 (trúng f362.5 → biến mất nháy từ f381 ≈ 36 tick) | = 2·\|KnockbackVy0\|/KnockbackGravity |
 | InvincibleTicks | 94 | 92–96 | tick | đo:routine 08 video:Boss_Map_1 f381–427 (47 frame không thấy Simon sau khi đáp) | đếm từ lúc ĐÁP sau knockback (trong lúc bay hiện hurt_0 không nháy) |
-| WhipTotalTicks | *chờ đo routine 09* | 18–22 | tick | video:planner (trung vị ~20) — chờ đo routine 09 |  |
-| WhipWindupTicks | *chờ đo routine 09* | 4–6 | tick | video:planner (khung 1 vung ra sau) — chờ đo routine 09 |  |
-| WhipRaiseTicks | *chờ đo routine 09* | 4–8 | tick | video:planner (khung 2 giơ cao; điển hình 6) — chờ đo routine 09 |  |
-| WhipExtendTicks | *chờ đo routine 09* | 6–10 | tick | video:planner (khung 3 duỗi thẳng) — chờ đo routine 09 |  |
-| WhipHeightAboveFeet | 16 |  | px | video:planner (≈ đỉnh đầu + 9–10 px) — chờ đo routine 09 |  |
-| WhipPickupFreezeTicks | *chờ đo routine 09* | 46–48 | tick | video:planner (0.73–0.80 s; f194–217 và f293–315) — chờ đo routine 09 | camera + Simon đứng; TIME vẫn chạy |
+| WhipTotalTicks | 22 | 18–26 | tick | đo:routine 09 Tools/cvgp/whip_timing.py 52 cú roi video:Map_1 (TB 21.6; trung vị 22; khung video mới ±1 tick) | = WhipWindupTicks + WhipRaiseTicks + WhipExtendTicks; ném vũ khí phụ dùng cùng nhịp (video 1:32.9 và 3:27.9) |
+| WhipWindupTicks | 6 | 2–10 | tick | đo:routine 09 whip_timing.py 52 cú roi video:Map_1 (khung use_*_0: TB 5.85; mốt 6) | khung 0 — roi treo sau lưng |
+| WhipRaiseTicks | 7 | 2–14 | tick | đo:routine 09 whip_timing.py 52 cú roi video:Map_1 (khung use_*_1: TB 7.0; trung vị 6) | khung 1 — roi vắt qua vai |
+| WhipExtendTicks | 9 | 4–12 | tick | đo:routine 09 whip_timing.py 52 cú roi video:Map_1 (khung use_*_2: TB 8.73; trung vị 9) | khung 2 — roi duỗi; hitbox bật suốt khung này (video 0:03.27 chậu lửa vỡ ngay frame duỗi đầu tiên f98) |
+| WhipHeightAboveFeet | 20 | 17–25 | px | đo:routine 09 sheet (hàng đục mảnh duỗi: L1 Y−25..−18; L2/L3 Y−22..−17 khi đứng) | thông tin — code dùng ConfigWhip.hit* + overlayOffsets |
+| WhipPickupFreezeTicks | 46 | 44–48 | tick | đo:routine 09 khớp mẫu video:Map_1 f195–217 và f293–315 (23 frame video Simon nháy màu — không khớp sprite gốc) | routine 11 dùng khi nhặt Morning Star; camera + Simon đứng; TIME vẫn chạy |
 | HurtboxWidth | 16 |  | px | đo:routine 07 bbox pixel đục sprite idle_0 (cột 0–15) | XẤP XỈ = khung sprite; routine 08: video boss f362 Simon trúng khi chạm thân dơi — hộp ROM vẫn không đo được |
 | HurtboxHeight | 30 |  | px | đo:routine 07 bbox pixel đục sprite idle_0 (hàng 1–30 của khung 32) | XẤP XỈ như HurtboxWidth; chân ở hàng Y−1 |
 | CrouchHurtboxHeight | 23 |  | px | đo:routine 07 bbox pixel đục sprite jumpduck_0 (hàng 1–23); đo:routine 08 khung ngồi vẽ lệch +8 (video:Map_1 1:02.8) | XẤP XỈ như HurtboxWidth; dùng cả cho tư thế co chân khi nhảy (vẽ +4) |
@@ -77,6 +77,8 @@
 | InvincibleBlinkPeriod | 2 |  | tick | suy luận: video:Boss_Map_1 f381–427 KHÔNG thấy Simon ở cả 47 frame ⇒ nháy 1 tick hiện / 1 tick ẩn (bản quay 30 fps bắt trúng pha ẩn) |  |
 | DeathKneelTicks | 16 |  | tick | quy ước — video/wiki không có cảnh chết (routine 12 xem lại) | khung death_0 (quỳ) trước death_1 (nằm) |
 | DeathTicks | 124 |  | tick | suy luận: độ dài nhạc Art_Source/music/15. Death.mp3 = 2.07 s; video không có cảnh chết | từ lúc ngã (hoặc rơi hố) tới khi báo sự kiện Died (routine 12 hồi sinh) |
+| WhipColorTicks | 1 |  | tick | đo:routine 09 Tools/cvgp/whip_colors.py video:Map_1 (286 frame duỗi roi cấp 3: 2 frame mới cách 2 tick mà khác màu thì lệch chỉ số 2 ở 37/53 lần ⇒ đổi màu MỖI tick qua 4 bảng màu) | thứ tự c1→c2→c3→c4 theo sheet là suy luận (video 30 fps không phân biệt chiều); chu kỳ đếm từ tick đầu của đòn (suy luận) |
+| SubWeaponSpawnTick | 3 | 2–5 | tick | đo:routine 09 proj_fit.py: dao video:Map_1 1:33.0 (f2795–2805) + 1:47.1 trên thang (f3214–3220); rìu 3:27.9/3:29.3 (khớp parabol g 0.25) ⇒ vũ khí xuất hiện tại pivot 2.5–5 tick sau khi khung duỗi bắt đầu | tick thứ N (0 = tick đầu) của khung duỗi thì sinh vũ khí phụ; tim trừ ngay lúc bấm (HUD trừ tim trước SFX ném ~0.2 s — routine 02) |
 
 ### Sát thương Simon nhận mỗi lần trúng đòn (theo STAGE, mọi loại đòn như nhau — wiki Gameplay#Damage)
 
@@ -156,14 +158,25 @@ Máu = **số đòn** để hạ: *yếu* (roi da, Holy Water, Dagger) / *mạnh
 | Boss.Death | maxScythes | 3 |  |  | cái |  | wiki:Bosses#Death |
 | Boss.Death | scytheIdleTicks | 60 |  |  | tick |  | wiki:Bosses#Death (đứng yên khoảng 1 giây × 60) |
 | Boss.Dracula | fireballsPerVolley | 3 |  |  | cái |  | wiki:Bosses#The Count |
-| SubWeapon.Dagger | spawnHeightAboveFeet | 21 |  |  | px |  | video:planner (≈ đỉnh đầu + 4–5 px) — chờ đo routine 09 |
-| SubWeapon.Axe | apexPx | 55 |  |  | px |  | video:planner (≈ sau ~21 tick) — chờ đo routine 09 |
-| SubWeapon.Axe | apexTicks | 21 |  |  | tick |  | video:planner (≈) — chờ đo routine 09 |
-| SubWeapon.HolyWater | flameHoldTicks | 144 |  |  | tick |  | video:planner (≈ 2.4 s lửa giữ chân boss) — chờ đo routine 09 |
+| SubWeapon.Dagger | spawnHeightAboveFeet | 23 |  |  | px | pivot (tâm sprite) dao; x sinh = pivot Simon | đo:routine 09 proj_fit.py video:Map_1 f2797 (góc trên sprite dao = Y−31 khi Simon Y 112) và f3214 trên thang (Y 216 ⇒ Y−31) ⇒ pivot tâm sprite 16×16 = Y−23; Tools/cvgp/attack_compare.py dy 0 |
+| SubWeapon.Axe | apexPx | 50 |  |  | px | thông tin | đo:routine 09 (= vy0²/2g với vy0 −5.0 g 0.25; video:Map_1 đỉnh tâm rìu Y−80.5 ≈ 28 + 50 + 2) |
+| SubWeapon.Axe | apexTicks | 20 |  |  | tick | thông tin | đo:routine 09 (= \|vy0\|/g) |
+| SubWeapon.Axe | spawnHeightAboveFeet | 26 |  |  | px | pivot (tâm sprite) rìu | đo:routine 09 khớp parabol 2 quỹ đạo (g cố định 0.25): tâm bbox rìu lúc sinh Y−27.5 / Y−27.8 ⇒ pivot tâm sprite = Y−26 (bbox axe_0 lệch −1.5 so với pivot) |
+| SubWeapon.HolyWater | flameHoldTicks | *chờ đo routine 14* | 138 | 144 | tick | boss bị lửa giữ chân | video:planner (≈ 2.3–2.4 s = khoảng giữa 2 lần ném trong video boss — KHÔNG phải thời gian cháy; xem fireTicks) — chờ đo routine 14 |
 | Item.MagicCrystal | spawnDelayTicks | 150 |  |  | tick |  | video:planner (2.5 s sau khi boss chết; 2 video) — chờ đo routine 14 |
 | Item.MagicCrystal | spawnScreenX | 127.5 |  |  | px màn |  | video:planner (2 video) — chờ đo routine 14 |
 | Item.MagicCrystal | spawnScreenY | 128.5 |  |  | px màn |  | video:planner (2 video) — chờ đo routine 14 |
 | Item.MagicCrystal | gravity | *chờ đo routine 14* | 0.23 | 0.26 | px/tick² |  | video:planner — chờ đo routine 14 |
+| SubWeapon.HolyWater | spawnHeightAboveFeet | 23 |  |  | px | tâm lọ | suy luận: = dao (video boss Simon đang nháy bất tử — không thấy điểm sinh) |
+| SubWeapon.HolyWater | fireTicks | 80 | 80 | 94 | tick | sau đó lửa biến mất; anim holywater_fire lặp | đo:routine 09 proj_fit.py video:Boss: lửa vỡ ~f348 tắt sau f389; lọ cuối chạm sàn ~f570 lửa tắt sau f609 (≈ 40 frame video) |
+| SubWeapon.HolyWater | fireRehitTicks | 8 |  |  | tick | Hitbox.Activate lại ⇒ mục tiêu trúng lần nữa nếu hết bất tử | quy ước routine 09 (lửa đánh lại mỗi 8 tick) — video boss: thanh ENEMY tụt đều khi trong lửa; chờ đo routine 14 |
+| SubWeapon.Cross | spawnHeightAboveFeet | 23 |  |  | px | tâm thập tự | suy luận: = dao (Cross không có trong video) |
+| SubWeapon.Cross | turnDistancePx | 112 |  |  | px | quay đầu khi đi đủ xa hoặc gần mép màn (turnScreenMarginPx) | quy ước routine 09 — wiki Items#Cross chỉ nói bay ra rồi quay về; không có video |
+| SubWeapon.Cross | turnScreenMarginPx | 8 |  |  | px | tâm cách mép màn ≤ N px thì quay đầu | quy ước routine 09 (không có video) |
+| SubWeapon.Dagger | offscreenMarginPx | 8 |  |  | px |  | quy ước routine 09 (vũ khí biến mất khi tâm ra khỏi màn quá nửa sprite 16 px) |
+| SubWeapon.Axe | offscreenMarginPx | 8 |  |  | px |  | quy ước routine 09 (vũ khí biến mất khi tâm ra khỏi màn quá nửa sprite 16 px) |
+| SubWeapon.HolyWater | offscreenMarginPx | 8 |  |  | px |  | quy ước routine 09 (vũ khí biến mất khi tâm ra khỏi màn quá nửa sprite 16 px) |
+| SubWeapon.Cross | offscreenMarginPx | 8 |  |  | px |  | quy ước routine 09 (vũ khí biến mất khi tâm ra khỏi màn quá nửa sprite 16 px) |
 
 ## 5. Item & vật chứa
 
@@ -199,19 +212,19 @@ Máu = **số đòn** để hạ: *yếu* (roi da, Holy Water, Dagger) / *mạnh
 
 | Vũ khí | Giá tim | Nhóm | Xuyên mục tiêu | Quay về | Đóng băng (tick) | vx (px/tick) | vy0 (px/tick) | g (px/tick²) | Đặc tính | Nguồn |
 |---|---|---|---|---|---|---|---|---|---|---|
-| Dagger | 1 | Weak | 0 | không | — | 4.0 | — | — | Bay nhanh thẳng về phía trước; sức ≈ roi da | wiki:Items#Dagger; wiki:Enemies (nhóm yếu) · *pierces:* wiki:Items#Dagger (chỉ trúng 1 mục tiêu) · *motion:* video:planner 4.0 px/tick bay thẳng (f2797–2804; f3214–3219) — chờ đo routine 09 |
-| Axe | 1 | Strong | *chờ đo routine 09* | không | — | *chờ đo routine 09* | -5.1 | *chờ đo routine 09* | Bay vòng cung lên cao rồi rơi xuống sàn; tốt với mục tiêu trên cao/bay | wiki:Items#Axe; wiki:Enemies (nhóm mạnh) · *pierces:* chờ đo routine 09 (wiki không nêu xuyên mục tiêu) · *motion:* video:planner vx 2.0–2.2; vy0 −5.1; g 0.24–0.25 px/tick² (2 quỹ đạo) — chờ đo routine 09 |
-| HolyWater | 1 | Weak | *chờ đo routine 09* | không | — | *chờ đo routine 09* | *chờ đo routine 09* | *chờ đo routine 09* | Lọ vỡ khi chạm sàn thành ngọn lửa nhỏ giữ chân/đốt enemy | wiki:Items#Holy Water; wiki:Enemies (nhóm yếu) · *pierces:* chờ đo routine 09 (lửa trên sàn — số mục tiêu wiki không nêu) · *motion:* video:planner (video boss) vx 1.4–1.6; cung thấp lên 5–10 px; g 0.12–0.13; chạm đất cách 40–44 px sau 26–28 tick — chờ đo routine 09 |
-| Cross | 1 | Strong | 1 | có | — | *không rõ* | — | *không rõ* | Bay ra rồi quay về người ném; trúng nhiều mục tiêu cả lượt đi và về | wiki:Items#Cross; wiki:Enemies (nhóm mạnh) · *pierces:* wiki:Items#Cross (trúng nhiều mục tiêu; trúng cả lượt về) · *motion:* không rõ — Cross không có trong video (routine 09 ước lượng) |
+| Dagger | 1 | Weak | 0 | không | — | 4.0 | — | — | Bay nhanh thẳng về phía trước; sức ≈ roi da | wiki:Items#Dagger; wiki:Enemies (nhóm yếu) · *pierces:* wiki:Items#Dagger (chỉ trúng 1 mục tiêu) · *motion:* đo:routine 09 Tools/cvgp/proj_fit.py video:Map_1 1:33.0 (f2797–2805 +8 px mỗi frame video = 4 px/tick) và 1:47.1 trên thang (f3214–3220); bay thẳng ngang |
+| Axe | 1 | Strong | 1 | không | — | 2.0 | -5.0 | 0.25 | Bay vòng cung lên cao rồi rơi xuống sàn; tốt với mục tiêu trên cao/bay | wiki:Items#Axe; wiki:Enemies (nhóm mạnh) · *pierces:* đo:routine 09 video:Map_1 3:28.9 (f6268–6280: rìu trúng Phantom Bat rồi vẫn bay tiếp xuống sàn) · *motion:* đo:routine 09 proj_fit.py khớp 2 quỹ đạo video:Map_1 f6239–6252 và f6281–6294 (vx 1.99 / 2.16; với g 0.25: vy0 −5.04 / −5.00 tại điểm sinh (pivot; Y−28)); làm tròn |
+| HolyWater | 1 | Weak | 1 | không | — | 1.5 | -1.3 | 0.125 | Lọ vỡ khi chạm sàn thành ngọn lửa nhỏ giữ chân/đốt enemy | wiki:Items#Holy Water; wiki:Enemies (nhóm yếu) · *pierces:* suy luận: wiki Items#Holy Water (lửa trên sàn nhốt enemy — trúng mọi mục tiêu chạm lửa) · *motion:* đo:routine 09 proj_fit.py khớp 2 quỹ đạo lọ video:Boss 13.0–13.9 s (f390–403 / f404–418: vx 1.57 / 1.43; g 0.116 / 0.133; với g 0.125 vy0 −1.13 / −1.53) |
+| Cross | 1 | Strong | 1 | có | — | 3.0 | — | — | Bay ra rồi quay về người ném; trúng nhiều mục tiêu cả lượt đi và về | wiki:Items#Cross; wiki:Enemies (nhóm mạnh) · *pierces:* wiki:Items#Cross (trúng nhiều mục tiêu; trúng cả lượt về) · *motion:* quy ước routine 09 — Cross không có trong video và wiki không nêu tốc độ (chờ video) |
 | Stopwatch | 5 | None | — | không | 300 | — | — | — | Đóng băng enemy và gai di động; hầu hết boss miễn nhiễm (trừ Phantom Bat và Queen Medusa); không bị multiplier ảnh hưởng | wiki:Items#Stopwatch; wiki:Gameplay · *freezeTicks:* wiki:Items#Stopwatch (5 giây × 60) |
 
 ## 7. Roi (Vampire Killer)
 
 | Cấp | Tên | Nhóm | Sát thương so roi da | Dài mảnh roi sheet (px) | Tầm tay→đầu roi (px) | Tim cần (wiki) | Số màu | Nguồn |
 |---|---|---|---|---|---|---|---|---|
-| 1 | Leather Whip | Weak | 1 | 24 | 22 | — | 1 | wiki:Items#Morning Star; wiki:Enemies (nhóm yếu) · *damage:* quy ước: mốc so sánh 1× · *spriteLenPx:* đo: kiểm kê sheet routine 01 (simon_whippart mảnh duỗi L1 24×16) — chờ 05 chốt hitbox · *reachPx:* video:planner tay→đầu roi ≈ 22 px (f178–180; ±2 px) — chờ đo routine 09 |
-| 2 | Chain Whip (ngắn) | Strong | 1.5 | 24 | *chờ đo routine 09* | 4 | 1 | wiki:Items#Morning Star; wiki:Enemies (nhóm mạnh) · *damage:* wiki:Items#Morning Star (gấp 1.5 lần roi da) · *spriteLenPx:* đo: kiểm kê sheet routine 01 (simon_whippart mảnh duỗi L2 24×16) — chờ 05 chốt hitbox · *reachPx:* video:planner 24–25 px (f270–272) — chờ đo routine 09 · *upgradeHearts:* wiki:Items#Morning Star (đủ 4 tim cho lần nâng 1 — cơ chế không giải thích; §7.1 #5) |
-| 3 | Chain Whip (dài) | Strong | *không rõ* | 40 | 43 | 8 | 4 | wiki:Items#Morning Star; đo: kiểm kê sheet routine 01 (L3 có 4 bảng màu) · *damage:* không rõ — wiki không nêu riêng (cùng nhóm mạnh) · *spriteLenPx:* đo: kiểm kê sheet routine 01 (simon_whippart mảnh duỗi L3 40×16) — chờ 05 chốt hitbox · *reachPx:* video:planner ≈ 43 px (57 đòn) — chờ đo routine 09 · *upgradeHearts:* wiki:Items#Morning Star (đủ 8 tim cho lần nâng 2) |
+| 1 | Leather Whip | Weak | 1 | 24 | 24 | — | 1 | wiki:Items#Morning Star; wiki:Enemies (nhóm yếu) · *damage:* quy ước: mốc so sánh 1× · *spriteLenPx:* đo: kiểm kê sheet routine 01 (simon_whippart mảnh duỗi L1 24×16) — chờ 05 chốt hitbox · *reachPx:* đo:routine 09 sheet (mảnh duỗi đục rộng 24 px = chuôi→đầu roi; đầu roi cách pivot 36 px); video:planner ≈ 22/24–25 (±2 — chậu lửa che đầu roi) · *hit:* đo:routine 09 bbox pixel đục mảnh roi duỗi sheet whip_l1_ext (cột 0–23 · hàng 8–15) — góc trên-trái mảnh đặt theo overlayOffsets khung 2 (routine 05) |
+| 2 | Chain Whip (ngắn) | Strong | 1.5 | 24 | 24 | 4 | 1 | wiki:Items#Morning Star; wiki:Enemies (nhóm mạnh) · *damage:* wiki:Items#Morning Star (gấp 1.5 lần roi da) · *spriteLenPx:* đo: kiểm kê sheet routine 01 (simon_whippart mảnh duỗi L2 24×16) — chờ 05 chốt hitbox · *reachPx:* đo:routine 09 sheet (mảnh duỗi đục rộng 24 px = chuôi→đầu roi; đầu roi cách pivot 36 px); video:planner ≈ 22/24–25 (±2 — chậu lửa che đầu roi) · *upgradeHearts:* wiki:Items#Morning Star (đủ 4 tim cho lần nâng 1 — cơ chế không giải thích; §7.1 #5) · *hit:* đo:routine 09 bbox pixel đục whip_l2_ext (cột 0–23 · hàng 10–15) |
+| 3 | Chain Whip (dài) | Strong | *không rõ* | 40 | 40 | 8 | 4 | wiki:Items#Morning Star; đo: kiểm kê sheet routine 01 (L3 có 4 bảng màu) · *damage:* không rõ — wiki không nêu riêng (cùng nhóm mạnh) · *spriteLenPx:* đo: kiểm kê sheet routine 01 (simon_whippart mảnh duỗi L3 40×16) — chờ 05 chốt hitbox · *reachPx:* đo:routine 09 sheet (mảnh duỗi đục rộng 40 px; đầu roi cách pivot 52 px); video:planner ≈ 43 (57 đòn ±3) — H1 pixel theo sheet · *upgradeHearts:* wiki:Items#Morning Star (đủ 8 tim cho lần nâng 2) · *hit:* đo:routine 09 bbox pixel đục whip_l3c1..4_ext (cột 0–39 · hàng 10–15; 4 màu cùng hình) |
 
 ## 8. Block & Stage
 

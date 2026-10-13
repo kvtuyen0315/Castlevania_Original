@@ -1,0 +1,3 @@
+# 53 tick, hash e120c297
+# CVGP 09 AttackProbe kịch bản 'l3_air': nhảy kèm →, roi cấp 3 ở tick nhảy 11 (giữ quỹ đạo, sau đó co chân)
+-*2 R+A*1 R*9 R+B*1 R*40

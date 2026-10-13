@@ -1,0 +1,3 @@
+# 33 tick, hash aad73d9f
+# CVGP 09 AttackProbe kịch bản 'nohearts': 0 tim ⇒ vung roi, tim giữ 0
+-*2 Sub*1 -*30

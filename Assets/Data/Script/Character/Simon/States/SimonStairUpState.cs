@@ -20,6 +20,8 @@ public class SimonStairUpState : SimonState
             owner.ExitStair();
             return;
         }
+        if (owner.TryAttack())
+            return;
         if (!owner.AtStairStep)
             return;
         int dir = owner.StairInput();

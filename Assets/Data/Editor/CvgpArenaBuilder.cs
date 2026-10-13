@@ -108,6 +108,12 @@ public static class CvgpArenaBuilder
             so.FindProperty("checkDeadlyTiles").boolValue = true;
             so.FindProperty("despawnOffscreen").boolValue = false;
             so.FindProperty("autoRespawn").boolValue = false;
+            // CVGP 09: vũ khí phụ (dựng bằng CVGP/Build Weapon Prefabs — chưa có thì để trống)
+            so.FindProperty("daggerPrefab").objectReferenceValue = CvgpWeaponBuilder.Load<Dagger>("Dagger");
+            so.FindProperty("axePrefab").objectReferenceValue = CvgpWeaponBuilder.Load<Axe>("Axe");
+            so.FindProperty("holyWaterPrefab").objectReferenceValue = CvgpWeaponBuilder.Load<HolyWater>("HolyWater");
+            so.FindProperty("crossPrefab").objectReferenceValue = CvgpWeaponBuilder.Load<Cross>("Cross");
+            so.FindProperty("stopwatchPrefab").objectReferenceValue = CvgpWeaponBuilder.Load<Stopwatch>("Stopwatch");
             so.ApplyModifiedPropertiesWithoutUndo();
             PrefabUtility.SaveAsPrefabAsset(go, SIMON_PREFAB);
         }

@@ -1,0 +1,3 @@
+# 63 tick, hash 48b99647
+# CVGP 09 AttackProbe kịch bản 'dagger': dao (phím tắt) quay phải; bia ở x +60
+-*2 Sub*1 -*60

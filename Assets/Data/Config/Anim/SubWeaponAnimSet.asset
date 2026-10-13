@@ -41,13 +41,15 @@ MonoBehaviour:
     - {fileID: 21300000, guid: 1f5995ad2be7c6a4b8b548bf9023c85a, type: 3}
     - {fileID: 21300000, guid: 038af6d5867e2904ca30dcb1da17f24f, type: 3}
     - {fileID: 21300000, guid: 5b3a6d72f21eb7245947245aff5e79ab, type: 3}
-    durations: 08000000080000000800000008000000
+    durations: 04000000040000000400000004000000
     loop: 1
-    measured: 0
+    measured: 1
     overlays: []
     overlayOffsets: []
     overlayOnTop: 
-    note: 
+    note: "routine 09: xoay axe_0\u21921\u21922\u21923 m\u1ED7i khung ~4 tick (kh\u1EDBp
+      m\u1EABu video Map_1 f6240\u20136252, f6281\u20136294: 1 v\xF2ng \u2248 16
+      tick)"
   - name: holywater_bottle
     frames:
     - {fileID: 21300000, guid: 20a480f9385877f4c819ea253283ce2d, type: 3}
@@ -60,16 +62,19 @@ MonoBehaviour:
     note: 
   - name: holywater_fire
     frames:
-    - {fileID: 21300000, guid: ab8867f897583334c89be849fe90b5a2, type: 3}
     - {fileID: 21300000, guid: 0702f1f8404ea8c4a9e9ea2d30afeb2a, type: 3}
     - {fileID: 21300000, guid: a0763f3ef0a396c408976ea51d192b25, type: 3}
     - {fileID: 21300000, guid: 25f7ec3f23772e646824fc8826b57152, type: 3}
     - {fileID: 21300000, guid: ed64320ef16fe6a48b2175fa36a43569, type: 3}
-    durations: 0800000008000000080000000800000008000000
-    loop: 0
-    measured: 0
+    durations: 09000000060000000c00000007000000
+    loop: 1
+    measured: 1
     overlays: []
     overlayOffsets: []
     overlayOnTop: 
-    note: "l\u1EEDa l\u1EDBn d\u1EA7n"
+    note: "routine 09: video Boss kh\u1EDBp m\u1EABu (Tools/cvgp/proj_fit.py fire):
+      l\u1EEDa ch\u1EA1y fire_1\u21922\u21923\u21924 r\u1ED3i l\u1EB7p, TB 9/6/12/7
+      tick (3 chu\u1ED7i f355\u2013372, f560\u2013577, f578\u2013592; \xB12 tick);
+      fire_0 kh\xF4ng th\u1EA5y r\xF5 (nghi khung v\u1EE1 l\u1ECD) \u2014 kh\xF4ng
+      d\xF9ng"
   palettes: []

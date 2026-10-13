@@ -23,11 +23,22 @@ Boss.PhantomBat,deathFlameTicks,,42,48,tick,video:planner (0.7–0.8 s) — ch�
 Boss.Death,maxScythes,3,,,cái,wiki:Bosses#Death,
 Boss.Death,scytheIdleTicks,60,,,tick,wiki:Bosses#Death (đứng yên khoảng 1 giây × 60),
 Boss.Dracula,fireballsPerVolley,3,,,cái,wiki:Bosses#The Count,
-SubWeapon.Dagger,spawnHeightAboveFeet,21,,,px,video:planner (≈ đỉnh đầu + 4–5 px) — chờ đo routine 09,
-SubWeapon.Axe,apexPx,55,,,px,video:planner (≈ sau ~21 tick) — chờ đo routine 09,
-SubWeapon.Axe,apexTicks,21,,,tick,video:planner (≈) — chờ đo routine 09,
-SubWeapon.HolyWater,flameHoldTicks,144,,,tick,video:planner (≈ 2.4 s lửa giữ chân boss) — chờ đo routine 09,
+SubWeapon.Dagger,spawnHeightAboveFeet,23,,,px,đo:routine 09 proj_fit.py video:Map_1 f2797 (góc trên sprite dao = Y−31 khi Simon Y 112) và f3214 trên thang (Y 216 ⇒ Y−31) ⇒ pivot tâm sprite 16×16 = Y−23; Tools/cvgp/attack_compare.py dy 0,pivot (tâm sprite) dao; x sinh = pivot Simon
+SubWeapon.Axe,apexPx,50,,,px,đo:routine 09 (= vy0²/2g với vy0 −5.0 g 0.25; video:Map_1 đỉnh tâm rìu Y−80.5 ≈ 28 + 50 + 2),thông tin
+SubWeapon.Axe,apexTicks,20,,,tick,đo:routine 09 (= |vy0|/g),thông tin
+SubWeapon.Axe,spawnHeightAboveFeet,26,,,px,đo:routine 09 khớp parabol 2 quỹ đạo (g cố định 0.25): tâm bbox rìu lúc sinh Y−27.5 / Y−27.8 ⇒ pivot tâm sprite = Y−26 (bbox axe_0 lệch −1.5 so với pivot),pivot (tâm sprite) rìu
+SubWeapon.HolyWater,flameHoldTicks,,138,144,tick,video:planner (≈ 2.3–2.4 s = khoảng giữa 2 lần ném trong video boss — KHÔNG phải thời gian cháy; xem fireTicks) — chờ đo routine 14,boss bị lửa giữ chân
 Item.MagicCrystal,spawnDelayTicks,150,,,tick,video:planner (2.5 s sau khi boss chết; 2 video) — chờ đo routine 14,
 Item.MagicCrystal,spawnScreenX,127.5,,,px màn,video:planner (2 video) — chờ đo routine 14,
 Item.MagicCrystal,spawnScreenY,128.5,,,px màn,video:planner (2 video) — chờ đo routine 14,
 Item.MagicCrystal,gravity,,0.23,0.26,px/tick²,video:planner — chờ đo routine 14,
+SubWeapon.HolyWater,spawnHeightAboveFeet,23,,,px,suy luận: = dao (video boss Simon đang nháy bất tử — không thấy điểm sinh),tâm lọ
+SubWeapon.HolyWater,fireTicks,80,80,94,tick,đo:routine 09 proj_fit.py video:Boss: lửa vỡ ~f348 tắt sau f389; lọ cuối chạm sàn ~f570 lửa tắt sau f609 (≈ 40 frame video),sau đó lửa biến mất; anim holywater_fire lặp
+SubWeapon.HolyWater,fireRehitTicks,8,,,tick,quy ước routine 09 (lửa đánh lại mỗi 8 tick) — video boss: thanh ENEMY tụt đều khi trong lửa; chờ đo routine 14,Hitbox.Activate lại ⇒ mục tiêu trúng lần nữa nếu hết bất tử
+SubWeapon.Cross,spawnHeightAboveFeet,23,,,px,suy luận: = dao (Cross không có trong video),tâm thập tự
+SubWeapon.Cross,turnDistancePx,112,,,px,quy ước routine 09 — wiki Items#Cross chỉ nói bay ra rồi quay về; không có video,quay đầu khi đi đủ xa hoặc gần mép màn (turnScreenMarginPx)
+SubWeapon.Cross,turnScreenMarginPx,8,,,px,quy ước routine 09 (không có video),tâm cách mép màn ≤ N px thì quay đầu
+SubWeapon.Dagger,offscreenMarginPx,8,,,px,quy ước routine 09 (vũ khí biến mất khi tâm ra khỏi màn quá nửa sprite 16 px),
+SubWeapon.Axe,offscreenMarginPx,8,,,px,quy ước routine 09 (vũ khí biến mất khi tâm ra khỏi màn quá nửa sprite 16 px),
+SubWeapon.HolyWater,offscreenMarginPx,8,,,px,quy ước routine 09 (vũ khí biến mất khi tâm ra khỏi màn quá nửa sprite 16 px),
+SubWeapon.Cross,offscreenMarginPx,8,,,px,quy ước routine 09 (vũ khí biến mất khi tâm ra khỏi màn quá nửa sprite 16 px),

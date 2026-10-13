@@ -312,87 +312,93 @@ MonoBehaviour:
       hi\u1EC7n hurt_0 kh\xF4ng nh\xE1y)"
   - key: WhipTotalTicks
     value:
-      has: 0
-      value: 0
+      has: 1
+      value: 22
     min:
       has: 1
       value: 18
     max:
       has: 1
-      value: 22
+      value: 26
     unit: tick
-    source: "video:planner (trung v\u1ECB ~20) \u2014 ch\u1EDD \u0111o routine 09"
-    note: 
+    source: "\u0111o:routine 09 Tools/cvgp/whip_timing.py 52 c\xFA roi video:Map_1
+      (TB 21.6; trung v\u1ECB 22; khung video m\u1EDBi \xB11 tick)"
+    note: "= WhipWindupTicks + WhipRaiseTicks + WhipExtendTicks; n\xE9m v\u0169 kh\xED
+      ph\u1EE5 d\xF9ng c\xF9ng nh\u1ECBp (video 1:32.9 v\xE0 3:27.9)"
   - key: WhipWindupTicks
     value:
-      has: 0
-      value: 0
-    min:
-      has: 1
-      value: 4
-    max:
       has: 1
       value: 6
-    unit: tick
-    source: "video:planner (khung 1 vung ra sau) \u2014 ch\u1EDD \u0111o routine
-      09"
-    note: 
-  - key: WhipRaiseTicks
-    value:
-      has: 0
-      value: 0
     min:
       has: 1
-      value: 4
-    max:
-      has: 1
-      value: 8
-    unit: tick
-    source: "video:planner (khung 2 gi\u01A1 cao; \u0111i\u1EC3n h\xECnh 6) \u2014
-      ch\u1EDD \u0111o routine 09"
-    note: 
-  - key: WhipExtendTicks
-    value:
-      has: 0
-      value: 0
-    min:
-      has: 1
-      value: 6
+      value: 2
     max:
       has: 1
       value: 10
     unit: tick
-    source: "video:planner (khung 3 du\u1ED7i th\u1EB3ng) \u2014 ch\u1EDD \u0111o
-      routine 09"
-    note: 
+    source: "\u0111o:routine 09 whip_timing.py 52 c\xFA roi video:Map_1 (khung use_*_0:
+      TB 5.85; m\u1ED1t 6)"
+    note: "khung 0 \u2014 roi treo sau l\u01B0ng"
+  - key: WhipRaiseTicks
+    value:
+      has: 1
+      value: 7
+    min:
+      has: 1
+      value: 2
+    max:
+      has: 1
+      value: 14
+    unit: tick
+    source: "\u0111o:routine 09 whip_timing.py 52 c\xFA roi video:Map_1 (khung use_*_1:
+      TB 7.0; trung v\u1ECB 6)"
+    note: "khung 1 \u2014 roi v\u1EAFt qua vai"
+  - key: WhipExtendTicks
+    value:
+      has: 1
+      value: 9
+    min:
+      has: 1
+      value: 4
+    max:
+      has: 1
+      value: 12
+    unit: tick
+    source: "\u0111o:routine 09 whip_timing.py 52 c\xFA roi video:Map_1 (khung use_*_2:
+      TB 8.73; trung v\u1ECB 9)"
+    note: "khung 2 \u2014 roi du\u1ED7i; hitbox b\u1EADt su\u1ED1t khung n\xE0y (video
+      0:03.27 ch\u1EADu l\u1EEDa v\u1EE1 ngay frame du\u1ED7i \u0111\u1EA7u ti\xEAn
+      f98)"
   - key: WhipHeightAboveFeet
     value:
       has: 1
-      value: 16
-    min:
-      has: 0
-      value: 0
-    max:
-      has: 0
-      value: 0
-    unit: px
-    source: "video:planner (\u2248 \u0111\u1EC9nh \u0111\u1EA7u + 9\u201310 px) \u2014
-      ch\u1EDD \u0111o routine 09"
-    note: 
-  - key: WhipPickupFreezeTicks
-    value:
-      has: 0
-      value: 0
+      value: 20
     min:
       has: 1
+      value: 17
+    max:
+      has: 1
+      value: 25
+    unit: px
+    source: "\u0111o:routine 09 sheet (h\xE0ng \u0111\u1EE5c m\u1EA3nh du\u1ED7i:
+      L1 Y\u221225..\u221218; L2/L3 Y\u221222..\u221217 khi \u0111\u1EE9ng)"
+    note: "th\xF4ng tin \u2014 code d\xF9ng ConfigWhip.hit* + overlayOffsets"
+  - key: WhipPickupFreezeTicks
+    value:
+      has: 1
       value: 46
+    min:
+      has: 1
+      value: 44
     max:
       has: 1
       value: 48
     unit: tick
-    source: "video:planner (0.73\u20130.80 s; f194\u2013217 v\xE0 f293\u2013315)
-      \u2014 ch\u1EDD \u0111o routine 09"
-    note: "camera + Simon \u0111\u1EE9ng; TIME v\u1EABn ch\u1EA1y"
+    source: "\u0111o:routine 09 kh\u1EDBp m\u1EABu video:Map_1 f195\u2013217 v\xE0
+      f293\u2013315 (23 frame video Simon nh\xE1y m\xE0u \u2014 kh\xF4ng kh\u1EDBp
+      sprite g\u1ED1c)"
+    note: "routine 11 d\xF9ng khi nh\u1EB7t Morning Star; camera + Simon \u0111\u1EE9ng;
+      TIME v\u1EABn ch\u1EA1y"
   - key: HurtboxWidth
     value:
       has: 1
@@ -956,3 +962,39 @@ MonoBehaviour:
       = 2.07 s; video kh\xF4ng c\xF3 c\u1EA3nh ch\u1EBFt"
     note: "t\u1EEB l\xFAc ng\xE3 (ho\u1EB7c r\u01A1i h\u1ED1) t\u1EDBi khi b\xE1o
       s\u1EF1 ki\u1EC7n Died (routine 12 h\u1ED3i sinh)"
+  - key: WhipColorTicks
+    value:
+      has: 1
+      value: 1
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "\u0111o:routine 09 Tools/cvgp/whip_colors.py video:Map_1 (286 frame
+      du\u1ED7i roi c\u1EA5p 3: 2 frame m\u1EDBi c\xE1ch 2 tick m\xE0 kh\xE1c m\xE0u
+      th\xEC l\u1EC7ch ch\u1EC9 s\u1ED1 2 \u1EDF 37/53 l\u1EA7n \u21D2 \u0111\u1ED5i
+      m\xE0u M\u1ED6I tick qua 4 b\u1EA3ng m\xE0u)"
+    note: "th\u1EE9 t\u1EF1 c1\u2192c2\u2192c3\u2192c4 theo sheet l\xE0 suy lu\u1EADn
+      (video 30 fps kh\xF4ng ph\xE2n bi\u1EC7t chi\u1EC1u); chu k\u1EF3 \u0111\u1EBFm
+      t\u1EEB tick \u0111\u1EA7u c\u1EE7a \u0111\xF2n (suy lu\u1EADn)"
+  - key: SubWeaponSpawnTick
+    value:
+      has: 1
+      value: 3
+    min:
+      has: 1
+      value: 2
+    max:
+      has: 1
+      value: 5
+    unit: tick
+    source: "\u0111o:routine 09 proj_fit.py: dao video:Map_1 1:33.0 (f2795\u20132805)
+      + 1:47.1 tr\xEAn thang (f3214\u20133220); r\xECu 3:27.9/3:29.3 (kh\u1EDBp parabol
+      g 0.25) \u21D2 v\u0169 kh\xED xu\u1EA5t hi\u1EC7n t\u1EA1i pivot 2.5\u20135
+      tick sau khi khung du\u1ED7i b\u1EAFt \u0111\u1EA7u"
+    note: "tick th\u1EE9 N (0 = tick \u0111\u1EA7u) c\u1EE7a khung du\u1ED7i th\xEC
+      sinh v\u0169 kh\xED ph\u1EE5; tim tr\u1EEB ngay l\xFAc b\u1EA5m (HUD tr\u1EEB
+      tim tr\u01B0\u1EDBc SFX n\xE9m ~0.2 s \u2014 routine 02)"

@@ -20,6 +20,10 @@ public class ArenaTarget : Entity
     public Hurtbox Hurt { get; private set; }
     public Hitbox Touch { get; private set; }
     public int HitsTaken;
+    /// <summary>Số tick đã chạy OnTick (CVGP 09: đo đóng băng Stopwatch).</summary>
+    public int TicksRun;
+    /// <summary>Tick (StageWorld.TickCount) của từng đòn nhận (CVGP 09).</summary>
+    public readonly System.Collections.Generic.List<int> HitTicks = new System.Collections.Generic.List<int>();
 
     public override string DebugState => "HP " + Health.Current + "/" + Health.Max + " (" + Health.Bars(GameSession.MAX_HP) + " vạch)";
 
@@ -34,6 +38,8 @@ public class ArenaTarget : Entity
     {
         Health.Reset(hitsWeak, hitsStrong);
         HitsTaken = 0;
+        TicksRun = 0;
+        HitTicks.Clear();
         Touch.damage = World.DamageToPlayer();
         Touch.active = touchDamage;
         if (Anim != null && animSet != null)
@@ -43,6 +49,7 @@ public class ArenaTarget : Entity
     public override void OnTick()
     {
         Touch.active = touchDamage;
+        TicksRun++;
         base.OnTick();
     }
 
@@ -50,6 +57,7 @@ public class ArenaTarget : Entity
     {
         Health.Apply(hit.strength);
         HitsTaken++;
+        HitTicks.Add(World.TickCount);
         if (Health.IsDead)
             Kill();
         return true;

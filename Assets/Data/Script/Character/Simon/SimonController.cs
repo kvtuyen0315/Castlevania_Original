@@ -12,7 +12,10 @@ using UnityEngine;
 /// tick ⇒ Land (ngồi khựng LandCrouchTicks). Cầu thang: đường StairPath (CVGP 07) + lệch x theo hướng thang; 0.5 px/tick; thả nút
 /// ⇒ đi nốt tới bội StairStepPx. Trúng đòn: mất máu (GameSession.playerHp, ConfigBlock theo stage), knockback cung parabol lùi
 /// ngược hướng mặt (trên thang: không văng — wiki), bất tử nháy InvincibleTicks từ lúc đáp. Hết máu ⇒ Dead; nước/hố ⇒ FallDeath.
-/// Routine 09 thêm roi/vũ khí phụ: state mới + gọi lại AirStep/StairMove/GroundTransitions (không sửa state có sẵn).
+/// Tấn công (CVGP 09): 1 state Attack cho 4 tư thế (đứng/trên không, ngồi, lên thang, xuống thang) — roi 3 cấp (thân use_* +
+/// roi lớp phủ, cấp 3 đổi 4 màu mỗi WhipColorTicks tick) hoặc ném vũ khí phụ (Up+B / phím tắt SubWeapon) cùng nhịp 3 khung
+/// (WhipWindupTicks/RaiseTicks/ExtendTicks — đo video). Hitbox roi = bbox mảnh roi duỗi (ConfigWhip.hit*) đặt theo
+/// overlayOffsets khung duỗi, bật suốt khung duỗi. Vũ khí phụ sinh ở tick SubWeaponSpawnTick của khung duỗi; tim trừ lúc bấm.
 /// </summary>
 public class SimonController : Entity
 {
@@ -21,8 +24,17 @@ public class SimonController : Entity
     [Tooltip("Scene thử: chết xong (DeathTicks) tự hồi sinh ở điểm xuất phát + đầy máu. Màn chơi thật (routine 12) để tắt và nghe Died.")]
     [SerializeField] private bool autoRespawn;
 
+    [Header("CVGP 09 — vũ khí phụ (prefab dựng bằng menu CVGP/Build Weapon Prefabs)")]
+    [SerializeField] private SubWeaponProjectile daggerPrefab;
+    [SerializeField] private SubWeaponProjectile axePrefab;
+    [SerializeField] private SubWeaponProjectile holyWaterPrefab;
+    [SerializeField] private SubWeaponProjectile crossPrefab;
+    [SerializeField] private SubWeaponProjectile stopwatchPrefab;
+
     public StateMachine<SimonController, eSimonState> Fsm { get; private set; }
     public Hurtbox Hurt { get; private set; }
+    /// <summary>Hộp đánh của roi (PlayerAttack) — chỉ bật ở khung duỗi.</summary>
+    public Hitbox WhipHit { get; private set; }
 
     // ---------------------------------------------------------------- số liệu (ConfigSimon — đọc 1 lần ở OnSpawned)
     [NonSerialized] public int walkSpeed;            // fixed/tick
@@ -38,6 +50,14 @@ public class SimonController : Entity
     [NonSerialized] public int blinkTicks, blinkPeriod, deathKneelTicks, deathTicks;
     [NonSerialized] public bool stairKnockOff;
     [NonSerialized] public RectInt standHurt, tuckHurt, crouchHurt;
+    // CVGP 09 — tấn công
+    [NonSerialized] public int atkWindup, atkRaise, atkExtend, atkTotal, whipColorTicks, subSpawnTick;
+    /// <summary>Bbox mảnh roi duỗi theo cấp (index 1..3), tính từ góc trên-trái mảnh (ConfigWhip.hit*).</summary>
+    [NonSerialized] public RectInt[] whipPiece = new RectInt[4];
+    [NonSerialized] public eHitStrength[] whipStrength = new eHitStrength[4];
+    [NonSerialized] public int[] subCost = new int[6];
+    [NonSerialized] public int[] subSpawnHeight = new int[6];
+    [NonSerialized] public int shotCapBase, shotCapDouble, shotCapTriple;
 
     // ---------------------------------------------------------------- trạng thái chuyển động (state đọc/ghi)
     [NonSerialized] public int jumpDir;          // hướng chốt lúc bấm A (−1/0/+1)
@@ -57,18 +77,27 @@ public class SimonController : Entity
     [NonSerialized] public bool kbLanded;
     [NonSerialized] public int autoWalkDir, autoWalkTarget, autoWalkSpeed;
     [NonSerialized] public Vector2Int home;
+    // đòn đang đánh (SimonAttackState đọc/ghi)
+    [NonSerialized] public eAttackPose atkPose;
+    [NonSerialized] public bool atkThrow, atkAir, atkFalling, atkLanded, atkSpawned;
+    [NonSerialized] public eSubWeapon atkSub;
+    [NonSerialized] public int atkLevel, atkColor, atkPhase, atkFallTicks;
 
     /// <summary>Phần vẽ thêm (px NES) của tư thế hiện tại — state đặt mỗi tick; SyncView cộng vào viewOffset.</summary>
     [NonSerialized] public Vector2Int drawOffset;
 
     // anim (cache ở OnBuild — không tra chuỗi mỗi tick)
     public AnimSet.Anim aIdle, aWalk, aTuck, aDuck, aStairsUp, aStairsDown, aHurt, aDeath;
+    /// <summary>Roi [cấp 1..3, màu 0..3 (chỉ cấp 3 dùng 1..3), tư thế eAttackPose]; ném [tư thế].</summary>
+    [NonSerialized] public AnimSet.Anim[,,] aWhip = new AnimSet.Anim[4, 4, 4];
+    [NonSerialized] public AnimSet.Anim[] aThrow = new AnimSet.Anim[4];
+    public static readonly string[] POSE_NAMES = { "stand", "duck", "stairs_up", "stairs_down" };
 
     // ---------------------------------------------------------------- sự kiện / đếm (HUD, luật chơi routine 12, harness)
     /// <summary>Hết máu (sau DeathTicks) hoặc rơi hố/nước (sau DeathTicks). Tham số: loại ô (Empty = hết máu).</summary>
     public event Action<SimonController, eTileCollision> Died;
     public event Action<SimonController> AutoWalkDone;
-    [NonSerialized] public int hitsTaken, deathCount, landCount, jumpCount;
+    [NonSerialized] public int hitsTaken, deathCount, landCount, jumpCount, whipCount, throwCount, throwFailCount;
     [NonSerialized] public eTileCollision lastDeath;
 
     public override string DebugState
@@ -83,6 +112,8 @@ public class SimonController : Entity
                 case eSimonState.StairIdle:
                 case eSimonState.StairUp:
                 case eSimonState.StairDown: return Fsm.CurState + " t" + Fixed.ToPx(stairT) + "/" + stair.Length;
+                case eSimonState.Attack: return (atkThrow ? "Throw " + atkSub : "Whip L" + atkLevel + (atkLevel == 3 ? "c" + (atkColor + 1) : ""))
+                                                + " " + atkPose + " k" + atkPhase + (atkAir ? " air" : "");
                 default: return Fsm.CurState.ToString();
             }
         }
@@ -90,7 +121,8 @@ public class SimonController : Entity
 
     public bool AutoRespawn { get => autoRespawn; set => autoRespawn = value; }
     public bool IsDying => Fsm.Is(eSimonState.Dead) || Fsm.Is(eSimonState.FallDeath);
-    public bool OnStairs => Fsm.Is(eSimonState.StairIdle) || Fsm.Is(eSimonState.StairUp) || Fsm.Is(eSimonState.StairDown);
+    public bool OnStairs => Fsm.Is(eSimonState.StairIdle) || Fsm.Is(eSimonState.StairUp) || Fsm.Is(eSimonState.StairDown)
+                            || (Fsm.Is(eSimonState.Attack) && atkPose >= eAttackPose.StairsUp);
     public int StairTPx => Fixed.ToPx(stairT);
 
     // ---------------------------------------------------------------- input (chỉ đọc NesPad — H7)
@@ -117,7 +149,10 @@ public class SimonController : Entity
         Fsm.Add(eSimonState.Dead, new SimonDeadState());
         Fsm.Add(eSimonState.FallDeath, new SimonFallDeathState());
         Fsm.Add(eSimonState.AutoWalk, new SimonAutoWalkState());
+        Fsm.Add(eSimonState.Attack, new SimonAttackState());
         Hurt = AddHurtbox(eHurtLayer.Player, new RectInt(-8, -30, 16, 30));
+        WhipHit = AddHitbox(eHitLayer.PlayerAttack, new RectInt(0, 0, 0, 0));
+        WhipHit.singleHit = true;
         if (animSet != null)
         {
             aIdle = animSet.Get("idle");
@@ -128,6 +163,14 @@ public class SimonController : Entity
             aStairsDown = animSet.Get("stairs_down");
             aHurt = animSet.Get("hurt");
             aDeath = animSet.Get("death");
+            for (int p = 0; p < 4; p++)
+            {
+                aThrow[p] = animSet.Get("throw_" + POSE_NAMES[p]);
+                aWhip[1, 0, p] = animSet.Get("whip_l1_" + POSE_NAMES[p]);
+                aWhip[2, 0, p] = animSet.Get("whip_l2_" + POSE_NAMES[p]);
+                for (int c = 0; c < 4; c++)
+                    aWhip[3, c, p] = animSet.Get("whip_l3c" + (c + 1) + "_" + POSE_NAMES[p]);
+            }
         }
     }
 
@@ -194,6 +237,37 @@ public class SimonController : Entity
         tuckHurt = new RectInt(-w / 2, tuckDrawY - h, w, hc);
         crouchHurt = new RectInt(-w / 2, crouchDrawY - h, w, hc);
         InvincibleOnHit = blinkTicks;
+        LoadAttackTuning(cfg);
+    }
+
+    /// <summary>Số liệu tấn công (CVGP 09): nhịp 3 khung, màu roi cấp 3, hộp roi theo cấp, giá tim, độ cao sinh, giới hạn trên màn.</summary>
+    private void LoadAttackTuning(GameConfig cfg)
+    {
+        var s = cfg.simon;
+        atkWindup = s.GetInt(eSimonParam.WhipWindupTicks);
+        atkRaise = s.GetInt(eSimonParam.WhipRaiseTicks);
+        atkExtend = s.GetInt(eSimonParam.WhipExtendTicks);
+        atkTotal = atkWindup + atkRaise + atkExtend;
+        whipColorTicks = Mathf.Max(1, s.GetInt(eSimonParam.WhipColorTicks));
+        subSpawnTick = s.GetInt(eSimonParam.SubWeaponSpawnTick);
+        for (int lv = 1; lv <= 3; lv++)
+        {
+            var w = cfg.GetWhip(lv);
+            if (w == null)
+                continue;
+            whipPiece[lv] = new RectInt(w.hitX.Get("Whip.hitX"), w.hitY.Get("Whip.hitY"), w.hitW.Get("Whip.hitW"), w.hitH.Get("Whip.hitH"));
+            whipStrength[lv] = w.strength;
+        }
+        for (int i = 1; i < subCost.Length; i++)
+        {
+            var id = (eSubWeapon)i;
+            var r = cfg.GetSubWeapon(id);
+            subCost[i] = r != null ? r.heartCost : 99;
+            subSpawnHeight[i] = Mathf.RoundToInt(SubWeaponProjectile.Param(cfg, ConfigActorParam.ActorKey(id), "spawnHeightAboveFeet", 24));
+        }
+        shotCapBase = cfg.rules.GetInt(eRuleParam.SubWeaponOnScreenBase, 1);
+        shotCapDouble = cfg.rules.GetInt(eRuleParam.DoubleShotOnScreen, 2);
+        shotCapTriple = cfg.rules.GetInt(eRuleParam.TripleShotOnScreen, 3);
     }
 
     private void ResetMotion()
@@ -208,6 +282,7 @@ public class SimonController : Entity
         drawOffset = Vector2Int.zero;
         movedXTick = movedYTick = -1;
         InvincibleTicks = 0;
+        WhipHit.Deactivate();
         Hurt.active = true;
         Hurt.local = standHurt;
         if (Anim != null)
@@ -556,6 +631,161 @@ public class SimonController : Entity
     {
         int r = a % m;
         return r < 0 ? r + m : r;
+    }
+
+    // ---------------------------------------------------------------- tấn công (CVGP 09)
+
+    public SubWeaponProjectile PrefabOf(eSubWeapon w)
+    {
+        switch (w)
+        {
+            case eSubWeapon.Dagger: return daggerPrefab;
+            case eSubWeapon.Axe: return axePrefab;
+            case eSubWeapon.HolyWater: return holyWaterPrefab;
+            case eSubWeapon.Cross: return crossPrefab;
+            case eSubWeapon.Stopwatch: return stopwatchPrefab;
+        }
+        return null;
+    }
+
+#if UNITY_EDITOR
+    public void SetWeaponPrefabs(SubWeaponProjectile dagger, SubWeaponProjectile axe, SubWeaponProjectile holyWater,
+                                 SubWeaponProjectile cross, SubWeaponProjectile stopwatch)
+    {
+        daggerPrefab = dagger;
+        axePrefab = axe;
+        holyWaterPrefab = holyWater;
+        crossPrefab = cross;
+        stopwatchPrefab = stopwatch;
+    }
+#endif
+
+    /// <summary>Số vũ khí phụ của Simon đang trên màn (tính vào giới hạn). stopwatch: đếm đồng hồ, không thì đếm vật ném.</summary>
+    public int ActiveShots(bool stopwatch)
+    {
+        int n = 0;
+        var list = World.GroupList(eEntityGroup.PlayerWeapon);
+        for (int i = 0; i < list.Count; i++)
+        {
+            var p = list[i] as SubWeaponProjectile;
+            if (p != null && p.Alive && p.CountsAsShot && p.Thrower == this && (p.Kind == eSubWeapon.Stopwatch) == stopwatch)
+                n++;
+        }
+        return n;
+    }
+
+    /// <summary>Giới hạn trên màn: 1 / Double 2 / Triple 3 (ConfigRule); đồng hồ luôn 1 (wiki: multiplier không ảnh hưởng).</summary>
+    public int ShotCap(eSubWeapon w)
+    {
+        if (w == eSubWeapon.Stopwatch)
+            return shotCapBase;
+        int m = GameSession.Current.shotMultiplier;
+        return m >= 3 ? shotCapTriple : m == 2 ? shotCapDouble : shotCapBase;
+    }
+
+    /// <summary>Ném được không: có vũ khí phụ, đủ tim, chưa đủ số trên màn (wiki Gameplay: "chỉ dùng được khi đủ tim").</summary>
+    public bool CanThrow()
+    {
+        var session = GameSession.Current;
+        var w = session.subWeapon;
+        if (w == eSubWeapon.None || PrefabOf(w) == null)
+            return false;
+        if (session.hearts < subCost[(int)w])
+            return false;
+        return ActiveShots(w == eSubWeapon.Stopwatch) < ShotCap(w);
+    }
+
+    /// <summary>
+    /// Gọi từ CheckNextState của Idle/Walk/Crouch/Jump/Fall/StairIdle/StairUp/StairDown: B ⇒ roi; Up+B hoặc phím tắt SubWeapon
+    /// ⇒ ném (không ném được — hết tim / đủ số trên màn / chưa có vũ khí ⇒ vung roi thay: SUY LUẬN, §5). Trả true nếu đã vào Attack.
+    /// </summary>
+    public bool TryAttack()
+    {
+        bool sub = Pressed(eNesButton.SubWeapon) || (Pressed(eNesButton.B) && Held(eNesButton.Up));
+        if (!sub && !Pressed(eNesButton.B))
+            return false;
+        bool doThrow = sub && CanThrow();
+        if (sub && !doThrow)
+            throwFailCount++;
+        StartAttack(doThrow);
+        return true;
+    }
+
+    private void StartAttack(bool doThrow)
+    {
+        bool air = Fsm.Is(eSimonState.Jump) || Fsm.Is(eSimonState.Fall);
+        bool stairs = OnStairs;
+        atkAir = air;
+        atkFalling = Fsm.Is(eSimonState.Fall) || (Fsm.Is(eSimonState.Jump) && jumpTick >= jumpTicks);
+        atkFallTicks = Fsm.Is(eSimonState.Fall) ? fallTicks : 0;
+        atkLanded = false;
+        atkSpawned = false;
+        if (stairs)
+            atkPose = stairMoveDir >= 0 ? eAttackPose.StairsUp : eAttackPose.StairsDown;
+        else if (!air && (Fsm.Is(eSimonState.Crouch) || Held(eNesButton.Down)))
+            atkPose = eAttackPose.Duck;
+        else
+            atkPose = eAttackPose.Stand;
+        // trên đất: bấm hướng cùng lúc ⇒ quay mặt theo hướng (suy luận)
+        if (!air && !stairs && InputX != 0)
+            Facing = InputX;
+        atkThrow = doThrow;
+        atkSub = GameSession.Current.subWeapon;
+        atkLevel = Mathf.Clamp(GameSession.Current.whipLevel, 1, 3);
+        if (doThrow)
+        {
+            var session = GameSession.Current;
+            session.hearts -= subCost[(int)atkSub];
+            session.NotifyChanged();
+            throwCount++;
+        }
+        else
+            whipCount++;
+        Fsm.SetState(eSimonState.Attack);
+    }
+
+    /// <summary>Hộp roi (quay TRÁI quanh pivot) của khung duỗi tư thế hiện tại: overlayOffsets[2] + bbox mảnh + phần vẽ thêm.</summary>
+    public RectInt WhipRect(AnimSet.Anim a)
+    {
+        var piece = whipPiece[atkLevel];
+        var off = a != null && a.overlayOffsets.Length > 2 ? a.overlayOffsets[2] : Vector2Int.zero;
+        int dx = viewOffset.x + drawOffset.x;
+        int x = off.x + piece.x + (Facing < 0 ? dx : -dx);
+        int y = viewOffset.y + drawOffset.y + off.y + piece.y;
+        return new RectInt(x, y, piece.width, piece.height);
+    }
+
+    /// <summary>Sinh vũ khí phụ tại pivot (tâm x), độ cao ConfigActorParam spawnHeightAboveFeet trên chân (+ phần vẽ thêm của tư thế).</summary>
+    public SubWeaponProjectile SpawnSubWeapon()
+    {
+        var prefab = PrefabOf(atkSub);
+        if (prefab == null)
+            return null;
+        int x = X + drawOffset.x;
+        int y = Y + drawOffset.y - subSpawnHeight[(int)atkSub];
+        var p = World.Spawn(prefab, x, y, Facing) as SubWeaponProjectile;
+        if (p != null)
+            p.Thrower = this;
+        if (atkSub == eSubWeapon.Dagger && AudioManager.I != null)
+            AudioManager.I.PlaySfx(eSfx.ThrowDagger);
+        return p;
+    }
+
+    /// <summary>Nhặt Morning Star (routine 11 gọi): roi lên 1 cấp (tối đa 3) + đóng băng cả thế giới WhipPickupFreezeTicks tick.</summary>
+    public void UpgradeWhip()
+    {
+        var session = GameSession.Current;
+        session.whipLevel = Mathf.Min(3, Mathf.Max(1, session.whipLevel) + 1);
+        session.NotifyChanged();
+        var s = World.Config != null ? World.Config.simon : null;
+        if (s != null)
+            World.FreezeWorld(s.GetInt(eSimonParam.WhipPickupFreezeTicks));
+    }
+
+    /// <summary>Nhặt vũ khí phụ (routine 11 gọi): thay vũ khí; khác loại ⇒ mất multiplier (GameSession.SetSubWeapon).</summary>
+    public void PickupSubWeapon(eSubWeapon w)
+    {
+        GameSession.Current.SetSubWeapon(w);
     }
 
     // ---------------------------------------------------------------- vẽ

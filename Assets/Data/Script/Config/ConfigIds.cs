@@ -142,6 +142,9 @@ public enum eSimonParam
     InvincibleBlinkPeriod,
     DeathKneelTicks,
     DeathTicks,
+    // CVGP 09 — tấn công
+    WhipColorTicks,
+    SubWeaponSpawnTick,
 }
 
 /// <summary>Khoá bảng ConfigScore.csv.</summary>

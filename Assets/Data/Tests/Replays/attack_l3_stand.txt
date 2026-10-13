@@ -1,0 +1,3 @@
+# 33 tick, hash df5b1bff
+# CVGP 09 AttackProbe kịch bản 'l3_stand': roi cấp 3 đứng (đổi 4 màu mỗi tick)
+-*2 B*1 -*30

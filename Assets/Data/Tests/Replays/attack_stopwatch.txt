@@ -1,0 +1,3 @@
+# 344 tick, hash 9667dfa5
+# CVGP 09 AttackProbe kịch bản 'stopwatch': đồng hồ (5 tim): bia đóng băng 300 tick; dùng lần 2 khi đang hiệu lực ⇒ vung roi
+-*2 Sub*1 -*40 Sub*1 -*300

@@ -36,8 +36,9 @@ MonoBehaviour:
     gravity:
       has: 0
       value: 0
-    src_motion: "video:planner 4.0 px/tick bay th\u1EB3ng (f2797\u20132804; f3214\u20133219)
-      \u2014 ch\u1EDD \u0111o routine 09"
+    src_motion: "\u0111o:routine 09 Tools/cvgp/proj_fit.py video:Map_1 1:33.0 (f2797\u20132805
+      +8 px m\u1ED7i frame video = 4 px/tick) v\xE0 1:47.1 tr\xEAn thang (f3214\u20133220);
+      bay th\u1EB3ng ngang"
     behaviorShort: "Bay nhanh th\u1EB3ng v\u1EC1 ph\xEDa tr\u01B0\u1EDBc; s\u1EE9c
       \u2248 roi da"
     source: "wiki:Items#Dagger; wiki:Enemies (nh\xF3m y\u1EBFu)"
@@ -47,26 +48,28 @@ MonoBehaviour:
     heartCost: 1
     strength: 2
     pierces:
-      has: 0
-      value: 0
-    src_pierces: "ch\u1EDD \u0111o routine 09 (wiki kh\xF4ng n\xEAu xuy\xEAn m\u1EE5c
-      ti\xEAu)"
+      has: 1
+      value: 1
+    src_pierces: "\u0111o:routine 09 video:Map_1 3:28.9 (f6268\u20136280: r\xECu
+      tr\xFAng Phantom Bat r\u1ED3i v\u1EABn bay ti\u1EBFp xu\u1ED1ng s\xE0n)"
     returns: 0
     freezeTicks:
       has: 0
       value: 0
     src_freezeTicks: 
     speedX:
-      has: 0
-      value: 0
+      has: 1
+      value: 2
     speedY0:
       has: 1
-      value: -5.1
+      value: -5
     gravity:
-      has: 0
-      value: 0
-    src_motion: "video:planner vx 2.0\u20132.2; vy0 \u22125.1; g 0.24\u20130.25 px/tick\xB2
-      (2 qu\u1EF9 \u0111\u1EA1o) \u2014 ch\u1EDD \u0111o routine 09"
+      has: 1
+      value: 0.25
+    src_motion: "\u0111o:routine 09 proj_fit.py kh\u1EDBp 2 qu\u1EF9 \u0111\u1EA1o
+      video:Map_1 f6239\u20136252 v\xE0 f6281\u20136294 (vx 1.99 / 2.16; v\u1EDBi
+      g 0.25: vy0 \u22125.04 / \u22125.00 t\u1EA1i \u0111i\u1EC3m sinh (pivot; Y\u221228));
+      l\xE0m tr\xF2n"
     behaviorShort: "Bay v\xF2ng cung l\xEAn cao r\u1ED3i r\u01A1i xu\u1ED1ng s\xE0n;
       t\u1ED1t v\u1EDBi m\u1EE5c ti\xEAu tr\xEAn cao/bay"
     source: "wiki:Items#Axe; wiki:Enemies (nh\xF3m m\u1EA1nh)"
@@ -76,27 +79,27 @@ MonoBehaviour:
     heartCost: 1
     strength: 1
     pierces:
-      has: 0
-      value: 0
-    src_pierces: "ch\u1EDD \u0111o routine 09 (l\u1EEDa tr\xEAn s\xE0n \u2014 s\u1ED1
-      m\u1EE5c ti\xEAu wiki kh\xF4ng n\xEAu)"
+      has: 1
+      value: 1
+    src_pierces: "suy lu\u1EADn: wiki Items#Holy Water (l\u1EEDa tr\xEAn s\xE0n nh\u1ED1t
+      enemy \u2014 tr\xFAng m\u1ECDi m\u1EE5c ti\xEAu ch\u1EA1m l\u1EEDa)"
     returns: 0
     freezeTicks:
       has: 0
       value: 0
     src_freezeTicks: 
     speedX:
-      has: 0
-      value: 0
+      has: 1
+      value: 1.5
     speedY0:
-      has: 0
-      value: 0
+      has: 1
+      value: -1.3
     gravity:
-      has: 0
-      value: 0
-    src_motion: "video:planner (video boss) vx 1.4\u20131.6; cung th\u1EA5p l\xEAn
-      5\u201310 px; g 0.12\u20130.13; ch\u1EA1m \u0111\u1EA5t c\xE1ch 40\u201344
-      px sau 26\u201328 tick \u2014 ch\u1EDD \u0111o routine 09"
+      has: 1
+      value: 0.125
+    src_motion: "\u0111o:routine 09 proj_fit.py kh\u1EDBp 2 qu\u1EF9 \u0111\u1EA1o
+      l\u1ECD video:Boss 13.0\u201313.9 s (f390\u2013403 / f404\u2013418: vx 1.57
+      / 1.43; g 0.116 / 0.133; v\u1EDBi g 0.125 vy0 \u22121.13 / \u22121.53)"
     behaviorShort: "L\u1ECD v\u1EE1 khi ch\u1EA1m s\xE0n th\xE0nh ng\u1ECDn l\u1EEDa
       nh\u1ECF gi\u1EEF ch\xE2n/\u0111\u1ED1t enemy"
     source: "wiki:Items#Holy Water; wiki:Enemies (nh\xF3m y\u1EBFu)"
@@ -116,16 +119,16 @@ MonoBehaviour:
       value: 0
     src_freezeTicks: 
     speedX:
-      has: 0
-      value: 0
+      has: 1
+      value: 3
     speedY0:
       has: 0
       value: 0
     gravity:
       has: 0
       value: 0
-    src_motion: "kh\xF4ng r\xF5 \u2014 Cross kh\xF4ng c\xF3 trong video (routine
-      09 \u01B0\u1EDBc l\u01B0\u1EE3ng)"
+    src_motion: "quy \u01B0\u1EDBc routine 09 \u2014 Cross kh\xF4ng c\xF3 trong video
+      v\xE0 wiki kh\xF4ng n\xEAu t\u1ED1c \u0111\u1ED9 (ch\u1EDD video)"
     behaviorShort: "Bay ra r\u1ED3i quay v\u1EC1 ng\u01B0\u1EDDi n\xE9m; tr\xFAng
       nhi\u1EC1u m\u1EE5c ti\xEAu c\u1EA3 l\u01B0\u1EE3t \u0111i v\xE0 v\u1EC1"
     source: "wiki:Items#Cross; wiki:Enemies (nh\xF3m m\u1EA1nh)"

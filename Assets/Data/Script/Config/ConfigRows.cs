@@ -126,6 +126,12 @@ public class ConfigWhipRow
     public string src_reachPx;
     public CfgInt upgradeHearts;
     public string src_upgradeHearts;
+    /// <summary>Hộp đánh (CVGP 09): bbox pixel đục của mảnh roi duỗi, tính từ góc trên-trái mảnh (overlayOffsets khung 2).</summary>
+    [CfgSrc("src_hit")] public CfgInt hitX;
+    [CfgSrc("src_hit")] public CfgInt hitY;
+    [CfgSrc("src_hit")] public CfgInt hitW;
+    [CfgSrc("src_hit")] public CfgInt hitH;
+    public string src_hit;
     public int colorCount;
     public string source;
 }

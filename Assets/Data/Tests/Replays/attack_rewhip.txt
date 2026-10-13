@@ -1,0 +1,3 @@
+# 55 tick, hash 4e46f187
+# CVGP 09 AttackProbe kịch bản 'rewhip': bấm B giữa đòn (bỏ qua) + ngay khi hết đòn (đòn 2 bắt đầu)
+-*2 B*1 -*10 B*1 -*10 B*1 -*30

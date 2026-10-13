@@ -1,0 +1,3 @@
+# 102 tick, hash 7144a574
+# CVGP 09 AttackProbe kịch bản 'l3_stairs_down': lên stair0, xuống 1 tick, đứng, roi cấp 3 (tư thế xuống thang)
+U*29 -*20 D*2 -*20 B*1 -*30

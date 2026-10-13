@@ -29,6 +29,8 @@ public class SimonFallState : SimonState
 
     public override void CheckNextState()
     {
+        if (!owner.fallLanded && owner.TryAttack())
+            return;
         if (!owner.fallLanded)
             return;
         if (owner.fallTicks >= owner.landCrouchMinFall)

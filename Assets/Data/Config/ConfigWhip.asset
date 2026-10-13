@@ -27,13 +27,31 @@ MonoBehaviour:
       du\u1ED7i L1 24\xD716) \u2014 ch\u1EDD 05 ch\u1ED1t hitbox"
     reachPx:
       has: 1
-      value: 22
-    src_reachPx: "video:planner tay\u2192\u0111\u1EA7u roi \u2248 22 px (f178\u2013180;
-      \xB12 px) \u2014 ch\u1EDD \u0111o routine 09"
+      value: 24
+    src_reachPx: "\u0111o:routine 09 sheet (m\u1EA3nh du\u1ED7i \u0111\u1EE5c r\u1ED9ng
+      24 px = chu\xF4i\u2192\u0111\u1EA7u roi; \u0111\u1EA7u roi c\xE1ch pivot 36
+      px); video:planner \u2248 22/24\u201325 (\xB12 \u2014 ch\u1EADu l\u1EEDa che
+      \u0111\u1EA7u roi)"
     upgradeHearts:
       has: 0
       value: 0
     src_upgradeHearts: 
+    hitX:
+      has: 1
+      value: 0
+    hitY:
+      has: 1
+      value: 8
+    hitW:
+      has: 1
+      value: 24
+    hitH:
+      has: 1
+      value: 8
+    src_hit: "\u0111o:routine 09 bbox pixel \u0111\u1EE5c m\u1EA3nh roi du\u1ED7i
+      sheet whip_l1_ext (c\u1ED9t 0\u201323 \xB7 h\xE0ng 8\u201315) \u2014 g\xF3c
+      tr\xEAn-tr\xE1i m\u1EA3nh \u0111\u1EB7t theo overlayOffsets khung 2 (routine
+      05)"
     colorCount: 1
     source: "wiki:Items#Morning Star; wiki:Enemies (nh\xF3m y\u1EBFu)"
   - level: 2
@@ -49,15 +67,31 @@ MonoBehaviour:
     src_spriteLenPx: "\u0111o: ki\u1EC3m k\xEA sheet routine 01 (simon_whippart m\u1EA3nh
       du\u1ED7i L2 24\xD716) \u2014 ch\u1EDD 05 ch\u1ED1t hitbox"
     reachPx:
-      has: 0
-      value: 0
-    src_reachPx: "video:planner 24\u201325 px (f270\u2013272) \u2014 ch\u1EDD \u0111o
-      routine 09"
+      has: 1
+      value: 24
+    src_reachPx: "\u0111o:routine 09 sheet (m\u1EA3nh du\u1ED7i \u0111\u1EE5c r\u1ED9ng
+      24 px = chu\xF4i\u2192\u0111\u1EA7u roi; \u0111\u1EA7u roi c\xE1ch pivot 36
+      px); video:planner \u2248 22/24\u201325 (\xB12 \u2014 ch\u1EADu l\u1EEDa che
+      \u0111\u1EA7u roi)"
     upgradeHearts:
       has: 1
       value: 4
     src_upgradeHearts: "wiki:Items#Morning Star (\u0111\u1EE7 4 tim cho l\u1EA7n
       n\xE2ng 1 \u2014 c\u01A1 ch\u1EBF kh\xF4ng gi\u1EA3i th\xEDch; \xA77.1 #5)"
+    hitX:
+      has: 1
+      value: 0
+    hitY:
+      has: 1
+      value: 10
+    hitW:
+      has: 1
+      value: 24
+    hitH:
+      has: 1
+      value: 6
+    src_hit: "\u0111o:routine 09 bbox pixel \u0111\u1EE5c whip_l2_ext (c\u1ED9t 0\u201323
+      \xB7 h\xE0ng 10\u201315)"
     colorCount: 1
     source: "wiki:Items#Morning Star; wiki:Enemies (nh\xF3m m\u1EA1nh)"
   - level: 3
@@ -75,14 +109,29 @@ MonoBehaviour:
       du\u1ED7i L3 40\xD716) \u2014 ch\u1EDD 05 ch\u1ED1t hitbox"
     reachPx:
       has: 1
-      value: 43
-    src_reachPx: "video:planner \u2248 43 px (57 \u0111\xF2n) \u2014 ch\u1EDD \u0111o
-      routine 09"
+      value: 40
+    src_reachPx: "\u0111o:routine 09 sheet (m\u1EA3nh du\u1ED7i \u0111\u1EE5c r\u1ED9ng
+      40 px; \u0111\u1EA7u roi c\xE1ch pivot 52 px); video:planner \u2248 43 (57
+      \u0111\xF2n \xB13) \u2014 H1 pixel theo sheet"
     upgradeHearts:
       has: 1
       value: 8
     src_upgradeHearts: "wiki:Items#Morning Star (\u0111\u1EE7 8 tim cho l\u1EA7n
       n\xE2ng 2)"
+    hitX:
+      has: 1
+      value: 0
+    hitY:
+      has: 1
+      value: 10
+    hitW:
+      has: 1
+      value: 40
+    hitH:
+      has: 1
+      value: 6
+    src_hit: "\u0111o:routine 09 bbox pixel \u0111\u1EE5c whip_l3c1..4_ext (c\u1ED9t
+      0\u201339 \xB7 h\xE0ng 10\u201315; 4 m\xE0u c\xF9ng h\xECnh)"
     colorCount: 4
     source: "wiki:Items#Morning Star; \u0111o: ki\u1EC3m k\xEA sheet routine 01 (L3
       c\xF3 4 b\u1EA3ng m\xE0u)"

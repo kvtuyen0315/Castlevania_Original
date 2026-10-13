@@ -1,0 +1,3 @@
+# 33 tick, hash df5b1bff
+# CVGP 09 AttackProbe kịch bản 'l1_stand': roi cấp 1 đứng quay phải (300,176); bia A ở tầm đầu roi (chạm 1 px), bia B ngay ngoài tầm
+-*2 B*1 -*30

@@ -13,6 +13,8 @@ public class SimonStairIdleState : SimonState
 
     public override void CheckNextState()
     {
+        if (owner.TryAttack())
+            return;
         int dir = owner.StairInput();
         if (dir > 0 && !owner.AtStairTop)
             SetState(eSimonState.StairUp);

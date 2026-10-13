@@ -1,0 +1,3 @@
+# 53 tick, hash 5ae12c5f
+# CVGP 09 AttackProbe kịch bản 'l1_air': nhảy tại chỗ, roi cấp 1 ở tick nhảy 11
+-*2 A*1 -*9 B*1 -*40

@@ -1,0 +1,3 @@
+# 123 tick, hash 0257ded7
+# CVGP 09 AttackProbe kịch bản 'cross': thập tự quay phải; bia ở x +40 (trúng lượt đi + lượt về), bắt lại khi về
+-*2 Sub*1 -*120

@@ -1,0 +1,3 @@
+# 33 tick, hash df5b1bff
+# CVGP 09 AttackProbe kịch bản 'l2_stand': roi cấp 2 đứng
+-*2 B*1 -*30

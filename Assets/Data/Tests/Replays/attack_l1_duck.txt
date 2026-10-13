@@ -1,0 +1,3 @@
+# 37 tick, hash 4503d8f5
+# CVGP 09 AttackProbe kịch bản 'l1_duck': roi cấp 1 ngồi quay trái
+D*2 D+B*1 D*30 -*4

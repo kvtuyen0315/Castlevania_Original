@@ -366,7 +366,7 @@ MonoBehaviour:
     key: spawnHeightAboveFeet
     value:
       has: 1
-      value: 21
+      value: 23
     min:
       has: 0
       value: 0
@@ -374,14 +374,16 @@ MonoBehaviour:
       has: 0
       value: 0
     unit: px
-    source: "video:planner (\u2248 \u0111\u1EC9nh \u0111\u1EA7u + 4\u20135 px) \u2014
-      ch\u1EDD \u0111o routine 09"
-    note: 
+    source: "\u0111o:routine 09 proj_fit.py video:Map_1 f2797 (g\xF3c tr\xEAn sprite
+      dao = Y\u221231 khi Simon Y 112) v\xE0 f3214 tr\xEAn thang (Y 216 \u21D2 Y\u221231)
+      \u21D2 pivot t\xE2m sprite 16\xD716 = Y\u221223; Tools/cvgp/attack_compare.py
+      dy 0"
+    note: "pivot (t\xE2m sprite) dao; x sinh = pivot Simon"
   - actor: SubWeapon.Axe
     key: apexPx
     value:
       has: 1
-      value: 55
+      value: 50
     min:
       has: 0
       value: 0
@@ -389,14 +391,14 @@ MonoBehaviour:
       has: 0
       value: 0
     unit: px
-    source: "video:planner (\u2248 sau ~21 tick) \u2014 ch\u1EDD \u0111o routine
-      09"
-    note: 
+    source: "\u0111o:routine 09 (= vy0\xB2/2g v\u1EDBi vy0 \u22125.0 g 0.25; video:Map_1
+      \u0111\u1EC9nh t\xE2m r\xECu Y\u221280.5 \u2248 28 + 50 + 2)"
+    note: "th\xF4ng tin"
   - actor: SubWeapon.Axe
     key: apexTicks
     value:
       has: 1
-      value: 21
+      value: 20
     min:
       has: 0
       value: 0
@@ -404,23 +406,41 @@ MonoBehaviour:
       has: 0
       value: 0
     unit: tick
-    source: "video:planner (\u2248) \u2014 ch\u1EDD \u0111o routine 09"
-    note: 
+    source: "\u0111o:routine 09 (= |vy0|/g)"
+    note: "th\xF4ng tin"
+  - actor: SubWeapon.Axe
+    key: spawnHeightAboveFeet
+    value:
+      has: 1
+      value: 26
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "\u0111o:routine 09 kh\u1EDBp parabol 2 qu\u1EF9 \u0111\u1EA1o (g c\u1ED1
+      \u0111\u1ECBnh 0.25): t\xE2m bbox r\xECu l\xFAc sinh Y\u221227.5 / Y\u221227.8
+      \u21D2 pivot t\xE2m sprite = Y\u221226 (bbox axe_0 l\u1EC7ch \u22121.5 so v\u1EDBi
+      pivot)"
+    note: "pivot (t\xE2m sprite) r\xECu"
   - actor: SubWeapon.HolyWater
     key: flameHoldTicks
     value:
+      has: 0
+      value: 0
+    min:
+      has: 1
+      value: 138
+    max:
       has: 1
       value: 144
-    min:
-      has: 0
-      value: 0
-    max:
-      has: 0
-      value: 0
     unit: tick
-    source: "video:planner (\u2248 2.4 s l\u1EEDa gi\u1EEF ch\xE2n boss) \u2014 ch\u1EDD
-      \u0111o routine 09"
-    note: 
+    source: "video:planner (\u2248 2.3\u20132.4 s = kho\u1EA3ng gi\u1EEFa 2 l\u1EA7n
+      n\xE9m trong video boss \u2014 KH\xD4NG ph\u1EA3i th\u1EDDi gian ch\xE1y; xem
+      fireTicks) \u2014 ch\u1EDD \u0111o routine 14"
+    note: "boss b\u1ECB l\u1EEDa gi\u1EEF ch\xE2n"
   - actor: Item.MagicCrystal
     key: spawnDelayTicks
     value:
@@ -477,4 +497,156 @@ MonoBehaviour:
       value: 0.26
     unit: "px/tick\xB2"
     source: "video:planner \u2014 ch\u1EDD \u0111o routine 14"
+    note: 
+  - actor: SubWeapon.HolyWater
+    key: spawnHeightAboveFeet
+    value:
+      has: 1
+      value: 23
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "suy lu\u1EADn: = dao (video boss Simon \u0111ang nh\xE1y b\u1EA5t t\u1EED
+      \u2014 kh\xF4ng th\u1EA5y \u0111i\u1EC3m sinh)"
+    note: "t\xE2m l\u1ECD"
+  - actor: SubWeapon.HolyWater
+    key: fireTicks
+    value:
+      has: 1
+      value: 80
+    min:
+      has: 1
+      value: 80
+    max:
+      has: 1
+      value: 94
+    unit: tick
+    source: "\u0111o:routine 09 proj_fit.py video:Boss: l\u1EEDa v\u1EE1 ~f348 t\u1EAFt
+      sau f389; l\u1ECD cu\u1ED1i ch\u1EA1m s\xE0n ~f570 l\u1EEDa t\u1EAFt sau f609
+      (\u2248 40 frame video)"
+    note: "sau \u0111\xF3 l\u1EEDa bi\u1EBFn m\u1EA5t; anim holywater_fire l\u1EB7p"
+  - actor: SubWeapon.HolyWater
+    key: fireRehitTicks
+    value:
+      has: 1
+      value: 8
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "quy \u01B0\u1EDBc routine 09 (l\u1EEDa \u0111\xE1nh l\u1EA1i m\u1ED7i
+      8 tick) \u2014 video boss: thanh ENEMY t\u1EE5t \u0111\u1EC1u khi trong l\u1EEDa;
+      ch\u1EDD \u0111o routine 14"
+    note: "Hitbox.Activate l\u1EA1i \u21D2 m\u1EE5c ti\xEAu tr\xFAng l\u1EA7n n\u1EEFa
+      n\u1EBFu h\u1EBFt b\u1EA5t t\u1EED"
+  - actor: SubWeapon.Cross
+    key: spawnHeightAboveFeet
+    value:
+      has: 1
+      value: 23
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "suy lu\u1EADn: = dao (Cross kh\xF4ng c\xF3 trong video)"
+    note: "t\xE2m th\u1EADp t\u1EF1"
+  - actor: SubWeapon.Cross
+    key: turnDistancePx
+    value:
+      has: 1
+      value: 112
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "quy \u01B0\u1EDBc routine 09 \u2014 wiki Items#Cross ch\u1EC9 n\xF3i
+      bay ra r\u1ED3i quay v\u1EC1; kh\xF4ng c\xF3 video"
+    note: "quay \u0111\u1EA7u khi \u0111i \u0111\u1EE7 xa ho\u1EB7c g\u1EA7n m\xE9p
+      m\xE0n (turnScreenMarginPx)"
+  - actor: SubWeapon.Cross
+    key: turnScreenMarginPx
+    value:
+      has: 1
+      value: 8
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "quy \u01B0\u1EDBc routine 09 (kh\xF4ng c\xF3 video)"
+    note: "t\xE2m c\xE1ch m\xE9p m\xE0n \u2264 N px th\xEC quay \u0111\u1EA7u"
+  - actor: SubWeapon.Dagger
+    key: offscreenMarginPx
+    value:
+      has: 1
+      value: 8
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "quy \u01B0\u1EDBc routine 09 (v\u0169 kh\xED bi\u1EBFn m\u1EA5t khi
+      t\xE2m ra kh\u1ECFi m\xE0n qu\xE1 n\u1EEDa sprite 16 px)"
+    note: 
+  - actor: SubWeapon.Axe
+    key: offscreenMarginPx
+    value:
+      has: 1
+      value: 8
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "quy \u01B0\u1EDBc routine 09 (v\u0169 kh\xED bi\u1EBFn m\u1EA5t khi
+      t\xE2m ra kh\u1ECFi m\xE0n qu\xE1 n\u1EEDa sprite 16 px)"
+    note: 
+  - actor: SubWeapon.HolyWater
+    key: offscreenMarginPx
+    value:
+      has: 1
+      value: 8
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "quy \u01B0\u1EDBc routine 09 (v\u0169 kh\xED bi\u1EBFn m\u1EA5t khi
+      t\xE2m ra kh\u1ECFi m\xE0n qu\xE1 n\u1EEDa sprite 16 px)"
+    note: 
+  - actor: SubWeapon.Cross
+    key: offscreenMarginPx
+    value:
+      has: 1
+      value: 8
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "quy \u01B0\u1EDBc routine 09 (v\u0169 kh\xED bi\u1EBFn m\u1EA5t khi
+      t\xE2m ra kh\u1ECFi m\xE0n qu\xE1 n\u1EEDa sprite 16 px)"
     note: 

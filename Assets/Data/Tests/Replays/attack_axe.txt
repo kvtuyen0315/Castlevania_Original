@@ -1,0 +1,3 @@
+# 73 tick, hash 504b1dff
+# CVGP 09 AttackProbe kịch bản 'axe': rìu quay phải
+-*2 Sub*1 -*70

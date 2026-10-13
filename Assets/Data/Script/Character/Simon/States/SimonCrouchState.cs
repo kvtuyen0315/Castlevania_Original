@@ -25,6 +25,8 @@ public class SimonCrouchState : SimonState
             owner.StartFall(0);
             return;
         }
+        if (owner.TryAttack())
+            return;
         if (owner.Pressed(eNesButton.A))
         {
             owner.StartJump(owner.InputX);

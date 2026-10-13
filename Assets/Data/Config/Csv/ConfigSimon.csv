@@ -20,12 +20,12 @@ KnockbackDx,12,11,13,px,đo:routine 08 khớp mẫu video:Boss_Map_1 11.9–12.6
 KnockbackDy,15,14,15,px,đo:routine 08 video:Boss_Map_1 f363–380 (h 8/13/14/13/8; khung hurt_0),1 mẫu
 KnockbackAirTicks,35,32,38,tick,đo:routine 08 video:Boss_Map_1 (trúng f362.5 → biến mất nháy từ f381 ≈ 36 tick),= 2·|KnockbackVy0|/KnockbackGravity
 InvincibleTicks,94,92,96,tick,đo:routine 08 video:Boss_Map_1 f381–427 (47 frame không thấy Simon sau khi đáp),đếm từ lúc ĐÁP sau knockback (trong lúc bay hiện hurt_0 không nháy)
-WhipTotalTicks,,18,22,tick,video:planner (trung vị ~20) — chờ đo routine 09,
-WhipWindupTicks,,4,6,tick,video:planner (khung 1 vung ra sau) — chờ đo routine 09,
-WhipRaiseTicks,,4,8,tick,video:planner (khung 2 giơ cao; điển hình 6) — chờ đo routine 09,
-WhipExtendTicks,,6,10,tick,video:planner (khung 3 duỗi thẳng) — chờ đo routine 09,
-WhipHeightAboveFeet,16,,,px,video:planner (≈ đỉnh đầu + 9–10 px) — chờ đo routine 09,
-WhipPickupFreezeTicks,,46,48,tick,video:planner (0.73–0.80 s; f194–217 và f293–315) — chờ đo routine 09,camera + Simon đứng; TIME vẫn chạy
+WhipTotalTicks,22,18,26,tick,đo:routine 09 Tools/cvgp/whip_timing.py 52 cú roi video:Map_1 (TB 21.6; trung vị 22; khung video mới ±1 tick),= WhipWindupTicks + WhipRaiseTicks + WhipExtendTicks; ném vũ khí phụ dùng cùng nhịp (video 1:32.9 và 3:27.9)
+WhipWindupTicks,6,2,10,tick,đo:routine 09 whip_timing.py 52 cú roi video:Map_1 (khung use_*_0: TB 5.85; mốt 6),khung 0 — roi treo sau lưng
+WhipRaiseTicks,7,2,14,tick,đo:routine 09 whip_timing.py 52 cú roi video:Map_1 (khung use_*_1: TB 7.0; trung vị 6),khung 1 — roi vắt qua vai
+WhipExtendTicks,9,4,12,tick,đo:routine 09 whip_timing.py 52 cú roi video:Map_1 (khung use_*_2: TB 8.73; trung vị 9),khung 2 — roi duỗi; hitbox bật suốt khung này (video 0:03.27 chậu lửa vỡ ngay frame duỗi đầu tiên f98)
+WhipHeightAboveFeet,20,17,25,px,đo:routine 09 sheet (hàng đục mảnh duỗi: L1 Y−25..−18; L2/L3 Y−22..−17 khi đứng),thông tin — code dùng ConfigWhip.hit* + overlayOffsets
+WhipPickupFreezeTicks,46,44,48,tick,đo:routine 09 khớp mẫu video:Map_1 f195–217 và f293–315 (23 frame video Simon nháy màu — không khớp sprite gốc),routine 11 dùng khi nhặt Morning Star; camera + Simon đứng; TIME vẫn chạy
 HurtboxWidth,16,,,px,đo:routine 07 bbox pixel đục sprite idle_0 (cột 0–15),XẤP XỈ = khung sprite; routine 08: video boss f362 Simon trúng khi chạm thân dơi — hộp ROM vẫn không đo được
 HurtboxHeight,30,,,px,đo:routine 07 bbox pixel đục sprite idle_0 (hàng 1–30 của khung 32),XẤP XỈ như HurtboxWidth; chân ở hàng Y−1
 CrouchHurtboxHeight,23,,,px,đo:routine 07 bbox pixel đục sprite jumpduck_0 (hàng 1–23); đo:routine 08 khung ngồi vẽ lệch +8 (video:Map_1 1:02.8),XẤP XỈ như HurtboxWidth; dùng cả cho tư thế co chân khi nhảy (vẽ +4)
@@ -66,3 +66,5 @@ KnockbackDxTicks,12,,,tick,đo:routine 08 video:Boss_Map_1 (x +12 rồi đứng 
 InvincibleBlinkPeriod,2,,,tick,suy luận: video:Boss_Map_1 f381–427 KHÔNG thấy Simon ở cả 47 frame ⇒ nháy 1 tick hiện / 1 tick ẩn (bản quay 30 fps bắt trúng pha ẩn),
 DeathKneelTicks,16,,,tick,quy ước — video/wiki không có cảnh chết (routine 12 xem lại),khung death_0 (quỳ) trước death_1 (nằm)
 DeathTicks,124,,,tick,suy luận: độ dài nhạc Art_Source/music/15. Death.mp3 = 2.07 s; video không có cảnh chết,từ lúc ngã (hoặc rơi hố) tới khi báo sự kiện Died (routine 12 hồi sinh)
+WhipColorTicks,1,,,tick,đo:routine 09 Tools/cvgp/whip_colors.py video:Map_1 (286 frame duỗi roi cấp 3: 2 frame mới cách 2 tick mà khác màu thì lệch chỉ số 2 ở 37/53 lần ⇒ đổi màu MỖI tick qua 4 bảng màu),thứ tự c1→c2→c3→c4 theo sheet là suy luận (video 30 fps không phân biệt chiều); chu kỳ đếm từ tick đầu của đòn (suy luận)
+SubWeaponSpawnTick,3,2,5,tick,đo:routine 09 proj_fit.py: dao video:Map_1 1:33.0 (f2795–2805) + 1:47.1 trên thang (f3214–3220); rìu 3:27.9/3:29.3 (khớp parabol g 0.25) ⇒ vũ khí xuất hiện tại pivot 2.5–5 tick sau khi khung duỗi bắt đầu,tick thứ N (0 = tick đầu) của khung duỗi thì sinh vũ khí phụ; tim trừ ngay lúc bấm (HUD trừ tim trước SFX ném ~0.2 s — routine 02)

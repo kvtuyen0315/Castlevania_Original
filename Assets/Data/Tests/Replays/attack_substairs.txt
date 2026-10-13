@@ -1,0 +1,3 @@
+# 33 tick, hash aad73d9f
+# CVGP 09 AttackProbe kịch bản 'substairs': phím tắt ở chân thang ⇒ ném, KHÔNG leo thang
+-*2 Sub*1 -*30

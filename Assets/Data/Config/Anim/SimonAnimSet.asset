@@ -126,61 +126,77 @@ MonoBehaviour:
     - {fileID: 21300000, guid: 687706a567e89de45be825be20e35962, type: 3}
     - {fileID: 21300000, guid: 603a38a63e84dac4fa59ca904790c21f, type: 3}
     - {fileID: 21300000, guid: 8315c33b7f256114aabd853b02ba38f1, type: 3}
-    durations: 080000000800000008000000
+    durations: 060000000700000009000000
     loop: 0
-    measured: 0
+    measured: 1
     overlays: []
     overlayOffsets: []
     overlayOnTop: 
     note: "n\xE9m v\u0169 kh\xED ph\u1EE5: 3 th\xE2n nh\u01B0 vung roi, kh\xF4ng
-      l\u1EDBp roi; nh\u1EA3y d\xF9ng stand"
+      l\u1EDBp roi; nh\u1EA3y d\xF9ng stand \u2014 routine 09: nh\u1ECBp 6/7/9 tick
+      (ConfigSimon.WhipWindup/Raise/ExtendTicks \u2014 52 c\xFA roi video Map_1,
+      Tools/cvgp/whip_timing.py); SimonAttackState \u0111\u1EB7t khung theo Config
+      m\u1ED7i tick (c\u1EA5p 3 \u0111\u1ED5i m\xE0u m\u1ED7i tick) (dao 1:32.9,
+      r\xECu 3:27.9 c\xF9ng nh\u1ECBp)"
   - name: throw_duck
     frames:
     - {fileID: 21300000, guid: 30bb37ddcb08e6d488f884681d996e7f, type: 3}
     - {fileID: 21300000, guid: cef5f6265caa16b44b437b79bfa7c88f, type: 3}
     - {fileID: 21300000, guid: 1ad09a2bd65a57c4ab4d505ea8f98f6d, type: 3}
-    durations: 080000000800000008000000
+    durations: 060000000700000009000000
     loop: 0
-    measured: 0
+    measured: 1
     overlays: []
     overlayOffsets: []
     overlayOnTop: 
     note: "n\xE9m v\u0169 kh\xED ph\u1EE5: 3 th\xE2n nh\u01B0 vung roi, kh\xF4ng
-      l\u1EDBp roi"
+      l\u1EDBp roi; nh\u1EA3y d\xF9ng stand \u2014 routine 09: nh\u1ECBp 6/7/9 tick
+      (ConfigSimon.WhipWindup/Raise/ExtendTicks \u2014 52 c\xFA roi video Map_1,
+      Tools/cvgp/whip_timing.py); SimonAttackState \u0111\u1EB7t khung theo Config
+      m\u1ED7i tick (c\u1EA5p 3 \u0111\u1ED5i m\xE0u m\u1ED7i tick) (dao 1:32.9,
+      r\xECu 3:27.9 c\xF9ng nh\u1ECBp)"
   - name: throw_stairs_up
     frames:
     - {fileID: 21300000, guid: 92fa03b1a4e4efc4fa7c33e59dacb33f, type: 3}
     - {fileID: 21300000, guid: cd4eca613ac39224884232a5ba1b866c, type: 3}
     - {fileID: 21300000, guid: 29c63c5cd717b754fac41f94ef02cffb, type: 3}
-    durations: 080000000800000008000000
+    durations: 060000000700000009000000
     loop: 0
-    measured: 0
+    measured: 1
     overlays: []
     overlayOffsets: []
     overlayOnTop: 
     note: "n\xE9m v\u0169 kh\xED ph\u1EE5: 3 th\xE2n nh\u01B0 vung roi, kh\xF4ng
-      l\u1EDBp roi"
+      l\u1EDBp roi; nh\u1EA3y d\xF9ng stand \u2014 routine 09: nh\u1ECBp 6/7/9 tick
+      (ConfigSimon.WhipWindup/Raise/ExtendTicks \u2014 52 c\xFA roi video Map_1,
+      Tools/cvgp/whip_timing.py); SimonAttackState \u0111\u1EB7t khung theo Config
+      m\u1ED7i tick (c\u1EA5p 3 \u0111\u1ED5i m\xE0u m\u1ED7i tick) (dao 1:32.9,
+      r\xECu 3:27.9 c\xF9ng nh\u1ECBp)"
   - name: throw_stairs_down
     frames:
     - {fileID: 21300000, guid: bc1504d0328087a46829b934800d2331, type: 3}
     - {fileID: 21300000, guid: 43e6cbb344ce0e846884a2d175cbf2e1, type: 3}
     - {fileID: 21300000, guid: b257da5440faad84bb0dadb8ab74c58b, type: 3}
-    durations: 080000000800000008000000
+    durations: 060000000700000009000000
     loop: 0
-    measured: 0
+    measured: 1
     overlays: []
     overlayOffsets: []
     overlayOnTop: 
     note: "n\xE9m v\u0169 kh\xED ph\u1EE5: 3 th\xE2n nh\u01B0 vung roi, kh\xF4ng
-      l\u1EDBp roi"
+      l\u1EDBp roi; nh\u1EA3y d\xF9ng stand \u2014 routine 09: nh\u1ECBp 6/7/9 tick
+      (ConfigSimon.WhipWindup/Raise/ExtendTicks \u2014 52 c\xFA roi video Map_1,
+      Tools/cvgp/whip_timing.py); SimonAttackState \u0111\u1EB7t khung theo Config
+      m\u1ED7i tick (c\u1EA5p 3 \u0111\u1ED5i m\xE0u m\u1ED7i tick) (dao 1:32.9,
+      r\xECu 3:27.9 c\xF9ng nh\u1ECBp)"
   - name: whip_l1_stand
     frames:
     - {fileID: 21300000, guid: 687706a567e89de45be825be20e35962, type: 3}
     - {fileID: 21300000, guid: 603a38a63e84dac4fa59ca904790c21f, type: 3}
     - {fileID: 21300000, guid: 8315c33b7f256114aabd853b02ba38f1, type: 3}
-    durations: 080000000800000008000000
+    durations: 060000000700000009000000
     loop: 0
-    measured: 0
+    measured: 1
     overlays:
     - {fileID: 21300000, guid: 4b2c982db70ed314080ad525e0ae69a0, type: 3}
     - {fileID: 21300000, guid: 61976b0e0e85243489c3c2eab14b5723, type: 3}
@@ -194,15 +210,18 @@ MonoBehaviour:
       m\u1EA3nh roi \u2212 pivot th\xE2n (px NES, y xu\u1ED1ng, quay TR\xC1I). Khung
       gh\xE9p s\u1EB5n _3 tr\xEAn sheet = khung 2 v\u1EDBi roi v\u1EBD \u0110\xC8
       th\xE2n (whipOnTop) \u2014 routine 09 ch\u1ECDn theo video; nh\u1EA3y d\xF9ng
-      stand"
+      stand | routine 09: nh\u1ECBp 6/7/9 tick (ConfigSimon.WhipWindup/Raise/ExtendTicks
+      \u2014 52 c\xFA roi video Map_1, Tools/cvgp/whip_timing.py); SimonAttackState
+      \u0111\u1EB7t khung theo Config m\u1ED7i tick (c\u1EA5p 3 \u0111\u1ED5i m\xE0u
+      m\u1ED7i tick)"
   - name: whip_l1_duck
     frames:
     - {fileID: 21300000, guid: 30bb37ddcb08e6d488f884681d996e7f, type: 3}
     - {fileID: 21300000, guid: cef5f6265caa16b44b437b79bfa7c88f, type: 3}
     - {fileID: 21300000, guid: 1ad09a2bd65a57c4ab4d505ea8f98f6d, type: 3}
-    durations: 080000000800000008000000
+    durations: 060000000700000009000000
     loop: 0
-    measured: 0
+    measured: 1
     overlays:
     - {fileID: 21300000, guid: 4b2c982db70ed314080ad525e0ae69a0, type: 3}
     - {fileID: 21300000, guid: 61976b0e0e85243489c3c2eab14b5723, type: 3}
@@ -215,15 +234,18 @@ MonoBehaviour:
     note: "th\xE2n + roi t\xE1ch l\u1EDBp; overlayOffsets = g\xF3c tr\xEAn-tr\xE1i
       m\u1EA3nh roi \u2212 pivot th\xE2n (px NES, y xu\u1ED1ng, quay TR\xC1I). Khung
       gh\xE9p s\u1EB5n _3 tr\xEAn sheet = khung 2 v\u1EDBi roi v\u1EBD \u0110\xC8
-      th\xE2n (whipOnTop) \u2014 routine 09 ch\u1ECDn theo video"
+      th\xE2n (whipOnTop) \u2014 routine 09 ch\u1ECDn theo video | routine 09: nh\u1ECBp
+      6/7/9 tick (ConfigSimon.WhipWindup/Raise/ExtendTicks \u2014 52 c\xFA roi video
+      Map_1, Tools/cvgp/whip_timing.py); SimonAttackState \u0111\u1EB7t khung theo
+      Config m\u1ED7i tick (c\u1EA5p 3 \u0111\u1ED5i m\xE0u m\u1ED7i tick)"
   - name: whip_l1_stairs_up
     frames:
     - {fileID: 21300000, guid: 92fa03b1a4e4efc4fa7c33e59dacb33f, type: 3}
     - {fileID: 21300000, guid: cd4eca613ac39224884232a5ba1b866c, type: 3}
     - {fileID: 21300000, guid: 29c63c5cd717b754fac41f94ef02cffb, type: 3}
-    durations: 080000000800000008000000
+    durations: 060000000700000009000000
     loop: 0
-    measured: 0
+    measured: 1
     overlays:
     - {fileID: 21300000, guid: 4b2c982db70ed314080ad525e0ae69a0, type: 3}
     - {fileID: 21300000, guid: 61976b0e0e85243489c3c2eab14b5723, type: 3}
@@ -236,15 +258,18 @@ MonoBehaviour:
     note: "th\xE2n + roi t\xE1ch l\u1EDBp; overlayOffsets = g\xF3c tr\xEAn-tr\xE1i
       m\u1EA3nh roi \u2212 pivot th\xE2n (px NES, y xu\u1ED1ng, quay TR\xC1I). Khung
       gh\xE9p s\u1EB5n _3 tr\xEAn sheet = khung 2 v\u1EDBi roi v\u1EBD \u0110\xC8
-      th\xE2n (whipOnTop) \u2014 routine 09 ch\u1ECDn theo video"
+      th\xE2n (whipOnTop) \u2014 routine 09 ch\u1ECDn theo video | routine 09: nh\u1ECBp
+      6/7/9 tick (ConfigSimon.WhipWindup/Raise/ExtendTicks \u2014 52 c\xFA roi video
+      Map_1, Tools/cvgp/whip_timing.py); SimonAttackState \u0111\u1EB7t khung theo
+      Config m\u1ED7i tick (c\u1EA5p 3 \u0111\u1ED5i m\xE0u m\u1ED7i tick)"
   - name: whip_l1_stairs_down
     frames:
     - {fileID: 21300000, guid: bc1504d0328087a46829b934800d2331, type: 3}
     - {fileID: 21300000, guid: 43e6cbb344ce0e846884a2d175cbf2e1, type: 3}
     - {fileID: 21300000, guid: b257da5440faad84bb0dadb8ab74c58b, type: 3}
-    durations: 080000000800000008000000
+    durations: 060000000700000009000000
     loop: 0
-    measured: 0
+    measured: 1
     overlays:
     - {fileID: 21300000, guid: 4b2c982db70ed314080ad525e0ae69a0, type: 3}
     - {fileID: 21300000, guid: 61976b0e0e85243489c3c2eab14b5723, type: 3}
@@ -257,15 +282,18 @@ MonoBehaviour:
     note: "th\xE2n + roi t\xE1ch l\u1EDBp; overlayOffsets = g\xF3c tr\xEAn-tr\xE1i
       m\u1EA3nh roi \u2212 pivot th\xE2n (px NES, y xu\u1ED1ng, quay TR\xC1I). Khung
       gh\xE9p s\u1EB5n _3 tr\xEAn sheet = khung 2 v\u1EDBi roi v\u1EBD \u0110\xC8
-      th\xE2n (whipOnTop) \u2014 routine 09 ch\u1ECDn theo video"
+      th\xE2n (whipOnTop) \u2014 routine 09 ch\u1ECDn theo video | routine 09: nh\u1ECBp
+      6/7/9 tick (ConfigSimon.WhipWindup/Raise/ExtendTicks \u2014 52 c\xFA roi video
+      Map_1, Tools/cvgp/whip_timing.py); SimonAttackState \u0111\u1EB7t khung theo
+      Config m\u1ED7i tick (c\u1EA5p 3 \u0111\u1ED5i m\xE0u m\u1ED7i tick)"
   - name: whip_l2_stand
     frames:
     - {fileID: 21300000, guid: 687706a567e89de45be825be20e35962, type: 3}
     - {fileID: 21300000, guid: 603a38a63e84dac4fa59ca904790c21f, type: 3}
     - {fileID: 21300000, guid: 8315c33b7f256114aabd853b02ba38f1, type: 3}
-    durations: 080000000800000008000000
+    durations: 060000000700000009000000
     loop: 0
-    measured: 0
+    measured: 1
     overlays:
     - {fileID: 21300000, guid: a3a8c51d538e3ec40bc75a124fedfe81, type: 3}
     - {fileID: 21300000, guid: 7b9e567969da7af4c932eb7483a92a2d, type: 3}
@@ -279,15 +307,18 @@ MonoBehaviour:
       m\u1EA3nh roi \u2212 pivot th\xE2n (px NES, y xu\u1ED1ng, quay TR\xC1I). Khung
       gh\xE9p s\u1EB5n _3 tr\xEAn sheet = khung 2 v\u1EDBi roi v\u1EBD \u0110\xC8
       th\xE2n (whipOnTop) \u2014 routine 09 ch\u1ECDn theo video; nh\u1EA3y d\xF9ng
-      stand"
+      stand | routine 09: nh\u1ECBp 6/7/9 tick (ConfigSimon.WhipWindup/Raise/ExtendTicks
+      \u2014 52 c\xFA roi video Map_1, Tools/cvgp/whip_timing.py); SimonAttackState
+      \u0111\u1EB7t khung theo Config m\u1ED7i tick (c\u1EA5p 3 \u0111\u1ED5i m\xE0u
+      m\u1ED7i tick)"
   - name: whip_l2_duck
     frames:
     - {fileID: 21300000, guid: 30bb37ddcb08e6d488f884681d996e7f, type: 3}
     - {fileID: 21300000, guid: cef5f6265caa16b44b437b79bfa7c88f, type: 3}
     - {fileID: 21300000, guid: 1ad09a2bd65a57c4ab4d505ea8f98f6d, type: 3}
-    durations: 080000000800000008000000
+    durations: 060000000700000009000000
     loop: 0
-    measured: 0
+    measured: 1
     overlays:
     - {fileID: 21300000, guid: a3a8c51d538e3ec40bc75a124fedfe81, type: 3}
     - {fileID: 21300000, guid: 7b9e567969da7af4c932eb7483a92a2d, type: 3}
@@ -300,15 +331,18 @@ MonoBehaviour:
     note: "th\xE2n + roi t\xE1ch l\u1EDBp; overlayOffsets = g\xF3c tr\xEAn-tr\xE1i
       m\u1EA3nh roi \u2212 pivot th\xE2n (px NES, y xu\u1ED1ng, quay TR\xC1I). Khung
       gh\xE9p s\u1EB5n _3 tr\xEAn sheet = khung 2 v\u1EDBi roi v\u1EBD \u0110\xC8
-      th\xE2n (whipOnTop) \u2014 routine 09 ch\u1ECDn theo video"
+      th\xE2n (whipOnTop) \u2014 routine 09 ch\u1ECDn theo video | routine 09: nh\u1ECBp
+      6/7/9 tick (ConfigSimon.WhipWindup/Raise/ExtendTicks \u2014 52 c\xFA roi video
+      Map_1, Tools/cvgp/whip_timing.py); SimonAttackState \u0111\u1EB7t khung theo
+      Config m\u1ED7i tick (c\u1EA5p 3 \u0111\u1ED5i m\xE0u m\u1ED7i tick)"
   - name: whip_l2_stairs_up
     frames:
     - {fileID: 21300000, guid: 92fa03b1a4e4efc4fa7c33e59dacb33f, type: 3}
     - {fileID: 21300000, guid: cd4eca613ac39224884232a5ba1b866c, type: 3}
     - {fileID: 21300000, guid: 29c63c5cd717b754fac41f94ef02cffb, type: 3}
-    durations: 080000000800000008000000
+    durations: 060000000700000009000000
     loop: 0
-    measured: 0
+    measured: 1
     overlays:
     - {fileID: 21300000, guid: a3a8c51d538e3ec40bc75a124fedfe81, type: 3}
     - {fileID: 21300000, guid: 7b9e567969da7af4c932eb7483a92a2d, type: 3}
@@ -321,15 +355,18 @@ MonoBehaviour:
     note: "th\xE2n + roi t\xE1ch l\u1EDBp; overlayOffsets = g\xF3c tr\xEAn-tr\xE1i
       m\u1EA3nh roi \u2212 pivot th\xE2n (px NES, y xu\u1ED1ng, quay TR\xC1I). Khung
       gh\xE9p s\u1EB5n _3 tr\xEAn sheet = khung 2 v\u1EDBi roi v\u1EBD \u0110\xC8
-      th\xE2n (whipOnTop) \u2014 routine 09 ch\u1ECDn theo video"
+      th\xE2n (whipOnTop) \u2014 routine 09 ch\u1ECDn theo video | routine 09: nh\u1ECBp
+      6/7/9 tick (ConfigSimon.WhipWindup/Raise/ExtendTicks \u2014 52 c\xFA roi video
+      Map_1, Tools/cvgp/whip_timing.py); SimonAttackState \u0111\u1EB7t khung theo
+      Config m\u1ED7i tick (c\u1EA5p 3 \u0111\u1ED5i m\xE0u m\u1ED7i tick)"
   - name: whip_l2_stairs_down
     frames:
     - {fileID: 21300000, guid: bc1504d0328087a46829b934800d2331, type: 3}
     - {fileID: 21300000, guid: 43e6cbb344ce0e846884a2d175cbf2e1, type: 3}
     - {fileID: 21300000, guid: b257da5440faad84bb0dadb8ab74c58b, type: 3}
-    durations: 080000000800000008000000
+    durations: 060000000700000009000000
     loop: 0
-    measured: 0
+    measured: 1
     overlays:
     - {fileID: 21300000, guid: a3a8c51d538e3ec40bc75a124fedfe81, type: 3}
     - {fileID: 21300000, guid: 7b9e567969da7af4c932eb7483a92a2d, type: 3}
@@ -342,15 +379,18 @@ MonoBehaviour:
     note: "th\xE2n + roi t\xE1ch l\u1EDBp; overlayOffsets = g\xF3c tr\xEAn-tr\xE1i
       m\u1EA3nh roi \u2212 pivot th\xE2n (px NES, y xu\u1ED1ng, quay TR\xC1I). Khung
       gh\xE9p s\u1EB5n _3 tr\xEAn sheet = khung 2 v\u1EDBi roi v\u1EBD \u0110\xC8
-      th\xE2n (whipOnTop) \u2014 routine 09 ch\u1ECDn theo video"
+      th\xE2n (whipOnTop) \u2014 routine 09 ch\u1ECDn theo video | routine 09: nh\u1ECBp
+      6/7/9 tick (ConfigSimon.WhipWindup/Raise/ExtendTicks \u2014 52 c\xFA roi video
+      Map_1, Tools/cvgp/whip_timing.py); SimonAttackState \u0111\u1EB7t khung theo
+      Config m\u1ED7i tick (c\u1EA5p 3 \u0111\u1ED5i m\xE0u m\u1ED7i tick)"
   - name: whip_l3c1_stand
     frames:
     - {fileID: 21300000, guid: 687706a567e89de45be825be20e35962, type: 3}
     - {fileID: 21300000, guid: 603a38a63e84dac4fa59ca904790c21f, type: 3}
     - {fileID: 21300000, guid: 8315c33b7f256114aabd853b02ba38f1, type: 3}
-    durations: 080000000800000008000000
+    durations: 060000000700000009000000
     loop: 0
-    measured: 0
+    measured: 1
     overlays:
     - {fileID: 21300000, guid: ecbd3c2389324f04e9b1214a9be38559, type: 3}
     - {fileID: 21300000, guid: 1c4f302c155823344b011a7ede5a282a, type: 3}
@@ -364,15 +404,18 @@ MonoBehaviour:
       m\u1EA3nh roi \u2212 pivot th\xE2n (px NES, y xu\u1ED1ng, quay TR\xC1I). Khung
       gh\xE9p s\u1EB5n _3 tr\xEAn sheet = khung 2 v\u1EDBi roi v\u1EBD \u0110\xC8
       th\xE2n (whipOnTop) \u2014 routine 09 ch\u1ECDn theo video; nh\u1EA3y d\xF9ng
-      stand"
+      stand | routine 09: nh\u1ECBp 6/7/9 tick (ConfigSimon.WhipWindup/Raise/ExtendTicks
+      \u2014 52 c\xFA roi video Map_1, Tools/cvgp/whip_timing.py); SimonAttackState
+      \u0111\u1EB7t khung theo Config m\u1ED7i tick (c\u1EA5p 3 \u0111\u1ED5i m\xE0u
+      m\u1ED7i tick)"
   - name: whip_l3c1_duck
     frames:
     - {fileID: 21300000, guid: 30bb37ddcb08e6d488f884681d996e7f, type: 3}
     - {fileID: 21300000, guid: cef5f6265caa16b44b437b79bfa7c88f, type: 3}
     - {fileID: 21300000, guid: 1ad09a2bd65a57c4ab4d505ea8f98f6d, type: 3}
-    durations: 080000000800000008000000
+    durations: 060000000700000009000000
     loop: 0
-    measured: 0
+    measured: 1
     overlays:
     - {fileID: 21300000, guid: ecbd3c2389324f04e9b1214a9be38559, type: 3}
     - {fileID: 21300000, guid: 1c4f302c155823344b011a7ede5a282a, type: 3}
@@ -385,15 +428,18 @@ MonoBehaviour:
     note: "th\xE2n + roi t\xE1ch l\u1EDBp; overlayOffsets = g\xF3c tr\xEAn-tr\xE1i
       m\u1EA3nh roi \u2212 pivot th\xE2n (px NES, y xu\u1ED1ng, quay TR\xC1I). Khung
       gh\xE9p s\u1EB5n _3 tr\xEAn sheet = khung 2 v\u1EDBi roi v\u1EBD \u0110\xC8
-      th\xE2n (whipOnTop) \u2014 routine 09 ch\u1ECDn theo video"
+      th\xE2n (whipOnTop) \u2014 routine 09 ch\u1ECDn theo video | routine 09: nh\u1ECBp
+      6/7/9 tick (ConfigSimon.WhipWindup/Raise/ExtendTicks \u2014 52 c\xFA roi video
+      Map_1, Tools/cvgp/whip_timing.py); SimonAttackState \u0111\u1EB7t khung theo
+      Config m\u1ED7i tick (c\u1EA5p 3 \u0111\u1ED5i m\xE0u m\u1ED7i tick)"
   - name: whip_l3c1_stairs_up
     frames:
     - {fileID: 21300000, guid: 92fa03b1a4e4efc4fa7c33e59dacb33f, type: 3}
     - {fileID: 21300000, guid: cd4eca613ac39224884232a5ba1b866c, type: 3}
     - {fileID: 21300000, guid: 29c63c5cd717b754fac41f94ef02cffb, type: 3}
-    durations: 080000000800000008000000
+    durations: 060000000700000009000000
     loop: 0
-    measured: 0
+    measured: 1
     overlays:
     - {fileID: 21300000, guid: ecbd3c2389324f04e9b1214a9be38559, type: 3}
     - {fileID: 21300000, guid: 1c4f302c155823344b011a7ede5a282a, type: 3}
@@ -406,15 +452,18 @@ MonoBehaviour:
     note: "th\xE2n + roi t\xE1ch l\u1EDBp; overlayOffsets = g\xF3c tr\xEAn-tr\xE1i
       m\u1EA3nh roi \u2212 pivot th\xE2n (px NES, y xu\u1ED1ng, quay TR\xC1I). Khung
       gh\xE9p s\u1EB5n _3 tr\xEAn sheet = khung 2 v\u1EDBi roi v\u1EBD \u0110\xC8
-      th\xE2n (whipOnTop) \u2014 routine 09 ch\u1ECDn theo video"
+      th\xE2n (whipOnTop) \u2014 routine 09 ch\u1ECDn theo video | routine 09: nh\u1ECBp
+      6/7/9 tick (ConfigSimon.WhipWindup/Raise/ExtendTicks \u2014 52 c\xFA roi video
+      Map_1, Tools/cvgp/whip_timing.py); SimonAttackState \u0111\u1EB7t khung theo
+      Config m\u1ED7i tick (c\u1EA5p 3 \u0111\u1ED5i m\xE0u m\u1ED7i tick)"
   - name: whip_l3c1_stairs_down
     frames:
     - {fileID: 21300000, guid: bc1504d0328087a46829b934800d2331, type: 3}
     - {fileID: 21300000, guid: 43e6cbb344ce0e846884a2d175cbf2e1, type: 3}
     - {fileID: 21300000, guid: b257da5440faad84bb0dadb8ab74c58b, type: 3}
-    durations: 080000000800000008000000
+    durations: 060000000700000009000000
     loop: 0
-    measured: 0
+    measured: 1
     overlays:
     - {fileID: 21300000, guid: ecbd3c2389324f04e9b1214a9be38559, type: 3}
     - {fileID: 21300000, guid: 1c4f302c155823344b011a7ede5a282a, type: 3}
@@ -427,15 +476,18 @@ MonoBehaviour:
     note: "th\xE2n + roi t\xE1ch l\u1EDBp; overlayOffsets = g\xF3c tr\xEAn-tr\xE1i
       m\u1EA3nh roi \u2212 pivot th\xE2n (px NES, y xu\u1ED1ng, quay TR\xC1I). Khung
       gh\xE9p s\u1EB5n _3 tr\xEAn sheet = khung 2 v\u1EDBi roi v\u1EBD \u0110\xC8
-      th\xE2n (whipOnTop) \u2014 routine 09 ch\u1ECDn theo video"
+      th\xE2n (whipOnTop) \u2014 routine 09 ch\u1ECDn theo video | routine 09: nh\u1ECBp
+      6/7/9 tick (ConfigSimon.WhipWindup/Raise/ExtendTicks \u2014 52 c\xFA roi video
+      Map_1, Tools/cvgp/whip_timing.py); SimonAttackState \u0111\u1EB7t khung theo
+      Config m\u1ED7i tick (c\u1EA5p 3 \u0111\u1ED5i m\xE0u m\u1ED7i tick)"
   - name: whip_l3c2_stand
     frames:
     - {fileID: 21300000, guid: 687706a567e89de45be825be20e35962, type: 3}
     - {fileID: 21300000, guid: 603a38a63e84dac4fa59ca904790c21f, type: 3}
     - {fileID: 21300000, guid: 932c9298bcd3c034fa04cbf21c8229a6, type: 3}
-    durations: 080000000800000008000000
+    durations: 060000000700000009000000
     loop: 0
-    measured: 0
+    measured: 1
     overlays:
     - {fileID: 21300000, guid: a3a8c51d538e3ec40bc75a124fedfe81, type: 3}
     - {fileID: 21300000, guid: 7b9e567969da7af4c932eb7483a92a2d, type: 3}
@@ -449,15 +501,18 @@ MonoBehaviour:
       m\u1EA3nh roi \u2212 pivot th\xE2n (px NES, y xu\u1ED1ng, quay TR\xC1I). Khung
       gh\xE9p s\u1EB5n _3 tr\xEAn sheet = khung 2 v\u1EDBi roi v\u1EBD \u0110\xC8
       th\xE2n (whipOnTop) \u2014 routine 09 ch\u1ECDn theo video; nh\u1EA3y d\xF9ng
-      stand"
+      stand | routine 09: nh\u1ECBp 6/7/9 tick (ConfigSimon.WhipWindup/Raise/ExtendTicks
+      \u2014 52 c\xFA roi video Map_1, Tools/cvgp/whip_timing.py); SimonAttackState
+      \u0111\u1EB7t khung theo Config m\u1ED7i tick (c\u1EA5p 3 \u0111\u1ED5i m\xE0u
+      m\u1ED7i tick)"
   - name: whip_l3c2_duck
     frames:
     - {fileID: 21300000, guid: 30bb37ddcb08e6d488f884681d996e7f, type: 3}
     - {fileID: 21300000, guid: cef5f6265caa16b44b437b79bfa7c88f, type: 3}
     - {fileID: 21300000, guid: a723a8b4fb0cfdd438b0bc51b2638230, type: 3}
-    durations: 080000000800000008000000
+    durations: 060000000700000009000000
     loop: 0
-    measured: 0
+    measured: 1
     overlays:
     - {fileID: 21300000, guid: a3a8c51d538e3ec40bc75a124fedfe81, type: 3}
     - {fileID: 21300000, guid: 7b9e567969da7af4c932eb7483a92a2d, type: 3}
@@ -470,15 +525,18 @@ MonoBehaviour:
     note: "th\xE2n + roi t\xE1ch l\u1EDBp; overlayOffsets = g\xF3c tr\xEAn-tr\xE1i
       m\u1EA3nh roi \u2212 pivot th\xE2n (px NES, y xu\u1ED1ng, quay TR\xC1I). Khung
       gh\xE9p s\u1EB5n _3 tr\xEAn sheet = khung 2 v\u1EDBi roi v\u1EBD \u0110\xC8
-      th\xE2n (whipOnTop) \u2014 routine 09 ch\u1ECDn theo video"
+      th\xE2n (whipOnTop) \u2014 routine 09 ch\u1ECDn theo video | routine 09: nh\u1ECBp
+      6/7/9 tick (ConfigSimon.WhipWindup/Raise/ExtendTicks \u2014 52 c\xFA roi video
+      Map_1, Tools/cvgp/whip_timing.py); SimonAttackState \u0111\u1EB7t khung theo
+      Config m\u1ED7i tick (c\u1EA5p 3 \u0111\u1ED5i m\xE0u m\u1ED7i tick)"
   - name: whip_l3c2_stairs_up
     frames:
     - {fileID: 21300000, guid: 92fa03b1a4e4efc4fa7c33e59dacb33f, type: 3}
     - {fileID: 21300000, guid: cd4eca613ac39224884232a5ba1b866c, type: 3}
     - {fileID: 21300000, guid: 8f55f30ad5d3eb14ba2026ec964de1dd, type: 3}
-    durations: 080000000800000008000000
+    durations: 060000000700000009000000
     loop: 0
-    measured: 0
+    measured: 1
     overlays:
     - {fileID: 21300000, guid: a3a8c51d538e3ec40bc75a124fedfe81, type: 3}
     - {fileID: 21300000, guid: 7b9e567969da7af4c932eb7483a92a2d, type: 3}
@@ -491,15 +549,18 @@ MonoBehaviour:
     note: "th\xE2n + roi t\xE1ch l\u1EDBp; overlayOffsets = g\xF3c tr\xEAn-tr\xE1i
       m\u1EA3nh roi \u2212 pivot th\xE2n (px NES, y xu\u1ED1ng, quay TR\xC1I). Khung
       gh\xE9p s\u1EB5n _3 tr\xEAn sheet = khung 2 v\u1EDBi roi v\u1EBD \u0110\xC8
-      th\xE2n (whipOnTop) \u2014 routine 09 ch\u1ECDn theo video"
+      th\xE2n (whipOnTop) \u2014 routine 09 ch\u1ECDn theo video | routine 09: nh\u1ECBp
+      6/7/9 tick (ConfigSimon.WhipWindup/Raise/ExtendTicks \u2014 52 c\xFA roi video
+      Map_1, Tools/cvgp/whip_timing.py); SimonAttackState \u0111\u1EB7t khung theo
+      Config m\u1ED7i tick (c\u1EA5p 3 \u0111\u1ED5i m\xE0u m\u1ED7i tick)"
   - name: whip_l3c2_stairs_down
     frames:
     - {fileID: 21300000, guid: bc1504d0328087a46829b934800d2331, type: 3}
     - {fileID: 21300000, guid: 43e6cbb344ce0e846884a2d175cbf2e1, type: 3}
     - {fileID: 21300000, guid: d4ca95cc89ca5c74a856fe8cfe202b2f, type: 3}
-    durations: 080000000800000008000000
+    durations: 060000000700000009000000
     loop: 0
-    measured: 0
+    measured: 1
     overlays:
     - {fileID: 21300000, guid: a3a8c51d538e3ec40bc75a124fedfe81, type: 3}
     - {fileID: 21300000, guid: 7b9e567969da7af4c932eb7483a92a2d, type: 3}
@@ -512,15 +573,18 @@ MonoBehaviour:
     note: "th\xE2n + roi t\xE1ch l\u1EDBp; overlayOffsets = g\xF3c tr\xEAn-tr\xE1i
       m\u1EA3nh roi \u2212 pivot th\xE2n (px NES, y xu\u1ED1ng, quay TR\xC1I). Khung
       gh\xE9p s\u1EB5n _3 tr\xEAn sheet = khung 2 v\u1EDBi roi v\u1EBD \u0110\xC8
-      th\xE2n (whipOnTop) \u2014 routine 09 ch\u1ECDn theo video"
+      th\xE2n (whipOnTop) \u2014 routine 09 ch\u1ECDn theo video | routine 09: nh\u1ECBp
+      6/7/9 tick (ConfigSimon.WhipWindup/Raise/ExtendTicks \u2014 52 c\xFA roi video
+      Map_1, Tools/cvgp/whip_timing.py); SimonAttackState \u0111\u1EB7t khung theo
+      Config m\u1ED7i tick (c\u1EA5p 3 \u0111\u1ED5i m\xE0u m\u1ED7i tick)"
   - name: whip_l3c3_stand
     frames:
     - {fileID: 21300000, guid: 687706a567e89de45be825be20e35962, type: 3}
     - {fileID: 21300000, guid: 603a38a63e84dac4fa59ca904790c21f, type: 3}
     - {fileID: 21300000, guid: bacee83de85f5f84181a75a482e1c475, type: 3}
-    durations: 080000000800000008000000
+    durations: 060000000700000009000000
     loop: 0
-    measured: 0
+    measured: 1
     overlays:
     - {fileID: 21300000, guid: ac5302fd89dd27543827906ac925988b, type: 3}
     - {fileID: 21300000, guid: 772ece0e9af10b045b12df4d52871820, type: 3}
@@ -534,15 +598,18 @@ MonoBehaviour:
       m\u1EA3nh roi \u2212 pivot th\xE2n (px NES, y xu\u1ED1ng, quay TR\xC1I). Khung
       gh\xE9p s\u1EB5n _3 tr\xEAn sheet = khung 2 v\u1EDBi roi v\u1EBD \u0110\xC8
       th\xE2n (whipOnTop) \u2014 routine 09 ch\u1ECDn theo video; nh\u1EA3y d\xF9ng
-      stand"
+      stand | routine 09: nh\u1ECBp 6/7/9 tick (ConfigSimon.WhipWindup/Raise/ExtendTicks
+      \u2014 52 c\xFA roi video Map_1, Tools/cvgp/whip_timing.py); SimonAttackState
+      \u0111\u1EB7t khung theo Config m\u1ED7i tick (c\u1EA5p 3 \u0111\u1ED5i m\xE0u
+      m\u1ED7i tick)"
   - name: whip_l3c3_duck
     frames:
     - {fileID: 21300000, guid: 30bb37ddcb08e6d488f884681d996e7f, type: 3}
     - {fileID: 21300000, guid: cef5f6265caa16b44b437b79bfa7c88f, type: 3}
     - {fileID: 21300000, guid: 8cfca531aaf352847ba4cc7efcc5d83f, type: 3}
-    durations: 080000000800000008000000
+    durations: 060000000700000009000000
     loop: 0
-    measured: 0
+    measured: 1
     overlays:
     - {fileID: 21300000, guid: ac5302fd89dd27543827906ac925988b, type: 3}
     - {fileID: 21300000, guid: 772ece0e9af10b045b12df4d52871820, type: 3}
@@ -555,15 +622,18 @@ MonoBehaviour:
     note: "th\xE2n + roi t\xE1ch l\u1EDBp; overlayOffsets = g\xF3c tr\xEAn-tr\xE1i
       m\u1EA3nh roi \u2212 pivot th\xE2n (px NES, y xu\u1ED1ng, quay TR\xC1I). Khung
       gh\xE9p s\u1EB5n _3 tr\xEAn sheet = khung 2 v\u1EDBi roi v\u1EBD \u0110\xC8
-      th\xE2n (whipOnTop) \u2014 routine 09 ch\u1ECDn theo video"
+      th\xE2n (whipOnTop) \u2014 routine 09 ch\u1ECDn theo video | routine 09: nh\u1ECBp
+      6/7/9 tick (ConfigSimon.WhipWindup/Raise/ExtendTicks \u2014 52 c\xFA roi video
+      Map_1, Tools/cvgp/whip_timing.py); SimonAttackState \u0111\u1EB7t khung theo
+      Config m\u1ED7i tick (c\u1EA5p 3 \u0111\u1ED5i m\xE0u m\u1ED7i tick)"
   - name: whip_l3c3_stairs_up
     frames:
     - {fileID: 21300000, guid: 92fa03b1a4e4efc4fa7c33e59dacb33f, type: 3}
     - {fileID: 21300000, guid: cd4eca613ac39224884232a5ba1b866c, type: 3}
     - {fileID: 21300000, guid: c09ef6f158cb9954d86ce3933ced562b, type: 3}
-    durations: 080000000800000008000000
+    durations: 060000000700000009000000
     loop: 0
-    measured: 0
+    measured: 1
     overlays:
     - {fileID: 21300000, guid: ac5302fd89dd27543827906ac925988b, type: 3}
     - {fileID: 21300000, guid: 772ece0e9af10b045b12df4d52871820, type: 3}
@@ -576,15 +646,18 @@ MonoBehaviour:
     note: "th\xE2n + roi t\xE1ch l\u1EDBp; overlayOffsets = g\xF3c tr\xEAn-tr\xE1i
       m\u1EA3nh roi \u2212 pivot th\xE2n (px NES, y xu\u1ED1ng, quay TR\xC1I). Khung
       gh\xE9p s\u1EB5n _3 tr\xEAn sheet = khung 2 v\u1EDBi roi v\u1EBD \u0110\xC8
-      th\xE2n (whipOnTop) \u2014 routine 09 ch\u1ECDn theo video"
+      th\xE2n (whipOnTop) \u2014 routine 09 ch\u1ECDn theo video | routine 09: nh\u1ECBp
+      6/7/9 tick (ConfigSimon.WhipWindup/Raise/ExtendTicks \u2014 52 c\xFA roi video
+      Map_1, Tools/cvgp/whip_timing.py); SimonAttackState \u0111\u1EB7t khung theo
+      Config m\u1ED7i tick (c\u1EA5p 3 \u0111\u1ED5i m\xE0u m\u1ED7i tick)"
   - name: whip_l3c3_stairs_down
     frames:
     - {fileID: 21300000, guid: bc1504d0328087a46829b934800d2331, type: 3}
     - {fileID: 21300000, guid: 43e6cbb344ce0e846884a2d175cbf2e1, type: 3}
     - {fileID: 21300000, guid: a69bdb6a47f1c8744942c32bc5ef2362, type: 3}
-    durations: 080000000800000008000000
+    durations: 060000000700000009000000
     loop: 0
-    measured: 0
+    measured: 1
     overlays:
     - {fileID: 21300000, guid: ac5302fd89dd27543827906ac925988b, type: 3}
     - {fileID: 21300000, guid: 772ece0e9af10b045b12df4d52871820, type: 3}
@@ -597,15 +670,18 @@ MonoBehaviour:
     note: "th\xE2n + roi t\xE1ch l\u1EDBp; overlayOffsets = g\xF3c tr\xEAn-tr\xE1i
       m\u1EA3nh roi \u2212 pivot th\xE2n (px NES, y xu\u1ED1ng, quay TR\xC1I). Khung
       gh\xE9p s\u1EB5n _3 tr\xEAn sheet = khung 2 v\u1EDBi roi v\u1EBD \u0110\xC8
-      th\xE2n (whipOnTop) \u2014 routine 09 ch\u1ECDn theo video"
+      th\xE2n (whipOnTop) \u2014 routine 09 ch\u1ECDn theo video | routine 09: nh\u1ECBp
+      6/7/9 tick (ConfigSimon.WhipWindup/Raise/ExtendTicks \u2014 52 c\xFA roi video
+      Map_1, Tools/cvgp/whip_timing.py); SimonAttackState \u0111\u1EB7t khung theo
+      Config m\u1ED7i tick (c\u1EA5p 3 \u0111\u1ED5i m\xE0u m\u1ED7i tick)"
   - name: whip_l3c4_stand
     frames:
     - {fileID: 21300000, guid: 687706a567e89de45be825be20e35962, type: 3}
     - {fileID: 21300000, guid: 603a38a63e84dac4fa59ca904790c21f, type: 3}
     - {fileID: 21300000, guid: 401c1ba61426b5a42a7ffe998a8ab51c, type: 3}
-    durations: 080000000800000008000000
+    durations: 060000000700000009000000
     loop: 0
-    measured: 0
+    measured: 1
     overlays:
     - {fileID: 21300000, guid: 5ffc9b834841a4443b255f667b585727, type: 3}
     - {fileID: 21300000, guid: db4f9d8616c77fa4f9e54b9fb7c39ad9, type: 3}
@@ -619,15 +695,18 @@ MonoBehaviour:
       m\u1EA3nh roi \u2212 pivot th\xE2n (px NES, y xu\u1ED1ng, quay TR\xC1I). Khung
       gh\xE9p s\u1EB5n _3 tr\xEAn sheet = khung 2 v\u1EDBi roi v\u1EBD \u0110\xC8
       th\xE2n (whipOnTop) \u2014 routine 09 ch\u1ECDn theo video; nh\u1EA3y d\xF9ng
-      stand"
+      stand | routine 09: nh\u1ECBp 6/7/9 tick (ConfigSimon.WhipWindup/Raise/ExtendTicks
+      \u2014 52 c\xFA roi video Map_1, Tools/cvgp/whip_timing.py); SimonAttackState
+      \u0111\u1EB7t khung theo Config m\u1ED7i tick (c\u1EA5p 3 \u0111\u1ED5i m\xE0u
+      m\u1ED7i tick)"
   - name: whip_l3c4_duck
     frames:
     - {fileID: 21300000, guid: 30bb37ddcb08e6d488f884681d996e7f, type: 3}
     - {fileID: 21300000, guid: cef5f6265caa16b44b437b79bfa7c88f, type: 3}
     - {fileID: 21300000, guid: b081b15e5e042a543aaf444df3b1beb1, type: 3}
-    durations: 080000000800000008000000
+    durations: 060000000700000009000000
     loop: 0
-    measured: 0
+    measured: 1
     overlays:
     - {fileID: 21300000, guid: 5ffc9b834841a4443b255f667b585727, type: 3}
     - {fileID: 21300000, guid: db4f9d8616c77fa4f9e54b9fb7c39ad9, type: 3}
@@ -640,15 +719,18 @@ MonoBehaviour:
     note: "th\xE2n + roi t\xE1ch l\u1EDBp; overlayOffsets = g\xF3c tr\xEAn-tr\xE1i
       m\u1EA3nh roi \u2212 pivot th\xE2n (px NES, y xu\u1ED1ng, quay TR\xC1I). Khung
       gh\xE9p s\u1EB5n _3 tr\xEAn sheet = khung 2 v\u1EDBi roi v\u1EBD \u0110\xC8
-      th\xE2n (whipOnTop) \u2014 routine 09 ch\u1ECDn theo video"
+      th\xE2n (whipOnTop) \u2014 routine 09 ch\u1ECDn theo video | routine 09: nh\u1ECBp
+      6/7/9 tick (ConfigSimon.WhipWindup/Raise/ExtendTicks \u2014 52 c\xFA roi video
+      Map_1, Tools/cvgp/whip_timing.py); SimonAttackState \u0111\u1EB7t khung theo
+      Config m\u1ED7i tick (c\u1EA5p 3 \u0111\u1ED5i m\xE0u m\u1ED7i tick)"
   - name: whip_l3c4_stairs_up
     frames:
     - {fileID: 21300000, guid: 92fa03b1a4e4efc4fa7c33e59dacb33f, type: 3}
     - {fileID: 21300000, guid: cd4eca613ac39224884232a5ba1b866c, type: 3}
     - {fileID: 21300000, guid: 051d514f15f32764696b75db138c05cd, type: 3}
-    durations: 080000000800000008000000
+    durations: 060000000700000009000000
     loop: 0
-    measured: 0
+    measured: 1
     overlays:
     - {fileID: 21300000, guid: 5ffc9b834841a4443b255f667b585727, type: 3}
     - {fileID: 21300000, guid: db4f9d8616c77fa4f9e54b9fb7c39ad9, type: 3}
@@ -663,15 +745,18 @@ MonoBehaviour:
       gh\xE9p s\u1EB5n _3 tr\xEAn sheet = khung 2 v\u1EDBi roi v\u1EBD \u0110\xC8
       th\xE2n (whipOnTop) \u2014 routine 09 ch\u1ECDn theo video; \xF4 gh\xE9p s\u1EB5n
       _0 tr\xEAn sheet b\u1ECB c\u1EE5t \u0111\xE1y (8 px c\u1EE7a m\u1EA3nh treo
-      n\u1EB1m ngo\xE0i \xF4)"
+      n\u1EB1m ngo\xE0i \xF4) | routine 09: nh\u1ECBp 6/7/9 tick (ConfigSimon.WhipWindup/Raise/ExtendTicks
+      \u2014 52 c\xFA roi video Map_1, Tools/cvgp/whip_timing.py); SimonAttackState
+      \u0111\u1EB7t khung theo Config m\u1ED7i tick (c\u1EA5p 3 \u0111\u1ED5i m\xE0u
+      m\u1ED7i tick)"
   - name: whip_l3c4_stairs_down
     frames:
     - {fileID: 21300000, guid: bc1504d0328087a46829b934800d2331, type: 3}
     - {fileID: 21300000, guid: 43e6cbb344ce0e846884a2d175cbf2e1, type: 3}
     - {fileID: 21300000, guid: 7d877bf73bdaffc4abb909c3a1b56426, type: 3}
-    durations: 080000000800000008000000
+    durations: 060000000700000009000000
     loop: 0
-    measured: 0
+    measured: 1
     overlays:
     - {fileID: 21300000, guid: 5ffc9b834841a4443b255f667b585727, type: 3}
     - {fileID: 21300000, guid: db4f9d8616c77fa4f9e54b9fb7c39ad9, type: 3}
@@ -684,7 +769,10 @@ MonoBehaviour:
     note: "th\xE2n + roi t\xE1ch l\u1EDBp; overlayOffsets = g\xF3c tr\xEAn-tr\xE1i
       m\u1EA3nh roi \u2212 pivot th\xE2n (px NES, y xu\u1ED1ng, quay TR\xC1I). Khung
       gh\xE9p s\u1EB5n _3 tr\xEAn sheet = khung 2 v\u1EDBi roi v\u1EBD \u0110\xC8
-      th\xE2n (whipOnTop) \u2014 routine 09 ch\u1ECDn theo video"
+      th\xE2n (whipOnTop) \u2014 routine 09 ch\u1ECDn theo video | routine 09: nh\u1ECBp
+      6/7/9 tick (ConfigSimon.WhipWindup/Raise/ExtendTicks \u2014 52 c\xFA roi video
+      Map_1, Tools/cvgp/whip_timing.py); SimonAttackState \u0111\u1EB7t khung theo
+      Config m\u1ED7i tick (c\u1EA5p 3 \u0111\u1ED5i m\xE0u m\u1ED7i tick)"
   palettes:
   - name: purple
     from:

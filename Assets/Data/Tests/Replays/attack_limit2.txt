@@ -1,0 +1,3 @@
+# 79 tick, hash 15f6d407
+# CVGP 09 AttackProbe kịch bản 'limit2': Shot II: 2 dao, dao 3 ⇒ roi
+-*2 Sub*1 -*22 Sub*1 -*22 Sub*1 -*30

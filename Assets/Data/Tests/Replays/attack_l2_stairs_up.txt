@@ -1,0 +1,3 @@
+# 80 tick, hash b5883b50
+# CVGP 09 AttackProbe kịch bản 'l2_stairs_up': lên stair0, thả (đi nốt tới bậc), roi cấp 2 trên thang (lên)
+U*29 -*20 B*1 -*30
