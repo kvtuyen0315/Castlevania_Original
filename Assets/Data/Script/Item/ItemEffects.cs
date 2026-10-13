@@ -161,7 +161,7 @@ public static class ItemEffects
     {
         var s = GameSession.Current;
         int before = s.score;
-        s.score += pts;
+        GameRules.AddScore(pts);   // CVGP 12: 1UP theo mốc điểm
         if (pts > 0)
             ScorePopup.Spawn(world, pts, x - 8, y - 15, flash);
         return "điểm " + before + "→" + s.score;

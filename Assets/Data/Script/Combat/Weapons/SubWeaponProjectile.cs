@@ -103,7 +103,7 @@ public abstract class SubWeaponProjectile : Entity
         if (kills >= 2 && World != null && World.Config != null && World.Config.score != null)
         {
             var k = kills >= 4 ? eScoreParam.MultiKill4 : kills == 3 ? eScoreParam.MultiKill3 : eScoreParam.MultiKill2;
-            GameSession.Current.score += World.Config.score.GetInt(k);
+            GameRules.AddScore(World.Config.score.GetInt(k));   // CVGP 12: 1UP theo mốc điểm
             GameSession.Current.NotifyChanged();
         }
         Hit.Deactivate();

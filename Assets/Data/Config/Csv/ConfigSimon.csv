@@ -2,7 +2,7 @@ key,value,min,max,unit,source,note
 MaxHp,16,,,vạch,wiki:Gameplay#Damage (16 vạch); video:Map_1 (PLAYER 16 suốt video),
 StartLives,3,,,mạng,suy luận: wiki ảnh HUD P-03; video:Map_1 P=03 suốt video; CVTI GameSession,wiki không nêu số mạng khởi đầu
 StartHearts,5,,,tim,video:Map_1 0:02.2 (tim 05 → 10 sau Large Heart lúc 0:03.93); CVTI GameSession,khớp suy luận wiki (♥15 = 5 + 2×5)
-HeartsOnNewBlock,5,,,tim,video:Map_1 3:52.3 (HUD STAGE 04 tim về 05 sau tally) — chờ đo routine 12,tim đặt lại khi sang block mới
+HeartsOnNewBlock,5,,,tim,"video:Map_1 3:52.3 (HUD STAGE 04 tim 72→00 sau tally rồi 05 khi màn bản đồ lâu đài hiện; đo:routine 12 map1_hud.csv f6970)",tim đặt lại khi sang block mới; roi/vũ khí phụ/II giữ nguyên
 MaxHearts,,76,,tim,không rõ — wiki chỉ cho thấy ≥ 70 (ảnh Stage 3); video:Map_1 3:19 đạt 76; trần thật chưa biết,min = giá trị lớn nhất đã thấy (không phải trần)
 WalkSpeed,1.0,0.978,1.02,px/tick,đo:routine 08 khớp mẫu sprite 11 đoạn đi video:Map_1 0:03.6–3:06.1 (TB 1.006; dư rms 1 px),không gia tốc; dừng ngay khi thả
 JumpAirTicks,40,,,tick,đo:routine 08 đồng hồ x video:Map_1 2:14.0 (f4021 chạm đất tick 40-41) + bảng nhảy đối xứng,trên sàn phẳng

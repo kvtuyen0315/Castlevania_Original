@@ -28,6 +28,15 @@ public static class CvtiIntroPrefabBuilder
         Debug.Log("[CvtiIntroPrefabBuilder] Đã dựng HUD, IntroScreen, Stage1Stub");
     }
 
+    /// <summary>CVGP 12: chỉ dựng lại HUD.prefab (Intro/Stage1 giữ instance lồng — tự cập nhật, không dựng lại màn).</summary>
+    [MenuItem("CVGP/Build HUD (CVGP 12)")]
+    public static void BuildHudOnly()
+    {
+        BuildHud();
+        AssetDatabase.SaveAssets();
+        Debug.Log("[CvtiIntroPrefabBuilder] Đã dựng HUD.prefab");
+    }
+
     static void BuildHud()
     {
         var font = AssetDatabase.LoadAssetAtPath<TMP_FontAsset>(FONT_PATH);
@@ -49,9 +58,19 @@ public static class CvtiIntroPrefabBuilder
             var status = MakeText(root, "StatusLine", font, 0, 16, 31, "SCORE-000000 TIME 0300 STAGE 01");
             MakeText(root, "PlayerLabel", font, 0, 24, 6, "PLAYER");
             MakeText(root, "EnemyLabel", font, 0, 32, 5, "ENEMY");
-            var playerTicks = MakeTicks(root, "PlayerBar", LoadSprite("Intro/hud_tick_player_temp.png"), 25);
-            var enemyTicks = MakeTicks(root, "EnemyBar", LoadSprite("Intro/hud_tick_enemy_temp.png"), 33);
+            var playerTick = LoadSprite("Intro/hud_tick_player_temp.png");
+            var enemyTick = LoadSprite("Intro/hud_tick_enemy_temp.png");
+            var playerTicks = MakeTicks(root, "PlayerBar", playerTick, 25);
+            var enemyTicks = MakeTicks(root, "EnemyBar", enemyTick, 33);
             MakeImage(root, "SubWeaponFrame", LoadSprite("Intro/hud_subweapon_frame_temp.png"), 128, 24);
+            // CVGP 12: icon vũ khí phụ (sprite item 16×16) góc (136,27) trong khung; II/III góc (208,24) — đo video Map_1 (hud_rules.py)
+            var dagger = LoadSprite("Item/dagger.png");
+            var subIcon = MakeImage(root, "SubWeaponIcon", dagger, 136, 27);
+            subIcon.sprite = null;
+            subIcon.enabled = false;
+            var shotIcon = MakeImage(root, "ShotIcon", LoadSprite("Item/double.png"), 208, 24);
+            shotIcon.sprite = null;
+            shotIcon.enabled = false;
             MakeImage(root, "Heart", LoadSprite("Intro/hud_heart_temp.png"), 168, 24);
             var hearts = MakeText(root, "Hearts", font, 176, 24, 3, "-05");
             var lives = MakeText(root, "Lives", font, 168, 32, 4, "P-03");
@@ -63,6 +82,23 @@ public static class CvtiIntroPrefabBuilder
             so.FindProperty("livesText").objectReferenceValue = lives;
             SetArray(so.FindProperty("playerTicks"), playerTicks);
             SetArray(so.FindProperty("enemyTicks"), enemyTicks);
+            so.FindProperty("playerTickFull").objectReferenceValue = playerTick;
+            so.FindProperty("enemyTickFull").objectReferenceValue = enemyTick;
+            so.FindProperty("tickEmpty").objectReferenceValue = LoadSprite("Intro/hud_tick_empty_temp.png");
+            so.FindProperty("subWeaponIcon").objectReferenceValue = subIcon;
+            SetArray(so.FindProperty("subWeaponSprites"), new Object[] { null, dagger, LoadSprite("Item/axe.png"), LoadSprite("Item/holywater.png"),
+                LoadSprite("Item/cross.png"), LoadSprite("Item/stopwatch.png") });
+            var flips = so.FindProperty("subWeaponFlipX");
+            flips.arraySize = 6;
+            for (int i = 0; i < 6; i++)
+                flips.GetArrayElementAtIndex(i).boolValue = i == (int)eSubWeapon.Dagger;   // video Map_1 0:20: mũi dao sang phải
+            so.FindProperty("paletteSwapMaterial").objectReferenceValue = AssetDatabase.LoadAssetAtPath<Material>(ART + "Material/NesPaletteSwap.mat");
+            // II/III: màu sheet (đen, xanh, kem) → màu video (= khung/PLAYER, = thanh ENEMY, trắng) — đo m1_03m25s/03m30s/03m45s
+            SetColors(so.FindProperty("shotPaletteFrom"), new Color32(0, 0, 0, 255), new Color32(0, 112, 236, 255), new Color32(252, 216, 168, 255));
+            SetColors(so.FindProperty("shotPaletteTo"), new Color32(216, 40, 0, 255), new Color32(252, 116, 96, 255), NES_WHITE);
+            so.FindProperty("shotIcon").objectReferenceValue = shotIcon;
+            so.FindProperty("doubleShotSprite").objectReferenceValue = LoadSprite("Item/double.png");
+            so.FindProperty("tripleShotSprite").objectReferenceValue = LoadSprite("Item/triple.png");
             so.ApplyModifiedPropertiesWithoutUndo();
 
             System.IO.Directory.CreateDirectory("Assets/Data/Prefabs/UI");
@@ -202,6 +238,13 @@ public static class CvtiIntroPrefabBuilder
         for (int i = 0; i < ticks.Length; i++)
             ticks[i] = MakeImage(bar, "Tick" + i, tick, i * 4, 0);
         return ticks;
+    }
+
+    static void SetColors(SerializedProperty prop, params Color32[] values)
+    {
+        prop.arraySize = values.Length;
+        for (int i = 0; i < values.Length; i++)
+            prop.GetArrayElementAtIndex(i).colorValue = values[i];
     }
 
     static void SetArray(SerializedProperty prop, Object[] values)

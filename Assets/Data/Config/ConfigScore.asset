@@ -91,8 +91,9 @@ MonoBehaviour:
       has: 0
       value: 0
     unit: tick
-    source: "video:planner (HUD t\u1EEBng frame) \u2014 ch\u1EDD \u0111o routine
-      12"
+    source: "\u0111o:routine 12 Tools/cvgp/hud_rules.py (Map_1 3:37.4\u20133:39.5:
+      TIME 0127\u21920000 trong 128 tick = 1.01 tick/\u0111v; video boss 24.6 s c\xF9ng
+      nh\u1ECBp 2 \u0111v/frame)"
     note: 
   - key: TallyTicksPerHeart
     value:
@@ -105,23 +106,23 @@ MonoBehaviour:
       has: 0
       value: 0
     unit: tick
-    source: "video:planner (HUD t\u1EEBng frame) \u2014 ch\u1EDD \u0111o routine
-      12"
+    source: "\u0111o:routine 12 Tools/cvgp/hud_rules.py (Map_1 3:40.4\u20133:49.9:
+      tim 72\u219200 h\u1ED3i quy 7.99 tick/tim, d\u01B0 \u2264 2.5 tick)"
     note: 
   - key: TallyGapTicks
     value:
-      has: 0
-      value: 0
+      has: 1
+      value: 54
     min:
-      has: 0
-      value: 0
+      has: 1
+      value: 52
     max:
-      has: 0
-      value: 0
+      has: 1
+      value: 56
     unit: tick
-    source: "video:planner \u2248 0.9 s gi\u1EEFa \u0111\u1EBFm TIME v\xE0 \u0111\u1EBFm
-      tim \u2014 ch\u1EDD \u0111o routine 12"
-    note: 
+    source: "\u0111o:routine 12 Tools/cvgp/hud_rules.py (Map_1: TIME = 0000 f6586
+      \u2192 tim gi\u1EA3m \u0111\u1EA7u f6613 = 27 frame)"
+    note: "t\u1EEB tick TIME v\u1EC1 0 t\u1EDBi tick tim gi\u1EA3m \u0111\u1EA7u"
   - key: MultiKill2
     value:
       has: 1
@@ -204,3 +205,33 @@ MonoBehaviour:
     source: "wiki:Gameplay#Points (m\u1ED9t s\u1ED1 \u0111\u1EA1n \u0111\xE1ng 100
       \u0111i\u1EC3m)"
     note: "\u0111\u1EA1n n\xE0o: kh\xF4ng r\xF5"
+  - key: TallyEndWaitTicks
+    value:
+      has: 1
+      value: 120
+    min:
+      has: 1
+      value: 118
+    max:
+      has: 1
+      value: 122
+    unit: tick
+    source: "\u0111o:routine 12 Tools/cvgp/hud_rules.py (Map_1: tim = 00 f6896 \u2192
+      m\xE0n \u0111en f6956 = 60 frame; \u0111en 28 tick t\u1EDBi b\u1EA3n \u0111\u1ED3
+      l\xE2u \u0111\xE0i \u2014 routine 15)"
+    note: "t\u1EEB tick tim v\u1EC1 0 t\u1EDBi khi b\xE1o xong tally"
+  - key: TallySfxEveryTicks
+    value:
+      has: 1
+      value: 8
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "\u0111o:routine 02 (SFX 04 \u0111\u1EBFm TIME v\xE0 05 \u0111\u1EBFm
+      tim k\xEDch l\u1EA1i m\u1ED7i ~8 tick, l\u1EA7n cu\u1ED1i ph\xE1t tr\u1ECDn)"
+    note: "TIME: k\xEDch \u1EDF \u0111v \u0111\u1EA7u + m\u1ED7i 8 tick + \u0111v
+      cu\u1ED1i; tim: m\u1ED7i tim"

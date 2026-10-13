@@ -66,9 +66,11 @@ MonoBehaviour:
       has: 0
       value: 0
     unit: tim
-    source: "video:Map_1 3:52.3 (HUD STAGE 04 tim v\u1EC1 05 sau tally) \u2014 ch\u1EDD
-      \u0111o routine 12"
-    note: "tim \u0111\u1EB7t l\u1EA1i khi sang block m\u1EDBi"
+    source: "video:Map_1 3:52.3 (HUD STAGE 04 tim 72\u219200 sau tally r\u1ED3i 05
+      khi m\xE0n b\u1EA3n \u0111\u1ED3 l\xE2u \u0111\xE0i hi\u1EC7n; \u0111o:routine
+      12 map1_hud.csv f6970)"
+    note: "tim \u0111\u1EB7t l\u1EA1i khi sang block m\u1EDBi; roi/v\u0169 kh\xED
+      ph\u1EE5/II gi\u1EEF nguy\xEAn"
   - key: MaxHearts
     value:
       has: 0

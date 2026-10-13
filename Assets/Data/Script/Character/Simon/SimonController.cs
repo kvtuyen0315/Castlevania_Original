@@ -131,9 +131,11 @@ public class SimonController : Entity
     public int StairTPx => Fixed.ToPx(stairT);
 
     // ---------------------------------------------------------------- input (chỉ đọc NesPad — H7)
-    public int InputX => NesPad.I != null ? NesPad.I.Direction.x : 0;
-    public bool Held(eNesButton b) => NesPad.I != null && NesPad.I.Held(b);
-    public bool Pressed(eNesButton b) => NesPad.I != null && NesPad.I.Pressed(b);
+    /// <summary>CVGP 12: khoá điều khiển (tally sau quả cầu — video Map_1 3:33–3:52 Simon đứng yên) — mọi nút đọc như thả.</summary>
+    [NonSerialized] public bool InputLocked;
+    public int InputX => NesPad.I != null && !InputLocked ? NesPad.I.Direction.x : 0;
+    public bool Held(eNesButton b) => NesPad.I != null && !InputLocked && NesPad.I.Held(b);
+    public bool Pressed(eNesButton b) => NesPad.I != null && !InputLocked && NesPad.I.Pressed(b);
 
     // ---------------------------------------------------------------- vòng đời
 
@@ -290,6 +292,7 @@ public class SimonController : Entity
         movedXTick = movedYTick = -1;
         InvincibleTicks = 0;
         invisibleLeft = invisibleAge = 0;
+        InputLocked = false;
         flashFrom = 1;
         flashTo = 0;
         WhipHit.Deactivate();
@@ -358,6 +361,15 @@ public class SimonController : Entity
             return;
         lastDeath = kind;
         Fsm.SetState(eSimonState.FallDeath);
+    }
+
+    /// <summary>CVGP 12: hết giờ (TIME 0 — wiki Gameplay: mất 1 mạng) ⇒ Dead ngay (không knockback); Died(Empty). Giữa không trung: chết tại chỗ (§6).</summary>
+    public void KillByTimeout()
+    {
+        if (IsDying)
+            return;
+        lastDeath = eTileCollision.Empty;
+        Fsm.SetState(eSimonState.Dead);
     }
 
     internal void RaiseDied(eTileCollision kind)

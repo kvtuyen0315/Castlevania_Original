@@ -13,7 +13,7 @@
 | MaxHp | 16 |  | vạch | wiki:Gameplay#Damage (16 vạch); video:Map_1 (PLAYER 16 suốt video) |  |
 | StartLives | 3 |  | mạng | suy luận: wiki ảnh HUD P-03; video:Map_1 P=03 suốt video; CVTI GameSession | wiki không nêu số mạng khởi đầu |
 | StartHearts | 5 |  | tim | video:Map_1 0:02.2 (tim 05 → 10 sau Large Heart lúc 0:03.93); CVTI GameSession | khớp suy luận wiki (♥15 = 5 + 2×5) |
-| HeartsOnNewBlock | 5 |  | tim | video:Map_1 3:52.3 (HUD STAGE 04 tim về 05 sau tally) — chờ đo routine 12 | tim đặt lại khi sang block mới |
+| HeartsOnNewBlock | 5 |  | tim | video:Map_1 3:52.3 (HUD STAGE 04 tim 72→00 sau tally rồi 05 khi màn bản đồ lâu đài hiện; đo:routine 12 map1_hud.csv f6970) | tim đặt lại khi sang block mới; roi/vũ khí phụ/II giữ nguyên |
 | MaxHearts | *không rõ* | 76–? | tim | không rõ — wiki chỉ cho thấy ≥ 70 (ảnh Stage 3); video:Map_1 3:19 đạt 76; trần thật chưa biết | min = giá trị lớn nhất đã thấy (không phải trần) |
 | WalkSpeed | 1.0 | 0.978–1.02 | px/tick | đo:routine 08 khớp mẫu sprite 11 đoạn đi video:Map_1 0:03.6–3:06.1 (TB 1.006; dư rms 1 px) | không gia tốc; dừng ngay khi thả |
 | JumpAirTicks | 40 |  | tick | đo:routine 08 đồng hồ x video:Map_1 2:14.0 (f4021 chạm đất tick 40-41) + bảng nhảy đối xứng | trên sàn phẳng |
@@ -279,25 +279,27 @@ Máu = **số đòn** để hạ: *yếu* (roi da, Holy Water, Dagger) / *mạnh
 | OneUpEvery | 50000 |  | điểm | wiki:Gameplay#Simon Belmont | sau 80000: 130000; 180000 … (suy luận) |
 | TallyPointsPerTimeUnit | 10 |  | điểm/đv TIME | wiki:Gameplay#Points; video:Map_1 3:37.4 (+10 mỗi đơn vị) |  |
 | TallyPointsPerHeart | 100 |  | điểm/tim | wiki:Gameplay#Points; video:Map_1 3:40.5–3:49.9 (+100 mỗi tim) |  |
-| TallyTicksPerTimeUnit | 1 |  | tick | video:planner (HUD từng frame) — chờ đo routine 12 |  |
-| TallyTicksPerHeart | 8 |  | tick | video:planner (HUD từng frame) — chờ đo routine 12 |  |
-| TallyGapTicks | *chờ đo routine 12* |  | tick | video:planner ≈ 0.9 s giữa đếm TIME và đếm tim — chờ đo routine 12 |  |
+| TallyTicksPerTimeUnit | 1 |  | tick | đo:routine 12 Tools/cvgp/hud_rules.py (Map_1 3:37.4–3:39.5: TIME 0127→0000 trong 128 tick = 1.01 tick/đv; video boss 24.6 s cùng nhịp 2 đv/frame) |  |
+| TallyTicksPerHeart | 8 |  | tick | đo:routine 12 Tools/cvgp/hud_rules.py (Map_1 3:40.4–3:49.9: tim 72→00 hồi quy 7.99 tick/tim, dư ≤ 2.5 tick) |  |
+| TallyGapTicks | 54 | 52–56 | tick | đo:routine 12 Tools/cvgp/hud_rules.py (Map_1: TIME = 0000 f6586 → tim giảm đầu f6613 = 27 frame) | từ tick TIME về 0 tới tick tim giảm đầu |
 | MultiKill2 | 1000 |  | điểm | wiki:Gameplay#Points (Special — 1 lần ném vũ khí phụ hạ 2 enemy) | không tính roi |
 | MultiKill3 | 2000 |  | điểm | wiki:Gameplay#Points |  |
 | MultiKill4 | 4000 |  | điểm | wiki:Gameplay#Points |  |
 | MultiplierPickupBonus | 700 |  | điểm | wiki:Items#Double Shot (khi đang cầm Stopwatch); wiki:Gameplay#Points (hoặc không có vũ khí phụ) | 2 trang nói khác điều kiện — CV_WIKI_DATA §7.1 #3 |
 | RosaryKillPoints | 0 |  | điểm | wiki:Items#Rosary (enemy bị Rosary diệt không cho điểm) |  |
 | EnemyProjectilePoints | 100 |  | điểm | wiki:Gameplay#Points (một số đạn đáng 100 điểm) | đạn nào: không rõ |
+| TallyEndWaitTicks | 120 | 118–122 | tick | đo:routine 12 Tools/cvgp/hud_rules.py (Map_1: tim = 00 f6896 → màn đen f6956 = 60 frame; đen 28 tick tới bản đồ lâu đài — routine 15) | từ tick tim về 0 tới khi báo xong tally |
+| TallySfxEveryTicks | 8 |  | tick | đo:routine 02 (SFX 04 đếm TIME và 05 đếm tim kích lại mỗi ~8 tick, lần cuối phát trọn) | TIME: kích ở đv đầu + mỗi 8 tick + đv cuối; tim: mỗi tim |
 
 ## 10. Luật chung, HUD, chuyển cảnh
 
 | Khoá | Giá trị | Khoảng đo (min–max) | Đơn vị | Nguồn | Ghi chú |
 |---|---|---|---|---|---|
-| TimeUnitTicks | 64 |  | tick | video:planner MAP1_TIMELINE §4 (time_rate 5 đoạn; 1 đv = 1.065 s) — chờ đo routine 12 |  |
+| TimeUnitTicks | 64 |  | tick | đo:routine 12 Tools/cvgp/hud_rules.py (map1_hud.csv: 6 đoạn chạy liền 165 đv / 10556 tick = 63.98 tick/đv; từng đoạn 63.85–63.93, dư ≤ 5 tick) | đếm theo tick; pha đặt lại 0 khi bắt đầu stage/section mới (5 lần: đv đầu giảm sau 60–62 tick ±2) |
 | PlayerBarSegments | 16 |  | vạch | wiki:Gameplay#Damage; video:Map_1 HUD |  |
 | EnemyBarSegments | 16 |  | vạch | suy luận: wiki ảnh HUD (16 đoạn); video:Map_1 HUD |  |
-| DamageDisplayTicksPerBar | 8 |  | tick | video:planner (≈ thanh máu tụt dần 1 vạch / 8 tick) — chờ đo routine 12 |  |
-| HealDisplayTicksPerBar | 7 |  | tick | video:planner (≈ hồi 8→16 trong 0.9 s sau quả cầu) — chờ đo routine 12 |  |
+| DamageDisplayTicksPerBar | 8 | 6–12 | tick | đo:routine 12 Tools/cvgp/hud_rules.py (Map_1 ENEMY 3:24.9–3:30.4: mỗi rìu −2 vạch hiện thành 2 bước cách 4/4/4/4/3/4/4 frame (1 lần 6) ⇒ TB 8.2 tick) | bước đầu ngay tick đổi máu (suy luận), sau đó 1 vạch / 8 tick |
+| HealDisplayTicksPerBar | 8 | 6–8 | tick | đo:routine 12 Tools/cvgp/hud_rules.py (video boss f627–654: PLAYER 8→16 sau quả cầu, hồi quy 7.88 tick/vạch, dư ≤ 2.4 tick) | planner ước 7 — đo lại 8 |
 | DamageSecondQuest | 4 |  | vạch | wiki:Secrets; wiki:Stages 16-18 (Second Quest mọi đòn 4 vạch) |  |
 | SubWeaponOnScreenBase | 1 |  | cái | wiki:Gameplay; wiki:Items#Double Shot |  |
 | DoubleShotOnScreen | 2 |  | cái | wiki:Items#Double Shot |  |
@@ -315,7 +317,7 @@ Máu = **số đòn** để hạ: *yếu* (roi da, Holy Water, Dagger) / *mạnh
 | DoorScrollSpeed | *chờ đo routine 15* | 0.9–0.91 | px/tick | video:planner — chờ đo routine 15 |  |
 | DoorPauseTicks | *chờ đo routine 15* | 138–140 | tick | video:planner (dừng 2.30–2.33 s) — chờ đo routine 15 |  |
 | DoorAutoWalkPx | 68 |  | px | video:planner (Simon tự đi 68 px @ 1 px/tick) — chờ đo routine 15 |  |
-| StageClearToTallyTicks | *chờ đo routine 12* | 228–264 | tick | video:planner (3.8–4.4 s sau khi nhặt quả cầu; 2 lần khác nhau) — chờ đo routine 12 |  |
+| StageClearToTallyTicks | 260 | 220–260 | tick | đo:routine 12 Tools/cvgp/hud_rules.py: Map_1 nhặt cầu f6391 (= lúc nhạc Stage Clear bắt đầu — tương quan âm thanh 213.05 s NCC 0.81) → TIME giảm đầu f6521 = 260 tick; video boss: hồi máu bắt đầu f627 → f737 = 220 tick | 2 video lệch 40 tick chưa giải thích (nhạc Stage Clear kêu 4.10 s = 246 tick); theo Map_1 (video chính) |
 | ItemGravity | 0.25 |  | px/tick² | đo:routine 11 Tools/cvgp/item_fit.py — 4 lần item rơi khỏi chậu lửa CE (f110–115, f190–193, f378–384, f452–456) + nước thánh rơi 48 px ở EH (f1713–1723): y = g·t(t−1)/2 dư ≤ 1 px; không thấy vận tốc trần tới 4.75 px/tick | mọi item trừ tim nhỏ (đung đưa); vận tốc đầu 0 |
 | ItemLifetimeTicks | 188 | 182–190 | tick | đo:routine 11 video Map_1 f874→f968: đồng hồ (rơi từ Zombie) nằm sàn rồi biến mất giữa màn, KHÔNG nháy trước (f940–967 hiện đủ) — 1 mẫu (91–95 frame) | tính từ lúc item hiện; wiki chỉ nói biến mất sau thời gian ngắn |
 | ItemDespawnInsetPx | 8 |  | px | đo:routine 11 video Map_1 f1796→1797: nước thánh trôi theo camera và biến mất khi mép trái sprite chạm mép màn (tâm cách mép 8 px) | gỡ item khi tâm cách mép màn < 8 px (phía phải: suy luận đối xứng) |
@@ -329,6 +331,15 @@ Máu = **số đòn** để hạ: *yếu* (roi da, Holy Water, Dagger) / *mạnh
 | SecretRiseSpeed | 0.3125 | 0.25–0.38 | px/tick | đo:routine 11 video Map_1 f4200–4226: túi 1000 trồi từ sau sàn 16 px trong ~26 frame | item bí mật trồi lên (sàn che phần dưới) |
 | SecretRisePx | 16 |  | px | đo:routine 11 video Map_1 f4200–4226 (trồi hết chiều cao túi) |  |
 | MorningStarNeedsHearts | 1 |  | bool | suy luận: wiki Items#Morning Star (nến vốn chứa tim nhỏ đổi thành Morning Star khi đã thu đủ tim 4 / 8) — chọn so với SỐ TIM ĐANG CÓ (ConfigWhip.upgradeHearts) — CVGP_MEMORY §5 | 0 = luôn đổi khi roi < 3 |
+| RespawnBlackTicks | 32 |  | tick | suy luận: video/wiki không có cảnh chết — dùng bằng đen Intro→Stage 01 (CVTI NesTiming.BLACK_AFTER_INTRO 32) | Died (sau DeathTicks) → màn đen N tick → đầu stage |
+| GameOverBlackTicks | 32 |  | tick | quy ước: video/wiki không có Game Over (= RespawnBlackTicks) | Died khi hết mạng → đen → màn GAME OVER |
+| HeartsOnDeath | 5 |  | tim | suy luận: = StartHearts (wiki không nêu tim khi chết) | hồi sinh / Continue ⇒ tim về giá trị này |
+| TimeResetOnDeath | 1 |  | bool | suy luận: wiki Gameplay#Simon Belmont (hồi sinh = về đầu stage) — giờ đặt lại = ConfigBlock.timeLimit | 0 = giữ giờ đang còn |
+| ContinueResetScore | 1 |  | bool | quy ước: wiki không nói điểm khi Continue (CV_WIKI_DATA §1.4) | 1 = Continue đặt điểm về 0 (và mốc 1UP về OneUpFirst) |
+| ShotIconBlinkTicks | 120 | 116–124 | tick | đo:routine 12 Tools/cvgp/hud_rules.py (Map_1 icon II nháy f5987–f6047 sau khi nhặt rồi sáng hẳn = 60 frame) | nháy khi vừa có Double/Triple Shot |
+| ShotIconBlinkHalfTicks | 4 | 2–6 | tick | đo:routine 12 Tools/cvgp/hud_rules.py (Map_1 f5987–6047: 15 lần hiện TB 2.1 frame, 15 lần ẩn TB 2.4 frame ⇒ ~4 tick mỗi pha) | hiện N tick / ẩn N tick |
+| LivesCap | 99 |  | mạng | suy luận: HUD P-dd 2 chữ số |  |
+| ScoreCap | 999999 |  | điểm | suy luận: HUD SCORE-dddddd 6 chữ số |  |
 
 ## 11. Nội dung vật chứa (ConfigDrop)
 

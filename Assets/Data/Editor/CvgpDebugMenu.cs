@@ -11,6 +11,7 @@ public static class CvgpDebugMenu
     const string M_HITBOX = "CVGP/Debug/Hitbox Overlay";
     const string M_TILES = "CVGP/Debug/Tile Collision Overlay";
     const string M_LOGSTATE = "CVGP/Debug/Log State Changes";
+    const string M_LOGRULES = "CVGP/Debug/Log Rules (CVGP 12)";
     const string M_INVINCIBLE = "CVGP/Cheat/Invincible";
     const string M_FULLHP = "CVGP/Cheat/Full HP";
     const string M_HP1 = "CVGP/Cheat/HP 1";
@@ -33,6 +34,9 @@ public static class CvgpDebugMenu
 
     [MenuItem(M_LOGSTATE)] static void LogState() { Toggle(CvgpDebug.PREF_LOG_STATE); }
     [MenuItem(M_LOGSTATE, true)] static bool LogStateV() { Menu.SetChecked(M_LOGSTATE, EditorPrefs.GetBool(CvgpDebug.PREF_LOG_STATE, false)); return true; }
+
+    [MenuItem(M_LOGRULES)] static void LogRules() { Toggle(CvgpDebug.PREF_LOG_RULES); }
+    [MenuItem(M_LOGRULES, true)] static bool LogRulesV() { Menu.SetChecked(M_LOGRULES, EditorPrefs.GetBool(CvgpDebug.PREF_LOG_RULES, false)); return true; }
 
     [MenuItem(M_INVINCIBLE)] static void Invincible() { Toggle(CvgpDebug.PREF_CHEAT_INVINCIBLE); }
     [MenuItem(M_INVINCIBLE, true)] static bool InvincibleV() { Menu.SetChecked(M_INVINCIBLE, EditorPrefs.GetBool(CvgpDebug.PREF_CHEAT_INVINCIBLE, false)); return true; }

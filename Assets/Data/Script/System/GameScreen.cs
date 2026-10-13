@@ -6,6 +6,7 @@ public enum eGameScreen
     Title,
     Intro,
     Stage1,
+    GameOver,   // CVGP 12
 }
 
 /// <summary>

@@ -24,9 +24,12 @@ MonoBehaviour:
       has: 0
       value: 0
     unit: tick
-    source: "video:planner MAP1_TIMELINE \xA74 (time_rate 5 \u0111o\u1EA1n; 1 \u0111v
-      = 1.065 s) \u2014 ch\u1EDD \u0111o routine 12"
-    note: 
+    source: "\u0111o:routine 12 Tools/cvgp/hud_rules.py (map1_hud.csv: 6 \u0111o\u1EA1n
+      ch\u1EA1y li\u1EC1n 165 \u0111v / 10556 tick = 63.98 tick/\u0111v; t\u1EEBng
+      \u0111o\u1EA1n 63.85\u201363.93, d\u01B0 \u2264 5 tick)"
+    note: "\u0111\u1EBFm theo tick; pha \u0111\u1EB7t l\u1EA1i 0 khi b\u1EAFt \u0111\u1EA7u
+      stage/section m\u1EDBi (5 l\u1EA7n: \u0111v \u0111\u1EA7u gi\u1EA3m sau 60\u201362
+      tick \xB12)"
   - key: PlayerBarSegments
     value:
       has: 1
@@ -58,29 +61,32 @@ MonoBehaviour:
       has: 1
       value: 8
     min:
-      has: 0
-      value: 0
+      has: 1
+      value: 6
     max:
-      has: 0
-      value: 0
+      has: 1
+      value: 12
     unit: tick
-    source: "video:planner (\u2248 thanh m\xE1u t\u1EE5t d\u1EA7n 1 v\u1EA1ch / 8
-      tick) \u2014 ch\u1EDD \u0111o routine 12"
-    note: 
+    source: "\u0111o:routine 12 Tools/cvgp/hud_rules.py (Map_1 ENEMY 3:24.9\u20133:30.4:
+      m\u1ED7i r\xECu \u22122 v\u1EA1ch hi\u1EC7n th\xE0nh 2 b\u01B0\u1EDBc c\xE1ch
+      4/4/4/4/3/4/4 frame (1 l\u1EA7n 6) \u21D2 TB 8.2 tick)"
+    note: "b\u01B0\u1EDBc \u0111\u1EA7u ngay tick \u0111\u1ED5i m\xE1u (suy lu\u1EADn),
+      sau \u0111\xF3 1 v\u1EA1ch / 8 tick"
   - key: HealDisplayTicksPerBar
     value:
       has: 1
-      value: 7
+      value: 8
     min:
-      has: 0
-      value: 0
+      has: 1
+      value: 6
     max:
-      has: 0
-      value: 0
+      has: 1
+      value: 8
     unit: tick
-    source: "video:planner (\u2248 h\u1ED3i 8\u219216 trong 0.9 s sau qu\u1EA3 c\u1EA7u)
-      \u2014 ch\u1EDD \u0111o routine 12"
-    note: 
+    source: "\u0111o:routine 12 Tools/cvgp/hud_rules.py (video boss f627\u2013654:
+      PLAYER 8\u219216 sau qu\u1EA3 c\u1EA7u, h\u1ED3i quy 7.88 tick/v\u1EA1ch, d\u01B0
+      \u2264 2.4 tick)"
+    note: "planner \u01B0\u1EDBc 7 \u2014 \u0111o l\u1EA1i 8"
   - key: DamageSecondQuest
     value:
       has: 1
@@ -319,18 +325,22 @@ MonoBehaviour:
     note: 
   - key: StageClearToTallyTicks
     value:
-      has: 0
-      value: 0
+      has: 1
+      value: 260
     min:
       has: 1
-      value: 228
+      value: 220
     max:
       has: 1
-      value: 264
+      value: 260
     unit: tick
-    source: "video:planner (3.8\u20134.4 s sau khi nh\u1EB7t qu\u1EA3 c\u1EA7u; 2
-      l\u1EA7n kh\xE1c nhau) \u2014 ch\u1EDD \u0111o routine 12"
-    note: 
+    source: "\u0111o:routine 12 Tools/cvgp/hud_rules.py: Map_1 nh\u1EB7t c\u1EA7u
+      f6391 (= l\xFAc nh\u1EA1c Stage Clear b\u1EAFt \u0111\u1EA7u \u2014 t\u01B0\u01A1ng
+      quan \xE2m thanh 213.05 s NCC 0.81) \u2192 TIME gi\u1EA3m \u0111\u1EA7u f6521
+      = 260 tick; video boss: h\u1ED3i m\xE1u b\u1EAFt \u0111\u1EA7u f627 \u2192
+      f737 = 220 tick"
+    note: "2 video l\u1EC7ch 40 tick ch\u01B0a gi\u1EA3i th\xEDch (nh\u1EA1c Stage
+      Clear k\xEAu 4.10 s = 246 tick); theo Map_1 (video ch\xEDnh)"
   - key: ItemGravity
     value:
       has: 1
@@ -531,3 +541,129 @@ MonoBehaviour:
       tim 4 / 8) \u2014 ch\u1ECDn so v\u1EDBi S\u1ED0 TIM \u0110ANG C\xD3 (ConfigWhip.upgradeHearts)
       \u2014 CVGP_MEMORY \xA75"
     note: "0 = lu\xF4n \u0111\u1ED5i khi roi < 3"
+  - key: RespawnBlackTicks
+    value:
+      has: 1
+      value: 32
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "suy lu\u1EADn: video/wiki kh\xF4ng c\xF3 c\u1EA3nh ch\u1EBFt \u2014
+      d\xF9ng b\u1EB1ng \u0111en Intro\u2192Stage 01 (CVTI NesTiming.BLACK_AFTER_INTRO
+      32)"
+    note: "Died (sau DeathTicks) \u2192 m\xE0n \u0111en N tick \u2192 \u0111\u1EA7u
+      stage"
+  - key: GameOverBlackTicks
+    value:
+      has: 1
+      value: 32
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "quy \u01B0\u1EDBc: video/wiki kh\xF4ng c\xF3 Game Over (= RespawnBlackTicks)"
+    note: "Died khi h\u1EBFt m\u1EA1ng \u2192 \u0111en \u2192 m\xE0n GAME OVER"
+  - key: HeartsOnDeath
+    value:
+      has: 1
+      value: 5
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tim
+    source: "suy lu\u1EADn: = StartHearts (wiki kh\xF4ng n\xEAu tim khi ch\u1EBFt)"
+    note: "h\u1ED3i sinh / Continue \u21D2 tim v\u1EC1 gi\xE1 tr\u1ECB n\xE0y"
+  - key: TimeResetOnDeath
+    value:
+      has: 1
+      value: 1
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: bool
+    source: "suy lu\u1EADn: wiki Gameplay#Simon Belmont (h\u1ED3i sinh = v\u1EC1
+      \u0111\u1EA7u stage) \u2014 gi\u1EDD \u0111\u1EB7t l\u1EA1i = ConfigBlock.timeLimit"
+    note: "0 = gi\u1EEF gi\u1EDD \u0111ang c\xF2n"
+  - key: ContinueResetScore
+    value:
+      has: 1
+      value: 1
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: bool
+    source: "quy \u01B0\u1EDBc: wiki kh\xF4ng n\xF3i \u0111i\u1EC3m khi Continue
+      (CV_WIKI_DATA \xA71.4)"
+    note: "1 = Continue \u0111\u1EB7t \u0111i\u1EC3m v\u1EC1 0 (v\xE0 m\u1ED1c 1UP
+      v\u1EC1 OneUpFirst)"
+  - key: ShotIconBlinkTicks
+    value:
+      has: 1
+      value: 120
+    min:
+      has: 1
+      value: 116
+    max:
+      has: 1
+      value: 124
+    unit: tick
+    source: "\u0111o:routine 12 Tools/cvgp/hud_rules.py (Map_1 icon II nh\xE1y f5987\u2013f6047
+      sau khi nh\u1EB7t r\u1ED3i s\xE1ng h\u1EB3n = 60 frame)"
+    note: "nh\xE1y khi v\u1EEBa c\xF3 Double/Triple Shot"
+  - key: ShotIconBlinkHalfTicks
+    value:
+      has: 1
+      value: 4
+    min:
+      has: 1
+      value: 2
+    max:
+      has: 1
+      value: 6
+    unit: tick
+    source: "\u0111o:routine 12 Tools/cvgp/hud_rules.py (Map_1 f5987\u20136047: 15
+      l\u1EA7n hi\u1EC7n TB 2.1 frame, 15 l\u1EA7n \u1EA9n TB 2.4 frame \u21D2 ~4
+      tick m\u1ED7i pha)"
+    note: "hi\u1EC7n N tick / \u1EA9n N tick"
+  - key: LivesCap
+    value:
+      has: 1
+      value: 99
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: "m\u1EA1ng"
+    source: "suy lu\u1EADn: HUD P-dd 2 ch\u1EEF s\u1ED1"
+    note: 
+  - key: ScoreCap
+    value:
+      has: 1
+      value: 999999
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: "\u0111i\u1EC3m"
+    source: "suy lu\u1EADn: HUD SCORE-dddddd 6 ch\u1EEF s\u1ED1"
+    note: 

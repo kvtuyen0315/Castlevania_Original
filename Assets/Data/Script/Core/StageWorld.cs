@@ -72,6 +72,8 @@ public class StageWorld : MonoBehaviour
     public event Action<HitInfo> Hit;
     /// <summary>Thực thể chạm ô chết (Water/Pit/Hazard, rơi khỏi đáy).</summary>
     public event Action<Entity, eTileCollision> DeadlyTile;
+    /// <summary>CVGP 12 — đầu mỗi tick, TRƯỚC khi xét Paused (StageRules: Start = pause, màn đen hồi sinh).</summary>
+    public event Action<StageWorld> TickBegan;
     /// <summary>Bước 9 — cuối mỗi tick (HUD đọc trạng thái ở đây).</summary>
     public event Action<StageWorld> TickEnded;
 
@@ -396,6 +398,8 @@ public class StageWorld : MonoBehaviour
     {
         if (!initialized)
             Init();
+        if (TickBegan != null)
+            TickBegan(this);
         long a0 = 0;
         System.Diagnostics.Stopwatch sw = null;
         if (MeasurePerf)

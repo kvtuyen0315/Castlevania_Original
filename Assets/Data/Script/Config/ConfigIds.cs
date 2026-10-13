@@ -164,6 +164,9 @@ public enum eScoreParam
     MultiplierPickupBonus,
     RosaryKillPoints,
     EnemyProjectilePoints,
+    // CVGP 12 — tally
+    TallyEndWaitTicks,
+    TallySfxEveryTicks,
 }
 
 /// <summary>Khoá bảng ConfigRule.csv (luật chung, HUD, chuyển cảnh).</summary>
@@ -206,4 +209,14 @@ public enum eRuleParam
     SecretRiseSpeed,
     SecretRisePx,
     MorningStarNeedsHearts,
+    // CVGP 12 — chết/hồi sinh, Continue, HUD
+    RespawnBlackTicks,
+    GameOverBlackTicks,
+    HeartsOnDeath,
+    TimeResetOnDeath,
+    ContinueResetScore,
+    ShotIconBlinkTicks,
+    ShotIconBlinkHalfTicks,
+    LivesCap,
+    ScoreCap,
 }

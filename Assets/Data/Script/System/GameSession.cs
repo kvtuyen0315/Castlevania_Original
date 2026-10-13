@@ -36,6 +36,20 @@ public class GameSession
     public int shotMultiplier;
     /// <summary>Số lần vũ khí phụ HIỆN TẠI trúng enemy (wiki: 10 lần ⇒ rơi multiplier — routine 11 đọc/đặt lại).</summary>
     public int subWeaponHits;
+    // CVGP 12 — luật chơi (GameRules) + HUD sống (StageRules)
+    /// <summary>Block 1–6 (ConfigStage.block của stage) — giờ giới hạn theo block (ConfigBlock.timeLimit).</summary>
+    public int block;
+    /// <summary>Mốc điểm 1UP kế tiếp (ConfigScore.OneUpFirst/Second/Every — GameRules.AddScore).</summary>
+    public int nextOneUp;
+    /// <summary>Thanh máu HUD đang HIỆN (chạy dần 1 vạch / N tick về playerHp/enemyHp) — chỉ dùng khi animateBars.</summary>
+    public int shownPlayerHp, shownEnemyHp;
+    /// <summary>true khi có StageRules chạy (màn chơi): HUD vẽ shown*; false (Intro, scene thử) ⇒ HUD vẽ giá trị thật.</summary>
+    public bool animateBars;
+    /// <summary>Icon II/III đang hiện (nháy sau khi nhặt — StageRules).</summary>
+    public bool shotIconVisible;
+
+    public int ShownPlayerHp => animateBars ? shownPlayerHp : playerHp;
+    public int ShownEnemyHp => animateBars ? shownEnemyHp : enemyHp;
 
     public event Action Changed;
 
@@ -57,6 +71,11 @@ public class GameSession
         whipLevel = 1;
         shotMultiplier = 1;
         subWeaponHits = 0;
+        block = 1;
+        nextOneUp = 0;       // 0 = GameRules tính từ ConfigScore (OneUpFirst…) ở lần cộng điểm đầu
+        shownPlayerHp = playerHp;
+        shownEnemyHp = enemyHp;
+        shotIconVisible = true;
         NotifyChanged();
     }
 

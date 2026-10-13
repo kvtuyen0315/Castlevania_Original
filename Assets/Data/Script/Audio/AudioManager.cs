@@ -65,6 +65,37 @@ public class AudioManager : ManualSingletonMono<AudioManager>
 
     public bool IsSfxPlaying => sfxSource != null && sfxSource.isPlaying;
 
+    /// <summary>CVGP 12 — Pause: tạm dừng / chạy tiếp nhạc (không phát lại từ đầu).</summary>
+    public void PauseMusic(bool paused)
+    {
+        if (paused)
+            musicSource.Pause();
+        else
+            musicSource.UnPause();
+        CvtiDebug.Log(paused ? "PauseMusic" : "UnPauseMusic");
+    }
+
+    /// <summary>
+    /// CVGP 12 — SFX kênh đơn: lần phát mới CẮT lần trước (NES: đếm tally kích lại mỗi ~8 tick, chỉ nghe đoạn đầu; lần cuối phát trọn —
+    /// routine 02). Kênh riêng (không đụng PlayOneShot chồng của sfxSource).
+    /// </summary>
+    public void PlaySfxRestart(eSfx id)
+    {
+        if (sfxLibrary == null)
+            return;
+        var clip = sfxLibrary.Get(id);
+        if (clip == null)
+            return;
+        if (sfxChannel == null)
+            sfxChannel = CreateSource();
+        sfxChannel.Stop();
+        sfxChannel.clip = clip;
+        sfxChannel.loop = false;
+        sfxChannel.Play();
+    }
+
+    private AudioSource sfxChannel;
+
     AudioSource CreateSource()
     {
         var src = gameObject.AddComponent<AudioSource>();
