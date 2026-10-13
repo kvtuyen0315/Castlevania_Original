@@ -1,0 +1,63 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c4c25d45acf3c14e9c6005b7044ce18, type: 3}
+  m_Name: Arena
+  m_EditorClassIdentifier: 
+  id: Arena
+  stage: 0
+  width: 1040
+  height: 192
+  cols: 65
+  rows: 12
+  cameraMinX: 0
+  cameraMaxX: 784
+  bossLockCx: -1
+  hasSimonStart: 1
+  simonStart: {x: 48, y: 176}
+  simonStartSrc: 'quy uoc: Arena (CVGP 07) - san trong x 0-415, mat san y 176'
+  collision:
+  - .................................................................
+  - .................................................................
+  - .................................................................
+  - .................................................................
+  - .................................................................
+  - ..............................................S##########S.......
+  - .............................................S............S......
+  - ..........................................S###............#####X.
+  - .........................................S.......................
+  - ..........................#.............S........................
+  - ..........................#............S.........................
+  - '##############################..##~~#############################'
+  foreground: []
+  stairs:
+  - id: Arena_stair0
+    dir: 0
+    steps: 8
+    foot: {x: 624, y: 168}
+    top: {x: 680, y: 112}
+    cutBottom: 0
+    cutTop: 0
+  - id: Arena_stair1
+    dir: 0
+    steps: 4
+    foot: {x: 720, y: 104}
+    top: {x: 744, y: 80}
+    cutBottom: 0
+    cutTop: 0
+  - id: Arena_stair2
+    dir: 1
+    steps: 4
+    foot: {x: 936, y: 104}
+    top: {x: 912, y: 80}
+    cutBottom: 0
+    cutTop: 0
+  connections: []

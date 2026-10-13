@@ -16,7 +16,7 @@ PitWaterSpikeInstantKill,1,,,bool,wiki:Gameplay#Damage,
 StopwatchItemsStillExpire,1,,,bool,wiki:Items#Stopwatch,
 FrozenEnemiesStillHurt,1,,,bool,wiki:Items#Stopwatch (chạm enemy/gai đóng băng vẫn mất máu),
 RosaryFlashTicks,,24,26,tick,video:planner (màn nháy trắng 0.40–0.44 s; 3 lần) — chờ đo routine 11,
-CameraFollowScreenX,,128,129,px màn,video:planner (Simon giữ ở x màn ≈ 128–129 khi cuộn) — chờ đo routine 07,
+CameraFollowScreenX,128,,,px màn,đo:routine 07 Tools/cvgp/measure_camera.py (Map_1: pivot Simon = x_med màu − lệch sprite (trái −2/phải +1); cuộn phải n=1452 trung vị x_med 129 ⇒ pivot 128; cuộn trái n=293 x_med 126 ⇒ pivot 128; cả cầu thang),camera X = kẹp(Simon.X − 128); không vùng chết; không trễ; cùng luật 2 hướng
 DoorScrollPx,128,,,px,video:planner (cửa cuối stage: cuộn 128 px hai lần) — chờ đo routine 15,
 DoorScrollSpeed,,0.90,0.91,px/tick,video:planner — chờ đo routine 15,
 DoorPauseTicks,,138,140,tick,video:planner (dừng 2.30–2.33 s) — chờ đo routine 15,

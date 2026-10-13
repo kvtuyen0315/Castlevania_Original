@@ -394,8 +394,8 @@ MonoBehaviour:
     note: "camera + Simon \u0111\u1EE9ng; TIME v\u1EABn ch\u1EA1y"
   - key: HurtboxWidth
     value:
-      has: 0
-      value: 0
+      has: 1
+      value: 16
     min:
       has: 0
       value: 0
@@ -403,12 +403,15 @@ MonoBehaviour:
       has: 0
       value: 0
     unit: px
-    source: "ch\u1EDD \u0111o routine 07"
-    note: 
+    source: "\u0111o:routine 07 bbox pixel \u0111\u1EE5c sprite idle_0 (c\u1ED9t
+      0\u201315)"
+    note: "X\u1EA4P X\u1EC8 = khung sprite; h\u1ED9p tr\xFAng th\u1EADt c\u1EE7a
+      ROM ch\u01B0a \u0111o \u0111\u01B0\u1EE3c (Map_1 kh\xF4ng c\xF3 l\u1EA7n tr\xFAng)
+      \u2014 routine 08 ki\u1EC3m video boss f356"
   - key: HurtboxHeight
     value:
-      has: 0
-      value: 0
+      has: 1
+      value: 30
     min:
       has: 0
       value: 0
@@ -416,12 +419,13 @@ MonoBehaviour:
       has: 0
       value: 0
     unit: px
-    source: "ch\u1EDD \u0111o routine 07"
-    note: 
+    source: "\u0111o:routine 07 bbox pixel \u0111\u1EE5c sprite idle_0 (h\xE0ng 1\u201330
+      c\u1EE7a khung 32)"
+    note: "X\u1EA4P X\u1EC8 nh\u01B0 HurtboxWidth; ch\xE2n \u1EDF h\xE0ng Y\u22121"
   - key: CrouchHurtboxHeight
     value:
-      has: 0
-      value: 0
+      has: 1
+      value: 23
     min:
       has: 0
       value: 0
@@ -429,5 +433,6 @@ MonoBehaviour:
       has: 0
       value: 0
     unit: px
-    source: "ch\u1EDD \u0111o routine 07"
-    note: 
+    source: "\u0111o:routine 07 bbox pixel \u0111\u1EE5c sprite jumpduck_0 (h\xE0ng
+      1\u201323)"
+    note: "X\u1EA4P X\u1EC8 nh\u01B0 HurtboxWidth"

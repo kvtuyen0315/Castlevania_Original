@@ -1,0 +1,27 @@
+{
+ "note": "CVGP 07 - sinh boi Tools/cvgp/build_arena.py (ghep o Map 1); KHONG sua tay",
+ "tileSize": 8,
+ "columns": 16,
+ "count": 118,
+ "png": "Assets/Data/Art/Level/Block1/level1_tiles.png",
+ "levelRowToNesY": 32,
+ "sections": [
+  {
+   "id": "Arena",
+   "inventoryId": "-",
+   "stage": 0,
+   "sheetRect": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "width": 1040,
+   "height": 192,
+   "cols8": 130,
+   "rows8": 24,
+   "uniqueTiles": 55,
+   "csv": "Assets/Data/Config/Level/Arena/Arena_tiles.csv"
+  }
+ ]
+}

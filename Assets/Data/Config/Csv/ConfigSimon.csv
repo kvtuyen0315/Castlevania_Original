@@ -26,6 +26,6 @@ WhipRaiseTicks,,4,8,tick,video:planner (khung 2 giơ cao; điển hình 6) — c
 WhipExtendTicks,,6,10,tick,video:planner (khung 3 duỗi thẳng) — chờ đo routine 09,
 WhipHeightAboveFeet,16,,,px,video:planner (≈ đỉnh đầu + 9–10 px) — chờ đo routine 09,
 WhipPickupFreezeTicks,,46,48,tick,video:planner (0.73–0.80 s; f194–217 và f293–315) — chờ đo routine 09,camera + Simon đứng; TIME vẫn chạy
-HurtboxWidth,,,,px,chờ đo routine 07,
-HurtboxHeight,,,,px,chờ đo routine 07,
-CrouchHurtboxHeight,,,,px,chờ đo routine 07,
+HurtboxWidth,16,,,px,đo:routine 07 bbox pixel đục sprite idle_0 (cột 0–15),XẤP XỈ = khung sprite; hộp trúng thật của ROM chưa đo được (Map_1 không có lần trúng) — routine 08 kiểm video boss f356
+HurtboxHeight,30,,,px,đo:routine 07 bbox pixel đục sprite idle_0 (hàng 1–30 của khung 32),XẤP XỈ như HurtboxWidth; chân ở hàng Y−1
+CrouchHurtboxHeight,23,,,px,đo:routine 07 bbox pixel đục sprite jumpduck_0 (hàng 1–23),XẤP XỈ như HurtboxWidth

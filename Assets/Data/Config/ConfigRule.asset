@@ -245,18 +245,21 @@ MonoBehaviour:
     note: 
   - key: CameraFollowScreenX
     value:
-      has: 0
-      value: 0
-    min:
       has: 1
       value: 128
+    min:
+      has: 0
+      value: 0
     max:
-      has: 1
-      value: 129
+      has: 0
+      value: 0
     unit: "px m\xE0n"
-    source: "video:planner (Simon gi\u1EEF \u1EDF x m\xE0n \u2248 128\u2013129 khi
-      cu\u1ED9n) \u2014 ch\u1EDD \u0111o routine 07"
-    note: 
+    source: "\u0111o:routine 07 Tools/cvgp/measure_camera.py (Map_1: pivot Simon
+      = x_med m\xE0u \u2212 l\u1EC7ch sprite (tr\xE1i \u22122/ph\u1EA3i +1); cu\u1ED9n
+      ph\u1EA3i n=1452 trung v\u1ECB x_med 129 \u21D2 pivot 128; cu\u1ED9n tr\xE1i
+      n=293 x_med 126 \u21D2 pivot 128; c\u1EA3 c\u1EA7u thang)"
+    note: "camera X = k\u1EB9p(Simon.X \u2212 128); kh\xF4ng v\xF9ng ch\u1EBFt; kh\xF4ng
+      tr\u1EC5; c\xF9ng lu\u1EADt 2 h\u01B0\u1EDBng"
   - key: DoorScrollPx
     value:
       has: 1

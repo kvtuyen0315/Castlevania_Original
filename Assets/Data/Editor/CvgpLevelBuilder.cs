@@ -15,6 +15,9 @@ using UnityEngine.Tilemaps;
 /// Assets/Data/Art/Level/Block1/Tiles/l1t_NNN.asset · LevelSectionData Assets/Data/Config/Level/Block1/&lt;Section&gt;.asset ·
 /// prefab Assets/Data/Prefabs/Level/Block1/&lt;Section&gt;.prefab (Grid ô 0.5 + Tilemap BG/FG + LevelSection).
 /// Chạy lại được: mọi asset chỉ ghi khi nội dung khác (giữ GUID, chạy lần 2 = 0 ghi); có lỗi dữ liệu ⇒ không ghi gì.
+/// CVGP 07: cùng đường dựng cho section thử Arena (Tools/cvgp/build_arena.py → Assets/Data/Config/Level/Arena/*.json) —
+/// menu CVGP/Build Arena Section ⇒ Assets/Data/Config/Level/Arena/Arena.asset + Assets/Data/Prefabs/Level/Test/Arena.prefab
+/// (dùng chung tileset + Tile asset của Block 1).
 /// </summary>
 public static class CvgpLevelBuilder
 {
@@ -25,6 +28,21 @@ public static class CvgpLevelBuilder
     const string PREFAB_DIR = "Assets/Data/Prefabs/Level/Block1";
     const string TILE_PREFIX = "l1t_";
     const float CELL_UNITS = 0.5f;   // tile 8 px / PPU 16
+    const string ARENA_CFG_DIR = "Assets/Data/Config/Level/Arena";
+    const string ARENA_PREFAB_DIR = "Assets/Data/Prefabs/Level/Test";
+
+    /// <summary>Bộ đường dẫn của 1 lần dựng (Map 1 hoặc Arena).</summary>
+    class Spec
+    {
+        public string label, tilesJson, mapJson, cfgDir, prefabDir;
+    }
+
+    static readonly Spec MAP1 = new Spec { label = "Map1", tilesJson = TILES_JSON, mapJson = MAP_JSON, cfgDir = CFG_DIR, prefabDir = PREFAB_DIR };
+    static readonly Spec ARENA = new Spec
+    {
+        label = "Arena", tilesJson = ARENA_CFG_DIR + "/ArenaTiles.json", mapJson = ARENA_CFG_DIR + "/ArenaMap.json",
+        cfgDir = ARENA_CFG_DIR, prefabDir = ARENA_PREFAB_DIR
+    };
 
     [Serializable] class TilesDoc { public int tileSize; public int columns; public int count; public string png; public int levelRowToNesY; public TilesSection[] sections; }
     [Serializable] class TilesSection { public string id; public int stage; public int[] sheetRect; public int width; public int height; public int cols8; public int rows8; public string csv; }
@@ -47,14 +65,31 @@ public static class CvgpLevelBuilder
         Debug.Log(Build());
     }
 
+    [MenuItem("CVGP/Build Arena Section")]
+    public static void BuildArenaMenu()
+    {
+        Debug.Log(BuildArena());
+    }
+
     /// <summary>Trả chuỗi tóm tắt; lỗi được log bằng Debug.LogError.</summary>
     public static string Build()
     {
+        return Build(MAP1);
+    }
+
+    /// <summary>Section thử Arena (CVGP 07) — chạy SAU Build() (cần tileset + Tile asset Block 1).</summary>
+    public static string BuildArena()
+    {
+        return Build(ARENA);
+    }
+
+    static string Build(Spec spec)
+    {
         var errors = new List<string>();
-        TilesDoc tiles = ReadJson<TilesDoc>(TILES_JSON, errors);
-        MapDoc map = ReadJson<MapDoc>(MAP_JSON, errors);
+        TilesDoc tiles = ReadJson<TilesDoc>(spec.tilesJson, errors);
+        MapDoc map = ReadJson<MapDoc>(spec.mapJson, errors);
         if (errors.Count > 0)
-            return Fail(errors);
+            return Fail(spec, errors);
 
         // ---- kiểm dữ liệu trước khi ghi bất cứ gì
         if (tiles.tileSize != 8 || map.cellSize != LevelSectionData.CELL)
@@ -87,9 +122,9 @@ public static class CvgpLevelBuilder
         if (map.sections.Length != tiles.sections.Length)
             errors.Add("số section lệch giữa 2 JSON");
         if (errors.Count > 0)
-            return Fail(errors);
+            return Fail(spec, errors);
 
-        var sb = new StringBuilder("Map1: ");
+        var sb = new StringBuilder(spec.label + ": ");
         // ---- 1. tileset Multiple
         bool texChanged = EnsureTileset(tiles, texRows);
         sb.Append("tileset ").Append(texChanged ? "cắt lại" : "không đổi");
@@ -105,7 +140,7 @@ public static class CvgpLevelBuilder
             if (sprites[i] == null)
                 errors.Add("thiếu sprite " + TileName(i));
         if (errors.Count > 0)
-            return Fail(errors);
+            return Fail(spec, errors);
 
         // ---- 2. Tile asset
         EnsureFolder(TILE_DIR);
@@ -134,14 +169,14 @@ public static class CvgpLevelBuilder
         sb.Append("; tile ").Append(tiles.count).Append(" (ghi ").Append(tileWritten).Append(")");
 
         // ---- 3. LevelSectionData + prefab
-        EnsureFolder(CFG_DIR);
-        EnsureFolder(PREFAB_DIR);
+        EnsureFolder(spec.cfgDir);
+        EnsureFolder(spec.prefabDir);
         int dataWritten = 0, prefabWritten = 0;
         foreach (var ts in tiles.sections)
         {
             var ms = mapById[ts.id];
-            var data = WriteSectionData(ms, ref dataWritten);
-            if (WritePrefab(ms, data, grids[ts.id], tileAssets))
+            var data = WriteSectionData(spec, ms, ref dataWritten);
+            if (WritePrefab(spec, ms, data, grids[ts.id], tileAssets))
                 prefabWritten++;
         }
         AssetDatabase.SaveAssets();
@@ -313,9 +348,9 @@ public static class CvgpLevelBuilder
     }
 
     // ------------------------------------------------------------------ LevelSectionData
-    static LevelSectionData WriteSectionData(MapSection ms, ref int written)
+    static LevelSectionData WriteSectionData(Spec spec, MapSection ms, ref int written)
     {
-        string path = CFG_DIR + "/" + ms.id + ".asset";
+        string path = spec.cfgDir + "/" + ms.id + ".asset";
         var temp = ScriptableObject.CreateInstance<LevelSectionData>();
         temp.name = ms.id;
         temp.id = ms.id;
@@ -377,9 +412,9 @@ public static class CvgpLevelBuilder
 
     // ------------------------------------------------------------------ prefab
     /// <summary>Trả true nếu đã ghi prefab.</summary>
-    static bool WritePrefab(MapSection ms, LevelSectionData data, int[,] grid, Tile[] tileAssets)
+    static bool WritePrefab(Spec spec, MapSection ms, LevelSectionData data, int[,] grid, Tile[] tileAssets)
     {
-        string path = PREFAB_DIR + "/" + ms.id + ".prefab";
+        string path = spec.prefabDir + "/" + ms.id + ".prefab";
         bool exists = AssetDatabase.LoadAssetAtPath<GameObject>(path) != null;
         var root = exists ? PrefabUtility.LoadPrefabContents(path) : new GameObject(ms.id);
         int changes = exists ? 0 : 1;
@@ -555,11 +590,11 @@ public static class CvgpLevelBuilder
         }
     }
 
-    static string Fail(List<string> errors)
+    static string Fail(Spec spec, List<string> errors)
     {
         foreach (var e in errors)
             Debug.LogError("CvgpLevelBuilder: " + e);
-        return "Map1: " + errors.Count + " lỗi — KHÔNG ghi asset nào";
+        return spec.label + ": " + errors.Count + " lỗi — KHÔNG ghi asset nào";
     }
 
     static void EnsureFolder(string path)

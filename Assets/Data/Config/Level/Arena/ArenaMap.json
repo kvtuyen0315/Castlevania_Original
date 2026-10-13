@@ -1,0 +1,128 @@
+{
+ "note": "CVGP 07 - sinh boi Tools/cvgp/build_arena.py (EntranceHall cot 0-64 + tuong/ho/nuoc chep o Map 1); KHONG sua tay",
+ "cellSize": 16,
+ "levelRowToNesY": 32,
+ "types": [
+  {
+   "name": "Empty",
+   "char": "."
+  },
+  {
+   "name": "Solid",
+   "char": "#"
+  },
+  {
+   "name": "Stair",
+   "char": "S"
+  },
+  {
+   "name": "StairFloor",
+   "char": "="
+  },
+  {
+   "name": "Water",
+   "char": "~"
+  },
+  {
+   "name": "Pit",
+   "char": "P"
+  },
+  {
+   "name": "Door",
+   "char": "D"
+  },
+  {
+   "name": "Breakable",
+   "char": "X"
+  },
+  {
+   "name": "Hazard",
+   "char": "!"
+  }
+ ],
+ "order": [
+  "Arena"
+ ],
+ "sections": [
+  {
+   "id": "Arena",
+   "stage": 0,
+   "width": 1040,
+   "height": 192,
+   "cols": 65,
+   "rows": 12,
+   "cameraMinX": 0,
+   "cameraMaxX": 784,
+   "bossLockCx": -1,
+   "hasSimonStart": true,
+   "simonStart": [
+    48,
+    176
+   ],
+   "simonStartSrc": "quy uoc: Arena (CVGP 07) - san trong x 0-415, mat san y 176",
+   "collision": [
+    ".................................................................",
+    ".................................................................",
+    ".................................................................",
+    ".................................................................",
+    ".................................................................",
+    "..............................................S##########S.......",
+    ".............................................S............S......",
+    "..........................................S###............#####X.",
+    ".........................................S.......................",
+    "..........................#.............S........................",
+    "..........................#............S.........................",
+    "##############################..##~~#############################"
+   ],
+   "foreground": [],
+   "stairs": [
+    {
+     "id": "Arena_stair0",
+     "dir": "UpRight",
+     "steps": 8,
+     "foot": [
+      624,
+      168
+     ],
+     "top": [
+      680,
+      112
+     ],
+     "cutBottom": false,
+     "cutTop": false
+    },
+    {
+     "id": "Arena_stair1",
+     "dir": "UpRight",
+     "steps": 4,
+     "foot": [
+      720,
+      104
+     ],
+     "top": [
+      744,
+      80
+     ],
+     "cutBottom": false,
+     "cutTop": false
+    },
+    {
+     "id": "Arena_stair2",
+     "dir": "UpLeft",
+     "steps": 4,
+     "foot": [
+      936,
+      104
+     ],
+     "top": [
+      912,
+      80
+     ],
+     "cutBottom": false,
+     "cutTop": false
+    }
+   ],
+   "connections": []
+  }
+ ]
+}

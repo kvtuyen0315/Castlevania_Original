@@ -37,9 +37,9 @@
 | WhipExtendTicks | *chờ đo routine 09* | 6–10 | tick | video:planner (khung 3 duỗi thẳng) — chờ đo routine 09 |  |
 | WhipHeightAboveFeet | 16 |  | px | video:planner (≈ đỉnh đầu + 9–10 px) — chờ đo routine 09 |  |
 | WhipPickupFreezeTicks | *chờ đo routine 09* | 46–48 | tick | video:planner (0.73–0.80 s; f194–217 và f293–315) — chờ đo routine 09 | camera + Simon đứng; TIME vẫn chạy |
-| HurtboxWidth | *chờ đo routine 07* |  | px | chờ đo routine 07 |  |
-| HurtboxHeight | *chờ đo routine 07* |  | px | chờ đo routine 07 |  |
-| CrouchHurtboxHeight | *chờ đo routine 07* |  | px | chờ đo routine 07 |  |
+| HurtboxWidth | 16 |  | px | đo:routine 07 bbox pixel đục sprite idle_0 (cột 0–15) | XẤP XỈ = khung sprite; hộp trúng thật của ROM chưa đo được (Map_1 không có lần trúng) — routine 08 kiểm video boss f356 |
+| HurtboxHeight | 30 |  | px | đo:routine 07 bbox pixel đục sprite idle_0 (hàng 1–30 của khung 32) | XẤP XỈ như HurtboxWidth; chân ở hàng Y−1 |
+| CrouchHurtboxHeight | 23 |  | px | đo:routine 07 bbox pixel đục sprite jumpduck_0 (hàng 1–23) | XẤP XỈ như HurtboxWidth |
 
 ### Sát thương Simon nhận mỗi lần trúng đòn (theo STAGE, mọi loại đòn như nhau — wiki Gameplay#Damage)
 
@@ -248,7 +248,7 @@ Máu = **số đòn** để hạ: *yếu* (roi da, Holy Water, Dagger) / *mạnh
 | StopwatchItemsStillExpire | 1 |  | bool | wiki:Items#Stopwatch |  |
 | FrozenEnemiesStillHurt | 1 |  | bool | wiki:Items#Stopwatch (chạm enemy/gai đóng băng vẫn mất máu) |  |
 | RosaryFlashTicks | *chờ đo routine 11* | 24–26 | tick | video:planner (màn nháy trắng 0.40–0.44 s; 3 lần) — chờ đo routine 11 |  |
-| CameraFollowScreenX | *chờ đo routine 07* | 128–129 | px màn | video:planner (Simon giữ ở x màn ≈ 128–129 khi cuộn) — chờ đo routine 07 |  |
+| CameraFollowScreenX | 128 |  | px màn | đo:routine 07 Tools/cvgp/measure_camera.py (Map_1: pivot Simon = x_med màu − lệch sprite (trái −2/phải +1); cuộn phải n=1452 trung vị x_med 129 ⇒ pivot 128; cuộn trái n=293 x_med 126 ⇒ pivot 128; cả cầu thang) | camera X = kẹp(Simon.X − 128); không vùng chết; không trễ; cùng luật 2 hướng |
 | DoorScrollPx | 128 |  | px | video:planner (cửa cuối stage: cuộn 128 px hai lần) — chờ đo routine 15 |  |
 | DoorScrollSpeed | *chờ đo routine 15* | 0.9–0.91 | px/tick | video:planner — chờ đo routine 15 |  |
 | DoorPauseTicks | *chờ đo routine 15* | 138–140 | tick | video:planner (dừng 2.30–2.33 s) — chờ đo routine 15 |  |
