@@ -2,58 +2,22 @@ using afsdk;
 using UnityEngine;
 
 /// <summary>
-/// Input Manager cũ (activeInputHandler 0). Start = Return / KeypadEnter / Space / joystick button 7, 9.
-/// Đọc theo tick như NES đọc tay cầm mỗi frame: GameManager gọi Tick() đầu mỗi tick, rồi màn hình đọc StartPressedThisFrame.
-/// Cạnh nhấn = vừa nhấn trong Update kể từ tick trước (chốt lại để không lọt khi fps cao) hoặc giữ ở tick này mà tick trước chưa giữ.
+/// Lớp mỏng cho màn Title/Intro (CVTI) — đọc Start từ NesPad (bảng phím InputBindings: B, Enter, KeypadEnter, Space,
+/// joystick button 7, 9). Không đọc Input.* nữa (CVGP 03); NesPad.Tick() do GameManager gọi đầu mỗi tick, trước luồng màn hình.
 /// </summary>
-[DefaultExecutionOrder(-200)]
 public class InputController : ManualSingletonMono<InputController>
 {
-    static readonly KeyCode[] START_KEYS =
-    {
-        KeyCode.Return, KeyCode.KeypadEnter, KeyCode.Space, KeyCode.JoystickButton7, KeyCode.JoystickButton9,
-    };
-
     /// <summary>Start vừa được nhấn ở tick hiện tại (chỉ 1 tick, giữ phím không lặp).</summary>
-    public bool StartPressedThisFrame { get; private set; }
+    public bool StartPressedThisFrame => NesPad.I != null && NesPad.I.Pressed(eNesButton.Start);
 
-    public bool StartHeld { get; private set; }
+    public bool StartHeld => NesPad.I != null && NesPad.I.Held(eNesButton.Start);
 
-    private bool startDownLatched;
-
-    private void Update()
-    {
-        if (AnyDown(START_KEYS))
-            startDownLatched = true;
-    }
-
-    public void Tick()
-    {
-        bool held = AnyHeld(START_KEYS);
-        StartPressedThisFrame = startDownLatched || (held && !StartHeld);
-        StartHeld = held;
-        startDownLatched = false;
-    }
-
-    /// <summary>Giả lập 1 lần nhấn Start (test qua MCP — không bấm phím được).</summary>
+    /// <summary>Giả lập 1 lần nhấn Start ở tick kế tiếp (harness CVTI qua MCP — không bấm phím được).</summary>
     public void InjectStart()
     {
-        startDownLatched = true;
-    }
-
-    static bool AnyDown(KeyCode[] keys)
-    {
-        foreach (var k in keys)
-            if (Input.GetKeyDown(k))
-                return true;
-        return false;
-    }
-
-    static bool AnyHeld(KeyCode[] keys)
-    {
-        foreach (var k in keys)
-            if (Input.GetKey(k))
-                return true;
-        return false;
+        if (NesPad.I != null)
+            NesPad.I.InjectPress(eNesButton.Start);
+        else
+            Debug.LogError("[InputController] Không có NesPad trong scene");
     }
 }

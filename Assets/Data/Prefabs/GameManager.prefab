@@ -361,6 +361,7 @@ Transform:
   m_Children:
   - {fileID: 8447563088798373247}
   - {fileID: 5919667924338744855}
+  - {fileID: 8835216956283407735}
   - {fileID: 1105046768279499599}
   - {fileID: 5392606110176257832}
   m_Father: {fileID: 0}
@@ -422,3 +423,48 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cb38bc9e545a284b9f2a9407d14db67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &8474342429986322850
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8835216956283407735}
+  - component: {fileID: 7112233141677836353}
+  m_Layer: 0
+  m_Name: NesPad
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8835216956283407735
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8474342429986322850}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6103692928955867526}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7112233141677836353
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8474342429986322850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11a03a5ed7c36184cbcfb29f7bcde5a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bindings: {fileID: 11400000, guid: 5dbca949d073cff40b12b90a2c0dc16d, type: 2}

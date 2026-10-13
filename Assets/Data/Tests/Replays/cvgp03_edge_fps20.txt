@@ -1,0 +1,3 @@
+# NesPad replay (định dạng: NesReplay.cs) — 622 tick, hash 77878f95
+-*10 R*3 -*12 R*12 -*12 Sub*3 -*33 R*3 -*3 R*3 -*12 A*6
+-*510

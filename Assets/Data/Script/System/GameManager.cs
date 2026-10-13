@@ -85,8 +85,9 @@ public class GameManager : ManualSingletonMono<GameManager>
 
     private void HandleTick(int frame)
     {
-        if (InputController.I != null)
-            InputController.I.Tick();
+        // Input chốt trước luồng màn hình (CVGP_MEMORY §4: thứ tự tick).
+        if (NesPad.I != null)
+            NesPad.I.Tick();
 
         if (State == eGameScreen.Boot && !transitioning)
         {
