@@ -1,0 +1,2164 @@
+{
+ "note": "CVGP 06 - sinh boi Tools/cvgp/build_collision.py tu sheet + level1_collision_overrides.json + level1_sections.json; KHONG sua tay",
+ "cellSize": 16,
+ "levelRowToNesY": 32,
+ "types": [
+  {
+   "name": "Empty",
+   "char": "."
+  },
+  {
+   "name": "Solid",
+   "char": "#"
+  },
+  {
+   "name": "Stair",
+   "char": "S"
+  },
+  {
+   "name": "StairFloor",
+   "char": "="
+  },
+  {
+   "name": "Water",
+   "char": "~"
+  },
+  {
+   "name": "Pit",
+   "char": "P"
+  },
+  {
+   "name": "Door",
+   "char": "D"
+  },
+  {
+   "name": "Breakable",
+   "char": "X"
+  },
+  {
+   "name": "Hazard",
+   "char": "!"
+  }
+ ],
+ "order": [
+  "CastleEntrance",
+  "EntranceHall",
+  "CryptA",
+  "CryptB",
+  "CryptA",
+  "PhantomBat"
+ ],
+ "sections": [
+  {
+   "id": "CastleEntrance",
+   "stage": 1,
+   "width": 768,
+   "height": 192,
+   "cols": 48,
+   "rows": 12,
+   "cameraMinX": 0,
+   "cameraMaxX": 512,
+   "bossLockCx": -1,
+   "hasSimonStart": true,
+   "simonStart": [
+    50,
+    160
+   ],
+   "simonStartSrc": "CVTI_MEMORY 2.4/4.6: Stage 1 do khung-khop-khung goc tren-trai sprite (42,161) NES = tam x 50, chan tren san level y 160 (NES 192); video Map_1 0:02.2 x_med 51",
+   "collision": [
+    "................................................",
+    "................................................",
+    "................................................",
+    "................................................",
+    "................................................",
+    "................................................",
+    "................................................",
+    "................................................",
+    "................................................",
+    "................................................",
+    "################################################",
+    "................................................"
+   ],
+   "counts": {
+    "Empty": 528,
+    "Solid": 48,
+    "Stair": 0,
+    "StairFloor": 0,
+    "Water": 0,
+    "Pit": 0,
+    "Door": 0,
+    "Breakable": 0,
+    "Hazard": 0
+   },
+   "foreground": [
+    {
+     "cols": [
+      44,
+      47
+     ],
+     "rows": [
+      0,
+      9
+     ],
+     "src": "video Map_1 0:17.93-0:18.27 (anh _cache/06/gate_zoom2.png): Simon bi che dung tu x man 192 = level x 704 (camera cx 512), ke ca o pixel den giua gach => lop FG cot 44-47 (phai vom cong), khong phai luat uu tien sprite NES theo mau nen"
+    }
+   ],
+   "stairs": [],
+   "connections": [
+    {
+     "id": "gate",
+     "kind": "Gate",
+     "target": "EntranceHall",
+     "targetStage": 1,
+     "trigger": [
+      688,
+      64,
+      16,
+      96
+     ],
+     "triggerSimonX": -1,
+     "stair": "",
+     "targetStair": "",
+     "targetOrigin": [
+      0,
+      0
+     ],
+     "entry": [
+      49,
+      176
+     ],
+     "src": "vom cong cot 43 hang 4-9 (kiem ke). Video: camera cham cx 512 luc 0:16.2 (Simon x 642); Simon di 1 px/tick toi x~679 (0:16.8) roi ~0.3 px/tick, bi FG che tu x 704, mat han 0:18.27; TIME 0287 tu 0:16.07 dung toi 0:20.0; den 0:19.7-0:20.0; EH hien 0:20.0 Simon x_med 49. Diem kich hoat chinh xac + toc do tu di: cho do routine 15"
+    }
+   ]
+  },
+  {
+   "id": "EntranceHall",
+   "stage": 1,
+   "width": 1536,
+   "height": 192,
+   "cols": 96,
+   "rows": 12,
+   "cameraMinX": 0,
+   "cameraMaxX": 1280,
+   "bossLockCx": -1,
+   "hasSimonStart": true,
+   "simonStart": [
+    49,
+    176
+   ],
+   "simonStartSrc": "video Map_1 0:20.0 (f600): cx 0, x_med 49, y chan 206 NES (= mat san 208 - 2); +-1 px, routine 15 do lai",
+   "collision": [
+    "................................................................................................",
+    "................................................................................................",
+    "...............................................................................................D",
+    "...............................................................................................D",
+    "...............................................................................................D",
+    "..............................................S##########S............................S#########",
+    ".............................................S............S..........................S..........",
+    "..........................................S###............#####X....................S...........",
+    ".........................................S.........................................S............",
+    "........................................S.........................................S.............",
+    ".......................................S.........................................S..............",
+    "################################################################################################"
+   ],
+   "counts": {
+    "Empty": 1011,
+    "Solid": 123,
+    "Stair": 14,
+    "StairFloor": 0,
+    "Water": 0,
+    "Pit": 0,
+    "Door": 3,
+    "Breakable": 1,
+    "Hazard": 0
+   },
+   "foreground": [],
+   "stairs": [
+    {
+     "id": "EntranceHall_stair0",
+     "dir": "UpRight",
+     "steps": 8,
+     "foot": [
+      624,
+      168
+     ],
+     "top": [
+      680,
+      112
+     ],
+     "cutBottom": false,
+     "cutTop": false
+    },
+    {
+     "id": "EntranceHall_stair1",
+     "dir": "UpRight",
+     "steps": 4,
+     "foot": [
+      720,
+      104
+     ],
+     "top": [
+      744,
+      80
+     ],
+     "cutBottom": false,
+     "cutTop": false
+    },
+    {
+     "id": "EntranceHall_stair2",
+     "dir": "UpLeft",
+     "steps": 4,
+     "foot": [
+      936,
+      104
+     ],
+     "top": [
+      912,
+      80
+     ],
+     "cutBottom": false,
+     "cutTop": false
+    },
+    {
+     "id": "EntranceHall_stair3",
+     "dir": "UpRight",
+     "steps": 12,
+     "foot": [
+      1296,
+      168
+     ],
+     "top": [
+      1384,
+      80
+     ],
+     "cutBottom": false,
+     "cutTop": false
+    }
+   ],
+   "connections": [
+    {
+     "id": "door_to_CryptA",
+     "kind": "Door",
+     "target": "CryptA",
+     "targetStage": 2,
+     "trigger": [
+      1528,
+      32,
+      8,
+      48
+     ],
+     "triggerSimonX": 1516,
+     "stair": "",
+     "targetStair": "",
+     "targetOrigin": [
+      1536,
+      0
+     ],
+     "entry": [
+      49,
+      80
+     ],
+     "src": "cot cua do-trang cot 95 hang 2-4 tren buc hang 5 (kiem ke). Video 1:24.83 (f2545): Simon x_med 236 man @ cx 1280 = level 1516 khi camera bat dau cuon (+-2); cuon 128 px -> cua mo, Simon tu di x man 109->177 @ camera 1408 = EH 1517 -> CA 49 -> cuon 128 px -> CA cx 0; CA ghep lien phai EH (anh _cache/06/door1.png, door2.png); STAGE 02 luc 1:31.87"
+    }
+   ]
+  },
+  {
+   "id": "CryptA",
+   "stage": 2,
+   "width": 512,
+   "height": 192,
+   "cols": 32,
+   "rows": 12,
+   "cameraMinX": 0,
+   "cameraMaxX": 256,
+   "bossLockCx": -1,
+   "hasSimonStart": true,
+   "simonStart": [
+    49,
+    80
+   ],
+   "simonStartSrc": "video Map_1 1:31.9 (f2756): cx 0, x_med 49, y chan 110 NES (buc hang 5, mat 80 level = NES 112); = diem ket thuc doan tu di qua cua",
+   "collision": [
+    "................................",
+    "..............................##",
+    "...............................D",
+    "...............................D",
+    "...............................D",
+    "########..................######",
+    "................######..........",
+    "........###S....####..###S......",
+    "............S...####......S.....",
+    ".............S..X###.......S....",
+    "..............S.X###........S...",
+    "###=###################=########"
+   ],
+   "counts": {
+    "Empty": 297,
+    "Solid": 72,
+    "Stair": 8,
+    "StairFloor": 2,
+    "Water": 0,
+    "Pit": 0,
+    "Door": 3,
+    "Breakable": 2,
+    "Hazard": 0
+   },
+   "foreground": [],
+   "stairs": [
+    {
+     "id": "CryptA_stair0",
+     "dir": "UpLeft",
+     "steps": 2,
+     "foot": [
+      56,
+      184
+     ],
+     "top": [
+      48,
+      176
+     ],
+     "cutBottom": true,
+     "cutTop": false
+    },
+    {
+     "id": "CryptA_stair1",
+     "dir": "UpLeft",
+     "steps": 8,
+     "foot": [
+      232,
+      168
+     ],
+     "top": [
+      176,
+      112
+     ],
+     "cutBottom": false,
+     "cutTop": false
+    },
+    {
+     "id": "CryptA_stair2",
+     "dir": "UpLeft",
+     "steps": 2,
+     "foot": [
+      376,
+      184
+     ],
+     "top": [
+      368,
+      176
+     ],
+     "cutBottom": true,
+     "cutTop": false
+    },
+    {
+     "id": "CryptA_stair3",
+     "dir": "UpLeft",
+     "steps": 8,
+     "foot": [
+      456,
+      168
+     ],
+     "top": [
+      400,
+      112
+     ],
+     "cutBottom": false,
+     "cutTop": false
+    }
+   ],
+   "connections": [
+    {
+     "id": "stair_A0_to_CryptB",
+     "kind": "Stair",
+     "target": "CryptB",
+     "targetStage": 2,
+     "trigger": [
+      48,
+      176,
+      16,
+      16
+     ],
+     "triggerSimonX": -1,
+     "stair": "CryptA_stair0",
+     "targetStair": "CryptB_stair0",
+     "targetOrigin": [
+      32,
+      192
+     ],
+     "entry": [
+      0,
+      0
+     ],
+     "src": "2 bac cuoi o day CA (48,176),(56,184) noi tiep CB (32,0)...(88,56): CB(x,y) = CA(x+32, y+192) (kiem ke c4, lech -32 px). Video 1:47.5 Simon xuong thang CA x 55->66 (f3196-3232); 1:54.4 dang xuong o CB x 68 (doan giua bi non-game che)"
+    },
+    {
+     "id": "stair_A2_to_CryptB",
+     "kind": "Stair",
+     "target": "CryptB",
+     "targetStage": 2,
+     "trigger": [
+      368,
+      176,
+      16,
+      16
+     ],
+     "triggerSimonX": -1,
+     "stair": "CryptA_stair2",
+     "targetStair": "CryptB_stair1",
+     "targetOrigin": [
+      32,
+      192
+     ],
+     "entry": [
+      0,
+      0
+     ],
+     "src": "CA (368,176),(376,184) noi CB (352,0)...(440,88). Video CB->CA 2:27.7: CB x 385 chan level 32 (f4430) -> den 0.33 s -> CA x 381 chan level 187 (f4442) - cung duong thang voi phep doi (32,192)"
+    },
+    {
+     "id": "door_to_PhantomBat",
+     "kind": "Door",
+     "target": "PhantomBat",
+     "targetStage": 3,
+     "trigger": [
+      504,
+      32,
+      8,
+      48
+     ],
+     "triggerSimonX": 492,
+     "stair": "",
+     "targetStair": "",
+     "targetOrigin": [
+      512,
+      0
+     ],
+     "entry": [
+      49,
+      80
+     ],
+     "src": "cot cua cot 31 hang 2-4 tren buc hang 5. Video 2:44.0 (f4920): x_med 236 man @ cx 256 = level 492 khi bat dau cuon; chuoi cuon 128 -> cua -> cuon 128 nhu cua Stage 1; STAGE 03 luc 2:50.87, PB x_med 49"
+    }
+   ]
+  },
+  {
+   "id": "CryptB",
+   "stage": 2,
+   "width": 512,
+   "height": 192,
+   "cols": 32,
+   "rows": 12,
+   "cameraMinX": 0,
+   "cameraMaxX": 256,
+   "bossLockCx": -1,
+   "hasSimonStart": false,
+   "simonStart": [
+    0,
+    0
+   ],
+   "simonStartSrc": "khong co diem bat dau stage (chi vao qua cau thang tu Crypt A)",
+   "collision": [
+    "##S...##....##..##....S.........",
+    "...S...................S........",
+    "....S...................S.......",
+    ".....S...................S......",
+    "......##..................S.....",
+    "...........................S....",
+    "##############..##..#########X..",
+    "................................",
+    "..............................##",
+    "................................",
+    "~~~~~~~~~~~~~~~~~~~~~~~~~~~~##~~",
+    "~~~~~~~~~~~~~~~~~~~~~~~~~~~~..~~"
+   ],
+   "counts": {
+    "Empty": 274,
+    "Solid": 39,
+    "Stair": 10,
+    "StairFloor": 0,
+    "Water": 60,
+    "Pit": 0,
+    "Door": 0,
+    "Breakable": 1,
+    "Hazard": 0
+   },
+   "foreground": [],
+   "stairs": [
+    {
+     "id": "CryptB_stair0",
+     "dir": "UpLeft",
+     "steps": 8,
+     "foot": [
+      88,
+      56
+     ],
+     "top": [
+      32,
+      0
+     ],
+     "cutBottom": false,
+     "cutTop": true
+    },
+    {
+     "id": "CryptB_stair1",
+     "dir": "UpLeft",
+     "steps": 12,
+     "foot": [
+      440,
+      88
+     ],
+     "top": [
+      352,
+      0
+     ],
+     "cutBottom": false,
+     "cutTop": true
+    }
+   ],
+   "connections": [
+    {
+     "id": "stair_B0_to_CryptA",
+     "kind": "Stair",
+     "target": "CryptA",
+     "targetStage": 2,
+     "trigger": [
+      32,
+      0,
+      64,
+      64
+     ],
+     "triggerSimonX": -1,
+     "stair": "CryptB_stair0",
+     "targetStair": "CryptA_stair0",
+     "targetOrigin": [
+      -32,
+      -192
+     ],
+     "entry": [
+      0,
+      0
+     ],
+     "src": "dinh thang cham mep tren CB (kiem ke c4); nghich dao cua stair_A0_to_CryptB"
+    },
+    {
+     "id": "stair_B1_to_CryptA",
+     "kind": "Stair",
+     "target": "CryptA",
+     "targetStage": 2,
+     "trigger": [
+      352,
+      0,
+      96,
+      96
+     ],
+     "triggerSimonX": -1,
+     "stair": "CryptB_stair1",
+     "targetStair": "CryptA_stair2",
+     "targetOrigin": [
+      -32,
+      -192
+     ],
+     "entry": [
+      0,
+      0
+     ],
+     "src": "video 2:25.4-2:27.7 len thang trai-len ra mep tren (de len HUD 2:27.40-2:27.67), den 2:27.70-2:28.00, hien o day CA"
+    }
+   ]
+  },
+  {
+   "id": "PhantomBat",
+   "stage": 3,
+   "width": 768,
+   "height": 192,
+   "cols": 48,
+   "rows": 12,
+   "cameraMinX": 0,
+   "cameraMaxX": 512,
+   "bossLockCx": 512,
+   "hasSimonStart": true,
+   "simonStart": [
+    49,
+    80
+   ],
+   "simonStartSrc": "video Map_1 2:50.9 (f5126): cx 0, x_med 49, y chan 110 NES (buc T1 hang 5) | camera: video Map_1 3:17.4 camera khoa cx 512 (phong boss) toi het tally; video boss: phong co dinh cx 512",
+   "collision": [
+    "................................................",
+    "................................................",
+    "................................................",
+    "................................................",
+    "...............................................D",
+    "#######S.......................................D",
+    "........S......................................D",
+    "........###########S........................S###",
+    "....................S......................S....",
+    ".....................S....................#X....",
+    "......................S.........................",
+    "################################################"
+   ],
+   "counts": {
+    "Empty": 494,
+    "Solid": 70,
+    "Stair": 8,
+    "StairFloor": 0,
+    "Water": 0,
+    "Pit": 0,
+    "Door": 3,
+    "Breakable": 1,
+    "Hazard": 0
+   },
+   "foreground": [],
+   "stairs": [
+    {
+     "id": "PhantomBat_stair0",
+     "dir": "UpLeft",
+     "steps": 4,
+     "foot": [
+      136,
+      104
+     ],
+     "top": [
+      112,
+      80
+     ],
+     "cutBottom": false,
+     "cutTop": false
+    },
+    {
+     "id": "PhantomBat_stair1",
+     "dir": "UpLeft",
+     "steps": 8,
+     "foot": [
+      360,
+      168
+     ],
+     "top": [
+      304,
+      112
+     ],
+     "cutBottom": false,
+     "cutTop": false
+    },
+    {
+     "id": "PhantomBat_stair2",
+     "dir": "UpRight",
+     "steps": 4,
+     "foot": [
+      688,
+      136
+     ],
+     "top": [
+      712,
+      112
+     ],
+     "cutBottom": false,
+     "cutTop": false
+    }
+   ],
+   "connections": [
+    {
+     "id": "door_end",
+     "kind": "Door",
+     "target": "",
+     "targetStage": 4,
+     "trigger": [
+      760,
+      64,
+      8,
+      48
+     ],
+     "triggerSimonX": -1,
+     "stair": "",
+     "targetStair": "",
+     "targetOrigin": [
+      0,
+      0
+     ],
+     "entry": [
+      0,
+      0
+     ],
+     "src": "cot cua cot 47 hang 4-6 tren buc hang 7. KHONG dung trong video: ha boss -> qua cau -> tally -> ban do lau dai -> STAGE 04 (3:30-3:59); Stage 04 ngoai pham vi Map 1"
+    }
+   ]
+  }
+ ],
+ "metatiles": [
+  {
+   "id": 0,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 77,
+   "firstSection": "CastleEntrance",
+   "firstCol": 0,
+   "firstRow": 0
+  },
+  {
+   "id": 1,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 5,
+   "firstSection": "CastleEntrance",
+   "firstCol": 41,
+   "firstRow": 0
+  },
+  {
+   "id": 2,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 2,
+   "firstSection": "CastleEntrance",
+   "firstCol": 42,
+   "firstRow": 0
+  },
+  {
+   "id": 3,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 10,
+   "firstSection": "CastleEntrance",
+   "firstCol": 43,
+   "firstRow": 0
+  },
+  {
+   "id": 4,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 3,
+   "firstSection": "CastleEntrance",
+   "firstCol": 46,
+   "firstRow": 0
+  },
+  {
+   "id": 5,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 196,
+   "firstSection": "CastleEntrance",
+   "firstCol": 47,
+   "firstRow": 0
+  },
+  {
+   "id": 6,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 18,
+   "firstSection": "CastleEntrance",
+   "firstCol": 2,
+   "firstRow": 1
+  },
+  {
+   "id": 7,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 18,
+   "firstSection": "CastleEntrance",
+   "firstCol": 3,
+   "firstRow": 1
+  },
+  {
+   "id": 8,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 1,
+   "firstSection": "CastleEntrance",
+   "firstCol": 40,
+   "firstRow": 1
+  },
+  {
+   "id": 9,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 7,
+   "firstSection": "CastleEntrance",
+   "firstCol": 41,
+   "firstRow": 1
+  },
+  {
+   "id": 10,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 2,
+   "firstSection": "CastleEntrance",
+   "firstCol": 42,
+   "firstRow": 1
+  },
+  {
+   "id": 11,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 2,
+   "firstSection": "CastleEntrance",
+   "firstCol": 43,
+   "firstRow": 1
+  },
+  {
+   "id": 12,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 3,
+   "firstSection": "CastleEntrance",
+   "firstCol": 46,
+   "firstRow": 1
+  },
+  {
+   "id": 13,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 28,
+   "firstSection": "CastleEntrance",
+   "firstCol": 0,
+   "firstRow": 2
+  },
+  {
+   "id": 14,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 28,
+   "firstSection": "CastleEntrance",
+   "firstCol": 1,
+   "firstRow": 2
+  },
+  {
+   "id": 15,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 3,
+   "firstSection": "CastleEntrance",
+   "firstCol": 46,
+   "firstRow": 2
+  },
+  {
+   "id": 16,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 28,
+   "firstSection": "CastleEntrance",
+   "firstCol": 0,
+   "firstRow": 3
+  },
+  {
+   "id": 17,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 28,
+   "firstSection": "CastleEntrance",
+   "firstCol": 1,
+   "firstRow": 3
+  },
+  {
+   "id": 18,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 1,
+   "firstSection": "CastleEntrance",
+   "firstCol": 41,
+   "firstRow": 3
+  },
+  {
+   "id": 19,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 4,
+   "firstSection": "CastleEntrance",
+   "firstCol": 42,
+   "firstRow": 3
+  },
+  {
+   "id": 20,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 3,
+   "firstSection": "CastleEntrance",
+   "firstCol": 46,
+   "firstRow": 3
+  },
+  {
+   "id": 21,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 20,
+   "firstSection": "CastleEntrance",
+   "firstCol": 2,
+   "firstRow": 4
+  },
+  {
+   "id": 22,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 20,
+   "firstSection": "CastleEntrance",
+   "firstCol": 3,
+   "firstRow": 4
+  },
+  {
+   "id": 23,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 1,
+   "firstSection": "CastleEntrance",
+   "firstCol": 42,
+   "firstRow": 4
+  },
+  {
+   "id": 24,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 1,
+   "firstSection": "CastleEntrance",
+   "firstCol": 43,
+   "firstRow": 4
+  },
+  {
+   "id": 25,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 20,
+   "firstSection": "CastleEntrance",
+   "firstCol": 2,
+   "firstRow": 5
+  },
+  {
+   "id": 26,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 20,
+   "firstSection": "CastleEntrance",
+   "firstCol": 3,
+   "firstRow": 5
+  },
+  {
+   "id": 27,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 1,
+   "firstSection": "CastleEntrance",
+   "firstCol": 42,
+   "firstRow": 5
+  },
+  {
+   "id": 28,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 3,
+   "firstSection": "CastleEntrance",
+   "firstCol": 2,
+   "firstRow": 7
+  },
+  {
+   "id": 29,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 3,
+   "firstSection": "CastleEntrance",
+   "firstCol": 3,
+   "firstRow": 7
+  },
+  {
+   "id": 30,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 8,
+   "firstSection": "CastleEntrance",
+   "firstCol": 0,
+   "firstRow": 8
+  },
+  {
+   "id": 31,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 8,
+   "firstSection": "CastleEntrance",
+   "firstCol": 1,
+   "firstRow": 8
+  },
+  {
+   "id": 32,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 3,
+   "firstSection": "CastleEntrance",
+   "firstCol": 2,
+   "firstRow": 8
+  },
+  {
+   "id": 33,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 3,
+   "firstSection": "CastleEntrance",
+   "firstCol": 3,
+   "firstRow": 8
+  },
+  {
+   "id": 34,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 1,
+   "firstSection": "CastleEntrance",
+   "firstCol": 42,
+   "firstRow": 8
+  },
+  {
+   "id": 35,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 1,
+   "firstSection": "CastleEntrance",
+   "firstCol": 45,
+   "firstRow": 8
+  },
+  {
+   "id": 36,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 8,
+   "firstSection": "CastleEntrance",
+   "firstCol": 0,
+   "firstRow": 9
+  },
+  {
+   "id": 37,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 8,
+   "firstSection": "CastleEntrance",
+   "firstCol": 1,
+   "firstRow": 9
+  },
+  {
+   "id": 38,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 3,
+   "firstSection": "CastleEntrance",
+   "firstCol": 2,
+   "firstRow": 9
+  },
+  {
+   "id": 39,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 3,
+   "firstSection": "CastleEntrance",
+   "firstCol": 3,
+   "firstRow": 9
+  },
+  {
+   "id": 40,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 36,
+   "firstSection": "CastleEntrance",
+   "firstCol": 4,
+   "firstRow": 9
+  },
+  {
+   "id": 41,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 1,
+   "firstSection": "CastleEntrance",
+   "firstCol": 34,
+   "firstRow": 9
+  },
+  {
+   "id": 42,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 29,
+   "firstSection": "CastleEntrance",
+   "firstCol": 35,
+   "firstRow": 9
+  },
+  {
+   "id": 43,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 29,
+   "firstSection": "CastleEntrance",
+   "firstCol": 38,
+   "firstRow": 9
+  },
+  {
+   "id": 44,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 1,
+   "firstSection": "CastleEntrance",
+   "firstCol": 39,
+   "firstRow": 9
+  },
+  {
+   "id": 45,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 1,
+   "firstSection": "CastleEntrance",
+   "firstCol": 40,
+   "firstRow": 9
+  },
+  {
+   "id": 46,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 38,
+   "firstSection": "CastleEntrance",
+   "firstCol": 41,
+   "firstRow": 9
+  },
+  {
+   "id": 47,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 2,
+   "firstSection": "CastleEntrance",
+   "firstCol": 42,
+   "firstRow": 9
+  },
+  {
+   "id": 48,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 1,
+   "firstSection": "CastleEntrance",
+   "firstCol": 45,
+   "firstRow": 9
+  },
+  {
+   "id": 49,
+   "auto": "Solid",
+   "rule": "R5",
+   "count": 48,
+   "firstSection": "CastleEntrance",
+   "firstCol": 0,
+   "firstRow": 10
+  },
+  {
+   "id": 50,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 90,
+   "firstSection": "EntranceHall",
+   "firstCol": 0,
+   "firstRow": 0
+  },
+  {
+   "id": 51,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 90,
+   "firstSection": "EntranceHall",
+   "firstCol": 1,
+   "firstRow": 0
+  },
+  {
+   "id": 52,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 37,
+   "firstSection": "EntranceHall",
+   "firstCol": 3,
+   "firstRow": 0
+  },
+  {
+   "id": 53,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 11,
+   "firstSection": "EntranceHall",
+   "firstCol": 4,
+   "firstRow": 0
+  },
+  {
+   "id": 54,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 9,
+   "firstSection": "EntranceHall",
+   "firstCol": 5,
+   "firstRow": 0
+  },
+  {
+   "id": 55,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 2,
+   "firstSection": "EntranceHall",
+   "firstCol": 20,
+   "firstRow": 0
+  },
+  {
+   "id": 56,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 2,
+   "firstSection": "EntranceHall",
+   "firstCol": 21,
+   "firstRow": 0
+  },
+  {
+   "id": 57,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 23,
+   "firstSection": "EntranceHall",
+   "firstCol": 32,
+   "firstRow": 0
+  },
+  {
+   "id": 58,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 23,
+   "firstSection": "EntranceHall",
+   "firstCol": 33,
+   "firstRow": 0
+  },
+  {
+   "id": 59,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 152,
+   "firstSection": "EntranceHall",
+   "firstCol": 52,
+   "firstRow": 0
+  },
+  {
+   "id": 60,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 16,
+   "firstSection": "EntranceHall",
+   "firstCol": 56,
+   "firstRow": 0
+  },
+  {
+   "id": 61,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 16,
+   "firstSection": "EntranceHall",
+   "firstCol": 57,
+   "firstRow": 0
+  },
+  {
+   "id": 62,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 6,
+   "firstSection": "EntranceHall",
+   "firstCol": 94,
+   "firstRow": 0
+  },
+  {
+   "id": 63,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 14,
+   "firstSection": "EntranceHall",
+   "firstCol": 95,
+   "firstRow": 0
+  },
+  {
+   "id": 64,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 90,
+   "firstSection": "EntranceHall",
+   "firstCol": 0,
+   "firstRow": 1
+  },
+  {
+   "id": 65,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 90,
+   "firstSection": "EntranceHall",
+   "firstCol": 1,
+   "firstRow": 1
+  },
+  {
+   "id": 66,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 212,
+   "firstSection": "EntranceHall",
+   "firstCol": 2,
+   "firstRow": 1
+  },
+  {
+   "id": 67,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 200,
+   "firstSection": "EntranceHall",
+   "firstCol": 3,
+   "firstRow": 1
+  },
+  {
+   "id": 68,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 9,
+   "firstSection": "EntranceHall",
+   "firstCol": 4,
+   "firstRow": 1
+  },
+  {
+   "id": 69,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 9,
+   "firstSection": "EntranceHall",
+   "firstCol": 5,
+   "firstRow": 1
+  },
+  {
+   "id": 70,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 2,
+   "firstSection": "EntranceHall",
+   "firstCol": 21,
+   "firstRow": 1
+  },
+  {
+   "id": 71,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 23,
+   "firstSection": "EntranceHall",
+   "firstCol": 32,
+   "firstRow": 1
+  },
+  {
+   "id": 72,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 23,
+   "firstSection": "EntranceHall",
+   "firstCol": 33,
+   "firstRow": 1
+  },
+  {
+   "id": 73,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 16,
+   "firstSection": "EntranceHall",
+   "firstCol": 56,
+   "firstRow": 1
+  },
+  {
+   "id": 74,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 16,
+   "firstSection": "EntranceHall",
+   "firstCol": 57,
+   "firstRow": 1
+  },
+  {
+   "id": 75,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 6,
+   "firstSection": "EntranceHall",
+   "firstCol": 94,
+   "firstRow": 1
+  },
+  {
+   "id": 76,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 11,
+   "firstSection": "EntranceHall",
+   "firstCol": 4,
+   "firstRow": 2
+  },
+  {
+   "id": 77,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 11,
+   "firstSection": "EntranceHall",
+   "firstCol": 5,
+   "firstRow": 2
+  },
+  {
+   "id": 78,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 9,
+   "firstSection": "EntranceHall",
+   "firstCol": 50,
+   "firstRow": 2
+  },
+  {
+   "id": 79,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 9,
+   "firstSection": "EntranceHall",
+   "firstCol": 51,
+   "firstRow": 2
+  },
+  {
+   "id": 80,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 174,
+   "firstSection": "EntranceHall",
+   "firstCol": 94,
+   "firstRow": 2
+  },
+  {
+   "id": 81,
+   "auto": "Door",
+   "rule": "R1",
+   "count": 3,
+   "firstSection": "EntranceHall",
+   "firstCol": 95,
+   "firstRow": 2
+  },
+  {
+   "id": 82,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 11,
+   "firstSection": "EntranceHall",
+   "firstCol": 4,
+   "firstRow": 3
+  },
+  {
+   "id": 83,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 11,
+   "firstSection": "EntranceHall",
+   "firstCol": 5,
+   "firstRow": 3
+  },
+  {
+   "id": 84,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 9,
+   "firstSection": "EntranceHall",
+   "firstCol": 50,
+   "firstRow": 3
+  },
+  {
+   "id": 85,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 9,
+   "firstSection": "EntranceHall",
+   "firstCol": 51,
+   "firstRow": 3
+  },
+  {
+   "id": 86,
+   "auto": "Door",
+   "rule": "R1",
+   "count": 3,
+   "firstSection": "EntranceHall",
+   "firstCol": 95,
+   "firstRow": 3
+  },
+  {
+   "id": 87,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 7,
+   "firstSection": "EntranceHall",
+   "firstCol": 44,
+   "firstRow": 4
+  },
+  {
+   "id": 88,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 7,
+   "firstSection": "EntranceHall",
+   "firstCol": 45,
+   "firstRow": 4
+  },
+  {
+   "id": 89,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 11,
+   "firstSection": "EntranceHall",
+   "firstCol": 46,
+   "firstRow": 4
+  },
+  {
+   "id": 90,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 4,
+   "firstSection": "EntranceHall",
+   "firstCol": 47,
+   "firstRow": 4
+  },
+  {
+   "id": 91,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 51,
+   "firstSection": "EntranceHall",
+   "firstCol": 50,
+   "firstRow": 4
+  },
+  {
+   "id": 92,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 51,
+   "firstSection": "EntranceHall",
+   "firstCol": 51,
+   "firstRow": 4
+  },
+  {
+   "id": 93,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 3,
+   "firstSection": "EntranceHall",
+   "firstCol": 56,
+   "firstRow": 4
+  },
+  {
+   "id": 94,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 3,
+   "firstSection": "EntranceHall",
+   "firstCol": 57,
+   "firstRow": 4
+  },
+  {
+   "id": 95,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 4,
+   "firstSection": "EntranceHall",
+   "firstCol": 58,
+   "firstRow": 4
+  },
+  {
+   "id": 96,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 4,
+   "firstSection": "EntranceHall",
+   "firstCol": 59,
+   "firstRow": 4
+  },
+  {
+   "id": 97,
+   "auto": "Door",
+   "rule": "R1",
+   "count": 3,
+   "firstSection": "EntranceHall",
+   "firstCol": 95,
+   "firstRow": 4
+  },
+  {
+   "id": 98,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 7,
+   "firstSection": "EntranceHall",
+   "firstCol": 44,
+   "firstRow": 5
+  },
+  {
+   "id": 99,
+   "auto": "Stair",
+   "rule": "R2",
+   "count": 14,
+   "firstSection": "EntranceHall",
+   "firstCol": 46,
+   "firstRow": 5
+  },
+  {
+   "id": 100,
+   "auto": "Solid",
+   "rule": "R3",
+   "count": 285,
+   "firstSection": "EntranceHall",
+   "firstCol": 47,
+   "firstRow": 5
+  },
+  {
+   "id": 101,
+   "auto": "Stair",
+   "rule": "R2",
+   "count": 14,
+   "firstSection": "EntranceHall",
+   "firstCol": 57,
+   "firstRow": 5
+  },
+  {
+   "id": 102,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 5,
+   "firstSection": "EntranceHall",
+   "firstCol": 58,
+   "firstRow": 5
+  },
+  {
+   "id": 103,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 4,
+   "firstSection": "EntranceHall",
+   "firstCol": 59,
+   "firstRow": 5
+  },
+  {
+   "id": 104,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 4,
+   "firstSection": "EntranceHall",
+   "firstCol": 44,
+   "firstRow": 6
+  },
+  {
+   "id": 105,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 5,
+   "firstSection": "EntranceHall",
+   "firstCol": 46,
+   "firstRow": 6
+  },
+  {
+   "id": 106,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 5,
+   "firstSection": "EntranceHall",
+   "firstCol": 47,
+   "firstRow": 6
+  },
+  {
+   "id": 107,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 4,
+   "firstSection": "EntranceHall",
+   "firstCol": 56,
+   "firstRow": 6
+  },
+  {
+   "id": 108,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 4,
+   "firstSection": "EntranceHall",
+   "firstCol": 57,
+   "firstRow": 6
+  },
+  {
+   "id": 109,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 3,
+   "firstSection": "EntranceHall",
+   "firstCol": 59,
+   "firstRow": 6
+  },
+  {
+   "id": 110,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 3,
+   "firstSection": "EntranceHall",
+   "firstCol": 84,
+   "firstRow": 6
+  },
+  {
+   "id": 111,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 5,
+   "firstSection": "EntranceHall",
+   "firstCol": 46,
+   "firstRow": 7
+  },
+  {
+   "id": 112,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 5,
+   "firstSection": "EntranceHall",
+   "firstCol": 47,
+   "firstRow": 7
+  },
+  {
+   "id": 113,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 4,
+   "firstSection": "EntranceHall",
+   "firstCol": 56,
+   "firstRow": 7
+  },
+  {
+   "id": 114,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 4,
+   "firstSection": "EntranceHall",
+   "firstCol": 57,
+   "firstRow": 7
+  },
+  {
+   "id": 115,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 3,
+   "firstSection": "EntranceHall",
+   "firstCol": 85,
+   "firstRow": 7
+  },
+  {
+   "id": 116,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 2,
+   "firstSection": "EntranceHall",
+   "firstCol": 94,
+   "firstRow": 10
+  },
+  {
+   "id": 117,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 7,
+   "firstSection": "CryptA",
+   "firstCol": 0,
+   "firstRow": 0
+  },
+  {
+   "id": 118,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 24,
+   "firstSection": "CryptA",
+   "firstCol": 17,
+   "firstRow": 0
+  },
+  {
+   "id": 119,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 3,
+   "firstSection": "CryptA",
+   "firstCol": 31,
+   "firstRow": 0
+  },
+  {
+   "id": 120,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 12,
+   "firstSection": "CryptA",
+   "firstCol": 16,
+   "firstRow": 1
+  },
+  {
+   "id": 121,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 4,
+   "firstSection": "CryptA",
+   "firstCol": 3,
+   "firstRow": 2
+  },
+  {
+   "id": 122,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 5,
+   "firstSection": "CryptA",
+   "firstCol": 10,
+   "firstRow": 2
+  },
+  {
+   "id": 123,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 4,
+   "firstSection": "CryptA",
+   "firstCol": 2,
+   "firstRow": 3
+  },
+  {
+   "id": 124,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 4,
+   "firstSection": "CryptA",
+   "firstCol": 3,
+   "firstRow": 3
+  },
+  {
+   "id": 125,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 8,
+   "firstSection": "CryptA",
+   "firstCol": 12,
+   "firstRow": 4
+  },
+  {
+   "id": 126,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 8,
+   "firstSection": "CryptA",
+   "firstCol": 13,
+   "firstRow": 4
+  },
+  {
+   "id": 127,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 8,
+   "firstSection": "CryptA",
+   "firstCol": 13,
+   "firstRow": 5
+  },
+  {
+   "id": 128,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 6,
+   "firstSection": "CryptA",
+   "firstCol": 11,
+   "firstRow": 6
+  },
+  {
+   "id": 129,
+   "auto": "Solid",
+   "rule": "R4",
+   "count": 6,
+   "firstSection": "CryptA",
+   "firstCol": 16,
+   "firstRow": 6
+  },
+  {
+   "id": 130,
+   "auto": "Solid",
+   "rule": "R4",
+   "count": 18,
+   "firstSection": "CryptA",
+   "firstCol": 17,
+   "firstRow": 6
+  },
+  {
+   "id": 131,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 12,
+   "firstSection": "CryptA",
+   "firstCol": 30,
+   "firstRow": 6
+  },
+  {
+   "id": 132,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 13,
+   "firstSection": "CryptA",
+   "firstCol": 31,
+   "firstRow": 6
+  },
+  {
+   "id": 133,
+   "auto": "Stair",
+   "rule": "R2",
+   "count": 4,
+   "firstSection": "CryptA",
+   "firstCol": 11,
+   "firstRow": 7
+  },
+  {
+   "id": 134,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 4,
+   "firstSection": "CryptA",
+   "firstCol": 12,
+   "firstRow": 7
+  },
+  {
+   "id": 135,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 4,
+   "firstSection": "CryptA",
+   "firstCol": 13,
+   "firstRow": 7
+  },
+  {
+   "id": 136,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 2,
+   "firstSection": "CryptA",
+   "firstCol": 12,
+   "firstRow": 9
+  },
+  {
+   "id": 137,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 2,
+   "firstSection": "CryptA",
+   "firstCol": 15,
+   "firstRow": 10
+  },
+  {
+   "id": 138,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 1,
+   "firstSection": "CryptA",
+   "firstCol": 30,
+   "firstRow": 10
+  },
+  {
+   "id": 139,
+   "auto": "Stair",
+   "rule": "R2",
+   "count": 10,
+   "firstSection": "CryptB",
+   "firstCol": 2,
+   "firstRow": 0
+  },
+  {
+   "id": 140,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 8,
+   "firstSection": "CryptB",
+   "firstCol": 3,
+   "firstRow": 0
+  },
+  {
+   "id": 141,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 7,
+   "firstSection": "CryptB",
+   "firstCol": 2,
+   "firstRow": 7
+  },
+  {
+   "id": 142,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 7,
+   "firstSection": "CryptB",
+   "firstCol": 3,
+   "firstRow": 7
+  },
+  {
+   "id": 143,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 1,
+   "firstSection": "CryptB",
+   "firstCol": 8,
+   "firstRow": 7
+  },
+  {
+   "id": 144,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 1,
+   "firstSection": "CryptB",
+   "firstCol": 9,
+   "firstRow": 7
+  },
+  {
+   "id": 145,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 1,
+   "firstSection": "CryptB",
+   "firstCol": 8,
+   "firstRow": 8
+  },
+  {
+   "id": 146,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 1,
+   "firstSection": "CryptB",
+   "firstCol": 9,
+   "firstRow": 8
+  },
+  {
+   "id": 147,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 8,
+   "firstSection": "CryptB",
+   "firstCol": 10,
+   "firstRow": 8
+  },
+  {
+   "id": 148,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 3,
+   "firstSection": "CryptB",
+   "firstCol": 15,
+   "firstRow": 8
+  },
+  {
+   "id": 149,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 3,
+   "firstSection": "CryptB",
+   "firstCol": 14,
+   "firstRow": 9
+  },
+  {
+   "id": 150,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 3,
+   "firstSection": "CryptB",
+   "firstCol": 15,
+   "firstRow": 9
+  },
+  {
+   "id": 151,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 15,
+   "firstSection": "CryptB",
+   "firstCol": 0,
+   "firstRow": 10
+  },
+  {
+   "id": 152,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 15,
+   "firstSection": "CryptB",
+   "firstCol": 1,
+   "firstRow": 10
+  },
+  {
+   "id": 153,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 15,
+   "firstSection": "CryptB",
+   "firstCol": 0,
+   "firstRow": 11
+  },
+  {
+   "id": 154,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 15,
+   "firstSection": "CryptB",
+   "firstCol": 1,
+   "firstRow": 11
+  },
+  {
+   "id": 155,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 5,
+   "firstSection": "PhantomBat",
+   "firstCol": 22,
+   "firstRow": 0
+  },
+  {
+   "id": 156,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 5,
+   "firstSection": "PhantomBat",
+   "firstCol": 23,
+   "firstRow": 0
+  },
+  {
+   "id": 157,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 4,
+   "firstSection": "PhantomBat",
+   "firstCol": 26,
+   "firstRow": 0
+  },
+  {
+   "id": 158,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 4,
+   "firstSection": "PhantomBat",
+   "firstCol": 27,
+   "firstRow": 0
+  },
+  {
+   "id": 159,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 5,
+   "firstSection": "PhantomBat",
+   "firstCol": 22,
+   "firstRow": 1
+  },
+  {
+   "id": 160,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 5,
+   "firstSection": "PhantomBat",
+   "firstCol": 23,
+   "firstRow": 1
+  },
+  {
+   "id": 161,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 4,
+   "firstSection": "PhantomBat",
+   "firstCol": 26,
+   "firstRow": 1
+  },
+  {
+   "id": 162,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 4,
+   "firstSection": "PhantomBat",
+   "firstCol": 27,
+   "firstRow": 1
+  },
+  {
+   "id": 163,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 1,
+   "firstSection": "PhantomBat",
+   "firstCol": 20,
+   "firstRow": 9
+  }
+ ]
+}

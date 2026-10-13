@@ -1,0 +1,123 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c4c25d45acf3c14e9c6005b7044ce18, type: 3}
+  m_Name: CryptA
+  m_EditorClassIdentifier: 
+  id: CryptA
+  stage: 2
+  width: 512
+  height: 192
+  cols: 32
+  rows: 12
+  cameraMinX: 0
+  cameraMaxX: 256
+  bossLockCx: -1
+  hasSimonStart: 1
+  simonStart: {x: 49, y: 80}
+  simonStartSrc: 'video Map_1 1:31.9 (f2756): cx 0, x_med 49, y chan 110 NES (buc
+    hang 5, mat 80 level = NES 112); = diem ket thuc doan tu di qua cua'
+  collision:
+  - ................................
+  - ..............................##
+  - ...............................D
+  - ...............................D
+  - ...............................D
+  - '########..................######'
+  - ................######..........
+  - ........###S....####..###S......
+  - ............S...####......S.....
+  - .............S..X###.......S....
+  - ..............S.X###........S...
+  - '###=###################=########'
+  foreground: []
+  stairs:
+  - id: CryptA_stair0
+    dir: 1
+    steps: 2
+    foot: {x: 56, y: 184}
+    top: {x: 48, y: 176}
+    cutBottom: 1
+    cutTop: 0
+  - id: CryptA_stair1
+    dir: 1
+    steps: 8
+    foot: {x: 232, y: 168}
+    top: {x: 176, y: 112}
+    cutBottom: 0
+    cutTop: 0
+  - id: CryptA_stair2
+    dir: 1
+    steps: 2
+    foot: {x: 376, y: 184}
+    top: {x: 368, y: 176}
+    cutBottom: 1
+    cutTop: 0
+  - id: CryptA_stair3
+    dir: 1
+    steps: 8
+    foot: {x: 456, y: 168}
+    top: {x: 400, y: 112}
+    cutBottom: 0
+    cutTop: 0
+  connections:
+  - id: stair_A0_to_CryptB
+    kind: 2
+    target: CryptB
+    targetStage: 2
+    trigger:
+      x: 48
+      y: 176
+      width: 16
+      height: 16
+    triggerSimonX: -1
+    stair: CryptA_stair0
+    targetStair: CryptB_stair0
+    targetOrigin: {x: 32, y: 192}
+    entry: {x: 0, y: 0}
+    src: '2 bac cuoi o day CA (48,176),(56,184) noi tiep CB (32,0)...(88,56): CB(x,y)
+      = CA(x+32, y+192) (kiem ke c4, lech -32 px). Video 1:47.5 Simon xuong thang
+      CA x 55->66 (f3196-3232); 1:54.4 dang xuong o CB x 68 (doan giua bi non-game
+      che)'
+  - id: stair_A2_to_CryptB
+    kind: 2
+    target: CryptB
+    targetStage: 2
+    trigger:
+      x: 368
+      y: 176
+      width: 16
+      height: 16
+    triggerSimonX: -1
+    stair: CryptA_stair2
+    targetStair: CryptB_stair1
+    targetOrigin: {x: 32, y: 192}
+    entry: {x: 0, y: 0}
+    src: 'CA (368,176),(376,184) noi CB (352,0)...(440,88). Video CB->CA 2:27.7:
+      CB x 385 chan level 32 (f4430) -> den 0.33 s -> CA x 381 chan level 187 (f4442)
+      - cung duong thang voi phep doi (32,192)'
+  - id: door_to_PhantomBat
+    kind: 1
+    target: PhantomBat
+    targetStage: 3
+    trigger:
+      x: 504
+      y: 32
+      width: 8
+      height: 48
+    triggerSimonX: 492
+    stair: 
+    targetStair: 
+    targetOrigin: {x: 512, y: 0}
+    entry: {x: 49, y: 80}
+    src: 'cot cua cot 31 hang 2-4 tren buc hang 5. Video 2:44.0 (f4920): x_med 236
+      man @ cx 256 = level 492 khi bat dau cuon; chuoi cuon 128 -> cua -> cuon 128
+      nhu cua Stage 1; STAGE 03 luc 2:50.87, PB x_med 49'

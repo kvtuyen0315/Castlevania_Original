@@ -1,0 +1,90 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c4c25d45acf3c14e9c6005b7044ce18, type: 3}
+  m_Name: EntranceHall
+  m_EditorClassIdentifier: 
+  id: EntranceHall
+  stage: 1
+  width: 1536
+  height: 192
+  cols: 96
+  rows: 12
+  cameraMinX: 0
+  cameraMaxX: 1280
+  bossLockCx: -1
+  hasSimonStart: 1
+  simonStart: {x: 49, y: 176}
+  simonStartSrc: 'video Map_1 0:20.0 (f600): cx 0, x_med 49, y chan 206 NES (= mat
+    san 208 - 2); +-1 px, routine 15 do lai'
+  collision:
+  - ................................................................................................
+  - ................................................................................................
+  - ...............................................................................................D
+  - ...............................................................................................D
+  - ...............................................................................................D
+  - ..............................................S##########S............................S#########
+  - .............................................S............S..........................S..........
+  - ..........................................S###............#####X....................S...........
+  - .........................................S.........................................S............
+  - ........................................S.........................................S.............
+  - .......................................S.........................................S..............
+  - '################################################################################################'
+  foreground: []
+  stairs:
+  - id: EntranceHall_stair0
+    dir: 0
+    steps: 8
+    foot: {x: 624, y: 168}
+    top: {x: 680, y: 112}
+    cutBottom: 0
+    cutTop: 0
+  - id: EntranceHall_stair1
+    dir: 0
+    steps: 4
+    foot: {x: 720, y: 104}
+    top: {x: 744, y: 80}
+    cutBottom: 0
+    cutTop: 0
+  - id: EntranceHall_stair2
+    dir: 1
+    steps: 4
+    foot: {x: 936, y: 104}
+    top: {x: 912, y: 80}
+    cutBottom: 0
+    cutTop: 0
+  - id: EntranceHall_stair3
+    dir: 0
+    steps: 12
+    foot: {x: 1296, y: 168}
+    top: {x: 1384, y: 80}
+    cutBottom: 0
+    cutTop: 0
+  connections:
+  - id: door_to_CryptA
+    kind: 1
+    target: CryptA
+    targetStage: 2
+    trigger:
+      x: 1528
+      y: 32
+      width: 8
+      height: 48
+    triggerSimonX: 1516
+    stair: 
+    targetStair: 
+    targetOrigin: {x: 1536, y: 0}
+    entry: {x: 49, y: 80}
+    src: 'cot cua do-trang cot 95 hang 2-4 tren buc hang 5 (kiem ke). Video 1:24.83
+      (f2545): Simon x_med 236 man @ cx 1280 = level 1516 khi camera bat dau cuon
+      (+-2); cuon 128 px -> cua mo, Simon tu di x man 109->177 @ camera 1408 = EH
+      1517 -> CA 49 -> cuon 128 px -> CA cx 0; CA ghep lien phai EH (anh _cache/06/door1.png,
+      door2.png); STAGE 02 luc 1:31.87'

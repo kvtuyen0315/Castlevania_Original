@@ -29,7 +29,7 @@
 | 03 | cvgp-03-input-ban-phim-gamepad-xbox-va-replay | **XONG** | (commit "CVGP 03") | 13/10/2026 | `NesPad` + `InputBindings.asset` + 4 trục `CV_*` + replay RLE + menu `CVGP/Input/*`; 5 kiểm đạt (§7); H8 khớp tuyệt đối; gamepad thật chưa bấm thử (không cắm tay cầm lúc chạy — §5 #3) |
 | 04 | cvgp-04-bang-chi-so-config-moi-nhan-vat-va-item | **XONG** | (commit "CVGP 04") | 13/10/2026 | 12 CSV có nguồn → 12 bảng ScriptableObject + `GameConfig` (181 dòng): 15+3 enemy, 6 boss (7 pha), 22 item + 3 vật chứa, 5 vũ khí phụ, 3 roi, 6 block, 18 stage; menu `CVGP/Import Config` (validate, idempotent) + `CVGP/Export Stats Report` → `CHARACTER_STATS.md`; `GameConfig` trên prefab GameManager; H8 khớp |
 | 05 | cvgp-05-cat-sprite-simon-enemy-boss-item-animset | **XONG** | (commit "CVGP 05") | 13/10/2026 | 246 PNG từ manifest `Tools/cvgp/slices_gameplay.json` (238/371 ô kiểm kê + 2 nửa tách + 6 bản đồ lâu đài; 133 ô bỏ có lý do); roi tách lớp 96/96 khung ghép = thân + roi **0 pixel lệch**; 28 AnimSet / 135 anim; ảnh lưới Play 2 trang 0 lệch; CVTI md5 91 file y hệt; H8 khớp |
-| 06 | cvgp-06-tilemap-va-luoi-va-cham-map1 | CHƯA | — | — | |
+| 06 | cvgp-06-tilemap-va-luoi-va-cham-map1 | **XONG** | (commit "CVGP 06") | 13/10/2026 | tileset 118 tile 8×8 (dựng lại 0 px lệch) + 5 prefab Tilemap (15 ảnh Play **0 px lệch**) + lưới va chạm 16×16 (9 override có bằng chứng video/wiki, 23 check) + `LevelSectionData` (13 thang, 8 nối, khớp thứ tự video) + FG cổng CE; menu `CVGP/Build Map1 Tilemaps` idempotent (284 file md5 y hệt) |
 | 07 | cvgp-07-loi-gameplay-vat-ly-state-machine-hitbox-camera | CHƯA | — | — | |
 | 08 | cvgp-08-simon-di-nhay-ngoi-cau-thang-trung-don-chet | CHƯA | — | — | |
 | 09 | cvgp-09-simon-roi-3-cap-va-5-vu-khi-phu | CHƯA | — | — | |
@@ -102,6 +102,33 @@ Chuyển tầng Crypt A↔B (#7/#8), 3 lần HUD đổi do nhặt (tim #1, dao #
 ### 2d. Số đo chuyển động (planner, chưa đo lại)
 Chép từ CVGP_PLAN §3c / `ref/MAP1_TIMELINE.md §4`: Simon đi 1.00 px/tick; nhảy 38–40 tick, cao 36–38 px, đỉnh phẳng; cầu thang 0.5+0.5 px/tick; roi ~20 tick, tầm 22/24–25/43 px; Zombie 0.875, Leopard chạy 2.0, dơi ~1.0–1.12; TIME 1 đv = 64 tick; tally TIME 1 đv/tick +10, tim 1/8 tick +100; Phantom Bat xem MAP1_TIMELINE §5.
 
+### 2e. Địa hình Map 1 — đồ thị section + số đo (routine 06; dữ liệu: `Tools/cvgp/level1_sections.json` → `Assets/Data/Config/Level/Block1/<Section>.asset`)
+**Toạ độ section** = px trong vùng 192 dòng của sheet (gốc trên-trái, y xuống). **Dòng r ↔ NES y = 32 + r — đã kiểm lại** bằng ZNCC 4 ảnh `ref/nes/` (EH 0:20 0.944, PB 2:52 0.918, CA 1:32 0.964, CE 0:02 0.903; quét offset 28–36 ⇒ 32 tốt nhất ở cả 4, cx 0). Camera: cx ∈ [0, rộng − 256], không cuộn dọc.
+
+| Section | Stage | Rộng | cx max | Simon bắt đầu stage (x tâm, y mặt sàn) | Nguồn |
+|---|---|---|---|---|---|
+| CastleEntrance | 1 | 768 | 512 | (50, 160) | CVTI §2.4 khung-khớp-khung: góc trên-trái sprite (42,161) NES |
+| EntranceHall | 1 | 1536 | 1280 | (49, 176) | video 0:20.0 x_med 49, y chân 206 NES (±1) |
+| CryptA | 2 | 512 | 256 | (49, 80) | video 1:31.9 (= cuối đoạn tự đi qua cửa) |
+| CryptB | 2 | 512 | 256 | — (chỉ vào bằng thang) | |
+| PhantomBat | 3 | 768 | 512 (**khoá 512** phòng boss) | (49, 80) | video 2:50.9; khoá cx 512 lúc 3:17.4 |
+
+| Nối | Kiểu | Trigger (px section nguồn) | Đích · gốc đích trong toạ độ nguồn · điểm vào | Bằng chứng video |
+|---|---|---|---|---|
+| CE `gate` | Gate | vòm cổng [688,64,16,96] (cột 43 hàng 4–9) | EH · — · (49,176) | camera chạm cx 512 lúc 0:16.2 (Simon x 642); tự đi 1 px/tick tới x≈679 (0:16.8) rồi ~0.3 px/tick; bị **FG** che từ x 704 (0:17.93–0:18.27, kể cả pixel đen giữa gạch — không phải luật ưu tiên sprite NES); TIME 0287 từ 0:16.07 đứng tới 0:20.0; đen 0:19.7–0:20.0 |
+| EH `door_to_CryptA` | Door | cột cửa [1528,32,8,48]; **tâm Simon x 1516** khi chuỗi bắt đầu | CA · (1536, 0) (CA ghép liền phải EH) · (49,80) | 1:24.83: x_med 236 màn @ cx 1280; cuộn 128 → cửa mở, Simon tự đi x màn 109→177 @ camera 1408 (= EH 1517 → CA 49) → cuộn 128 → CA cx 0; STAGE 02 lúc 1:31.87 |
+| CA `stair_A0_to_CryptB` | Stair | `CryptA_stair0` (2 bậc (48,176),(56,184)) | CB `CryptB_stair0` · **(32, 192)** — CB(x,y) = CA(x+32, y+192) | 1:47.5 Simon xuống thang CA x 55→66; 1:54.4 đang xuống ở CB x 68 (giữa bị non-game che) |
+| CA `stair_A2_to_CryptB` | Stair | `CryptA_stair2` ((368,176),(376,184)) | CB `CryptB_stair1` · (32, 192) | CB→CA 2:27.7: CB x 385 chân level 32 → đen 0.33 s → CA x 381 chân level 187 — cùng đường thang qua phép dời |
+| CA `door_to_PhantomBat` | Door | cột cửa [504,32,8,48]; tâm Simon x 492 | PB · (512, 0) · (49,80) | 2:44.0 x_med 236 @ cx 256; STAGE 03 lúc 2:50.87 |
+| CB `stair_B0/B1_to_CryptA` | Stair | `CryptB_stair0/1` (đỉnh chạm mép trên) | CA · (−32, −192) | nghịch đảo 2 nối trên |
+| PB `door_end` | Door | cột cửa [760,64,8,48] | — (Stage 04 ngoài Map 1) | không dùng trong video: hạ boss → quả cầu → tally → bản đồ lâu đài |
+
+**Thứ tự đi trong video (khớp đồ thị):** CE 0:02.2 → (cổng) EH 0:20.0 → (cửa) CA 1:31.9 → (thang trái-dưới) CB 1:54.4 → (thang phải) CA 2:28.0 → (cửa) PB 2:50.9 → phòng boss 3:17.4.
+
+**13 cầu thang** (bậc 8×8, mặt bậc = góc trên-trái vạch cam; chân = bậc thấp nhất, cách mặt sàn/bục bên dưới 8 px): EH 4 (`stair0` ↗ 8 bậc (624,168)→(680,112) · `stair1` ↗ 4 (720,104)→(744,80) · `stair2` ↖ 4 (936,104)→(912,80) · `stair3` ↗ 12 (1296,168)→(1384,80)); CA 4 (`stair0` ↖ 2 cắt đáy · `stair1` ↖ 8 (232,168)→(176,112) · `stair2` ↖ 2 cắt đáy · `stair3` ↖ 8 (456,168)→(400,112)); CB 2 (`stair0` ↖ 8 (88,56)→(32,0) cắt đỉnh · `stair1` ↖ 12 (440,88)→(352,0) cắt đỉnh); PB 3 (`stair0` ↖ 4 (136,104)→(112,80) · `stair1` ↖ 8 (360,168)→(304,112) · `stair2` ↗ 4 (688,136)→(712,112) — chân đứng trên khối phá được (43,9)).
+
+**Số đo phụ (video, cho 07/08 dùng):** Simon rơi khỏi mép trái Bục C (EH, mép x 928) khi **tâm ≈ 920 ±2** (1:02.7) ⇒ đầu dò sàn rộng cỡ ±8 px quanh tâm, không phải 1 điểm; Simon đi ngang qua 2 miệng thang Crypt A rộng 16 px không rơi (1:45.2–1:45.9 và 2:30.6–2:31.0, y chân giữ 206); ngồi trên khối (28–29,10) CB 2:19.7–2:20.7 ⇒ túi 1000 hiện 2:23.8.
+
 ## §3 Tài nguyên
 
 ### Sheet nguồn (routine 01 đã chép nguyên byte vào `Art_Source/spriters-resource/`, sha256 khớp 100 %)
@@ -143,7 +170,7 @@ Tên file có khoảng trắng, ngoặc và dấu nháy (`Dracula's`) — cẩn 
 Chung: cả 5 sheet đục hoàn toàn (alpha 255), 11–14 màu NES; chữ nhãn (255,255,255); `#004000` 516 px chỉ ở logo credit; **đen (0,0,0) là màu thật**. Không thấy chỗ sai trong `SHEETS_INVENTORY.md`; chỉ bỏ dòng ghi chú planner và sửa tên công cụ.
 Công cụ kiểm kê dùng lại: `Tools/cvgp/` (`run_all.py` = `inv_sprites.py` + `inv_level1.py` + `make_inventory_md.py`; `sheetlib.py`, `sheet_specs.py`) — từ gốc repo: `python -P -E Tools/cvgp/run_all.py`; đầu vào `Art_Source/spriters-resource/*.png`, đầu ra `ClaudeNotes/cvgp/inventory/` (đổi bằng biến môi trường `CVGP_INV_OUT`). Thư mục `inventory/tools/` đã chuyển (git mv) sang đó.
 
-Sprite đã cắt (CVTI): `Assets/Data/Art/{Title,Intro,Font,Character/Simon}`; gameplay (routine 05): xem mục "Sprite gameplay đã cắt" bên dưới. Chưa có: tilemap.
+Sprite đã cắt (CVTI): `Assets/Data/Art/{Title,Intro,Font,Character/Simon}`; gameplay (routine 05): xem mục "Sprite gameplay đã cắt" bên dưới; địa hình Map 1 (routine 06): mục "Địa hình Map 1" cuối §3.
 
 ### SFX đã định danh (routine 02, 11/10/2026)
 **Cách làm:** âm thanh 2 video (`ffmpeg -vn -ac 1 -ar 22050` → `_cache/02/map1.wav`, `boss.wav`) đối chiếu 37 SFX bằng `Tools/cvgp/sfx_match.py` (NCC phổ STFT 500–8000 Hz + NCC dạng sóng; loại đoạn non-game 1:47.7–1:54.5; chạy lại ra y hệt từng byte), `sfx_events.py` (làm giàu theo loại sự kiện HUD/roi lấy từ `_cache/video/work`), `sfx_view.py` (vẽ phổ), `sfx_frames.py` (trích khung quanh mốc), `sfx_describe.py` (md5/thời lượng/âm học). Mọi tên "chắc" và "khả năng" đã được xem khung hình quanh mốc (`_cache/02/fr_*.png`, phổ `seg_*.png`). **Tổng: 13 chắc + 7 khả năng + 17 chưa định danh = 37.**
@@ -230,6 +257,29 @@ Sprite đã cắt (CVTI): `Assets/Data/Art/{Title,Intro,Font,Character/Simon}`; 
 Khung `_3` của sheet = khung 2 với **roi vẽ ĐÈ thân** (`whipOnTop`), khung 0–2 thân đè roi (ở 0/1 không chồng pixel). `simon_whip3c4_stairs_up_0` trên sheet bị cụt 1 hàng đáy (8 px mảnh treo nằm ngoài ô) — ô `c3` cùng tư thế đủ 34 hàng. Quay phải: thân `flipX` quanh pivot; roi đặt tại pivot + (−offset.x, offset.y) và `flipX` (ảnh lưới Play kiểm cả 2 hướng, 0 lệch).
 **Bảng màu Simon (`SimonAnimSet.palettes`, từ hàng Colors, ánh xạ 1-1 đã kiểm):** mặc định (124,8,0)/(252,152,56)/(252,216,168) → `purple` đen/(204,136,252)/(252,196,252) · `blue` đen/(252,216,168)/(0,112,236) · `red` đen/(216,40,0)/(252,116,180) · `white` (168,228,252)/(252,216,168)/(252,152,56). Video Map_1 0:06.5–0:07.3 (nhặt roi): Simon nháy mặc định/đỏ/tím/xanh trên khung đang đi (không chỉ tư thế đứng) ⇒ routine 09/11 đổi màu theo bảng; `white` chưa thấy trong video. Bình tàng hình (2:58) = Simon không vẽ, không đổi màu.
 
+### Địa hình Map 1 (routine 06, 13/10/2026) — routine 07+ đọc mục này + §2e, KHÔNG mở lại sheet
+**Dựng lại từ đầu (2 lệnh + 1 menu):** `python -P -E Tools/cvgp/build_tileset.py` → `python -P -E Tools/cvgp/build_collision.py` → menu **`CVGP/Build Map1 Tilemaps`** (`Assets/Data/Editor/CvgpLevelBuilder.cs`). Cả 3 chạy lại ⇒ "same"/"ghi 0", md5 y hệt. Sửa va chạm = sửa `Tools/cvgp/level1_collision_overrides.json` (có `expectAuto` + `reason`); sửa nối/điểm bắt đầu = `Tools/cvgp/level1_sections.json`; rồi chạy lại 2 lệnh cuối. KHÔNG sửa tay asset/prefab sinh ra.
+| Thứ | Đường dẫn | Ghi chú |
+|---|---|---|
+| Tileset | `Assets/Data/Art/Level/Block1/level1_tiles.png` (128×64, 16 tile/hàng, ô thừa trong suốt) | **118 tile 8×8** dedupe toàn Level 1 (không gộp lật); Sprite **Multiple** cắt lưới, sprite `l1t_000..117` 8×8 pivot **tâm**, spriteID tất định (MD5 tên); Point / Uncompressed / no mip / PPU 16 / FullRect |
+| Tile asset | `Assets/Data/Art/Level/Block1/Tiles/l1t_NNN.asset` (118) | `Tile` gốc Unity, `colliderType None`, flags LockColor |
+| Ma trận tile | `Assets/Data/Config/Level/Block1/<Section>_tiles.csv` | 24 hàng × (rộng/8) cột, chỉ số tile, hàng 0 = trên |
+| Mô tả | `Level1Tiles.json` (tileset + section), `Level1Map.json` (lưới va chạm, thang, nối, camera, bảng 164 metatile + luật) | sinh bởi python, builder đọc |
+| Dữ liệu section | `Assets/Data/Config/Level/Block1/<Section>.asset` (`LevelSectionData`) | `collision[]` (1 ký tự/ô 16×16: `. # S = ~ P D X !`), `stairs[]`, `connections[]`, `cameraMinX/MaxX`, `bossLockCx`, `simonStart`, `foreground[]`; API `GetCell(col,row)`, `GetAt(x,y)` (ngoài lưới = Empty), `FindStair`, `FindConnection`, `Stair.Tread(k)` |
+| Prefab | `Assets/Data/Prefabs/Level/Block1/{CastleEntrance,EntranceHall,CryptA,CryptB,PhantomBat}.prefab` | gốc = góc trên-trái section: `Grid` (ô 0.5 unit) + `LevelSection` (data, bg, fg); con `BG` Tilemap layer **Background**; `FG` (chỉ CE, cột 44–47 hàng 0–9) layer **Foreground**. Ô tile (c, −r−1) ⇒ góc tile = px (8c, 8r). `PlaceForCamera(cx)` đặt gốc ở NES (−cx, 32) với camera đứng yên. Prefab lớn (3.3 MB YAML tổng — Tilemap lưu từng ô) |
+| Script | `Assets/Data/Script/Level/{eTileCollision,LevelSectionData,LevelSection}.cs` | enum `eTileCollision` (Empty, Solid, Stair, StairFloor, Water, Pit, Door, Breakable, Hazard), `eStairDir` (UpRight ↗ / UpLeft ↖), `eLevelLink` (Gate, Door, Stair) |
+| Ảnh overlay va chạm | `ClaudeNotes/cvgp/ref/level1/collision_<Section>.png` (2×, đoạn 768 px xếp dọc, chú giải màu) | sinh bởi `build_collision.py` |
+
+**Đếm ô 16×16 theo loại:**
+| Section | Empty | Solid | Stair | StairFloor | Water | Pit | Door | Breakable | Hazard |
+|---|---|---|---|---|---|---|---|---|---|
+| CastleEntrance | 528 | 48 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+| EntranceHall | 1011 | 123 | 14 | 0 | 0 | 0 | 3 | 1 | 0 |
+| CryptA | 297 | 72 | 8 | 2 | 0 | 0 | 3 | 2 | 0 |
+| CryptB | 274 | 39 | 10 | 0 | 60 | 0 | 0 | 1 | 0 |
+| PhantomBat | 494 | 70 | 8 | 0 | 0 | 0 | 3 | 1 | 0 |
+**Breakable (5):** CA (16,10) video 1:39.57 + CA (16,9) video 1:40.55 (roi khi ngồi, lộ Pot Roast) · CB (29,6) video 2:19.05–2:19.20 · PB (43,9) video 3:17.62 (khối PHẢI bệ chân thang ⇒ II) · EH (63,7) **chỉ wiki** (khối phải Bục C — Panther thứ 3; video không phá). **StairFloor (2):** CA (3,11), (23,11). **Water:** CB hàng 10–11 trừ cột 28–29. **Pit/Hazard: 0** (rơi chết duy nhất qua nước CB).
+
 ## §4 Quyết định kỹ thuật đã chốt
 | Quyết định | Giá trị | Lý do | Routine |
 |---|---|---|---|
@@ -268,6 +318,17 @@ Khung `_3` của sheet = khung 2 với **roi vẽ ĐÈ thân** (`whipOnTop`), kh
 | `AnimSet` | ScriptableObject `Assets/Data/Script/Anim/AnimSet.cs` (`Get(name)` log lỗi nếu thiếu, `Has`, `GetPalette`, `Anim{name, frames, durations, loop, measured, overlays, overlayOffsets, overlayOnTop, note, TotalTicks}`); 1 asset/bộ ở `Assets/Data/Config/Anim/` (28 bộ: Simon, SubWeapon, 15 enemy, PhantomBat, Medusa, Mummy, Frankenstein, Igor, Death, Dracula, Item, Object, FX, CastleMap). Dựng bằng `CVGP/Build AnimSets` (`AnimSetBuilder`): validate (trùng tên, durations = số khung ≥ 1, overlays khớp, sprite tải được) ⇒ có lỗi không ghi gì; so `EditorJsonUtility` rồi `CopySerialized` (giữ GUID, chạy lại 0 ghi). **Durations mặc định 8, `measured = false`** cho mọi anim; tên anim enemy/boss (sit/run/jump, shoot…) là **suy luận từ hình** (ghi `note`) — routine 13/14/17–20 đo + sửa manifest | không bịa thời lượng (H6) | 05 |
 | Walk Simon | `walk` = `walk_0,1,2,1` (ping-pong như Intro CVTI), nhịp chờ đo 08 | — | 05 |
 | Dragon Skull / brick | ô dính liền: Dragon Skull tách 2 đầu lâu 16×16 (trên ≠ dưới — đã so) với `edgeCheck:false`; `obj_brick_set` 4 khối giống hệt ⇒ cắt 1 `brick_0`, `alsoAt` kiểm 3 bản còn lại | đề bài | 05 |
+| **Đơn vị tile địa hình** | **8×8** (NES nền), 118 tile toàn Level 1, KHÔNG gộp lật; Tilemap ô 0.5 unit | ít tile hơn metatile 16×16 (164), đúng đơn vị phần cứng; dựng lại 0 px lệch | 06 |
+| Import tileset | **1 PNG Sprite Multiple** cắt lưới (`ISpriteEditorDataProvider`, spriteID tất định), KHÔNG 1 PNG/tile | 1 texture ⇒ TilemapRenderer gom 1 batch (118 texture rời = hàng chục draw call trên Android); lưới đều, sửa bằng script; khác quy ước "1 PNG/khung" của sprite nhân vật (CVTI §4.2) vì tile không có pivot/anim riêng | 06 |
+| **Lưới va chạm** | ô **16×16**, lưu trong `LevelSectionData.collision` (chuỗi 1 ký tự/ô) — KHÔNG Tilemap "Collision" ẩn, KHÔNG TilemapCollider2D | mọi khối đặc/nước/phá được đều căn lưới 16 (kiểm kê + video 3 lần phá khối đều 16×16); chuỗi ký tự diff/đọc được trong YAML; 07 tra `GetAt(x,y)` O(1) | 06 |
+| Phân loại | tự động **theo metatile id** (164 id, cùng id ⇒ cùng loại — kiểm 0 xung đột với kiểm kê planner) bằng luật màu R1–R5 (`build_collision.py`), rồi overrides theo ô có `expectAuto`/`reason`; khác biệt với bản đồ ký tự kiểm kê = đúng 7 ô override (5 Breakable + 2 StairFloor) | bán tự động như đề; nước không tách được bằng màu (trùng màu trời/cửa sổ) nên đặt bằng override vùng | 06 |
+| **StairFloor** | miệng cầu thang trong hàng sàn (CA (3,11),(23,11)) = đặc mặt trên | video: Simon đi ngang 2 miệng thang 16 px không rơi (1:45.2–1:45.9, 2:30.6–2:31.0) | 06 |
+| Ô đỉnh thang cạnh mép bục (EH (42,7),(46,5),(57,5),(86,5); CA (11,7),(25,7); PB (7,5),(19,7),(44,7)) | **Stair (không đặc)** | video KHÔNG có cảnh Simon bước ra ngoài mép bục phía đỉnh thang ⇒ giữ đúng hình (không có gạch); 08 thấy khác thì sửa overrides | 06 |
+| Breakable | đặc tới khi bị phá; 4 ô theo video + 1 ô theo wiki (EH (63,7)); các ô K khác của tường Crypt A = Solid | "đừng đoán tường phá" — chỉ ô có bằng chứng | 06 |
+| **Lớp FG** | chỉ CE cột 44–47 hàng 0–9 (phải vòm cổng), tile y hệt BG vẽ lại ở layer Foreground (đục cả pixel đen) | video 0:17.93–0:18.27: Simon bị che đúng từ x 704 kể cả qua khe đen giữa gạch; nước CB KHÔNG che Fish Man (2:00.9: chân Fish Man vẽ đè mặt nước) ⇒ không FG nước; cột/cầu thang/cửa: Simon vẽ trước | 06 |
+| **Đặt section trên màn** | section luôn ở NES y 32 (`LevelSectionData.SCREEN_Y`); đề xuất cuộn bằng `LevelSection.PlaceForCamera(cx)` (gốc NES (−cx, 32), camera + HUD đứng yên ở `CameraHome`) — 07 được đổi sang dời camera, khi đó gốc section ở NES (0,32) | HUD hiện là con prefab màn (không bám camera) ⇒ dời section không phải đụng HUD; con của section dùng px section | 06 (07 chốt) |
+| Điểm vào/bắt đầu | (x tâm thân, **y mặt sàn**) px section; CVTI vẽ pivot đáy-giữa sprite ở y+1 (hàng cuối sprite trong suốt, NES 193 vs sàn 192) | không trộn quy ước sprite vào dữ liệu địa hình | 06 |
+| Nối section | `targetOrigin` = gốc section đích trong toạ độ nguồn: cửa EH→CA (1536,0), CA→PB (512,0); thang CA↔CB (32,192)/(−32,−192); script kiểm bậc kế tiếp qua mép = bậc đầu thang đích | cửa: 2 section hiện cạnh nhau lúc cuộn; thang: lệch −32 px | 06 |
 | Moai | 16 ô `obj_block_*`/`obj_lean_*` CẮT vào `Item/Moai` (tên `moai_*`): sprite thật của game (không thuộc nhãn Unused); nhận diện "Moai figure 4000 đ, Second Quest" là suy luận (wiki Secrets) — không cần cho Map 1 | đề bài "xác nhận rồi mới cắt": không xác nhận được bằng video ⇒ cắt nhưng ghi rõ suy luận, không dùng ở Block 1 | 05 |
 
 ## §5 Câu hỏi cho người dùng (chép từ CVGP_PLAN §9)
@@ -310,6 +371,14 @@ Khung `_3` của sheet = khung 2 với **roi vẽ ĐÈ thân** (`whipOnTop`), kh
 - (05) Khung roi `_3` (roi đè thân) chưa dùng trong anim — routine 09 xem video quyết định có xen kẽ thứ tự vẽ không.
 - (05) `ClaudeNotes/cvgp/_cache/05/` (thử dò roi, ảnh kỳ vọng, `grid/page_*`, khung video) — xoá tay được.
 - (03) `NesPad` chưa có khái niệm "khoá input" (vd lúc cutscene/đóng băng nhặt roi) — để `StageWorld`/Simon (07–09) tự bỏ qua; nếu cần thì thêm cờ ở 07.
+- (06) **Cổng CE**: điểm kích hoạt tự đi + tốc độ (~1 px/tick tới x≈679 rồi ~0.3 px/tick) + cách nhảy vượt cổng (bí mật túi 1000) chưa đo khung-khớp-khung ⇒ routine 15. Lớp FG CE luôn bật: nếu Simon nhảy quá x 704 trước khi vào cổng (bí mật) sẽ bị che — kiểm ở 15.
+- (06) **Chuỗi qua cửa** (cuộn 128 @ 0.90–0.91 px/tick, cửa mở/đóng `door_1`, Simon tự đi 68 px, CA/PB ghép cạnh EH/CA) và **chuyển tầng CA↔CB** (đen 0.33 s CB→CA; CA→CB bị non-game che; Simon đè HUD khi lên) chưa dựng — dữ liệu nối đã có (§2e) ⇒ 15.
+- (06) Ô đỉnh thang cạnh mép bục để `Stair` (không đặc) theo hình — 08 kiểm khi làm đi thang (nếu bản gốc cho đứng thì sửa overrides).
+- (06) Đầu dò sàn Simon: video cho thấy rơi khỏi mép khi tâm cách mép ≈ 8 px (Bục C 1:02.7) và không lọt miệng thang 16 px ⇒ 07/08 chọn bề rộng dò (vd tâm ± 8) cho khớp.
+- (06) Tường gạch nhỏ Crypt A: chỉ 2 ô (16,9),(16,10) có bằng chứng phá; game gốc có thể cho phá thêm — 11 kiểm khi làm tường phá (wiki: "phá các khối thấp nhất").
+- (06) EH (63,7) Breakable chỉ theo wiki (video không phá) — 11 xác nhận điều kiện hiện túi tím 400 (+ `+400` ở 0:21.83 đầu EH là cơ chế KHÁC, chưa rõ).
+- (06) Prefab Tilemap lớn (EH 1.2 MB, tổng 3.3 MB YAML) — chấp nhận; nếu muốn gọn có thể đổ tile lúc chạy từ CSV (đổi builder, không đổi dữ liệu).
+- (06) `ClaudeNotes/cvgp/_cache/06/` (khung video, ảnh so, script `vf.py`/`vcrop.py`/`vdiff.py`/`fishscan.py`) và `_cache/shots/06/` (15 ảnh Play + kỳ vọng) — xoá tay được.
 
 
 ## §7 Nhật ký nghiệm thu
@@ -382,3 +451,16 @@ Khung `_3` của sheet = khung 2 với **roi vẽ ĐÈ thân** (`whipOnTop`), kh
 - **Video (đối chiếu nhận diện):** 1:39.55–1:40.15 đập tường ⇒ mảnh tím = `obj_purple_orb` (→ `FX/brick_debris`); 0:06.3–0:07.5 nhặt roi ⇒ Simon nháy mặc định/đỏ/tím/xanh (bảng màu); 2:58.6–3:00.6 bình tàng hình ⇒ Simon không vẽ. Khung ở `_cache/05/` (`v_brick.png`, `pk_montage.png`, `inv_montage.png`), đã xem.
 - **H8** (Main, harness `OnSystemTick`, `GoTo(Title,0)` abs 253 = L0, `InjectStart` L351): Start **L352** ✔, đen **L432** ✔, Intro **L448** ✔, đen **L890** ✔, Stage1 **L922** ✔ — khớp tuyệt đối. Ảnh đã xem (`_cache/shots/05/h8_L10_title.png`, `h8_L600_intro.png`, `h8_L930_stage.png`): như baseline.
 - Cuối: thoát Play, scene Main không dirty, `CvtiDebug.LogFlow` false, không còn scene/asset tạm; không đổi scene/prefab/ProjectSettings.
+
+### Routine 06 — 13/10/2026
+- **Bước 0:** cổng 01 = XONG; MCP `Castlevania_Original-main@5669a9bb…` (dataPath đúng); untracked mới lạ `.codex/` (không thuộc cụm — không đụng, không commit).
+- **Kiểm đầu vào:** 5 rect vùng khớp kiểm kê, viền 1 px = nền xanh, 0 pixel nền xanh bên trong; offset dòng **r ↔ NES y 32 + r** xác nhận lại bằng ZNCC 4 ảnh `ref/nes/` (§2e).
+- **Tileset** (`build_tileset.py`): 118 tile (= kiểm kê; từng section 49/57/34/36/68 = kiểm kê) · dựng lại 5 vùng từ PNG đã mã hoá + CSV: **0 pixel lệch** · chạy 2 lần: 7 file "same" (PNG md5 `3bb04a08…`).
+- **Va chạm** (`build_collision.py`): 164 metatile, 0 id mang 2 loại; luật R1 Door 3 · R2 Stair 4 · R3/R4/R5 Solid 1/2/1 · còn lại Empty 153; 9 override (67 ô) + 23 check đạt; kiểm chéo kiểm kê: 7 ô khác = đúng 7 ô override; mọi bậc thang nằm trong ô Stair/StairFloor và ngược lại; 8 nối kiểm hình học (thang nối liền qua phép dời (32,192)). Chạy 2 lần `Level1Map.json` "same" (md5 `9a4cef7b…`), 5 ảnh overlay md5 y hệt.
+- **Bằng chứng video** (khung Map_1 lấy mẫu lưới NES bằng `_cache/06/vf.py`/`vcrop.py`, so sheet bằng `vdiff.py` — đã mở xem): cổng `gate.png`, `gate_zoom.png`, `gate_zoom2.png` (Simon bị che từ x màn 192); tường Crypt A `kwall.png`, `kwall_d.png` + bảng lệch 8×8 ở 99.45/99.65/99.9/100.3/100.55/100.8 s (2 ô vỡ ở 2 cú roi ngồi); Crypt B `cbbreak.png` (khối (29,6) vỡ 2:19.2); phòng boss `pbblock.png` (khối phải bệ vỡ ⇒ II, khối trái còn); cửa `door1.png`, `door2.png`; nước `fish.png`, `fish2.png`, `fish3.png` + quét ~924 khung 1:56.8–2:27.6 (`fishscan.py`: pixel đỏ dưới mặt nước chỉ xuất hiện khi Fish Man đang đứng/rơi chạm nước): Fish Man vẽ ĐÈ nước ⇒ không FG nước; EH Bục C nguyên ở 1:01.3/1:05.5 (`ehc_61/65`). Toạ độ Simon lấy từ `_cache/video/work/map1_simon.csv` (planner).
+- **Unity:** `CvgpLevelBuilder.cs` + 3 script Level; compile sạch (chỉ lỗi nền Odin path1/Mathematics/GUIClips/MCP WebSocket + warning framework). Lần 1: "tileset cắt lại; tile 118 (ghi 118); section 5 (data ghi 5, prefab ghi 5)"; lần 2 (execute_code) + lần 3 (menu thật): "ghi 0" — **284 file** (asset + meta + prefab + script) md5 y hệt. Kiểm API: `GetAt` CA(56,180)=StairFloor, CB(10,170)=Water, PB(690,150)=Breakable, PB(762,80)=Door; `Tread(7)` EH stair0 = top; prefab CE: BG 49 tile dùng, bounds 96×24, FG 8×20.
+- **Ảnh Play pixel** (scene tạm `Assets/Scenes/Test/Map1Tiles06_tmp.unity` = bản sao PixelGrid + 5 prefab, Game view 1920×1080 ⇒ vùng (448,60) 1024×960; **đã xoá**): 15 ảnh (mỗi section cx 0 / lẻ / max: CE 0,257,512 · EH 0,777,1280 · CA 0,131,256 · CB 0,77,256 · PB 0,333,512) so ảnh kỳ vọng (crop sheet ở NES y 32–223, đen còn lại) bằng `Tools/cvti/check_pixel_exact.py`: **0/983 040 lệch, 0 pixel ngoài vùng không đen — cả 15** (`_cache/shots/06/check_pixel.txt`). Đã xem `montage_shots.png` (CE 512, EH 777, CB 77, PB 512).
+- **Kiểm FG:** sprite Simon `idle_0` (layer Character, quay phải) ở CE cx 512 tâm x 700: 240 px thấy (x màn < 192), **49 px bị FG che** (x ≥ 192), so ảnh kỳ vọng ghép tay **0 px lệch** (`fgtest_zoom.png` đã xem — giống khung video 0:18.17).
+- **So video** (1 khung/section, cx dò ZNCC): CE 0:09 cx 179 (0.922) · EH 0:42 cx 533 (0.966) · CA 1:40 cx 88 (0.960) · CB 1:58 cx 0 (0.964) · PB 3:17 cx 512 (0.951); chụp Unity đúng cx, khớp màu tuyến tính từng kênh rồi tô đỏ pixel lệch mạnh: **1.25 / 1.43 / 1.31 / 1.39 / 2.31 %** — đã xem cả 5 `vcmp_*.png`: phần đỏ chỉ là Simon, roi, chậu lửa/nến, quái, item, dơi boss ngủ, mảnh gạch + ô (43,9) đã vỡ; nền trùng.
+- **Overlay va chạm** 5 ảnh `ClaudeNotes/cvgp/ref/level1/collision_*.png` đã xem (đúng vị trí gạch, thang, nước, cửa, 5 ô phá, 2 miệng thang, vùng FG, trigger, điểm bắt đầu).
+- **Main.unity:** Play ~8 s ⇒ Title chạy, console chỉ lỗi nền; không đổi GameManager/input/màn hình/HUD ⇒ không chạy harness H8. Cuối: thoát Play, scene Main không dirty, không còn scene/asset tạm.

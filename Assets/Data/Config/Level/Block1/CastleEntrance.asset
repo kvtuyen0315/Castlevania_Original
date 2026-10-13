@@ -1,0 +1,71 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c4c25d45acf3c14e9c6005b7044ce18, type: 3}
+  m_Name: CastleEntrance
+  m_EditorClassIdentifier: 
+  id: CastleEntrance
+  stage: 1
+  width: 768
+  height: 192
+  cols: 48
+  rows: 12
+  cameraMinX: 0
+  cameraMaxX: 512
+  bossLockCx: -1
+  hasSimonStart: 1
+  simonStart: {x: 50, y: 160}
+  simonStartSrc: 'CVTI_MEMORY 2.4/4.6: Stage 1 do khung-khop-khung goc tren-trai
+    sprite (42,161) NES = tam x 50, chan tren san level y 160 (NES 192); video Map_1
+    0:02.2 x_med 51'
+  collision:
+  - ................................................
+  - ................................................
+  - ................................................
+  - ................................................
+  - ................................................
+  - ................................................
+  - ................................................
+  - ................................................
+  - ................................................
+  - ................................................
+  - '################################################'
+  - ................................................
+  foreground:
+  - col0: 44
+    col1: 47
+    row0: 0
+    row1: 9
+    src: 'video Map_1 0:17.93-0:18.27 (anh _cache/06/gate_zoom2.png): Simon bi che
+      dung tu x man 192 = level x 704 (camera cx 512), ke ca o pixel den giua gach
+      => lop FG cot 44-47 (phai vom cong), khong phai luat uu tien sprite NES theo
+      mau nen'
+  stairs: []
+  connections:
+  - id: gate
+    kind: 0
+    target: EntranceHall
+    targetStage: 1
+    trigger:
+      x: 688
+      y: 64
+      width: 16
+      height: 96
+    triggerSimonX: -1
+    stair: 
+    targetStair: 
+    targetOrigin: {x: 0, y: 0}
+    entry: {x: 49, y: 176}
+    src: 'vom cong cot 43 hang 4-9 (kiem ke). Video: camera cham cx 512 luc 0:16.2
+      (Simon x 642); Simon di 1 px/tick toi x~679 (0:16.8) roi ~0.3 px/tick, bi FG
+      che tu x 704, mat han 0:18.27; TIME 0287 tu 0:16.07 dung toi 0:20.0; den 0:19.7-0:20.0;
+      EH hien 0:20.0 Simon x_med 49. Diem kich hoat chinh xac + toc do tu di: cho
+      do routine 15'

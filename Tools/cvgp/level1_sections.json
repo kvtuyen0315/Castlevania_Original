@@ -1,0 +1,70 @@
+{
+ "note": "CVGP 06 - do thi section Map 1 (Level 1 = Stage 1-3). Viet tay, moi so co nguon. build_collision.py doc + kiem + gop vao Assets/Data/Config/Level/Block1/Level1Map.json. Toa do = px trong section (goc tren-trai vung 192 dong; dong r <-> NES y 32 + r).",
+ "conventions": {
+  "levelRowToNesY": 32,
+  "simonStart": "[x tam than Simon, y mat san (dinh o dac duoi chan)]; CVTI Stage1Stub ve pivot day-giua sprite 16x32 tai y+1 (hang cuoi sprite trong suot)",
+  "targetOrigin": "goc tren-trai section DICH tinh trong toa do section NGUON (dich(x,y) = nguon(x + ox, y + oy) voi (ox, oy) = -targetOrigin)",
+  "camera": "cx (mep trai man trong section) kep [cameraMinX, cameraMaxX]; section luon ve o NES y 32 (khong cuon doc)"
+ },
+ "sections": [
+  {
+   "id": "CastleEntrance", "stage": 1, "cameraMinX": 0, "cameraMaxX": 512, "bossLockCx": -1,
+   "simonStart": [50, 160],
+   "simonStartSrc": "CVTI_MEMORY 2.4/4.6: Stage 1 do khung-khop-khung goc tren-trai sprite (42,161) NES = tam x 50, chan tren san level y 160 (NES 192); video Map_1 0:02.2 x_med 51",
+   "foreground": [{"cols": [44, 47], "rows": [0, 9], "src": "video Map_1 0:17.93-0:18.27 (anh _cache/06/gate_zoom2.png): Simon bi che dung tu x man 192 = level x 704 (camera cx 512), ke ca o pixel den giua gach => lop FG cot 44-47 (phai vom cong), khong phai luat uu tien sprite NES theo mau nen"}],
+   "connections": [
+    {"id": "gate", "kind": "Gate", "trigger": [688, 64, 16, 96], "target": "EntranceHall", "targetOrigin": [0, 0], "entry": [49, 176], "targetStage": 1,
+     "src": "vom cong cot 43 hang 4-9 (kiem ke). Video: camera cham cx 512 luc 0:16.2 (Simon x 642); Simon di 1 px/tick toi x~679 (0:16.8) roi ~0.3 px/tick, bi FG che tu x 704, mat han 0:18.27; TIME 0287 tu 0:16.07 dung toi 0:20.0; den 0:19.7-0:20.0; EH hien 0:20.0 Simon x_med 49. Diem kich hoat chinh xac + toc do tu di: cho do routine 15"}
+   ]
+  },
+  {
+   "id": "EntranceHall", "stage": 1, "cameraMinX": 0, "cameraMaxX": 1280, "bossLockCx": -1,
+   "simonStart": [49, 176],
+   "simonStartSrc": "video Map_1 0:20.0 (f600): cx 0, x_med 49, y chan 206 NES (= mat san 208 - 2); +-1 px, routine 15 do lai",
+   "foreground": [],
+   "connections": [
+    {"id": "door_to_CryptA", "kind": "Door", "trigger": [1528, 32, 8, 48], "triggerSimonX": 1516, "target": "CryptA", "targetOrigin": [1536, 0], "entry": [49, 80], "targetStage": 2,
+     "src": "cot cua do-trang cot 95 hang 2-4 tren buc hang 5 (kiem ke). Video 1:24.83 (f2545): Simon x_med 236 man @ cx 1280 = level 1516 khi camera bat dau cuon (+-2); cuon 128 px -> cua mo, Simon tu di x man 109->177 @ camera 1408 = EH 1517 -> CA 49 -> cuon 128 px -> CA cx 0; CA ghep lien phai EH (anh _cache/06/door1.png, door2.png); STAGE 02 luc 1:31.87"}
+   ]
+  },
+  {
+   "id": "CryptA", "stage": 2, "cameraMinX": 0, "cameraMaxX": 256, "bossLockCx": -1,
+   "simonStart": [49, 80],
+   "simonStartSrc": "video Map_1 1:31.9 (f2756): cx 0, x_med 49, y chan 110 NES (buc hang 5, mat 80 level = NES 112); = diem ket thuc doan tu di qua cua",
+   "foreground": [],
+   "connections": [
+    {"id": "stair_A0_to_CryptB", "kind": "Stair", "stair": "CryptA_stair0", "target": "CryptB", "targetStair": "CryptB_stair0", "targetOrigin": [32, 192], "targetStage": 2,
+     "src": "2 bac cuoi o day CA (48,176),(56,184) noi tiep CB (32,0)...(88,56): CB(x,y) = CA(x+32, y+192) (kiem ke c4, lech -32 px). Video 1:47.5 Simon xuong thang CA x 55->66 (f3196-3232); 1:54.4 dang xuong o CB x 68 (doan giua bi non-game che)"},
+    {"id": "stair_A2_to_CryptB", "kind": "Stair", "stair": "CryptA_stair2", "target": "CryptB", "targetStair": "CryptB_stair1", "targetOrigin": [32, 192], "targetStage": 2,
+     "src": "CA (368,176),(376,184) noi CB (352,0)...(440,88). Video CB->CA 2:27.7: CB x 385 chan level 32 (f4430) -> den 0.33 s -> CA x 381 chan level 187 (f4442) - cung duong thang voi phep doi (32,192)"},
+    {"id": "door_to_PhantomBat", "kind": "Door", "trigger": [504, 32, 8, 48], "triggerSimonX": 492, "target": "PhantomBat", "targetOrigin": [512, 0], "entry": [49, 80], "targetStage": 3,
+     "src": "cot cua cot 31 hang 2-4 tren buc hang 5. Video 2:44.0 (f4920): x_med 236 man @ cx 256 = level 492 khi bat dau cuon; chuoi cuon 128 -> cua -> cuon 128 nhu cua Stage 1; STAGE 03 luc 2:50.87, PB x_med 49"}
+   ]
+  },
+  {
+   "id": "CryptB", "stage": 2, "cameraMinX": 0, "cameraMaxX": 256, "bossLockCx": -1,
+   "simonStart": null,
+   "simonStartSrc": "khong co diem bat dau stage (chi vao qua cau thang tu Crypt A)",
+   "foreground": [],
+   "connections": [
+    {"id": "stair_B0_to_CryptA", "kind": "Stair", "stair": "CryptB_stair0", "target": "CryptA", "targetStair": "CryptA_stair0", "targetOrigin": [-32, -192], "targetStage": 2,
+     "src": "dinh thang cham mep tren CB (kiem ke c4); nghich dao cua stair_A0_to_CryptB"},
+    {"id": "stair_B1_to_CryptA", "kind": "Stair", "stair": "CryptB_stair1", "target": "CryptA", "targetStair": "CryptA_stair2", "targetOrigin": [-32, -192], "targetStage": 2,
+     "src": "video 2:25.4-2:27.7 len thang trai-len ra mep tren (de len HUD 2:27.40-2:27.67), den 2:27.70-2:28.00, hien o day CA"}
+   ]
+  },
+  {
+   "id": "PhantomBat", "stage": 3, "cameraMinX": 0, "cameraMaxX": 512, "bossLockCx": 512,
+   "simonStart": [49, 80],
+   "simonStartSrc": "video Map_1 2:50.9 (f5126): cx 0, x_med 49, y chan 110 NES (buc T1 hang 5)",
+   "bossLockSrc": "video Map_1 3:17.4 camera khoa cx 512 (phong boss) toi het tally; video boss: phong co dinh cx 512",
+   "foreground": [],
+   "connections": [
+    {"id": "door_end", "kind": "Door", "trigger": [760, 64, 8, 48], "target": "", "targetOrigin": [0, 0], "entry": [0, 0], "targetStage": 4,
+     "src": "cot cua cot 47 hang 4-6 tren buc hang 7. KHONG dung trong video: ha boss -> qua cau -> tally -> ban do lau dai -> STAGE 04 (3:30-3:59); Stage 04 ngoai pham vi Map 1"}
+   ]
+  }
+ ],
+ "order": ["CastleEntrance", "EntranceHall", "CryptA", "CryptB", "CryptA", "PhantomBat"],
+ "orderSrc": "thu tu di trong video Map_1: CE 0:02.2 -> (cong) EH 0:20.0 -> (cua) CA 1:31.9 -> (thang) CB 1:54.4 -> (thang) CA 2:28.0 -> (cua) PB 2:50.9 -> phong boss 3:17.4"
+}

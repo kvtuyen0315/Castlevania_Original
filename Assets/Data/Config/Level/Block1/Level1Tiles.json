@@ -1,0 +1,97 @@
+{
+ "note": "CVGP 06 - sinh boi Tools/cvgp/build_tileset.py; KHONG sua tay",
+ "sheet": "Art_Source/spriters-resource/level1_entrance.png",
+ "sheetSha256": "f9f8e348837db0b64f3606dfb9b6cb80daf571791fce3771e13fd50997d90a2f",
+ "tileSize": 8,
+ "columns": 16,
+ "count": 118,
+ "png": "Assets/Data/Art/Level/Block1/level1_tiles.png",
+ "levelRowToNesY": 32,
+ "sections": [
+  {
+   "id": "CastleEntrance",
+   "inventoryId": "castle_entrance",
+   "stage": 1,
+   "sheetRect": [
+    1,
+    11,
+    768,
+    192
+   ],
+   "width": 768,
+   "height": 192,
+   "cols8": 96,
+   "rows8": 24,
+   "uniqueTiles": 49,
+   "csv": "Assets/Data/Config/Level/Block1/CastleEntrance_tiles.csv"
+  },
+  {
+   "id": "EntranceHall",
+   "inventoryId": "entrance_hall",
+   "stage": 1,
+   "sheetRect": [
+    774,
+    11,
+    1536,
+    192
+   ],
+   "width": 1536,
+   "height": 192,
+   "cols8": 192,
+   "rows8": 24,
+   "uniqueTiles": 57,
+   "csv": "Assets/Data/Config/Level/Block1/EntranceHall_tiles.csv"
+  },
+  {
+   "id": "CryptA",
+   "inventoryId": "crypt_a",
+   "stage": 2,
+   "sheetRect": [
+    2315,
+    11,
+    512,
+    192
+   ],
+   "width": 512,
+   "height": 192,
+   "cols8": 64,
+   "rows8": 24,
+   "uniqueTiles": 34,
+   "csv": "Assets/Data/Config/Level/Block1/CryptA_tiles.csv"
+  },
+  {
+   "id": "CryptB",
+   "inventoryId": "crypt_b",
+   "stage": 2,
+   "sheetRect": [
+    2315,
+    218,
+    512,
+    192
+   ],
+   "width": 512,
+   "height": 192,
+   "cols8": 64,
+   "rows8": 24,
+   "uniqueTiles": 36,
+   "csv": "Assets/Data/Config/Level/Block1/CryptB_tiles.csv"
+  },
+  {
+   "id": "PhantomBat",
+   "inventoryId": "phantom_bat",
+   "stage": 3,
+   "sheetRect": [
+    2832,
+    11,
+    768,
+    192
+   ],
+   "width": 768,
+   "height": 192,
+   "cols8": 96,
+   "rows8": 24,
+   "uniqueTiles": 68,
+   "csv": "Assets/Data/Config/Level/Block1/PhantomBat_tiles.csv"
+  }
+ ]
+}

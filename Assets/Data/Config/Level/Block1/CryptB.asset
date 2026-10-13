@@ -1,0 +1,87 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c4c25d45acf3c14e9c6005b7044ce18, type: 3}
+  m_Name: CryptB
+  m_EditorClassIdentifier: 
+  id: CryptB
+  stage: 2
+  width: 512
+  height: 192
+  cols: 32
+  rows: 12
+  cameraMinX: 0
+  cameraMaxX: 256
+  bossLockCx: -1
+  hasSimonStart: 0
+  simonStart: {x: 0, y: 0}
+  simonStartSrc: khong co diem bat dau stage (chi vao qua cau thang tu Crypt A)
+  collision:
+  - '##S...##....##..##....S.........'
+  - ...S...................S........
+  - ....S...................S.......
+  - .....S...................S......
+  - ......##..................S.....
+  - ...........................S....
+  - '##############..##..#########X..'
+  - ................................
+  - ..............................##
+  - ................................
+  - ~~~~~~~~~~~~~~~~~~~~~~~~~~~~##~~
+  - ~~~~~~~~~~~~~~~~~~~~~~~~~~~~..~~
+  foreground: []
+  stairs:
+  - id: CryptB_stair0
+    dir: 1
+    steps: 8
+    foot: {x: 88, y: 56}
+    top: {x: 32, y: 0}
+    cutBottom: 0
+    cutTop: 1
+  - id: CryptB_stair1
+    dir: 1
+    steps: 12
+    foot: {x: 440, y: 88}
+    top: {x: 352, y: 0}
+    cutBottom: 0
+    cutTop: 1
+  connections:
+  - id: stair_B0_to_CryptA
+    kind: 2
+    target: CryptA
+    targetStage: 2
+    trigger:
+      x: 32
+      y: 0
+      width: 64
+      height: 64
+    triggerSimonX: -1
+    stair: CryptB_stair0
+    targetStair: CryptA_stair0
+    targetOrigin: {x: -32, y: -192}
+    entry: {x: 0, y: 0}
+    src: dinh thang cham mep tren CB (kiem ke c4); nghich dao cua stair_A0_to_CryptB
+  - id: stair_B1_to_CryptA
+    kind: 2
+    target: CryptA
+    targetStage: 2
+    trigger:
+      x: 352
+      y: 0
+      width: 96
+      height: 96
+    triggerSimonX: -1
+    stair: CryptB_stair1
+    targetStair: CryptA_stair2
+    targetOrigin: {x: -32, y: -192}
+    entry: {x: 0, y: 0}
+    src: video 2:25.4-2:27.7 len thang trai-len ra mep tren (de len HUD 2:27.40-2:27.67),
+      den 2:27.70-2:28.00, hien o day CA

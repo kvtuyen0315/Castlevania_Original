@@ -1,0 +1,82 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c4c25d45acf3c14e9c6005b7044ce18, type: 3}
+  m_Name: PhantomBat
+  m_EditorClassIdentifier: 
+  id: PhantomBat
+  stage: 3
+  width: 768
+  height: 192
+  cols: 48
+  rows: 12
+  cameraMinX: 0
+  cameraMaxX: 512
+  bossLockCx: 512
+  hasSimonStart: 1
+  simonStart: {x: 49, y: 80}
+  simonStartSrc: 'video Map_1 2:50.9 (f5126): cx 0, x_med 49, y chan 110 NES (buc
+    T1 hang 5) | camera: video Map_1 3:17.4 camera khoa cx 512 (phong boss) toi het
+    tally; video boss: phong co dinh cx 512'
+  collision:
+  - ................................................
+  - ................................................
+  - ................................................
+  - ................................................
+  - ...............................................D
+  - '#######S.......................................D'
+  - ........S......................................D
+  - ........###########S........................S###
+  - ....................S......................S....
+  - .....................S....................#X....
+  - ......................S.........................
+  - '################################################'
+  foreground: []
+  stairs:
+  - id: PhantomBat_stair0
+    dir: 1
+    steps: 4
+    foot: {x: 136, y: 104}
+    top: {x: 112, y: 80}
+    cutBottom: 0
+    cutTop: 0
+  - id: PhantomBat_stair1
+    dir: 1
+    steps: 8
+    foot: {x: 360, y: 168}
+    top: {x: 304, y: 112}
+    cutBottom: 0
+    cutTop: 0
+  - id: PhantomBat_stair2
+    dir: 0
+    steps: 4
+    foot: {x: 688, y: 136}
+    top: {x: 712, y: 112}
+    cutBottom: 0
+    cutTop: 0
+  connections:
+  - id: door_end
+    kind: 1
+    target: 
+    targetStage: 4
+    trigger:
+      x: 760
+      y: 64
+      width: 8
+      height: 48
+    triggerSimonX: -1
+    stair: 
+    targetStair: 
+    targetOrigin: {x: 0, y: 0}
+    entry: {x: 0, y: 0}
+    src: 'cot cua cot 47 hang 4-6 tren buc hang 7. KHONG dung trong video: ha boss
+      -> qua cau -> tally -> ban do lau dai -> STAGE 04 (3:30-3:59); Stage 04 ngoai
+      pham vi Map 1'
