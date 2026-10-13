@@ -1,0 +1,3 @@
+# 240 tick, hash 8261a685
+# CVGP 13 EnemyProbe kịch bản 'ghoul_pb_video': PB cx 0 (video f5127): Zombie gờ trên @0, sàn dưới @0, gờ trên @33 — rơi thẳng ở x 127, g 0.125
+-*240

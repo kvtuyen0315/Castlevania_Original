@@ -99,12 +99,12 @@ Máu = **số đòn** để hạ: *yếu* (roi da, Holy Water, Dagger) / *mạnh
 
 | Id (wiki) | Tên khác | Nhóm sheet | Loại | Stage | Đòn yếu | Đòn mạnh | Điểm | Chết được | Đạn | Tốc độ (px/tick) | Hành vi | Nguồn |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
-| Ghoul | Zombie (lost souls) | enemy_zombie | Normal | 1, 3 | 1 | 1 | 100 | có | — | 0.875 | Đi thẳng một hướng qua màn rồi rời đi; nhóm 2–3 con từ cả hai phía (Stage 3 rơi từ trên xuống) | wiki:Enemies#Ghouls · *moveSpeed:* video:planner MAP1_TIMELINE §4 (4 vết f600–759; dư ≤ 3.3 px) — chờ đo routine 13 |
-| Bat | Black Bat / Red Bat | enemy_bat (Vampire Bat) | Normal | 2, 4, 10 | 1 | 1 | 200 | có | — | *chờ đo routine 13* | Dơi đen treo trần rồi lao xuống khi Simon lại gần; dơi đỏ bay sóng lên xuống | wiki:Enemies#Bats · *moveSpeed:* video:planner 1.0–1.12 px/tick về phía Simon (thô) — chờ đo routine 13 |
-| Panther | Black Leopard | enemy_leopard (Black Leopard) | Normal | 1 | 1 | 1 | 200 | có | — | 2.0 | Nằm chờ tới khi Simon vào tầm rồi nhảy vọt; rơi xuống tầng thấp và luôn quay về phía Simon | wiki:Enemies#Panthers · *moveSpeed:* video:planner chạy 2.0 px/tick (f1266–1856) — chờ đo routine 13 |
+| Ghoul | Zombie (lost souls) | enemy_zombie | Normal | 1, 3 | 1 | 1 | 100 | có | — | 0.875 | Đi thẳng một hướng qua màn rồi rời đi; nhóm 2–3 con từ cả hai phía (Stage 3 rơi từ trên xuống) | wiki:Enemies#Ghouls · *moveSpeed:* đo:routine 13 video Map_1 19 vết Zombie (EH f600–2541, PB f5129–5686): hồi quy 0.82–0.94, trung vị 0.878 ⇒ 224/256 |
+| Bat | Black Bat / Red Bat | enemy_bat (Vampire Bat) | Normal | 2, 4, 10 | 1 | 1 | 200 | có | — | 1.125 | Dơi đen treo trần rồi lao xuống khi Simon lại gần; dơi đỏ bay sóng lên xuống | wiki:Enemies#Bats · *moveSpeed:* đo:routine 13 video Map_1 7 vết dơi: 1.085–1.157 (TB 1.12) ⇒ 288/256, hướng về phía Simon |
+| Panther | Black Leopard | enemy_leopard (Black Leopard) | Normal | 1 | 1 | 1 | 200 | có | — | 2.0 | Nằm chờ tới khi Simon vào tầm rồi nhảy vọt; rơi xuống tầng thấp và luôn quay về phía Simon | wiki:Enemies#Panthers · *moveSpeed:* đo:routine 13 video Map_1 chạy f1815–1856 (166 px/82 tick = 2.02) + nhảy ngang 1.90–2.06 |
 | Raven |  | enemy_raven | Normal | 7, 8, 9 | 1 | 1 | 200 | có | — | *không rõ* | Đậu chờ; cất cánh khi Simon lại gần; khựng một chút rồi bổ nhào; trượt thì quay lại đánh từ sau | wiki:Enemies#Ravens · *moveSpeed:* không rõ — không có video (routine 17 ước lượng) |
 | Eagle | giant Eagle | enemy_eagle | Normal | 11, 17 | 1 | 1 | 300 | có | — | *không rõ* | Bay ngang mang Fleaman và thả xuống gần Simon; giết khi còn mang thì cả hai cùng chết | wiki:Enemies#Eagles · *moveSpeed:* không rõ — không có video (routine 18 ước lượng) |
-| Fishman | Fish Man | enemy_fishman (Fish Man) | Normal | 2, 10 | 1 | 1 | 300 | có | Cầu lửa (chỉ khi đã lên đất; video Map_1 không thấy bắn) | *chờ đo routine 13* | Nhảy lên từ mặt nước; chạm đất thì đi bộ và bắn cầu lửa | wiki:Enemies#Fishmen · *moveSpeed:* video:planner đi ~0.8 px/tick (nhiễu) — chờ đo routine 13 |
+| Fishman | Fish Man | enemy_fishman (Fish Man) | Normal | 2, 10 | 1 | 1 | 300 | có | Cầu lửa (chỉ khi đã lên đất; video Map_1 không thấy bắn) | 0.75 | Nhảy lên từ mặt nước; chạm đất thì đi bộ và bắn cầu lửa | wiki:Enemies#Fishmen · *moveSpeed:* đo:routine 13 video Map_1 2 vết đi trên lối CB: 0.731 / 0.746 ⇒ 192/256 |
 | MedusaHead | gorgon heads | enemy_medusahead | Normal | 5, 6, 8, 9, 15 | 1 | 1 | 300 | có | — | *không rõ* | Xuất hiện từ phía Simon đang nhìn; bay ngang theo đường sóng; quay lưng thì tới từ cả hai phía | wiki:Enemies#Medusa Heads · *moveSpeed:* không rõ — không có video (routine 17 ước lượng) |
 | Skeleton | White Skeleton | enemy_skeleton (White Skeleton) | Normal | 7, 8, 9, 13, 17 | 1 | 1 | 300 | có | Xương ném vòng cung (2–3 cái cùng lúc) | *không rõ* | Nhanh và nhảy nhiều; ném xương theo vòng cung với các quỹ đạo khác nhau | wiki:Enemies#Skeletons · *moveSpeed:* không rõ — không có video (routine 17 ước lượng) |
 | Ghost | souls of lost men | enemy_ghost | Normal | 6, 7, 15 | 3 | 2 | 300 | có | — | *không rõ* | Xuất hiện ở điểm cố định; chậm nhưng bám theo vị trí Simon từ góc lạ | wiki:Enemies#Ghosts · *moveSpeed:* không rõ — không có video (routine 17 ước lượng) |
@@ -134,14 +134,60 @@ Máu = **số đòn** để hạ: *yếu* (roi da, Holy Water, Dagger) / *mạnh
 
 | Thực thể | Tham số | Giá trị | Min | Max | Đơn vị | Ghi chú | Nguồn |
 |---|---|---|---|---|---|---|---|
-| Enemy.Ghoul | groupSize | *chờ đo routine 13* | 2 | 3 | con |  | wiki:Enemies#Ghouls (nhóm 2–3) — chờ đo routine 13 |
-| Enemy.Bat | bobAmplitudePx | *chờ đo routine 13* | 6 | 9 | px |  | video:planner (dao động dọc; thô) — chờ đo routine 13 |
-| Enemy.Bat | bobPeriodTicks | *chờ đo routine 13* | 78 | 120 | tick |  | video:planner (~1.3–2 s; thô) — chờ đo routine 13 |
-| Enemy.Panther | jumpVx | *chờ đo routine 13* | 1.9 | 2.0 | px/tick |  | video:planner (nhảy ngang + cung rơi) — chờ đo routine 13 |
-| Enemy.Fishman | jumpVy0 | -5.6 |  |  | px/tick | âm = đi lên (NES y xuống) | video:planner (f3515–3547 khớp parabol; dư ≤ 1.6 px) — chờ đo routine 13 |
-| Enemy.Fishman | gravity | 0.124 |  |  | px/tick² |  | video:planner — chờ đo routine 13 |
-| Enemy.Fishman | jumpApexPx | 129 |  |  | px |  | video:planner (đỉnh trên mặt nước) — chờ đo routine 13 |
-| Enemy.Fishman | jumpApexTicks | 46 |  |  | tick |  | video:planner — chờ đo routine 13 |
+| Enemy.Ghoul | groupSize | 3 | 2 | 3 | con | mỗi nhóm sinh lần lượt | đo:routine 13 video Map_1 7 nhóm đủ (EH f600–636, f800–837, f2058–2090, f2358–2390; PB f5397–5443, f5500–5533, f5621–5653) đều 3 con; wiki:Enemies#Ghouls nhóm 2–3 |
+| Enemy.Bat | bobAmplitudePx | 8.75 | 8.3 | 9.5 | px | y = y0 + A(1 − cos 2πt/P): sinh ở đỉnh rồi đi XUỐNG | đo:routine 13 video Map_1 khớp sin 7 vết dơi (f2760–2804, f2951–2987, f3039–3072, f3174–3220, f4455–4485, f4648–4672, f4839–4880): biên 8.3–9.5 (TB 8.8), dư rms 0.34–0.43 px |
+| Enemy.Bat | bobPeriodTicks | 100 | 94 | 107 | tick |  | đo:routine 13 cùng 7 vết: chu kỳ 94–106.5 (TB 99) |
+| Enemy.Panther | jumpVx | 2.0 | 1.9 | 2.06 | px/tick | giữ suốt cú nhảy | đo:routine 13 video Map_1 2 cú nhảy (f1262–1288 hồi quy 1.90; f1768–1799 1.95; tổng 699→594 trong 51 tick = 2.06) |
+| Enemy.Fishman | jumpVy0 | -5.875 | -5.95 | -5.5 | px/tick | âm = đi lên (NES y xuống); nhảy thẳng đứng, xuyên lối đi từ dưới | đo:routine 13 video Map_1 8 cú nhảy (f3517, f3519, f3589, f3606, f3868, f4096, f4115, f4218): đỉnh pivot NES 85–88 cố định ⇒ chọn vy0 để từ Y sinh 192 lên đỉnh Y 54 với g 0.125 (dư khớp parabol rms 1.6–3.9 px) |
+| Enemy.Fishman | gravity | 0.125 | 0.119 | 0.139 | px/tick² |  | đo:routine 13 cùng 8 cú nhảy: g 0.119–0.139 (trung vị 0.124) |
+| Enemy.Fishman | jumpApexPx | 107 | 104 | 107 | px | planner ghi 129 — sửa theo đo lại | đo:routine 13 đỉnh chân pivot NES 85–88 = 104–107 px trên mặt nước CB (NES 192) |
+| Enemy.Fishman | jumpApexTicks | 47 | 46 | 47 | tick |  | đo:routine 13 vy0/g = 5.875/0.125 (planner ~46) |
+| Enemy.Ghoul | walkFrameTicks | 17 | 16.6 | 17.6 | tick | bắt đầu ở zombie_0 | đo:routine 13 video Map_1 19 vết Zombie: khung zombie_0/1 đổi mỗi 16.6–17.4 tick (vết dài nhất 18 lần đổi = 17.00) |
+| Enemy.Ghoul | fallGravity | 0.125 | 0.096 | 0.148 | px/tick² | rơi THẲNG ĐỨNG (x giữ nguyên), vy từ 0 | đo:routine 13 video Map_1 PB 4 lần Zombie bước khỏi gờ (f5202–5214, f5224–5232, f5573–5580, f5589–5594): g 0.096–0.148, vết sạch f5573 0.125 (dư 0.3 px) |
+| Enemy.Ghoul | spawnInsetPx | 8 | 8 | 10 | px | mép phải: cx + 248; mép trái: cx + 8 | đo:routine 13 video Map_1 31 lần sinh: hiện NGUYÊN hình ở pivot màn 242–247 ngay frame đầu (vd f618, f633) ⇒ pivot = mép màn − 8 (sprite sát mép) |
+| Enemy.Ghoul | groupGapTicks | 32 | 28 | 34 | tick |  | đo:routine 13 video Map_1 khoảng cách sinh trong nhóm (ngoại suy về pivot màn 248): 29.2/32.2/33.3/28.6/29.8/31.2/30.6/33.1/32.1/32.3/32.6/30.9 (trung vị 31.7; Zombie cách nhau ~28 px) |
+| Enemy.Ghoul | waveDelayMinTicks | 115 |  |  | tick |  | đo:routine 13 video Map_1 từ con cuối nhóm trước tới con đầu nhóm sau: 115–288 tick (8 mẫu: 115/136/176/200/212/226/234/288) — ngẫu nhiên đều trong khoảng (suy luận: luật ROM chưa rõ) |
+| Enemy.Ghoul | waveDelaySpanTicks | 173 |  |  | tick |  | đo:routine 13 cùng 8 mẫu: 288 − 115 |
+| Enemy.Ghoul | maxAlive | 3 |  |  | con |  | đo:routine 13 video Map_1 tối đa 3 Zombie cùng lúc trong mọi vết (EH f2390, PB f5145) |
+| Enemy.Ghoul | firstDelayTicks | 0 |  |  | tick |  | đo:routine 13 video Map_1 EH f600 và PB f5126: Zombie đầu có mặt ngay frame đầu section |
+| Enemy.Ghoul | despawnInsetPx | 4 | 2 | 6 | px | gỡ khi pivot ra ngoài [cx + 4, cx + 252] | đo:routine 13 video Map_1 f2436–2447: Zombie đi ra mép trái còn thấy tới pivot màn ≈ 6, mất ở ≈ 4 (±2) |
+| Enemy.Panther | triggerDistancePx | 70 | 69 | 72 | px | camera bám Simon ⇒ Simon.X = cx + 128 | đo:routine 13 video Map_1 2 lần bật dậy (f1263: \|dx\| 69; f1768: 68.5) + 1 lần KHÔNG bật ở \|dx\| 72 (f1644) ⇒ bật khi \|Simon.X − X\| < 70 |
+| Enemy.Panther | jumpVy0 | -1.5 | -1.5 | -1.35 | px/tick | âm = lên; cất cánh khi mất sàn dưới pivot (mép gờ x 688 / 928) | đo:routine 13 video Map_1 khớp tự do 2 cú nhảy: vy0 −1.35/−1.48, g 0.107/0.125, đỉnh 8.5–8.8 px; chọn −1.5/0.125 (rms 1.55 / 0.79 px) |
+| Enemy.Panther | gravity | 0.125 | 0.107 | 0.125 | px/tick² |  | đo:routine 13 cùng 2 cú nhảy |
+| Enemy.Panther | runFrameTicks | 7 |  |  | tick |  | đo:routine 13 video Map_1 f1799–1856: chu kỳ leopard_2→1→3 dài 10.6 frame (21.2 tick) ⇒ 7 tick/khung |
+| Enemy.Bat | flyFrameTicks | 9 | 8.5 | 9.5 | tick |  | đo:routine 13 video Map_1 7 vết: bat_red_0→1→2→1 đổi mỗi 4.5 frame (vết f2760–2804: 9 lần đổi trong 82 tick) |
+| Enemy.Bat | spawnInsetPx | 8 | 8 | 15 | px |  | đo:routine 13 video Map_1 6 lần sinh: pivot màn 241–246 (mép phải) / 9–16 (mép trái) frame đầu |
+| Enemy.Bat | spawnAboveFeetPx | 14 | 3 | 34 | px | biến thiên chưa giải thích (CVGP_MEMORY §6) | đo:routine 13 video Map_1 6 lần sinh: tâm dơi = chân Simon − 14 (3 lần), −21, −26, −34 — chọn mốt 14 |
+| Enemy.Bat | edgeScreenMarginPx | 64 | 49 | 187 | px | khoảng 49–187 = x màn Simon ở các lần sinh | suy luận routine 13 từ 6 lần sinh: dơi ra từ mép TRƯỚC MẶT Simon (5/6); lần f3174 Simon quay trái ở x màn 49 ⇒ dơi ra từ mép phải ⇒ Simon cách mép trước < 64 px thì ra mép kia |
+| Enemy.Bat | maxAlive | 1 |  |  | con |  | đo:routine 13 video Map_1 Crypt A: mọi lúc chỉ 1 dơi trên màn (7 vết không chồng thời gian) |
+| Enemy.Bat | respawnDelayMinTicks | 194 |  |  | tick |  | đo:routine 13 video Map_1 dơi chết → dơi kế: 194/288/314/330 tick (f3076→3173, f2806→2950, f4491→4648, f4674→4839) — ngẫu nhiên đều trong khoảng (suy luận) |
+| Enemy.Bat | respawnDelaySpanTicks | 136 |  |  | tick |  | đo:routine 13 cùng 4 mẫu: 330 − 194 |
+| Enemy.Bat | firstDelayMinTicks | 8 |  |  | tick |  | đo:routine 13 video Map_1 vào Crypt A: dơi đầu sau 8 tick (f2756→2760) / 28 tick (f4441→4455) |
+| Enemy.Bat | firstDelaySpanTicks | 20 |  |  | tick |  | đo:routine 13 cùng 2 mẫu: 28 − 8 |
+| Enemy.Bat | perchTriggerPx | 64 |  |  | px | treo → \|dx\| < giá trị ⇒ bay như dơi đỏ | quy ước routine 13 — dơi treo (Black Bat, wiki Enemies#Bats) KHÔNG có trong video Map 1 ⇒ routine 17 đo/chỉnh |
+| Enemy.Fishman | walkSpeed | 0.75 | 0.73 | 0.75 | px/tick | đi về phía Simon (chọn hướng lúc đáp) | đo:routine 13 video Map_1 2 vết đi trên lối CB (f3553–3575 −0.731, f4256–4281 +0.746; dư rms 0.66/0.86 px) |
+| Enemy.Fishman | spawnBelowSurfacePx | 32 |  |  | px |  | suy luận routine 13: Fish Man sinh ở đáy section (CB y 192 = mặt nước 160 + 32, ẩn) — chọn để đỉnh nhảy khớp video với vy0/g đo được |
+| Enemy.Fishman | hiddenBelowSurfacePx | 16 | 10 | 18 | px |  | đo:routine 13 video Map_1 f3515/3517: chưa thấy khi chân dưới mặt nước ~18 px, thấy khi −3 (f3517) / +8 (f4218) ⇒ ẩn khi chân thấp hơn mặt nước ≥ 16 |
+| Enemy.Fishman | gridStepPx | 64 |  |  | px |  | đo:routine 13 video Map_1 12 lần nhảy: x thế giới ∈ {32, 96, 160, 224, 288, 352, 416} (±2) = 32 + 64k |
+| Enemy.Fishman | gridOffsetPx | 32 |  |  | px |  | đo:routine 13 cùng 12 lần nhảy |
+| Enemy.Fishman | minPlayerDistPx | 32 |  |  | px |  | suy luận routine 13: 12 lần nhảy \|x − Simon.X\| = 35–178 (không lần nào < 32) ⇒ bỏ cột sát Simon |
+| Enemy.Fishman | maxAlive | 2 |  |  | con |  | đo:routine 13 video Map_1 tối đa 2 Fish Man cùng lúc (f3517 hai con nhảy cùng lúc; f3589–3606) |
+| Enemy.Fishman | respawnDelayMinTicks | 44 |  |  | tick | mỗi suất (maxAlive) có đồng hồ riêng: f3517 2 con cùng lúc | đo:routine 13 video Map_1 Fish Man bị gỡ → con kế: 44/58/80/156/176 tick (f3576→3598, f3827→3856, f3549→3589, f4140→4218, f4282→4370) — ngẫu nhiên đều (suy luận) |
+| Enemy.Fishman | respawnDelaySpanTicks | 132 |  |  | tick |  | đo:routine 13 cùng 5 mẫu: 176 − 44 |
+| Enemy.Fishman | firstDelayTicks | 0 |  |  | tick |  | quy ước routine 13 — f3517 (2 con) là lần đầu thấy được sau khi vào CB nhưng 1:47.8–1:56.7 bị non-game che ⇒ không đo được |
+| Enemy.Fishman | standTicks | 8 | 6 | 10 | tick |  | đo:routine 13 video Map_1 đáp lối đi rồi đứng 3–5 frame mới đi (f3550→3554, f4253→4258) |
+| Enemy.Fishman | walkFrameTicks | 32 | 32 | 34 | tick |  | đo:routine 13 video Map_1 fishman_0 → fishman_1 sau 32/34 tick kể từ lúc đáp (f3550→3566, f4253→4270); khung sau giả định cùng nhịp |
+| Enemy.Fishman | firstShotTicks | 96 |  |  | tick | wiki Enemies#Fishmen: bắn cầu lửa khi đã lên đất | quy ước routine 13 — video KHÔNG có cảnh bắn (mọi Fish Man bị hạ ≤ 50 tick sau khi đáp) ⇒ bắn lần đầu sau 96 tick trên đất |
+| Enemy.Fishman | shotEveryTicks | 160 |  |  | tick |  | quy ước routine 13 (như trên) |
+| Enemy.Fishman | shootPoseTicks | 24 |  |  | tick |  | quy ước routine 13 — tư thế fishman_2 (suy luận từ hình) |
+| Enemy.Fishman | fireballSpeed | 2.0 |  |  | px/tick |  | quy ước routine 13 — không có video |
+| Enemy.Fishman | fireballHeightAboveFeetPx | 22 |  |  | px |  | quy ước routine 13 — tâm cầu lửa ngang miệng sprite fishman_2 |
+| Enemy.Fishman | bubbleCenterVy | -0.5 |  |  | px/tick | bọt giữa: sinh mặt nước − 27, lệch x +2; 2 bọt bên: mặt nước − 12, lệch x ∓3, vy 0 | đo:routine 13 video Map_1 1 lần trồi f3517–3539: bọt giữa lên ~1 px rồi rơi — xấp xỉ |
+| Enemy.Fishman | bubbleSideVx | 0.375 | 0.3 | 0.4 | px/tick |  | đo:routine 13 cùng lần trồi: 2 bọt bên trôi ±9 px / 24 tick — xấp xỉ |
+| Enemy.Fishman | bubbleCenterVx | 0.25 |  |  | px/tick |  | đo:routine 13 cùng lần trồi: bọt giữa +7 px / 34 tick — xấp xỉ |
+| Enemy.Fishman | bubbleGravity | 0.125 |  |  | px/tick² |  | đo:routine 13 cùng lần trồi: 2 bọt bên rơi 33 px trong 24 tick — xấp xỉ |
+| Enemy.Fishman | bubbleSideTicks | 24 |  |  | tick |  | đo:routine 13 cùng lần trồi (f3519→3531) |
+| Enemy.Fishman | bubbleCenterTicks | 34 |  |  | tick |  | đo:routine 13 cùng lần trồi (f3522→3539) |
 | Enemy.RedSkeleton | reviveTicks | *chờ đo routine 18* | 60 | 120 | tick |  | wiki:Enemies#Red Skeletons; wiki:Stages 13-15 (đứng dậy sau 1–2 s) — chờ đo routine 18 |
 | Boss.PhantomBat | sleepScreenX | 110.5 |  |  | px màn |  | video:planner MAP1_TIMELINE §5 (tâm sprite khi ngủ; world PB x ≈ 622) — chờ đo routine 14 |
 | Boss.PhantomBat | sleepScreenY | 64.5 |  |  | px màn |  | video:planner — chờ đo routine 14 |

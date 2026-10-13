@@ -1,0 +1,3 @@
+# 1200 tick, hash eaeee985
+# CVGP 13 EnemyProbe kịch bản 'fishman_spawner': CB, Simon (120,96) bất tử: WaterSpawner — cột 32+64k có nước, cách Simon ≥ 32, ≤ 2 con, hồi 44–176/suất
+-*1200

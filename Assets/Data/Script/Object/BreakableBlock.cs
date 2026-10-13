@@ -20,6 +20,8 @@ public class BreakableBlock : Entity
     [NonSerialized] public ItemPickup spawnedItem;
 
     public Hurtbox Hurt { get; private set; }
+    /// <summary>CVGP 13: khối vừa vỡ (EdgeSpawner.releaseOnBlock — tường Pot Roast thả 1 dơi, wiki Secrets).</summary>
+    public static event Action<BreakableBlock> Broken;
     public string ObjectId => (World != null && World.Section != null && World.Section.data != null ? World.Section.data.name : "?") + "_X" + col + "_" + row;
     public override string DebugState => (broken ? "Broken " : "Block ") + col + "," + row;
 
@@ -71,6 +73,8 @@ public class BreakableBlock : Entity
             AudioManager.I.PlaySfx(eSfx.BreakWall);
         dropped = ItemDrops.Resolve(World, content);
         spawnedItem = ItemDrops.Spawn(World, dropped, X, Y - 1);
+        if (Broken != null)
+            Broken(this);
         Kill();
     }
 

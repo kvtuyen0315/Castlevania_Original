@@ -37,8 +37,9 @@ MonoBehaviour:
     moveSpeed:
       has: 1
       value: 0.875
-    src_moveSpeed: "video:planner MAP1_TIMELINE \xA74 (4 v\u1EBFt f600\u2013759;
-      d\u01B0 \u2264 3.3 px) \u2014 ch\u1EDD \u0111o routine 13"
+    src_moveSpeed: "\u0111o:routine 13 video Map_1 19 v\u1EBFt Zombie (EH f600\u20132541,
+      PB f5129\u20135686): h\u1ED3i quy 0.82\u20130.94, trung v\u1ECB 0.878 \u21D2
+      224/256"
     behaviorShort: "\u0110i th\u1EB3ng m\u1ED9t h\u01B0\u1EDBng qua m\xE0n r\u1ED3i
       r\u1EDDi \u0111i; nh\xF3m 2\u20133 con t\u1EEB c\u1EA3 hai ph\xEDa (Stage 3
       r\u01A1i t\u1EEB tr\xEAn xu\u1ED1ng)"
@@ -64,10 +65,10 @@ MonoBehaviour:
     projectile: '-'
     dropRule: "kh\xF4ng n\xEAu ri\xEAng"
     moveSpeed:
-      has: 0
-      value: 0
-    src_moveSpeed: "video:planner 1.0\u20131.12 px/tick v\u1EC1 ph\xEDa Simon (th\xF4)
-      \u2014 ch\u1EDD \u0111o routine 13"
+      has: 1
+      value: 1.125
+    src_moveSpeed: "\u0111o:routine 13 video Map_1 7 v\u1EBFt d\u01A1i: 1.085\u20131.157
+      (TB 1.12) \u21D2 288/256, h\u01B0\u1EDBng v\u1EC1 ph\xEDa Simon"
     behaviorShort: "D\u01A1i \u0111en treo tr\u1EA7n r\u1ED3i lao xu\u1ED1ng khi
       Simon l\u1EA1i g\u1EA7n; d\u01A1i \u0111\u1ECF bay s\xF3ng l\xEAn xu\u1ED1ng"
     source: wiki:Enemies#Bats
@@ -94,8 +95,8 @@ MonoBehaviour:
     moveSpeed:
       has: 1
       value: 2
-    src_moveSpeed: "video:planner ch\u1EA1y 2.0 px/tick (f1266\u20131856) \u2014
-      ch\u1EDD \u0111o routine 13"
+    src_moveSpeed: "\u0111o:routine 13 video Map_1 ch\u1EA1y f1815\u20131856 (166
+      px/82 tick = 2.02) + nh\u1EA3y ngang 1.90\u20132.06"
     behaviorShort: "N\u1EB1m ch\u1EDD t\u1EDBi khi Simon v\xE0o t\u1EA7m r\u1ED3i
       nh\u1EA3y v\u1ECDt; r\u01A1i xu\u1ED1ng t\u1EA7ng th\u1EA5p v\xE0 lu\xF4n quay
       v\u1EC1 ph\xEDa Simon"
@@ -179,10 +180,10 @@ MonoBehaviour:
       video Map_1 kh\xF4ng th\u1EA5y b\u1EAFn)"
     dropRule: "kh\xF4ng n\xEAu ri\xEAng"
     moveSpeed:
-      has: 0
-      value: 0
-    src_moveSpeed: "video:planner \u0111i ~0.8 px/tick (nhi\u1EC5u) \u2014 ch\u1EDD
-      \u0111o routine 13"
+      has: 1
+      value: 0.75
+    src_moveSpeed: "\u0111o:routine 13 video Map_1 2 v\u1EBFt \u0111i tr\xEAn l\u1ED1i
+      CB: 0.731 / 0.746 \u21D2 192/256"
     behaviorShort: "Nh\u1EA3y l\xEAn t\u1EEB m\u1EB7t n\u01B0\u1EDBc; ch\u1EA1m \u0111\u1EA5t
       th\xEC \u0111i b\u1ED9 v\xE0 b\u1EAFn c\u1EA7u l\u1EEDa"
     source: wiki:Enemies#Fishmen

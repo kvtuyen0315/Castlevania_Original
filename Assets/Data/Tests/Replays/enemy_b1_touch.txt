@@ -1,0 +1,3 @@
+# 60 tick, hash f1fc1875
+# CVGP 13 EnemyProbe kịch bản 'touch': Zombie đi vào Simon (không bất tử): −2 vạch (Stage 1), Simon văng (Hurt)
+-*60

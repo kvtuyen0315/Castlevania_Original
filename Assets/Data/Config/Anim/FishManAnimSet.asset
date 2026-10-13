@@ -17,13 +17,16 @@ MonoBehaviour:
     frames:
     - {fileID: 21300000, guid: 1b0c5c13151168f439fd8043355dd372, type: 3}
     - {fileID: 21300000, guid: 31a804140d44d594d81608db20a26978, type: 3}
-    durations: 0800000008000000
+    durations: 2000000020000000
     loop: 1
-    measured: 0
+    measured: 1
     overlays: []
     overlayOffsets: []
     overlayOnTop: 
-    note: 
+    note: "routine 13: video Map_1 f3550\u21923566, f4253\u21924270: fishman_0 \u2192
+      fishman_1 sau 32\u201334 tick k\u1EC3 t\u1EEB l\xFAc \u0111\xE1p (khung 1 gi\u1EA3
+      \u0111\u1ECBnh c\xF9ng nh\u1ECBp \u2014 Fish Man b\u1ECB h\u1EA1 tr\u01B0\u1EDBc
+      khi \u0111\u1ED5i l\u1EA1i); khung 0 gi\u1EEF su\u1ED1t c\xFA nh\u1EA3y"
   - name: shoot
     frames:
     - {fileID: 21300000, guid: 268a70537fc9472418edadbce0e1ac77, type: 3}
@@ -33,7 +36,9 @@ MonoBehaviour:
     overlays: []
     overlayOffsets: []
     overlayOnTop: 
-    note: "suy lu\u1EADn t\u1EEB h\xECnh"
+    note: "suy lu\u1EADn t\u1EEB h\xECnh \u2014 video kh\xF4ng c\xF3 c\u1EA3nh b\u1EAFn
+      (routine 13: th\u1EDDi l\u01B0\u1EE3ng t\u01B0 th\u1EBF \u1EDF ConfigActorParam
+      Enemy.Fishman.shootPoseTicks, quy \u01B0\u1EDBc)"
   - name: jump
     frames:
     - {fileID: 21300000, guid: 3d864ddd2af52f94c922a9afbf958660, type: 3}
@@ -43,7 +48,9 @@ MonoBehaviour:
     overlays: []
     overlayOffsets: []
     overlayOnTop: 
-    note: "suy lu\u1EADn t\u1EEB h\xECnh"
+    note: "suy lu\u1EADn t\u1EEB h\xECnh \u2014 routine 13: video KH\xD4NG d\xF9ng
+      (8 c\xFA nh\u1EA3y \u0111\u1EC1u l\xE0 fishman_0) \u21D2 Fishman.cs kh\xF4ng
+      ph\xE1t anim n\xE0y"
   - name: piece
     frames:
     - {fileID: 21300000, guid: f739d0f89d1119446a6e655fbab2b087, type: 3}

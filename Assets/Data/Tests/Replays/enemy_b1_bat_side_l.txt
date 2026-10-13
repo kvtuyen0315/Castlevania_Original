@@ -1,0 +1,3 @@
+# 60 tick, hash f1fc1875
+# CVGP 13 EnemyProbe kịch bản 'bat_side_l': CA, Simon (200,176) quay TRÁI ở x màn 128 ⇒ dơi ra mép trái
+-*60

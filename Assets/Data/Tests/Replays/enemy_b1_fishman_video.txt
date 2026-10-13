@@ -1,0 +1,3 @@
+# 220 tick, hash 560f70f5
+# CVGP 13 EnemyProbe kịch bản 'fishman_video': CB cx 0, Simon (86,96) (video f3514): 2 Fish Man trồi ở x 160 và 32 — thẳng đứng, đỉnh Y 54, đáp 96, đứng 8, đi 0.75 về Simon, bắn (quy ước)
+-*220

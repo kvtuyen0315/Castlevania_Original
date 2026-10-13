@@ -10,7 +10,7 @@ using UnityEngine;
 ///         đăng ký; thực thể sinh trong tick T bắt đầu OnTick từ T+1; sau OnTick kiểm ô chết (checkDeadlyTiles)
 ///   (6) CombatResolver (bỏ qua khi đóng băng thế giới)
 ///   (7) camera (NesCameraController.Tick)
-///   (8) spawn/despawn theo khung camera (SpawnPoint, despawnOffscreen)
+///   (8) spawn/despawn theo khung camera (SpawnPoint, EnemySpawner — CVGP 13, despawnOffscreen)
 ///   dọn thực thể đã Kill (trả pool) → SyncView mọi thực thể → (9) sự kiện TickEnded (HUD)
 /// Đóng băng: FreezeWorld(n) (nhặt roi — mọi nhóm, kể cả combat), FreezeEnemies(n) (Stopwatch — Enemy + EnemyShot); có hiệu lực
 /// từ tick KẾ TIẾP, kéo dài đúng n tick. Paused = dừng hẳn (TickCount không tăng).
@@ -39,6 +39,7 @@ public class StageWorld : MonoBehaviour
 
     private readonly List<Entity>[] groups = new List<Entity>[Entity.GROUP_COUNT];
     private readonly List<SpawnPoint> spawnPoints = new List<SpawnPoint>();
+    private readonly List<EnemySpawner> spawners = new List<EnemySpawner>();
     private readonly List<LevelSection> sections = new List<LevelSection>();
     private readonly List<Entity> scratch = new List<Entity>();
     private readonly CombatResolver combat = new CombatResolver();
@@ -64,6 +65,8 @@ public class StageWorld : MonoBehaviour
     public Entity Player { get; private set; }
     public IReadOnlyList<LevelSection> Sections => sections;
     public IReadOnlyList<SpawnPoint> SpawnPoints => spawnPoints;
+    /// <summary>CVGP 13: bộ sinh enemy theo vùng của section đang chơi (+ thêm lúc chạy bằng AddSpawner).</summary>
+    public IReadOnlyList<EnemySpawner> Spawners => spawners;
 
     public bool IsWorldFrozen => TickCount >= worldFreezeFrom && TickCount <= worldFreezeTo;
     public bool IsEnemyFrozen => TickCount >= enemyFreezeFrom && TickCount <= enemyFreezeTo;
@@ -192,6 +195,7 @@ public class StageWorld : MonoBehaviour
         }
         Player = null;
         spawnPoints.Clear();
+        spawners.Clear();
         SetScreenFlash(false);
         if (Section != null)
             Section.RestoreCells();
@@ -217,6 +221,10 @@ public class StageWorld : MonoBehaviour
         s.GetComponentsInChildren(true, spawnPoints);
         for (int i = 0; i < spawnPoints.Count; i++)
             spawnPoints[i].ResetSpawn();
+        spawners.Clear();
+        s.GetComponentsInChildren(true, spawners);
+        for (int i = 0; i < spawners.Count; i++)
+            spawners[i].ResetSpawner();
         if (cameraController != null)
             cameraController.Bind(s.data);
     }
@@ -246,6 +254,22 @@ public class StageWorld : MonoBehaviour
         Cleanup();
         for (int i = 0; i < spawnPoints.Count; i++)
             spawnPoints[i].ResetSpawn();
+        for (int i = 0; i < spawners.Count; i++)
+            spawners[i].ResetSpawner();
+    }
+
+    /// <summary>Thêm bộ sinh lúc chạy (harness / màn chơi tự dựng) — gỡ bằng RemoveSpawner; LoadSection dựng lại danh sách từ section.</summary>
+    public void AddSpawner(EnemySpawner sp)
+    {
+        if (sp == null || spawners.Contains(sp))
+            return;
+        sp.ResetSpawner();
+        spawners.Add(sp);
+    }
+
+    public void RemoveSpawner(EnemySpawner sp)
+    {
+        spawners.Remove(sp);
     }
 
     /// <summary>
@@ -443,6 +467,10 @@ public class StageWorld : MonoBehaviour
             int cx = cameraController != null ? cameraController.X : 0;
             for (int i = 0; i < spawnPoints.Count; i++)
                 spawnPoints[i].UpdateSpawn(this, cx);
+            // CVGP 13: bộ sinh enemy — dừng khi đóng băng thế giới / Stopwatch (QUY ƯỚC)
+            if (!IsWorldFrozen && !IsEnemyFrozen)
+                for (int i = 0; i < spawners.Count; i++)
+                    spawners[i].Tick(this, cx);
             DespawnOffscreen(cx);
         }
         Cleanup();

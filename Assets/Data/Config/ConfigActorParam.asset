@@ -16,8 +16,8 @@ MonoBehaviour:
   - actor: Enemy.Ghoul
     key: groupSize
     value:
-      has: 0
-      value: 0
+      has: 1
+      value: 3
     min:
       has: 1
       value: 2
@@ -25,59 +25,716 @@ MonoBehaviour:
       has: 1
       value: 3
     unit: con
-    source: "wiki:Enemies#Ghouls (nh\xF3m 2\u20133) \u2014 ch\u1EDD \u0111o routine
-      13"
-    note: 
+    source: "\u0111o:routine 13 video Map_1 7 nh\xF3m \u0111\u1EE7 (EH f600\u2013636,
+      f800\u2013837, f2058\u20132090, f2358\u20132390; PB f5397\u20135443, f5500\u20135533,
+      f5621\u20135653) \u0111\u1EC1u 3 con; wiki:Enemies#Ghouls nh\xF3m 2\u20133"
+    note: "m\u1ED7i nh\xF3m sinh l\u1EA7n l\u01B0\u1EE3t"
   - actor: Enemy.Bat
     key: bobAmplitudePx
     value:
-      has: 0
-      value: 0
+      has: 1
+      value: 8.75
     min:
       has: 1
-      value: 6
+      value: 8.3
     max:
       has: 1
-      value: 9
+      value: 9.5
     unit: px
-    source: "video:planner (dao \u0111\u1ED9ng d\u1ECDc; th\xF4) \u2014 ch\u1EDD
-      \u0111o routine 13"
-    note: 
+    source: "\u0111o:routine 13 video Map_1 kh\u1EDBp sin 7 v\u1EBFt d\u01A1i (f2760\u20132804,
+      f2951\u20132987, f3039\u20133072, f3174\u20133220, f4455\u20134485, f4648\u20134672,
+      f4839\u20134880): bi\xEAn 8.3\u20139.5 (TB 8.8), d\u01B0 rms 0.34\u20130.43
+      px"
+    note: "y = y0 + A(1 \u2212 cos 2\u03C0t/P): sinh \u1EDF \u0111\u1EC9nh r\u1ED3i
+      \u0111i XU\u1ED0NG"
   - actor: Enemy.Bat
     key: bobPeriodTicks
     value:
-      has: 0
-      value: 0
+      has: 1
+      value: 100
     min:
       has: 1
-      value: 78
+      value: 94
     max:
       has: 1
-      value: 120
+      value: 107
     unit: tick
-    source: "video:planner (~1.3\u20132 s; th\xF4) \u2014 ch\u1EDD \u0111o routine
-      13"
+    source: "\u0111o:routine 13 c\xF9ng 7 v\u1EBFt: chu k\u1EF3 94\u2013106.5 (TB
+      99)"
     note: 
   - actor: Enemy.Panther
     key: jumpVx
     value:
-      has: 0
-      value: 0
+      has: 1
+      value: 2
     min:
       has: 1
       value: 1.9
     max:
       has: 1
-      value: 2
+      value: 2.06
     unit: px/tick
-    source: "video:planner (nh\u1EA3y ngang + cung r\u01A1i) \u2014 ch\u1EDD \u0111o
-      routine 13"
-    note: 
+    source: "\u0111o:routine 13 video Map_1 2 c\xFA nh\u1EA3y (f1262\u20131288 h\u1ED3i
+      quy 1.90; f1768\u20131799 1.95; t\u1ED5ng 699\u2192594 trong 51 tick = 2.06)"
+    note: "gi\u1EEF su\u1ED1t c\xFA nh\u1EA3y"
   - actor: Enemy.Fishman
     key: jumpVy0
     value:
       has: 1
-      value: -5.6
+      value: -5.875
+    min:
+      has: 1
+      value: -5.95
+    max:
+      has: 1
+      value: -5.5
+    unit: px/tick
+    source: "\u0111o:routine 13 video Map_1 8 c\xFA nh\u1EA3y (f3517, f3519, f3589,
+      f3606, f3868, f4096, f4115, f4218): \u0111\u1EC9nh pivot NES 85\u201388 c\u1ED1
+      \u0111\u1ECBnh \u21D2 ch\u1ECDn vy0 \u0111\u1EC3 t\u1EEB Y sinh 192 l\xEAn
+      \u0111\u1EC9nh Y 54 v\u1EDBi g 0.125 (d\u01B0 kh\u1EDBp parabol rms 1.6\u20133.9
+      px)"
+    note: "\xE2m = \u0111i l\xEAn (NES y xu\u1ED1ng); nh\u1EA3y th\u1EB3ng \u0111\u1EE9ng,
+      xuy\xEAn l\u1ED1i \u0111i t\u1EEB d\u01B0\u1EDBi"
+  - actor: Enemy.Fishman
+    key: gravity
+    value:
+      has: 1
+      value: 0.125
+    min:
+      has: 1
+      value: 0.119
+    max:
+      has: 1
+      value: 0.139
+    unit: "px/tick\xB2"
+    source: "\u0111o:routine 13 c\xF9ng 8 c\xFA nh\u1EA3y: g 0.119\u20130.139 (trung
+      v\u1ECB 0.124)"
+    note: 
+  - actor: Enemy.Fishman
+    key: jumpApexPx
+    value:
+      has: 1
+      value: 107
+    min:
+      has: 1
+      value: 104
+    max:
+      has: 1
+      value: 107
+    unit: px
+    source: "\u0111o:routine 13 \u0111\u1EC9nh ch\xE2n pivot NES 85\u201388 = 104\u2013107
+      px tr\xEAn m\u1EB7t n\u01B0\u1EDBc CB (NES 192)"
+    note: "planner ghi 129 \u2014 s\u1EEDa theo \u0111o l\u1EA1i"
+  - actor: Enemy.Fishman
+    key: jumpApexTicks
+    value:
+      has: 1
+      value: 47
+    min:
+      has: 1
+      value: 46
+    max:
+      has: 1
+      value: 47
+    unit: tick
+    source: "\u0111o:routine 13 vy0/g = 5.875/0.125 (planner ~46)"
+    note: 
+  - actor: Enemy.Ghoul
+    key: walkFrameTicks
+    value:
+      has: 1
+      value: 17
+    min:
+      has: 1
+      value: 16.6
+    max:
+      has: 1
+      value: 17.6
+    unit: tick
+    source: "\u0111o:routine 13 video Map_1 19 v\u1EBFt Zombie: khung zombie_0/1
+      \u0111\u1ED5i m\u1ED7i 16.6\u201317.4 tick (v\u1EBFt d\xE0i nh\u1EA5t 18 l\u1EA7n
+      \u0111\u1ED5i = 17.00)"
+    note: "b\u1EAFt \u0111\u1EA7u \u1EDF zombie_0"
+  - actor: Enemy.Ghoul
+    key: fallGravity
+    value:
+      has: 1
+      value: 0.125
+    min:
+      has: 1
+      value: 0.096
+    max:
+      has: 1
+      value: 0.148
+    unit: "px/tick\xB2"
+    source: "\u0111o:routine 13 video Map_1 PB 4 l\u1EA7n Zombie b\u01B0\u1EDBc kh\u1ECFi
+      g\u1EDD (f5202\u20135214, f5224\u20135232, f5573\u20135580, f5589\u20135594):
+      g 0.096\u20130.148, v\u1EBFt s\u1EA1ch f5573 0.125 (d\u01B0 0.3 px)"
+    note: "r\u01A1i TH\u1EB2NG \u0110\u1EE8NG (x gi\u1EEF nguy\xEAn), vy t\u1EEB
+      0"
+  - actor: Enemy.Ghoul
+    key: spawnInsetPx
+    value:
+      has: 1
+      value: 8
+    min:
+      has: 1
+      value: 8
+    max:
+      has: 1
+      value: 10
+    unit: px
+    source: "\u0111o:routine 13 video Map_1 31 l\u1EA7n sinh: hi\u1EC7n NGUY\xCAN
+      h\xECnh \u1EDF pivot m\xE0n 242\u2013247 ngay frame \u0111\u1EA7u (vd f618,
+      f633) \u21D2 pivot = m\xE9p m\xE0n \u2212 8 (sprite s\xE1t m\xE9p)"
+    note: "m\xE9p ph\u1EA3i: cx + 248; m\xE9p tr\xE1i: cx + 8"
+  - actor: Enemy.Ghoul
+    key: groupGapTicks
+    value:
+      has: 1
+      value: 32
+    min:
+      has: 1
+      value: 28
+    max:
+      has: 1
+      value: 34
+    unit: tick
+    source: "\u0111o:routine 13 video Map_1 kho\u1EA3ng c\xE1ch sinh trong nh\xF3m
+      (ngo\u1EA1i suy v\u1EC1 pivot m\xE0n 248): 29.2/32.2/33.3/28.6/29.8/31.2/30.6/33.1/32.1/32.3/32.6/30.9
+      (trung v\u1ECB 31.7; Zombie c\xE1ch nhau ~28 px)"
+    note: 
+  - actor: Enemy.Ghoul
+    key: waveDelayMinTicks
+    value:
+      has: 1
+      value: 115
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "\u0111o:routine 13 video Map_1 t\u1EEB con cu\u1ED1i nh\xF3m tr\u01B0\u1EDBc
+      t\u1EDBi con \u0111\u1EA7u nh\xF3m sau: 115\u2013288 tick (8 m\u1EABu: 115/136/176/200/212/226/234/288)
+      \u2014 ng\u1EABu nhi\xEAn \u0111\u1EC1u trong kho\u1EA3ng (suy lu\u1EADn: lu\u1EADt
+      ROM ch\u01B0a r\xF5)"
+    note: 
+  - actor: Enemy.Ghoul
+    key: waveDelaySpanTicks
+    value:
+      has: 1
+      value: 173
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "\u0111o:routine 13 c\xF9ng 8 m\u1EABu: 288 \u2212 115"
+    note: 
+  - actor: Enemy.Ghoul
+    key: maxAlive
+    value:
+      has: 1
+      value: 3
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: con
+    source: "\u0111o:routine 13 video Map_1 t\u1ED1i \u0111a 3 Zombie c\xF9ng l\xFAc
+      trong m\u1ECDi v\u1EBFt (EH f2390, PB f5145)"
+    note: 
+  - actor: Enemy.Ghoul
+    key: firstDelayTicks
+    value:
+      has: 1
+      value: 0
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "\u0111o:routine 13 video Map_1 EH f600 v\xE0 PB f5126: Zombie \u0111\u1EA7u
+      c\xF3 m\u1EB7t ngay frame \u0111\u1EA7u section"
+    note: 
+  - actor: Enemy.Ghoul
+    key: despawnInsetPx
+    value:
+      has: 1
+      value: 4
+    min:
+      has: 1
+      value: 2
+    max:
+      has: 1
+      value: 6
+    unit: px
+    source: "\u0111o:routine 13 video Map_1 f2436\u20132447: Zombie \u0111i ra m\xE9p
+      tr\xE1i c\xF2n th\u1EA5y t\u1EDBi pivot m\xE0n \u2248 6, m\u1EA5t \u1EDF \u2248
+      4 (\xB12)"
+    note: "g\u1EE1 khi pivot ra ngo\xE0i [cx + 4, cx + 252]"
+  - actor: Enemy.Panther
+    key: triggerDistancePx
+    value:
+      has: 1
+      value: 70
+    min:
+      has: 1
+      value: 69
+    max:
+      has: 1
+      value: 72
+    unit: px
+    source: "\u0111o:routine 13 video Map_1 2 l\u1EA7n b\u1EADt d\u1EADy (f1263:
+      |dx| 69; f1768: 68.5) + 1 l\u1EA7n KH\xD4NG b\u1EADt \u1EDF |dx| 72 (f1644)
+      \u21D2 b\u1EADt khi |Simon.X \u2212 X| < 70"
+    note: "camera b\xE1m Simon \u21D2 Simon.X = cx + 128"
+  - actor: Enemy.Panther
+    key: jumpVy0
+    value:
+      has: 1
+      value: -1.5
+    min:
+      has: 1
+      value: -1.5
+    max:
+      has: 1
+      value: -1.35
+    unit: px/tick
+    source: "\u0111o:routine 13 video Map_1 kh\u1EDBp t\u1EF1 do 2 c\xFA nh\u1EA3y:
+      vy0 \u22121.35/\u22121.48, g 0.107/0.125, \u0111\u1EC9nh 8.5\u20138.8 px; ch\u1ECDn
+      \u22121.5/0.125 (rms 1.55 / 0.79 px)"
+    note: "\xE2m = l\xEAn; c\u1EA5t c\xE1nh khi m\u1EA5t s\xE0n d\u01B0\u1EDBi pivot
+      (m\xE9p g\u1EDD x 688 / 928)"
+  - actor: Enemy.Panther
+    key: gravity
+    value:
+      has: 1
+      value: 0.125
+    min:
+      has: 1
+      value: 0.107
+    max:
+      has: 1
+      value: 0.125
+    unit: "px/tick\xB2"
+    source: "\u0111o:routine 13 c\xF9ng 2 c\xFA nh\u1EA3y"
+    note: 
+  - actor: Enemy.Panther
+    key: runFrameTicks
+    value:
+      has: 1
+      value: 7
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "\u0111o:routine 13 video Map_1 f1799\u20131856: chu k\u1EF3 leopard_2\u21921\u21923
+      d\xE0i 10.6 frame (21.2 tick) \u21D2 7 tick/khung"
+    note: 
+  - actor: Enemy.Bat
+    key: flyFrameTicks
+    value:
+      has: 1
+      value: 9
+    min:
+      has: 1
+      value: 8.5
+    max:
+      has: 1
+      value: 9.5
+    unit: tick
+    source: "\u0111o:routine 13 video Map_1 7 v\u1EBFt: bat_red_0\u21921\u21922\u21921
+      \u0111\u1ED5i m\u1ED7i 4.5 frame (v\u1EBFt f2760\u20132804: 9 l\u1EA7n \u0111\u1ED5i
+      trong 82 tick)"
+    note: 
+  - actor: Enemy.Bat
+    key: spawnInsetPx
+    value:
+      has: 1
+      value: 8
+    min:
+      has: 1
+      value: 8
+    max:
+      has: 1
+      value: 15
+    unit: px
+    source: "\u0111o:routine 13 video Map_1 6 l\u1EA7n sinh: pivot m\xE0n 241\u2013246
+      (m\xE9p ph\u1EA3i) / 9\u201316 (m\xE9p tr\xE1i) frame \u0111\u1EA7u"
+    note: 
+  - actor: Enemy.Bat
+    key: spawnAboveFeetPx
+    value:
+      has: 1
+      value: 14
+    min:
+      has: 1
+      value: 3
+    max:
+      has: 1
+      value: 34
+    unit: px
+    source: "\u0111o:routine 13 video Map_1 6 l\u1EA7n sinh: t\xE2m d\u01A1i = ch\xE2n
+      Simon \u2212 14 (3 l\u1EA7n), \u221221, \u221226, \u221234 \u2014 ch\u1ECDn
+      m\u1ED1t 14"
+    note: "bi\u1EBFn thi\xEAn ch\u01B0a gi\u1EA3i th\xEDch (CVGP_MEMORY \xA76)"
+  - actor: Enemy.Bat
+    key: edgeScreenMarginPx
+    value:
+      has: 1
+      value: 64
+    min:
+      has: 1
+      value: 49
+    max:
+      has: 1
+      value: 187
+    unit: px
+    source: "suy lu\u1EADn routine 13 t\u1EEB 6 l\u1EA7n sinh: d\u01A1i ra t\u1EEB
+      m\xE9p TR\u01AF\u1EDAC M\u1EB6T Simon (5/6); l\u1EA7n f3174 Simon quay tr\xE1i
+      \u1EDF x m\xE0n 49 \u21D2 d\u01A1i ra t\u1EEB m\xE9p ph\u1EA3i \u21D2 Simon
+      c\xE1ch m\xE9p tr\u01B0\u1EDBc < 64 px th\xEC ra m\xE9p kia"
+    note: "kho\u1EA3ng 49\u2013187 = x m\xE0n Simon \u1EDF c\xE1c l\u1EA7n sinh"
+  - actor: Enemy.Bat
+    key: maxAlive
+    value:
+      has: 1
+      value: 1
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: con
+    source: "\u0111o:routine 13 video Map_1 Crypt A: m\u1ECDi l\xFAc ch\u1EC9 1 d\u01A1i
+      tr\xEAn m\xE0n (7 v\u1EBFt kh\xF4ng ch\u1ED3ng th\u1EDDi gian)"
+    note: 
+  - actor: Enemy.Bat
+    key: respawnDelayMinTicks
+    value:
+      has: 1
+      value: 194
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "\u0111o:routine 13 video Map_1 d\u01A1i ch\u1EBFt \u2192 d\u01A1i k\u1EBF:
+      194/288/314/330 tick (f3076\u21923173, f2806\u21922950, f4491\u21924648, f4674\u21924839)
+      \u2014 ng\u1EABu nhi\xEAn \u0111\u1EC1u trong kho\u1EA3ng (suy lu\u1EADn)"
+    note: 
+  - actor: Enemy.Bat
+    key: respawnDelaySpanTicks
+    value:
+      has: 1
+      value: 136
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "\u0111o:routine 13 c\xF9ng 4 m\u1EABu: 330 \u2212 194"
+    note: 
+  - actor: Enemy.Bat
+    key: firstDelayMinTicks
+    value:
+      has: 1
+      value: 8
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "\u0111o:routine 13 video Map_1 v\xE0o Crypt A: d\u01A1i \u0111\u1EA7u
+      sau 8 tick (f2756\u21922760) / 28 tick (f4441\u21924455)"
+    note: 
+  - actor: Enemy.Bat
+    key: firstDelaySpanTicks
+    value:
+      has: 1
+      value: 20
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "\u0111o:routine 13 c\xF9ng 2 m\u1EABu: 28 \u2212 8"
+    note: 
+  - actor: Enemy.Bat
+    key: perchTriggerPx
+    value:
+      has: 1
+      value: 64
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "quy \u01B0\u1EDBc routine 13 \u2014 d\u01A1i treo (Black Bat, wiki Enemies#Bats)
+      KH\xD4NG c\xF3 trong video Map 1 \u21D2 routine 17 \u0111o/ch\u1EC9nh"
+    note: "treo \u2192 |dx| < gi\xE1 tr\u1ECB \u21D2 bay nh\u01B0 d\u01A1i \u0111\u1ECF"
+  - actor: Enemy.Fishman
+    key: walkSpeed
+    value:
+      has: 1
+      value: 0.75
+    min:
+      has: 1
+      value: 0.73
+    max:
+      has: 1
+      value: 0.75
+    unit: px/tick
+    source: "\u0111o:routine 13 video Map_1 2 v\u1EBFt \u0111i tr\xEAn l\u1ED1i CB
+      (f3553\u20133575 \u22120.731, f4256\u20134281 +0.746; d\u01B0 rms 0.66/0.86
+      px)"
+    note: "\u0111i v\u1EC1 ph\xEDa Simon (ch\u1ECDn h\u01B0\u1EDBng l\xFAc \u0111\xE1p)"
+  - actor: Enemy.Fishman
+    key: spawnBelowSurfacePx
+    value:
+      has: 1
+      value: 32
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "suy lu\u1EADn routine 13: Fish Man sinh \u1EDF \u0111\xE1y section (CB
+      y 192 = m\u1EB7t n\u01B0\u1EDBc 160 + 32, \u1EA9n) \u2014 ch\u1ECDn \u0111\u1EC3
+      \u0111\u1EC9nh nh\u1EA3y kh\u1EDBp video v\u1EDBi vy0/g \u0111o \u0111\u01B0\u1EE3c"
+    note: 
+  - actor: Enemy.Fishman
+    key: hiddenBelowSurfacePx
+    value:
+      has: 1
+      value: 16
+    min:
+      has: 1
+      value: 10
+    max:
+      has: 1
+      value: 18
+    unit: px
+    source: "\u0111o:routine 13 video Map_1 f3515/3517: ch\u01B0a th\u1EA5y khi ch\xE2n
+      d\u01B0\u1EDBi m\u1EB7t n\u01B0\u1EDBc ~18 px, th\u1EA5y khi \u22123 (f3517)
+      / +8 (f4218) \u21D2 \u1EA9n khi ch\xE2n th\u1EA5p h\u01A1n m\u1EB7t n\u01B0\u1EDBc
+      \u2265 16"
+    note: 
+  - actor: Enemy.Fishman
+    key: gridStepPx
+    value:
+      has: 1
+      value: 64
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "\u0111o:routine 13 video Map_1 12 l\u1EA7n nh\u1EA3y: x th\u1EBF gi\u1EDBi
+      \u2208 {32, 96, 160, 224, 288, 352, 416} (\xB12) = 32 + 64k"
+    note: 
+  - actor: Enemy.Fishman
+    key: gridOffsetPx
+    value:
+      has: 1
+      value: 32
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "\u0111o:routine 13 c\xF9ng 12 l\u1EA7n nh\u1EA3y"
+    note: 
+  - actor: Enemy.Fishman
+    key: minPlayerDistPx
+    value:
+      has: 1
+      value: 32
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "suy lu\u1EADn routine 13: 12 l\u1EA7n nh\u1EA3y |x \u2212 Simon.X| =
+      35\u2013178 (kh\xF4ng l\u1EA7n n\xE0o < 32) \u21D2 b\u1ECF c\u1ED9t s\xE1t
+      Simon"
+    note: 
+  - actor: Enemy.Fishman
+    key: maxAlive
+    value:
+      has: 1
+      value: 2
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: con
+    source: "\u0111o:routine 13 video Map_1 t\u1ED1i \u0111a 2 Fish Man c\xF9ng l\xFAc
+      (f3517 hai con nh\u1EA3y c\xF9ng l\xFAc; f3589\u20133606)"
+    note: 
+  - actor: Enemy.Fishman
+    key: respawnDelayMinTicks
+    value:
+      has: 1
+      value: 44
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "\u0111o:routine 13 video Map_1 Fish Man b\u1ECB g\u1EE1 \u2192 con k\u1EBF:
+      44/58/80/156/176 tick (f3576\u21923598, f3827\u21923856, f3549\u21923589, f4140\u21924218,
+      f4282\u21924370) \u2014 ng\u1EABu nhi\xEAn \u0111\u1EC1u (suy lu\u1EADn)"
+    note: "m\u1ED7i su\u1EA5t (maxAlive) c\xF3 \u0111\u1ED3ng h\u1ED3 ri\xEAng: f3517
+      2 con c\xF9ng l\xFAc"
+  - actor: Enemy.Fishman
+    key: respawnDelaySpanTicks
+    value:
+      has: 1
+      value: 132
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "\u0111o:routine 13 c\xF9ng 5 m\u1EABu: 176 \u2212 44"
+    note: 
+  - actor: Enemy.Fishman
+    key: firstDelayTicks
+    value:
+      has: 1
+      value: 0
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "quy \u01B0\u1EDBc routine 13 \u2014 f3517 (2 con) l\xE0 l\u1EA7n \u0111\u1EA7u
+      th\u1EA5y \u0111\u01B0\u1EE3c sau khi v\xE0o CB nh\u01B0ng 1:47.8\u20131:56.7
+      b\u1ECB non-game che \u21D2 kh\xF4ng \u0111o \u0111\u01B0\u1EE3c"
+    note: 
+  - actor: Enemy.Fishman
+    key: standTicks
+    value:
+      has: 1
+      value: 8
+    min:
+      has: 1
+      value: 6
+    max:
+      has: 1
+      value: 10
+    unit: tick
+    source: "\u0111o:routine 13 video Map_1 \u0111\xE1p l\u1ED1i \u0111i r\u1ED3i
+      \u0111\u1EE9ng 3\u20135 frame m\u1EDBi \u0111i (f3550\u21923554, f4253\u21924258)"
+    note: 
+  - actor: Enemy.Fishman
+    key: walkFrameTicks
+    value:
+      has: 1
+      value: 32
+    min:
+      has: 1
+      value: 32
+    max:
+      has: 1
+      value: 34
+    unit: tick
+    source: "\u0111o:routine 13 video Map_1 fishman_0 \u2192 fishman_1 sau 32/34
+      tick k\u1EC3 t\u1EEB l\xFAc \u0111\xE1p (f3550\u21923566, f4253\u21924270);
+      khung sau gi\u1EA3 \u0111\u1ECBnh c\xF9ng nh\u1ECBp"
+    note: 
+  - actor: Enemy.Fishman
+    key: firstShotTicks
+    value:
+      has: 1
+      value: 96
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "quy \u01B0\u1EDBc routine 13 \u2014 video KH\xD4NG c\xF3 c\u1EA3nh b\u1EAFn
+      (m\u1ECDi Fish Man b\u1ECB h\u1EA1 \u2264 50 tick sau khi \u0111\xE1p) \u21D2
+      b\u1EAFn l\u1EA7n \u0111\u1EA7u sau 96 tick tr\xEAn \u0111\u1EA5t"
+    note: "wiki Enemies#Fishmen: b\u1EAFn c\u1EA7u l\u1EEDa khi \u0111\xE3 l\xEAn
+      \u0111\u1EA5t"
+  - actor: Enemy.Fishman
+    key: shotEveryTicks
+    value:
+      has: 1
+      value: 160
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "quy \u01B0\u1EDBc routine 13 (nh\u01B0 tr\xEAn)"
+    note: 
+  - actor: Enemy.Fishman
+    key: shootPoseTicks
+    value:
+      has: 1
+      value: 24
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "quy \u01B0\u1EDBc routine 13 \u2014 t\u01B0 th\u1EBF fishman_2 (suy
+      lu\u1EADn t\u1EEB h\xECnh)"
+    note: 
+  - actor: Enemy.Fishman
+    key: fireballSpeed
+    value:
+      has: 1
+      value: 2
     min:
       has: 0
       value: 0
@@ -85,14 +742,75 @@ MonoBehaviour:
       has: 0
       value: 0
     unit: px/tick
-    source: "video:planner (f3515\u20133547 kh\u1EDBp parabol; d\u01B0 \u2264 1.6
-      px) \u2014 ch\u1EDD \u0111o routine 13"
-    note: "\xE2m = \u0111i l\xEAn (NES y xu\u1ED1ng)"
+    source: "quy \u01B0\u1EDBc routine 13 \u2014 kh\xF4ng c\xF3 video"
+    note: 
   - actor: Enemy.Fishman
-    key: gravity
+    key: fireballHeightAboveFeetPx
     value:
       has: 1
-      value: 0.124
+      value: 22
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "quy \u01B0\u1EDBc routine 13 \u2014 t\xE2m c\u1EA7u l\u1EEDa ngang mi\u1EC7ng
+      sprite fishman_2"
+    note: 
+  - actor: Enemy.Fishman
+    key: bubbleCenterVy
+    value:
+      has: 1
+      value: -0.5
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px/tick
+    source: "\u0111o:routine 13 video Map_1 1 l\u1EA7n tr\u1ED3i f3517\u20133539:
+      b\u1ECDt gi\u1EEFa l\xEAn ~1 px r\u1ED3i r\u01A1i \u2014 x\u1EA5p x\u1EC9"
+    note: "b\u1ECDt gi\u1EEFa: sinh m\u1EB7t n\u01B0\u1EDBc \u2212 27, l\u1EC7ch
+      x +2; 2 b\u1ECDt b\xEAn: m\u1EB7t n\u01B0\u1EDBc \u2212 12, l\u1EC7ch x \u22133,
+      vy 0"
+  - actor: Enemy.Fishman
+    key: bubbleSideVx
+    value:
+      has: 1
+      value: 0.375
+    min:
+      has: 1
+      value: 0.3
+    max:
+      has: 1
+      value: 0.4
+    unit: px/tick
+    source: "\u0111o:routine 13 c\xF9ng l\u1EA7n tr\u1ED3i: 2 b\u1ECDt b\xEAn tr\xF4i
+      \xB19 px / 24 tick \u2014 x\u1EA5p x\u1EC9"
+    note: 
+  - actor: Enemy.Fishman
+    key: bubbleCenterVx
+    value:
+      has: 1
+      value: 0.25
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px/tick
+    source: "\u0111o:routine 13 c\xF9ng l\u1EA7n tr\u1ED3i: b\u1ECDt gi\u1EEFa +7
+      px / 34 tick \u2014 x\u1EA5p x\u1EC9"
+    note: 
+  - actor: Enemy.Fishman
+    key: bubbleGravity
+    value:
+      has: 1
+      value: 0.125
     min:
       has: 0
       value: 0
@@ -100,28 +818,14 @@ MonoBehaviour:
       has: 0
       value: 0
     unit: "px/tick\xB2"
-    source: "video:planner \u2014 ch\u1EDD \u0111o routine 13"
+    source: "\u0111o:routine 13 c\xF9ng l\u1EA7n tr\u1ED3i: 2 b\u1ECDt b\xEAn r\u01A1i
+      33 px trong 24 tick \u2014 x\u1EA5p x\u1EC9"
     note: 
   - actor: Enemy.Fishman
-    key: jumpApexPx
+    key: bubbleSideTicks
     value:
       has: 1
-      value: 129
-    min:
-      has: 0
-      value: 0
-    max:
-      has: 0
-      value: 0
-    unit: px
-    source: "video:planner (\u0111\u1EC9nh tr\xEAn m\u1EB7t n\u01B0\u1EDBc) \u2014
-      ch\u1EDD \u0111o routine 13"
-    note: 
-  - actor: Enemy.Fishman
-    key: jumpApexTicks
-    value:
-      has: 1
-      value: 46
+      value: 24
     min:
       has: 0
       value: 0
@@ -129,7 +833,21 @@ MonoBehaviour:
       has: 0
       value: 0
     unit: tick
-    source: "video:planner \u2014 ch\u1EDD \u0111o routine 13"
+    source: "\u0111o:routine 13 c\xF9ng l\u1EA7n tr\u1ED3i (f3519\u21923531)"
+    note: 
+  - actor: Enemy.Fishman
+    key: bubbleCenterTicks
+    value:
+      has: 1
+      value: 34
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "\u0111o:routine 13 c\xF9ng l\u1EA7n tr\u1ED3i (f3522\u21923539)"
     note: 
   - actor: Enemy.RedSkeleton
     key: reviveTicks

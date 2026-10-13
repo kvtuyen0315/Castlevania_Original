@@ -17,11 +17,14 @@ MonoBehaviour:
     frames:
     - {fileID: 21300000, guid: 065c44c8c51e9d44590da702ac068558, type: 3}
     - {fileID: 21300000, guid: d656ae04b9ddeff4782ca0121bf2b37d, type: 3}
-    durations: 0800000008000000
+    durations: 1100000011000000
     loop: 1
-    measured: 0
+    measured: 1
     overlays: []
     overlayOffsets: []
     overlayOnTop: 
-    note: 
+    note: "routine 13: video Map_1 19 v\u1EBFt Zombie (Tools/cvgp/enemy_fit.py +
+      enemy_track.py): \u0111\u1ED5i khung m\u1ED7i 16.6\u201317.4 tick (v\u1EBFt
+      d\xE0i nh\u1EA5t 18 l\u1EA7n \u0111\u1ED5i = 17.00); b\u1EAFt \u0111\u1EA7u
+      zombie_0; v\u1EABn ch\u1EA1y khi r\u01A1i kh\u1ECFi g\u1EDD"
   palettes: []

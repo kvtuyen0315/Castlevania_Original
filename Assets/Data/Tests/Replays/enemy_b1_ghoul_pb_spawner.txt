@@ -1,0 +1,3 @@
+# 960 tick, hash 3314a0c5
+# CVGP 13 EnemyProbe kịch bản 'ghoul_pb_spawner': PB cx 0: EdgeSpawner hàng {112, 176} — chọn ngẫu nhiên hàng có sàn tại cột sinh, tối đa 3
+-*960

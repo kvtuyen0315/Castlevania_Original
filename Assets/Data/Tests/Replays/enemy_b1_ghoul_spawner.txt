@@ -1,0 +1,3 @@
+# 960 tick, hash 3314a0c5
+# CVGP 13 EnemyProbe kịch bản 'ghoul_spawner': EH cx 0, Simon (49,176) đứng (bất tử): EdgeSpawner Zombie mép phải — nhóm 3 cách 32, nghỉ 115–288, 0.875 px/tick, khung 17, gỡ ở mép trái
+-*960

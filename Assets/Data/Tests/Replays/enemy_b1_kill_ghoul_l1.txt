@@ -1,0 +1,3 @@
+# 43 tick, hash 92023d77
+# CVGP 13 EnemyProbe kịch bản 'kill_ghoul_l1': Arena: roi cấp 1 hạ Zombie 1 đòn: +100, lửa chết 20 tick tại tâm, Simon không mất máu
+-*2 B*1 -*40

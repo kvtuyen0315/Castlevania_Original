@@ -10,6 +10,8 @@ using UnityEngine;
 public class FxSprite : Entity
 {
     [NonSerialized] public int age, life, gravity;
+    /// <summary>CVGP 13: gọi khi FX hết (life / hết anim — KHÔNG gọi khi ra khỏi màn): enemy chết rơi item lúc lửa tắt.</summary>
+    [NonSerialized] public Action<FxSprite> onDone;
     private AnimSet.Anim anim;
 
     public override string DebugState => (anim != null ? anim.name : "-") + " t" + age;
@@ -21,6 +23,7 @@ public class FxSprite : Entity
         gravity = 0;
         vx = vy = 0;
         anim = null;
+        onDone = null;
     }
 
     /// <summary>Sinh FX tại tâm (x, y). life &gt; 0 ⇒ gỡ sau life tick (thay cho hết anim); vx/vy/gravity fixed (0 = đứng yên).</summary>
@@ -66,6 +69,11 @@ public class FxSprite : Entity
         base.OnTick();
         // vật bay (mảnh gạch) sống tới khi ra khỏi màn; còn lại: hết life hoặc hết anim one-shot
         if (life > 0 ? age >= life : (!moving && (Anim == null || Anim.Done)))
+        {
+            if (onDone != null)
+                onDone(this);
+            onDone = null;
             Kill();
+        }
     }
 }
