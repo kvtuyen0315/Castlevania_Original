@@ -1,0 +1,28 @@
+# 2348 tick, hash 1d17ad41
+# CVGP 20 BossB56Probe kịch bản 'death_kill_axe': AUTOPILOT rìu (wiki khuyên Axe): 16 đòn MẠNH (wiki 24/16), +7000, lưỡi hái VẪN CÒN sau khi Death chết (wiki), quả cầu sau 152, nhặt ⇒ lưỡi hái biến mất + tally — ghi bằng autopilot (CVGP 20), hash chạy ghi b75832e0
+-*32 R*64 Sub*1 -*22 R*348 Sub*1 -*22 R*43 -*2 Sub*1 -*22 L*1
+R*1 L*1 R*1 L*1 R*1 L*1 R*1 L*1 R*1 L*1 R*1 L*1
+R*1 L*1 R*1 L*1 R*1 L*1 R*1 L*1 R*1 L*1 R*1 L*1
+R*1 L*1 R*1 L*1 R*1 L*1 R*1 L*1 R*1 L*1 R*1 L*1
+R*1 L*1 R*1 L*1 R*1 L*1 R*1 L*1 R*1 L*1 R*1 L*1
+R*1 L*1 R*1 L*1 R*1 L*1 R*1 L*1 R*1 L*1 R*1 L*1
+R*1 L*1 R*1 L*1 R*1 L*1 R*1 L*1 R*1 L*1 R*1 L*1
+R*1 L*1 R*1 L*1 R*1 L*1 R*1 L*1 R*1 L*1 R*1 L*1
+R*1 L*1 R*1 L*1 R*1 L*1 R*1 L*1 R*1 L*1 R*1 L*1
+R*1 L*1 R*1 L*1 R*1 L*1 R*1 L*1 R*1 L*1 Sub*1 -*22
+R*1 L*1 R*1 L*1 R*1 L*1 R*1 L*1 R*1 L*1 R*1 L*1
+R*1 L*1 R*1 L*1 R*1 L*1 R*1 L*1 R*1 L*1 R*1 L*1
+R*1 L*1 R*1 L*1 -*14 Sub*1 -*22 L*3 -*39 Sub*1 -*63 Sub*1
+-*63 Sub*1 -*63 Sub*1 -*63 Sub*1 -*63 Sub*1 -*63 Sub*1 -*22 R*1
+L*1 R*1 L*1 R*1 L*1 R*1 L*1 R*1 L*1 R*1 L*1 R*1
+L*1 R*1 L*1 R*1 L*1 R*1 L*1 R*1 L*1 R*1 L*1 R*1
+L*1 R*1 L*1 R*1 L*1 R*1 L*1 R*1 L*1 R*1 L*1 R*1
+L*1 R*1 L*1 R*1 L*1 Sub*1 -*22 R*1 L*1 R*1 L*1 R*1
+L*1 R*1 L*1 R*1 L*1 R*1 L*1 R*1 L*1 R*1 L*1 R*1
+L*1 R*1 L*1 R*1 L*1 R*1 L*1 R*1 L*1 R*1 L*1 R*1
+L*1 R*1 L*1 R*1 L*1 R*1 L*1 R*1 L*1 R*1 L*1 R*1
+L*1 R*1 L*1 R*1 L*1 R*1 L*1 R*1 L*1 R*1 L*1 R*1
+L*1 R*1 Sub*1 -*22 L*1 R*1 L*1 R*1 L*1 R*1 L*1 R*1
+L*1 R*1 L*1 R*1 L*1 R*1 L*1 R*1 L*1 R*1 L*1 R*1
+L*1 R*1 L*1 R*1 L*1 R*1 L*1 R*1 -*17 Sub*1 -*22 R*45
+Sub*1 -*22 R*587 Sub*1 -*22 R*9 -*152 R+A*1 -*15 R*20 -*60

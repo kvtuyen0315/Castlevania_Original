@@ -22,6 +22,8 @@ public static class ItemEffects
     public static void Apply(StageWorld world, ItemPickup item, SimonController simon)
     {
         Apply(world, item.id, item.X, item.Y, simon);
+        if (item.finalCrystal)
+            GameRules.RaiseGameCleared();
     }
 
     /// <summary>Áp hiệu ứng item <paramref name="id"/> nhặt tại (x, y) = pivot item (đáy ô 16 px).</summary>

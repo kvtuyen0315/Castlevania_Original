@@ -29,8 +29,10 @@ public static class CvgpBossBuilder
         EnsureFolder(DIR);
         Make<PhantomBat>("PhantomBat", eBossId.PhantomBat, new RectInt(-1, -1, 2, 2), Vector2Int.zero, Anim("PhantomBatAnimSet"), PHANTOM_BAT_BOX, 0);
         BuildBlock24();
+        BuildBlock56();
         AssetDatabase.SaveAssets();
-        return "Boss prefabs: PhantomBat, QueenMedusa + Snake, MummyMan + MummyBandage, Frankenstein + Igor + IgorFireball → " + DIR;
+        return "Boss prefabs: PhantomBat, QueenMedusa + Snake, MummyMan + MummyBandage, Frankenstein + Igor + IgorFireball, GrimReaper + DeathScythe, "
+               + "DraculaPhase1 + DraculaPhase2 + DraculaFireball + DemonFireball → " + DIR;
     }
 
     static readonly RectInt FEET = new RectInt(-1, -2, 2, 2);
@@ -77,6 +79,53 @@ public static class CvgpBossBuilder
             so => so.FindProperty("bandagePrefab").objectReferenceValue = bandage);
         Make<Frankenstein>("Frankenstein", eBossId.Frankenstein, FEET, new Vector2Int(0, 1), Anim("FrankensteinAnimSet"), new RectInt(-8, -47, 16, 48), -23,
             so => so.FindProperty("igorPrefab").objectReferenceValue = igor);
+    }
+
+    /// <summary>
+    /// CVGP 20 — boss Block 5–6 (theo wiki, GẦN ĐÚNG). Hộp = bbox pixel đục sprite (XẤP XỈ):
+    ///   • GrimReaper: death_0 40×48 pivot tâm (20,24), đục cột 1–39 ⇒ (−19,−24,39,48) nhận + chạm; bay ⇒ viewOffset (0,0), body 2×2.
+    ///     DeathScythe: scythe_0..3 16×16 đục kín (hộp trong lớp), nhóm EnemyShot, không tự gỡ khi ra khỏi màn (đuổi Simon).
+    ///   • DraculaPhase1: dracula1_0 24×59 pivot (12,59) — hộp NHẬN = đầu (dracula1_head 8×16 ở (6,0), đục hàng 1–14 ⇒ (−6,−58,8,14));
+    ///     hộp CHẠM = thân áo khép (−12,−58,24,58); hàng đáy sprite đục ⇒ viewOffset (0,0) (đứng sát mặt sàn như Zombie 07); con "Head"
+    ///     (SpriteRenderer order −1, đầu bay ra lúc biến hình).
+    ///   • DraculaPhase2: hộp mặt/thân đổi theo khung trong lớp (UpdateBoxes); mặc định khung đứng (−24,−64,24,32) / (−24,−64,48,64).
+    ///   • DraculaFireball / DemonFireball: lớp DraculaFireball (BoneTowerFireball + tim khi phá), anim p1_fireball / p2_fireball (8×16,
+    ///     cùng bbox cầu lửa Bone Tower).
+    /// </summary>
+    static void BuildBlock56()
+    {
+        var deathAnim = Anim("DeathAnimSet");
+        var dracAnim = Anim("DraculaAnimSet");
+        var scythe = MakeEntity<DeathScythe>("DeathScythe", eEntityGroup.EnemyShot, new RectInt(-1, -1, 2, 2), Vector2Int.zero, deathAnim, 1,
+            false, false, 32, null);
+        Make<GrimReaper>("GrimReaper", eBossId.Death, new RectInt(-1, -1, 2, 2), Vector2Int.zero, deathAnim, new RectInt(-19, -24, 39, 48), 0,
+            so => so.FindProperty("scythePrefab").objectReferenceValue = scythe);
+        var ball1 = MakeEntity<DraculaFireball>("DraculaFireball", eEntityGroup.EnemyShot, new RectInt(-1, -1, 2, 2), Vector2Int.zero, dracAnim, 1,
+            false, true, 16, so => so.FindProperty("animName").stringValue = "p1_fireball");
+        var ball2 = MakeEntity<DraculaFireball>("DemonFireball", eEntityGroup.EnemyShot, new RectInt(-1, -1, 2, 2), Vector2Int.zero, dracAnim, 1,
+            false, true, 16, so => so.FindProperty("animName").stringValue = "p2_fireball");
+        var p2 = Make<DraculaPhase2>("DraculaPhase2", eBossId.Dracula, FEET, Vector2Int.zero, dracAnim, new RectInt(-24, -64, 24, 32), -32,
+            so =>
+            {
+                so.FindProperty("phase").intValue = 2;
+                so.FindProperty("touchBox").rectIntValue = new RectInt(-24, -64, 48, 64);
+                so.FindProperty("fireballPrefab").objectReferenceValue = ball2;
+            });
+        Make<DraculaPhase1>("DraculaPhase1", eBossId.Dracula, FEET, Vector2Int.zero, dracAnim, new RectInt(-6, -58, 8, 14), -29,
+            so =>
+            {
+                so.FindProperty("touchBox").rectIntValue = new RectInt(-12, -58, 24, 58);
+                so.FindProperty("fireballPrefab").objectReferenceValue = ball1;
+                so.FindProperty("phase2Prefab").objectReferenceValue = p2;
+                var root = ((Component)so.targetObject).gameObject;
+                var h = new GameObject("Head");
+                h.transform.SetParent(root.transform, false);
+                var r = h.AddComponent<SpriteRenderer>();
+                r.sortingLayerName = "Character";
+                r.sortingOrder = ORDER + 1;
+                r.enabled = false;
+                so.FindProperty("headView").objectReferenceValue = r;
+            });
     }
 
     static void Enemy(SerializedObject so, eEnemyId id, RectInt box, int centerDy)

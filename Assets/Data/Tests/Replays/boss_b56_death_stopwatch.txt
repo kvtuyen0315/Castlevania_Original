@@ -1,0 +1,3 @@
+# 521 tick, hash 12fd7cff
+# CVGP 20 BossB56Probe kịch bản 'death_stopwatch': Stopwatch tick 101: Death + lưỡi hái KHÔNG bị giữ (wiki: chỉ Phantom Bat + Medusa)
+-*100 Sub*1 -*420

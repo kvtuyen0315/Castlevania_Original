@@ -25,6 +25,10 @@ public static class BossRoomSetup
     public static readonly Room MEDUSA = new Room { section = "BossMedusa", boss = "QueenMedusa", bossPos = new Vector2Int(128, 176), simon = new Vector2Int(32, 176), facing = 1, stage = 6 };
     public static readonly Room MUMMY = new Room { section = "BossMummy", boss = "MummyMan", bossPos = new Vector2Int(216, 176), simon = new Vector2Int(144, 112), facing = 1, stage = 9 };
     public static readonly Room FRANK = new Room { section = "BossFrank", boss = "Frankenstein", bossPos = new Vector2Int(176, 176), simon = new Vector2Int(16, 144), facing = 1, stage = 12 };
+    // CVGP 20 (QUY ƯỚC phòng thử Block 5–6): Death hiện ở giữa-trên rồi bay vào góc trên-phải (wiki: Holy Water lên bục trên-phải); Dracula
+    // dạng 1 bắt đầu ẨN (dịch chuyển — vị trí sinh chỉ là chỗ chờ). Stage 15 / 18 ⇒ sát thương 4 vạch (wiki Gameplay#Damage).
+    public static readonly Room DEATH = new Room { section = "BossDeath", boss = "GrimReaper", bossPos = new Vector2Int(128, 48), simon = new Vector2Int(24, 176), facing = 1, stage = 15 };
+    public static readonly Room DRACULA = new Room { section = "BossDracula", boss = "DraculaPhase1", bossPos = new Vector2Int(128, 176), simon = new Vector2Int(24, 160), facing = 1, stage = 18 };
 
     public static Room ByName(string n)
     {
@@ -32,6 +36,8 @@ public static class BossRoomSetup
         {
             case "QueenMedusa": return MEDUSA;
             case "MummyMan": return MUMMY;
+            case "GrimReaper": return DEATH;
+            case "DraculaPhase1": return DRACULA;
             default: return FRANK;
         }
     }

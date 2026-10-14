@@ -126,9 +126,9 @@ Máu = **số đòn** để hạ: *yếu* (roi da, Holy Water, Dagger) / *mạnh
 | QueenMedusa | 1 | 6 | 1 | 12 | 8 | Single | 3000 | có | toàn thân | Lao thẳng vào Simon (bay thấp); thả rắn bò trên sàn về phía Simon | Không | wiki:Bosses#Queen Medusa · *moveSpeed:* suy luận: ước lượng (không video) — routine 19; ngang khi bay lao về Simon (wiki: 'cố va vào Simon'; như Medusa Head 17 1.0); sóng dọc ở ConfigActorParam |
 | MummyMan | 1 | 9 | 2 | 48 | 32 | TotalAllEntities | 3000 | không | toàn thân | Lang thang trong phòng; thỉnh thoảng ném băng gạc; kẹp Simon từ hai phía | Pot Roast (khối thấp nhất cầu thang trái) | wiki:Bosses#Mummy Men · *hits:* wiki:Bosses#Mummy Men (48/32 không nói tổng hay mỗi con — chọn TỔNG 2 con theo suy luận 48 = 2 × 24; §4) · *moveSpeed:* suy luận: ước lượng (không video) — routine 19; wiki Block 3 'boss chậm nhưng khoẻ' — chậm hơn Zombie 0.875 và Spear Knight 0.5 |
 | Frankenstein | 1 | 12 | 2 | 24 | 16 | MainEntityOnly | 5000 | không | toàn thân (Monster) | Monster đi lang thang (thường nửa phải); Igor nhảy qua lại và ném cầu lửa | Không (Dagger ở ngoài phòng) | wiki:Bosses#Frankenstein & Igor · *hits:* wiki:Bosses#Frankenstein & Igor (chỉ Monster; Igor bất tử ⇒ ConfigEnemy.Igor) · *moveSpeed:* suy luận: ước lượng (không video) — routine 19; Monster 'chỉ đi lang thang' — chậm nhất (sải chân lớn, nặng nề) |
-| Death | 1 | 15 | 1 | 24 | 16 | Single | 7000 | không | toàn thân | Lơ lửng ngẫu nhiên (ưa các góc); tạo tối đa 3 lưỡi hái đứng ~1 s rồi đuổi Simon và nhanh dần | Không | wiki:Bosses#Death · *moveSpeed:* không rõ — không có video (routine 20 ước lượng) |
-| Dracula | 1 | 18 | 1 | 24 | 16 | Single | *không rõ* | không | chỉ đầu | Dịch chuyển tới chỗ ngẫu nhiên; mở áo choàng bắn 3 cầu lửa rồi biến mất | Holy Water (nến trái cùng) | wiki:Bosses#The Count · *hits:* wiki:Bosses#The Count (bảng không nói dạng nào — gán dạng 1; §4) · *score:* không rõ — wiki không nêu điểm riêng dạng 1 · *moveSpeed:* không rõ — không có video (routine 20 ước lượng) |
-| Dracula | 2 | 18 | 1 | *không rõ* | 32 | Single | 50000 | không | chỉ đầu (chân không nhận sát thương) | Nhảy quanh phòng (cao/thấp); thỉnh thoảng phun lửa; Holy Water làm choáng nhưng không gây sát thương | — | wiki:Bosses#The Count; wiki:Stages 16-18#Stage 18 · *hits:* wiki:Stages 16-18#Stage 18 ('32 lần' vào đầu; vũ khí không nêu — gán đòn mạnh là suy luận); đòn yếu không rõ (gợi ý tỉ lệ 3:2 ⇒ 48 — routine 20 chốt) · *score:* wiki:Bosses#The Count — mâu thuẫn wiki:Gameplay#Points (Dracula không cho điểm); chọn Bosses (§4) · *moveSpeed:* không rõ — không có video (routine 20 ước lượng) |
+| Death | 1 | 15 | 1 | 24 | 16 | Single | 7000 | không | toàn thân | Lơ lửng ngẫu nhiên (ưa các góc); tạo tối đa 3 lưỡi hái đứng ~1 s rồi đuổi Simon và nhanh dần | Không | wiki:Bosses#Death · *moveSpeed:* suy luận: ước lượng (không video) — routine 20; wiki Stages 13-15: 'bản thân Death rất CHẬM' ⇒ chậm hơn Phantom Bat 0.75 (đo 14); trục trội khi bay tới đích — tham số khác ở ConfigActorParam Boss.Death |
+| Dracula | 1 | 18 | 1 | 24 | 16 | Single | *không rõ* | không | chỉ đầu | Dịch chuyển tới chỗ ngẫu nhiên; mở áo choàng bắn 3 cầu lửa rồi biến mất | Holy Water (nến trái cùng) | wiki:Bosses#The Count · *hits:* wiki:Bosses#The Count (bảng không nói dạng nào — gán dạng 1; §4) · *score:* không rõ — wiki không nêu điểm riêng dạng 1 · *moveSpeed:* n/a — dạng 1 không đi, chỉ DỊCH CHUYỂN (wiki Bosses#The Count); nhịp ở ConfigActorParam Boss.Dracula.p1* (routine 20) |
+| Dracula | 2 | 18 | 1 | 48 | 32 | Single | 50000 | không | chỉ đầu (chân không nhận sát thương) | Nhảy quanh phòng (cao/thấp); thỉnh thoảng phun lửa; Holy Water làm choáng nhưng không gây sát thương | — | wiki:Bosses#The Count; wiki:Stages 16-18#Stage 18 · *hits:* wiki:Stages 16-18#Stage 18 ('32 lần' vào đầu; vũ khí không nêu — gán đòn MẠNH: lúc đó roi thường cấp 3); đòn yếu 48 = suy luận: tỉ lệ 3:2 của MỌI boss khác (wiki Bosses 12/8, 48/32, 24/16) — routine 20 chốt (§4) · *score:* wiki:Bosses#The Count — mâu thuẫn wiki:Gameplay#Points (Dracula không cho điểm); chọn Bosses (§4) · *moveSpeed:* n/a — dạng 2 chỉ NHẢY (wiki); vx/vy cú nhảy ở ConfigActorParam Boss.Dracula.p2* (routine 20) |
 
 ## 4. Tham số hành vi đo được (enemy / boss / vũ khí / item)
 
@@ -219,7 +219,75 @@ Máu = **số đòn** để hạ: *yếu* (roi da, Holy Water, Dagger) / *mạnh
 | Boss.PhantomBat | deathFxUpPx | 8 |  |  | px |  | đo:routine 14: tâm cụm lửa (211,145) / (204,184) = tâm dơi lúc chết (211,153) / (204,192) − 8 |
 | Boss.Death | maxScythes | 3 |  |  | cái |  | wiki:Bosses#Death |
 | Boss.Death | scytheIdleTicks | 60 |  |  | tick |  | wiki:Bosses#Death (đứng yên khoảng 1 giây × 60) |
+| Boss.Death | hitStunTicks | 10 |  |  | tick |  | suy luận: ước lượng (không video) — routine 20; như Phantom Bat (đo 14) — khung chung BossBase |
+| Boss.Death | invincibleTicks | 16 |  |  | tick |  | suy luận: ước lượng (không video) — routine 20; như Phantom Bat (suy luận 14) |
+| Boss.Death | deathFxTicks | 62 |  |  | tick |  | suy luận: ước lượng (không video) — routine 20; cụm lửa bossdeath_m như Phantom Bat (đo 14) |
+| Boss.Death | deathFxUpPx | 0 |  |  | px |  | suy luận: ước lượng (không video) — routine 20; pivot Death = tâm sprite 40×48 ⇒ lửa ở tâm |
+| Boss.Death | wakeDelayTicks | 32 |  |  | tick | từ lúc sinh (vào phòng) tới khi va chạm + bay | suy luận: ước lượng (không video) — routine 20; wiki: Holy Water giết được Death 'trước khi nó kịp vào vị trí' ⇒ có khoảng hiện ra rồi mới bay vào góc; chọn ~0.5 s |
+| Boss.Death | firstCorner | 1 |  |  | chỉ số | 0 trên-trái 1 trên-phải 2 dưới-trái 3 dưới-phải | suy luận: ước lượng (không video) — routine 20; wiki: ném Holy Water lên BỤC TRÊN-PHẢI giết nó trước khi nó tấn công ⇒ vị trí đầu = góc trên-phải |
+| Boss.Death | cornerXMinScreen | 40 |  |  | px màn |  | suy luận: ước lượng (không video) — routine 20; Death rộng 40 ⇒ mép trái thân 20 px trong màn |
+| Boss.Death | cornerXMaxScreen | 216 |  |  | px màn |  | suy luận: ước lượng (không video) — routine 20; đối xứng cornerXMinScreen |
+| Boss.Death | cornerYHigh | 88 |  |  | px section | góc trên | suy luận: ước lượng (không video) — routine 20; đáy thân (y + 24) = mặt bục trên y 112 phòng thử ⇒ lửa nước thánh trên bục chạm được (wiki) |
+| Boss.Death | cornerYLow | 152 |  |  | px section | góc dưới | suy luận: ước lượng (không video) — routine 20; đáy thân = sàn 176 ⇒ 'Death có thể bay tới chỗ bạn nấp ở góc' (wiki) |
+| Boss.Death | cornerPct | 75 |  |  | % | còn lại 1 điểm ngẫu nhiên trong vùng | suy luận: ước lượng (không video) — routine 20; wiki: 'bay ngẫu nhiên, ưu tiên các góc' — 3/4 lần tới 1 góc khác góc hiện tại |
+| Boss.Death | roamYMin | 64 |  |  | px section |  | suy luận: ước lượng (không video) — routine 20; vùng điểm ngẫu nhiên: giữa góc trên (88) và mép HUD |
+| Boss.Death | roamYMax | 152 |  |  | px section |  | suy luận: ước lượng (không video) — routine 20; = cornerYLow |
+| Boss.Death | hoverMinTicks | 96 |  |  | tick |  | suy luận: ước lượng (không video) — routine 20; dừng đủ lâu để gọi 3 lưỡi hái (16 + 2×32 = 80) — wiki 'ném khi nó dừng' |
+| Boss.Death | hoverSpanTicks | 64 |  |  | tick |  | suy luận: ước lượng (không video) — routine 20; ngẫu nhiên đều [96, 160] |
+| Boss.Death | summonFirstTicks | 16 |  |  | tick |  | suy luận: ước lượng (không video) — routine 20; gọi lưỡi hái ngay sau khi dừng (wiki: lưỡi hái là đòn duy nhất) |
+| Boss.Death | summonGapTicks | 32 |  |  | tick |  | suy luận: ước lượng (không video) — routine 20; 3 lưỡi hái trong ~1 s dừng |
+| Boss.Death | scytheSpawnDx | 24 |  |  | px |  | suy luận: ước lượng (không video) — routine 20; sinh ngay cạnh thân (40 rộng), luân phiên phía Simon trước — wiki 'phá lưỡi hái ngay khi vừa tạo' |
+| Boss.Death | scytheSpawnDy | 0 |  |  | px |  | suy luận: ước lượng (không video) — routine 20; ngang tâm thân |
+| Boss.Death | scytheAccel | 0.015625 |  |  | px/tick² |  | suy luận: ước lượng (không video) — routine 20; mỗi trục 1/64 về Simon như Ghost (17) — 'chậm rãi đuổi theo' |
+| Boss.Death | scytheCapStart | 0.5 |  |  | px/tick | trần tốc độ mỗi trục khi bắt đầu đuổi | suy luận: ước lượng (không video) — routine 20; 'lúc đầu chậm' (nửa tốc độ Simon đi) |
+| Boss.Death | scytheCapGrow | 0.00390625 |  |  | px/tick² |  | suy luận: ước lượng (không video) — routine 20; 'rồi nhanh dần' — trần +1/256 mỗi tick (0.5 → 1.5 trong 256 tick) |
+| Boss.Death | scytheCapMax | 1.5 |  |  | px/tick |  | suy luận: ước lượng (không video) — routine 20; nhanh hơn Simon đi (1.0) ⇒ phải phá, không chạy thoát mãi |
+| Boss.Death | scytheAimAbovePx | 16 |  |  | px |  | suy luận: ước lượng (không video) — routine 20; nhắm tâm thân Simon (như 18/19) |
 | Boss.Dracula | fireballsPerVolley | 3 |  |  | cái |  | wiki:Bosses#The Count |
+| Boss.Dracula | hitStunTicks | 10 |  |  | tick | cả 2 dạng | suy luận: ước lượng (không video) — routine 20; như Phantom Bat (đo 14) — khung chung BossBase |
+| Boss.Dracula | invincibleTicks | 16 |  |  | tick | cả 2 dạng | suy luận: ước lượng (không video) — routine 20; như Phantom Bat (suy luận 14) |
+| Boss.Dracula | deathFxTicks | 62 |  |  | tick | lửa biến hình + chết dạng 2 | suy luận: ước lượng (không video) — routine 20; cụm lửa bossdeath_m như Phantom Bat (đo 14) |
+| Boss.Dracula | deathFxUpPx | 32 |  |  | px | dạng 2 | suy luận: ước lượng (không video) — routine 20; tâm thân quỷ 48×64 (chân − 32) |
+| Boss.Dracula | aimAbovePx | 16 |  |  | px | quả giữa của loạt | suy luận: ước lượng (không video) — routine 20; nhắm tâm thân Simon (như 18/19) |
+| Boss.Dracula | fireballSpeed | 1.5 |  |  | px/tick |  | suy luận: ước lượng (không video) — routine 20; như cầu lửa Bone Dragon/Igor (18/19) |
+| Boss.Dracula | fireSpreadDeg | 14 |  |  | độ | quay ±(cos/sin ×256 = 248/62) | suy luận: ước lượng (không video) — routine 20; wiki: 'nhảy quá sớm thì 3 cầu lửa bắn CHẾCH LÊN … bay qua đầu' / 'bắn quá thấp để nhảy qua' ⇒ loạt 3 quả nhắm Simon, xoè nhẹ (≈ ±10 px ở 40 px) |
+| Boss.Dracula | fireballHeartPct | 25 |  |  | % | tim nhỏ | suy luận: ước lượng (không video) — routine 20; wiki Stages 16-18: cầu lửa bị phá 'đôi khi' sinh tim |
+| Boss.Dracula | p1FirstDelayTicks | 60 |  |  | tick |  | suy luận: ước lượng (không video) — routine 20; wiki: 'chờ Dracula hiện ra' — 1 s sau khi vào phòng |
+| Boss.Dracula | p1HiddenMinTicks | 48 |  |  | tick | ngẫu nhiên đều [48, 96] | suy luận: ước lượng (không video) — routine 20; giữa 2 lần hiện |
+| Boss.Dracula | p1HiddenSpanTicks | 48 |  |  | tick |  | suy luận: ước lượng (không video) — routine 20; (xem p1HiddenMinTicks) |
+| Boss.Dracula | p1AppearTicks | 32 |  |  | tick | nhấp nháy, không va chạm | suy luận: ước lượng (không video) — routine 20; wiki: 'đứng đúng tầm roi khi ông ta HIỆN HÌNH HOÀN TOÀN' ⇒ có pha hiện dần không đánh được |
+| Boss.Dracula | p1FlickerTicks | 2 |  |  | tick |  | suy luận: ước lượng (không video) — routine 20; nhấp nháy hiện/ẩn mỗi 2 tick (như nháy bất tử) |
+| Boss.Dracula | p1StandTicks | 24 |  |  | tick |  | suy luận: ước lượng (không video) — routine 20; wiki: 'mở áo choàng TRƯỚC khi bắn' — đứng khép áo ~0.4 s |
+| Boss.Dracula | p1FireDelayTicks | 8 |  |  | tick | tính từ tick mở áo | suy luận: ước lượng (không video) — routine 20; bắn ngay sau khi áo mở |
+| Boss.Dracula | p1CapeTicks | 40 |  |  | tick |  | suy luận: ước lượng (không video) — routine 20; áo mở giữ thêm sau loạt bắn (wiki: 'nhảy qua cầu lửa rồi quất vào đầu' ⇒ còn ở lại sau khi bắn) |
+| Boss.Dracula | p1CloseTicks | 16 |  |  | tick |  | suy luận: ước lượng (không video) — routine 20; khép áo trước khi biến mất |
+| Boss.Dracula | p1VanishTicks | 24 |  |  | tick |  | suy luận: ước lượng (không video) — routine 20; biến mất dần (nhấp nháy, không va chạm) |
+| Boss.Dracula | p1OnSimonPct | 50 |  |  | % | x = Simon; còn lại ngẫu nhiên | suy luận: ước lượng (không video) — routine 20; wiki: 'nhiều khả năng hiện NGAY TRÊN ĐẦU bạn nếu đứng yên' |
+| Boss.Dracula | p1MinScreenX | 32 |  |  | px màn |  | suy luận: ước lượng (không video) — routine 20; trong màn (thân 24–32 rộng) |
+| Boss.Dracula | p1MaxScreenX | 224 |  |  | px màn |  | suy luận: ước lượng (không video) — routine 20; đối xứng p1MinScreenX |
+| Boss.Dracula | p1FireAbovePx | 40 |  |  | px | điểm sinh cầu lửa | suy luận: ước lượng (không video) — routine 20; ngực — chỗ áo choàng mở (dracula1_1 hàng ~19) |
+| Boss.Dracula | p1HeadFlyVy | -1.5 |  |  | px/tick | âm = lên | suy luận: ước lượng (không video) — routine 20; wiki: 'hết vạch máu cuối ⇒ ĐẦU BAY RA' — bay thẳng lên khỏi màn |
+| Boss.Dracula | p1HeadFlyVx | 0.5 |  |  | px/tick |  | suy luận: ước lượng (không video) — routine 20; lùi về sau lưng khi bay lên |
+| Boss.Dracula | p1TransformTicks | 96 |  |  | tick |  | suy luận: ước lượng (không video) — routine 20; 'thân biến thành quỷ' — thân không đầu đứng 1.6 s rồi bùng lửa ra dạng 2 |
+| Boss.Dracula | p1HeadlessFlipTicks | 8 |  |  | tick |  | suy luận: ước lượng (không video) — routine 20; thân không đầu đổi áo khép/mở (2 khung sheet) |
+| Boss.Dracula | p2EmergeTicks | 48 |  |  | tick | không va chạm | suy luận: ước lượng (không video) — routine 20; quỷ đứng trong lửa biến hình (62) rồi mới đánh/nhận đòn |
+| Boss.Dracula | p2StandMinTicks | 32 |  |  | tick | ngẫu nhiên đều [32, 64] | suy luận: ước lượng (không video) — routine 20; đứng giữa 2 hành động |
+| Boss.Dracula | p2StandSpanTicks | 32 |  |  | tick |  | suy luận: ước lượng (không video) — routine 20; (xem p2StandMinTicks) |
+| Boss.Dracula | p2FirePct | 33 |  |  | % |  | suy luận: ước lượng (không video) — routine 20; wiki: 'THỈNH THOẢNG phun lửa' — 1/3 lần, còn lại nhảy |
+| Boss.Dracula | p2FireWindupTicks | 16 |  |  | tick |  | suy luận: ước lượng (không video) — routine 20; há miệng rồi phun |
+| Boss.Dracula | p2FireHoldTicks | 40 |  |  | tick |  | suy luận: ước lượng (không video) — routine 20; giữ tư thế phun |
+| Boss.Dracula | p2FireAbovePx | 39 |  |  | px |  | suy luận: ước lượng (không video) — routine 20; miệng: khung đứng hàng 20–30 cột 7–24 ⇒ tâm (−8, −39) |
+| Boss.Dracula | p2MouthDx | 8 |  |  | px |  | suy luận: ước lượng (không video) — routine 20; (xem p2FireAbovePx) — phía trước mặt |
+| Boss.Dracula | p2CrouchTicks | 12 |  |  | tick |  | suy luận: ước lượng (không video) — routine 20; ngồi lấy đà (khung dracula2_5) |
+| Boss.Dracula | p2LandTicks | 12 |  |  | tick |  | suy luận: ước lượng (không video) — routine 20; co chân khi đáp (khung dracula2_4) |
+| Boss.Dracula | p2HighPct | 50 |  |  | % |  | suy luận: ước lượng (không video) — routine 20; wiki: 'nhảy CAO hoặc THẤP' |
+| Boss.Dracula | p2HighVy0 | -5.5 |  |  | px/tick | g p2Gravity | suy luận: ước lượng (không video) — routine 20; cao ~58 px (đáy thân cao hơn đầu Simon ~30 tick ⇒ 'chạy chui dưới khi nó nhảy cao') |
+| Boss.Dracula | p2HighVx | 2.0 |  |  | px/tick |  | suy luận: ước lượng (không video) — routine 20; ~88 px mỗi cú cao — vượt qua Simon |
+| Boss.Dracula | p2LowVy0 | -3.0 |  |  | px/tick |  | suy luận: ước lượng (không video) — routine 20; thấp ~17 px — không chui qua được |
+| Boss.Dracula | p2LowVx | 1.5 |  |  | px/tick |  | suy luận: ước lượng (không video) — routine 20; ~36 px mỗi cú thấp |
+| Boss.Dracula | p2Gravity | 0.25 |  |  | px/tick² |  | suy luận: ước lượng (không video) — routine 20; như rìu Simon (đo 09) / Igor (19) |
+| Boss.Dracula | p2MinScreenX | 32 |  |  | px màn | biên ngang khi nhảy | suy luận: ước lượng (không video) — routine 20; thân 48 rộng ⇒ mép 8 px trong màn |
+| Boss.Dracula | p2MaxScreenX | 224 |  |  | px màn |  | suy luận: ước lượng (không video) — routine 20; đối xứng p2MinScreenX |
 | Boss.QueenMedusa | hitStunTicks | 10 |  |  | tick |  | suy luận: ước lượng (không video) — routine 19; như Phantom Bat (đo 14) — khung chung BossBase |
 | Boss.QueenMedusa | invincibleTicks | 16 |  |  | tick |  | suy luận: ước lượng (không video) — routine 19; như Phantom Bat (suy luận 14) |
 | Boss.QueenMedusa | deathFxTicks | 62 |  |  | tick |  | suy luận: ước lượng (không video) — routine 19; cụm lửa bossdeath_m như Phantom Bat (đo 14) |

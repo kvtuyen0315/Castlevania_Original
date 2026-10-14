@@ -1,0 +1,3 @@
+# 1100 tick, hash ea306fb5
+# CVGP 20 BossB56Probe kịch bản 'death_pattern': Death: hiện giữa-trên (128,48) 32 tick không va chạm ⇒ bay 0.5 px/tick vào góc trên-phải (216,88) ⇒ dừng 96–160 gọi lưỡi hái (tick 16, rồi mỗi 32, ≤ 3 sống) ⇒ 75 % sang góc khác; lưỡi hái đứng 60 tick rồi đuổi Simon, mỗi trục ±1/64 px/tick², trần 0.5 → 1.5
+-*1100

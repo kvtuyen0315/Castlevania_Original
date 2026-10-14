@@ -1,0 +1,3 @@
+# 900 tick, hash a6f38b15
+# CVGP 20 BossB56Probe kịch bản 'death_touch': Stage 15, Simon không bất tử đứng góc dưới-trái: lưỡi hái / thân Death chạm ⇒ −4 vạch/lần (wiki: mọi đòn boss = mức stage)
+-*900

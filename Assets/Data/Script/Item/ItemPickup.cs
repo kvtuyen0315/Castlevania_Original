@@ -34,6 +34,8 @@ public class ItemPickup : Entity
     [NonSerialized] public bool picked;
     /// <summary>Trồi: px còn phải đi lên (fixed).</summary>
     [NonSerialized] public int riseLeft;
+    /// <summary>CVGP 20: quả cầu cuối (Dracula) — nhặt ⇒ GameRules.OnGameCleared.</summary>
+    [NonSerialized] public bool finalCrystal;
 
     private int gravity, swayAccel, swayMax, swayDir, fallSmall, riseSpeed;
     private AnimSet.Anim anim;
@@ -47,6 +49,7 @@ public class ItemPickup : Entity
         age = 0;
         picked = false;
         riseLeft = 0;
+        finalCrystal = false;
         vx = vy = 0;
         Facing = -1;
         if (Anim != null)

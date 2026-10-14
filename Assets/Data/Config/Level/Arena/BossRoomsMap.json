@@ -1,5 +1,5 @@
 {
- "note": "CVGP 19 - sinh boi Tools/cvgp/build_boss_rooms.py (3 phong boss thu ghep o Map 1, theo mo ta wiki); KHONG sua tay",
+ "note": "CVGP 19/20 - sinh boi Tools/cvgp/build_boss_rooms.py (5 phong boss thu ghep o Map 1, theo mo ta wiki); KHONG sua tay",
  "cellSize": 16,
  "levelRowToNesY": 32,
  "types": [
@@ -43,7 +43,9 @@
  "order": [
   "BossMedusa",
   "BossMummy",
-  "BossFrank"
+  "BossFrank",
+  "BossDeath",
+  "BossDracula"
  ],
  "sections": [
   {
@@ -158,6 +160,74 @@
     "................",
     "##............##",
     "##............##",
+    "################"
+   ],
+   "foreground": [],
+   "stairs": [],
+   "connections": []
+  },
+  {
+   "id": "BossDeath",
+   "stage": 0,
+   "width": 256,
+   "height": 192,
+   "cols": 16,
+   "rows": 12,
+   "cameraMinX": 0,
+   "cameraMaxX": 0,
+   "bossLockCx": 0,
+   "hasSimonStart": true,
+   "simonStart": [
+    24,
+    176
+   ],
+   "simonStartSrc": "quy uoc: phong Death thu (CVGP 20) - Simon vao mep trai san y 176",
+   "collision": [
+    "................",
+    "................",
+    "................",
+    "................",
+    "................",
+    "................",
+    "................",
+    "#####......#####",
+    "................",
+    "......####......",
+    "......####......",
+    "################"
+   ],
+   "foreground": [],
+   "stairs": [],
+   "connections": []
+  },
+  {
+   "id": "BossDracula",
+   "stage": 0,
+   "width": 256,
+   "height": 192,
+   "cols": 16,
+   "rows": 12,
+   "cameraMinX": 0,
+   "cameraMaxX": 0,
+   "bossLockCx": 0,
+   "hasSimonStart": true,
+   "simonStart": [
+    24,
+    160
+   ],
+   "simonStartSrc": "quy uoc: phong Dracula thu (CVGP 20) - Simon vao tren bac trai y 160",
+   "collision": [
+    "................",
+    "................",
+    "................",
+    "................",
+    "................",
+    "................",
+    "................",
+    "................",
+    "................",
+    "................",
+    "###..........###",
     "################"
    ],
    "foreground": [],

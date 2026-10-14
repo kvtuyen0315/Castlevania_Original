@@ -33,6 +33,8 @@ public abstract class BossBase : EnemyBase
     /// <summary>Số đòn đã nhận (harness).</summary>
     [NonSerialized] public int hitsTaken;
     [NonSerialized] public BossArena arena;
+    /// <summary>Tick này lọ/lửa nước thánh đang chạm vùng dò (CVGP 20: Dracula dạng 2 tắt hộp chạm khi bị lửa giữ — wiki).</summary>
+    [NonSerialized] protected bool holyTouch;
 
     protected int hitStunTicks, invincibleTicks, deathFxTicks, deathFxUp, crystalDelay, crystalScreenX, crystalY;
     /// <summary>ConfigBoss.stopwatchAffects (wiki: Phantom Bat, Queen Medusa).</summary>
@@ -145,7 +147,8 @@ public abstract class BossBase : EnemyBase
                 SpawnCrystal();
             return;
         }
-        if (!dormant && TouchingHolyWater())
+        holyTouch = !dormant && TouchingHolyWater();
+        if (holyTouch)
             stunTicks = Mathf.Max(stunTicks, hitStunTicks);
         if (stunTicks > 0)
         {
@@ -167,10 +170,13 @@ public abstract class BossBase : EnemyBase
             Anim.Visible = !hidden;
     }
 
+    /// <summary>Vùng dò nước thánh (mặc định hộp nhận đòn; CVGP 20: Dracula — đầu mới nhận đòn nhưng lửa dưới CHÂN làm choáng (wiki)).</summary>
+    protected virtual RectInt HolyWaterProbe => Hurt.SectionRect;
+
     /// <summary>Lọ / lửa nước thánh đang chạm hộp nhận đòn (video boss: dơi đứng yên khi chạm — kể cả khi không mất máu).</summary>
     private bool TouchingHolyWater()
     {
-        var me = Hurt.SectionRect;
+        var me = HolyWaterProbe;
         var list = World.GroupList(eEntityGroup.PlayerWeapon);
         for (int i = 0; i < list.Count; i++)
         {
@@ -246,9 +252,16 @@ public abstract class BossBase : EnemyBase
     {
         int cx = World.CameraCtl != null ? World.CameraCtl.X : 0;
         var it = ItemDrops.Spawn(World, eItemId.MagicCrystal, cx + crystalScreenX, crystalY);
+        if (it != null)
+            OnCrystalSpawned(it);
         if (CrystalSpawned != null)
             CrystalSpawned(this, it);
         Kill();
+    }
+
+    /// <summary>Quả cầu vừa sinh (CVGP 20: Dracula đánh dấu quả cầu cuối ⇒ nhặt ⇒ GameRules.OnGameCleared).</summary>
+    protected virtual void OnCrystalSpawned(ItemPickup crystal)
+    {
     }
 
     protected static void SetEnemyBar(int bars)

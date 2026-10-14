@@ -23,6 +23,9 @@ public static class GameRules
 {
     /// <summary>Vừa được 1UP (mạng sau khi cộng).</summary>
     public static event Action<int> OneUp;
+    /// <summary>CVGP 20: nhặt quả cầu cuối (sau Dracula dạng 2) ⇒ hết game (wiki Stages 16-18 "collect the final crystal ball and finish the
+    /// game"). Credits / Second Quest CHƯA làm (CVGP_MEMORY §6) — màn chơi/harness nghe sự kiện này.</summary>
+    public static event Action OnGameCleared;
 
     static GameConfig Cfg => GameConfig.Current;
     static GameSession S => GameSession.Current;
@@ -95,6 +98,15 @@ public static class GameRules
         while (s > 1 && BlockOfStage(s - 1) == b)
             s--;
         return s;
+    }
+
+    /// <summary>Bắn OnGameCleared (ItemEffects gọi khi nhặt quả cầu đánh dấu cuối — DraculaPhase2).</summary>
+    public static void RaiseGameCleared()
+    {
+        if (CvgpDebug.LogRules)
+            CvgpDebug.Log("[Rules] quả cầu cuối ⇒ OnGameCleared (credits/second quest chưa làm)");
+        if (OnGameCleared != null)
+            OnGameCleared();
     }
 
     /// <summary>Ván mới (Title → Intro): giá trị đầu ván từ Config.</summary>

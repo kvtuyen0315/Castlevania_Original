@@ -1,0 +1,3 @@
+# 481 tick, hash 5d341c9f
+# CVGP 20 BossB56Probe kịch bản 'drac2_stopwatch': Stopwatch tick 61: quỷ KHÔNG bị giữ (wiki: boss sau Medusa miễn nhiễm)
+-*60 Sub*1 -*420

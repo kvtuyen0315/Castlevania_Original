@@ -1,0 +1,4 @@
+# 320 tick, hash 686edfc5
+# CVGP 20 BossB56Probe kịch bản 'drac_fireball_whip': Arena: 8 cầu lửa Dracula bay về Simon (mỗi 40 tick) ⇒ roi da phá cả 8 (+100 mỗi quả), phá ⇒ 25 % rơi tim nhỏ (wiki 'đôi khi sinh tim')
+-*4 B*1 -*39 B*1 -*39 B*1 -*39 B*1 -*39 B*1 -*39 B*1
+-*39 B*1 -*39 B*1 -*35

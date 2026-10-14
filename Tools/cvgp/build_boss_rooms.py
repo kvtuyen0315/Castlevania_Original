@@ -17,6 +17,11 @@ Bo cuc (theo mo ta wiki - CV_WIKI_DATA S4.3; GAN DUNG, khong phai phong goc):
                = "khoi thap nhat cau thang trai chua Pot Roast" (dung len duoc, Mummy di tren san vuong khoi).
   BossFrank  : EntranceHall cot 0-15 + 2 BUC GOC thap 32 px (cot 0-1 va 14-15, hang 9-10, mat y 144) <- gach buc EH (44,7)
                (nhu tuong thap Arena 07) = "cac buc o goc" - Igor nhay cao len buc, Simon nhay len mep buc phai.
+  CVGP 20 (Block 5-6, theo wiki - GAN DUNG, khong co ban do/video):
+  BossDeath  : EntranceHall cot 0-15 + BUC GIUA cao 32 px (cot 6-9, hang 9-10, mat y 144) + 2 GO TREN noi (cot 0-4 / 11-15, hang 7,
+               mat y 112, day 128 - di duoi duoc) <- gach buc EH (44,7) = "buc tren-phai", "buc giua", "nhay giua cac go" (wiki Stage 15).
+  BossDracula: EntranceHall cot 0-15 + 2 BAC thap 16 px o 2 mep (cot 0-2 / 13-15, hang 10, mat y 160) <- gach EH (44,7) = "phong Dracula
+               co buc" (de bai routine 20; phong goc khong co anh/video).
 """
 import json
 import os
@@ -49,6 +54,14 @@ ROOMS = [
       ((14, 10), "EntranceHall", (44, 7), "#"), ((15, 10), "EntranceHall", (44, 7), "#")],
      [],
      "quy uoc: phong Frankenstein thu (CVGP 19) - Simon vao tren buc goc trai y 144"),
+    ("BossDeath", "EntranceHall", 0, [24, 176],
+     [((6, 9), "EntranceHall", (44, 7), "#"), ((7, 9), "EntranceHall", (44, 7), "#"), ((8, 9), "EntranceHall", (44, 7), "#"), ((9, 9), "EntranceHall", (44, 7), "#"), ((6, 10), "EntranceHall", (44, 7), "#"), ((7, 10), "EntranceHall", (44, 7), "#"), ((8, 10), "EntranceHall", (44, 7), "#"), ((9, 10), "EntranceHall", (44, 7), "#"), ((0, 7), "EntranceHall", (44, 7), "#"), ((1, 7), "EntranceHall", (44, 7), "#"), ((2, 7), "EntranceHall", (44, 7), "#"), ((3, 7), "EntranceHall", (44, 7), "#"), ((4, 7), "EntranceHall", (44, 7), "#"), ((11, 7), "EntranceHall", (44, 7), "#"), ((12, 7), "EntranceHall", (44, 7), "#"), ((13, 7), "EntranceHall", (44, 7), "#"), ((14, 7), "EntranceHall", (44, 7), "#"), ((15, 7), "EntranceHall", (44, 7), "#")],
+     [],
+     "quy uoc: phong Death thu (CVGP 20) - Simon vao mep trai san y 176"),
+    ("BossDracula", "EntranceHall", 0, [24, 160],
+     [((0, 10), "EntranceHall", (44, 7), "#"), ((1, 10), "EntranceHall", (44, 7), "#"), ((2, 10), "EntranceHall", (44, 7), "#"), ((13, 10), "EntranceHall", (44, 7), "#"), ((14, 10), "EntranceHall", (44, 7), "#"), ((15, 10), "EntranceHall", (44, 7), "#")],
+     [],
+     "quy uoc: phong Dracula thu (CVGP 20) - Simon vao tren bac trai y 160"),
 ]
 COLORS = {"#": (255, 60, 60), "S": (255, 230, 0), "=": (255, 140, 0), "~": (0, 170, 255), "P": (150, 0, 255),
           "D": (255, 0, 255), "X": (0, 255, 80), "!": (255, 255, 255)}
@@ -147,7 +160,7 @@ def main():
         "png": tiles_doc["png"], "levelRowToNesY": tiles_doc["levelRowToNesY"], "sections": [b[3] for b in built],
     }
     mdoc = {
-        "note": "CVGP 19 - sinh boi Tools/cvgp/build_boss_rooms.py (3 phong boss thu ghep o Map 1, theo mo ta wiki); KHONG sua tay",
+        "note": "CVGP 19/20 - sinh boi Tools/cvgp/build_boss_rooms.py (5 phong boss thu ghep o Map 1, theo mo ta wiki); KHONG sua tay",
         "cellSize": CELL, "levelRowToNesY": map_doc["levelRowToNesY"], "types": map_doc["types"],
         "order": [r[0] for r in ROOMS], "sections": [b[4] for b in built],
     }

@@ -1324,6 +1324,384 @@ MonoBehaviour:
     source: "wiki:Bosses#Death (\u0111\u1EE9ng y\xEAn kho\u1EA3ng 1 gi\xE2y \xD7
       60)"
     note: 
+  - actor: Boss.Death
+    key: hitStunTicks
+    value:
+      has: 1
+      value: 10
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 20; nh\u01B0 Phantom Bat (\u0111o 14) \u2014 khung chung BossBase"
+    note: 
+  - actor: Boss.Death
+    key: invincibleTicks
+    value:
+      has: 1
+      value: 16
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 20; nh\u01B0 Phantom Bat (suy lu\u1EADn 14)"
+    note: 
+  - actor: Boss.Death
+    key: deathFxTicks
+    value:
+      has: 1
+      value: 62
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 20; c\u1EE5m l\u1EEDa bossdeath_m nh\u01B0 Phantom Bat (\u0111o 14)"
+    note: 
+  - actor: Boss.Death
+    key: deathFxUpPx
+    value:
+      has: 1
+      value: 0
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 20; pivot Death = t\xE2m sprite 40\xD748 \u21D2 l\u1EEDa \u1EDF t\xE2m"
+    note: 
+  - actor: Boss.Death
+    key: wakeDelayTicks
+    value:
+      has: 1
+      value: 32
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 20; wiki: Holy Water gi\u1EBFt \u0111\u01B0\u1EE3c Death 'tr\u01B0\u1EDBc
+      khi n\xF3 k\u1ECBp v\xE0o v\u1ECB tr\xED' \u21D2 c\xF3 kho\u1EA3ng hi\u1EC7n
+      ra r\u1ED3i m\u1EDBi bay v\xE0o g\xF3c; ch\u1ECDn ~0.5 s"
+    note: "t\u1EEB l\xFAc sinh (v\xE0o ph\xF2ng) t\u1EDBi khi va ch\u1EA1m + bay"
+  - actor: Boss.Death
+    key: firstCorner
+    value:
+      has: 1
+      value: 1
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: "ch\u1EC9 s\u1ED1"
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 20; wiki: n\xE9m Holy Water l\xEAn B\u1EE4C TR\xCAN-PH\u1EA2I gi\u1EBFt
+      n\xF3 tr\u01B0\u1EDBc khi n\xF3 t\u1EA5n c\xF4ng \u21D2 v\u1ECB tr\xED \u0111\u1EA7u
+      = g\xF3c tr\xEAn-ph\u1EA3i"
+    note: "0 tr\xEAn-tr\xE1i 1 tr\xEAn-ph\u1EA3i 2 d\u01B0\u1EDBi-tr\xE1i 3 d\u01B0\u1EDBi-ph\u1EA3i"
+  - actor: Boss.Death
+    key: cornerXMinScreen
+    value:
+      has: 1
+      value: 40
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: "px m\xE0n"
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 20; Death r\u1ED9ng 40 \u21D2 m\xE9p tr\xE1i th\xE2n 20 px trong m\xE0n"
+    note: 
+  - actor: Boss.Death
+    key: cornerXMaxScreen
+    value:
+      has: 1
+      value: 216
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: "px m\xE0n"
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 20; \u0111\u1ED1i x\u1EE9ng cornerXMinScreen"
+    note: 
+  - actor: Boss.Death
+    key: cornerYHigh
+    value:
+      has: 1
+      value: 88
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px section
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 20; \u0111\xE1y th\xE2n (y + 24) = m\u1EB7t b\u1EE5c tr\xEAn y 112
+      ph\xF2ng th\u1EED \u21D2 l\u1EEDa n\u01B0\u1EDBc th\xE1nh tr\xEAn b\u1EE5c
+      ch\u1EA1m \u0111\u01B0\u1EE3c (wiki)"
+    note: "g\xF3c tr\xEAn"
+  - actor: Boss.Death
+    key: cornerYLow
+    value:
+      has: 1
+      value: 152
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px section
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 20; \u0111\xE1y th\xE2n = s\xE0n 176 \u21D2 'Death c\xF3 th\u1EC3 bay
+      t\u1EDBi ch\u1ED7 b\u1EA1n n\u1EA5p \u1EDF g\xF3c' (wiki)"
+    note: "g\xF3c d\u01B0\u1EDBi"
+  - actor: Boss.Death
+    key: cornerPct
+    value:
+      has: 1
+      value: 75
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: '%'
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 20; wiki: 'bay ng\u1EABu nhi\xEAn, \u01B0u ti\xEAn c\xE1c g\xF3c' \u2014
+      3/4 l\u1EA7n t\u1EDBi 1 g\xF3c kh\xE1c g\xF3c hi\u1EC7n t\u1EA1i"
+    note: "c\xF2n l\u1EA1i 1 \u0111i\u1EC3m ng\u1EABu nhi\xEAn trong v\xF9ng"
+  - actor: Boss.Death
+    key: roamYMin
+    value:
+      has: 1
+      value: 64
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px section
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 20; v\xF9ng \u0111i\u1EC3m ng\u1EABu nhi\xEAn: gi\u1EEFa g\xF3c tr\xEAn
+      (88) v\xE0 m\xE9p HUD"
+    note: 
+  - actor: Boss.Death
+    key: roamYMax
+    value:
+      has: 1
+      value: 152
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px section
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 20; = cornerYLow"
+    note: 
+  - actor: Boss.Death
+    key: hoverMinTicks
+    value:
+      has: 1
+      value: 96
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 20; d\u1EEBng \u0111\u1EE7 l\xE2u \u0111\u1EC3 g\u1ECDi 3 l\u01B0\u1EE1i
+      h\xE1i (16 + 2\xD732 = 80) \u2014 wiki 'n\xE9m khi n\xF3 d\u1EEBng'"
+    note: 
+  - actor: Boss.Death
+    key: hoverSpanTicks
+    value:
+      has: 1
+      value: 64
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 20; ng\u1EABu nhi\xEAn \u0111\u1EC1u [96, 160]"
+    note: 
+  - actor: Boss.Death
+    key: summonFirstTicks
+    value:
+      has: 1
+      value: 16
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 20; g\u1ECDi l\u01B0\u1EE1i h\xE1i ngay sau khi d\u1EEBng (wiki: l\u01B0\u1EE1i
+      h\xE1i l\xE0 \u0111\xF2n duy nh\u1EA5t)"
+    note: 
+  - actor: Boss.Death
+    key: summonGapTicks
+    value:
+      has: 1
+      value: 32
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 20; 3 l\u01B0\u1EE1i h\xE1i trong ~1 s d\u1EEBng"
+    note: 
+  - actor: Boss.Death
+    key: scytheSpawnDx
+    value:
+      has: 1
+      value: 24
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 20; sinh ngay c\u1EA1nh th\xE2n (40 r\u1ED9ng), lu\xE2n phi\xEAn ph\xEDa
+      Simon tr\u01B0\u1EDBc \u2014 wiki 'ph\xE1 l\u01B0\u1EE1i h\xE1i ngay khi v\u1EEBa
+      t\u1EA1o'"
+    note: 
+  - actor: Boss.Death
+    key: scytheSpawnDy
+    value:
+      has: 1
+      value: 0
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 20; ngang t\xE2m th\xE2n"
+    note: 
+  - actor: Boss.Death
+    key: scytheAccel
+    value:
+      has: 1
+      value: 0.015625
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: "px/tick\xB2"
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 20; m\u1ED7i tr\u1EE5c 1/64 v\u1EC1 Simon nh\u01B0 Ghost (17) \u2014
+      'ch\u1EADm r\xE3i \u0111u\u1ED5i theo'"
+    note: 
+  - actor: Boss.Death
+    key: scytheCapStart
+    value:
+      has: 1
+      value: 0.5
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px/tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 20; 'l\xFAc \u0111\u1EA7u ch\u1EADm' (n\u1EEDa t\u1ED1c \u0111\u1ED9
+      Simon \u0111i)"
+    note: "tr\u1EA7n t\u1ED1c \u0111\u1ED9 m\u1ED7i tr\u1EE5c khi b\u1EAFt \u0111\u1EA7u
+      \u0111u\u1ED5i"
+  - actor: Boss.Death
+    key: scytheCapGrow
+    value:
+      has: 1
+      value: 0.00390625
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: "px/tick\xB2"
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 20; 'r\u1ED3i nhanh d\u1EA7n' \u2014 tr\u1EA7n +1/256 m\u1ED7i tick
+      (0.5 \u2192 1.5 trong 256 tick)"
+    note: 
+  - actor: Boss.Death
+    key: scytheCapMax
+    value:
+      has: 1
+      value: 1.5
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px/tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 20; nhanh h\u01A1n Simon \u0111i (1.0) \u21D2 ph\u1EA3i ph\xE1, kh\xF4ng
+      ch\u1EA1y tho\xE1t m\xE3i"
+    note: 
+  - actor: Boss.Death
+    key: scytheAimAbovePx
+    value:
+      has: 1
+      value: 16
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 20; nh\u1EAFm t\xE2m th\xE2n Simon (nh\u01B0 18/19)"
+    note: 
   - actor: Boss.Dracula
     key: fireballsPerVolley
     value:
@@ -1337,6 +1715,686 @@ MonoBehaviour:
       value: 0
     unit: "c\xE1i"
     source: wiki:Bosses#The Count
+    note: 
+  - actor: Boss.Dracula
+    key: hitStunTicks
+    value:
+      has: 1
+      value: 10
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 20; nh\u01B0 Phantom Bat (\u0111o 14) \u2014 khung chung BossBase"
+    note: "c\u1EA3 2 d\u1EA1ng"
+  - actor: Boss.Dracula
+    key: invincibleTicks
+    value:
+      has: 1
+      value: 16
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 20; nh\u01B0 Phantom Bat (suy lu\u1EADn 14)"
+    note: "c\u1EA3 2 d\u1EA1ng"
+  - actor: Boss.Dracula
+    key: deathFxTicks
+    value:
+      has: 1
+      value: 62
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 20; c\u1EE5m l\u1EEDa bossdeath_m nh\u01B0 Phantom Bat (\u0111o 14)"
+    note: "l\u1EEDa bi\u1EBFn h\xECnh + ch\u1EBFt d\u1EA1ng 2"
+  - actor: Boss.Dracula
+    key: deathFxUpPx
+    value:
+      has: 1
+      value: 32
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 20; t\xE2m th\xE2n qu\u1EF7 48\xD764 (ch\xE2n \u2212 32)"
+    note: "d\u1EA1ng 2"
+  - actor: Boss.Dracula
+    key: aimAbovePx
+    value:
+      has: 1
+      value: 16
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 20; nh\u1EAFm t\xE2m th\xE2n Simon (nh\u01B0 18/19)"
+    note: "qu\u1EA3 gi\u1EEFa c\u1EE7a lo\u1EA1t"
+  - actor: Boss.Dracula
+    key: fireballSpeed
+    value:
+      has: 1
+      value: 1.5
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px/tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 20; nh\u01B0 c\u1EA7u l\u1EEDa Bone Dragon/Igor (18/19)"
+    note: 
+  - actor: Boss.Dracula
+    key: fireSpreadDeg
+    value:
+      has: 1
+      value: 14
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: "\u0111\u1ED9"
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 20; wiki: 'nh\u1EA3y qu\xE1 s\u1EDBm th\xEC 3 c\u1EA7u l\u1EEDa b\u1EAFn
+      CH\u1EBECH L\xCAN \u2026 bay qua \u0111\u1EA7u' / 'b\u1EAFn qu\xE1 th\u1EA5p
+      \u0111\u1EC3 nh\u1EA3y qua' \u21D2 lo\u1EA1t 3 qu\u1EA3 nh\u1EAFm Simon, xo\xE8
+      nh\u1EB9 (\u2248 \xB110 px \u1EDF 40 px)"
+    note: "quay \xB1(cos/sin \xD7256 = 248/62)"
+  - actor: Boss.Dracula
+    key: fireballHeartPct
+    value:
+      has: 1
+      value: 25
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: '%'
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 20; wiki Stages 16-18: c\u1EA7u l\u1EEDa b\u1ECB ph\xE1 '\u0111\xF4i
+      khi' sinh tim"
+    note: "tim nh\u1ECF"
+  - actor: Boss.Dracula
+    key: p1FirstDelayTicks
+    value:
+      has: 1
+      value: 60
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 20; wiki: 'ch\u1EDD Dracula hi\u1EC7n ra' \u2014 1 s sau khi v\xE0o
+      ph\xF2ng"
+    note: 
+  - actor: Boss.Dracula
+    key: p1HiddenMinTicks
+    value:
+      has: 1
+      value: 48
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 20; gi\u1EEFa 2 l\u1EA7n hi\u1EC7n"
+    note: "ng\u1EABu nhi\xEAn \u0111\u1EC1u [48, 96]"
+  - actor: Boss.Dracula
+    key: p1HiddenSpanTicks
+    value:
+      has: 1
+      value: 48
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 20; (xem p1HiddenMinTicks)"
+    note: 
+  - actor: Boss.Dracula
+    key: p1AppearTicks
+    value:
+      has: 1
+      value: 32
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 20; wiki: '\u0111\u1EE9ng \u0111\xFAng t\u1EA7m roi khi \xF4ng ta HI\u1EC6N
+      H\xCCNH HO\xC0N TO\xC0N' \u21D2 c\xF3 pha hi\u1EC7n d\u1EA7n kh\xF4ng \u0111\xE1nh
+      \u0111\u01B0\u1EE3c"
+    note: "nh\u1EA5p nh\xE1y, kh\xF4ng va ch\u1EA1m"
+  - actor: Boss.Dracula
+    key: p1FlickerTicks
+    value:
+      has: 1
+      value: 2
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 20; nh\u1EA5p nh\xE1y hi\u1EC7n/\u1EA9n m\u1ED7i 2 tick (nh\u01B0 nh\xE1y
+      b\u1EA5t t\u1EED)"
+    note: 
+  - actor: Boss.Dracula
+    key: p1StandTicks
+    value:
+      has: 1
+      value: 24
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 20; wiki: 'm\u1EDF \xE1o cho\xE0ng TR\u01AF\u1EDAC khi b\u1EAFn' \u2014
+      \u0111\u1EE9ng kh\xE9p \xE1o ~0.4 s"
+    note: 
+  - actor: Boss.Dracula
+    key: p1FireDelayTicks
+    value:
+      has: 1
+      value: 8
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 20; b\u1EAFn ngay sau khi \xE1o m\u1EDF"
+    note: "t\xEDnh t\u1EEB tick m\u1EDF \xE1o"
+  - actor: Boss.Dracula
+    key: p1CapeTicks
+    value:
+      has: 1
+      value: 40
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 20; \xE1o m\u1EDF gi\u1EEF th\xEAm sau lo\u1EA1t b\u1EAFn (wiki: 'nh\u1EA3y
+      qua c\u1EA7u l\u1EEDa r\u1ED3i qu\u1EA5t v\xE0o \u0111\u1EA7u' \u21D2 c\xF2n
+      \u1EDF l\u1EA1i sau khi b\u1EAFn)"
+    note: 
+  - actor: Boss.Dracula
+    key: p1CloseTicks
+    value:
+      has: 1
+      value: 16
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 20; kh\xE9p \xE1o tr\u01B0\u1EDBc khi bi\u1EBFn m\u1EA5t"
+    note: 
+  - actor: Boss.Dracula
+    key: p1VanishTicks
+    value:
+      has: 1
+      value: 24
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 20; bi\u1EBFn m\u1EA5t d\u1EA7n (nh\u1EA5p nh\xE1y, kh\xF4ng va ch\u1EA1m)"
+    note: 
+  - actor: Boss.Dracula
+    key: p1OnSimonPct
+    value:
+      has: 1
+      value: 50
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: '%'
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 20; wiki: 'nhi\u1EC1u kh\u1EA3 n\u0103ng hi\u1EC7n NGAY TR\xCAN \u0110\u1EA6U
+      b\u1EA1n n\u1EBFu \u0111\u1EE9ng y\xEAn'"
+    note: "x = Simon; c\xF2n l\u1EA1i ng\u1EABu nhi\xEAn"
+  - actor: Boss.Dracula
+    key: p1MinScreenX
+    value:
+      has: 1
+      value: 32
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: "px m\xE0n"
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 20; trong m\xE0n (th\xE2n 24\u201332 r\u1ED9ng)"
+    note: 
+  - actor: Boss.Dracula
+    key: p1MaxScreenX
+    value:
+      has: 1
+      value: 224
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: "px m\xE0n"
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 20; \u0111\u1ED1i x\u1EE9ng p1MinScreenX"
+    note: 
+  - actor: Boss.Dracula
+    key: p1FireAbovePx
+    value:
+      has: 1
+      value: 40
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 20; ng\u1EF1c \u2014 ch\u1ED7 \xE1o cho\xE0ng m\u1EDF (dracula1_1 h\xE0ng
+      ~19)"
+    note: "\u0111i\u1EC3m sinh c\u1EA7u l\u1EEDa"
+  - actor: Boss.Dracula
+    key: p1HeadFlyVy
+    value:
+      has: 1
+      value: -1.5
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px/tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 20; wiki: 'h\u1EBFt v\u1EA1ch m\xE1u cu\u1ED1i \u21D2 \u0110\u1EA6U
+      BAY RA' \u2014 bay th\u1EB3ng l\xEAn kh\u1ECFi m\xE0n"
+    note: "\xE2m = l\xEAn"
+  - actor: Boss.Dracula
+    key: p1HeadFlyVx
+    value:
+      has: 1
+      value: 0.5
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px/tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 20; l\xF9i v\u1EC1 sau l\u01B0ng khi bay l\xEAn"
+    note: 
+  - actor: Boss.Dracula
+    key: p1TransformTicks
+    value:
+      has: 1
+      value: 96
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 20; 'th\xE2n bi\u1EBFn th\xE0nh qu\u1EF7' \u2014 th\xE2n kh\xF4ng \u0111\u1EA7u
+      \u0111\u1EE9ng 1.6 s r\u1ED3i b\xF9ng l\u1EEDa ra d\u1EA1ng 2"
+    note: 
+  - actor: Boss.Dracula
+    key: p1HeadlessFlipTicks
+    value:
+      has: 1
+      value: 8
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 20; th\xE2n kh\xF4ng \u0111\u1EA7u \u0111\u1ED5i \xE1o kh\xE9p/m\u1EDF
+      (2 khung sheet)"
+    note: 
+  - actor: Boss.Dracula
+    key: p2EmergeTicks
+    value:
+      has: 1
+      value: 48
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 20; qu\u1EF7 \u0111\u1EE9ng trong l\u1EEDa bi\u1EBFn h\xECnh (62) r\u1ED3i
+      m\u1EDBi \u0111\xE1nh/nh\u1EADn \u0111\xF2n"
+    note: "kh\xF4ng va ch\u1EA1m"
+  - actor: Boss.Dracula
+    key: p2StandMinTicks
+    value:
+      has: 1
+      value: 32
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 20; \u0111\u1EE9ng gi\u1EEFa 2 h\xE0nh \u0111\u1ED9ng"
+    note: "ng\u1EABu nhi\xEAn \u0111\u1EC1u [32, 64]"
+  - actor: Boss.Dracula
+    key: p2StandSpanTicks
+    value:
+      has: 1
+      value: 32
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 20; (xem p2StandMinTicks)"
+    note: 
+  - actor: Boss.Dracula
+    key: p2FirePct
+    value:
+      has: 1
+      value: 33
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: '%'
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 20; wiki: 'TH\u1EC8NH THO\u1EA2NG phun l\u1EEDa' \u2014 1/3 l\u1EA7n,
+      c\xF2n l\u1EA1i nh\u1EA3y"
+    note: 
+  - actor: Boss.Dracula
+    key: p2FireWindupTicks
+    value:
+      has: 1
+      value: 16
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 20; h\xE1 mi\u1EC7ng r\u1ED3i phun"
+    note: 
+  - actor: Boss.Dracula
+    key: p2FireHoldTicks
+    value:
+      has: 1
+      value: 40
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 20; gi\u1EEF t\u01B0 th\u1EBF phun"
+    note: 
+  - actor: Boss.Dracula
+    key: p2FireAbovePx
+    value:
+      has: 1
+      value: 39
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 20; mi\u1EC7ng: khung \u0111\u1EE9ng h\xE0ng 20\u201330 c\u1ED9t 7\u201324
+      \u21D2 t\xE2m (\u22128, \u221239)"
+    note: 
+  - actor: Boss.Dracula
+    key: p2MouthDx
+    value:
+      has: 1
+      value: 8
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 20; (xem p2FireAbovePx) \u2014 ph\xEDa tr\u01B0\u1EDBc m\u1EB7t"
+    note: 
+  - actor: Boss.Dracula
+    key: p2CrouchTicks
+    value:
+      has: 1
+      value: 12
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 20; ng\u1ED3i l\u1EA5y \u0111\xE0 (khung dracula2_5)"
+    note: 
+  - actor: Boss.Dracula
+    key: p2LandTicks
+    value:
+      has: 1
+      value: 12
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 20; co ch\xE2n khi \u0111\xE1p (khung dracula2_4)"
+    note: 
+  - actor: Boss.Dracula
+    key: p2HighPct
+    value:
+      has: 1
+      value: 50
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: '%'
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 20; wiki: 'nh\u1EA3y CAO ho\u1EB7c TH\u1EA4P'"
+    note: 
+  - actor: Boss.Dracula
+    key: p2HighVy0
+    value:
+      has: 1
+      value: -5.5
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px/tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 20; cao ~58 px (\u0111\xE1y th\xE2n cao h\u01A1n \u0111\u1EA7u Simon
+      ~30 tick \u21D2 'ch\u1EA1y chui d\u01B0\u1EDBi khi n\xF3 nh\u1EA3y cao')"
+    note: g p2Gravity
+  - actor: Boss.Dracula
+    key: p2HighVx
+    value:
+      has: 1
+      value: 2
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px/tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 20; ~88 px m\u1ED7i c\xFA cao \u2014 v\u01B0\u1EE3t qua Simon"
+    note: 
+  - actor: Boss.Dracula
+    key: p2LowVy0
+    value:
+      has: 1
+      value: -3
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px/tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 20; th\u1EA5p ~17 px \u2014 kh\xF4ng chui qua \u0111\u01B0\u1EE3c"
+    note: 
+  - actor: Boss.Dracula
+    key: p2LowVx
+    value:
+      has: 1
+      value: 1.5
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px/tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 20; ~36 px m\u1ED7i c\xFA th\u1EA5p"
+    note: 
+  - actor: Boss.Dracula
+    key: p2Gravity
+    value:
+      has: 1
+      value: 0.25
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: "px/tick\xB2"
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 20; nh\u01B0 r\xECu Simon (\u0111o 09) / Igor (19)"
+    note: 
+  - actor: Boss.Dracula
+    key: p2MinScreenX
+    value:
+      has: 1
+      value: 32
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: "px m\xE0n"
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 20; th\xE2n 48 r\u1ED9ng \u21D2 m\xE9p 8 px trong m\xE0n"
+    note: "bi\xEAn ngang khi nh\u1EA3y"
+  - actor: Boss.Dracula
+    key: p2MaxScreenX
+    value:
+      has: 1
+      value: 224
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: "px m\xE0n"
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 20; \u0111\u1ED1i x\u1EE9ng p2MinScreenX"
     note: 
   - actor: Boss.QueenMedusa
     key: hitStunTicks

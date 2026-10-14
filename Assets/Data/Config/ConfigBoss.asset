@@ -162,10 +162,13 @@ MonoBehaviour:
       Simon v\xE0 nhanh d\u1EA7n"
     itemsInRoom: "Kh\xF4ng"
     moveSpeed:
-      has: 0
-      value: 0
-    src_moveSpeed: "kh\xF4ng r\xF5 \u2014 kh\xF4ng c\xF3 video (routine 20 \u01B0\u1EDBc
-      l\u01B0\u1EE3ng)"
+      has: 1
+      value: 0.5
+    src_moveSpeed: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video)
+      \u2014 routine 20; wiki Stages 13-15: 'b\u1EA3n th\xE2n Death r\u1EA5t CH\u1EACM'
+      \u21D2 ch\u1EADm h\u01A1n Phantom Bat 0.75 (\u0111o 14); tr\u1EE5c tr\u1ED9i
+      khi bay t\u1EDBi \u0111\xEDch \u2014 tham s\u1ED1 kh\xE1c \u1EDF ConfigActorParam
+      Boss.Death"
     source: wiki:Bosses#Death
   - id: 6
     phase: 1
@@ -195,8 +198,9 @@ MonoBehaviour:
     moveSpeed:
       has: 0
       value: 0
-    src_moveSpeed: "kh\xF4ng r\xF5 \u2014 kh\xF4ng c\xF3 video (routine 20 \u01B0\u1EDBc
-      l\u01B0\u1EE3ng)"
+    src_moveSpeed: "n/a \u2014 d\u1EA1ng 1 kh\xF4ng \u0111i, ch\u1EC9 D\u1ECACH CHUY\u1EC2N
+      (wiki Bosses#The Count); nh\u1ECBp \u1EDF ConfigActorParam Boss.Dracula.p1*
+      (routine 20)"
     source: wiki:Bosses#The Count
   - id: 6
     phase: 2
@@ -205,16 +209,17 @@ MonoBehaviour:
     stage: 18
     entityCount: 1
     hitsWeak:
-      has: 0
-      value: 0
+      has: 1
+      value: 48
     hitsStrong:
       has: 1
       value: 32
     hitsScope: 0
     src_hits: "wiki:Stages 16-18#Stage 18 ('32 l\u1EA7n' v\xE0o \u0111\u1EA7u; v\u0169
-      kh\xED kh\xF4ng n\xEAu \u2014 g\xE1n \u0111\xF2n m\u1EA1nh l\xE0 suy lu\u1EADn);
-      \u0111\xF2n y\u1EBFu kh\xF4ng r\xF5 (g\u1EE3i \xFD t\u1EC9 l\u1EC7 3:2 \u21D2
-      48 \u2014 routine 20 ch\u1ED1t)"
+      kh\xED kh\xF4ng n\xEAu \u2014 g\xE1n \u0111\xF2n M\u1EA0NH: l\xFAc \u0111\xF3
+      roi th\u01B0\u1EDDng c\u1EA5p 3); \u0111\xF2n y\u1EBFu 48 = suy lu\u1EADn:
+      t\u1EC9 l\u1EC7 3:2 c\u1EE7a M\u1ECCI boss kh\xE1c (wiki Bosses 12/8, 48/32,
+      24/16) \u2014 routine 20 ch\u1ED1t (\xA74)"
     score:
       has: 1
       value: 50000
@@ -228,6 +233,6 @@ MonoBehaviour:
     moveSpeed:
       has: 0
       value: 0
-    src_moveSpeed: "kh\xF4ng r\xF5 \u2014 kh\xF4ng c\xF3 video (routine 20 \u01B0\u1EDBc
-      l\u01B0\u1EE3ng)"
+    src_moveSpeed: "n/a \u2014 d\u1EA1ng 2 ch\u1EC9 NH\u1EA2Y (wiki); vx/vy c\xFA
+      nh\u1EA3y \u1EDF ConfigActorParam Boss.Dracula.p2* (routine 20)"
     source: wiki:Bosses#The Count; wiki:Stages 16-18#Stage 18

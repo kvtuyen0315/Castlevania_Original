@@ -1,0 +1,3 @@
+# 35 tick, hash 1500e297
+# CVGP 20 BossB56Probe kịch bản 'death_scythe_whip': Arena: lưỡi hái đứng trước mặt Simon 28 px ngang tầm roi ⇒ roi da 1 đòn phá, +100 (đạn phá được — suy luận 17)
+-*4 B*1 -*30

@@ -92,8 +92,8 @@ def main():
     S = sheets["Art_Source/spriters-resource/simon_belmont.png"]
     n_whip, clipped_total = 0, 0
     for a in doc["anims"]:
-        if not a.get("overlays"):
-            continue
+        if not a.get("overlays") or not a["name"].startswith("whip_"):
+            continue  # CVGP 20: lớp phủ không phải roi (Dragon Skull 17) — chỉ kiểm roi Simon
         _, tag, post = a["name"].split("_", 2)
         for i in range(4):
             j = min(i, 2)

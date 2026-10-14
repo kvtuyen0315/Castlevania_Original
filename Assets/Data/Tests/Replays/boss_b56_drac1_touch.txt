@@ -1,0 +1,3 @@
+# 800 tick, hash 47a88045
+# CVGP 20 BossB56Probe kịch bản 'drac1_touch': Stage 18, Simon không bất tử đứng (128,176): cầu lửa / thân Dracula ⇒ −4 vạch/lần
+-*800

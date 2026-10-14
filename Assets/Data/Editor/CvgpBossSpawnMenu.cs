@@ -2,7 +2,7 @@ using UnityEditor;
 using UnityEngine;
 
 /// <summary>
-/// CVGP 19 — menu thử boss Block 2–4 (chỉ Editor, trong Play, scene Arena): CVGP/Spawn Boss/&lt;Boss&gt; ⇒ BossRoomSetup.Enter: nạp phòng thử
+/// CVGP 19 (+ 20: Death, Count Dracula) — menu thử boss Block 2–6 (chỉ Editor, trong Play, scene Arena): CVGP/Spawn Boss/&lt;Boss&gt; ⇒ BossRoomSetup.Enter: nạp phòng thử
 /// (Assets/Data/Prefabs/Level/Test/Boss*.prefab), Warp Simon vào, BossArena tạm sinh boss (khoá camera, thanh ENEMY, chết ⇒ quả cầu ⇒
 /// tally nếu màn có StageRules). Không lưu gì vào scene/prefab. Về Arena: CVGP/Spawn Boss/Back To Arena.
 /// </summary>
@@ -14,6 +14,8 @@ public static class CvgpBossSpawnMenu
     [MenuItem(ROOT + "Queen Medusa")] static void Medusa() { Enter(BossRoomSetup.MEDUSA); }
     [MenuItem(ROOT + "Mummy Men")] static void Mummy() { Enter(BossRoomSetup.MUMMY); }
     [MenuItem(ROOT + "Frankenstein & Igor")] static void Frank() { Enter(BossRoomSetup.FRANK); }
+    [MenuItem(ROOT + "Death (Grim Reaper)")] static void Death() { Enter(BossRoomSetup.DEATH); }
+    [MenuItem(ROOT + "Count Dracula")] static void Dracula() { Enter(BossRoomSetup.DRACULA); }
 
     [MenuItem(ROOT + "Back To Arena")]
     static void Back()
@@ -55,6 +57,8 @@ public static class CvgpBossSpawnMenu
     [MenuItem(ROOT + "Mummy Men", true)] static bool V2() { return Ok(); }
     [MenuItem(ROOT + "Frankenstein & Igor", true)] static bool V3() { return Ok(); }
     [MenuItem(ROOT + "Back To Arena", true)] static bool V4() { return Ok(); }
+    [MenuItem(ROOT + "Death (Grim Reaper)", true)] static bool V5() { return Ok(); }
+    [MenuItem(ROOT + "Count Dracula", true)] static bool V6() { return Ok(); }
 
     static bool Ok() { return Application.isPlaying && StageWorld.Current != null && StageWorld.Current.Player != null; }
 }

@@ -1,0 +1,3 @@
+# 207 tick, hash a3076ad7
+# CVGP 20 BossB56Probe kịch bản 'drac1_head_body': Dracula hiện ép ở x 158 (Simon (128,176) quay phải): roi da ĐỨNG trúng THÂN (tick 92) ⇒ KHÔNG mất máu; NHẢY quất (A 124, B 126) trúng ĐẦU ⇒ −1 đòn yếu (wiki: chỉ đầu bị thương)
+-*91 B*1 -*32 A*1 -*1 B*1 -*80

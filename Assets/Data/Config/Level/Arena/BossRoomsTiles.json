@@ -56,6 +56,40 @@
    "rows8": 24,
    "uniqueTiles": 45,
    "csv": "Assets/Data/Config/Level/Arena/BossFrank_tiles.csv"
+  },
+  {
+   "id": "BossDeath",
+   "inventoryId": "-",
+   "stage": 0,
+   "sheetRect": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "width": 256,
+   "height": 192,
+   "cols8": 32,
+   "rows8": 24,
+   "uniqueTiles": 45,
+   "csv": "Assets/Data/Config/Level/Arena/BossDeath_tiles.csv"
+  },
+  {
+   "id": "BossDracula",
+   "inventoryId": "-",
+   "stage": 0,
+   "sheetRect": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "width": 256,
+   "height": 192,
+   "cols8": 32,
+   "rows8": 24,
+   "uniqueTiles": 45,
+   "csv": "Assets/Data/Config/Level/Arena/BossDracula_tiles.csv"
   }
  ]
 }
