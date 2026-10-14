@@ -1,0 +1,5 @@
+# 781 tick, hash 2fdf0287
+# CVGP 19 BossB24Probe kịch bản 'medusa_kill_l1': AUTOPILOT roi da (cấp 1): quay về Medusa, quất khi đoán trúng; đúng 12 đòn (wiki), +3000, lửa, quả cầu sau 152, nhặt ⇒ tally — ghi bằng autopilot (CVGP 19), hash chạy ghi d434a26e
+-*133 B*1 -*22 B*1 -*22 B*1 -*22 B*1 -*22 B*1 -*43 B*1
+-*22 B*1 -*22 B*1 -*22 B*1 -*22 B*1 -*43 B*1 -*22 B*1
+-*22 B*1 -*22 B*1 -*165 R*81 -*60

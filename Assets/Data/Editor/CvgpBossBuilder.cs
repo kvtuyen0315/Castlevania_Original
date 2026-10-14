@@ -9,7 +9,7 @@ using UnityEngine;
 ///   • hurt/touch = bbox pixel đục khung cánh nửa phantombat_2 (−16..15, −16..6) — XẤP XỈ (như enemy 13); video boss f360: mép phải
 ///     hộp này chạm thân Simon đúng frame Simon trúng đòn.
 ///   • layer Character order −2 như enemy (QUY ƯỚC).
-/// Routine 19/20: thêm 1 dòng Make… cho boss mới (lớp con BossBase).
+/// Routine 19/20: thêm 1 dòng Make… cho boss mới (lớp con BossBase). CVGP 19: BuildBlock24 (Medusa, Mummy Men, Frankenstein & Igor).
 /// </summary>
 public static class CvgpBossBuilder
 {
@@ -28,8 +28,96 @@ public static class CvgpBossBuilder
     {
         EnsureFolder(DIR);
         Make<PhantomBat>("PhantomBat", eBossId.PhantomBat, new RectInt(-1, -1, 2, 2), Vector2Int.zero, Anim("PhantomBatAnimSet"), PHANTOM_BAT_BOX, 0);
+        BuildBlock24();
         AssetDatabase.SaveAssets();
-        return "Boss prefabs: PhantomBat → " + DIR;
+        return "Boss prefabs: PhantomBat, QueenMedusa + Snake, MummyMan + MummyBandage, Frankenstein + Igor + IgorFireball → " + DIR;
+    }
+
+    static readonly RectInt FEET = new RectInt(-1, -2, 2, 2);
+
+    /// <summary>
+    /// CVGP 19 — boss Block 2–4 (theo wiki, GẦN ĐÚNG). Hộp = bbox pixel đục sprite (XẤP XỈ, như 13/14), đi đất viewOffset (0,1) + body FEET
+    /// (checklist enemy 13), bay viewOffset (0,0):
+    ///   • QueenMedusa: pivot tâm đầu medusa_head 32×32 ⇒ (−16,−16,32,32); con "Statue" (SpriteRenderer order −3, sprite bust gán lúc chạy).
+    ///   • Snake: snake_0/1 16×16 đục hàng 6/7–15, pivot đáy-giữa ⇒ (−8,−9,16,10) tâm −4.
+    ///   • MummyMan: mummy_* 16×48 đục hàng 8/9–47 ⇒ (−8,−39,16,40) tâm −20; băng vải MummyBandage (tâm, hộp riêng trong lớp).
+    ///   • Frankenstein: frankenstein_* 16×48 đục hàng 0/1–47 ⇒ (−8,−47,16,48) tâm −23; Igor igor_0/1 16×16 ⇒ (−8,−15,16,16) tâm −7;
+    ///     cầu lửa Igor = lớp BoneTowerFireball (AnimSet Igor "fireball" — igor_fireball 8×16 cùng bbox cầu lửa Bone Tower).
+    /// </summary>
+    static void BuildBlock24()
+    {
+        var medusaAnim = Anim("MedusaAnimSet");
+        var mummyAnim = Anim("MummyAnimSet");
+        var igorAnim = Anim("IgorAnimSet");
+        var snake = MakeEntity<Snake>("Snake", eEntityGroup.Enemy, FEET, new Vector2Int(0, 1), medusaAnim, ORDER, false, false, 32,
+            so => Enemy(so, eEnemyId.Snake, new RectInt(-8, -9, 16, 10), -4));
+        var bandage = MakeEntity<MummyBandage>("MummyBandage", eEntityGroup.EnemyShot, new RectInt(-1, -1, 2, 2), Vector2Int.zero, mummyAnim, 1,
+            false, true, 16, null);
+        var igorBall = MakeEntity<BoneTowerFireball>("IgorFireball", eEntityGroup.EnemyShot, new RectInt(-1, -1, 2, 2), Vector2Int.zero, igorAnim, 1,
+            false, true, 16, null);
+        var igor = MakeEntity<Igor>("Igor", eEntityGroup.Enemy, FEET, new Vector2Int(0, 1), igorAnim, ORDER, false, false, 32,
+            so =>
+            {
+                Enemy(so, eEnemyId.Igor, new RectInt(-8, -15, 16, 16), -7);
+                so.FindProperty("fireballPrefab").objectReferenceValue = igorBall;
+            });
+        Make<QueenMedusa>("QueenMedusa", eBossId.QueenMedusa, new RectInt(-1, -1, 2, 2), Vector2Int.zero, medusaAnim, new RectInt(-16, -16, 32, 32), 0,
+            so =>
+            {
+                so.FindProperty("snakePrefab").objectReferenceValue = snake;
+                var root = ((Component)so.targetObject).gameObject;
+                var st = new GameObject("Statue");
+                st.transform.SetParent(root.transform, false);
+                var r = st.AddComponent<SpriteRenderer>();
+                r.sortingLayerName = "Character";
+                r.sortingOrder = ORDER - 1;
+                so.FindProperty("statueView").objectReferenceValue = r;
+            });
+        Make<MummyMan>("MummyMan", eBossId.MummyMan, FEET, new Vector2Int(0, 1), mummyAnim, new RectInt(-8, -39, 16, 40), -20,
+            so => so.FindProperty("bandagePrefab").objectReferenceValue = bandage);
+        Make<Frankenstein>("Frankenstein", eBossId.Frankenstein, FEET, new Vector2Int(0, 1), Anim("FrankensteinAnimSet"), new RectInt(-8, -47, 16, 48), -23,
+            so => so.FindProperty("igorPrefab").objectReferenceValue = igor);
+    }
+
+    static void Enemy(SerializedObject so, eEnemyId id, RectInt box, int centerDy)
+    {
+        so.FindProperty("enemyId").enumValueIndex = System.Array.IndexOf(System.Enum.GetValues(typeof(eEnemyId)), id);
+        so.FindProperty("hurtBox").rectIntValue = box;
+        so.FindProperty("touchBox").rectIntValue = box;
+        so.FindProperty("centerDy").intValue = centerDy;
+    }
+
+    /// <summary>Thực thể phụ của boss (rắn, Igor, đạn) — cùng khuôn CvgpEnemyBuilder.Make.</summary>
+    static T MakeEntity<T>(string name, eEntityGroup group, RectInt body, Vector2Int viewOffset, AnimSet anim, int order, bool deadly,
+                           bool despawnOffscreen, int margin, System.Action<SerializedObject> extra) where T : Entity
+    {
+        var go = new GameObject(name);
+        try
+        {
+            var sr = go.AddComponent<SpriteRenderer>();
+            sr.sortingLayerName = "Character";
+            sr.sortingOrder = order;
+            var c = go.AddComponent<T>();
+            var so = new SerializedObject(c);
+            so.FindProperty("group").enumValueIndex = (int)group;
+            so.FindProperty("body").rectIntValue = body;
+            so.FindProperty("view").objectReferenceValue = sr;
+            so.FindProperty("viewOffset").vector2IntValue = viewOffset;
+            so.FindProperty("animSet").objectReferenceValue = anim;
+            so.FindProperty("checkDeadlyTiles").boolValue = deadly;
+            so.FindProperty("despawnOffscreen").boolValue = despawnOffscreen;
+            so.FindProperty("offscreenMargin").intValue = margin;
+            if (extra != null)
+                extra(so);
+            so.ApplyModifiedPropertiesWithoutUndo();
+            string path = DIR + "/" + name + ".prefab";
+            PrefabUtility.SaveAsPrefabAsset(go, path);
+            return AssetDatabase.LoadAssetAtPath<T>(path);
+        }
+        finally
+        {
+            Object.DestroyImmediate(go);
+        }
     }
 
     public static T Load<T>(string name) where T : BossBase
@@ -45,7 +133,8 @@ public static class CvgpBossBuilder
         return a;
     }
 
-    static T Make<T>(string name, eBossId id, RectInt body, Vector2Int viewOffset, AnimSet anim, RectInt box, int centerDy) where T : BossBase
+    static T Make<T>(string name, eBossId id, RectInt body, Vector2Int viewOffset, AnimSet anim, RectInt box, int centerDy,
+                     System.Action<SerializedObject> extra = null) where T : BossBase
     {
         var go = new GameObject(name);
         try
@@ -68,6 +157,8 @@ public static class CvgpBossBuilder
             so.FindProperty("hurtBox").rectIntValue = box;
             so.FindProperty("touchBox").rectIntValue = box;
             so.FindProperty("centerDy").intValue = centerDy;
+            if (extra != null)
+                extra(so);
             so.ApplyModifiedPropertiesWithoutUndo();
             string path = DIR + "/" + name + ".prefab";
             PrefabUtility.SaveAsPrefabAsset(go, path);

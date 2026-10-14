@@ -74,7 +74,7 @@ public abstract class BossBase : EnemyBase
         InvincibleOnHit = invincibleTicks;
         if (animSet != null && animSet.Has("hurt"))
             aHurt = animSet.Get("hurt");
-        Bar(Health.Bars(GameSession.MAX_HP));
+        Bar(BarValue());
         LoadBoss(cfg);
     }
 
@@ -85,6 +85,19 @@ public abstract class BossBase : EnemyBase
     protected virtual bool UsesEnemyBar => true;
     /// <summary>Đổi nhạc sang nhạc boss khi bắt đầu đánh (CVGP 18: bản thường ⇒ false).</summary>
     protected virtual bool PlaysBossMusic => true;
+
+    /// <summary>Số vạch thanh ENEMY (mặc định máu thực thể này — CVGP 19: Mummy Men cộng máu 2 con).</summary>
+    protected virtual int BarValue() { return Health.Bars(GameSession.MAX_HP); }
+
+    /// <summary>ConfigBoss.moveSpeed (px/tick) → fixed (CVGP 19).</summary>
+    protected int BossMoveSpeed(GameConfig cfg, float fallback)
+    {
+        var row = cfg != null ? cfg.GetBoss(bossId, phase) : null;
+        return Fixed.FromFloat(row != null ? row.moveSpeed.Get("ConfigBoss." + bossId + "." + phase + ".moveSpeed", fallback) : fallback);
+    }
+
+    /// <summary>Cập nhật thanh ENEMY ngay (CVGP 19: thực thể phụ đổi máu chung).</summary>
+    protected void RefreshBar() { Bar(BarValue()); }
 
     private void Bar(int bars)
     {
@@ -110,7 +123,7 @@ public abstract class BossBase : EnemyBase
     {
         dormant = false;
         ApplyVisibility();   // bật hộp ngay (boss đang bị Stopwatch giữ thì OnTick không chạy)
-        Bar(Health.Bars(GameSession.MAX_HP));
+        Bar(BarValue());
     }
 
     /// <summary>Nhạc boss: chưa import nhạc (CVGP_MEMORY §6 nợ 02) ⇒ PlayMusic(null) = im lặng + log (H2 — không thay bài khác).</summary>
@@ -193,7 +206,7 @@ public abstract class BossBase : EnemyBase
             return false;
         Health.Apply(hit.strength);
         hitsTaken++;
-        Bar(Health.Bars(GameSession.MAX_HP));
+        Bar(BarValue());
         var cfg = World.Config;
         // tia lửa tại chỗ trúng (video boss f492–530: tia hồng ở mép dơi chỗ roi chạm)
         var a = hit.hitbox != null ? hit.hitbox.SectionRect : new RectInt(X, Y, 0, 0);
@@ -251,7 +264,7 @@ public abstract class BossBase : EnemyBase
     public void DebugSetHp(int hp)
     {
         Health.Set(Mathf.Max(1, hp));
-        Bar(Health.Bars(GameSession.MAX_HP));
+        Bar(BarValue());
     }
 }
 

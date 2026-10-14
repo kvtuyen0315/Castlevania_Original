@@ -1338,6 +1338,1071 @@ MonoBehaviour:
     unit: "c\xE1i"
     source: wiki:Bosses#The Count
     note: 
+  - actor: Boss.QueenMedusa
+    key: hitStunTicks
+    value:
+      has: 1
+      value: 10
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 19; nh\u01B0 Phantom Bat (\u0111o 14) \u2014 khung chung BossBase"
+    note: 
+  - actor: Boss.QueenMedusa
+    key: invincibleTicks
+    value:
+      has: 1
+      value: 16
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 19; nh\u01B0 Phantom Bat (suy lu\u1EADn 14)"
+    note: 
+  - actor: Boss.QueenMedusa
+    key: deathFxTicks
+    value:
+      has: 1
+      value: 62
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 19; c\u1EE5m l\u1EEDa bossdeath_m nh\u01B0 Phantom Bat (\u0111o 14)"
+    note: 
+  - actor: Boss.QueenMedusa
+    key: deathFxUpPx
+    value:
+      has: 1
+      value: 0
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 19; pivot = t\xE2m \u0111\u1EA7u \u21D2 l\u1EEDa \u1EDF t\xE2m sprite"
+    note: 
+  - actor: Boss.QueenMedusa
+    key: wakeDelayTicks
+    value:
+      has: 1
+      value: 60
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 19; wiki: v\u1EE1 ra t\u1EEB t\u01B0\u1EE3ng 'kh\xF4ng b\xE1o tr\u01B0\u1EDBc'
+      khi Simon \u0111\xE3 v\xE0o ph\xF2ng \u2014 ch\u1ECDn 1 s"
+    note: "t\u1EEB l\xFAc sinh (v\xE0o ph\xF2ng)"
+  - actor: Boss.QueenMedusa
+    key: statueHeadUpPx
+    value:
+      has: 1
+      value: 32
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 19; sheet: t\u01B0\u1EE3ng medusa_bust 32\xD748 \u2014 \u0111\u1EA7u
+      32\xD732 hi\u1EC7n \u1EDF \u0111\u1EC9nh t\u01B0\u1EE3ng (t\xE2m cao h\u01A1n
+      ch\xE2n t\u01B0\u1EE3ng 48 \u2212 16)"
+    note: 
+  - actor: Boss.QueenMedusa
+    key: emergeTicks
+    value:
+      has: 1
+      value: 32
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 19; th\u1EDDi gian v\u1EE1 t\u01B0\u1EE3ng (nh\xE1y \u0111\xE1 \u2194
+      s\u1ED1ng) \u2014 nh\u01B0 Bone Tower nh\xE1y 17"
+    note: "\u0111\xE3 nh\u1EADn/g\xE2y \u0111\xF2n"
+  - actor: Boss.QueenMedusa
+    key: emergeFlashTicks
+    value:
+      has: 1
+      value: 4
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 19; nh\u1ECBp nh\xE1y medusa_stone \u2194 medusa_head nh\u01B0 Bone
+      Tower 17"
+    note: 
+  - actor: Boss.QueenMedusa
+    key: flyAboveFloorPx
+    value:
+      has: 1
+      value: 32
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 19; wiki: 'h\u1EA7u nh\u01B0 lu\xF4n bay th\u1EA5p s\xE1t \u0111\u1EA5t'
+      (Holy Water d\u1EC5 tr\xFAng) \u2014 t\xE2m s\xF3ng ngang ng\u1EF1c Simon"
+    note: "t\xE2m s\xF3ng so v\u1EDBi s\xE0n ph\xF2ng"
+  - actor: Boss.QueenMedusa
+    key: flyAmplitudePx
+    value:
+      has: 1
+      value: 16
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 19; \u0111\xE1y s\xF3ng ch\u1EA1m ch\xE2n (lao v\xE0o Simon), \u0111\u1EC9nh
+      s\xF3ng qua \u0111\u1EA7u Simon \u0111\u1EE9ng"
+    note: 
+  - actor: Boss.QueenMedusa
+    key: flyPeriodTicks
+    value:
+      has: 1
+      value: 96
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 19; nh\u01B0 s\xF3ng Medusa Head 17 (c\xF9ng '\u0111\u1EA7u Medusa')"
+    note: 
+  - actor: Boss.QueenMedusa
+    key: overshootPx
+    value:
+      has: 1
+      value: 32
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 19; wiki: 'c\u1ED1 va v\xE0o Simon' \u2014 v\u01B0\u1EE3t qua Simon
+      32 px r\u1ED3i quay l\u1EA1i lao ti\u1EBFp"
+    note: 
+  - actor: Boss.QueenMedusa
+    key: screenMinX
+    value:
+      has: 1
+      value: 16
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: "px m\xE0n"
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 19; quay \u0111\u1EA7u khi ch\u1EA1m m\xE9p (n\u1EEDa b\u1EC1 ngang
+      \u0111\u1EA7u 16)"
+    note: 
+  - actor: Boss.QueenMedusa
+    key: screenMaxX
+    value:
+      has: 1
+      value: 240
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: "px m\xE0n"
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 19; \u0111\u1ED1i x\u1EE9ng screenMinX"
+    note: 
+  - actor: Boss.QueenMedusa
+    key: snakeFirstTicks
+    value:
+      has: 1
+      value: 48
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 19; wiki: 'khi bay th\u1EA3 r\u1EAFn' \u2014 r\u1EAFn \u0111\u1EA7u
+      sau 0.8 s bay"
+    note: 
+  - actor: Boss.QueenMedusa
+    key: snakeMinTicks
+    value:
+      has: 1
+      value: 96
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 19; nh\u1ECBp th\u1EA3 r\u1EAFn (wiki kh\xF4ng n\xEAu) \u2014 nh\u01B0
+      ngh\u1EC9 Bone Tower 17"
+    note: 
+  - actor: Boss.QueenMedusa
+    key: snakeSpanTicks
+    value:
+      has: 1
+      value: 64
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 19; ng\u1EABu nhi\xEAn \u0111\u1EC1u [96, 160]"
+    note: 
+  - actor: Boss.QueenMedusa
+    key: maxSnakes
+    value:
+      has: 1
+      value: 2
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: con
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 19; gi\u1EDBi h\u1EA1n r\u1EAFn s\u1ED1ng c\xF9ng l\xFAc (wiki kh\xF4ng
+      n\xEAu)"
+    note: 
+  - actor: Boss.QueenMedusa
+    key: snakeDropBelowPx
+    value:
+      has: 1
+      value: 8
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 19; r\u1EAFn r\u01A1i ra t\u1EEB d\u01B0\u1EDBi t\xE2m \u0111\u1EA7u"
+    note: 
+  - actor: Boss.MummyMan
+    key: hitStunTicks
+    value:
+      has: 1
+      value: 10
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 19; nh\u01B0 Phantom Bat (\u0111o 14)"
+    note: 
+  - actor: Boss.MummyMan
+    key: invincibleTicks
+    value:
+      has: 1
+      value: 16
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 19; nh\u01B0 Phantom Bat (suy lu\u1EADn 14)"
+    note: 
+  - actor: Boss.MummyMan
+    key: deathFxTicks
+    value:
+      has: 1
+      value: 62
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 19; c\u1EE5m l\u1EEDa bossdeath_m nh\u01B0 Phantom Bat (\u0111o 14)"
+    note: 
+  - actor: Boss.MummyMan
+    key: deathFxUpPx
+    value:
+      has: 1
+      value: 20
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 19; t\xE2m th\xE2n sprite 16\xD748 (\u0111\u1EE5c h\xE0ng 8\u201347)"
+    note: 
+  - actor: Boss.MummyMan
+    key: wakeDistancePx
+    value:
+      has: 1
+      value: 128
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 19; th\u1EE9c (c\u1EA3 2) khi Simon c\xE1ch con g\u1EA7n nh\u1EA5t
+      < n\u1EEDa m\xE0n"
+    note: 
+  - actor: Boss.MummyMan
+    key: partnerDxPx
+    value:
+      has: 1
+      value: 40
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 19; con th\u1EE9 hai sinh c\xE1ch con \u0111\u1EA7u 40 px v\u1EC1 b\xEAn
+      tr\xE1i"
+    note: 
+  - actor: Boss.MummyMan
+    key: decideMinTicks
+    value:
+      has: 1
+      value: 48
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 19; wiki: 'lang thang' \u2014 \u0111\u1ED5i \xFD m\u1ED7i 0.8\u20131.9
+      s"
+    note: 
+  - actor: Boss.MummyMan
+    key: decideSpanTicks
+    value:
+      has: 1
+      value: 64
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 19; ng\u1EABu nhi\xEAn \u0111\u1EC1u [48, 112]"
+    note: 
+  - actor: Boss.MummyMan
+    key: keepDxPx
+    value:
+      has: 1
+      value: 40
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 19; wiki: 'k\u1EB9p Simon t\u1EEB hai ph\xEDa' \u2014 m\u1ED7i con
+      nh\u1EAFm 1 b\xEAn Simon c\xE1ch 40 px"
+    note: 
+  - actor: Boss.MummyMan
+    key: wanderPct
+    value:
+      has: 1
+      value: 25
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: '%'
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 19; wiki: '\u0111i lang thang' \u2014 1/4 l\u1EA7n ch\u1ECDn h\u01B0\u1EDBng
+      ng\u1EABu nhi\xEAn"
+    note: 
+  - actor: Boss.MummyMan
+    key: standDxPx
+    value:
+      has: 1
+      value: 4
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 19; t\u1EDBi \u0111\xEDch \xB14 px th\xEC \u0111\u1EE9ng"
+    note: 
+  - actor: Boss.MummyMan
+    key: throwFirstTicks
+    value:
+      has: 1
+      value: 64
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 19; wiki: 'th\u1EC9nh tho\u1EA3ng n\xE9m b\u0103ng g\u1EA1c' \u2014
+      l\u1EA7n \u0111\u1EA7u sau ~1 s"
+    note: 
+  - actor: Boss.MummyMan
+    key: throwMinTicks
+    value:
+      has: 1
+      value: 128
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 19; th\u1EC9nh tho\u1EA3ng: m\u1ED7i con 2.1\u20133.7 s"
+    note: 
+  - actor: Boss.MummyMan
+    key: throwSpanTicks
+    value:
+      has: 1
+      value: 96
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 19; ng\u1EABu nhi\xEAn \u0111\u1EC1u [128, 224]"
+    note: 
+  - actor: Boss.MummyMan
+    key: throwRangePx
+    value:
+      has: 1
+      value: 160
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 19; ch\u1EC9 n\xE9m khi Simon trong 160 px"
+    note: 
+  - actor: Boss.MummyMan
+    key: throwPoseTicks
+    value:
+      has: 1
+      value: 16
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 19; \u0111\u1EE9ng l\u1EA1i tr\u01B0\u1EDBc khi n\xE9m (nh\u01B0 t\u01B0
+      th\u1EBF n\xE9m Axe Knight 18)"
+    note: 
+  - actor: Boss.MummyMan
+    key: bandageAbovePx
+    value:
+      has: 1
+      value: 28
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 19; t\xE2m b\u0103ng \u1EDF ch\xE2n \u2212 28 \u21D2 h\u1ED9p b\u0103ng
+      h\xE0ng ch\xE2n\u221231..ch\xE2n\u221223: ch\u1ED3ng h\u1ED9p Simon \u0110\u1EE8NG
+      (\u221230..\u22121), KH\xD4NG ch\u1ED3ng Simon NG\u1ED2I (\u221222..0) \u2014
+      wiki 'ng\u1ED3i qu\u1EA5t khi ch\xFAng \xE1p s\xE1t'"
+    note: 
+  - actor: Boss.MummyMan
+    key: bandageSpeed
+    value:
+      has: 1
+      value: 1
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px/tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 19; b\u0103ng bay ngang ch\u1EADm nh\u01B0 c\u1EA7u l\u1EEDa (1\u20131.5)"
+    note: 
+  - actor: Boss.MummyMan
+    key: bandageFrontPx
+    value:
+      has: 1
+      value: 8
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 19; b\u0103ng sinh tr\u01B0\u1EDBc th\xE2n n\u1EEDa sprite"
+    note: 
+  - actor: Boss.Frankenstein
+    key: hitStunTicks
+    value:
+      has: 1
+      value: 10
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 19; nh\u01B0 Phantom Bat (\u0111o 14)"
+    note: 
+  - actor: Boss.Frankenstein
+    key: invincibleTicks
+    value:
+      has: 1
+      value: 16
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 19; nh\u01B0 Phantom Bat (suy lu\u1EADn 14)"
+    note: 
+  - actor: Boss.Frankenstein
+    key: deathFxTicks
+    value:
+      has: 1
+      value: 62
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 19; c\u1EE5m l\u1EEDa bossdeath_m nh\u01B0 Phantom Bat (\u0111o 14)"
+    note: 
+  - actor: Boss.Frankenstein
+    key: deathFxUpPx
+    value:
+      has: 1
+      value: 24
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 19; t\xE2m th\xE2n sprite 16\xD748"
+    note: 
+  - actor: Boss.Frankenstein
+    key: wakeDelayTicks
+    value:
+      has: 1
+      value: 16
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 19; wiki: v\xE0o ph\xF2ng ch\u1EA1y l\xEAn b\u1EE5c ph\u1EA3i \u0111\xE1nh
+      v\xE0i \u0111\xF2n tr\u01B0\u1EDBc khi Igor \u0111i \u21D2 Monster nh\u1EADn
+      \u0111\xF2n g\u1EA7n nh\u01B0 ngay"
+    note: "t\u1EEB l\xFAc sinh (v\xE0o ph\xF2ng)"
+  - actor: Boss.Frankenstein
+    key: zoneMinScreenX
+    value:
+      has: 1
+      value: 128
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: "px m\xE0n"
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 19; wiki: Monster 'th\u01B0\u1EDDng \u1EDF n\u1EEDa ph\u1EA3i m\xE0n
+      h\xECnh'"
+    note: 
+  - actor: Boss.Frankenstein
+    key: zoneMaxScreenX
+    value:
+      has: 1
+      value: 216
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: "px m\xE0n"
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 19; t\u1EDBi s\xE1t b\u1EE5c g\xF3c ph\u1EA3i (ph\xF2ng th\u1EED: b\u1EE5c
+      x 224\u2013255)"
+    note: 
+  - actor: Boss.Frankenstein
+    key: decideMinTicks
+    value:
+      has: 1
+      value: 64
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 19; wiki: 'ch\u1EC9 \u0111i lang thang' \u2014 \u0111\u1ED5i \xFD m\u1ED7i
+      1.1\u20132.1 s"
+    note: 
+  - actor: Boss.Frankenstein
+    key: decideSpanTicks
+    value:
+      has: 1
+      value: 64
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 19; ng\u1EABu nhi\xEAn \u0111\u1EC1u [64, 128]"
+    note: 
+  - actor: Boss.Frankenstein
+    key: chasePct
+    value:
+      has: 1
+      value: 75
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: '%'
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 19; wiki: Monster 'c\xF3 th\u1EC3 ch\u1EAFn \u0111\u01B0\u1EDDng' \u2014
+      3/4 l\u1EA7n nh\u1EAFm x Simon (k\u1EB9p trong v\xF9ng), c\xF2n l\u1EA1i \u0111i\u1EC3m
+      ng\u1EABu nhi\xEAn"
+    note: 
+  - actor: Boss.Frankenstein
+    key: standDxPx
+    value:
+      has: 1
+      value: 4
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 19; t\u1EDBi \u0111\xEDch \xB14 px th\xEC \u0111\u1EE9ng"
+    note: 
+  - actor: Enemy.Igor
+    key: rideAbovePx
+    value:
+      has: 1
+      value: 40
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 19; wiki Stages 10-12: Igor 'nh\u1EA3y kh\u1ECFi vai Monster' \u2014
+      ng\u1ED3i \u1EDF vai (Monster cao 48)"
+    note: 
+  - actor: Enemy.Igor
+    key: startDelayTicks
+    value:
+      has: 1
+      value: 96
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 19; wiki: \u0111\xE1nh v\xE0i \u0111\xF2n 'tr\u01B0\u1EDBc khi Igor
+      b\u1EAFt \u0111\u1EA7u di chuy\u1EC3n' \u2014 1.6 s sau khi Monster th\u1EE9c"
+    note: 
+  - actor: Enemy.Igor
+    key: edgeMinScreenX
+    value:
+      has: 1
+      value: 24
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: "px m\xE0n"
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 19; wiki: 'nh\u1EA3y h\u1EBFt sang m\u1ED9t ph\xEDa ph\xF2ng r\u1ED3i
+      nh\u1EA3y ng\u01B0\u1EE3c l\u1EA1i' \u2014 \u0111\xEDch m\xE9p tr\xE1i (tr\xEAn
+      b\u1EE5c g\xF3c)"
+    note: 
+  - actor: Enemy.Igor
+    key: edgeMaxScreenX
+    value:
+      has: 1
+      value: 232
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: "px m\xE0n"
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 19; \u0111\xEDch m\xE9p ph\u1EA3i (tr\xEAn b\u1EE5c g\xF3c)"
+    note: 
+  - actor: Enemy.Igor
+    key: edgeReachPx
+    value:
+      has: 1
+      value: 24
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 19; t\u1EDBi \u0111\xEDch \xB124 px \u21D2 \u0111\u1ED5i ph\xEDa (th\u1EED
+      12: Igor \u0111\xE1p tr\xEAn b\u1EE5c g\xF3c c\xE1ch \u0111\xEDch 20 px r\u1ED3i
+      nh\u1EA3y cao th\xEAm 1 l\u1EA7n ra gi\u1EEFa s\xE0n \u2014 \u1EA3nh smoke
+      CVGP 19)"
+    note: 
+  - actor: Enemy.Igor
+    key: cornerZonePx
+    value:
+      has: 1
+      value: 48
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 19; wiki: 'nh\u1EA3y CAO khi t\u1EDBi c\xE1c b\u1EE5c \u1EDF g\xF3c'
+      \u2014 trong 48 px cu\u1ED1i"
+    note: 
+  - actor: Enemy.Igor
+    key: shortVx
+    value:
+      has: 1
+      value: 1.25
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px/tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 19; wiki: 'nh\u1EA3y ti\u1EBFn \u1EDF gi\u1EEFa m\xE0n' \u2014 nh\u01B0
+      Fleaman (17) h\u01A1i xa h\u01A1n"
+    note: 
+  - actor: Enemy.Igor
+    key: shortVy0
+    value:
+      has: 1
+      value: -3
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px/tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 19; \u0111\u1EC9nh 18 px (g 0.25)"
+    note: 
+  - actor: Enemy.Igor
+    key: longVx
+    value:
+      has: 1
+      value: 1.5
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px/tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 19; c\xFA nh\u1EA3y cao v\u01B0\u1EE3t m\xE9p b\u1EE5c 32 px khi c\xF2n
+      c\xE1ch 40\u201348 px (l\xEAn 44 px l\xFAc ch\u1EA1m m\xE9p)"
+    note: 
+  - actor: Enemy.Igor
+    key: longVy0
+    value:
+      has: 1
+      value: -5
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px/tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 19; \u0111\u1EC9nh 50 px (g 0.25) \u2014 cao h\u01A1n b\u1EE5c g\xF3c
+      32 px"
+    note: 
+  - actor: Enemy.Igor
+    key: gravity
+    value:
+      has: 1
+      value: 0.25
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: "px/tick\xB2"
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 19; nh\u01B0 Fleaman (17)"
+    note: 
+  - actor: Enemy.Igor
+    key: pauseMinTicks
+    value:
+      has: 1
+      value: 8
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 19; wiki: 'kh\xF4ng ho\xE0n to\xE0n theo quy lu\u1EADt' \u2014 ngh\u1EC9
+      ng\u1EABu nhi\xEAn nh\u01B0 Fleaman"
+    note: 
+  - actor: Enemy.Igor
+    key: pauseSpanTicks
+    value:
+      has: 1
+      value: 16
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 19; ng\u1EABu nhi\xEAn \u0111\u1EC1u [8, 24]"
+    note: 
+  - actor: Enemy.Igor
+    key: fireEveryHops
+    value:
+      has: 1
+      value: 2
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: "c\xFA"
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 19; wiki: 'n\xE9m c\u1EA7u l\u1EEDa' (t\u1EA7n su\u1EA5t kh\xF4ng n\xEAu)
+      \u2014 \u1EDF \u0111\u1EC9nh m\u1ED7i c\xFA nh\u1EA3y th\u1EE9 2"
+    note: 
+  - actor: Enemy.Igor
+    key: fireballSpeed
+    value:
+      has: 1
+      value: 1.5
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px/tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 19; nh\u01B0 c\u1EA7u l\u1EEDa Bone Dragon / Phantom Bat th\u01B0\u1EDDng
+      (18)"
+    note: 
+  - actor: Enemy.Igor
+    key: aimAbovePx
+    value:
+      has: 1
+      value: 16
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 19; nh\u1EAFm t\xE2m th\xE2n Simon (nh\u01B0 18)"
+    note: 
+  - actor: Enemy.Igor
+    key: stunTicks
+    value:
+      has: 1
+      value: 120
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 19; wiki: 'qu\u1EA5t Igor 1 l\u1EA7n s\u1EBD \u0111\xF3ng b\u0103ng
+      n\xF3' \u2014 \u0111\u1EE7 d\u1ED3n v\xE0i \u0111\xF2n v\xE0o Monster (2 s)"
+    note: 
+  - actor: Enemy.Igor
+    key: hitInvincibleTicks
+    value:
+      has: 1
+      value: 16
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 19; nh\u01B0 boss (14)"
+    note: 
+  - actor: Enemy.Snake
+    key: gravity
+    value:
+      has: 1
+      value: 0.25
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: "px/tick\xB2"
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
+      routine 19; r\u01A1i nh\u01B0 item (ConfigRule.ItemGravity 0.25 \u2014 \u0111o
+      11)"
+    note: 
   - actor: SubWeapon.Dagger
     key: spawnHeightAboveFeet
     value:

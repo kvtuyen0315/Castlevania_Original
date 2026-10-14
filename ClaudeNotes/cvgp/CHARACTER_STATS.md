@@ -116,16 +116,16 @@ Máu = **số đòn** để hạ: *yếu* (roi da, Holy Water, Dagger) / *mạnh
 | AxeKnight | Axe-Man | enemy_axeman (Axe-Man) | Normal | 14, 15 | 10 | 9 | 1400 | có | Rìu ném cao hoặc thấp rồi bay về như Boomerang (quất vỡ được) | 0.5 | Giữ khoảng cách; lùi khi Simon tiến; bị đẩy khỏi mép màn thì không quay lại | wiki:Enemies#Axe Knights · *hits:* wiki:Enemies#Axe Knights (10/9 không đúng tỉ lệ 1.5× — giữ nguyên số wiki; CV_WIKI_DATA §7.1 #6) · *moveSpeed:* suy luận: ước lượng (không video) — routine 18; wiki: lùi/tiến giữ khoảng cách, Simon đẩy được khỏi màn ⇒ chậm hơn Simon 1.0 (đo 08) — bằng Spear Knight 0.5 |
 | PhantomBatMinor |  | boss_phantombat | Sub | 16 | 3 | 2 | 200 | có | Cầu lửa | — | 5 con ở Stage 16; bay tới theo vị trí khởi đầu và phun cầu lửa; nên tránh hơn là đánh | wiki:Bosses#Phantom Bat; wiki:Stages 16-18#Stage 16 · *hits:* suy luận: ước lượng (không video) — routine 18; wiki KHÔNG nêu: Stage 16 "1 đòn chỉ làm chậm" ⇒ > 1 đòn, "giết được nhưng không đáng" ⇒ ít hơn boss 12/8 — chọn như enemy nhiều đòn phổ biến (Ghost/Spear Knight 3/2); hỏi §5 · *score:* suy luận: ước lượng (không video) — routine 18; wiki KHÔNG nêu điểm: chọn bằng Bat 200 (cùng loài dơi); hỏi §5 · *moveSpeed:* routine 18: chuyển động = PhantomBat (đo 14) — tốc độ ở ConfigActorParam Enemy.PhantomBatMinor.* |
 | Igor |  | boss_frankenstein (ô Igor) | Sub | 12 | — | — | — | không | Cầu lửa | *không rõ* | Bất tử; nhảy qua lại hai bên phòng và ném cầu lửa; quất 1 lần ⇒ choáng | wiki:Bosses#Frankenstein & Igor; wiki:Stages 10-12#Stage 12 · *moveSpeed:* không rõ — không có video (routine 19 ước lượng) |
-| Snake |  | boss_medusa (ô rắn) | Sub | 6 | 1 | 1 | *không rõ* | có | — | *không rõ* | Do Queen Medusa thả xuống; bò trên sàn về phía Simon | wiki:Bosses#Queen Medusa · *hits:* wiki:Bosses#Queen Medusa (chết bằng 1 đòn roi; đòn mạnh = 1 là suy luận) · *score:* không rõ — wiki không nêu điểm · *moveSpeed:* không rõ — không có video (routine 19 ước lượng) |
+| Snake |  | boss_medusa (ô rắn) | Sub | 6 | 1 | 1 | *không rõ* | có | — | 0.5 | Do Queen Medusa thả xuống; bò trên sàn về phía Simon | wiki:Bosses#Queen Medusa · *hits:* wiki:Bosses#Queen Medusa (chết bằng 1 đòn roi; đòn mạnh = 1 là suy luận) · *score:* không rõ — wiki không nêu điểm · *moveSpeed:* suy luận: ước lượng (không video) — routine 19; rắn 'trườn về phía Simon' — chậm như Spear Knight 0.5 |
 
 ## 3. Boss
 
 | Boss | Pha | Stage | Số thực thể | Đòn yếu | Đòn mạnh | Đòn tính cho | Điểm | Stopwatch tác dụng | Điểm yếu | Đòn tấn công | Item trong phòng | Nguồn |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
 | PhantomBat | 1 | 3 | 1 | 12 | 8 | Single | 3000 | có | toàn thân | Bay tới điểm ngẫu nhiên; thỉnh thoảng bổ nhào về phía Simon; video: không bắn đạn | Double Shot (khối phải nhất ở chân cầu thang) | wiki:Bosses#Phantom Bat · *hits:* wiki:Bosses#Phantom Bat; video:Map_1 3:19–3:30 rìu −2 vạch/lần ⇒ 8 đòn mạnh hết 16 vạch (khớp) · *score:* wiki:Bosses#Phantom Bat; video:Map_1 3:30.17 +3000 (khớp) · *moveSpeed:* đo:routine 14 — tốc độ bay lượn (trục trội 0.72–0.77; 5 lần 2 video); các pha khác ở ConfigActorParam Boss.PhantomBat |
-| QueenMedusa | 1 | 6 | 1 | 12 | 8 | Single | 3000 | có | toàn thân | Lao thẳng vào Simon (bay thấp); thả rắn bò trên sàn về phía Simon | Không | wiki:Bosses#Queen Medusa · *moveSpeed:* không rõ — không có video (routine 19 ước lượng) |
-| MummyMan | 1 | 9 | 2 | 48 | 32 | TotalAllEntities | 3000 | không | toàn thân | Lang thang trong phòng; thỉnh thoảng ném băng gạc; kẹp Simon từ hai phía | Pot Roast (khối thấp nhất cầu thang trái) | wiki:Bosses#Mummy Men · *hits:* wiki:Bosses#Mummy Men (48/32 không nói tổng hay mỗi con — chọn TỔNG 2 con theo suy luận 48 = 2 × 24; §4) · *moveSpeed:* không rõ — không có video (routine 19 ước lượng) |
-| Frankenstein | 1 | 12 | 2 | 24 | 16 | MainEntityOnly | 5000 | không | toàn thân (Monster) | Monster đi lang thang (thường nửa phải); Igor nhảy qua lại và ném cầu lửa | Không (Dagger ở ngoài phòng) | wiki:Bosses#Frankenstein & Igor · *hits:* wiki:Bosses#Frankenstein & Igor (chỉ Monster; Igor bất tử ⇒ ConfigEnemy.Igor) · *moveSpeed:* không rõ — không có video (routine 19 ước lượng) |
+| QueenMedusa | 1 | 6 | 1 | 12 | 8 | Single | 3000 | có | toàn thân | Lao thẳng vào Simon (bay thấp); thả rắn bò trên sàn về phía Simon | Không | wiki:Bosses#Queen Medusa · *moveSpeed:* suy luận: ước lượng (không video) — routine 19; ngang khi bay lao về Simon (wiki: 'cố va vào Simon'; như Medusa Head 17 1.0); sóng dọc ở ConfigActorParam |
+| MummyMan | 1 | 9 | 2 | 48 | 32 | TotalAllEntities | 3000 | không | toàn thân | Lang thang trong phòng; thỉnh thoảng ném băng gạc; kẹp Simon từ hai phía | Pot Roast (khối thấp nhất cầu thang trái) | wiki:Bosses#Mummy Men · *hits:* wiki:Bosses#Mummy Men (48/32 không nói tổng hay mỗi con — chọn TỔNG 2 con theo suy luận 48 = 2 × 24; §4) · *moveSpeed:* suy luận: ước lượng (không video) — routine 19; wiki Block 3 'boss chậm nhưng khoẻ' — chậm hơn Zombie 0.875 và Spear Knight 0.5 |
+| Frankenstein | 1 | 12 | 2 | 24 | 16 | MainEntityOnly | 5000 | không | toàn thân (Monster) | Monster đi lang thang (thường nửa phải); Igor nhảy qua lại và ném cầu lửa | Không (Dagger ở ngoài phòng) | wiki:Bosses#Frankenstein & Igor · *hits:* wiki:Bosses#Frankenstein & Igor (chỉ Monster; Igor bất tử ⇒ ConfigEnemy.Igor) · *moveSpeed:* suy luận: ước lượng (không video) — routine 19; Monster 'chỉ đi lang thang' — chậm nhất (sải chân lớn, nặng nề) |
 | Death | 1 | 15 | 1 | 24 | 16 | Single | 7000 | không | toàn thân | Lơ lửng ngẫu nhiên (ưa các góc); tạo tối đa 3 lưỡi hái đứng ~1 s rồi đuổi Simon và nhanh dần | Không | wiki:Bosses#Death · *moveSpeed:* không rõ — không có video (routine 20 ước lượng) |
 | Dracula | 1 | 18 | 1 | 24 | 16 | Single | *không rõ* | không | chỉ đầu | Dịch chuyển tới chỗ ngẫu nhiên; mở áo choàng bắn 3 cầu lửa rồi biến mất | Holy Water (nến trái cùng) | wiki:Bosses#The Count · *hits:* wiki:Bosses#The Count (bảng không nói dạng nào — gán dạng 1; §4) · *score:* không rõ — wiki không nêu điểm riêng dạng 1 · *moveSpeed:* không rõ — không có video (routine 20 ước lượng) |
 | Dracula | 2 | 18 | 1 | *không rõ* | 32 | Single | 50000 | không | chỉ đầu (chân không nhận sát thương) | Nhảy quanh phòng (cao/thấp); thỉnh thoảng phun lửa; Holy Water làm choáng nhưng không gây sát thương | — | wiki:Bosses#The Count; wiki:Stages 16-18#Stage 18 · *hits:* wiki:Stages 16-18#Stage 18 ('32 lần' vào đầu; vũ khí không nêu — gán đòn mạnh là suy luận); đòn yếu không rõ (gợi ý tỉ lệ 3:2 ⇒ 48 — routine 20 chốt) · *score:* wiki:Bosses#The Count — mâu thuẫn wiki:Gameplay#Points (Dracula không cho điểm); chọn Bosses (§4) · *moveSpeed:* không rõ — không có video (routine 20 ước lượng) |
@@ -220,6 +220,74 @@ Máu = **số đòn** để hạ: *yếu* (roi da, Holy Water, Dagger) / *mạnh
 | Boss.Death | maxScythes | 3 |  |  | cái |  | wiki:Bosses#Death |
 | Boss.Death | scytheIdleTicks | 60 |  |  | tick |  | wiki:Bosses#Death (đứng yên khoảng 1 giây × 60) |
 | Boss.Dracula | fireballsPerVolley | 3 |  |  | cái |  | wiki:Bosses#The Count |
+| Boss.QueenMedusa | hitStunTicks | 10 |  |  | tick |  | suy luận: ước lượng (không video) — routine 19; như Phantom Bat (đo 14) — khung chung BossBase |
+| Boss.QueenMedusa | invincibleTicks | 16 |  |  | tick |  | suy luận: ước lượng (không video) — routine 19; như Phantom Bat (suy luận 14) |
+| Boss.QueenMedusa | deathFxTicks | 62 |  |  | tick |  | suy luận: ước lượng (không video) — routine 19; cụm lửa bossdeath_m như Phantom Bat (đo 14) |
+| Boss.QueenMedusa | deathFxUpPx | 0 |  |  | px |  | suy luận: ước lượng (không video) — routine 19; pivot = tâm đầu ⇒ lửa ở tâm sprite |
+| Boss.QueenMedusa | wakeDelayTicks | 60 |  |  | tick | từ lúc sinh (vào phòng) | suy luận: ước lượng (không video) — routine 19; wiki: vỡ ra từ tượng 'không báo trước' khi Simon đã vào phòng — chọn 1 s |
+| Boss.QueenMedusa | statueHeadUpPx | 32 |  |  | px |  | suy luận: ước lượng (không video) — routine 19; sheet: tượng medusa_bust 32×48 — đầu 32×32 hiện ở đỉnh tượng (tâm cao hơn chân tượng 48 − 16) |
+| Boss.QueenMedusa | emergeTicks | 32 |  |  | tick | đã nhận/gây đòn | suy luận: ước lượng (không video) — routine 19; thời gian vỡ tượng (nháy đá ↔ sống) — như Bone Tower nháy 17 |
+| Boss.QueenMedusa | emergeFlashTicks | 4 |  |  | tick |  | suy luận: ước lượng (không video) — routine 19; nhịp nháy medusa_stone ↔ medusa_head như Bone Tower 17 |
+| Boss.QueenMedusa | flyAboveFloorPx | 32 |  |  | px | tâm sóng so với sàn phòng | suy luận: ước lượng (không video) — routine 19; wiki: 'hầu như luôn bay thấp sát đất' (Holy Water dễ trúng) — tâm sóng ngang ngực Simon |
+| Boss.QueenMedusa | flyAmplitudePx | 16 |  |  | px |  | suy luận: ước lượng (không video) — routine 19; đáy sóng chạm chân (lao vào Simon), đỉnh sóng qua đầu Simon đứng |
+| Boss.QueenMedusa | flyPeriodTicks | 96 |  |  | tick |  | suy luận: ước lượng (không video) — routine 19; như sóng Medusa Head 17 (cùng 'đầu Medusa') |
+| Boss.QueenMedusa | overshootPx | 32 |  |  | px |  | suy luận: ước lượng (không video) — routine 19; wiki: 'cố va vào Simon' — vượt qua Simon 32 px rồi quay lại lao tiếp |
+| Boss.QueenMedusa | screenMinX | 16 |  |  | px màn |  | suy luận: ước lượng (không video) — routine 19; quay đầu khi chạm mép (nửa bề ngang đầu 16) |
+| Boss.QueenMedusa | screenMaxX | 240 |  |  | px màn |  | suy luận: ước lượng (không video) — routine 19; đối xứng screenMinX |
+| Boss.QueenMedusa | snakeFirstTicks | 48 |  |  | tick |  | suy luận: ước lượng (không video) — routine 19; wiki: 'khi bay thả rắn' — rắn đầu sau 0.8 s bay |
+| Boss.QueenMedusa | snakeMinTicks | 96 |  |  | tick |  | suy luận: ước lượng (không video) — routine 19; nhịp thả rắn (wiki không nêu) — như nghỉ Bone Tower 17 |
+| Boss.QueenMedusa | snakeSpanTicks | 64 |  |  | tick |  | suy luận: ước lượng (không video) — routine 19; ngẫu nhiên đều [96, 160] |
+| Boss.QueenMedusa | maxSnakes | 2 |  |  | con |  | suy luận: ước lượng (không video) — routine 19; giới hạn rắn sống cùng lúc (wiki không nêu) |
+| Boss.QueenMedusa | snakeDropBelowPx | 8 |  |  | px |  | suy luận: ước lượng (không video) — routine 19; rắn rơi ra từ dưới tâm đầu |
+| Boss.MummyMan | hitStunTicks | 10 |  |  | tick |  | suy luận: ước lượng (không video) — routine 19; như Phantom Bat (đo 14) |
+| Boss.MummyMan | invincibleTicks | 16 |  |  | tick |  | suy luận: ước lượng (không video) — routine 19; như Phantom Bat (suy luận 14) |
+| Boss.MummyMan | deathFxTicks | 62 |  |  | tick |  | suy luận: ước lượng (không video) — routine 19; cụm lửa bossdeath_m như Phantom Bat (đo 14) |
+| Boss.MummyMan | deathFxUpPx | 20 |  |  | px |  | suy luận: ước lượng (không video) — routine 19; tâm thân sprite 16×48 (đục hàng 8–47) |
+| Boss.MummyMan | wakeDistancePx | 128 |  |  | px |  | suy luận: ước lượng (không video) — routine 19; thức (cả 2) khi Simon cách con gần nhất < nửa màn |
+| Boss.MummyMan | partnerDxPx | 40 |  |  | px |  | suy luận: ước lượng (không video) — routine 19; con thứ hai sinh cách con đầu 40 px về bên trái |
+| Boss.MummyMan | decideMinTicks | 48 |  |  | tick |  | suy luận: ước lượng (không video) — routine 19; wiki: 'lang thang' — đổi ý mỗi 0.8–1.9 s |
+| Boss.MummyMan | decideSpanTicks | 64 |  |  | tick |  | suy luận: ước lượng (không video) — routine 19; ngẫu nhiên đều [48, 112] |
+| Boss.MummyMan | keepDxPx | 40 |  |  | px |  | suy luận: ước lượng (không video) — routine 19; wiki: 'kẹp Simon từ hai phía' — mỗi con nhắm 1 bên Simon cách 40 px |
+| Boss.MummyMan | wanderPct | 25 |  |  | % |  | suy luận: ước lượng (không video) — routine 19; wiki: 'đi lang thang' — 1/4 lần chọn hướng ngẫu nhiên |
+| Boss.MummyMan | standDxPx | 4 |  |  | px |  | suy luận: ước lượng (không video) — routine 19; tới đích ±4 px thì đứng |
+| Boss.MummyMan | throwFirstTicks | 64 |  |  | tick |  | suy luận: ước lượng (không video) — routine 19; wiki: 'thỉnh thoảng ném băng gạc' — lần đầu sau ~1 s |
+| Boss.MummyMan | throwMinTicks | 128 |  |  | tick |  | suy luận: ước lượng (không video) — routine 19; thỉnh thoảng: mỗi con 2.1–3.7 s |
+| Boss.MummyMan | throwSpanTicks | 96 |  |  | tick |  | suy luận: ước lượng (không video) — routine 19; ngẫu nhiên đều [128, 224] |
+| Boss.MummyMan | throwRangePx | 160 |  |  | px |  | suy luận: ước lượng (không video) — routine 19; chỉ ném khi Simon trong 160 px |
+| Boss.MummyMan | throwPoseTicks | 16 |  |  | tick |  | suy luận: ước lượng (không video) — routine 19; đứng lại trước khi ném (như tư thế ném Axe Knight 18) |
+| Boss.MummyMan | bandageAbovePx | 28 |  |  | px |  | suy luận: ước lượng (không video) — routine 19; tâm băng ở chân − 28 ⇒ hộp băng hàng chân−31..chân−23: chồng hộp Simon ĐỨNG (−30..−1), KHÔNG chồng Simon NGỒI (−22..0) — wiki 'ngồi quất khi chúng áp sát' |
+| Boss.MummyMan | bandageSpeed | 1 |  |  | px/tick |  | suy luận: ước lượng (không video) — routine 19; băng bay ngang chậm như cầu lửa (1–1.5) |
+| Boss.MummyMan | bandageFrontPx | 8 |  |  | px |  | suy luận: ước lượng (không video) — routine 19; băng sinh trước thân nửa sprite |
+| Boss.Frankenstein | hitStunTicks | 10 |  |  | tick |  | suy luận: ước lượng (không video) — routine 19; như Phantom Bat (đo 14) |
+| Boss.Frankenstein | invincibleTicks | 16 |  |  | tick |  | suy luận: ước lượng (không video) — routine 19; như Phantom Bat (suy luận 14) |
+| Boss.Frankenstein | deathFxTicks | 62 |  |  | tick |  | suy luận: ước lượng (không video) — routine 19; cụm lửa bossdeath_m như Phantom Bat (đo 14) |
+| Boss.Frankenstein | deathFxUpPx | 24 |  |  | px |  | suy luận: ước lượng (không video) — routine 19; tâm thân sprite 16×48 |
+| Boss.Frankenstein | wakeDelayTicks | 16 |  |  | tick | từ lúc sinh (vào phòng) | suy luận: ước lượng (không video) — routine 19; wiki: vào phòng chạy lên bục phải đánh vài đòn trước khi Igor đi ⇒ Monster nhận đòn gần như ngay |
+| Boss.Frankenstein | zoneMinScreenX | 128 |  |  | px màn |  | suy luận: ước lượng (không video) — routine 19; wiki: Monster 'thường ở nửa phải màn hình' |
+| Boss.Frankenstein | zoneMaxScreenX | 216 |  |  | px màn |  | suy luận: ước lượng (không video) — routine 19; tới sát bục góc phải (phòng thử: bục x 224–255) |
+| Boss.Frankenstein | decideMinTicks | 64 |  |  | tick |  | suy luận: ước lượng (không video) — routine 19; wiki: 'chỉ đi lang thang' — đổi ý mỗi 1.1–2.1 s |
+| Boss.Frankenstein | decideSpanTicks | 64 |  |  | tick |  | suy luận: ước lượng (không video) — routine 19; ngẫu nhiên đều [64, 128] |
+| Boss.Frankenstein | chasePct | 75 |  |  | % |  | suy luận: ước lượng (không video) — routine 19; wiki: Monster 'có thể chắn đường' — 3/4 lần nhắm x Simon (kẹp trong vùng), còn lại điểm ngẫu nhiên |
+| Boss.Frankenstein | standDxPx | 4 |  |  | px |  | suy luận: ước lượng (không video) — routine 19; tới đích ±4 px thì đứng |
+| Enemy.Igor | rideAbovePx | 40 |  |  | px |  | suy luận: ước lượng (không video) — routine 19; wiki Stages 10-12: Igor 'nhảy khỏi vai Monster' — ngồi ở vai (Monster cao 48) |
+| Enemy.Igor | startDelayTicks | 96 |  |  | tick |  | suy luận: ước lượng (không video) — routine 19; wiki: đánh vài đòn 'trước khi Igor bắt đầu di chuyển' — 1.6 s sau khi Monster thức |
+| Enemy.Igor | edgeMinScreenX | 24 |  |  | px màn |  | suy luận: ước lượng (không video) — routine 19; wiki: 'nhảy hết sang một phía phòng rồi nhảy ngược lại' — đích mép trái (trên bục góc) |
+| Enemy.Igor | edgeMaxScreenX | 232 |  |  | px màn |  | suy luận: ước lượng (không video) — routine 19; đích mép phải (trên bục góc) |
+| Enemy.Igor | edgeReachPx | 24 |  |  | px |  | suy luận: ước lượng (không video) — routine 19; tới đích ±24 px ⇒ đổi phía (thử 12: Igor đáp trên bục góc cách đích 20 px rồi nhảy cao thêm 1 lần ra giữa sàn — ảnh smoke CVGP 19) |
+| Enemy.Igor | cornerZonePx | 48 |  |  | px |  | suy luận: ước lượng (không video) — routine 19; wiki: 'nhảy CAO khi tới các bục ở góc' — trong 48 px cuối |
+| Enemy.Igor | shortVx | 1.25 |  |  | px/tick |  | suy luận: ước lượng (không video) — routine 19; wiki: 'nhảy tiến ở giữa màn' — như Fleaman (17) hơi xa hơn |
+| Enemy.Igor | shortVy0 | -3 |  |  | px/tick |  | suy luận: ước lượng (không video) — routine 19; đỉnh 18 px (g 0.25) |
+| Enemy.Igor | longVx | 1.5 |  |  | px/tick |  | suy luận: ước lượng (không video) — routine 19; cú nhảy cao vượt mép bục 32 px khi còn cách 40–48 px (lên 44 px lúc chạm mép) |
+| Enemy.Igor | longVy0 | -5 |  |  | px/tick |  | suy luận: ước lượng (không video) — routine 19; đỉnh 50 px (g 0.25) — cao hơn bục góc 32 px |
+| Enemy.Igor | gravity | 0.25 |  |  | px/tick² |  | suy luận: ước lượng (không video) — routine 19; như Fleaman (17) |
+| Enemy.Igor | pauseMinTicks | 8 |  |  | tick |  | suy luận: ước lượng (không video) — routine 19; wiki: 'không hoàn toàn theo quy luật' — nghỉ ngẫu nhiên như Fleaman |
+| Enemy.Igor | pauseSpanTicks | 16 |  |  | tick |  | suy luận: ước lượng (không video) — routine 19; ngẫu nhiên đều [8, 24] |
+| Enemy.Igor | fireEveryHops | 2 |  |  | cú |  | suy luận: ước lượng (không video) — routine 19; wiki: 'ném cầu lửa' (tần suất không nêu) — ở đỉnh mỗi cú nhảy thứ 2 |
+| Enemy.Igor | fireballSpeed | 1.5 |  |  | px/tick |  | suy luận: ước lượng (không video) — routine 19; như cầu lửa Bone Dragon / Phantom Bat thường (18) |
+| Enemy.Igor | aimAbovePx | 16 |  |  | px |  | suy luận: ước lượng (không video) — routine 19; nhắm tâm thân Simon (như 18) |
+| Enemy.Igor | stunTicks | 120 |  |  | tick |  | suy luận: ước lượng (không video) — routine 19; wiki: 'quất Igor 1 lần sẽ đóng băng nó' — đủ dồn vài đòn vào Monster (2 s) |
+| Enemy.Igor | hitInvincibleTicks | 16 |  |  | tick |  | suy luận: ước lượng (không video) — routine 19; như boss (14) |
+| Enemy.Snake | gravity | 0.25 |  |  | px/tick² |  | suy luận: ước lượng (không video) — routine 19; rơi như item (ConfigRule.ItemGravity 0.25 — đo 11) |
 | SubWeapon.Dagger | spawnHeightAboveFeet | 23 |  |  | px | pivot (tâm sprite) dao; x sinh = pivot Simon | đo:routine 09 proj_fit.py video:Map_1 f2797 (góc trên sprite dao = Y−31 khi Simon Y 112) và f3214 trên thang (Y 216 ⇒ Y−31) ⇒ pivot tâm sprite 16×16 = Y−23; Tools/cvgp/attack_compare.py dy 0 |
 | SubWeapon.Axe | apexPx | 50 |  |  | px | thông tin | đo:routine 09 (= vy0²/2g với vy0 −5.0 g 0.25; video:Map_1 đỉnh tâm rìu Y−80.5 ≈ 28 + 50 + 2) |
 | SubWeapon.Axe | apexTicks | 20 |  |  | tick | thông tin | đo:routine 09 (= \|vy0\|/g) |
@@ -614,5 +682,6 @@ Máu = **số đòn** để hạ: *yếu* (roi da, Holy Water, Dagger) / *mạnh
 | CryptA_X16_9 | 2 | BreakableBlock | None | khối trên (ô (16,9)) — vỡ không ra gì | video:Map_1 1:40.55 (đập vỡ, không item) |
 | CryptB_X29_6 | 2 | BreakableBlock | None | khối trên-phải (ô (29,6)) — phá để thả xuống, bí mật = ngồi trên khối thấp (SecretTrigger) | video:Map_1 2:19.05; wiki:Secrets Bonuses Stage 2 |
 | PhantomBat_X43_9 | 3 | BreakableBlock | DoubleShot | khối PHẢI bệ chân thang phòng boss (ô (43,9)) | video:Map_1 3:17.62–3:18.0 (II rơi ra); wiki:Secrets Shot Multiplier Stage 3 |
+| BossMummy_X6_10 | 9 | BreakableBlock | PotRoast | phòng Mummy thử (Arena, CVGP 19): khối thấp nhất cầu thang trái — ô (6,10) | wiki:Bosses#Mummy Men + Stages 7-9#Stage 9 (Pot Roast ở khối thấp nhất cầu thang trái phòng boss) |
 
 

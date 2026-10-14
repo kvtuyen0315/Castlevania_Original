@@ -1,0 +1,3 @@
+# 960 tick, hash 3314a0c5
+# CVGP 19 BossB24Probe kịch bản 'frank_pattern': Frankenstein (176,176) + Igor trên vai (Y − 40); Simon (16,144) trên bục góc trái: Monster thức tick 16, đi 0.25 px/tick trong nửa phải [128, 216]; Igor nhảy khỏi vai sau 96, nhảy tiến (vx 1.25, vy0 −3) / nhảy cao gần góc (vx 1.5, vy0 −5) qua lại 2 phía, cầu lửa ở đỉnh mỗi cú thứ 2 nhắm Simon 1.5 px/tick
+-*960

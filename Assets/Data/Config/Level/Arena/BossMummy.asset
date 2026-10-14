@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c4c25d45acf3c14e9c6005b7044ce18, type: 3}
+  m_Name: BossMummy
+  m_EditorClassIdentifier: 
+  id: BossMummy
+  stage: 0
+  width: 256
+  height: 192
+  cols: 16
+  rows: 12
+  cameraMinX: 0
+  cameraMaxX: 0
+  bossLockCx: 0
+  hasSimonStart: 1
+  simonStart: {x: 144, y: 112}
+  simonStartSrc: 'quy uoc: phong Mummy thu (CVGP 19) - Simon vao o go trai y 112
+    (dinh cau thang trai)'
+  collision:
+  - ................
+  - ................
+  - ................
+  - ................
+  - ................
+  - '########........'
+  - ................
+  - ........###S....
+  - ............S...
+  - .............S..
+  - ......X.......S.
+  - '################'
+  foreground: []
+  stairs:
+  - id: BossMummy_stair1
+    dir: 1
+    steps: 8
+    foot: {x: 232, y: 168}
+    top: {x: 176, y: 112}
+    cutBottom: 0
+    cutTop: 0
+  connections: []

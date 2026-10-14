@@ -61,3 +61,4 @@ CryptA_X16_10,2,BreakableBlock,PotRoast,"tường khối nhỏ — khối thấp
 CryptA_X16_9,2,BreakableBlock,None,"khối trên (ô (16,9)) — vỡ không ra gì","video:Map_1 1:40.55 (đập vỡ, không item)"
 CryptB_X29_6,2,BreakableBlock,None,"khối trên-phải (ô (29,6)) — phá để thả xuống, bí mật = ngồi trên khối thấp (SecretTrigger)",video:Map_1 2:19.05; wiki:Secrets Bonuses Stage 2
 PhantomBat_X43_9,3,BreakableBlock,DoubleShot,"khối PHẢI bệ chân thang phòng boss (ô (43,9))",video:Map_1 3:17.62–3:18.0 (II rơi ra); wiki:Secrets Shot Multiplier Stage 3
+BossMummy_X6_10,9,BreakableBlock,PotRoast,"phòng Mummy thử (Arena, CVGP 19): khối thấp nhất cầu thang trái — ô (6,10)",wiki:Bosses#Mummy Men + Stages 7-9#Stage 9 (Pot Roast ở khối thấp nhất cầu thang trái phòng boss)

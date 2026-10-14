@@ -44,6 +44,13 @@ public static class CvgpLevelBuilder
         cfgDir = ARENA_CFG_DIR, prefabDir = ARENA_PREFAB_DIR
     };
 
+    /// <summary>CVGP 19: 3 phòng boss thử (Tools/cvgp/build_boss_rooms.py — ghép ô Map 1) ⇒ Arena/Boss*.asset + Prefabs/Level/Test/Boss*.prefab.</summary>
+    static readonly Spec BOSS_ROOMS = new Spec
+    {
+        label = "BossRooms", tilesJson = ARENA_CFG_DIR + "/BossRoomsTiles.json", mapJson = ARENA_CFG_DIR + "/BossRoomsMap.json",
+        cfgDir = ARENA_CFG_DIR, prefabDir = ARENA_PREFAB_DIR
+    };
+
     [Serializable] class TilesDoc { public int tileSize; public int columns; public int count; public string png; public int levelRowToNesY; public TilesSection[] sections; }
     [Serializable] class TilesSection { public string id; public int stage; public int[] sheetRect; public int width; public int height; public int cols8; public int rows8; public string csv; }
     [Serializable] class MapDoc { public int cellSize; public int levelRowToNesY; public string[] order; public MapSection[] sections; }
@@ -69,6 +76,18 @@ public static class CvgpLevelBuilder
     public static void BuildArenaMenu()
     {
         Debug.Log(BuildArena());
+    }
+
+    [MenuItem("CVGP/Build Arena Boss Rooms")]
+    public static void BuildBossRoomsMenu()
+    {
+        Debug.Log(BuildBossRooms());
+    }
+
+    /// <summary>Phòng boss thử (CVGP 19) — chạy SAU Build() (cần tileset + Tile asset Block 1).</summary>
+    public static string BuildBossRooms()
+    {
+        return Build(BOSS_ROOMS);
     }
 
     /// <summary>Trả chuỗi tóm tắt; lỗi được log bằng Debug.LogError.</summary>

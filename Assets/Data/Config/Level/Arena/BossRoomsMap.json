@@ -1,0 +1,168 @@
+{
+ "note": "CVGP 19 - sinh boi Tools/cvgp/build_boss_rooms.py (3 phong boss thu ghep o Map 1, theo mo ta wiki); KHONG sua tay",
+ "cellSize": 16,
+ "levelRowToNesY": 32,
+ "types": [
+  {
+   "name": "Empty",
+   "char": "."
+  },
+  {
+   "name": "Solid",
+   "char": "#"
+  },
+  {
+   "name": "Stair",
+   "char": "S"
+  },
+  {
+   "name": "StairFloor",
+   "char": "="
+  },
+  {
+   "name": "Water",
+   "char": "~"
+  },
+  {
+   "name": "Pit",
+   "char": "P"
+  },
+  {
+   "name": "Door",
+   "char": "D"
+  },
+  {
+   "name": "Breakable",
+   "char": "X"
+  },
+  {
+   "name": "Hazard",
+   "char": "!"
+  }
+ ],
+ "order": [
+  "BossMedusa",
+  "BossMummy",
+  "BossFrank"
+ ],
+ "sections": [
+  {
+   "id": "BossMedusa",
+   "stage": 0,
+   "width": 256,
+   "height": 192,
+   "cols": 16,
+   "rows": 12,
+   "cameraMinX": 0,
+   "cameraMaxX": 0,
+   "bossLockCx": 0,
+   "hasSimonStart": true,
+   "simonStart": [
+    32,
+    176
+   ],
+   "simonStartSrc": "quy uoc: phong Medusa thu (CVGP 19) - Simon vao tu mep trai",
+   "collision": [
+    "................",
+    "................",
+    "................",
+    "................",
+    "................",
+    "................",
+    "................",
+    "................",
+    "................",
+    "................",
+    "................",
+    "################"
+   ],
+   "foreground": [],
+   "stairs": [],
+   "connections": []
+  },
+  {
+   "id": "BossMummy",
+   "stage": 0,
+   "width": 256,
+   "height": 192,
+   "cols": 16,
+   "rows": 12,
+   "cameraMinX": 0,
+   "cameraMaxX": 0,
+   "bossLockCx": 0,
+   "hasSimonStart": true,
+   "simonStart": [
+    144,
+    112
+   ],
+   "simonStartSrc": "quy uoc: phong Mummy thu (CVGP 19) - Simon vao o go trai y 112 (dinh cau thang trai)",
+   "collision": [
+    "................",
+    "................",
+    "................",
+    "................",
+    "................",
+    "########........",
+    "................",
+    "........###S....",
+    "............S...",
+    ".............S..",
+    "......X.......S.",
+    "################"
+   ],
+   "foreground": [],
+   "stairs": [
+    {
+     "id": "BossMummy_stair1",
+     "dir": "UpLeft",
+     "steps": 8,
+     "foot": [
+      232,
+      168
+     ],
+     "top": [
+      176,
+      112
+     ],
+     "cutBottom": false,
+     "cutTop": false
+    }
+   ],
+   "connections": []
+  },
+  {
+   "id": "BossFrank",
+   "stage": 0,
+   "width": 256,
+   "height": 192,
+   "cols": 16,
+   "rows": 12,
+   "cameraMinX": 0,
+   "cameraMaxX": 0,
+   "bossLockCx": 0,
+   "hasSimonStart": true,
+   "simonStart": [
+    16,
+    144
+   ],
+   "simonStartSrc": "quy uoc: phong Frankenstein thu (CVGP 19) - Simon vao tren buc goc trai y 144",
+   "collision": [
+    "................",
+    "................",
+    "................",
+    "................",
+    "................",
+    "................",
+    "................",
+    "................",
+    "................",
+    "##............##",
+    "##............##",
+    "################"
+   ],
+   "foreground": [],
+   "stairs": [],
+   "connections": []
+  }
+ ]
+}

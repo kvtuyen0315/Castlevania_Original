@@ -543,10 +543,11 @@ MonoBehaviour:
     projectile: '-'
     dropRule: "kh\xF4ng n\xEAu"
     moveSpeed:
-      has: 0
-      value: 0
-    src_moveSpeed: "kh\xF4ng r\xF5 \u2014 kh\xF4ng c\xF3 video (routine 19 \u01B0\u1EDBc
-      l\u01B0\u1EE3ng)"
+      has: 1
+      value: 0.5
+    src_moveSpeed: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video)
+      \u2014 routine 19; r\u1EAFn 'tr\u01B0\u1EDDn v\u1EC1 ph\xEDa Simon' \u2014
+      ch\u1EADm nh\u01B0 Spear Knight 0.5"
     behaviorShort: "Do Queen Medusa th\u1EA3 xu\u1ED1ng; b\xF2 tr\xEAn s\xE0n v\u1EC1
       ph\xEDa Simon"
     source: wiki:Bosses#Queen Medusa

@@ -1,0 +1,3 @@
+# 421 tick, hash 8081808f
+# CVGP 19 BossB24Probe kịch bản 'mummy_stopwatch': Stopwatch tick 101: Mummy Men + băng KHÔNG bị giữ (wiki 'Stopwatch vô dụng')
+-*100 Sub*1 -*320

@@ -241,6 +241,13 @@ public class StageWorld : MonoBehaviour
             cameraController.Bind(s.data);
     }
 
+    /// <summary>CVGP 19: thêm section dựng lúc chạy (phòng boss thử ở Arena — instance prefab con của StageWorld, đang tắt) để Warp tới.</summary>
+    public void AddSection(LevelSection s)
+    {
+        if (s != null && !sections.Contains(s))
+            sections.Add(s);
+    }
+
     /// <summary>Đổi section: dọn mọi thực thể trừ Player, đặt Player tại (x, y), camera cắt theo Player.</summary>
     public void Warp(LevelSection s, int x, int y)
     {

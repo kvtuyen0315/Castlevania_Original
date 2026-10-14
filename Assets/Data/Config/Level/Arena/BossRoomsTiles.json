@@ -1,0 +1,61 @@
+{
+ "note": "CVGP 19 - sinh boi Tools/cvgp/build_boss_rooms.py (ghep o Map 1); KHONG sua tay",
+ "tileSize": 8,
+ "columns": 16,
+ "count": 118,
+ "png": "Assets/Data/Art/Level/Block1/level1_tiles.png",
+ "levelRowToNesY": 32,
+ "sections": [
+  {
+   "id": "BossMedusa",
+   "inventoryId": "-",
+   "stage": 0,
+   "sheetRect": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "width": 256,
+   "height": 192,
+   "cols8": 32,
+   "rows8": 24,
+   "uniqueTiles": 45,
+   "csv": "Assets/Data/Config/Level/Arena/BossMedusa_tiles.csv"
+  },
+  {
+   "id": "BossMummy",
+   "inventoryId": "-",
+   "stage": 0,
+   "sheetRect": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "width": 256,
+   "height": 192,
+   "cols8": 32,
+   "rows8": 24,
+   "uniqueTiles": 31,
+   "csv": "Assets/Data/Config/Level/Arena/BossMummy_tiles.csv"
+  },
+  {
+   "id": "BossFrank",
+   "inventoryId": "-",
+   "stage": 0,
+   "sheetRect": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "width": 256,
+   "height": 192,
+   "cols8": 32,
+   "rows8": 24,
+   "uniqueTiles": 45,
+   "csv": "Assets/Data/Config/Level/Arena/BossFrank_tiles.csv"
+  }
+ ]
+}

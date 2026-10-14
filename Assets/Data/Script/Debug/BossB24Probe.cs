@@ -1,0 +1,1192 @@
+#if UNITY_EDITOR
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Text;
+using UnityEngine;
+
+/// <summary>
+/// Harness boss Block 2–4 (CVGP 19; routine 21 chạy lại) — CHỈ Editor, scene Arena (Player = Simon, StageWorld.itemCatalog). Qua MCP khi Play:
+///   BossB24Probe.SaveReplays()                         ⇒ Assets/Data/Tests/Replays/boss_b24_&lt;tên&gt;.txt (kịch bản viết tay)
+///   BossB24Probe.Record(BossB24Probe.PilotNames())     ⇒ AUTOPILOT (chỉ đọc trạng thái, bấm nút qua NesPad.Inject) đánh boss bằng roi cấp 1 tới
+///                                                        khi nhặt quả cầu ⇒ GHI replay boss_b24_*_kill_l1.txt (chạy lại khi đổi gameplay)
+///   BossB24Probe.RunSuite(BossB24Probe.ScenarioNames()) ⇒ chạy (input ĐỌC TỪ FILE), ghi từng tick, TỰ CHẤM ⇒ SuiteReport()
+///   BossB24Probe.ShotDir = thư mục ⇒ chụp Game view ở các tick cố định (≥ 6 ảnh/boss)
+/// Phòng thử: BossRoomSetup (Arena boss rooms, camera khoá cx 0). Không có video Block 2–4 ⇒ kỳ vọng = hằng WIKI_* (đòn, điểm, sát thương theo
+/// stage) + EST_* (ước lượng routine 19 chép ĐỘC LẬP Config — đổi Config mà quên đổi đây thì bộ kiểm báo).
+/// </summary>
+public static class BossB24Probe
+{
+    public const string REPLAY_DIR = "Assets/Data/Tests/Replays";
+
+    // ---------------------------------------------------------------- kỳ vọng
+    public const int WIKI_MEDUSA_W = 12, WIKI_MUMMY_W = 48, WIKI_FRANK_W = 24;
+    public const int WIKI_SCORE_MEDUSA = 3000, WIKI_SCORE_MUMMY = 3000, WIKI_SCORE_FRANK = 5000, WIKI_PROJ_SCORE = 100;
+    public const int WIKI_DMG_ST6 = 2, WIKI_DMG_ST9 = 3, WIKI_DMG_ST12 = 3;   // wiki Gameplay#Damage
+    public const int EST_MEDUSA_WAKE = 60, EST_MEDUSA_EMERGE = 32, EST_MEDUSA_HEAD_UP = 32, EST_MEDUSA_V = 256, EST_MEDUSA_ABOVE = 32;
+    public const int EST_MEDUSA_AMP = 16, EST_MEDUSA_P = 96, EST_MEDUSA_OVER = 32, EST_SNAKE_FIRST = 48, EST_SNAKE_MIN = 96, EST_SNAKE_MAX = 160;
+    public const int EST_SNAKE_ALIVE = 2, EST_SNAKE_V = 128;
+    public const int EST_MUMMY_V = 96, EST_MUMMY_WAKE = 128, EST_MUMMY_DX = 40, EST_MUMMY_THROW_FIRST = 64, EST_MUMMY_POSE = 16;
+    public const int EST_MUMMY_THROW_MIN = 128, EST_MUMMY_THROW_MAX = 224, EST_BANDAGE_V = 256, EST_BANDAGE_ABOVE = 28;
+    public const int EST_FRANK_V = 64, EST_FRANK_WAKE = 16, EST_FRANK_ZONE_MIN = 128, EST_FRANK_ZONE_MAX = 216, EST_IGOR_START = 96;
+    public const int EST_IGOR_RIDE = 40, EST_IGOR_SHORT_VX = 320, EST_IGOR_LONG_VX = 384, EST_IGOR_FIRE_EVERY = 2, EST_IGOR_BALL_V = 384;
+    public const int EST_IGOR_STUN = 120, STOPWATCH_TICKS = 300;
+    public const int PILOT_MAX_TICKS = 7200;
+
+    private struct Scn
+    {
+        public string name, rle, note;
+        public bool pilot;
+        public Scn(string n, string r, string note, bool pilot = false) { name = n; rle = r; this.note = note; this.pilot = pilot; }
+    }
+
+    private static readonly Scn[] SCENARIOS =
+    {
+        new Scn("medusa_pattern", "-*640", "Medusa: tượng giữa phòng (128,176), Simon (32,176) đứng; tượng 60 tick ⇒ vỡ (nháy đá/sống 32, nhận đòn ngay) ⇒ bay sóng thấp ±1 px/tick về Simon (tâm sàn − 32, A 16, P 96), vượt 32 ⇒ quay; thả rắn (đầu 48, rồi 96–160, ≤ 2) rơi xuống sàn trườn 0.5 px/tick"),
+        new Scn("medusa_touch", "-*420", "Stage 6, Simon không bất tử đứng yên: Medusa/rắn chạm ⇒ −2 vạch/lần (wiki: mọi đòn boss = mức stage)"),
+        new Scn("medusa_snake_kill", "D*20 D+B D*40", "Arena: rắn rơi trước mặt Simon 28 px ⇒ roi da NGỒI (rắn sát sàn) 1 đòn là chết (wiki), 0 điểm (wiki không nêu)"),
+        new Scn("medusa_stopwatch", "-*200 Sub -*400", "Stopwatch ở tick 201 (wiki: boss CUỐI Stopwatch còn tác dụng): Medusa + rắn đứng yên 300 tick rồi chạy tiếp"),
+        new Scn("medusa_rosary", "-*320", "Rosary (RosaryClear) tick 300: rắn bị gỡ, Medusa (boss) còn, 0 điểm"),
+        new Scn("medusa_kill_l1", "", "AUTOPILOT roi da (cấp 1): quay về Medusa, quất khi đoán trúng; đúng 12 đòn (wiki), +3000, lửa, quả cầu sau 152, nhặt ⇒ tally", true),
+        new Scn("mummy_pattern", "R*1 -*899", "Mummy Men: Simon (128,176) đứng giữa sàn: 2 con (tím (216,176), đỏ cách 40 về trái) thức cùng tick; đi 0.375 px/tick, kẹp 2 phía (con phải nhắm Simon + 40, con trái Simon − 40), ném băng ngang 1 px/tick ở chân − 28 (đầu 64 + tư thế 16; sau 128–224)"),
+        new Scn("mummy_duck", "D*700", "Stage 9: Simon NGỒI ở (80,176) sau khối Pot Roast (6,10): băng vải bay qua đầu (0 lần trúng — wiki 'ngồi quất')"),
+        new Scn("mummy_stand", "-*700", "Stage 9: Simon ĐỨNG ở (80,176): băng vải trúng ⇒ −3 vạch (EnemyAttack)"),
+        new Scn("mummy_stopwatch", "-*100 Sub -*320", "Stopwatch tick 101: Mummy Men + băng KHÔNG bị giữ (wiki 'Stopwatch vô dụng')"),
+        new Scn("mummy_kill_l1", "", "AUTOPILOT roi da: 2 con mỗi con 24 đòn (tổng 48 — wiki), con đầu chết không điểm, thanh ENEMY = máu 2 con; con cuối +3000, quả cầu, nhặt ⇒ tally", true),
+        new Scn("frank_pattern", "-*960", "Frankenstein (176,176) + Igor trên vai (Y − 40); Simon (16,144) trên bục góc trái: Monster thức tick 16, đi 0.25 px/tick trong nửa phải [128, 216]; Igor nhảy khỏi vai sau 96, nhảy tiến (vx 1.25, vy0 −3) / nhảy cao gần góc (vx 1.5, vy0 −5) qua lại 2 phía, cầu lửa ở đỉnh mỗi cú thứ 2 nhắm Simon 1.5 px/tick"),
+        new Scn("frank_igor_freeze", "D*4 D+B D*23 -*170", "Arena: Igor đứng (124,176), Simon (100,176) NGỒI quất roi da: Igor đứng hình 120 tick, không mất máu, không chết, 0 điểm (wiki: bất tử, quất ⇒ đóng băng)"),
+        new Scn("frank_touch", "-*600", "Stage 12, Simon không bất tử trên bục trái: cầu lửa Igor / chạm Igor/Monster ⇒ −3 vạch/lần"),
+        new Scn("frank_stopwatch", "-*130 Sub -*320", "Stopwatch tick 131: Monster + Igor KHÔNG bị giữ (wiki: chỉ Phantom Bat + Medusa)"),
+        new Scn("frank_kill_l1", "", "AUTOPILOT roi da: 24 đòn vào Monster (wiki — Igor bất tử), +5000, Igor biến mất, quả cầu, nhặt ⇒ tally", true),
+    };
+
+    // ---------------------------------------------------------------- ghi
+    public class Track
+    {
+        public Entity e;
+        public string kind;
+        public int spawnTick, spawnRel = -1, endRel = -1, hits;
+        public bool defeated;
+        public readonly List<Vector2Int> fpath = new List<Vector2Int>();
+        public readonly List<string> states = new List<string>();
+        public readonly List<bool> active = new List<bool>();
+        public readonly List<string> anims = new List<string>();
+        public readonly List<int> hp = new List<int>();
+    }
+
+    private struct Rec
+    {
+        public int sx, sy, hp, score, ebar, cx, fx, shots;
+        public eSimonState state;
+        public bool frozenE;
+    }
+
+    public static string Label { get; private set; } = "";
+    public static bool Running { get; private set; }
+    public static bool Recording { get; private set; }
+    public static int Fails { get; private set; }
+    public static uint Hash { get; private set; }
+    public static string ShotDir;
+    public static readonly Dictionary<string, uint> RecordHashes = new Dictionary<string, uint>();
+    private static readonly List<Rec> recs = new List<Rec>();
+    private static readonly List<string> checks = new List<string>();
+    private static readonly List<string> measures = new List<string>();
+    private static readonly List<Track> tracks = new List<Track>();
+    private static readonly List<string> playerHits = new List<string>();
+    private static readonly List<int> playerDmg = new List<int>();
+    private static readonly List<int> bars = new List<int>();
+    private static readonly Queue<string> suite = new Queue<string>();
+    public static readonly List<string> SuiteReports = new List<string>();
+    public static bool SuiteDone { get; private set; } = true;
+    public static int SuiteFails { get; private set; }
+    public static uint SuiteHash { get; private set; }
+    private static StageWorld world;
+    private static int target, recorded, startTick, savedStage, defeatRel, crystalRel, pickRel, brokenShots;
+    private static Action finish;
+    private static Action<int> onTick;
+    private static readonly List<GameObject> temp = new List<GameObject>();
+    private static readonly Dictionary<int, string> shots = new Dictionary<int, string>();
+    private static string current;
+    private static BossArena arena;
+    private static StageRules rules;
+    private static bool addedRules, savedAutoRespawn = true, pilotOn;
+    private static ItemPickup crystal;
+    private static int pilotPrev, pilotEnd, firstDefeatRel = -1;
+
+    public static SimonController Simon => world != null ? world.Player as SimonController : null;
+
+    public static string ReplayPath(string name) { return REPLAY_DIR + "/boss_b24_" + name + ".txt"; }
+
+    static Scn Find(string name)
+    {
+        foreach (var s in SCENARIOS) if (s.name == name) return s;
+        return new Scn(null, null, null);
+    }
+
+    /// <summary>Ghi file replay cho kịch bản viết tay (kịch bản autopilot ghi bằng Record).</summary>
+    public static int SaveReplays()
+    {
+        Directory.CreateDirectory(REPLAY_DIR);
+        int n = 0;
+        foreach (var s in SCENARIOS)
+        {
+            if (s.pilot) continue;
+            WriteReplay(s.name, NesReplay.Decode(s.rle), s.note);
+            n++;
+        }
+        UnityEditor.AssetDatabase.Refresh();
+        return n;
+    }
+
+    static void WriteReplay(string name, List<int> ticks, string note)
+    {
+        var sb = new StringBuilder();
+        sb.Append("# ").Append(ticks.Count).Append(" tick, hash ").Append(NesReplay.Hash(ticks).ToString("x8")).Append('\n');
+        sb.Append("# CVGP 19 BossB24Probe kịch bản '").Append(name).Append("': ").Append(note).Append('\n');
+        sb.Append(NesReplay.Encode(ticks)).Append('\n');
+        File.WriteAllText(ReplayPath(name), sb.ToString(), new UTF8Encoding(false));
+    }
+
+    public static string ScenarioNames() { return Names(false, true); }
+    public static string PilotNames() { return Names(true, false); }
+
+    static string Names(bool pilotOnly, bool all)
+    {
+        var sb = new StringBuilder();
+        foreach (var s in SCENARIOS)
+            if (all || s.pilot == pilotOnly)
+                sb.Append(sb.Length > 0 ? "," : "").Append(s.name);
+        return sb.ToString();
+    }
+
+    public static int RunSuite(string names) { return StartQueue(names, false); }
+
+    /// <summary>Chạy autopilot các kịch bản *_kill_l1 và GHI replay (dừng khi nhặt quả cầu + 60 tick).</summary>
+    public static int Record(string names) { return StartQueue(names, true); }
+
+    static int StartQueue(string names, bool record)
+    {
+        Unhook();
+        suite.Clear();
+        SuiteReports.Clear();
+        SuiteFails = 0;
+        SuiteHash = 2166136261u;
+        Recording = record;
+        foreach (var n in names.Split(','))
+            if (n.Trim().Length > 0)
+                suite.Enqueue(n.Trim());
+        SuiteDone = false;
+        NextInSuite();
+        return suite.Count;
+    }
+
+    private static void NextInSuite()
+    {
+        while (suite.Count > 0)
+            if (Run(suite.Dequeue()) > 0)
+                return;
+        SuiteDone = true;
+        bool wasRec = Recording;
+        Recording = false;
+        CvgpDebug.CheatInvincible = false;
+        BackToArena();
+        if (wasRec)
+            UnityEditor.AssetDatabase.Refresh();
+    }
+
+    public static void BackToArena()
+    {
+        world = StageWorld.Current;
+        if (world == null || Simon == null)
+            return;
+        Cleanup();
+        Go("Arena", 48, 176, 1);
+        world.ResetRng();
+        GameSession.Current.ResetForNewGame();
+    }
+
+    public static string SuiteReport()
+    {
+        var sb = new StringBuilder();
+        sb.Append("BOSS B2-4 SUITE ").Append(SuiteDone ? "xong" : "ĐANG CHẠY").Append(Recording ? " (GHI autopilot)" : "").Append(", ").Append(SuiteReports.Count)
+          .Append(" kịch bản, FAIL ").Append(SuiteFails).Append(", hash bộ ").Append(SuiteHash.ToString("x8")).Append('\n');
+        foreach (var r in SuiteReports)
+            sb.Append(r).Append('\n');
+        return sb.ToString();
+    }
+
+    // ---------------------------------------------------------------- dựng
+
+    static T Prefab<T>(string name) where T : Entity
+    {
+        return UnityEditor.AssetDatabase.LoadAssetAtPath<T>(BossRoomSetup.BOSS_DIR + name + ".prefab");
+    }
+
+    static void Go(string section, int x, int y, int facing)
+    {
+        LevelSection sec = null;
+        foreach (var s in world.Sections)
+            if (s.data != null && s.data.name == section)
+                sec = s;
+        world.Warp(sec, x, y);
+        Simon.Teleport(x, y, facing);
+        if (world.CameraCtl != null)
+            world.CameraCtl.SnapToTarget();
+    }
+
+    static void Room(BossRoomSetup.Room r)
+    {
+        GameObject host;
+        arena = BossRoomSetup.Enter(world, r, true, out host);
+        if (host != null)
+            temp.Add(host);
+        world.ResetRng();
+    }
+
+    static void PlaceSimon(int x, int y, int facing)
+    {
+        Simon.Teleport(x, y, facing);
+        if (world.CameraCtl != null)
+            world.CameraCtl.SnapToTarget();
+    }
+
+    static void AddRules()
+    {
+        rules = world.gameObject.GetComponent<StageRules>();
+        if (rules == null)
+        {
+            savedAutoRespawn = Simon.AutoRespawn;   // StageRules tắt autoRespawn của Simon và không trả lại
+            rules = world.gameObject.AddComponent<StageRules>();
+            addedRules = true;
+        }
+    }
+
+    static void Photo(params int[] rels)
+    {
+        if (string.IsNullOrEmpty(ShotDir))
+            return;
+        foreach (var rel in rels)
+            shots[rel] = Path.Combine(ShotDir, current + "_r" + rel.ToString("0000") + ".png");
+    }
+
+    // ---------------------------------------------------------------- 1 kịch bản
+
+    public static int Run(string scenario)
+    {
+        world = StageWorld.Current;
+        var s = Simon;
+        if (world == null || s == null || world.Items == null)
+        {
+            Debug.LogError("[BossB24Probe] cần scene Arena với Player = SimonController + StageWorld.itemCatalog");
+            return -1;
+        }
+        var sc = Find(scenario);
+        if (sc.name == null)
+        {
+            Debug.LogError("[BossB24Probe] không có kịch bản " + scenario);
+            return -1;
+        }
+        if (Recording && !sc.pilot)
+            return -1;   // Record chỉ chạy kịch bản autopilot
+        bool pilot = sc.pilot && Recording;
+        List<int> ticks = null;
+        if (!pilot)
+        {
+            string p = ReplayPath(scenario);
+            if (!File.Exists(p))
+            {
+                Debug.LogError("[BossB24Probe] thiếu " + p + (sc.pilot ? " — gọi BossB24Probe.Record(\"" + scenario + "\")" : " — gọi BossB24Probe.SaveReplays()"));
+                return -1;
+            }
+            ticks = NesReplay.Decode(File.ReadAllText(p));
+        }
+        Cleanup();
+        current = scenario;
+        savedStage = world.Stage;
+        var ses = GameSession.Current;
+        ses.playerHp = GameSession.MAX_HP;
+        ses.hearts = 5;
+        ses.score = 0;
+        ses.lives = 3;
+        ses.whipLevel = 1;
+        ses.shotMultiplier = 1;
+        ses.subWeapon = eSubWeapon.None;
+        ses.subWeaponHits = 0;
+        ses.enemyHp = GameSession.MAX_HP;
+        ses.NotifyChanged();
+        finish = null;
+        onTick = null;
+        pilotOn = false;
+        CvgpDebug.CheatInvincible = true;
+        world.FreezeEnemies(0);
+        world.ResetRng();
+        switch (scenario)
+        {
+            // ======================================================= Queen Medusa
+            case "medusa_pattern":
+                Room(BossRoomSetup.MEDUSA);
+                Photo(30, 62, 66, 96, 150, 200, 260, 330, 420);
+                finish = () =>
+                {
+                    var m = First("QueenMedusa");
+                    if (m == null) return;
+                    int emerge = FirstK(m, k => m.states[k] != "Statue"), fly = FirstK(m, k => m.states[k] == "Fly");
+                    Expect("tượng (ngủ) tới tick (wakeDelay 60)", EST_MEDUSA_WAKE - 1, emerge);
+                    Expect("vỡ tượng → bay (tick — nháy 32)", EST_MEDUSA_EMERGE, fly - emerge);
+                    Expect("không va chạm khi trong tượng (tick hộp bật)", 0, CountK(m, k => k < emerge && m.active[k]));
+                    Expect("nhận/gây đòn ngay khi vỡ (tick hộp tắt trong lúc vỡ/bay)", 0, CountK(m, k => k >= emerge && !m.active[k]));
+                    Expect("đầu ở đỉnh tượng: tâm = chân tượng − 32", 176 - EST_MEDUSA_HEAD_UP, Fixed.ToPx(m.fpath[0].y));
+                    var anims = new HashSet<string>();
+                    for (int k = emerge; k < fly; k++) anims.Add(m.anims[k]);
+                    Expect("nháy đá ↔ sống lúc vỡ (số anim khác nhau)", 2, anims.Count);
+                    int badV = 0, turns = 0, badY = 0, badX = 0;
+                    var wave = Wave(EST_MEDUSA_AMP, EST_MEDUSA_P);
+                    for (int k = fly + 1; k < m.fpath.Count; k++)
+                    {
+                        int dx = m.fpath[k].x - m.fpath[k - 1].x;
+                        if (Math.Abs(dx) != EST_MEDUSA_V) badV++;
+                        if (k > fly + 1 && Math.Sign(dx) != Math.Sign(m.fpath[k - 1].x - m.fpath[k - 2].x)) turns++;
+                        int t = k - fly + 1;   // tick vào Fly đã chạy FlyTick (t = 1)
+                        if (m.fpath[k].y != Fixed.FromPx(176 - EST_MEDUSA_ABOVE) + wave[t % EST_MEDUSA_P]) badY++;
+                        int sx = Fixed.ToPx(m.fpath[k].x);
+                        if (sx < 16 - 2 || sx > 240 + 2) badX++;
+                    }
+                    Expect("ngang ±1 px/tick khi bay (tick sai)", 0, badV);
+                    Expect("dọc = sàn − 32 − 16·sin(2πt/96) (tick sai)", 0, badY);
+                    Expect("trong màn [16, 240] (tick ra ngoài)", 0, badX);
+                    ExpectRange("quay đầu (vượt Simon 32 / chạm mép)", 3, 99, turns);
+                    var snakes = Tracks("Snake");
+                    ExpectRange("số rắn thả", 3, 99, snakes.Count);
+                    if (snakes.Count > 0) Expect("rắn đầu (tick bay thứ — 48, tick vào Fly = 1)", EST_SNAKE_FIRST, snakes[0].spawnRel - fly + 1);
+                    for (int i = 1; i < snakes.Count; i++) ExpectRange("khoảng thả rắn " + i + " (96–160 hoặc chờ vì đủ 2)", EST_SNAKE_MIN, 9999, snakes[i].spawnRel - snakes[i - 1].spawnRel);
+                    int maxAlive = 0;
+                    for (int rel = 0; rel < recs.Count; rel++)
+                    {
+                        int n = 0;
+                        foreach (var t in snakes) if (t.spawnRel <= rel && (t.endRel < 0 || rel < t.endRel)) n++;
+                        maxAlive = Math.Max(maxAlive, n);
+                    }
+                    ExpectRange("rắn sống cùng lúc", 1, EST_SNAKE_ALIVE, maxAlive);
+                    int badCrawl = 0, landed = 0;
+                    foreach (var t in snakes)
+                    {
+                        int k0 = FirstK(t, k => t.states[k] == "Crawl");
+                        if (k0 < 0) continue;
+                        landed++;
+                        if (Fixed.ToPx(t.fpath[k0].y) != 176) badCrawl++;
+                        for (int k = k0 + 1; k < t.fpath.Count; k++)
+                            if (t.states[k] == "Crawl" && Math.Abs(t.fpath[k].x - t.fpath[k - 1].x) != EST_SNAKE_V) badCrawl++;
+                    }
+                    ExpectRange("rắn chạm sàn rồi trườn", 1, 99, landed);
+                    Expect("rắn trườn trên sàn y 176, 0.5 px/tick (tick sai)", 0, badCrawl);
+                    var sb = new StringBuilder("rắn ở tick: ");
+                    foreach (var t in snakes) sb.Append(t.spawnRel).Append(' ');
+                    measures.Add("vỡ tượng rel " + emerge + ", bay rel " + fly + ", quay " + turns + " lần; " + sb);
+                };
+                break;
+            case "medusa_touch":
+                Room(BossRoomSetup.MEDUSA);
+                CvgpDebug.CheatInvincible = false;
+                PlaceSimon(64, 176, 1);
+                Photo(140, 200);
+                finish = () => DamageChecks(WIKI_DMG_ST6, 1);
+                break;
+            case "medusa_snake_kill":
+                {
+                    Go("Arena", 100, 176, 1);
+                    world.Stage = 6;
+                    var sn = world.Spawn(Prefab<Snake>("Snake"), 128, 168, -1) as Snake;
+                    Photo(6, 32, 40);
+                    finish = () =>
+                    {
+                        var t = First("Snake");
+                        if (t == null) return;
+                        Expect("rắn bị hạ", 1, t.defeated ? 1 : 0);
+                        Expect("số đòn (wiki: 1 đòn roi)", 1, t.hits);
+                        Expect("điểm (wiki không nêu ⇒ 0)", 0, Last.score);
+                        measures.Add("rắn hạ ở tick " + t.endRel);
+                    };
+                }
+                break;
+            case "medusa_stopwatch":
+                Room(BossRoomSetup.MEDUSA);
+                ses.subWeapon = eSubWeapon.Stopwatch;
+                ses.hearts = 10;
+                PlaceSimon(40, 176, 1);
+                Photo(150, 300);
+                finish = () =>
+                {
+                    var m = First("QueenMedusa");
+                    if (m == null) return;
+                    int f0 = FirstRel(0, r => r.frozenE);
+                    ExpectRange("Stopwatch bắt đầu (tick — bấm 201 + ném)", 200, 220, f0);
+                    if (f0 < 0) return;
+                    int moved = 0, movedAfter = 0;
+                    for (int rel = f0 + 1; rel < f0 + STOPWATCH_TICKS && rel < recs.Count; rel++)
+                        if (PosAt(m, rel) != PosAt(m, rel - 1)) moved++;
+                    for (int rel = f0 + STOPWATCH_TICKS + 1; rel < recs.Count; rel++)
+                        if (PosAt(m, rel) != PosAt(m, rel - 1)) movedAfter++;
+                    Expect("Medusa đứng yên khi Stopwatch (tick di chuyển)", 0, moved);
+                    ExpectRange("Medusa bay tiếp sau 300 tick (tick di chuyển)", 50, 9999, movedAfter);
+                    int snakeMoved = 0, snakeSeen = 0;
+                    foreach (var t in Tracks("Snake"))
+                        for (int rel = Math.Max(f0 + 1, t.spawnRel + 1); rel < f0 + STOPWATCH_TICKS && (t.endRel < 0 || rel < t.endRel) && rel < recs.Count; rel++)
+                        {
+                            snakeSeen++;
+                            if (PosAt(t, rel) != PosAt(t, rel - 1)) snakeMoved++;
+                        }
+                    Expect("rắn đứng yên khi Stopwatch (tick di chuyển)", 0, snakeMoved);
+                    measures.Add("Stopwatch tick " + f0 + "; rắn quan sát " + snakeSeen + " tick-con trong lúc giữ");
+                };
+                break;
+            case "medusa_rosary":
+                {
+                    Room(BossRoomSetup.MEDUSA);
+                    int before = -1, killed = -1;
+                    Photo(298, 302);
+                    onTick = rel =>
+                    {
+                        if (rel == 299) { before = OnScreen(eEntityGroup.Enemy); killed = world.RosaryClear(); }
+                    };
+                    finish = () =>
+                    {
+                        ExpectRange("trước Rosary: Medusa + ≥ 1 rắn", 2, 99, before);
+                        Expect("Medusa (boss) còn sau Rosary", 1, First("QueenMedusa") != null && First("QueenMedusa").endRel < 0 ? 1 : 0);
+                        int snakesAfter = 0;
+                        foreach (var t in Tracks("Snake")) if (t.endRel < 0) snakesAfter++;
+                        Expect("rắn còn sau Rosary", 0, snakesAfter);
+                        Expect("0 điểm", 0, Last.score);
+                        measures.Add("Rosary gỡ " + killed + " thực thể");
+                    };
+                }
+                break;
+            case "medusa_kill_l1":
+                Room(BossRoomSetup.MEDUSA);
+                AddRules();
+                Photo(100, 400, 800);
+                finish = () => KillChecks("QueenMedusa", WIKI_MEDUSA_W, WIKI_SCORE_MEDUSA, 1);
+                break;
+
+            // ======================================================= Mummy Men
+            case "mummy_pattern":
+                Room(BossRoomSetup.MUMMY);
+                PlaceSimon(128, 176, 1);
+                Photo(2, 60, 82, 120, 300, 500, 700, 880);
+                finish = () =>
+                {
+                    var ms = Tracks("MummyMan");
+                    Expect("số Mummy", 2, ms.Count);
+                    if (ms.Count < 2) return;
+                    int w0 = FirstK(ms[0], k => ms[0].states[k] != "Dormant"), w1 = FirstK(ms[1], k => ms[1].states[k] != "Dormant");
+                    Expect("2 con thức cùng tick", w0, w1);
+                    Expect("con 2 sinh cách con đầu 40 px về trái", -EST_MUMMY_DX, Fixed.ToPx(ms[1].fpath[0].x) - Fixed.ToPx(ms[0].fpath[0].x));
+                    int badV = 0, bothSides = 0, after = 0;
+                    foreach (var t in ms)
+                        for (int k = 1; k < t.fpath.Count; k++)
+                        {
+                            int d = Math.Abs(t.fpath[k].x - t.fpath[k - 1].x);
+                            if (d != 0 && d != EST_MUMMY_V) badV++;
+                        }
+                    for (int rel = 200; rel < recs.Count; rel++)
+                    {
+                        int x0 = PosAt(ms[0], rel).x, x1 = PosAt(ms[1], rel).x, sx = recs[rel].sx;
+                        after++;
+                        if ((x0 - sx) * (x1 - sx) < 0) bothSides++;
+                    }
+                    Expect("đi 0.375 px/tick (tick sai)", 0, badV);
+                    ExpectRange("kẹp 2 phía: % tick có 1 con mỗi bên Simon (sau tick 200)", 50, 100, after > 0 ? bothSides * 100 / after : 0);
+                    var bs = ShotTracks("MummyBandage");
+                    ExpectRange("số băng ném", 4, 99, bs.Count);
+                    // đếm cả tick bắt đầu: thức rel 0 ⇒ tư thế ném ở tick thứ 64 (rel 63), băng ở tick tư thế thứ 16 (rel 78)
+                    if (bs.Count > 0) Expect("băng đầu (tick: đầu 64 + tư thế 16, tính cả tick đầu)", w0 + EST_MUMMY_THROW_FIRST + EST_MUMMY_POSE - 2, bs[0].spawnRel);
+                    int badB = 0;
+                    foreach (var b in bs)
+                    {
+                        if (Fixed.ToPx(b.fpath[0].y) != 176 - EST_BANDAGE_ABOVE) badB++;
+                        for (int k = 1; k < b.fpath.Count; k++)
+                            if (Math.Abs(b.fpath[k].x - b.fpath[k - 1].x) != EST_BANDAGE_V || b.fpath[k].y != b.fpath[0].y) badB++;
+                    }
+                    Expect("băng bay ngang 1 px/tick ở chân − 28 (tick sai)", 0, badB);
+                    var sb = new StringBuilder("băng ở tick: ");
+                    foreach (var b in bs) sb.Append(b.spawnRel).Append(' ');
+                    measures.Add("thức rel " + w0 + "; kẹp " + bothSides + "/" + after + " tick; " + sb);
+                };
+                break;
+            case "mummy_duck":
+            case "mummy_stand":
+                {
+                    bool duck = scenario == "mummy_duck";
+                    Room(BossRoomSetup.MUMMY);
+                    CvgpDebug.CheatInvincible = false;
+                    PlaceSimon(80, 176, 1);
+                    Photo(150, 260);
+                    finish = () =>
+                    {
+                        int bandHits = 0, passed = 0;
+                        foreach (var h in playerHits) if (h.StartsWith("EnemyAttack:MummyBandage")) bandHits++;
+                        foreach (var b in ShotTracks("MummyBandage"))
+                            foreach (var p in b.fpath) if (Fixed.ToPx(p.x) < 80) { passed++; break; }
+                        if (duck)
+                        {
+                            ExpectRange("băng bay qua chỗ Simon ngồi (số băng)", 2, 99, passed);
+                            Expect("băng trúng Simon NGỒI", 0, bandHits);
+                            Expect("máu Simon", GameSession.MAX_HP, Last.hp);
+                        }
+                        else
+                        {
+                            ExpectRange("băng trúng Simon ĐỨNG", 1, 99, bandHits);
+                            DamageChecks(WIKI_DMG_ST9, 1);
+                        }
+                        measures.Add("băng qua Simon " + passed + ", trúng " + bandHits + "; " + string.Join(" ", playerHits));
+                    };
+                }
+                break;
+            case "mummy_stopwatch":
+                Room(BossRoomSetup.MUMMY);
+                PlaceSimon(128, 176, 1);
+                ses.subWeapon = eSubWeapon.Stopwatch;
+                ses.hearts = 10;
+                Photo(200);
+                finish = () =>
+                {
+                    int f0 = FirstRel(0, r => r.frozenE);
+                    ExpectRange("Stopwatch bắt đầu (tick — bấm 101 + ném)", 100, 120, f0);
+                    int moved = 0, bandMoved = 0;
+                    foreach (var t in Tracks("MummyMan"))
+                        for (int rel = f0 + 1; rel < f0 + 200 && rel < recs.Count; rel++)
+                            if (PosAt(t, rel) != PosAt(t, rel - 1)) moved++;
+                    foreach (var b in ShotTracks("MummyBandage"))
+                        for (int k = 1; k < b.fpath.Count; k++)
+                            if (b.spawnRel + k > f0 && b.spawnRel + k < f0 + 200 && b.fpath[k] != b.fpath[k - 1]) bandMoved++;
+                    ExpectRange("Mummy vẫn đi khi Stopwatch (tick-con di chuyển)", 20, 9999, moved);
+                    ExpectRange("băng vẫn bay khi Stopwatch (tick)", 1, 9999, bandMoved);
+                    measures.Add("Stopwatch tick " + f0 + ": Mummy di chuyển " + moved + " tick-con, băng " + bandMoved);
+                };
+                break;
+            case "mummy_kill_l1":
+                Room(BossRoomSetup.MUMMY);
+                AddRules();
+                Photo(100, 600, 1200);
+                finish = () => KillChecks("MummyMan", WIKI_MUMMY_W, WIKI_SCORE_MUMMY, 2);
+                break;
+
+            // ======================================================= Frankenstein & Igor
+            case "frank_pattern":
+                Room(BossRoomSetup.FRANK);
+                Photo(8, 60, 116, 160, 250, 330, 420, 600, 800);
+                finish = () =>
+                {
+                    var m = First("Frankenstein");
+                    var ig = First("Igor");
+                    if (m == null || ig == null) return;
+                    int wake = FirstK(m, k => m.states[k] != "Dormant");
+                    Expect("Monster thức (tick — 16)", EST_FRANK_WAKE - 1, wake);
+                    Expect("Monster nhận đòn từ lúc thức (tick hộp tắt sau đó)", 0, CountK(m, k => k >= wake && !m.active[k]));
+                    int leave = FirstK(ig, k => ig.states[k] != "Ride");
+                    ExpectRange("Igor rời vai (tick sau khi Monster thức — 96)", EST_IGOR_START - 1, EST_IGOR_START + 1, leave - wake);
+                    int badRide = 0;
+                    for (int k = 0; k < leave && k < ig.fpath.Count; k++)
+                        if (ig.fpath[k].x != m.fpath[k].x || Fixed.ToPx(ig.fpath[k].y) != Fixed.ToPx(m.fpath[k].y) - EST_IGOR_RIDE) badRide++;
+                    Expect("Igor trên vai Monster (Y − 40) (tick sai)", 0, badRide);
+                    int badMV = 0, outZone = 0, inZone = -1;
+                    for (int k = wake + 1; k < m.fpath.Count; k++)
+                    {
+                        int d = Math.Abs(m.fpath[k].x - m.fpath[k - 1].x);
+                        if (d != 0 && d != EST_FRANK_V) badMV++;
+                        int x = Fixed.ToPx(m.fpath[k].x);
+                        bool inside = x >= EST_FRANK_ZONE_MIN - 4 && x <= EST_FRANK_ZONE_MAX + 4;
+                        if (inside && inZone < 0) inZone = k;
+                        if (inZone >= 0 && !inside) outZone++;
+                    }
+                    Expect("Monster đi 0.25 px/tick (tick sai)", 0, badMV);
+                    Expect("Monster ở nửa phải [128, 216] ±4 (tick ra ngoài)", 0, outZone);
+                    var igor = ig.e as Igor;
+                    ExpectRange("Igor nhảy tiến", 3, 999, igor != null ? igor.shortHops : 0);
+                    ExpectRange("Igor nhảy cao (gần góc)", 1, 999, igor != null ? igor.longHops : 0);
+                    ExpectRange("Igor đổi phía", 2, 999, igor != null ? igor.sideFlips : 0);
+                    var balls = ShotTracks("BoneTowerFireball");
+                    ExpectRange("cầu lửa Igor", 2, 999, balls.Count);
+                    int hops = igor != null ? igor.shortHops + igor.longHops : 0;
+                    ExpectRange("cầu lửa = 1/2 số cú nhảy (đỉnh cú thứ 2, 4, …)", hops / EST_IGOR_FIRE_EVERY - 1, hops / EST_IGOR_FIRE_EVERY, balls.Count);
+                    int badBall = 0;
+                    foreach (var b in balls)
+                    {
+                        if (b.fpath.Count < 3) continue;
+                        long vx = b.fpath[1].x - b.fpath[0].x, vy = b.fpath[1].y - b.fpath[0].y;
+                        double sp = Math.Sqrt(vx * vx + vy * vy);
+                        if (Math.Abs(sp - EST_IGOR_BALL_V) > 2) badBall++;
+                    }
+                    Expect("cầu lửa 1.5 px/tick (quả sai)", 0, badBall);
+                    int onPlat = 0;
+                    for (int k = 0; k < ig.fpath.Count; k++) if (ig.states[k] == "Ground" && Fixed.ToPx(ig.fpath[k].y) == 144) onPlat++;
+                    ExpectRange("Igor đứng trên bục góc (tick — nhảy cao lên bục)", 1, 9999, onPlat);
+                    measures.Add("Monster thức " + wake + ", Igor rời vai " + leave + "; Igor nhảy tiến " + (igor != null ? igor.shortHops : 0) + " / cao "
+                                 + (igor != null ? igor.longHops : 0) + ", đổi phía " + (igor != null ? igor.sideFlips : 0) + ", cầu lửa " + balls.Count);
+                };
+                break;
+            case "frank_igor_freeze":
+                {
+                    Go("Arena", 100, 176, 1);
+                    world.Stage = 12;
+                    var ig = world.Spawn(Prefab<Igor>("Igor"), 124, 176, -1) as Igor;
+                    ig.pauseLen = 99999;   // đứng yên (không có Monster) để roi ngồi trúng
+                    Photo(20, 40, 100, 150);
+                    finish = () =>
+                    {
+                        var t = First("Igor");
+                        if (t == null) return;
+                        Expect("roi trúng Igor (lần)", 1, t.hits);
+                        Expect("Igor không chết (bất tử)", 0, t.defeated || t.endRel >= 0 ? 1 : 0);
+                        Expect("máu Igor không đổi", t.hp[0], t.hp[t.hp.Count - 1]);
+                        Expect("0 điểm", 0, Last.score);
+                        int k0 = FirstK(t, k => t.states[k] == "Stun"), k1 = FirstK(t, k => k > k0 && t.states[k] != "Stun");
+                        Expect("đứng hình (tick — 120; đòn sau kéo dài)", EST_IGOR_STUN, k1 - k0);
+                        measures.Add("Igor đứng hình từ tick " + k0 + " tới " + k1 + ", trúng " + t.hits + " lần");
+                    };
+                }
+                break;
+            case "frank_touch":
+                Room(BossRoomSetup.FRANK);
+                CvgpDebug.CheatInvincible = false;
+                Photo(300);
+                finish = () => DamageChecks(WIKI_DMG_ST12, 1);
+                break;
+            case "frank_stopwatch":
+                Room(BossRoomSetup.FRANK);
+                ses.subWeapon = eSubWeapon.Stopwatch;
+                ses.hearts = 10;
+                finish = () =>
+                {
+                    int f0 = FirstRel(0, r => r.frozenE);
+                    ExpectRange("Stopwatch bắt đầu (tick — bấm 131 + ném)", 130, 150, f0);
+                    int mm = 0, im = 0;
+                    var m = First("Frankenstein");
+                    var ig = First("Igor");
+                    if (m == null || ig == null) return;
+                    for (int rel = f0 + 1; rel < f0 + 200 && rel < recs.Count; rel++)
+                    {
+                        if (PosAt(m, rel) != PosAt(m, rel - 1)) mm++;
+                        if (PosAt(ig, rel) != PosAt(ig, rel - 1)) im++;
+                    }
+                    ExpectRange("Monster vẫn đi khi Stopwatch (tick)", 10, 9999, mm);
+                    ExpectRange("Igor vẫn nhảy khi Stopwatch (tick)", 10, 9999, im);
+                    measures.Add("Stopwatch tick " + f0 + ": Monster " + mm + " tick di chuyển, Igor " + im);
+                };
+                break;
+            case "frank_kill_l1":
+                Room(BossRoomSetup.FRANK);
+                AddRules();
+                Photo(100, 600, 1200);
+                finish = () =>
+                {
+                    KillChecks("Frankenstein", WIKI_FRANK_W, WIKI_SCORE_FRANK, 1);
+                    var ig = First("Igor");
+                    Expect("Igor biến mất khi Monster bị hạ", 1, ig != null && ig.endRel >= 0 && defeatRel >= 0 && Math.Abs(ig.endRel - defeatRel) <= 1 ? 1 : 0);
+                };
+                break;
+            default:
+                Debug.LogError("[BossB24Probe] không có kịch bản " + scenario);
+                return -1;
+        }
+        s.ResetStats();
+        if (pilot)
+        {
+            pilotOn = true;
+            pilotPrev = 0;
+            pilotEnd = -1;
+            NesPad.I.StopReplay();
+            NesPad.I.StartRecord();
+            Begin(scenario, PILOT_MAX_TICKS);
+            return PILOT_MAX_TICKS;
+        }
+        NesPad.I.PlayReplay(ticks);
+        Begin(scenario, ticks.Count);
+        return ticks.Count;
+    }
+
+    // ---------------------------------------------------------------- autopilot (chỉ khi GHI)
+
+    /// <summary>Quyết định nút cho tick KẾ TIẾP (gọi cuối tick): quay về mục tiêu, quất khi đoán trúng (tầm roi da: 12–36 px trước mặt,
+    /// hàng chân −24..−17 — hộp WhipRect), không thì đi tới; có quả cầu thì đi nhặt. Không đọc RNG thế giới (giữ tất định).</summary>
+    static int PilotDecide()
+    {
+        var s = Simon;
+        if (s == null || !s.Alive)
+            return 0;
+        if (crystal != null && crystal.Alive)
+            return ToCrystal(s);
+        if (!s.Fsm.Is(eSimonState.Idle) && !s.Fsm.Is(eSimonState.Walk))
+            return 0;
+        EnemyBase tgt = null;
+        int best = int.MaxValue;
+        foreach (var e in world.GroupList(eEntityGroup.Enemy))
+        {
+            var b = e as BossBase;
+            if (b == null || !b.Alive || b.dying || b.dormant || b.hidden || b.defeated) continue;
+            int d = Math.Abs(b.X - s.X);
+            if (d < best) { best = d; tgt = b; }
+        }
+        if (tgt == null)
+            return 0;
+        int dx = tgt.X - s.X;
+        // vị trí đoán sau ~16 tick (roi duỗi ở tick 13–21 sau khi bấm)
+        var tr = Tracks(tgt.GetType().Name).Find(t => t.e == tgt);
+        int vx = 0;
+        if (tr != null && tr.fpath.Count >= 2) vx = tr.fpath[tr.fpath.Count - 1].x - tr.fpath[tr.fpath.Count - 2].x;
+        int px = Fixed.ToPx(tgt.fx + vx * 16);
+        int face = s.Facing;
+        if (Hits(s, tgt, px, face) && (pilotPrev & (1 << (int)eNesButton.B)) == 0)
+            return 1 << (int)eNesButton.B;
+        int want = px != s.X ? Math.Sign(px - s.X) : face;
+        if (want != face)
+            return Dir(want);
+        if (tgt is QueenMedusa)
+            return Math.Abs(dx) > 120 ? Dir(dx) : 0;   // Medusa tự lao tới: đứng chờ
+        return Math.Abs(px - s.X) > 30 ? Dir(px - s.X) : 0;
+    }
+
+    /// <summary>Đi nhặt quả cầu; cầu nằm tầng trên (gờ phòng Mummy) ⇒ tới chân thang của tầng đó rồi giữ ↑ leo lên.</summary>
+    static int ToCrystal(SimonController s)
+    {
+        int up = 1 << (int)eNesButton.Up;
+        if (s.OnStairs)
+            return up;
+        if (crystal.Y >= s.Y - 8 || world.Tiles == null)
+            return Dir(crystal.X - s.X);
+        for (int i = 0; i < world.Tiles.StairCount; i++)
+        {
+            var st = world.Tiles.GetStair(i);
+            if (st.bottom.y != s.Y || st.top.y > crystal.Y + 8)
+                continue;
+            int dx = st.bottom.x - s.X;
+            return Math.Abs(dx) > 4 ? Dir(dx) : up;
+        }
+        return Dir(crystal.X - s.X);
+    }
+
+    static bool Hits(SimonController s, EnemyBase tgt, int px, int face)
+    {
+        var whip = new RectInt(face > 0 ? s.X + 12 : s.X - 36, s.Y - 24, 24, 8);
+        var hb = tgt.Hurt.SectionRect;
+        hb.x += px - tgt.X;
+        return CombatResolver.Overlaps(whip, hb);
+    }
+
+    static int Dir(int dx)
+    {
+        return dx == 0 ? 0 : 1 << (int)(dx > 0 ? eNesButton.Right : eNesButton.Left);
+    }
+
+    // ---------------------------------------------------------------- ghi từng tick
+
+    private static void Begin(string label, int ticks)
+    {
+        Unhook();
+        Label = label;
+        target = ticks;
+        recorded = 0;
+        Hash = 2166136261u;
+        Fails = 0;
+        recs.Clear();
+        checks.Clear();
+        measures.Clear();
+        playerHits.Clear();
+        playerDmg.Clear();
+        bars.Clear();
+        defeatRel = crystalRel = pickRel = firstDefeatRel = -1;
+        brokenShots = 0;
+        crystal = null;
+        startTick = world.TickCount;
+        foreach (var e in world.GroupList(eEntityGroup.Enemy))
+            TrackOf(e, 0);
+        world.TickEnded += OnTickEnded;
+        world.Hit += OnHit;
+        EnemyBase.Defeated += OnDefeated;
+        BossBase.BossDefeated += OnBossDefeated;
+        BossBase.CrystalSpawned += OnCrystal;
+        ItemEffects.CrystalPicked += OnPicked;
+        Running = true;
+    }
+
+    private static void Unhook()
+    {
+        if (world != null)
+        {
+            world.TickEnded -= OnTickEnded;
+            world.Hit -= OnHit;
+        }
+        EnemyBase.Defeated -= OnDefeated;
+        BossBase.BossDefeated -= OnBossDefeated;
+        BossBase.CrystalSpawned -= OnCrystal;
+        ItemEffects.CrystalPicked -= OnPicked;
+        Running = false;
+    }
+
+    private static int Rel => world.TickCount - startTick - 1;
+
+    private static void OnHit(HitInfo h)
+    {
+        var t = TrackOf(h.victim, Rel);
+        if (t != null) t.hits++;
+        if (h.victim == world.Player)
+        {
+            playerHits.Add(h.hitbox.layer + ":" + (h.attacker != null ? h.attacker.GetType().Name : "?") + "@" + Rel + "−" + h.damage);
+            playerDmg.Add(h.damage);
+        }
+        var f = h.victim as BoneTowerFireball;
+        if (f != null && f.broken) brokenShots++;
+    }
+
+    private static void OnDefeated(EnemyBase e)
+    {
+        if (firstDefeatRel < 0 && e is BossBase) firstDefeatRel = Rel;
+        var t = TrackOf(e, Rel);
+        if (t != null) t.defeated = true;
+    }
+
+    private static void OnBossDefeated(BossBase b)
+    {
+        if (defeatRel < 0) defeatRel = Rel;
+    }
+
+    private static void OnCrystal(BossBase b, ItemPickup it)
+    {
+        crystal = it;
+        crystalRel = Rel;
+    }
+
+    private static void OnPicked(StageWorld w)
+    {
+        if (pickRel < 0) pickRel = Rel;
+    }
+
+    private static Track TrackOf(Entity e, int rel)
+    {
+        if (e == null || (e.Group != eEntityGroup.Enemy && e.Group != eEntityGroup.EnemyShot))
+            return null;
+        foreach (var t in tracks)
+            if (t.e == e && t.spawnTick == e.SpawnTick)
+                return t;
+        var n = new Track { e = e, spawnTick = e.SpawnTick, spawnRel = rel, kind = e.GetType().Name };
+        tracks.Add(n);
+        return n;
+    }
+
+    private static void Mix(int v)
+    {
+        uint h = Hash;
+        for (int i = 0; i < 4; i++)
+        {
+            h ^= (uint)(v & 0xFF);
+            h *= 16777619u;
+            v >>= 8;
+        }
+        Hash = h;
+    }
+
+    private static void OnTickEnded(StageWorld w)
+    {
+        if (!Running)
+            return;
+        var s = Simon;
+        int rel = Rel;
+        var ses = GameSession.Current;
+        int fx = 0, shotsN = 0;
+        for (int g = (int)eEntityGroup.Enemy; g <= (int)eEntityGroup.EnemyShot; g++)
+            foreach (var e in w.GroupList(g))
+            {
+                if (!e.Alive) continue;
+                var t = TrackOf(e, rel);
+                t.fpath.Add(new Vector2Int(e.fx, e.fy));
+                t.states.Add(e.DebugState.Split(' ')[0]);
+                var en = e as EnemyBase;
+                t.active.Add(en != null && en.Hurt != null && en.Hurt.active);
+                t.anims.Add(e.Anim != null && e.Anim.Current != null ? e.Anim.Current.name + ":" + e.Anim.FrameIndex : "");
+                t.hp.Add(en != null ? en.Health.Current : 0);
+                if (g == (int)eEntityGroup.EnemyShot) shotsN++;
+                Mix(e.fx); Mix(e.fy); Mix(e.Facing);
+            }
+        foreach (var t in tracks)
+            if (t.endRel < 0 && (!t.e.Alive || t.e.SpawnTick != t.spawnTick))
+                t.endRel = rel;
+        foreach (var e in w.GroupList(eEntityGroup.Effect))
+            if (e.Alive) fx++;
+        if (bars.Count == 0 || bars[bars.Count - 1] != ses.enemyHp) bars.Add(ses.enemyHp);
+        var r = new Rec
+        {
+            sx = s.X, sy = s.Y, hp = ses.playerHp, score = ses.score, state = s.Fsm.CurState, cx = w.CameraCtl != null ? w.CameraCtl.X : 0,
+            fx = fx, frozenE = w.IsEnemyFrozen, shots = shotsN, ebar = ses.enemyHp,
+        };
+        recs.Add(r);
+        Mix(rel); Mix(s.fx); Mix(s.fy); Mix((int)r.state); Mix(r.hp); Mix(r.score); Mix(r.ebar); Mix(fx); Mix(shotsN); Mix(w.Rng.State);
+        string shot;
+        if (shots.TryGetValue(rel, out shot))
+            ScreenCapture.CaptureScreenshot(shot);
+        if (onTick != null)
+            onTick(rel);
+        // ảnh theo sự kiện (kịch bản hạ boss): con đầu bị hạ, lửa chết, quả cầu rơi, sau khi nhặt
+        if (!string.IsNullOrEmpty(ShotDir) && !pilotOn)
+        {
+            string tag = firstDefeatRel >= 0 && rel == firstDefeatRel + 6 ? "defeat1" : defeatRel >= 0 && rel == defeatRel + 8 ? "deathfx"
+                : crystalRel >= 0 && rel == crystalRel + 12 ? "crystal" : pickRel >= 0 && rel == pickRel + 2 ? "picked" : null;
+            if (tag != null)
+                ScreenCapture.CaptureScreenshot(Path.Combine(ShotDir, current + "_" + tag + "_r" + rel.ToString("0000") + ".png"));
+        }
+        if (pilotOn)
+        {
+            if (pickRel >= 0 && pilotEnd < 0)
+                pilotEnd = rel + 60;
+            if (pilotEnd >= 0 && rel >= pilotEnd)
+                target = recorded + 1;
+            else
+            {
+                int mask = PilotDecide();
+                pilotPrev = mask;
+                for (int b = 0; b < NesPad.BUTTON_COUNT; b++)
+                    if ((mask & (1 << b)) != 0)
+                        NesPad.I.Inject((eNesButton)b, 1);
+            }
+        }
+        if (++recorded >= target)
+            Finish();
+    }
+
+    private static void Finish()
+    {
+        Unhook();
+        if (pilotOn)
+        {
+            var rec = NesPad.I.StopRecord();
+            // tick đầu đã ghi = tick 1 của kịch bản (bắt đầu ghi trước tick 1) — số tick ghi = số tick chạy
+            WriteReplay(Label, rec, Find(Label).note + " — ghi bằng autopilot (CVGP 19), hash chạy ghi " + Hash.ToString("x8"));
+            RecordHashes[Label] = Hash;
+            measures.Add("GHI replay " + rec.Count + " tick (hash chạy ghi " + Hash.ToString("x8") + ")");
+            pilotOn = false;
+        }
+        NesPad.I.StopReplay();
+        shots.Clear();
+        if (finish != null)
+        {
+            try
+            {
+                finish();
+            }
+            catch (Exception ex)
+            {
+                checks.Add("    FAIL ngoại lệ khi chấm: " + ex.Message);
+                Fails++;
+            }
+        }
+        Traces[Label] = TraceCsv();
+        Cleanup();
+        if (!SuiteDone)
+        {
+            SuiteFails += Fails;
+            uint h = SuiteHash;
+            h ^= Hash;
+            h *= 16777619u;
+            SuiteHash = h;
+            SuiteReports.Add(Report());
+            NextInSuite();
+        }
+    }
+
+    public static readonly Dictionary<string, string> Traces = new Dictionary<string, string>();
+
+    public static int SaveTraces(string dir)
+    {
+        Directory.CreateDirectory(dir);
+        foreach (var kv in Traces)
+            File.WriteAllText(Path.Combine(dir, "trace_" + kv.Key + ".csv"), kv.Value, new UTF8Encoding(false));
+        return Traces.Count;
+    }
+
+    private static void Cleanup()
+    {
+        foreach (var go in temp)
+            if (go != null)
+            {
+                var sp = go.GetComponent<EnemySpawner>();
+                if (world != null && sp != null)
+                    world.RemoveSpawner(sp);
+                UnityEngine.Object.Destroy(go);
+            }
+        temp.Clear();
+        tracks.Clear();
+        if (addedRules && rules != null)
+        {
+            rules.enabled = false;
+            UnityEngine.Object.Destroy(rules);
+            if (Simon != null)
+                Simon.AutoRespawn = savedAutoRespawn;
+        }
+        addedRules = false;
+        rules = null;
+        arena = null;
+        if (world != null)
+        {
+            world.FreezeEnemies(0);
+            world.ClearNonPlayer();
+            if (world.Tiles != null)
+            {
+                world.Tiles.WallMinX = int.MinValue;
+                world.Tiles.WallMaxX = int.MaxValue;
+            }
+            if (savedStage > 0)
+                world.Stage = savedStage;
+        }
+    }
+
+    public static string Report()
+    {
+        var sb = new StringBuilder();
+        sb.Append("[").Append(Fails == 0 ? "ĐẠT" : "FAIL").Append("] ").Append(Label).Append(" — ").Append(recs.Count).Append(" tick, hash ")
+          .Append(Hash.ToString("x8")).Append('\n');
+        foreach (var c in checks)
+            sb.Append(c).Append('\n');
+        foreach (var m in measures)
+            sb.Append("    · ").Append(m).Append('\n');
+        return sb.ToString().TrimEnd('\n');
+    }
+
+    /// <summary>Vết thực thể kịch bản vừa chạy: "kind,spawnRel,k,rel,x,y,state,simonX,simonY,php,ebar" (px).</summary>
+    public static string TraceCsv()
+    {
+        var sb = new StringBuilder("kind,spawnRel,k,rel,x,y,state,simonX,simonY,php,ebar\n");
+        foreach (var t in tracks)
+            for (int k = 0; k < t.fpath.Count; k++)
+            {
+                int rel = t.spawnRel + k;
+                bool ok = rel >= 0 && rel < recs.Count;
+                sb.Append(t.kind).Append(',').Append(t.spawnRel).Append(',').Append(k).Append(',').Append(rel).Append(',')
+                  .Append(Fixed.ToPx(t.fpath[k].x)).Append(',').Append(Fixed.ToPx(t.fpath[k].y)).Append(',').Append(t.states[k]).Append(',')
+                  .Append(ok ? recs[rel].sx : 0).Append(',').Append(ok ? recs[rel].sy : 0).Append(',').Append(ok ? recs[rel].hp : 0).Append(',')
+                  .Append(ok ? recs[rel].ebar : 0).Append('\n');
+            }
+        return sb.ToString();
+    }
+
+    // ---------------------------------------------------------------- chấm
+
+    static Rec Last => recs[recs.Count - 1];
+
+    static List<Track> Tracks(string kind)
+    {
+        var l = new List<Track>();
+        foreach (var t in tracks)
+            if (t.kind == kind)
+                l.Add(t);
+        l.Sort((a, b) => a.spawnRel.CompareTo(b.spawnRel));
+        return l;
+    }
+
+    static List<Track> ShotTracks(string kind) { return Tracks(kind); }
+
+    static Track First(string kind)
+    {
+        var l = Tracks(kind);
+        if (l.Count == 0)
+        {
+            Expect("có " + kind, 1, 0);
+            return null;
+        }
+        return l[0];
+    }
+
+    static int FirstK(Track t, Func<int, bool> f)
+    {
+        for (int k = 0; k < t.fpath.Count; k++) if (f(k)) return k;
+        return -1;
+    }
+
+    static int CountK(Track t, Func<int, bool> f)
+    {
+        int n = 0;
+        for (int k = 0; k < t.fpath.Count; k++) if (f(k)) n++;
+        return n;
+    }
+
+    static int FirstRel(int from, Func<Rec, bool> f)
+    {
+        for (int i = Math.Max(0, from); i < recs.Count; i++) if (f(recs[i])) return i;
+        return -1;
+    }
+
+    /// <summary>Vị trí px của thực thể ở tick rel (ngoài vết ⇒ (−9999, −9999)).</summary>
+    static Vector2Int PosAt(Track t, int rel)
+    {
+        int k = rel - t.spawnRel;
+        if (k < 0 || k >= t.fpath.Count) return new Vector2Int(-9999, -9999);
+        return new Vector2Int(Fixed.ToPx(t.fpath[k].x), Fixed.ToPx(t.fpath[k].y));
+    }
+
+    static int[] Wave(int amp, int period)
+    {
+        var w = new int[period];
+        for (int i = 0; i < period; i++)
+            w[i] = -(int)Math.Round(amp * Math.Sin(2.0 * Math.PI * i / period) * Fixed.ONE);
+        return w;
+    }
+
+    static int OnScreen(eEntityGroup g)
+    {
+        int cx = world.CameraCtl != null ? world.CameraCtl.X : 0, n = 0;
+        foreach (var e in world.GroupList(g))
+            if (e.Alive && e.X >= cx && e.X < cx + NesCoord.SCREEN_W) n++;
+        return n;
+    }
+
+    /// <summary>Mọi đòn lên Simon = mức stage (wiki); máu giảm đúng tổng.</summary>
+    static void DamageChecks(int dmg, int minHits)
+    {
+        ExpectRange("số lần Simon trúng đòn", minHits, 999, playerDmg.Count);
+        int bad = 0, sum = 0;
+        foreach (var d in playerDmg) { if (d != dmg) bad++; sum += d; }
+        Expect("sát thương mỗi đòn = " + dmg + " vạch (đòn sai)", 0, bad);
+        if (sum < GameSession.MAX_HP)
+            Expect("máu Simon = 16 − tổng sát thương", GameSession.MAX_HP - sum, Last.hp);
+        measures.Add(string.Join(" ", playerHits));
+    }
+
+    /// <summary>Hạ boss bằng roi da (autopilot): đúng số đòn yếu wiki, thanh ENEMY giảm theo đòn, điểm, lửa, quả cầu 152, nhặt ⇒ tally.</summary>
+    static void KillChecks(string kind, int hitsWeak, int score, int entities)
+    {
+        var ts = Tracks(kind);
+        Expect("số thực thể boss", entities, ts.Count);
+        int hits = 0, defeated = 0;
+        foreach (var t in ts) { hits += t.hits; if (t.defeated) defeated++; }
+        Expect(kind + " số đòn roi da tới khi hạ hết (wiki " + hitsWeak + ")", hitsWeak, hits);
+        if (entities > 1)
+            foreach (var t in ts) Expect(kind + " con (sinh rel " + t.spawnRel + ") số đòn (" + hitsWeak / entities + ")", hitsWeak / entities, t.hits);
+        Expect("bị hạ (thực thể)", entities, defeated);
+        ExpectRange("hạ (tick rel)", 1, PILOT_MAX_TICKS, defeatRel);
+        Expect("+" + score + " (+100 × cầu lửa phá " + brokenShots + ")", score + brokenShots * WIKI_PROJ_SCORE, defeatRel >= 0 ? recs[defeatRel].score : -1);
+        Expect("ENEMY 0 lúc hạ", 0, defeatRel >= 0 ? recs[defeatRel].ebar : -1);
+        int dec = 0;
+        for (int i = 1; i < bars.Count; i++) if (bars[i] > bars[i - 1]) dec++;
+        Expect("thanh ENEMY chỉ giảm (lần tăng)", 0, dec);
+        ExpectRange("quả cầu sau khi hạ (tick — 152)", 151, 153, crystalRel - defeatRel);
+        ExpectRange("Simon nhặt quả cầu", crystalRel + 1, 99999, pickRel);
+        Expect("máu Simon đầy sau khi nhặt", GameSession.MAX_HP, pickRel >= 0 && pickRel < recs.Count ? recs[pickRel].hp : -1);
+        Expect("tally đã bắt đầu (StageRules)", 1, rules != null && rules.Tally.Active ? 1 : 0);
+        measures.Add(kind + ": " + hits + " đòn roi da, hạ ở tick " + defeatRel + " (" + (defeatRel / 60.0).ToString("0.0") + " s), cầu " + crystalRel
+                     + ", nhặt " + pickRel + "; vạch ENEMY: " + string.Join(",", bars));
+    }
+
+    static void Expect(string what, int want, int got)
+    {
+        bool ok = want == got;
+        if (!ok)
+            Fails++;
+        checks.Add("    " + (ok ? "ĐẠT " : "FAIL ") + what + ": kỳ vọng " + want + ", được " + got);
+    }
+
+    static void ExpectRange(string what, int lo, int hi, int got)
+    {
+        bool ok = got >= lo && got <= hi;
+        if (!ok)
+            Fails++;
+        checks.Add("    " + (ok ? "ĐẠT " : "FAIL ") + what + ": kỳ vọng " + lo + "–" + hi + ", được " + got);
+    }
+}
+#endif

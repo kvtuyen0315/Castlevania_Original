@@ -1,0 +1,3 @@
+# 198 tick, hash 29fe820d
+# CVGP 19 BossB24Probe kịch bản 'frank_igor_freeze': Arena: Igor đứng (124,176), Simon (100,176) NGỒI quất roi da: Igor đứng hình 120 tick, không mất máu, không chết, 0 điểm (wiki: bất tử, quất ⇒ đóng băng)
+D*4 D+B*1 D*23 -*170

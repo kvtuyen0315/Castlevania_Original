@@ -69,10 +69,11 @@ MonoBehaviour:
       tr\xEAn s\xE0n v\u1EC1 ph\xEDa Simon"
     itemsInRoom: "Kh\xF4ng"
     moveSpeed:
-      has: 0
-      value: 0
-    src_moveSpeed: "kh\xF4ng r\xF5 \u2014 kh\xF4ng c\xF3 video (routine 19 \u01B0\u1EDBc
-      l\u01B0\u1EE3ng)"
+      has: 1
+      value: 1
+    src_moveSpeed: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video)
+      \u2014 routine 19; ngang khi bay lao v\u1EC1 Simon (wiki: 'c\u1ED1 va v\xE0o
+      Simon'; nh\u01B0 Medusa Head 17 1.0); s\xF3ng d\u1ECDc \u1EDF ConfigActorParam"
     source: wiki:Bosses#Queen Medusa
   - id: 3
     phase: 1
@@ -99,10 +100,11 @@ MonoBehaviour:
       g\u1EA1c; k\u1EB9p Simon t\u1EEB hai ph\xEDa"
     itemsInRoom: "Pot Roast (kh\u1ED1i th\u1EA5p nh\u1EA5t c\u1EA7u thang tr\xE1i)"
     moveSpeed:
-      has: 0
-      value: 0
-    src_moveSpeed: "kh\xF4ng r\xF5 \u2014 kh\xF4ng c\xF3 video (routine 19 \u01B0\u1EDBc
-      l\u01B0\u1EE3ng)"
+      has: 1
+      value: 0.375
+    src_moveSpeed: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video)
+      \u2014 routine 19; wiki Block 3 'boss ch\u1EADm nh\u01B0ng kho\u1EBB' \u2014
+      ch\u1EADm h\u01A1n Zombie 0.875 v\xE0 Spear Knight 0.5"
     source: wiki:Bosses#Mummy Men
   - id: 4
     phase: 1
@@ -129,10 +131,11 @@ MonoBehaviour:
       nh\u1EA3y qua l\u1EA1i v\xE0 n\xE9m c\u1EA7u l\u1EEDa"
     itemsInRoom: "Kh\xF4ng (Dagger \u1EDF ngo\xE0i ph\xF2ng)"
     moveSpeed:
-      has: 0
-      value: 0
-    src_moveSpeed: "kh\xF4ng r\xF5 \u2014 kh\xF4ng c\xF3 video (routine 19 \u01B0\u1EDBc
-      l\u01B0\u1EE3ng)"
+      has: 1
+      value: 0.25
+    src_moveSpeed: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video)
+      \u2014 routine 19; Monster 'ch\u1EC9 \u0111i lang thang' \u2014 ch\u1EADm nh\u1EA5t
+      (s\u1EA3i ch\xE2n l\u1EDBn, n\u1EB7ng n\u1EC1)"
     source: wiki:Bosses#Frankenstein & Igor
   - id: 5
     phase: 1

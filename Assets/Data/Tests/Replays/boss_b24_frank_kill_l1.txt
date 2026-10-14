@@ -1,0 +1,7 @@
+# 880 tick, hash 317619f5
+# CVGP 19 BossB24Probe kịch bản 'frank_kill_l1': AUTOPILOT roi da: 24 đòn vào Monster (wiki — Igor bất tử), +5000, Igor biến mất, quả cầu, nhặt ⇒ tally — ghi bằng autopilot (CVGP 19), hash chạy ghi fe088a61
+-*16 R*24 -*3 R*63 B*1 -*22 B*1 -*22 B*1 -*22 B*1 -*22
+B*1 -*22 B*1 -*22 B*1 -*22 B*1 -*22 B*1 -*22 B*1 -*22
+B*1 -*22 B*1 -*22 B*1 -*22 B*1 -*22 B*1 -*22 B*1 -*22
+B*1 -*22 B*1 -*22 B*1 -*22 B*1 -*22 B*1 -*22 B*1 -*22
+B*1 -*22 B*1 -*165 R*19 -*60
