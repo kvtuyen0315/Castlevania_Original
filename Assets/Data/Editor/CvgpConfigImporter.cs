@@ -23,6 +23,7 @@ public static class CvgpConfigImporter
     const string ASSET_DIR = "Assets/Data/Config";
     const string ROOT_PATH = "Assets/Data/Config/GameConfig.asset";
     const string REPORT_REL = "ClaudeNotes/cvgp/CHARACTER_STATS.md";
+    const string BEHAVIOR_REL = "ClaudeNotes/cvgp/behavior_status.csv";   // CVGP 21: cột "hành vi đã dựng / mức gần đúng" (table,id,phase,status)
 
     static readonly string[] ORIGIN_TAGS = { "wiki:", "video:", "đo:", "suy luận", "CVTI", "quy ước" };
     static readonly Regex PENDING_RX = new Regex(@"chờ đo routine \d\d|không rõ|n/a", RegexOptions.CultureInvariant);
@@ -708,13 +709,16 @@ public static class CvgpConfigImporter
         sb.AppendLine();
         sb.AppendLine("Máu = **số đòn** để hạ: *yếu* (roi da, Holy Water, Dagger) / *mạnh* (roi xích ngắn/dài, Cross, Axe). Sát thương lên Simon: bảng §1 (theo stage).");
         sb.AppendLine();
+        var behavior = LoadBehavior();
         Table(sb, enemies, new[] { "id", "nameAlt", "sheetName", "kind", "stages", "hitsWeak", "hitsStrong", "score", "canDie", "projectile", "moveSpeed", "behaviorShort" },
-            new[] { "Id (wiki)", "Tên khác", "Nhóm sheet", "Loại", "Stage", "Đòn yếu", "Đòn mạnh", "Điểm", "Chết được", "Đạn", "Tốc độ (px/tick)", "Hành vi" });
+            new[] { "Id (wiki)", "Tên khác", "Nhóm sheet", "Loại", "Stage", "Đòn yếu", "Đòn mạnh", "Điểm", "Chết được", "Đạn", "Tốc độ (px/tick)", "Hành vi" },
+            behavior == null ? null : (Func<int, string>)(i => Behavior(behavior, "ConfigEnemy|" + ((ConfigEnemyRow)enemies.rows[i]).id + "|")), BEHAVIOR_TITLE);
 
         sb.AppendLine("## 3. Boss");
         sb.AppendLine();
         Table(sb, bosses, new[] { "id", "phase", "stage", "entityCount", "hitsWeak", "hitsStrong", "hitsScope", "score", "stopwatchAffects", "weakPoint", "attacks", "itemsInRoom" },
-            new[] { "Boss", "Pha", "Stage", "Số thực thể", "Đòn yếu", "Đòn mạnh", "Đòn tính cho", "Điểm", "Stopwatch tác dụng", "Điểm yếu", "Đòn tấn công", "Item trong phòng" });
+            new[] { "Boss", "Pha", "Stage", "Số thực thể", "Đòn yếu", "Đòn mạnh", "Đòn tính cho", "Điểm", "Stopwatch tác dụng", "Điểm yếu", "Đòn tấn công", "Item trong phòng" },
+            behavior == null ? null : (Func<int, string>)(i => Behavior(behavior, "ConfigBoss|" + ((ConfigBossRow)bosses.rows[i]).id + "|" + ((ConfigBossRow)bosses.rows[i]).phase)), BEHAVIOR_TITLE);
 
         sb.AppendLine("## 4. Tham số hành vi đo được (enemy / boss / vũ khí / item)");
         sb.AppendLine();
@@ -814,11 +818,32 @@ public static class CvgpConfigImporter
         return (s ?? "").Replace("|", "\\|").Replace("\n", " ");
     }
 
-    /// <summary>Bảng rộng: cột chọn + cột "Nguồn" (source của dòng + mọi src_* có nội dung).</summary>
-    static void Table(StringBuilder sb, Parsed p, string[] cols, string[] titles)
+    const string BEHAVIOR_TITLE = "Hành vi đã dựng / mức gần đúng (nghiệm thu CVGP 21)";
+
+    /// <summary>CVGP 21: trạng thái hành vi từng nhân vật (ClaudeNotes/cvgp/behavior_status.csv) — khoá "table|id|phase"; thiếu file ⇒ null.</summary>
+    static Dictionary<string, string> LoadBehavior()
     {
-        sb.AppendLine("| " + string.Join(" | ", titles) + " | Nguồn |");
-        sb.AppendLine("|" + string.Concat(Enumerable.Repeat("---|", titles.Length + 1)));
+        var full = Path.GetFullPath(Path.Combine(Application.dataPath, "..", BEHAVIOR_REL));
+        if (!File.Exists(full))
+            return null;
+        var map = new Dictionary<string, string>();
+        foreach (var kv in ReadCsv(File.ReadAllText(full, Encoding.UTF8), "behavior_status", new Errors()).Skip(1))
+            if (kv.Value.Length >= 4)
+                map[kv.Value[0] + "|" + kv.Value[1] + "|" + kv.Value[2]] = kv.Value[3];
+        return map;
+    }
+
+    static string Behavior(Dictionary<string, string> map, string key)
+    {
+        string s;
+        return map.TryGetValue(key, out s) ? s : "*chưa nghiệm thu*";
+    }
+
+    /// <summary>Bảng rộng: cột chọn (+ cột phụ tuỳ chọn) + cột "Nguồn" (source của dòng + mọi src_* có nội dung).</summary>
+    static void Table(StringBuilder sb, Parsed p, string[] cols, string[] titles, Func<int, string> extra = null, string extraTitle = null)
+    {
+        sb.AppendLine("| " + string.Join(" | ", titles) + (extra != null ? " | " + extraTitle : "") + " | Nguồn |");
+        sb.AppendLine("|" + string.Concat(Enumerable.Repeat("---|", titles.Length + 1 + (extra != null ? 1 : 0))));
         var srcCols = p.header.Where(h => h.StartsWith("src_")).ToArray();
         for (int i = 0; i < p.rows.Count; i++)
         {
@@ -831,7 +856,7 @@ public static class CvgpConfigImporter
                 var v = p.cells[i][Col(p, c)].Trim();
                 if (v.Length > 0) src.Add("*" + c.Substring(4) + ":* " + v);
             }
-            sb.AppendLine("| " + string.Join(" | ", cells) + " | " + Esc(string.Join(" · ", src)) + " |");
+            sb.AppendLine("| " + string.Join(" | ", cells) + (extra != null ? " | " + Esc(extra(i)) : "") + " | " + Esc(string.Join(" · ", src)) + " |");
         }
         sb.AppendLine();
     }
