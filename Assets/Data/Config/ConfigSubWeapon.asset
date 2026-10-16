@@ -81,8 +81,13 @@ MonoBehaviour:
     pierces:
       has: 1
       value: 1
-    src_pierces: "suy lu\u1EADn: wiki Items#Holy Water (l\u1EEDa tr\xEAn s\xE0n nh\u1ED1t
-      enemy \u2014 tr\xFAng m\u1ECDi m\u1EE5c ti\xEAu ch\u1EA1m l\u1EEDa)"
+    src_pierces: "video:Boss_Map_1 15.57\u201316.10 s (f467\u2013483: l\u1ECD v\xE0o
+      th\xE2n Phantom Bat; b\u1ECB th\xE2n che; l\xF3 ra d\u01B0\u1EDBi-tr\xE1i v\u1EABn
+      bay r\u1ED3i v\u1EE1 \u1EDF s\xE0n; ENEMY 16\u219215 f471 \u0111\xFAng l\xFAc
+      l\u1ECD ch\u1EA1m) + video:Boss_Map_2 4.5\u20135.0 s v\xE0 12.8\u201313.4 s
+      (f134\u2013149; f383\u2013402: l\u1ECD xuy\xEAn Medusa v\u1EE1 \u1EDF s\xE0n
+      ph\xEDa sau; ENEMY 10\u21929 f393 l\xFAc l\u1ECD trong m\u1EB7t) \u2014 \u0111o:cvm2-04
+      (l\u1ECD tr\xFAng 1 l\u1EA7n/m\u1EE5c ti\xEAu r\u1ED3i bay ti\u1EBFp)"
     returns: 0
     freezeTicks:
       has: 0

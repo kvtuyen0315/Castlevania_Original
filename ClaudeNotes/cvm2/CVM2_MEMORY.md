@@ -25,7 +25,7 @@ Video kèm: `C:\Users\kvtuy\Videos\Screen Recordings\Castlevania_Original\Map_2.
 | 01 | cvm2-01-nhap-sheet-level2-va-sprite-moi | **XONG** | (commit "CVM2 01") | 16/10/2026 | 2 sheet sha256 khớp + SOURCES; kiểm kê chạy lại y hệt planner; đối chiếu Tilesets (§3b); 9 sprite mới (crusher_0..7 + platform) md5 lặp y hệt, verify 0 lỗi; importer đọc pivot manifest Map 2 |
 | 02 | cvm2-02-hieu-chuan-video-timeline-va-su-kien | **XONG** | (commit "CVM2 02") | 16/10/2026 | hiệu chuẩn tinh (Map_2 ZNCC 0.9468/10 frame, boss gradient 0.955/7 frame; **hàng NES nhìn thấy 8–231**); HUD 7814 frame (20/20 frame kiểm mắt đúng); camera 100 %, Simon 92.9 %; 78 sự kiện HUD có nghĩa; 12 chuyển cảnh đo tick; **MAP2_TIMELINE.md viết lại (57 dòng §3 + §3b–d + §4 boss + §7)**; bảng số ở `ref/data/`; **phát hiện: vũ khí "nước thánh" của Map_2 là ĐỒNG HỒ (stopwatch)**, STAGE đổi ngay cuối cuộn 2 của cửa, đồng hồ đứng 186–196 tick (wiki 5 s) — không sửa game (H9) |
 | 03 | cvm2-03-nhac-16-bai-va-moc-nhac-map1-map2 | **XONG** | (commit "CVM2 03") | 16/10/2026 | 16 MP3 nhập (sha256 §3d) + `eMusic`/`MusicLibrary` + lặp theo mẫu (10 bài; ±1 mẫu ở đầu ra thật); bài ↔ mốc bằng xcorr 5 video (§2d: Block 2 = **Stalker**, boss = Poison Mind, Stage Clear = nhặt cầu, bản đồ im); mốc Map 1 trong Unity §2e; **bảng mốc Map 2 §2f cho routine 11**; 24 ô Config → `eMusic` + nguồn; Death lúc bắt đầu chết; mọi hash = bảng chuẩn |
-| 04 | cvm2-04-lo-nuoc-thanh-xuyen-dich | chưa chạy | | | |
+| 04 | cvm2-04-lo-nuoc-thanh-xuyen-dich | **XONG** | (commit "CVM2 04") | 17/10/2026 | bằng chứng 7 lần ném (2 video boss, §2g): lọ **xuyên** địch, chỉ vỡ ở sàn, **gây 1 đòn** khi bay qua (boss1 f471, boss2 f393); **Unity ĐÃ đúng từ CVGP 04/09** (`ConfigSubWeapon.HolyWater.pierces = 1` ⇒ không vỡ khi trúng) — "Unity vỡ ngay" của CVGP 14/16 chỉ dựa vào comment sai, chưa từng đo; sửa comment `HolyWater`/`BossBase`, nguồn `src_pierces` → video; probe mới `HolyPierceProbe` (bộ `holy` 5/5 `52c59864`); **mọi hash cũ giữ nguyên** |
 | 05 | cvm2-05-tilemap-va-luoi-va-cham-block2 | chưa chạy | | | |
 | 06 | cvm2-06-be-di-dong-bay-ep-gai-va-ho-chet | chưa chạy | | | |
 | 07 | cvm2-07-quet-hoi-quy-giua-cum | chưa chạy | | | |
@@ -165,7 +165,23 @@ Hai lần chạy (trước/sau sửa Death) cho mốc luồng y hệt (tất đ�
 | 12 | Simon chết / hồi sinh | (không có trong video) | Death → bài stage từ đầu | đã dựng | `SimonController.DyingStarted` → Death; `OnRespawned → PlayStageMusic` |
 | 13 | Pause (Start) | (không có) | — | tạm dừng / chạy tiếp | `StageRules` → `AudioManager.PauseMusic` (CVGP 12) |
 
-*(Các routine sau thêm 2g… — số đo của mình.)*
+### 2g. Routine 04 (17/10/2026) — lọ nước thánh khi bay chạm enemy/boss (đo video, lưới NES; `Tools/cvm2/holy4_*.py`)
+Cách đo: tim −1 (HUD) = lúc bấm ném (lọ rời tay ≈ 8 frame sau); ENEMY −1 = trúng (`holy4_hud.py` đọc `boss_hud.csv` CVGP + `ref/data/boss2_hud.csv`); frame lưới NES liên tiếp phóng 3× (`holy4_sheets.py`, hiệu chuẩn boss1 = `nes_common` CVGP, boss2 = `nes2` CVM2 02) — **đã mở xem từng tấm** (`_cache/04/b1_f334_zoom.png`, `b1_f458_zoom.png`, `b2_f128_zoom.png`, `b2_f160_zoom.png`, `b2_f378_zoom.png`).
+
+| # | Video · frame | Mô tả (toạ độ NES) | ENEMY | Kết luận |
+|---|---|---|---|---|
+| 1 | Boss_Map_1 f326→**f334–350** (11.1–11.7 s) | lọ ném sang TRÁI, rơi tới sàn; dơi lơ lửng (≈167,172), lọ (199,187)→(190,193) — cách mép thân dơi ≈ 10 px, **không chồng** | 16 giữ | KHÔNG chạm. **CVGP 14 ghi "f342–352 lọ xuyên dơi" là nhầm** (dơi đứng = đang lơ lửng) |
+| 2 | Boss_Map_1 f459→**f467–483** (15.57–16.10 s) | lọ rời tay f467, chạm cánh phải dơi **f471**, bị thân dơi che f474–479 (sprite dơi vẽ đè), **ló ra dưới-trái vẫn bay f480–482**, lửa trên sàn **f483**; dơi đứng yên f468–485 | **16→15 f471** | XUYÊN + **1 đòn khi bay** (không có lửa trên màn — lửa trước tắt f459; Simon tư thế ném, không roi) |
+| 3 | Boss_Map_1 f471→f479–485 | lọ #2 rời tay ≈f479, vào cánh phải dơi f480–485 rồi qua thân | **15→14 f480** | (khả năng) lọ #2 cũng 1 đòn — cách đòn trước 9 frame ≈ 18 tick > bất tử 16 |
+| 4 | Boss_Map_2 f126→**f134–149** (4.47–4.97 s) | lọ từ Simon (x≈25) qua rìa trái-dưới thân Medusa (cằm/tóc) f137–143, ló ra phải f144–147, vỡ sàn x≈70 **f148–149**; Medusa đứng yên | 16 giữ lúc chồng; **16→15 f149** = lúc lửa hiện | XUYÊN; lần này **không** mất máu khi lọ chồng rìa thân (hộp nhận đòn NES nhỏ hơn sprite tóc? / NES không dò va chạm mỗi frame) |
+| 5 | Boss_Map_2 f141/f156→f160–163, **f164–179** | lọ qua rìa phải-dưới (f160–162) rồi vỡ sàn f163; lọ kế qua MẶT Medusa f168–176, vỡ sàn phải ≈f179 | 15→14 f165 (lửa sàn), 14→13 f177 + 13→12 f181 (tia roi Simon f173–182) | XUYÊN; lọ trong mặt f168–172 không trừ máu — Medusa vừa trúng f165 (bất tử) |
+| 6 | Boss_Map_2 f375→**f383–402** (12.77–13.40 s) | lọ từ Simon (x≈85) vào tóc trái f387–389, **trong mặt f390–393**, ló ra dưới-phải f394, vỡ sàn x≈116 **f402** | **10→9 f393** | XUYÊN + **1 đòn khi bay** (không lửa nào trên màn; Simon đang ném lọ #2 f388–396 — không roi) |
+| 7 | Boss_Map_2 f388→f396–408 | lọ #2 qua tóc/mặt f401–407 | 9→8 f409 | trùng lúc lửa lọ #1 ở mép phải-dưới Medusa — không tách được |
+| — | Map_2 3:46–3:56 | Simon dùng **đồng hồ** (không phải nước thánh — CVM2 02) | — | không phải bằng chứng nước thánh |
+
+**Kết luận (H1 — video)**: (a) lọ **không vỡ khi chạm** enemy/boss — 6/6 lần lọ đi qua thân đều bay tiếp và chỉ vỡ khi tới sàn; (b) lọ **có gây đòn** khi bay qua (2 lần rõ: boss1 f471, boss2 f393; 1 lần khả năng: boss1 f480) — 1 đòn/lọ/mục tiêu; 2 lần chồng không trừ máu đều giải thích được (rìa thân / đang bất tử); (c) boss **đứng yên** suốt lúc lọ trong thân (dơi f468–485, Medusa f137–147) = cơ chế `BossBase.TouchingHolyWater` có sẵn; (d) lửa giữ chân + đốt (dơi f483 → chết f542 trong lửa, Medusa 1 vạch/≈30 tick) = cơ chế có sẵn.
+**Unity (đo, `HolyPierceProbe`, Arena)**: đối chứng không mục tiêu: lọ sinh rel 18 (300,153) → vỡ rel 48 lửa (345,176). Bia (Enemy, hộp 314–329 × 144–175) đứng x 322: lọ trúng rel 26 tại (312,146), chồng hộp 15 tick, vỡ **rel 48 lửa (345,176) = y hệt đối chứng**, bia trúng đúng 1 lần. Phantom Bat (732,160): trúng rel 27 (E 16→15), chồng 21 tick, dơi khựng + đứng yên suốt, vỡ rel 48 lửa (745,176) dưới dơi ⇒ giữ chân 80 tick + đốt 5 lần. Queen Medusa (Fly, 64,157): trúng rel 155 (E 16→15), chồng 21 tick đứng yên, vỡ rel 176 lửa (77,176). Shot III: 3 lọ qua bia A = 3 đòn (1/lọ), bia B trong lửa 12 đòn, `subWeaponHits` 15 = A + B (luật 10 lần ⇒ multiplier đếm đúng).
+**7 cặp ảnh video ↔ Unity đã xem** (`_cache/shots/04/pairs_0..3.png`): lọ chạm thân dơi + ENEMY 15 (f471 ↔ bat r027) · lọ trong thân, dơi đứng yên (f476 ↔ r033) · lọ ló ra vẫn bay (f481 ↔ enemy r041) · lửa sàn phía sau (f484 ↔ bat r049) · lọ vào thân Medusa (f390 ↔ r155) · lọ trong mặt, ENEMY −1 (f393 ↔ r161) · lửa sàn phía sau Medusa (f402 ↔ r177). Phòng Medusa Unity = phòng thử Arena (phòng thật: routine 09).
 
 ## §3 Tài nguyên (đường dẫn sinh ra)
 
@@ -262,6 +278,13 @@ Không thấy thiếu sprite thật ⇒ không có câu hỏi §5 mới.
 | Probe (chỉ Editor) | `Assets/Data/Script/Debug/MusicProbe.cs` (`Start()` / `Stop(path)` — log `AudioManager.MusicEvent` + mẫu mỗi 60 tick + cảnh báo "đứng"), `MusicProbeTap.cs` (`Begin(giây, wav)` — ghi đầu ra thật qua OnAudioFilterRead) | chỉ đọc, không đổi hash |
 | Bộ đệm (KHÔNG commit) | `ClaudeNotes/cvm2/_cache/03/` (`audio/` wav, `unity/` mẫu Unity, `loop/` WAV tap, `main*/` `arena*/` kết quả bộ hồi quy, `doc/`), ảnh `_cache/shots/03/` | |
 
+### 3e. Routine 04 (17/10/2026) — lọ nước thánh
+| Thứ | Đường dẫn | Ghi chú |
+|---|---|---|
+| Probe (chỉ Editor) | `Assets/Data/Script/Debug/HolyPierceProbe.cs` — `RunSuite(ScenarioNames())`, `SuiteReport()`, `Trace(a,b)`, `ShotDir` (chụp 4 khung: lọ vào thân / +6 tick / ra khỏi thân / lửa) | 5 kịch bản `control, enemy, bat, medusa, count3`; input giải mã RLE trong code (không file replay); bộ `holy` của `RegressionRunner` (nằm trong `all`, trước `rules`); trả `world.Stage` cuối bộ |
+| Công cụ video | `Tools/cvm2/holy4_sheets.py` (frame lưới NES liên tiếp, boss1/boss2/map2), `holy4_hud.py` (tim/ENEMY đổi), `holy4_pairs.py` (ghép cặp video ↔ ảnh Unity) | chạy từ gốc repo, `python -P -E` |
+| Bộ đệm (KHÔNG commit) | `ClaudeNotes/cvm2/_cache/04/` (ảnh zoom, `arena/` `core/` `main/` `run_holy1/` kết quả bộ hồi quy, `quick_*.txt` thử nhanh), ảnh `_cache/shots/04/` (Unity + `pairs_0..3.png`) | |
+
 ## §4 Quyết định kỹ thuật đã chốt
 
 ### Bảng hash chuẩn (H11 — baseline = CVGP 21, đo lại ở routine 00 ngày 16/10/2026)
@@ -286,17 +309,19 @@ Hash đổi chỉ khi routine CỐ Ý đổi hành vi: thêm 1 dòng vào "Lịc
 | flow30 / flow144 (tất định đa fps) | `…Start("flow30,flow144",…)` | Main | `e0b2d54c` (cả hai) | 1/1 | CVGP 21 → 00 | 16/10 |
 | h8 (5 mốc luồng CVTI, đọc từ flow) | tự chạy kèm mọi `flow*` | Main | Start **L352** · đen **L432** · Intro **L448** · đen **L890** · Stage **L922** | 5/5 | CVTI → 00 | 16/10 |
 | spam1..4 (spam phím 4 lượt CE/CA/PB/CB) | `…Start("spam",…)` | Main | *(không hash)* — đạt = 0 lỗi console; CB: GAME OVER tick 171 → CONTINUE 204 | 4/4 | CVGP 16/21 → 00 | 16/10 |
+| holy (`HolyPierceProbe`, 5 kịch bản — **bộ MỚI**) | `…Start("holy",…)` (nằm trong `all`) | Arena (Simon) | `52c59864` | 5/5 | CVM2 04 | 17/10 |
 
 Mốc routine 11 (luồng Title → STAGE 07) sẽ thêm dòng hash mới; **ảnh H8** L10/L600 0 px so `ClaudeNotes/cvgp/_cache/shots/00/base_*` (đo lại 16/10: **0 px** ở cả 60/30/144 fps); L930 so `base_L930` KHÔNG so được (baseline chụp lúc Simon chưa chạy lộ trình) — so với ảnh routine 21 `cvgp/_cache/shots/21/flow60/h8_L930.png` ⇒ **0 px**.
 
-**Lịch sử đổi hash:** *(chưa có — routine 04, 08, 09 chắc chắn đổi một số hash; ghi 1 dòng/hash: cũ → mới, lý do, routine)*
+**Lịch sử đổi hash:** *(ghi 1 dòng/hash: cũ → mới, lý do, routine)*
+- (04, 17/10) **không hash cũ nào đổi** — lọ nước thánh vốn đã xuyên trong Unity (`pierces = 1` từ CVGP 04); routine chỉ sửa comment + chuỗi nguồn Config. **Thêm** dòng `holy` = `52c59864` (bộ mới, lặp 2 lần y hệt — có/không chụp ảnh).
 
 ### Bộ chạy hồi quy (`RegressionRunner`, routine 00)
 Chỉ Editor, đang Play. Chạy nối tiếp các probe qua `EditorApplication.update`, ghi `<dir>/suites/<bộ>.txt`, `SUMMARY.txt` (bộ | đạt/tổng | hash | hash chuẩn | khớp? | giây), `progress.txt`, `ALL.done` (`OK` / `OK (bỏ qua n)` / `LỆCH n` / `ABORT …`). Dùng `execute_code` (codedom — `Start` trả chuỗi, không cần chờ trong lệnh); chờ bằng vòng lặp `[ -f <dir>/suites/ALL.done ]`.
 
 | Lệnh | Scene / điều kiện | Bộ chạy | Thời gian đo (16/10) |
 |---|---|---|---|
-| `RegressionRunner.Start("all", 60, "<abs dir>")` | Arena, Player = Simon (`CVGP.ArenaUseDummy` = false), Play, `runInBackground = true` | long, simon, attack, item, enemy, boss, b23, b46, b24, b56, rules | **1047 s ≈ 17.5 phút** (mọi fps cho cùng thời gian: ~60 tick/s) |
+| `RegressionRunner.Start("all", 60, "<abs dir>")` | Arena, Player = Simon (`CVGP.ArenaUseDummy` = false), Play, `runInBackground = true` | long, simon, attack, item, enemy, boss, b23, b46, b24, b56, **holy** (CVM2 04), rules | **1047 s ≈ 17.5 phút** (mọi fps cho cùng thời gian: ~60 tick/s; CVM2 04: 1058 s — holy 11 s) |
 | `RegressionRunner.Start("full", 60, "<dir>")` | như trên | all + gallery (240 fps tự đặt, không chụp) | 1527 s ≈ 25.5 phút |
 | `RegressionRunner.Start("core", 60, "<dir>")` | Arena với **EditorPrefs `CVGP.ArenaUseDummy` = true** (đặt TRƯỚC khi vào Play, mở lại scene Arena) — Play mới | core | 92 s |
 | `RegressionRunner.Start("flow,spam", 60, "<dir>")` hoặc `"main"` (flow + spam1..4); thêm `flow30,flow144` | Main.unity, Play | flow (+ h8), spam1..4 | flow 157 s ×3, spam 60–80 s ×4 ⇒ flow+spam ≈ 7.5 phút; cả bốn flow/spam + flow30/144 = 752 s |
@@ -325,6 +350,8 @@ Quy ước: **3 lệnh / 3 phiên Play** cho đủ bộ (Arena-Simon · Arena-Du
 - **(03) Mốc nhạc chốt**: Intro — Prologue ở tick bật Intro (video sớm 4 tick = 0.07 s; không dời để H8/CVTI §4.3 nguyên vẹn). Stage — `PlayStageMusic` ở `StageScreen.OnEnter` + hồi sinh, KHÔNG phát lại ở cổng/cửa/đổi stage (video Map_1 + Map_2). Boss — Phantom Bat giữ quy tắc CVGP (lao đầu); Medusa: số đo cho routine 09 (§2f #7). Nhặt cầu — Stage Clear cùng tick (4 video). Bản đồ lâu đài/tally — im (video: không bài nào). Stage4Stub (điểm cuối luồng Map 1) — Stalker (video Map_2 0:06.18 = STAGE 04 hiện; trường có sẵn từ CVGP 15 — KHÔNG phải luồng Map 2).
 - **(03) Death phát lúc Simon BẮT ĐẦU chết** (sự kiện tĩnh mới `SimonController.DyingStarted`, bắn ở `OnEnterState` của Dead/FallDeath — chỉ báo, không đổi trạng thái): suy luận — DeathTicks 124 vốn lấy theo độ dài bài Death 2.07 s ⇒ bài phủ cả cảnh chết; trước đây phát ở `LifeLost` (SAU cảnh chết) và bị màn GAME OVER cắt sau 32 tick (spam4). Không video Simon chết ⇒ ghi suy luận.
 - **(03) Chính sách SFX ↔ nhạc (NES dùng chung kênh — KHÔNG giả lập kênh)**: nhặt cầu ⇒ thay bằng Stage Clear; chết ⇒ thay bằng Death; Pause ⇒ tạm dừng (CVGP 12); **dùng đồng hồ ⇒ video Map_2 cho thấy Stalker đứng 2.40 s rồi chạy tiếp** (chưa dựng — §6); các SFX khác (roi, tim, rìu…) chỉ chồng lên nhạc (video: RMS tụt ngắn 0.1–0.3 s ở 9 chỗ — SFX ăn kênh, nhạc không dừng/không lệch gốc bài).
+- **(04) Lọ nước thánh = XUYÊN + 1 đòn/mục tiêu, vỡ chỉ ở sàn** (video §2g; trước đây ghi "suy luận" nhưng code đã làm vậy): `ConfigSubWeapon.HolyWater.pierces = 1` (nguồn đổi thành video) ⇒ `SubWeaponProjectile.OnHitLanded` không gọi `OnSpent`; `Hitbox.singleHit` ⇒ mỗi lọ đánh 1 mục tiêu tối đa 1 lần; boss khựng suốt lúc lọ chạm (`BossBase.TouchingHolyWater`, hộp lọ 8×8 ∩ hộp nhận đòn). **Không sửa logic** (H9 — tối thiểu): `HolyWater.OnSpent` (vỡ ngay dưới chỗ trúng) giữ làm nhánh cho `pierces = 0`, ghi rõ "không dùng". Hộp nhận đòn Medusa (32×32 Unity) có thể lớn hơn NES (boss2 f137–143 lọ chồng rìa không trừ máu) — routine 09 đo lại hộp.
+- **(04) Bộ chạy**: `holy` thêm vào `all` NGAY TRƯỚC `rules` (probe tự trả `world.Stage` + gỡ phòng boss/BossArena bằng `DestroyImmediate`); `rules` vẫn `03fafb24` sau `holy`.
 - **(03) Ô nguồn nhạc Config**: 24 ô (6 `ConfigBlock.bossMusic` + 18 `ConfigStage.music`) đổi kiểu **chuỗi → `eMusic`** (importer validate tên enum); nguồn: video (Block 1–2 boss, Stage 1–7) hoặc "suy luận … chưa có video" (Block 3–6 boss, Stage 8–18) — lý do giữ ghi trong ô.
 
 ## §5 Câu hỏi cho người dùng (chép từ `CVM2_PLAN §9` — đừng tự quyết thay)
@@ -359,6 +386,8 @@ Quy ước: **3 lệnh / 3 phiên Play** cho đủ bộ (Arena-Simon · Arena-Du
 - (03) Prefab màn hình (`IntroScreen`, `GameOverScreen`, `Stage4Stub`, `Stage1Stub`, `StageScreen`) còn trường YAML cũ `music`/`stageMusic`/`stageClearMusic`/`deathMusic: {fileID: 0}` (Unity bỏ qua) — sẽ tự mất khi prefab được lưu lại lần sau; không lưu lại ở routine 03 để diff gọn.
 - (03) Video Map_1 bị cắt ≈ 6.25 s quanh 1:48 (trang YouTube chen vào — gốc bài Vampire Killer nhảy 91.71 → 97.96 không đúng 1 vòng): mốc thời gian Map_1 sau 1:48 so với game thật lệch hằng số đó (đã biết từ CVGP — ghi lại bằng chứng âm thanh).
 - (02) **Simon Medusa 71 %**: thiếu 4:01.7–4:12.8 (tư thế thắng không có trong bộ sprite `simon_fit`) — không ảnh hưởng dựng.
+- (04) **Hộp nhận đòn Queen Medusa** (Unity 32×32 quanh tâm) vs video boss2: lọ chồng rìa thân f137–143 không trừ máu (có thể hộp NES ≈ mặt 16×16, hoặc NES dò va chạm vũ khí–địch cách frame) — routine 09 khớp hộp theo video (H1), chạy lại `holy`/`b24`.
+- (04) Ghi chú sai của CVGP về nước thánh đã hiệu đính "(CVM2 04)" trong `CVGP_MEMORY` (số đo Phantom Bat, luật 09, quyết định 14, §5 #15d/#31, §6); `ACCEPT21.md` (❌ "lọ nước thánh chưa xuyên") giữ nguyên là lịch sử nghiệm thu CVGP — routine 12 ghi kết quả mới.
 - (02) Ảnh `ref/nes` 36 ảnh planner dùng hiệu chuẩn cũ (lệch ≤ 0.3 px NES); nếu cần so chính xác dùng `Tools/cvm2/ref_images2.py` để xuất lại.
 
 ## §7 Nhật ký nghiệm thu
@@ -405,3 +434,16 @@ Quy ước: **3 lệnh / 3 phiên Play** cho đủ bộ (Arena-Simon · Arena-Du
 - **Ảnh đã xem**: `_cache/shots/03/flow_L930_vk.png` (Stage 01 L930 lúc VK đang phát — HUD STAGE 01 TIME 0300, Simon cạnh tượng) ; `_cache/shots/03/ssm_05_07_09.png` (ma trận tự tương đồng — xác định vòng 07/09).
 - **Câu hỏi §5 mới**: #6 (mốc nhạc Phantom Bat), #7 (đồng hồ dừng nhạc).
 - **Nghiệm thu routine 03**: [x] 16 bài nhập, tên/sha256 §3d; điểm lặp đo cho mọi bài lặp (10; 05/09 xấp xỉ có lý do) · [x] bảng bài ↔ mốc Map_1 + Map_2 + Intro + 2 video boss có NCC (§2d); 24 ô Config có nguồn video hoặc lý do giữ suy luận · [x] nhạc Map 1 phát đúng mốc (log §2e, lệch ≤ 0.07 s ở mọi mốc so được; Phantom Bat theo quy tắc có ghi lệch) ; bảng mốc Map 2 §2f sẵn cho 11 · [x] mọi hash bảng chuẩn y nguyên, H8 5/5, console chỉ lỗi nền. **Xấp xỉ/thiếu**: Death/Game Over/bài Block 3–6 không có video (suy luận); mốc nhạc Phantom Bat 2 video mâu thuẫn; đồng hồ-dừng-nhạc chưa dựng; không nghe trực tiếp (kiểm bằng log + WAV đầu ra).
+
+### Routine 04 — 17/10/2026 — Lọ nước thánh xuyên địch (bằng chứng video + kiểm Unity + probe mới)
+- **Bước 0**: `main`; nhiễu nền giữ nguyên (`.codex/`, `Assets/TuyenAframework.meta`, `.slnx`, `Tools/cvgp|cvm2/__pycache__/`, `UserSettings/`, submodule ` m`); cổng 00 = XONG (00–03 đều XONG). MCP `Castlevania_Original-main@5669a9bbfcade130`, dataPath đúng.
+- **Video** (§2g): 7 lần ném trong 2 video boss (Map_2 3:46–3:56 dùng đồng hồ, không phải nước thánh). Kết luận: lọ xuyên, vỡ chỉ ở sàn, 1 đòn khi bay qua (boss1 f471, boss2 f393), boss đứng yên lúc lọ chạm. Phát hiện **CVGP 14 nhầm frame**: f342–352 lọ KHÔNG chạm dơi; đoạn xuyên thật là f467–483.
+- **Unity trước sửa**: thử nhanh (execute_code, Arena) — lọ trúng bia tick 8, bay tiếp, vỡ sàn x 343 tick 29; Phantom Bat: trúng (E 16→15), xuyên 21 tick, vỡ sàn ⇒ **hành vi ĐÃ đúng**; "Unity vỡ ngay" (CVGP 14/16, ACCEPT21) chỉ suy từ comment `HolyWater.cs` ("Trúng trực tiếp ⇒ vỡ") trong khi Config `pierces = 1` từ CVGP 04 — chưa từng đo.
+- **Sửa (tối thiểu, không đổi logic)**: comment `HolyWater.cs` (+ ghi chú `OnSpent`), `BossBase.cs` (f342–352 → f467–482); `ConfigSubWeapon.csv` ô `src_pierces` HolyWater: "suy luận wiki" → nguồn video + `đo:cvm2-04` ⇒ `CVGP/Import Config` (ghi lại 1 bảng, GameConfig không đổi; asset chỉ đổi chuỗi). `CHARACTER_STATS.md` không chứa nguồn `pierces` ⇒ không xuất lại (H13 không kích hoạt — không đổi số).
+- **Probe mới** `HolyPierceProbe` (5 kịch bản) + bộ `holy` trong `RegressionRunner` (`EXPECTED` thêm `52c59864`). Chạy: 5/5 ĐẠT, hash `52c59864` ×2.
+- **Sai sót quy trình (đã xử lý)**: ghi `HolyPierceProbe.cs` khi Editor còn Play (sau thử nhanh) — thoát Play ngay, biên dịch lại sạch; mọi kết quả bên dưới chạy SAU biên dịch. EditorSettings bị trả về `enabled = false` sau lần biên dịch đầu ⇒ phiên Play `run_holy1` + `all` vào Play CÓ domain reload (không crash); 2 phiên sau đặt lại DisableDomainReload.
+- **Hồi quy H11 (3 phiên Play)**: Arena-Simon `all` @60 (12 bộ, 1058 s): long `5963c4ba` · simon `b2954cbe` 20/20 · attack `eee2cdfb` 21/21 · item `7ca5bf56` 14/14 · enemy `f288b0ce` 20/20 · boss `31e6d711` 12/12 · b23 `171be0c1` 31/31 · b46 `58a8edf9` 26/26 · b24 `7adfbc54` 16/16 · b56 `6cb8a1ad` 14/14 · **holy `52c59864` 5/5** · rules `03fafb24` 68/68 — 0 lệch; Arena-Dummy `core` `76516076` 21/21; Main `main` @60: flow `e0b2d54c` + **h8 5/5** (352/432/448/890/922), spam1..4 0 lỗi console (437 s). **Không hash nào đổi** (chỉ thêm `holy`). gallery không chạy (không đổi số nhân vật — H13 không kích hoạt).
+- **Ảnh đã xem**: 5 tấm zoom video (§2g) + `_cache/shots/04/bat_a_vao_r027.png` + 4 tấm ghép `pairs_0..3.png` (7 cặp video ↔ Unity).
+- **Cuối phiên**: thoát Play; EditorSettings = HEAD (CRLF), `CVGP.ArenaUseDummy` = false, `CheatInvincible` = false, fps −1 / vSync 1, Main.unity mở không dirty.
+- **Câu hỏi §5 mới**: không.
+- **Nghiệm thu routine 04**: [x] bảng bằng chứng 7 lần ném + kết luận CÓ gây 1 đòn khi bay · [x] lọ xuyên địch trong Unity (bia / Phantom Bat / Medusa / III), các bộ probe ĐẠT, không hash cũ nào đổi, `holy` mới ghi bảng chuẩn · [x] 7 cặp ảnh đã xem; H8 5/5; console chỉ lỗi nền. **Xấp xỉ**: 2 lần lọ chồng thân Medusa không trừ máu ở video (rìa thân / bất tử) — Unity trừ khi hộp chồng; hộp Medusa để routine 09.

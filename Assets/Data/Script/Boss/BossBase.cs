@@ -9,7 +9,7 @@ using UnityEngine;
 ///     cho thanh HIỆN chạy dần 8 tick/vạch — video Map_1 3:24.9–3:30.4).
 ///   • Ngủ (dormant): không nhận/gây đòn tới khi lớp con gọi Activate() (Phantom Bat thức khi Simon tới gần).
 ///   • Trúng đòn: bất tử invincibleTicks + khựng hitStunTicks (đứng yên, khung "hurt") — đo video Map_1 (3 lần rìu: dơi đứng 10 ± 2
-///     tick). Chạm nước thánh (lọ hoặc lửa) ⇒ khựng suốt lúc chạm + hitStunTicks (video boss f342–352: lọ bay xuyên dơi ⇒ dơi đứng;
+///     tick). Chạm nước thánh (lọ hoặc lửa) ⇒ khựng suốt lúc chạm + hitStunTicks (video boss f467–482: lọ bay xuyên dơi ⇒ dơi đứng — CVM2 04;
 ///     f469–533: dơi kẹt trong lửa tới chết). Stopwatch: theo ConfigBoss.stopwatchAffects — đứng yên nhưng bất tử vẫn đếm (OnTick).
 ///   • Hết máu (chuỗi chết): +điểm (GameRules.AddScore) NGAY, ENEMY 0, ẩn boss, FX "bossdeath_m" tại tâm (X, Y − deathFxUp) — video:
 ///     6 ngọn 2×3, 7 khung × ~9 tick (62); sau crystalDelayTicks tick sinh Magic Crystal (ItemPickup, rơi trọng lực item) ở
