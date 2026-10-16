@@ -59,7 +59,7 @@ Suốt Map_2 (trước boss): **PLAYER = 16/16 vạch (Simon KHÔNG hề bị tr
 | 1 | 0:00.00–0:05.73 (f0–172) | 04 | 0000 | 023370 | 05 | rìu + II | bản đồ / khác | **Bản đồ lâu đài Block 1** (đuôi Map_1): nền cam; bản đồ đã trượt vào xong (mép trái x=8 từ f≈62); Simon nhỏ hiện f61, đi PHẢI **1.005 px/tick** x 17→241 (f61→172); HUD STAGE 04, TIME 0000, tim 05, P 03, rìu + **II**. |
 | 2 | 0:05.77–0:06.20 (f173–186) | – | – | – | – | – | đen | **Màn đen 14 frame ≈ 28 tick** (Map_1 đo 27). |
 | 3 | 0:06.23–0:06.87 (f187–206) | 04 | 0400 | 023370 | 05 | rìu + II | TEA · cx 0..0 | **STAGE 04 bắt đầu** — TEA cx 0; Simon đứng yên quay PHẢI tại px 64, mặt sàn Y 208 (13 frame); ENEMY 0→16 vạch; TIME 0400 (giảm lần đầu f216 = 29 frame ≈ 58 tick sau). |
-| 4 | 0:06.90–0:09.10 (f207–273) | 04 | 0400 | 023370 | 04 | rìu + II | TEA · cx 0..0 | **Spear Knight #3** (tầng trên trái, wx 141→84, đi trái ≈0.38 px/tick). Simon ném **rìu ×2** (f207 0:06.90, f239 0:07.97; tim 05→04→03). Nến tường wx 80 (y 154) vỡ ≈0:07.7 → **thập tự** rơi xuống sàn (79,200). **0:08.37 +400** Spear Knight chết vì rìu. |
+| 4 | 0:06.90–0:09.10 (f207–273) | 04 | 0400 | 023370 | 04 | rìu + II | TEA · cx 0..0 | **Spear Knight #3** (tầng trên trái, wx 141→84, đi trái 0.50 px/tick — CVM2 08). Simon ném **rìu ×2** (f207 0:06.90, f239 0:07.97; tim 05→04→03). Nến tường wx 80 (y 154) vỡ ≈0:07.7 → **thập tự** rơi xuống sàn (79,200). **0:08.37 +400** Spear Knight chết vì rìu. |
 | 5 | 0:09.13–0:11.33 (f274–340) | 04 | 0398 | 023770 | 03 | thập tự | TEA · cx 0..0 | **0:09.13 nhặt thập tự** (boomerang): HUD rìu→thập tự, **mất II**. Nến wx 208 (y 154) vỡ 0:11.07 → tim lớn. |
 | 6 | 0:11.37–0:16.67 (f341–500) | 04 | 0395 | 023770 | 08 | thập tự | TEA · cx 0..0 | **0:11.37 tim lớn +5** (03→08, wx 199). Simon đi phải, leo thang phải-lên tới tầng trên TEA. |
 | 7 | 0:16.70–0:17.33 (f501–520) | 04 | 0390 | 023770 | 08 | thập tự | TEA · cx 0..0 | 0:15.6–0:16.6 Simon (tầng trên, phải) roi vào **tường phải TEA** (wx 228–252, y 99–133): mảnh gạch tím bay (FX brick_debris). **0:17.0 vương miện mọc từ sàn** tại wx 135, y 206 (cạnh chân thang), nháy màu. |
@@ -93,7 +93,7 @@ Suốt Map_2 (trước boss): **PLAYER = 16/16 vạch (Simon KHÔNG hề bị tr
 | 35 | 2:29.43–2:33.33 (f4483–4600) | 06 | 0281 | 033470 | 27 | đồng hồ | HallC · cx 512..512 | **STAGE 06 — Hall C cx 512**: Simon px 208 wx 720 Y 144 (đầu bậc), đi TRÁI. **2:30.73 Simon ngồi quất khối gạch** (bậc trên cùng): mảnh gạch tím bay, **thịt nướng** lộ ra (2:31.0, Simon bước qua nhặt khi HP đầy ⇒ HUD không đổi); khối bị phá để lại lỗ. 2:33.00, 2:35.07, 2:37.43 tim +1 (nến). |
 | 36 | 2:33.37–2:40.93 (f4601–4828) | 06 | 0277 | 033470 | 28 | đồng hồ | HallC · cx 311..512 | **Bẫy ép gai ×3** (Hall C tầng dưới wx ≈ 368, 432, 496; điểm treo y 113, đáy 119→175; lệch pha — xem §7): thấy 2:33.9–2:49.6 (lượt trái) và 3:04.3–3:16.2 (lượt phải, tầng trên). Simon chờ rồi chạy qua, KHÔNG bị trúng. |
 | 37 | 2:40.97–2:44.33 (f4829–4930) | 06 | 0270 | 033470 | 25 | đồng hồ | HallC · cx 200..310 | **2:40.97 dùng đồng hồ** (tim 30→25): bẫy ép + địch **đứng yên ≈ 93 frame ≈ 186 tick**; TIME giữ 0270 tới f4923. |
-| 38 | 2:44.37–2:51.67 (f4931–5150) | 06 | 0269 | 033970 | 25 | đồng hồ | HallC · cx 0..200 | Bone Tower ×2 (wx 248 y 96 và wx 312 y 64, 16×32, đứng yên, tím) từ 2:41.4. **2:41.77 +400** túi tím; 2:44.07, 2:45.50 +100 túi đỏ; **Ghost #371** (2:45.8–2:49.1, wx 144→230, 0.31 px/tick) **2:47.40 +300** chết vì roi; **2:51.60 +700** túi trắng. **Vật phẩm III** (triple, khối viền xanh) nằm sàn wx 136 y 170 từ 2:51.8 tới ≥3:08.6 — KHÔNG nhặt (HUD không đổi). |
+| 38 | 2:44.37–2:51.67 (f4931–5150) | 06 | 0269 | 033970 | 25 | đồng hồ | HallC · cx 0..200 | Bone Tower ×2 (wx 248 y 96 và wx 312 y 64, 16×32, đứng yên, tím) từ 2:41.4. **2:41.77 +400** túi tím; 2:44.07, 2:45.50 +100 túi đỏ; **Ghost** (CVM2 08: vết #373, hiện 2:45.9 ở wx 350 — 96 px sau lưng Simon — bay trái 0.75 px/tick) **2:47.40 +300** chết vì roi; (vết #371 wx 144→230 là **dơi treo (145,57) sà xuống** 2:48.1 rồi bay ngang — routine 02 nhầm là Ghost); **2:51.60 +700** túi trắng. **Vật phẩm III** (triple, khối viền xanh) nằm sàn wx 136 y 170 từ 2:51.8 tới ≥3:08.6 — KHÔNG nhặt (HUD không đổi). |
 | 39 | 2:51.70–3:09.17 (f5151–5675) | 06 | 0262 | 035070 | 26 | đồng hồ | HallC · cx 0..174 | Thang TRÁI-lên (cx 0 ≈ 2:52–2:56) rồi tầng trên đi PHẢI: **2:55.63 tim +1; 2:58.30 tim lớn +5**. **3:03.37 +400**, **3:08.43 +400**: Bone Tower chết vì roi (wx 248 và 312). |
 | 40 | 3:09.20–3:09.63 (f5676–5689) | – | – | – | – | – | HallC · cx 180..197 | **3:09.2–3:09.63: màn nháy trắng/xám xen kẽ (13 frame ≈ 27 tick) = ROSARY** (SCORE không đổi); chỉ 1 frame/2 sáng. |
 | 41 | 3:09.67–3:17.10 (f5690–5913) | 06 | 0245 | 035870 | 32 | đồng hồ | HallC · cx 204..512 | Hall C tầng trên → phải: Ghost #461 (wx 480→546, 3:13.8–3:15.8) **3:15.50 +300** chết vì roi; lên thang phải-lên (wx 671, Y 63). |
@@ -116,19 +116,19 @@ Suốt Map_2 (trước boss): **PLAYER = 16/16 vạch (Simon KHÔNG hề bị tr
 
 Điểm số quan sát (video ↔ wiki **khớp hết**, H1 không mâu thuẫn): **Vampire Bat (treo) +200 · Medusa Head +300 · Ghost +300 · Spear Knight +400 · Bone Tower +400 · rắn Medusa +100 · Queen Medusa +3000**; túi tiền đỏ +100, tím +400, trắng +700; vương miện +2000, rương +2000. Tim nhỏ +1, tim lớn +5; thập tự/rìu −1 tim; **đồng hồ −5 tim** (HUD trừ ngay tick bấm). Tally: TIME 1 đv/tick ×10 điểm; tim 1/8 tick ×100.
 
-### §3b. Kẻ địch theo vết (chưa phải số đo cuối — routine 08 đo lại; dưới đây là nguồn + sơ bộ)
+### §3b. Kẻ địch theo vết (sơ bộ routine 02 — **CVM2 08 đã đo lại từng frame: số chính thức ở `CVM2_MEMORY §2j`**; chỗ sai đã hiệu đính "(CVM2 08)")
 
 | Loại (khớp sprite + màu + điểm) | Section · vị trí (wx, y_màn) | Xuất hiện (thời điểm / số lượng) | Hành vi quan sát | Chết lúc nào / vì gì |
 |---|---|---|---|---|
-| **Spear Knight** (tím, 16×31–32) | TEA: tầng trên-trái (141,97)→(84,100) · TEB: (336,97) đứng 14 s, (144,97) · Hall A: (210,97)→(186,97) · Hall B: (526–546,97) đứng, (717,97)→(652,96) đi TRÁI | 0:06.2 (#3), 0:28.9 (#44), 0:41.5 (#60), 1:16.4 (#137), 1:47.0 (#200), 1:52.7 (#211); + 1 con tầng dưới Hall B (+400 1:47.83) | đi chậm ≈ **0.38 px/tick** (2 vết), phần lớn **đứng yên** tới khi Simon lại gần | **0:08.37 rìu**; **0:44.37, 1:47.83, 1:56.90, 2:00.50 roi** (+400) — 2 nhát roi cấp 3 không thấy (1 chu kỳ roi); 2 con (#44, #137) không chết trong video (rời khung hình) |
+| **Spear Knight** (tím, 16×31–32) | TEA: tầng trên-trái (141,97)→(84,100) · TEB: (336,97) đứng 14 s, (144,97) · Hall A: (210,97)→(186,97) · Hall B: (526–546,97) đứng, (717,97)→(652,96) đi TRÁI | 0:06.2 (#3), 0:28.9 (#44), 0:41.5 (#60), 1:16.4 (#137), 1:47.0 (#200), 1:52.7 (#211); + 1 con tầng dưới Hall B (+400 1:47.83) | đi chậm ≈ **0.38 px/tick** (2 vết), phần lớn **đứng yên** tới khi Simon lại gần — (CVM2 08) **sai**: đi đều 0.50 px/tick, quay qua lại ở mép/tường/ngẫu nhiên (TEB #44 rơi vào khe 12 px rồi đi qua lại — không đứng yên) | **0:08.37 rìu**; **0:44.37, 1:47.83, 1:56.90, 2:00.50 roi** (+400) — 2 nhát roi cấp 3 không thấy (1 chu kỳ roi); 2 con (#44, #137) không chết trong video (rời khung hình) |
 | **Dơi treo** (bat_purple_0, oval hồng 12×14, đứng yên) | TEA (48,64) · TEB (304,64) | đã treo sẵn từ đầu section (0:06.2; 0:28.9) | đứng treo (không thấy lao xuống vì bị hạ trước) | **0:25.93, 0:34.67 thập tự** (+200) |
 | **Medusa Head** (xanh, 14–15×15, 80–100 px) | Hall A ×5 (1:01.2–1:08.1, #94 #95 #102 #103 #106) · Hall B ×6 (1:34.4–1:45.1, #164 #169 #174 #179 #189 #195) + ×2 (2:16.4 #295, 2:20.7 #307) · sảnh Medusa ×8 (3:26.4–3:39.0, #471 #473 #476 #495 #498 #501 #503…) | ≈ mỗi 1.0–2.5 s trong 3 cửa sổ dày | bay ngang **|vx| = 1.24–1.27 px/tick** (14 vết; 0.92–1.1 ở vết ngắn), vy dao động (sóng dọc ±30 px, vy trung bình −0.3…+1.9); hướng: Hall A bay PHẢI (+1.26) khi Simon đi TRÁI; Hall B bay TRÁI (−1.25) khi Simon đi PHẢI ⇒ **sinh phía Simon đang QUAY MẶT hướng tới** (wiki ✓) | **+300 ×6** (1:02.40, 1:08.53, 1:37.80, 1:39.43, 2:19.60, 3:27.57): 3 roi + 2 thập tự + 1 chưa phân biệt |
 | **Bone Tower** (tím 16×32, đứng yên) | Hall C: **(248,96)** và **(312,64)** (2 tháp) | thấy từ 2:41.4 (khi camera tới) | đứng yên; vết con nhỏ (cầu lửa 6×7, `skeledragon_fireball` 0.4–0.7) quanh tháp (2:50–2:56) | **3:03.37, 3:08.43 roi** (+400 mỗi tháp) |
-| **Ghost** (tím nhạt/trắng 12–16, 55–159 px) | Hall C: #371 (144,88)→(230,120) · #461 (480,80)→(546,70) | 2:45.8 và 3:13.8 | bay chậm **0.31–0.58 px/tick**, đường chéo; bám Simon | **2:47.40, 3:15.50 roi** (+300) |
+| **Ghost** (tím nhạt/trắng 12–16, 55–159 px) | Hall C: #371 (144,88)→(230,120) · #461 (480,80)→(546,70) — (CVM2 08) #371 là **dơi treo** sà; Ghost thật: #373 (350,144)→(302,136) | 2:45.9 và 3:13.8 | bay chậm **0.31–0.58 px/tick**, đường chéo; bám Simon — (CVM2 08) đều **0.75** ngang, lên ≈ 0.1, hiện 96 px sau lưng Simon | **2:47.40, 3:15.50 roi** (+300) |
 | **Rắn Medusa** (xanh, 16×8) | phòng boss (§4) | 3:47.4 (cùng lúc Medusa) | trườn trên sàn | **3:48.20 roi** (+100) |
 | **Queen Medusa** | phòng boss cx 0 | 3:47.37 | §4 | **3:55.63 +3000** |
 
-Dơi bay (Vampire Bat thật) và các loại Block 3+ **không xuất hiện** trong Map_2.
+Dơi bay (Vampire Bat thật) và các loại Block 3+ **không xuất hiện** trong Map_2. (CVM2 08) Có **3 dơi treo** (TEA (48,33), TEB (304,33), Hall C (145,57)); dơi Hall C rời chỗ 2:48.1 (f5043), sà 31 px rồi bay ngang ra khỏi màn.
 
 ### §3c. Vật phẩm / nến / bí mật (đối chiếu planner)
 
@@ -204,8 +204,8 @@ Boss (8 cũ + 2 mới): `b2_00_0s_tuong_medusa_simon_vao` · `b2_02_5s_medusa_th
 | TIME | **64.0 tick/đv** | 6 đoạn (63.98–64.08) |
 | Tally | chờ **≈272–280 tick** sau chạm cầu → TIME **1 đv/tick** (+10) → nghỉ **≈56 tick** → tim **1/≈8 tick** (+100) → chờ **≈118 tick** → đen **22 tick** | f7141→7584 |
 | Medusa Head | **|vx| 1.25 px/tick** (14 vết), điểm 300 | `tracks2` |
-| Spear Knight | đi ≈ **0.38 px/tick**, điểm 400 | 2 vết, thô |
-| Ghost | **0.31–0.58 px/tick**, điểm 300 | 2 vết, thô |
+| Spear Knight | đi **0.50 px/tick** (CVM2 08 — 0.38 thô là sai), điểm 400 | 7 con, khớp mẫu từng frame (`CVM2_MEMORY §2j`) |
+| Ghost | **0.75 px/tick** ngang, ≈ 0.1 dọc (CVM2 08 — 0.31–0.58 thô là sai), điểm 300 | 2 con (`CVM2_MEMORY §2j`) |
 | Thập tự bay | **|vx| 1.7–2.0 px/tick** (đi), 0.8–1.9 (về) ở y≈49–54 | 4 vết, thô |
 | Đồng hồ | đứng **186–196 tick** | quái/bẫy |
 | Bẫy ép gai | thu→hạ 8 nấc × 8 px; chu kỳ **128 tick (wx 496), 80 tick (wx 432)** | f4625–4828 |

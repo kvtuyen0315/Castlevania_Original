@@ -46,11 +46,13 @@ MonoBehaviour:
     - {fileID: 21300000, guid: b2c1ddbbec83ed846bc3791585498252, type: 3}
     durations: 08000000
     loop: 1
-    measured: 0
+    measured: 1
     overlays: []
     overlayOffsets: []
     overlayOnTop: 
-    note: "b\u1EA3ng m\xE0u t\xEDm \u2014 suy lu\u1EADn"
+    note: "CVM2 08: video Map_2 d\u01A1i treo TEA (48,33) / TEB (304,33) / Hall C
+      (145,57) = bat_purple_0 (kh\u1EDBp m\u1EABu err 0.016) \u2014 Bat d\xF9ng anim
+      n\xE0y khi treo"
   - name: purple_perch
     frames:
     - {fileID: 21300000, guid: 86002a1b6c8cdba4eaa0fadf529cbffe, type: 3}
@@ -63,13 +65,17 @@ MonoBehaviour:
     note: 
   - name: purple_fly
     frames:
+    - {fileID: 21300000, guid: 86002a1b6c8cdba4eaa0fadf529cbffe, type: 3}
     - {fileID: 21300000, guid: 6d3d0b5b7d3990c4bb38d4d1a795a1ca, type: 3}
     - {fileID: 21300000, guid: 15cd0343b88ec214883093bb0c9dcd6d, type: 3}
-    durations: 0800000008000000
+    - {fileID: 21300000, guid: 6d3d0b5b7d3990c4bb38d4d1a795a1ca, type: 3}
+    durations: 09000000090000000900000009000000
     loop: 1
-    measured: 0
+    measured: 1
     overlays: []
     overlayOffsets: []
     overlayOnTop: 
-    note: 
+    note: "CVM2 08: video Map_2 Hall C f5043\u20135098 d\u01A1i treo s\xE0 + bay
+      ngang: bat_purple_1\u21922\u21923\u21922 \u0111\u1ED5i m\u1ED7i 4.58 frame
+      = 9.2 tick \u21D2 9 (nh\u01B0 d\u01A1i \u0111\u1ECF 13); Bat d\xF9ng khi Swoop/Glide"
   palettes: []

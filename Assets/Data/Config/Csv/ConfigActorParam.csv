@@ -29,7 +29,7 @@ Enemy.Bat,respawnDelayMinTicks,194,,,tick,"đo:routine 13 video Map_1 dơi chế
 Enemy.Bat,respawnDelaySpanTicks,136,,,tick,đo:routine 13 cùng 4 mẫu: 330 − 194,
 Enemy.Bat,firstDelayMinTicks,8,,,tick,đo:routine 13 video Map_1 vào Crypt A: dơi đầu sau 8 tick (f2756→2760) / 28 tick (f4441→4455),
 Enemy.Bat,firstDelaySpanTicks,20,,,tick,đo:routine 13 cùng 2 mẫu: 28 − 8,
-Enemy.Bat,perchTriggerPx,64,,,px,"quy ước routine 13; routine 17 giữ 64 — suy luận: ước lượng (không video Stage 4 — Black Bat wiki Enemies#Bats): treo tới khi |dx| < 64 rồi Swoop (sà xuống swoopVy tới chân Simon − swoopAboveFeetPx) ⇒ bay sóng như dơi đỏ",treo → Swoop → Fly
+Enemy.Bat,perchTriggerPx,96,95,,px,"đo:cvm2-08 video:Map_2 Hall C dơi treo (145, 57): rời chỗ khi Simon ở |dx| 94 (x 239) và nhảy lên (dy < 80) — ngưỡng ngang > 94 (CVGP 13/17 quy ước 64 sai); chặn trên không đo được ⇒ chọn 96",treo → Swoop → Glide (dơi treo Map_2)
 Enemy.Fishman,walkSpeed,0.75,0.73,0.75,px/tick,"đo:routine 13 video Map_1 2 vết đi trên lối CB (f3553–3575 −0.731, f4256–4281 +0.746; dư rms 0.66/0.86 px)",đi về phía Simon (chọn hướng lúc đáp)
 Enemy.Fishman,spawnBelowSurfacePx,32,,,px,"suy luận routine 13: Fish Man sinh ở đáy section (CB y 192 = mặt nước 160 + 32, ẩn) — chọn để đỉnh nhảy khớp video với vy0/g đo được",
 Enemy.Fishman,hiddenBelowSurfacePx,16,10,18,px,"đo:routine 13 video Map_1 f3515/3517: chưa thấy khi chân dưới mặt nước ~18 px, thấy khi −3 (f3517) / +8 (f4218) ⇒ ẩn khi chân thấp hơn mặt nước ≥ 16",
@@ -251,37 +251,45 @@ Item.BreakableBlock,debrisVyTop,-1.5,,,px/tick,"đo:routine 11 cùng cửa sổ 
 Item.BreakableBlock,debrisVxBottom,0.375,,,px/tick,đo:routine 11 cùng cửa sổ (mảnh dưới ≈ ±0.3 px/tick) — xấp xỉ,2 mảnh dưới
 Item.BreakableBlock,debrisVyBottom,-0.75,,,px/tick,đo:routine 11 cùng cửa sổ — xấp xỉ,
 Item.BreakableBlock,debrisGravity,0.1875,0.15,0.25,px/tick²,đo:routine 11 cùng cửa sổ (khớp parabol 1 mảnh ≈ 0.19) — xấp xỉ,"mảnh xuyên địa hình, biến mất khi ra khỏi màn"
-Enemy.SpearKnight,turnMinTicks,64,,,tick,"suy luận: ước lượng (không video) — routine 17; wiki ""có thể quay lại bất cứ lúc nào"" ⇒ đổi hướng ngẫu nhiên sau mỗi đoạn tuần tra","đoạn = Roll(min, min + span) tick"
-Enemy.SpearKnight,turnSpanTicks,128,,,tick,"suy luận: ước lượng (không video) — routine 17; cùng lý do (64–192 tick ≈ 1–3 s, 32–96 px ở 0.5 px/tick)",
-Enemy.SpearKnight,edgeProbePx,8,,,px,"suy luận: ước lượng (không video) — routine 17; wiki tuần tra trên bục (Stage 4: đứng dưới hố, chắn cửa) ⇒ không tự đi rơi khỏi mép: dò sàn cách pivot 8 px theo hướng đi",đụng tường / hết sàn ⇒ quay đầu
-Enemy.SpearKnight,fallGravity,0.125,,,px/tick²,suy luận: ước lượng (không video) — routine 17; rơi khi sinh lơ lửng — như Zombie (đo 13),
-Enemy.SpearKnight,hitInvincibleTicks,16,,,tick,suy luận: ước lượng (không video) — routine 17; enemy nhiều đòn: bất tử sau mỗi đòn như boss (routine 14 suy luận 16),1 cú roi chỉ trúng 1 lần dù hộp roi duỗi 9 tick
-Enemy.MedusaHead,waveAmplitudePx,24,,,px,"suy luận: ước lượng (không video) — routine 17; wiki ""bay theo sóng; nhảy qua hoặc đi/ngồi dưới"" ⇒ biên độ đủ để đỉnh sóng qua đầu Simon (cao 32) và đáy chạm chân",y = y0 − A·sin(2πt/P): sinh ở tâm rồi đi LÊN
-Enemy.MedusaHead,wavePeriodTicks,96,,,tick,suy luận: ước lượng (không video) — routine 17; ≈ 2.7 sóng trên 256 px ở 1.0 px/tick,
-Enemy.MedusaHead,spawnInsetPx,8,,,px,suy luận: ước lượng (không video) — routine 17; như dơi/Zombie (đo 13): hiện nguyên hình sát mép,
-Enemy.MedusaHead,spawnAboveFeetPx,24,,,px,"suy luận: ước lượng (không video) — routine 17; tâm sóng = chân Simon − 24 ⇒ đỉnh −48 (qua đầu), đáy 0 (chạm chân)",
-Enemy.MedusaHead,edgeScreenMarginPx,64,,,px,"suy luận: ước lượng (không video) — routine 17; wiki ""từ hướng Simon đang nhìn"" — luật mép như dơi (13)",
-Enemy.MedusaHead,maxAlive,2,,,con,suy luận: ước lượng (không video) — routine 17; Stage 5 nhiều Medusa Head liên tiếp — chọn 2 cùng lúc,
-Enemy.MedusaHead,groupSize,1,,,con,suy luận: ước lượng (không video) — routine 17; 1 con/lần,
-Enemy.MedusaHead,waveDelayMinTicks,64,,,tick,suy luận: ước lượng (không video) — routine 17; nhịp sinh liên tục ~1–2 s,"ngẫu nhiên đều [64, 128]"
-Enemy.MedusaHead,waveDelaySpanTicks,64,,,tick,suy luận: ước lượng (không video) — routine 17; cùng lý do,
-Enemy.MedusaHead,firstDelayMinTicks,32,,,tick,"suy luận: ước lượng (không video) — routine 17; wiki Stage 5 ""xuất hiện ngay từ đầu"" ⇒ trễ ngắn",
-Enemy.MedusaHead,firstDelaySpanTicks,0,,,tick,suy luận: ước lượng (không video) — routine 17; cùng lý do,
-Enemy.BoneTower,firstIdleTicks,48,,,tick,suy luận: ước lượng (không video) — routine 17; lượt bắn đầu sau khi hiện,
-Enemy.BoneTower,idleMinTicks,96,,,tick,"suy luận: ước lượng (không video) — routine 17; wiki ""theo chu kỳ"" — nghỉ giữa 2 lượt","ngẫu nhiên đều [96, 160]"
-Enemy.BoneTower,idleSpanTicks,64,,,tick,suy luận: ước lượng (không video) — routine 17; cùng lý do,
-Enemy.BoneTower,warnTicks,32,,,tick,"suy luận: ước lượng (không video) — routine 17; wiki ""nhấp nháy ngay trước khi bắn""",đổi bảng tím ↔ đỏ (2 bộ màu có trên sheet)
-Enemy.BoneTower,warnBlinkTicks,4,,,tick,suy luận: ước lượng (không video) — routine 17; nhịp nháy,
-Enemy.BoneTower,fireGapTicks,16,,,tick,"suy luận: ước lượng (không video) — routine 17; wiki ""2 cầu lửa mỗi lượt"" — đầu trên rồi đầu dưới cách 16 tick",
-Enemy.BoneTower,fireballSpeed,1.5,,,px/tick,suy luận: ước lượng (không video) — routine 17; cầu lửa bay ngang về phía Simon (nhanh hơn Simon đi 1.0 để không né bằng cách đi),
-Enemy.BoneTower,fireballFrontPx,8,,,px,suy luận: ước lượng (không video) — routine 17; miệng đầu lâu ở mép trước sprite 16 px,
-Enemy.BoneTower,fireballTopAbovePx,16,,,px,suy luận: ước lượng (không video) — routine 17; quả cầu (ô 8×16 pivot tâm; pixel đục hàng −7..−2) ngang miệng đầu lâu trên ⇒ hàng y−23..y−18 = trong dải roi đứng (ConfigWhip hitY: chân −22..−17) ⇒ quất vỡ được khi đứng (wiki),"lần thử đầu 20 nằm trên dải roi 1 hàng — roi đứng không phá được"
-Enemy.BoneTower,fireballBottomAbovePx,0,,,px,suy luận: ước lượng (không video) — routine 17; cùng cách tính cho miệng đầu lâu dưới ⇒ quả cầu hàng y−7..y−2 (ngang ống chân — nhảy qua hoặc ngồi),
-Enemy.BoneTower,hitInvincibleTicks,16,,,tick,suy luận: ước lượng (không video) — routine 17; như SpearKnight,
-Enemy.Ghost,chaseAccel,0.015625,,,px/tick²,"suy luận: ước lượng (không video) — routine 17; wiki ""chậm nhưng bám theo vị trí Simon, đến từ góc lạ"" ⇒ gia tốc nhỏ từng trục ⇒ vượt quá rồi vòng lại",1/64 px/tick²
-Enemy.Ghost,maxVy,0.5,,,px/tick,suy luận: ước lượng (không video) — routine 17; trần tốc độ dọc (ngang dùng ConfigEnemy.moveSpeed 0.625),
-Enemy.Ghost,targetAboveFeetPx,16,,,px,suy luận: ước lượng (không video) — routine 17; đuổi theo tâm thân Simon,
-Enemy.Ghost,hitInvincibleTicks,16,,,tick,suy luận: ước lượng (không video) — routine 17; như SpearKnight,
+Enemy.SpearKnight,turnMinTicks,16,16,194,tick,"đo:cvm2-08 video:Map_2 1:47–2:01 Hall B + 0:29–0:43 TEB: 10 khoảng giữa 2 lần quay NGẪU NHIÊN (không phải ở mép/tường) 16, 28, 32, 52, 92, 100, 122, 190, 192, 194 tick ⇒ đều [16, 192] (suy luận phân bố; 3/10 ≈ 192)","đoạn = Roll(min, min + span); quay ở mép/tường KHÔNG rút lại bộ đếm (TEB khe: vẫn có lần quay ngẫu nhiên 2–8 frame sau khi quay mép)"
+Enemy.SpearKnight,turnSpanTicks,176,,,tick,đo:cvm2-08 video:Map_2 cùng 10 khoảng: 192 − 16,
+Enemy.SpearKnight,edgeProbePx,4,3,5,px,đo:cvm2-08 video:Map_2 quay ở mép sàn: Hall B bục x 480–575 quay ở pivot 483–484 / 572; TEB bục 96–159 quay ở 156–157; TEB khe 320–351 quay ở 323–324 ⇒ dò sàn cách pivot 4 px,hết sàn ⇒ quay đầu
+Enemy.SpearKnight,fallGravity,0.125,0.11,0.125,px/tick²,"đo:cvm2-08 video:Map_2 0:28.87–0:29.33 TEB f866–880: Spear Knight sinh lơ lửng (336, 81) rơi xuống sàn y 144 — khớp bậc 2 g 0.117 px/tick² (rms 0.37 px) ≈ Zombie 0.125 (đo CVGP 13)",
+Enemy.SpearKnight,hitInvincibleTicks,16,,,tick,suy luận: routine 17 (bất tử sau đòn như boss); video:Map_2 đòn kế của roi không sớm hơn khựng 16 tick (cvm2-08),1 cú roi chỉ trúng 1 lần dù hộp roi duỗi 9 tick
+Enemy.SpearKnight,wallProbePx,16,15,17,px,"đo:cvm2-08 video:Map_2 0:29–0:43 TEB khe (sàn y 144 x 320–351, tường y 128–143 từ x 352): quay ở pivot 335–337 (25 lần) ⇒ ô đặc ở pivot + hướng·16",tường ⇒ quay đầu (trước khi chân chạm tường)
+Enemy.SpearKnight,wallProbeUpPx,8,,,px,suy luận: cvm2-08 — hàng dò tường = ô ngay trên mặt sàn (tường TEB y 128–143); 8 = giữa ô,
+Enemy.SpearKnight,hitStunTicks,16,14,18,tick,"đo:cvm2-08 video:Map_2 đứng yên sau đòn chưa hạ: TEA f222–230, TEB f1315–1324, Hall B f3216–3223 / f3481–3490 / f3589–3597 = 7–9 frame (14–18 tick), khung anim dừng ⇒ 16","EnemyBase.stunLeft: không đi, anim dừng"
+Enemy.MedusaHead,waveAmplitudePx,33.75,33.6,34.1,px,"đo:cvm2-08 video:Map_2 19 vết (Hall A f1772–2052, Hall B f2831–3151 + f4093–4268, sảnh Medusa f6191–6569): khớp sin rms trung vị 0.95 px (cung parabol 1.27, tam giác 2.95); A 33.6–34.1 ở 11 vết ≥ 40 điểm (đỉnh–đáy 67–68 px)",y = y0 + A(1 − cos 2πt/P): sinh ở ĐỈNH rồi đi XUỐNG
+Enemy.MedusaHead,wavePeriodTicks,100,100,101.3,tick,"đo:cvm2-08 video:Map_2 cùng 19 vết: P 100.0–101.3 (trung vị 100.7, 11 vết ≥ 40 điểm) ⇒ 100 (bảng nguyên tick; khớp P cố định 100 rms TB 1.01 px, 101: 0.94 — chênh không đáng kể)",
+Enemy.MedusaHead,spawnInsetPx,8,3,13,px,"đo:cvm2-08 video:Map_2 x màn ngoại suy lúc đỉnh sóng (= lúc sinh) 18 vết: mép trái 3.5–13 (trung vị 7), mép phải 248–250 ⇒ 8 (như dơi CVGP 13)",
+Enemy.MedusaHead,spawnAboveFeetPx,49,45,53,px,đo:cvm2-08 video:Map_2 19 vết: tâm sóng = chân Simon LÚC SINH − 15.0 (trung vị; −13.5…−19.4 khi Simon đang nhảy — dùng y hiện tại kể cả khi nhảy) ⇒ đỉnh (chỗ sinh) = chân − 15 − 33.75 ≈ − 49,đáy sóng = chân + 19 (đi xuyên sàn)
+Enemy.MedusaHead,edgeScreenMarginPx,64,,,px,"suy luận routine 17 (luật mép như dơi 13); video:Map_2 19/19 lần sinh ở mép Simon QUAY MẶT, Simon cách mép đó 94–227 px ⇒ không đo được lề (cvm2-08)",
+Enemy.MedusaHead,maxAlive,2,,,con,"đo:cvm2-08 video:Map_2 tối đa 2 con cùng lúc (Hall A f1835–1867, Hall B f2894–2924, sảnh Medusa f6382–6393) — 128 tick/con, bay qua màn ≈ 192 tick ⇒ tự nhiên ≤ 2; trần thật chưa đo",
+Enemy.MedusaHead,groupSize,1,,,con,đo:cvm2-08 video:Map_2 1 con/lần (19 lần),
+Enemy.MedusaHead,waveDelayMinTicks,128,126.8,129,tick,"đo:cvm2-08 video:Map_2 15 khoảng giữa 2 lần sinh liên tiếp (thời điểm đỉnh sóng): 126.8–129.0, TB 127.9 ⇒ 128 CỐ ĐỊNH (không ngẫu nhiên; con trước bị hạ không làm sớm)",
+Enemy.MedusaHead,waveDelaySpanTicks,0,,,tick,đo:cvm2-08 video:Map_2 cùng 15 khoảng — đều 128,
+Enemy.MedusaHead,firstDelayMinTicks,17,,,tick,"đo:cvm2-08 video:Map_2 con đầu sau khi section hiện: Hall A 17 tick (f1762 → đỉnh f1770.4), Hall B 56 tick (f2801 → f2829.1); 2 cửa sổ còn lại không rõ lúc vào vùng ⇒ đều [17, 56] (suy luận phân bố)","vùng sinh video: Hall A cx 512→453, Hall B dưới cx 0→151, Hall B trên cx 149→0, sảnh Medusa cx 458→306 (routine 10 đặt)"
+Enemy.MedusaHead,firstDelaySpanTicks,39,,,tick,đo:cvm2-08 video:Map_2 cùng 2 mẫu: 56 − 17,
+Enemy.BoneTower,firstIdleTicks,28,,,tick,"đo:cvm2-08 video:Map_2 Hall C: 2 tháp hiện trong lúc đồng hồ đóng băng; hết băng f4922 ⇒ cả 2 phát 1 ở f4942 = 40 tick ⇒ nghỉ đầu = 40 − cảnh báo 12 (1 mẫu, 2 tháp; Unity: phát 1 ở tick nghỉ + cảnh báo)",lượt bắn đầu sau khi sinh
+Enemy.BoneTower,idleMinTicks,133,,,tick,"đo:cvm2-08 video:Map_2 6 khoảng phát 1 → phát 1 lượt kế (2 tháp): 185, 185, 298, 306, 306, 314 tick; Unity: khoảng = nghỉ + 52 (cầu 2 sau 40 + cảnh báo 12) ⇒ nghỉ đều [133, 262] (phân bố chưa rõ — có thể 2 mức ~185 / ~305)","ngẫu nhiên đều [min, min + span]"
+Enemy.BoneTower,idleSpanTicks,129,,,tick,đo:cvm2-08 video:Map_2 cùng 6 khoảng,
+Enemy.BoneTower,warnTicks,12,8,23,tick,"đo:cvm2-08 video:Map_2 7 lượt: bảng ĐỎ ngay trước phát 1 kéo dài 8–14 tick (f4938–4941, 5087–5092, 5486–5491, 5517–5523); 3 lượt có thêm 1 nháy đỏ ngắn ~18–20 tick trước đó (f5232/5389/5422) — chưa dựng",đổi bảng tím → đỏ (2 bộ màu trên sheet — video xác nhận)
+Enemy.BoneTower,warnBlinkTicks,16,,,tick,đo:cvm2-08 video:Map_2 đỏ LIỀN suốt cảnh báo (≥ warnTicks ⇒ không đổi màu giữa chừng),
+Enemy.BoneTower,fireGapTicks,40,39,41,tick,đo:cvm2-08 video:Map_2 6 cặp cầu lửa cùng tháp: 39.0–40.9 tick (TB 39.9),
+Enemy.BoneTower,fireballSpeed,2,1.955,2.019,px/tick,"đo:cvm2-08 video:Map_2 15 cầu lửa Hall C f4943–5584: |vx| 1.955–2.019 (trung vị 2.00), bay ngang (y không đổi), về hướng tháp đang quay; ra khỏi mép màn thì mất (không lần nào bị roi phá)",
+Enemy.BoneTower,fireballFrontPx,0,0,4,px,đo:cvm2-08 video:Map_2 15 cầu lửa: ngoại suy đường bay về x tháp đúng lúc hết cảnh báo đỏ (vd f4942.0 = rel 40); lần thấy đầu tiên cách tháp 4 px sau 2 tick (f4943: 253 / tháp 249) ⇒ sinh ngay ở x tháp (routine 17 suy luận 8 ⇒ so Unity ↔ video lệch +6–7 px),"cầu sinh ở pivot tháp, bay ra"
+Enemy.BoneTower,fireballTopAbovePx,15,,,px,"đo:cvm2-08 video:Map_2 cầu lửa tháp dưới: tâm ô y màn 97 (section 65) = pivot đầu TRÊN; chân tháp (Unity Y, viewOffset +1) = 80 ⇒ 80 − 65 = 15 (tháp trên: 65 → 33, chân 48 ⇒ 15); cầu lửa viewOffset 0",hàng đục cầu = Y − 22 … Y − 17 (trong dải roi đứng)
+Enemy.BoneTower,fireballBottomAbovePx,15,,,px,đo:cvm2-08 video:Map_2 cầu lửa thứ 2 CŨNG ra từ miệng đầu trên (6/6 cặp cùng y) — routine 17 suy luận 0 (đầu dưới) là sai,tên khoá giữ (phát thứ 2)
+Enemy.BoneTower,hitInvincibleTicks,16,,,tick,suy luận: ước lượng (không video) — routine 17; như SpearKnight (video Map_2 không đếm được đòn vào tháp — cvm2-08),
+Enemy.Ghost,chaseAccel,0.015625,,,px/tick²,"suy luận: ước lượng — routine 17; wiki ""bám theo, đến từ góc lạ"" ⇒ tăng tốc từng trục ⇒ vượt quá rồi vòng lại; video:Map_2 2 Ghost bị hạ trước khi vượt qua Simon ⇒ không đo được (cvm2-08)",1/64 px/tick²
+Enemy.Ghost,maxVy,0.125,0.09,0.125,px/tick,"đo:cvm2-08 video:Map_2 2 Ghost Hall C (f4979–5020, f5813–5863): dọc lên đều ≈ 0.10–0.12 px/tick (trừ lúc khựng) ⇒ 0.125",trần dọc (ngang = ConfigEnemy.moveSpeed)
+Enemy.Ghost,targetAboveFeetPx,16,,,px,suy luận: ước lượng — routine 17 (đuổi tâm thân Simon); video:Map_2 Ghost lên dần từ mặt sàn về phía tâm thân (cvm2-08),
+Enemy.Ghost,hitInvincibleTicks,16,,,tick,suy luận: routine 17; video:Map_2 đòn kế không sớm hơn khựng 16 tick (cvm2-08),
+Enemy.Ghost,spawnFullSpeed,1,,,cờ,đo:cvm2-08 video:Map_2 2 Ghost: bay đều 0.74–0.75 px/tick ngay từ frame đầu (không thấy pha tăng tốc) ⇒ sinh với vx = trần ngang hướng về Simon,1 = sinh đủ tốc
+Enemy.Ghost,hitStunTicks,16,14,16,tick,"đo:cvm2-08 video:Map_2 đứng yên sau đòn chưa hạ: f5008–5014, f5852–5860 (7–8 frame)",
+Enemy.Ghost,spawnInsetPx,32,30,32,px,"đo:cvm2-08 video:Map_2 Ghost hiện ở x màn 224 (f4979, Simon quay trái) / 30 (f5813, Simon quay phải) = 96 px SAU LƯNG Simon (camera giữ Simon ở 128) ⇒ EdgeSpawner BehindPlayer inset 32","nhịp sinh lại: video mỗi vùng 1 con, không thấy sinh lại — routine 10 đặt"
+Enemy.Ghost,spawnAboveFeetPx,0,,,px,"đo:cvm2-08 video:Map_2 tâm Ghost lúc hiện = mặt sàn Simon (y màn 176 / 80 = chân Simon, 2/2)",
+Enemy.Ghost,maxAlive,1,,,con,đo:cvm2-08 video:Map_2 chỉ 1 Ghost mỗi lúc (2 lần),
 Enemy.Raven,triggerDistancePx,96,,,px,"suy luận: ước lượng (không video) — routine 17; wiki ""cất cánh khi Simon lại gần"" — xa hơn báo 70 (đo 13) để kịp lượn",|Simon.X − X| <
 Enemy.Raven,riseVy,-1.0,,,px/tick,suy luận: ước lượng (không video) — routine 17; cất cánh thẳng lên,âm = lên
 Enemy.Raven,riseTicks,16,,,tick,suy luận: ước lượng (không video) — routine 17; lên 16 px,
@@ -319,8 +327,10 @@ Enemy.Fleaman,gravity,0.25,,,px/tick²,"suy luận: ước lượng (không vide
 Enemy.Fleaman,longEvery,3,,,lần,suy luận: ước lượng (không video) — routine 17; cú thứ 3 của mỗi chu kỳ là nhảy vọt,
 Enemy.Fleaman,pauseMinTicks,4,,,tick,"suy luận: ước lượng (không video) — routine 17; wiki ""nhìn như ngẫu nhiên"" ⇒ nghỉ ngẫu nhiên giữa 2 cú","ngẫu nhiên đều [4, 16]"
 Enemy.Fleaman,pauseSpanTicks,12,,,tick,suy luận: ước lượng (không video) — routine 17; cùng lý do,
-Enemy.Bat,swoopVy,1.5,,,px/tick,"suy luận: ước lượng (không video) — routine 17; Black Bat (wiki Enemies#Bats ""treo trần rồi lao xuống khi Simon lại gần""): sà xuống chéo tới tầm Simon rồi bay sóng như dơi đỏ",dương = xuống
-Enemy.Bat,swoopAboveFeetPx,14,,,px,"suy luận: ước lượng (không video) — routine 17; sà tới tâm = chân Simon − 14 (= mốt lúc dơi đỏ sinh, đo 13)",
+Enemy.Bat,perchTriggerDyPx,80,78,83,px,"đo:cvm2-08 video:Map_2 Hall C: Simon đứng dưới dơi (dy 87, |dx| 94) rel 130–134 KHÔNG kích hoạt; nhảy lên dy 83 → 78 (rel 135–136) ⇒ dơi rời chỗ rel ~137 (f5043); TEA: Simon nhảy tới dy 107 (|dx| 16, f207) / TEB dy 140 KHÔNG ⇒ ngưỡng (78, 83] — chọn 80",|dx| < perchTriggerPx VÀ Simon.Y − dơi.Y < ngưỡng
+Enemy.Bat,swoopVx,1.5,1.48,1.52,px/tick,đo:cvm2-08 video:Map_2 Hall C f5043–5101: ngang 1.50 px/tick cả lúc sà lẫn lúc bay ngang (KHÔNG phải 1.125 của dơi đỏ),
+Enemy.Bat,swoopDropPx,31,,,px,đo:cvm2-08 video:Map_2 cùng vết: sà 31 px theo 1/4 sin (rms 0.43 px; cung parabol 0.58) rồi giữ y — không bay sóng,
+Enemy.Bat,swoopTicks,42,,,tick,đo:cvm2-08 video:Map_2 cùng vết: 1/4 sin dài 42 tick,
 Enemy.Eagle,carryBelowPx,28,,,px,"suy luận: ước lượng (không video) — routine 18; chân Fleaman (pivot đáy 16×16) dưới tâm chim 28 ⇒ đầu Fleaman chạm móng (eagle_0 đáy ô 32 ở tâm + 16, chồng 4 px)",pivot Fleaman = tâm chim + 28
 Enemy.Eagle,dropDistancePx,28,,,px,"suy luận: ước lượng (không video) — routine 18; wiki Stage 11 ""Fleaman hầu như luôn rơi đúng tầm roi"" ⇒ thả khi |dx| ≤ 28 (roi da trúng 12–36 px trước pivot — ConfigWhip đo 09)",chỉ thả khi đang bay TỚI Simon
 Enemy.Eagle,spawnAboveFeetPx,96,,,px,"suy luận: ước lượng (không video) — routine 18; bay cao trên đầu Simon (wiki ""bầu trời đầy Eagle""); Fleaman rơi 68 px ≈ 23 tick (g 0.25 routine 17)",tâm = chân Simon − 96

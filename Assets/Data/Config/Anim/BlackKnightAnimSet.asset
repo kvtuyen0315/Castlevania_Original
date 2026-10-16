@@ -18,13 +18,15 @@ MonoBehaviour:
     - {fileID: 21300000, guid: 2f9b9f7930141074ca68eb529b78e7ce, type: 3}
     - {fileID: 21300000, guid: aa9af59e7bddf874cb438bd302dbd584, type: 3}
     - {fileID: 21300000, guid: af77f5ce7f39eec41b46077a45d0a6db, type: 3}
-    durations: 080000000800000008000000
+    - {fileID: 21300000, guid: aa9af59e7bddf874cb438bd302dbd584, type: 3}
+    durations: 11000000110000001100000011000000
     loop: 1
-    measured: 0
+    measured: 1
     overlays: []
     overlayOffsets: []
     overlayOnTop: 
-    note: "routine 17: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video Block 2\u20133)
-      \u2014 nh\u1ECBp 8 tick/khung gi\u1EEF m\u1EB7c \u0111\u1ECBnh; Spear Knight
-      \u0111i 0.5 px/tick, khung 0\u21921\u21922 (sheet 3 khung)"
+    note: "CVM2 08: video Map_2 7 Spear Knight \u2014 khung 0\u21921\u21922\u21921
+      (qua l\u1EA1i), \u0111\u1ED5i m\u1ED7i 8.5 frame = 17 tick (TEB khe f882\u20131288:
+      47 l\u1EA7n \u0111\u1ED5i, TB 17.03; Hall B 17.4 g\u1ED3m kh\u1EF1ng); anim
+      kh\xF4ng \u0111\u1EB7t l\u1EA1i khi quay \u0111\u1EA7u, d\u1EEBng khi kh\u1EF1ng"
   palettes: []

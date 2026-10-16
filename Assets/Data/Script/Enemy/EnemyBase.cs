@@ -41,6 +41,11 @@ public abstract class EnemyBase : Entity
     /// <summary>Enemy nhiều đòn (CVGP 17 — Block 1 chết 1 đòn nên không dùng): đòn chưa hạ ⇒ tia lửa "hit" tại tâm thân (SUY LUẬN);
     /// tự xử lý Stopwatch như BossBase (đứng yên nhưng bộ đếm bất tử vẫn chạy ⇒ "dùng Stopwatch rồi quất tới khi hết" — wiki).</summary>
     [NonSerialized] public bool multiHit;
+    /// <summary>(CVM2 08) Khựng sau đòn chưa hạ (multiHit): đứng yên + anim dừng đúng N tick (video Map_2: Spear Knight/Ghost đứng
+    /// ≈ 8 frame = 16 tick sau mỗi đòn). Lớp con đặt trong LoadTuning (mặc định 0 = không khựng — enemy Block 3–6 giữ nguyên).</summary>
+    [NonSerialized] public int hurtStunTicks;
+    /// <summary>Số tick khựng còn lại.</summary>
+    [NonSerialized] public int hurtStunLeft;
     protected int despawnInset = 4;
 
     /// <summary>Enemy vừa bị hạ (harness + luật chơi).</summary>
@@ -79,6 +84,8 @@ public abstract class EnemyBase : Entity
         hidden = false;
         defeated = false;
         multiHit = false;
+        hurtStunTicks = 0;
+        hurtStunLeft = 0;
         checkOffscreen = true;
         despawnInset = Mathf.RoundToInt(EnemyParams.Get(cfg, eEnemyId.Ghoul, "despawnInsetPx", 4f));
         if (Anim != null)
@@ -97,6 +104,12 @@ public abstract class EnemyBase : Entity
         if (multiHit && World.IsEnemyFrozen)
         {
             ApplyVisibility();   // Stopwatch: đứng yên, anim dừng; vẫn nhận đòn (bất tử vẫn đếm — StageWorld giảm trước OnTick)
+            return;
+        }
+        if (hurtStunLeft > 0)
+        {
+            hurtStunLeft--;
+            ApplyVisibility();   // khựng sau đòn (CVM2 08): không di chuyển, anim dừng
             return;
         }
         ageTicks++;
@@ -134,6 +147,7 @@ public abstract class EnemyBase : Entity
         {
             var cfg = World.Config;
             FxSprite.Spawn(World, "hit", X, CenterY, cfg != null ? cfg.rules.GetInt(eRuleParam.HitSparkTicks, 16) : 16);
+            hurtStunLeft = hurtStunTicks;
         }
         return true;
     }

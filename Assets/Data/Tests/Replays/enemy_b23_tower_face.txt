@@ -1,0 +1,3 @@
+# 180 tick, hash efa556d5
+# CVGP 17 EnemyB23Probe kịch bản 'tower_face': CVM2 08: Simon đi phải ngang qua Bone Tower (180,176) ⇒ tháp quay mặt theo Simon NGAY (video Map_2 f4982/4992/5034), cầu lửa bay về hướng đang quay
+R*120 -*60

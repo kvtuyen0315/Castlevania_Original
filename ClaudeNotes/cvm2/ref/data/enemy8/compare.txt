@@ -1,0 +1,71 @@
+== mh_a (video f1762–2060 = 596 tick)
+  video #0 MedusaHead n79 t 20–210 ↔ Unity #0 (rel 16–211, lệch -1 tick): rms x 0.86 y 1.36 tổng 1.61 px, max 3, TB lệch (-0.05, -0.86)
+  video #1 MedusaHead n29 t 146–216 ↔ Unity #1 (rel 144–339, lệch -1 tick): rms x 0.59 y 1.63 tổng 1.73 px, max 5, TB lệch (-0.07, -1.07)
+  video #2 MedusaHead n37 t 274–363 ↔ Unity #2 (rel 272–442, lệch +0 tick): rms x 1.17 y 2.42 tổng 2.69 px, max 5, TB lệch (+0.73, +2.00)
+  video #3 MedusaHead n23 t 385–439 ↔ Unity #2 (rel 272–442, lệch -1 tick): rms x 1.14 y 3.15 tổng 3.35 px, max 5, TB lệch (+0.70, +2.96) | căn mốc -2 tick: rms 2.54
+  video #4 MedusaHead n61 t 403–563 ↔ Unity #3 (rel 400–564, lệch -1 tick): rms x 1.28 y 1.41 tổng 1.91 px, max 3, TB lệch (+0.92, -0.52)
+  video #5 MedusaHead n25 t 531–581 ↔ Unity #4 (rel 528–597, lệch -1 tick): rms x 1.50 y 2.23 tổng 2.68 px, max 3, TB lệch (+1.36, +2.16) | căn mốc -2 tick: rms 1.20
+  Unity: #0 MedusaHead rel 16–211 xuất hiện (520,31) | #1 MedusaHead rel 144–339 xuất hiện (520,31) | #2 MedusaHead rel 272–442 xuất hiện (520,0) | #3 MedusaHead rel 400–564 xuất hiện (500,-5) | #4 MedusaHead rel 528–597 xuất hiện (461,-2)
+== mh_b (video f2801–3160 = 719 tick)
+  video #0 MedusaHead n78 t 60–246 ↔ Unity #0 (rel 55–250, lệch -1 tick): rms x 1.05 y 1.79 tổng 2.08 px, max 3, TB lệch (-0.08, +0.62)
+  video #1 MedusaHead n31 t 186–262 ↔ Unity #1 (rel 183–341, lệch +0 tick): rms x 0.97 y 1.50 tổng 1.79 px, max 4, TB lệch (-0.48, -0.97)
+  video #2 MedusaHead n22 t 313–359 ↔ Unity #2 (rel 311–455, lệch -1 tick): rms x 1.00 y 2.76 tổng 2.94 px, max 3, TB lệch (-1.00, +2.73) | căn mốc -2 tick: rms 1.97
+  video #3 MedusaHead n50 t 443–565 ↔ Unity #3 (rel 439–567, lệch -1 tick): rms x 1.06 y 1.18 tổng 1.59 px, max 2, TB lệch (+0.44, -0.60)
+  video #4 MedusaHead n56 t 569–701 ↔ Unity #4 (rel 567–703, lệch +0 tick): rms x 1.52 y 1.32 tổng 2.01 px, max 4, TB lệch (-1.16, -0.38)
+  Unity: #0 MedusaHead rel 55–250 xuất hiện (248,112) | #1 MedusaHead rel 183–341 xuất hiện (248,111) | #2 MedusaHead rel 311–455 xuất hiện (265,79) | #3 MedusaHead rel 439–567 xuất hiện (314,106) | #4 MedusaHead rel 567–703 xuất hiện (399,95) | #5 MedusaHead rel 695–719 xuất hiện (232,59)
+== mh_m (video f6180–6580 = 801 tick)
+  video #0 MedusaHead n33 t 22–90 ↔ Unity #0 (rel 19–189, lệch -1 tick): rms x 1.00 y 1.35 tổng 1.68 px, max 2, TB lệch (+0.58, -1.15)
+  video #1 MedusaHead n8 t 150–168 ↔ Unity #1 (rel 147–297, lệch +1 tick): rms x 2.32 y 2.29 tổng 3.26 px, max 6, TB lệch (+1.38, -0.75)
+  video #2 MedusaHead n31 t 174–244 ↔ Unity #1 (rel 147–297, lệch +0 tick): rms x 0.87 y 1.30 tổng 1.56 px, max 3, TB lệch (+0.46, -0.82) [loại 3 điểm ghép nhầm > 16 px]
+  video #3 MedusaHead n60 t 288–427 ↔ Unity #2 (rel 275–429, lệch -1 tick): rms x 1.30 y 1.80 tổng 2.22 px, max 6, TB lệch (+1.07, -1.30)
+  video #4 MedusaHead n70 t 405–569 ↔ Unity #3 (rel 403–570, lệch -1 tick): rms x 1.24 y 1.74 tổng 2.13 px, max 4, TB lệch (+0.57, -1.39)
+  video #5 MedusaHead n64 t 539–683 ↔ Unity #4 (rel 531–688, lệch +0 tick): rms x 1.24 y 1.12 tổng 1.68 px, max 4, TB lệch (+0.83, -0.05)
+  video #6 MedusaHead n55 t 661–779 ↔ Unity #5 (rel 659–780, lệch +0 tick): rms x 0.76 y 0.97 tổng 1.24 px, max 2, TB lệch (+0.29, -0.55)
+  Unity: #0 MedusaHead rel 19–189 xuất hiện (466,79) | #1 MedusaHead rel 147–297 xuất hiện (443,43) | #2 MedusaHead rel 275–429 xuất hiện (388,79) | #3 MedusaHead rel 403–570 xuất hiện (357,79) | #4 MedusaHead rel 531–688 xuất hiện (333,79) | #5 MedusaHead rel 659–780 xuất hiện (314,79) | #6 MedusaHead rel 787–801 xuất hiện (214,79)
+== sk_teb (video f863–1008 = 290 tick)
+  video #0 SpearKnight n15 t 6–34 ↔ Unity #0 (rel 0–290, lệch -1 tick): rms x 0.52 y 1.69 tổng 1.77 px, max 4, TB lệch (-0.13, +1.00) | căn mốc -2 tick: rms 1.46
+  video #1 SpearKnight n110 t 38–290 ↔ Unity #0 (rel 0–290, lệch -1 tick): rms x 3.02 y 0.00 tổng 3.02 px, max 4, TB lệch (+0.17, +0.00) | căn mốc -7 tick: rms 0.61
+  Unity: #0 SpearKnight rel 0–290 xuất hiện (336,78) đổi state 32:Walk quay 32 57 82 107 132 157 182 207 232 257 282
+== sk_hb (video f3209–3420 = 422 tick)
+  video #1 SpearKnight n194 t 0–423 ↔ Unity #0 (rel 0–423, lệch -1 tick): rms x 0.86 y 0.00 tổng 0.86 px, max 2, TB lệch (-0.21, +0.00)
+  video #2 SpearKnight n36 t 343–423 ↔ Unity #1 (rel 343–423, lệch +0 tick): rms x 0.67 y 0.00 tổng 0.67 px, max 1, TB lệch (-0.39, +0.00)
+  Unity: #0 SpearKnight rel 0–423 xuất hiện (525,81) quay 85 117 149 310 402 | #1 SpearKnight rel 343–423 xuất hiện (717,81)
+== gh_1 (video f4976–5007 = 62 tick)
+  video #0 Ghost n20 t 6–60 ↔ Unity #0 (rel 5–62, lệch +0 tick): rms x 0.81 y 0.59 tổng 1.00 px, max 1, TB lệch (+0.25, -0.35)
+  Unity: #0 Ghost rel 5–62 xuất hiện (352,144)
+== gh_2 (video f5810–5851 = 82 tick)
+  video #0 Ghost n33 t 6–82 ↔ Unity #0 (rel 5–82, lệch -1 tick): rms x 0.65 y 0.97 tổng 1.17 px, max 2, TB lệch (+0.18, -0.70)
+  Unity: #0 Ghost rel 5–82 xuất hiện (481,48)
+== bat_c (video f4974–5101 = 254 tick)
+  video #1 Bat n99 t 0–254 ↔ Unity #0 (rel 0–253, lệch -1 tick): rms x 3.02 y 0.53 tổng 3.07 px, max 6, TB lệch (+2.00, +0.16) | căn mốc -4 tick: rms 1.14
+  Unity: #0 Bat rel 0–253 xuất hiện (145,57) đổi state 136:Swoop 178:Glide quay 136
+== bat_tea (video f187–776 = 1179 tick)
+  video #0 Bat n487 t 0–1180 ↔ Unity #0 (rel 0–1180, lệch -1 tick): rms x 0.00 y 0.00 tổng 0.00 px, max 0, TB lệch (+0.00, +0.00) | căn mốc -20 tick: rms 0.00
+  Unity: #0 Bat rel 0–1180 xuất hiện (48,33)
+== bt_c (video f4922–5530 = 1218 tick)
+  video #0 BoneTowerFireball n27 t 42–106 ↔ Unity #2 (rel 40–114, lệch +0 tick): rms x 1.70 y 0.00 tổng 1.70 px, max 4, TB lệch (+0.89, +0.00)
+  video #1 BoneTowerFireball n37 t 42–134 ↔ Unity #3 (rel 40–142, lệch +0 tick): rms x 1.58 y 0.00 tổng 1.58 px, max 3, TB lệch (-0.27, +0.00)
+  video #2 BoneTowerFireball n23 t 86–146 ↔ Unity #4 (rel 80–158, lệch -1 tick): rms x 1.89 y 0.00 tổng 1.89 px, max 3, TB lệch (+0.96, +0.00)
+  video #3 BoneTowerFireball n58 t 353–499 ↔ Unity #7 (rel 346–510, lệch +0 tick): rms x 1.58 y 0.00 tổng 1.58 px, max 4, TB lệch (+0.41, +0.00)
+  video #4 BoneTowerFireball n42 t 353–467 ↔ Unity #6 (rel 346–478, lệch +0 tick): rms x 1.85 y 0.00 tổng 1.85 px, max 4, TB lệch (+0.57, +0.00)
+  video #5 BoneTowerFireball n48 t 391–507 ↔ Unity #8 (rel 386–518, lệch +0 tick): rms x 1.35 y 0.00 tổng 1.35 px, max 3, TB lệch (-0.38, +0.00)
+  video #6 BoneTowerFireball n50 t 649–763 ↔ Unity #10 (rel 644–776, lệch +0 tick): rms x 1.34 y 0.00 tổng 1.34 px, max 3, TB lệch (+0.48, +0.00)
+  video #7 BoneTowerFireball n49 t 689–803 ↔ Unity #11 (rel 684–816, lệch +0 tick): rms x 1.51 y 0.00 tổng 1.51 px, max 4, TB lệch (+0.08, +0.00)
+  video #8 BoneTowerFireball n30 t 964–1038 ↔ Unity #12 (rel 958–1051, lệch +0 tick): rms x 1.59 y 0.00 tổng 1.59 px, max 2, TB lệch (-0.87, +0.00)
+  video #9 BoneTowerFireball n31 t 1002–1080 ↔ Unity #13 (rel 998–1091, lệch +0 tick): rms x 1.33 y 0.00 tổng 1.33 px, max 3, TB lệch (+0.03, +0.00)
+  video #10 BoneTowerFireball n41 t 1028–1132 ↔ Unity #14 (rel 1016–1141, lệch -1 tick): rms x 9.77 y 0.00 tổng 9.77 px, max 13, TB lệch (-9.63, +0.00) | căn mốc -6 tick: rms 1.66
+  video #11 BoneTowerFireball n43 t 1068–1172 ↔ Unity #15 (rel 1056–1180, lệch -1 tick): rms x 9.39 y 0.00 tổng 9.39 px, max 13, TB lệch (-9.28, +0.00) | căn mốc -6 tick: rms 1.64
+  video #12 BoneTowerFireball n27 t 1146–1208 ↔ Unity #16 (rel 1143–1217, lệch +1 tick): rms x 1.26 y 0.00 tổng 1.26 px, max 3, TB lệch (-0.48, +0.00)
+  video #13 BoneTowerFireball n4 t 1208–1218: KHÔNG có thực thể Unity trùng thời gian
+  Unity: #0 BoneTower rel 0–1218 xuất hiện (249,81) đổi state 28:Warn 40:Fire 80:Idle 334:Warn 346:Fire 386:Idle 632:Warn 644:Fire | #1 BoneTower rel 0–1218 xuất hiện (313,49) đổi state 28:Warn 40:Fire 80:Idle 334:Warn 346:Fire 386:Idle 560:Warn 572:Fire | #2 BoneTowerFireball rel 40–114 xuất hiện (249,65) | #3 BoneTowerFireball rel 40–142 xuất hiện (313,33) | #4 BoneTowerFireball rel 80–158 xuất hiện (249,65) | #5 BoneTowerFireball rel 80–177 xuất hiện (313,33) | #6 BoneTowerFireball rel 346–478 xuất hiện (249,65) | #7 BoneTowerFireball rel 346–510 xuất hiện (313,33) | #8 BoneTowerFireball rel 386–518 xuất hiện (249,65) | #9 BoneTowerFireball rel 386–550 xuất hiện (313,33) | #10 BoneTowerFireball rel 644–776 xuất hiện (249,65) | #11 BoneTowerFireball rel 684–816 xuất hiện (249,65) | #12 BoneTowerFireball rel 958–1051 xuất hiện (249,65) | #13 BoneTowerFireball rel 998–1091 xuất hiện (249,65) …(18 thực thể)
+== TỔNG (trung bình rms theo số điểm)
+  mh_a: 6 vết, 254 điểm, rms 2.11 px (vết xấu nhất 3.35)
+  mh_b: 5 vết, 237 điểm, rms 2.00 px (vết xấu nhất 2.94)
+  mh_m: 7 vết, 318 điểm, rms 1.83 px (vết xấu nhất 3.26)
+  sk_teb: 2 vết, 125 điểm, rms 2.87 px (vết xấu nhất 3.02)
+  sk_hb: 2 vết, 229 điểm, rms 0.83 px (vết xấu nhất 0.86)
+  gh_1: 1 vết, 20 điểm, rms 1.00 px (vết xấu nhất 1.00)
+  gh_2: 1 vết, 33 điểm, rms 1.17 px (vết xấu nhất 1.17)
+  bat_c: 1 vết, 98 điểm, rms 3.07 px (vết xấu nhất 3.07)
+  bat_tea: 1 vết, 486 điểm, rms 0.00 px (vết xấu nhất 0.00)
+  bt_c: 13 vết, 506 điểm, rms 2.87 px (vết xấu nhất 9.77)

@@ -486,20 +486,19 @@ MonoBehaviour:
     key: perchTriggerPx
     value:
       has: 1
-      value: 64
+      value: 96
     min:
-      has: 0
-      value: 0
+      has: 1
+      value: 95
     max:
       has: 0
       value: 0
     unit: px
-    source: "quy \u01B0\u1EDBc routine 13; routine 17 gi\u1EEF 64 \u2014 suy lu\u1EADn:
-      \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video Stage 4 \u2014 Black Bat wiki
-      Enemies#Bats): treo t\u1EDBi khi |dx| < 64 r\u1ED3i Swoop (s\xE0 xu\u1ED1ng
-      swoopVy t\u1EDBi ch\xE2n Simon \u2212 swoopAboveFeetPx) \u21D2 bay s\xF3ng
-      nh\u01B0 d\u01A1i \u0111\u1ECF"
-    note: "treo \u2192 Swoop \u2192 Fly"
+    source: "\u0111o:cvm2-08 video:Map_2 Hall C d\u01A1i treo (145, 57): r\u1EDDi
+      ch\u1ED7 khi Simon \u1EDF |dx| 94 (x 239) v\xE0 nh\u1EA3y l\xEAn (dy < 80)
+      \u2014 ng\u01B0\u1EE1ng ngang > 94 (CVGP 13/17 quy \u01B0\u1EDBc 64 sai); ch\u1EB7n
+      tr\xEAn kh\xF4ng \u0111o \u0111\u01B0\u1EE3c \u21D2 ch\u1ECDn 96"
+    note: "treo \u2192 Swoop \u2192 Glide (d\u01A1i treo Map_2)"
   - actor: Enemy.Fishman
     key: walkSpeed
     value:
@@ -3928,24 +3927,27 @@ MonoBehaviour:
     key: turnMinTicks
     value:
       has: 1
-      value: 64
+      value: 16
     min:
-      has: 0
-      value: 0
+      has: 1
+      value: 16
     max:
-      has: 0
-      value: 0
+      has: 1
+      value: 194
     unit: tick
-    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
-      routine 17; wiki \"c\xF3 th\u1EC3 quay l\u1EA1i b\u1EA5t c\u1EE9 l\xFAc n\xE0o\"
-      \u21D2 \u0111\u1ED5i h\u01B0\u1EDBng ng\u1EABu nhi\xEAn sau m\u1ED7i \u0111o\u1EA1n
-      tu\u1EA7n tra"
-    note: "\u0111o\u1EA1n = Roll(min, min + span) tick"
+    source: "\u0111o:cvm2-08 video:Map_2 1:47\u20132:01 Hall B + 0:29\u20130:43 TEB:
+      10 kho\u1EA3ng gi\u1EEFa 2 l\u1EA7n quay NG\u1EAAU NHI\xCAN (kh\xF4ng ph\u1EA3i
+      \u1EDF m\xE9p/t\u01B0\u1EDDng) 16, 28, 32, 52, 92, 100, 122, 190, 192, 194
+      tick \u21D2 \u0111\u1EC1u [16, 192] (suy lu\u1EADn ph\xE2n b\u1ED1; 3/10 \u2248
+      192)"
+    note: "\u0111o\u1EA1n = Roll(min, min + span); quay \u1EDF m\xE9p/t\u01B0\u1EDDng
+      KH\xD4NG r\xFAt l\u1EA1i b\u1ED9 \u0111\u1EBFm (TEB khe: v\u1EABn c\xF3 l\u1EA7n
+      quay ng\u1EABu nhi\xEAn 2\u20138 frame sau khi quay m\xE9p)"
   - actor: Enemy.SpearKnight
     key: turnSpanTicks
     value:
       has: 1
-      value: 128
+      value: 176
     min:
       has: 0
       value: 0
@@ -3953,42 +3955,41 @@ MonoBehaviour:
       has: 0
       value: 0
     unit: tick
-    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
-      routine 17; c\xF9ng l\xFD do (64\u2013192 tick \u2248 1\u20133 s, 32\u201396
-      px \u1EDF 0.5 px/tick)"
+    source: "\u0111o:cvm2-08 video:Map_2 c\xF9ng 10 kho\u1EA3ng: 192 \u2212 16"
     note: 
   - actor: Enemy.SpearKnight
     key: edgeProbePx
     value:
       has: 1
-      value: 8
+      value: 4
     min:
-      has: 0
-      value: 0
+      has: 1
+      value: 3
     max:
-      has: 0
-      value: 0
+      has: 1
+      value: 5
     unit: px
-    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
-      routine 17; wiki tu\u1EA7n tra tr\xEAn b\u1EE5c (Stage 4: \u0111\u1EE9ng d\u01B0\u1EDBi
-      h\u1ED1, ch\u1EAFn c\u1EEDa) \u21D2 kh\xF4ng t\u1EF1 \u0111i r\u01A1i kh\u1ECFi
-      m\xE9p: d\xF2 s\xE0n c\xE1ch pivot 8 px theo h\u01B0\u1EDBng \u0111i"
-    note: "\u0111\u1EE5ng t\u01B0\u1EDDng / h\u1EBFt s\xE0n \u21D2 quay \u0111\u1EA7u"
+    source: "\u0111o:cvm2-08 video:Map_2 quay \u1EDF m\xE9p s\xE0n: Hall B b\u1EE5c
+      x 480\u2013575 quay \u1EDF pivot 483\u2013484 / 572; TEB b\u1EE5c 96\u2013159
+      quay \u1EDF 156\u2013157; TEB khe 320\u2013351 quay \u1EDF 323\u2013324 \u21D2
+      d\xF2 s\xE0n c\xE1ch pivot 4 px"
+    note: "h\u1EBFt s\xE0n \u21D2 quay \u0111\u1EA7u"
   - actor: Enemy.SpearKnight
     key: fallGravity
     value:
       has: 1
       value: 0.125
     min:
-      has: 0
-      value: 0
+      has: 1
+      value: 0.11
     max:
-      has: 0
-      value: 0
+      has: 1
+      value: 0.125
     unit: "px/tick\xB2"
-    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
-      routine 17; r\u01A1i khi sinh l\u01A1 l\u1EEDng \u2014 nh\u01B0 Zombie (\u0111o
-      13)"
+    source: "\u0111o:cvm2-08 video:Map_2 0:28.87\u20130:29.33 TEB f866\u2013880:
+      Spear Knight sinh l\u01A1 l\u1EEDng (336, 81) r\u01A1i xu\u1ED1ng s\xE0n y
+      144 \u2014 kh\u1EDBp b\u1EADc 2 g 0.117 px/tick\xB2 (rms 0.37 px) \u2248 Zombie
+      0.125 (\u0111o CVGP 13)"
     note: 
   - actor: Enemy.SpearKnight
     key: hitInvincibleTicks
@@ -4002,46 +4003,30 @@ MonoBehaviour:
       has: 0
       value: 0
     unit: tick
-    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
-      routine 17; enemy nhi\u1EC1u \u0111\xF2n: b\u1EA5t t\u1EED sau m\u1ED7i \u0111\xF2n
-      nh\u01B0 boss (routine 14 suy lu\u1EADn 16)"
+    source: "suy lu\u1EADn: routine 17 (b\u1EA5t t\u1EED sau \u0111\xF2n nh\u01B0
+      boss); video:Map_2 \u0111\xF2n k\u1EBF c\u1EE7a roi kh\xF4ng s\u1EDBm h\u01A1n
+      kh\u1EF1ng 16 tick (cvm2-08)"
     note: "1 c\xFA roi ch\u1EC9 tr\xFAng 1 l\u1EA7n d\xF9 h\u1ED9p roi du\u1ED7i
       9 tick"
-  - actor: Enemy.MedusaHead
-    key: waveAmplitudePx
+  - actor: Enemy.SpearKnight
+    key: wallProbePx
     value:
       has: 1
-      value: 24
+      value: 16
     min:
-      has: 0
-      value: 0
+      has: 1
+      value: 15
     max:
-      has: 0
-      value: 0
+      has: 1
+      value: 17
     unit: px
-    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
-      routine 17; wiki \"bay theo s\xF3ng; nh\u1EA3y qua ho\u1EB7c \u0111i/ng\u1ED3i
-      d\u01B0\u1EDBi\" \u21D2 bi\xEAn \u0111\u1ED9 \u0111\u1EE7 \u0111\u1EC3 \u0111\u1EC9nh
-      s\xF3ng qua \u0111\u1EA7u Simon (cao 32) v\xE0 \u0111\xE1y ch\u1EA1m ch\xE2n"
-    note: "y = y0 \u2212 A\xB7sin(2\u03C0t/P): sinh \u1EDF t\xE2m r\u1ED3i \u0111i
-      L\xCAN"
-  - actor: Enemy.MedusaHead
-    key: wavePeriodTicks
-    value:
-      has: 1
-      value: 96
-    min:
-      has: 0
-      value: 0
-    max:
-      has: 0
-      value: 0
-    unit: tick
-    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
-      routine 17; \u2248 2.7 s\xF3ng tr\xEAn 256 px \u1EDF 1.0 px/tick"
-    note: 
-  - actor: Enemy.MedusaHead
-    key: spawnInsetPx
+    source: "\u0111o:cvm2-08 video:Map_2 0:29\u20130:43 TEB khe (s\xE0n y 144 x 320\u2013351,
+      t\u01B0\u1EDDng y 128\u2013143 t\u1EEB x 352): quay \u1EDF pivot 335\u2013337
+      (25 l\u1EA7n) \u21D2 \xF4 \u0111\u1EB7c \u1EDF pivot + h\u01B0\u1EDBng\xB716"
+    note: "t\u01B0\u1EDDng \u21D2 quay \u0111\u1EA7u (tr\u01B0\u1EDBc khi ch\xE2n
+      ch\u1EA1m t\u01B0\u1EDDng)"
+  - actor: Enemy.SpearKnight
+    key: wallProbeUpPx
     value:
       has: 1
       value: 8
@@ -4052,26 +4037,97 @@ MonoBehaviour:
       has: 0
       value: 0
     unit: px
-    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
-      routine 17; nh\u01B0 d\u01A1i/Zombie (\u0111o 13): hi\u1EC7n nguy\xEAn h\xECnh
-      s\xE1t m\xE9p"
+    source: "suy lu\u1EADn: cvm2-08 \u2014 h\xE0ng d\xF2 t\u01B0\u1EDDng = \xF4 ngay
+      tr\xEAn m\u1EB7t s\xE0n (t\u01B0\u1EDDng TEB y 128\u2013143); 8 = gi\u1EEFa
+      \xF4"
+    note: 
+  - actor: Enemy.SpearKnight
+    key: hitStunTicks
+    value:
+      has: 1
+      value: 16
+    min:
+      has: 1
+      value: 14
+    max:
+      has: 1
+      value: 18
+    unit: tick
+    source: "\u0111o:cvm2-08 video:Map_2 \u0111\u1EE9ng y\xEAn sau \u0111\xF2n ch\u01B0a
+      h\u1EA1: TEA f222\u2013230, TEB f1315\u20131324, Hall B f3216\u20133223 / f3481\u20133490
+      / f3589\u20133597 = 7\u20139 frame (14\u201318 tick), khung anim d\u1EEBng
+      \u21D2 16"
+    note: "EnemyBase.stunLeft: kh\xF4ng \u0111i, anim d\u1EEBng"
+  - actor: Enemy.MedusaHead
+    key: waveAmplitudePx
+    value:
+      has: 1
+      value: 33.75
+    min:
+      has: 1
+      value: 33.6
+    max:
+      has: 1
+      value: 34.1
+    unit: px
+    source: "\u0111o:cvm2-08 video:Map_2 19 v\u1EBFt (Hall A f1772\u20132052, Hall
+      B f2831\u20133151 + f4093\u20134268, s\u1EA3nh Medusa f6191\u20136569): kh\u1EDBp
+      sin rms trung v\u1ECB 0.95 px (cung parabol 1.27, tam gi\xE1c 2.95); A 33.6\u201334.1
+      \u1EDF 11 v\u1EBFt \u2265 40 \u0111i\u1EC3m (\u0111\u1EC9nh\u2013\u0111\xE1y
+      67\u201368 px)"
+    note: "y = y0 + A(1 \u2212 cos 2\u03C0t/P): sinh \u1EDF \u0110\u1EC8NH r\u1ED3i
+      \u0111i XU\u1ED0NG"
+  - actor: Enemy.MedusaHead
+    key: wavePeriodTicks
+    value:
+      has: 1
+      value: 100
+    min:
+      has: 1
+      value: 100
+    max:
+      has: 1
+      value: 101.3
+    unit: tick
+    source: "\u0111o:cvm2-08 video:Map_2 c\xF9ng 19 v\u1EBFt: P 100.0\u2013101.3
+      (trung v\u1ECB 100.7, 11 v\u1EBFt \u2265 40 \u0111i\u1EC3m) \u21D2 100 (b\u1EA3ng
+      nguy\xEAn tick; kh\u1EDBp P c\u1ED1 \u0111\u1ECBnh 100 rms TB 1.01 px, 101:
+      0.94 \u2014 ch\xEAnh kh\xF4ng \u0111\xE1ng k\u1EC3)"
+    note: 
+  - actor: Enemy.MedusaHead
+    key: spawnInsetPx
+    value:
+      has: 1
+      value: 8
+    min:
+      has: 1
+      value: 3
+    max:
+      has: 1
+      value: 13
+    unit: px
+    source: "\u0111o:cvm2-08 video:Map_2 x m\xE0n ngo\u1EA1i suy l\xFAc \u0111\u1EC9nh
+      s\xF3ng (= l\xFAc sinh) 18 v\u1EBFt: m\xE9p tr\xE1i 3.5\u201313 (trung v\u1ECB
+      7), m\xE9p ph\u1EA3i 248\u2013250 \u21D2 8 (nh\u01B0 d\u01A1i CVGP 13)"
     note: 
   - actor: Enemy.MedusaHead
     key: spawnAboveFeetPx
     value:
       has: 1
-      value: 24
+      value: 49
     min:
-      has: 0
-      value: 0
+      has: 1
+      value: 45
     max:
-      has: 0
-      value: 0
+      has: 1
+      value: 53
     unit: px
-    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
-      routine 17; t\xE2m s\xF3ng = ch\xE2n Simon \u2212 24 \u21D2 \u0111\u1EC9nh
-      \u221248 (qua \u0111\u1EA7u), \u0111\xE1y 0 (ch\u1EA1m ch\xE2n)"
-    note: 
+    source: "\u0111o:cvm2-08 video:Map_2 19 v\u1EBFt: t\xE2m s\xF3ng = ch\xE2n Simon
+      L\xDAC SINH \u2212 15.0 (trung v\u1ECB; \u221213.5\u2026\u221219.4 khi Simon
+      \u0111ang nh\u1EA3y \u2014 d\xF9ng y hi\u1EC7n t\u1EA1i k\u1EC3 c\u1EA3 khi
+      nh\u1EA3y) \u21D2 \u0111\u1EC9nh (ch\u1ED7 sinh) = ch\xE2n \u2212 15 \u2212
+      33.75 \u2248 \u2212 49"
+    note: "\u0111\xE1y s\xF3ng = ch\xE2n + 19 (\u0111i xuy\xEAn s\xE0n)"
   - actor: Enemy.MedusaHead
     key: edgeScreenMarginPx
     value:
@@ -4084,9 +4140,10 @@ MonoBehaviour:
       has: 0
       value: 0
     unit: px
-    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
-      routine 17; wiki \"t\u1EEB h\u01B0\u1EDBng Simon \u0111ang nh\xECn\" \u2014
-      lu\u1EADt m\xE9p nh\u01B0 d\u01A1i (13)"
+    source: "suy lu\u1EADn routine 17 (lu\u1EADt m\xE9p nh\u01B0 d\u01A1i 13); video:Map_2
+      19/19 l\u1EA7n sinh \u1EDF m\xE9p Simon QUAY M\u1EB6T, Simon c\xE1ch m\xE9p
+      \u0111\xF3 94\u2013227 px \u21D2 kh\xF4ng \u0111o \u0111\u01B0\u1EE3c l\u1EC1
+      (cvm2-08)"
     note: 
   - actor: Enemy.MedusaHead
     key: maxAlive
@@ -4100,9 +4157,10 @@ MonoBehaviour:
       has: 0
       value: 0
     unit: con
-    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
-      routine 17; Stage 5 nhi\u1EC1u Medusa Head li\xEAn ti\u1EBFp \u2014 ch\u1ECDn
-      2 c\xF9ng l\xFAc"
+    source: "\u0111o:cvm2-08 video:Map_2 t\u1ED1i \u0111a 2 con c\xF9ng l\xFAc (Hall
+      A f1835\u20131867, Hall B f2894\u20132924, s\u1EA3nh Medusa f6382\u20136393)
+      \u2014 128 tick/con, bay qua m\xE0n \u2248 192 tick \u21D2 t\u1EF1 nhi\xEAn
+      \u2264 2; tr\u1EA7n th\u1EADt ch\u01B0a \u0111o"
     note: 
   - actor: Enemy.MedusaHead
     key: groupSize
@@ -4116,29 +4174,30 @@ MonoBehaviour:
       has: 0
       value: 0
     unit: con
-    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
-      routine 17; 1 con/l\u1EA7n"
+    source: "\u0111o:cvm2-08 video:Map_2 1 con/l\u1EA7n (19 l\u1EA7n)"
     note: 
   - actor: Enemy.MedusaHead
     key: waveDelayMinTicks
     value:
       has: 1
-      value: 64
+      value: 128
     min:
-      has: 0
-      value: 0
+      has: 1
+      value: 126.8
     max:
-      has: 0
-      value: 0
+      has: 1
+      value: 129
     unit: tick
-    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
-      routine 17; nh\u1ECBp sinh li\xEAn t\u1EE5c ~1\u20132 s"
-    note: "ng\u1EABu nhi\xEAn \u0111\u1EC1u [64, 128]"
+    source: "\u0111o:cvm2-08 video:Map_2 15 kho\u1EA3ng gi\u1EEFa 2 l\u1EA7n sinh
+      li\xEAn ti\u1EBFp (th\u1EDDi \u0111i\u1EC3m \u0111\u1EC9nh s\xF3ng): 126.8\u2013129.0,
+      TB 127.9 \u21D2 128 C\u1ED0 \u0110\u1ECANH (kh\xF4ng ng\u1EABu nhi\xEAn; con
+      tr\u01B0\u1EDBc b\u1ECB h\u1EA1 kh\xF4ng l\xE0m s\u1EDBm)"
+    note: 
   - actor: Enemy.MedusaHead
     key: waveDelaySpanTicks
     value:
       has: 1
-      value: 64
+      value: 0
     min:
       has: 0
       value: 0
@@ -4146,14 +4205,14 @@ MonoBehaviour:
       has: 0
       value: 0
     unit: tick
-    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
-      routine 17; c\xF9ng l\xFD do"
+    source: "\u0111o:cvm2-08 video:Map_2 c\xF9ng 15 kho\u1EA3ng \u2014 \u0111\u1EC1u
+      128"
     note: 
   - actor: Enemy.MedusaHead
     key: firstDelayMinTicks
     value:
       has: 1
-      value: 32
+      value: 17
     min:
       has: 0
       value: 0
@@ -4161,15 +4220,18 @@ MonoBehaviour:
       has: 0
       value: 0
     unit: tick
-    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
-      routine 17; wiki Stage 5 \"xu\u1EA5t hi\u1EC7n ngay t\u1EEB \u0111\u1EA7u\"
-      \u21D2 tr\u1EC5 ng\u1EAFn"
-    note: 
+    source: "\u0111o:cvm2-08 video:Map_2 con \u0111\u1EA7u sau khi section hi\u1EC7n:
+      Hall A 17 tick (f1762 \u2192 \u0111\u1EC9nh f1770.4), Hall B 56 tick (f2801
+      \u2192 f2829.1); 2 c\u1EEDa s\u1ED5 c\xF2n l\u1EA1i kh\xF4ng r\xF5 l\xFAc v\xE0o
+      v\xF9ng \u21D2 \u0111\u1EC1u [17, 56] (suy lu\u1EADn ph\xE2n b\u1ED1)"
+    note: "v\xF9ng sinh video: Hall A cx 512\u2192453, Hall B d\u01B0\u1EDBi cx 0\u2192151,
+      Hall B tr\xEAn cx 149\u21920, s\u1EA3nh Medusa cx 458\u2192306 (routine 10
+      \u0111\u1EB7t)"
   - actor: Enemy.MedusaHead
     key: firstDelaySpanTicks
     value:
       has: 1
-      value: 0
+      value: 39
     min:
       has: 0
       value: 0
@@ -4177,14 +4239,13 @@ MonoBehaviour:
       has: 0
       value: 0
     unit: tick
-    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
-      routine 17; c\xF9ng l\xFD do"
+    source: "\u0111o:cvm2-08 video:Map_2 c\xF9ng 2 m\u1EABu: 56 \u2212 17"
     note: 
   - actor: Enemy.BoneTower
     key: firstIdleTicks
     value:
       has: 1
-      value: 48
+      value: 28
     min:
       has: 0
       value: 0
@@ -4192,14 +4253,17 @@ MonoBehaviour:
       has: 0
       value: 0
     unit: tick
-    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
-      routine 17; l\u01B0\u1EE3t b\u1EAFn \u0111\u1EA7u sau khi hi\u1EC7n"
-    note: 
+    source: "\u0111o:cvm2-08 video:Map_2 Hall C: 2 th\xE1p hi\u1EC7n trong l\xFAc
+      \u0111\u1ED3ng h\u1ED3 \u0111\xF3ng b\u0103ng; h\u1EBFt b\u0103ng f4922 \u21D2
+      c\u1EA3 2 ph\xE1t 1 \u1EDF f4942 = 40 tick \u21D2 ngh\u1EC9 \u0111\u1EA7u =
+      40 \u2212 c\u1EA3nh b\xE1o 12 (1 m\u1EABu, 2 th\xE1p; Unity: ph\xE1t 1 \u1EDF
+      tick ngh\u1EC9 + c\u1EA3nh b\xE1o)"
+    note: "l\u01B0\u1EE3t b\u1EAFn \u0111\u1EA7u sau khi sinh"
   - actor: Enemy.BoneTower
     key: idleMinTicks
     value:
       has: 1
-      value: 96
+      value: 133
     min:
       has: 0
       value: 0
@@ -4207,14 +4271,17 @@ MonoBehaviour:
       has: 0
       value: 0
     unit: tick
-    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
-      routine 17; wiki \"theo chu k\u1EF3\" \u2014 ngh\u1EC9 gi\u1EEFa 2 l\u01B0\u1EE3t"
-    note: "ng\u1EABu nhi\xEAn \u0111\u1EC1u [96, 160]"
+    source: "\u0111o:cvm2-08 video:Map_2 6 kho\u1EA3ng ph\xE1t 1 \u2192 ph\xE1t 1
+      l\u01B0\u1EE3t k\u1EBF (2 th\xE1p): 185, 185, 298, 306, 306, 314 tick; Unity:
+      kho\u1EA3ng = ngh\u1EC9 + 52 (c\u1EA7u 2 sau 40 + c\u1EA3nh b\xE1o 12) \u21D2
+      ngh\u1EC9 \u0111\u1EC1u [133, 262] (ph\xE2n b\u1ED1 ch\u01B0a r\xF5 \u2014
+      c\xF3 th\u1EC3 2 m\u1EE9c ~185 / ~305)"
+    note: "ng\u1EABu nhi\xEAn \u0111\u1EC1u [min, min + span]"
   - actor: Enemy.BoneTower
     key: idleSpanTicks
     value:
       has: 1
-      value: 64
+      value: 129
     min:
       has: 0
       value: 0
@@ -4222,30 +4289,32 @@ MonoBehaviour:
       has: 0
       value: 0
     unit: tick
-    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
-      routine 17; c\xF9ng l\xFD do"
+    source: "\u0111o:cvm2-08 video:Map_2 c\xF9ng 6 kho\u1EA3ng"
     note: 
   - actor: Enemy.BoneTower
     key: warnTicks
     value:
       has: 1
-      value: 32
+      value: 12
     min:
-      has: 0
-      value: 0
+      has: 1
+      value: 8
     max:
-      has: 0
-      value: 0
+      has: 1
+      value: 23
     unit: tick
-    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
-      routine 17; wiki \"nh\u1EA5p nh\xE1y ngay tr\u01B0\u1EDBc khi b\u1EAFn\""
-    note: "\u0111\u1ED5i b\u1EA3ng t\xEDm \u2194 \u0111\u1ECF (2 b\u1ED9 m\xE0u c\xF3
-      tr\xEAn sheet)"
+    source: "\u0111o:cvm2-08 video:Map_2 7 l\u01B0\u1EE3t: b\u1EA3ng \u0110\u1ECE
+      ngay tr\u01B0\u1EDBc ph\xE1t 1 k\xE9o d\xE0i 8\u201314 tick (f4938\u20134941,
+      5087\u20135092, 5486\u20135491, 5517\u20135523); 3 l\u01B0\u1EE3t c\xF3 th\xEAm
+      1 nh\xE1y \u0111\u1ECF ng\u1EAFn ~18\u201320 tick tr\u01B0\u1EDBc \u0111\xF3
+      (f5232/5389/5422) \u2014 ch\u01B0a d\u1EF1ng"
+    note: "\u0111\u1ED5i b\u1EA3ng t\xEDm \u2192 \u0111\u1ECF (2 b\u1ED9 m\xE0u tr\xEAn
+      sheet \u2014 video x\xE1c nh\u1EADn)"
   - actor: Enemy.BoneTower
     key: warnBlinkTicks
     value:
       has: 1
-      value: 4
+      value: 16
     min:
       has: 0
       value: 0
@@ -4253,62 +4322,65 @@ MonoBehaviour:
       has: 0
       value: 0
     unit: tick
-    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
-      routine 17; nh\u1ECBp nh\xE1y"
+    source: "\u0111o:cvm2-08 video:Map_2 \u0111\u1ECF LI\u1EC0N su\u1ED1t c\u1EA3nh
+      b\xE1o (\u2265 warnTicks \u21D2 kh\xF4ng \u0111\u1ED5i m\xE0u gi\u1EEFa ch\u1EEBng)"
     note: 
   - actor: Enemy.BoneTower
     key: fireGapTicks
     value:
       has: 1
-      value: 16
+      value: 40
     min:
-      has: 0
-      value: 0
+      has: 1
+      value: 39
     max:
-      has: 0
-      value: 0
+      has: 1
+      value: 41
     unit: tick
-    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
-      routine 17; wiki \"2 c\u1EA7u l\u1EEDa m\u1ED7i l\u01B0\u1EE3t\" \u2014 \u0111\u1EA7u
-      tr\xEAn r\u1ED3i \u0111\u1EA7u d\u01B0\u1EDBi c\xE1ch 16 tick"
+    source: "\u0111o:cvm2-08 video:Map_2 6 c\u1EB7p c\u1EA7u l\u1EEDa c\xF9ng th\xE1p:
+      39.0\u201340.9 tick (TB 39.9)"
     note: 
   - actor: Enemy.BoneTower
     key: fireballSpeed
     value:
       has: 1
-      value: 1.5
+      value: 2
     min:
-      has: 0
-      value: 0
+      has: 1
+      value: 1.955
     max:
-      has: 0
-      value: 0
+      has: 1
+      value: 2.019
     unit: px/tick
-    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
-      routine 17; c\u1EA7u l\u1EEDa bay ngang v\u1EC1 ph\xEDa Simon (nhanh h\u01A1n
-      Simon \u0111i 1.0 \u0111\u1EC3 kh\xF4ng n\xE9 b\u1EB1ng c\xE1ch \u0111i)"
+    source: "\u0111o:cvm2-08 video:Map_2 15 c\u1EA7u l\u1EEDa Hall C f4943\u20135584:
+      |vx| 1.955\u20132.019 (trung v\u1ECB 2.00), bay ngang (y kh\xF4ng \u0111\u1ED5i),
+      v\u1EC1 h\u01B0\u1EDBng th\xE1p \u0111ang quay; ra kh\u1ECFi m\xE9p m\xE0n
+      th\xEC m\u1EA5t (kh\xF4ng l\u1EA7n n\xE0o b\u1ECB roi ph\xE1)"
     note: 
   - actor: Enemy.BoneTower
     key: fireballFrontPx
     value:
       has: 1
-      value: 8
+      value: 0
     min:
-      has: 0
+      has: 1
       value: 0
     max:
-      has: 0
-      value: 0
+      has: 1
+      value: 4
     unit: px
-    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
-      routine 17; mi\u1EC7ng \u0111\u1EA7u l\xE2u \u1EDF m\xE9p tr\u01B0\u1EDBc sprite
-      16 px"
-    note: 
+    source: "\u0111o:cvm2-08 video:Map_2 15 c\u1EA7u l\u1EEDa: ngo\u1EA1i suy \u0111\u01B0\u1EDDng
+      bay v\u1EC1 x th\xE1p \u0111\xFAng l\xFAc h\u1EBFt c\u1EA3nh b\xE1o \u0111\u1ECF
+      (vd f4942.0 = rel 40); l\u1EA7n th\u1EA5y \u0111\u1EA7u ti\xEAn c\xE1ch th\xE1p
+      4 px sau 2 tick (f4943: 253 / th\xE1p 249) \u21D2 sinh ngay \u1EDF x th\xE1p
+      (routine 17 suy lu\u1EADn 8 \u21D2 so Unity \u2194 video l\u1EC7ch +6\u20137
+      px)"
+    note: "c\u1EA7u sinh \u1EDF pivot th\xE1p, bay ra"
   - actor: Enemy.BoneTower
     key: fireballTopAbovePx
     value:
       has: 1
-      value: 16
+      value: 15
     min:
       has: 0
       value: 0
@@ -4316,19 +4388,17 @@ MonoBehaviour:
       has: 0
       value: 0
     unit: px
-    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
-      routine 17; qu\u1EA3 c\u1EA7u (\xF4 8\xD716 pivot t\xE2m; pixel \u0111\u1EE5c
-      h\xE0ng \u22127..\u22122) ngang mi\u1EC7ng \u0111\u1EA7u l\xE2u tr\xEAn \u21D2
-      h\xE0ng y\u221223..y\u221218 = trong d\u1EA3i roi \u0111\u1EE9ng (ConfigWhip
-      hitY: ch\xE2n \u221222..\u221217) \u21D2 qu\u1EA5t v\u1EE1 \u0111\u01B0\u1EE3c
-      khi \u0111\u1EE9ng (wiki)"
-    note: "l\u1EA7n th\u1EED \u0111\u1EA7u 20 n\u1EB1m tr\xEAn d\u1EA3i roi 1 h\xE0ng
-      \u2014 roi \u0111\u1EE9ng kh\xF4ng ph\xE1 \u0111\u01B0\u1EE3c"
+    source: "\u0111o:cvm2-08 video:Map_2 c\u1EA7u l\u1EEDa th\xE1p d\u01B0\u1EDBi:
+      t\xE2m \xF4 y m\xE0n 97 (section 65) = pivot \u0111\u1EA7u TR\xCAN; ch\xE2n
+      th\xE1p (Unity Y, viewOffset +1) = 80 \u21D2 80 \u2212 65 = 15 (th\xE1p tr\xEAn:
+      65 \u2192 33, ch\xE2n 48 \u21D2 15); c\u1EA7u l\u1EEDa viewOffset 0"
+    note: "h\xE0ng \u0111\u1EE5c c\u1EA7u = Y \u2212 22 \u2026 Y \u2212 17 (trong
+      d\u1EA3i roi \u0111\u1EE9ng)"
   - actor: Enemy.BoneTower
     key: fireballBottomAbovePx
     value:
       has: 1
-      value: 0
+      value: 15
     min:
       has: 0
       value: 0
@@ -4336,11 +4406,10 @@ MonoBehaviour:
       has: 0
       value: 0
     unit: px
-    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
-      routine 17; c\xF9ng c\xE1ch t\xEDnh cho mi\u1EC7ng \u0111\u1EA7u l\xE2u d\u01B0\u1EDBi
-      \u21D2 qu\u1EA3 c\u1EA7u h\xE0ng y\u22127..y\u22122 (ngang \u1ED1ng ch\xE2n
-      \u2014 nh\u1EA3y qua ho\u1EB7c ng\u1ED3i)"
-    note: 
+    source: "\u0111o:cvm2-08 video:Map_2 c\u1EA7u l\u1EEDa th\u1EE9 2 C\u0168NG ra
+      t\u1EEB mi\u1EC7ng \u0111\u1EA7u tr\xEAn (6/6 c\u1EB7p c\xF9ng y) \u2014 routine
+      17 suy lu\u1EADn 0 (\u0111\u1EA7u d\u01B0\u1EDBi) l\xE0 sai"
+    note: "t\xEAn kho\xE1 gi\u1EEF (ph\xE1t th\u1EE9 2)"
   - actor: Enemy.BoneTower
     key: hitInvincibleTicks
     value:
@@ -4354,7 +4423,8 @@ MonoBehaviour:
       value: 0
     unit: tick
     source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
-      routine 17; nh\u01B0 SpearKnight"
+      routine 17; nh\u01B0 SpearKnight (video Map_2 kh\xF4ng \u0111\u1EBFm \u0111\u01B0\u1EE3c
+      \u0111\xF2n v\xE0o th\xE1p \u2014 cvm2-08)"
     note: 
   - actor: Enemy.Ghost
     key: chaseAccel
@@ -4368,27 +4438,28 @@ MonoBehaviour:
       has: 0
       value: 0
     unit: "px/tick\xB2"
-    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
-      routine 17; wiki \"ch\u1EADm nh\u01B0ng b\xE1m theo v\u1ECB tr\xED Simon, \u0111\u1EBFn
-      t\u1EEB g\xF3c l\u1EA1\" \u21D2 gia t\u1ED1c nh\u1ECF t\u1EEBng tr\u1EE5c \u21D2
-      v\u01B0\u1EE3t qu\xE1 r\u1ED3i v\xF2ng l\u1EA1i"
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng \u2014 routine 17; wiki
+      \"b\xE1m theo, \u0111\u1EBFn t\u1EEB g\xF3c l\u1EA1\" \u21D2 t\u0103ng t\u1ED1c
+      t\u1EEBng tr\u1EE5c \u21D2 v\u01B0\u1EE3t qu\xE1 r\u1ED3i v\xF2ng l\u1EA1i;
+      video:Map_2 2 Ghost b\u1ECB h\u1EA1 tr\u01B0\u1EDBc khi v\u01B0\u1EE3t qua
+      Simon \u21D2 kh\xF4ng \u0111o \u0111\u01B0\u1EE3c (cvm2-08)"
     note: "1/64 px/tick\xB2"
   - actor: Enemy.Ghost
     key: maxVy
     value:
       has: 1
-      value: 0.5
+      value: 0.125
     min:
-      has: 0
-      value: 0
+      has: 1
+      value: 0.09
     max:
-      has: 0
-      value: 0
+      has: 1
+      value: 0.125
     unit: px/tick
-    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
-      routine 17; tr\u1EA7n t\u1ED1c \u0111\u1ED9 d\u1ECDc (ngang d\xF9ng ConfigEnemy.moveSpeed
-      0.625)"
-    note: 
+    source: "\u0111o:cvm2-08 video:Map_2 2 Ghost Hall C (f4979\u20135020, f5813\u20135863):
+      d\u1ECDc l\xEAn \u0111\u1EC1u \u2248 0.10\u20130.12 px/tick (tr\u1EEB l\xFAc
+      kh\u1EF1ng) \u21D2 0.125"
+    note: "tr\u1EA7n d\u1ECDc (ngang = ConfigEnemy.moveSpeed)"
   - actor: Enemy.Ghost
     key: targetAboveFeetPx
     value:
@@ -4401,8 +4472,9 @@ MonoBehaviour:
       has: 0
       value: 0
     unit: px
-    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
-      routine 17; \u0111u\u1ED5i theo t\xE2m th\xE2n Simon"
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng \u2014 routine 17 (\u0111u\u1ED5i
+      t\xE2m th\xE2n Simon); video:Map_2 Ghost l\xEAn d\u1EA7n t\u1EEB m\u1EB7t s\xE0n
+      v\u1EC1 ph\xEDa t\xE2m th\xE2n (cvm2-08)"
     note: 
   - actor: Enemy.Ghost
     key: hitInvincibleTicks
@@ -4416,8 +4488,87 @@ MonoBehaviour:
       has: 0
       value: 0
     unit: tick
-    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
-      routine 17; nh\u01B0 SpearKnight"
+    source: "suy lu\u1EADn: routine 17; video:Map_2 \u0111\xF2n k\u1EBF kh\xF4ng
+      s\u1EDBm h\u01A1n kh\u1EF1ng 16 tick (cvm2-08)"
+    note: 
+  - actor: Enemy.Ghost
+    key: spawnFullSpeed
+    value:
+      has: 1
+      value: 1
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: "c\u1EDD"
+    source: "\u0111o:cvm2-08 video:Map_2 2 Ghost: bay \u0111\u1EC1u 0.74\u20130.75
+      px/tick ngay t\u1EEB frame \u0111\u1EA7u (kh\xF4ng th\u1EA5y pha t\u0103ng
+      t\u1ED1c) \u21D2 sinh v\u1EDBi vx = tr\u1EA7n ngang h\u01B0\u1EDBng v\u1EC1
+      Simon"
+    note: "1 = sinh \u0111\u1EE7 t\u1ED1c"
+  - actor: Enemy.Ghost
+    key: hitStunTicks
+    value:
+      has: 1
+      value: 16
+    min:
+      has: 1
+      value: 14
+    max:
+      has: 1
+      value: 16
+    unit: tick
+    source: "\u0111o:cvm2-08 video:Map_2 \u0111\u1EE9ng y\xEAn sau \u0111\xF2n ch\u01B0a
+      h\u1EA1: f5008\u20135014, f5852\u20135860 (7\u20138 frame)"
+    note: 
+  - actor: Enemy.Ghost
+    key: spawnInsetPx
+    value:
+      has: 1
+      value: 32
+    min:
+      has: 1
+      value: 30
+    max:
+      has: 1
+      value: 32
+    unit: px
+    source: "\u0111o:cvm2-08 video:Map_2 Ghost hi\u1EC7n \u1EDF x m\xE0n 224 (f4979,
+      Simon quay tr\xE1i) / 30 (f5813, Simon quay ph\u1EA3i) = 96 px SAU L\u01AFNG
+      Simon (camera gi\u1EEF Simon \u1EDF 128) \u21D2 EdgeSpawner BehindPlayer inset
+      32"
+    note: "nh\u1ECBp sinh l\u1EA1i: video m\u1ED7i v\xF9ng 1 con, kh\xF4ng th\u1EA5y
+      sinh l\u1EA1i \u2014 routine 10 \u0111\u1EB7t"
+  - actor: Enemy.Ghost
+    key: spawnAboveFeetPx
+    value:
+      has: 1
+      value: 0
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "\u0111o:cvm2-08 video:Map_2 t\xE2m Ghost l\xFAc hi\u1EC7n = m\u1EB7t
+      s\xE0n Simon (y m\xE0n 176 / 80 = ch\xE2n Simon, 2/2)"
+    note: 
+  - actor: Enemy.Ghost
+    key: maxAlive
+    value:
+      has: 1
+      value: 1
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: con
+    source: "\u0111o:cvm2-08 video:Map_2 ch\u1EC9 1 Ghost m\u1ED7i l\xFAc (2 l\u1EA7n)"
     note: 
   - actor: Enemy.Raven
     key: triggerDistancePx
@@ -4992,27 +5143,44 @@ MonoBehaviour:
       routine 17; c\xF9ng l\xFD do"
     note: 
   - actor: Enemy.Bat
-    key: swoopVy
+    key: perchTriggerDyPx
+    value:
+      has: 1
+      value: 80
+    min:
+      has: 1
+      value: 78
+    max:
+      has: 1
+      value: 83
+    unit: px
+    source: "\u0111o:cvm2-08 video:Map_2 Hall C: Simon \u0111\u1EE9ng d\u01B0\u1EDBi
+      d\u01A1i (dy 87, |dx| 94) rel 130\u2013134 KH\xD4NG k\xEDch ho\u1EA1t; nh\u1EA3y
+      l\xEAn dy 83 \u2192 78 (rel 135\u2013136) \u21D2 d\u01A1i r\u1EDDi ch\u1ED7
+      rel ~137 (f5043); TEA: Simon nh\u1EA3y t\u1EDBi dy 107 (|dx| 16, f207) / TEB
+      dy 140 KH\xD4NG \u21D2 ng\u01B0\u1EE1ng (78, 83] \u2014 ch\u1ECDn 80"
+    note: "|dx| < perchTriggerPx V\xC0 Simon.Y \u2212 d\u01A1i.Y < ng\u01B0\u1EE1ng"
+  - actor: Enemy.Bat
+    key: swoopVx
     value:
       has: 1
       value: 1.5
     min:
-      has: 0
-      value: 0
+      has: 1
+      value: 1.48
     max:
-      has: 0
-      value: 0
+      has: 1
+      value: 1.52
     unit: px/tick
-    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
-      routine 17; Black Bat (wiki Enemies#Bats \"treo tr\u1EA7n r\u1ED3i lao xu\u1ED1ng
-      khi Simon l\u1EA1i g\u1EA7n\"): s\xE0 xu\u1ED1ng ch\xE9o t\u1EDBi t\u1EA7m
-      Simon r\u1ED3i bay s\xF3ng nh\u01B0 d\u01A1i \u0111\u1ECF"
-    note: "d\u01B0\u01A1ng = xu\u1ED1ng"
+    source: "\u0111o:cvm2-08 video:Map_2 Hall C f5043\u20135101: ngang 1.50 px/tick
+      c\u1EA3 l\xFAc s\xE0 l\u1EABn l\xFAc bay ngang (KH\xD4NG ph\u1EA3i 1.125 c\u1EE7a
+      d\u01A1i \u0111\u1ECF)"
+    note: 
   - actor: Enemy.Bat
-    key: swoopAboveFeetPx
+    key: swoopDropPx
     value:
       has: 1
-      value: 14
+      value: 31
     min:
       has: 0
       value: 0
@@ -5020,9 +5188,22 @@ MonoBehaviour:
       has: 0
       value: 0
     unit: px
-    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
-      routine 17; s\xE0 t\u1EDBi t\xE2m = ch\xE2n Simon \u2212 14 (= m\u1ED1t l\xFAc
-      d\u01A1i \u0111\u1ECF sinh, \u0111o 13)"
+    source: "\u0111o:cvm2-08 video:Map_2 c\xF9ng v\u1EBFt: s\xE0 31 px theo 1/4 sin
+      (rms 0.43 px; cung parabol 0.58) r\u1ED3i gi\u1EEF y \u2014 kh\xF4ng bay s\xF3ng"
+    note: 
+  - actor: Enemy.Bat
+    key: swoopTicks
+    value:
+      has: 1
+      value: 42
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "\u0111o:cvm2-08 video:Map_2 c\xF9ng v\u1EBFt: 1/4 sin d\xE0i 42 tick"
     note: 
   - actor: Enemy.Eagle
     key: carryBelowPx

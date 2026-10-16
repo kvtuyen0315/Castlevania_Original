@@ -10,8 +10,9 @@ using UnityEngine;
 ///   EnemyB23Probe.SaveReplays()                          ⇒ Assets/Data/Tests/Replays/enemy_b23_&lt;tên&gt;.txt
 ///   EnemyB23Probe.RunSuite(EnemyB23Probe.ScenarioNames()) ⇒ chạy (input ĐỌC TỪ FILE), ghi từng tick, TỰ CHẤM ⇒ SuiteReport()
 ///   EnemyB23Probe.ShotDir = thư mục ⇒ kịch bản chụp Game view ở các tick cố định (≥ 4 ảnh/enemy)
-/// Không có video Block 2–3 ⇒ kỳ vọng = hằng WIKI_* (số đòn, điểm, sát thương theo stage) + EST_* (giá trị ƯỚC LƯỢNG routine 17 chép
-/// độc lập Config — đổi Config mà quên đổi đây thì bộ kiểm báo). Geometry Arena giữ nguyên (sàn y 176 x 0–415, tường thấp 416–431 đỉnh
+/// Kỳ vọng = hằng WIKI_* (số đòn, điểm, sát thương theo stage) + VIDEO_* (CVM2 08: số ĐO video Map_2 — Spear Knight, Medusa Head, Bone
+/// Tower, Ghost, dơi treo) + EST_* (giá trị ƯỚC LƯỢNG routine 17 còn lại — Block 3 + phần video không thấy), chép độc lập Config — đổi
+/// Config mà quên đổi đây thì bộ kiểm báo. Geometry Arena giữ nguyên (sàn y 176 x 0–415, tường thấp 416–431 đỉnh
 /// y 144, hố 480–511) — đủ cho bục/khoảng trống, không đụng bộ kiểm 07–16.
 /// </summary>
 public static class EnemyB23Probe
@@ -24,17 +25,21 @@ public static class EnemyB23Probe
     public const int WIKI_KNIGHT_W = 3, WIKI_KNIGHT_S = 2, WIKI_TOWER_W = 8, WIKI_TOWER_S = 6, WIKI_GHOST_W = 3, WIKI_GHOST_S = 2;
     public const int WIKI_DMG_B2 = 2, WIKI_DMG_B3 = 3;     // wiki Gameplay#Damage: Stage 4–6 = 2, 7–9 = 3
     public const int WIKI_STOPWATCH = 300;
-    public const int EST_KNIGHT_VX = 128;                  // 0.5 px/tick
-    public const int EST_KNIGHT_LEG_MAX = 192;
-    public const int EST_MEDUSA_VX = 256, EST_MEDUSA_A = 24, EST_MEDUSA_P = 96, EST_MEDUSA_ABOVE = 24;
-    public const int EST_MEDUSA_GAP_MIN = 64, EST_MEDUSA_GAP_MAX = 128, EST_MEDUSA_FIRST = 32;
-    public const int EST_TOWER_FIRST = 48, EST_TOWER_WARN = 32, EST_TOWER_GAP = 16, EST_TOWER_IDLE_MIN = 96, EST_TOWER_IDLE_MAX = 160;
-    public const int EST_TOWER_BALL_VX = 384, EST_TOWER_TOP = 16, EST_TOWER_BOTTOM = 0;
-    public const int EST_GHOST_VX = 160, EST_GHOST_VY = 128;
+    // CVM2 08 — số đo video Map_2 (CVM2_MEMORY §2j)
+    public const int VIDEO_KNIGHT_VX = 128;                // 0.5 px/tick (1 px / 2 tick)
+    public const int VIDEO_KNIGHT_LEG_MAX = 192;           // quay ngẫu nhiên đều [16, 192]
+    public const int VIDEO_KNIGHT_WALL = 16, VIDEO_KNIGHT_EDGE = 4, VIDEO_KNIGHT_STUN = 16, VIDEO_KNIGHT_FRAME = 17;
+    public const int VIDEO_MEDUSA_VX = 320, VIDEO_MEDUSA_P = 100, VIDEO_MEDUSA_ABOVE = 49, VIDEO_MEDUSA_GAP = 128;
+    public const double VIDEO_MEDUSA_A = 33.75;
+    public const int VIDEO_MEDUSA_FIRST_MIN = 17, VIDEO_MEDUSA_FIRST_MAX = 56;
+    public const int VIDEO_TOWER_FIRST_SHOT = 40, VIDEO_TOWER_WARN = 12, VIDEO_TOWER_GAP = 40, VIDEO_TOWER_CYCLE_MIN = 185, VIDEO_TOWER_CYCLE_MAX = 314;
+    public const int VIDEO_TOWER_BALL_VX = 512, VIDEO_TOWER_ABOVE = 15;
+    public const int VIDEO_GHOST_VX = 192, VIDEO_GHOST_VY = 32, VIDEO_GHOST_STUN = 16;
+    public const int VIDEO_BAT_PERCH = 96, VIDEO_BAT_PERCH_DY = 80, VIDEO_BAT_VX = 384, VIDEO_BAT_DROP = 31, VIDEO_BAT_SWOOP = 42;
     public const int EST_RAVEN_TRIGGER = 96, EST_RAVEN_RISE = 16, EST_RAVEN_HOVER1 = 24, EST_RAVEN_HOVER = 12, EST_RAVEN_SPEED = 512;
     public const int EST_SKEL_GAP = 10, EST_SKEL_BONE_VX = 256, EST_SKEL_BONE_VX_STEP = 96, EST_SKEL_BONE_VY = -896, EST_SKEL_BONE_VY_STEP = 128;
     public const int EST_FLEA_TRIGGER = 112, EST_FLEA_SHORT_VY = -512, EST_FLEA_LONG_VY = -1152, EST_FLEA_G = 64, EST_FLEA_PAUSE_MIN = 4, EST_FLEA_PAUSE_MAX = 16;
-    public const int EST_BAT_SWOOP_VY = 384, EST_BAT_SWOOP_ABOVE = 14, EST_BAT_PERCH = 64;
+
 
     private struct Scn
     {
@@ -47,21 +52,24 @@ public static class EnemyB23Probe
 
     private static readonly Scn[] SCENARIOS =
     {
-        new Scn("knight_patrol", "-*600", "Arena: Simon (60,176) đứng; Spear Knight (250,176) tuần tra 0.5 px/tick, quay đầu ngẫu nhiên 64–192 tick, không rời sàn"),
-        new Scn("knight_ledge", "-*400", "Spear Knight trên đỉnh tường thấp (424,144) — quay đầu ở mép, không rơi"),
+        new Scn("knight_patrol", "-*600", "Arena: Simon (60,176) đứng; Spear Knight (250,176) tuần tra 0.5 px/tick, quay đầu ngẫu nhiên 16–192 tick (video Map_2), không rời sàn"),
+        new Scn("knight_ledge", "-*400", "Spear Knight trên đỉnh tường thấp (424,144) — quay đầu ở mép (dò sàn pivot ± 4 — video Map_2), không rơi"),
+        new Scn("knight_wall", "-*120", "CVM2 08: Spear Knight (380,176) đi phải về tường thấp x 416: quay ở x 400 = tường − 16 (video Map_2 TEB khe: quay ở 336, tường 352)"),
         new Scn("knight_touch", "-*90", "Stage 4: Spear Knight đi vào Simon (không bất tử): −2 vạch (chỉ va chạm, không đâm giáo)"),
-        new Scn("knight_whip_l1", WHIP5 + " -*40", "roi da (yếu) hạ Spear Knight: đúng 3 đòn, +400, tia lửa ở đòn chưa hạ"),
+        new Scn("knight_whip_l1", WHIP5 + " -*40", "roi da (yếu) hạ Spear Knight: đúng 3 đòn, +400, tia lửa + khựng 16 tick ở đòn chưa hạ (video Map_2)"),
         new Scn("knight_whip_l2", WHIP5 + " -*40", "roi xích (mạnh): đúng 2 đòn"),
-        new Scn("medusa_front", "-*900", "Simon (200,176) quay phải đứng: EdgeSpawner Medusa Head trước mặt — 1.0 px/tick, sóng A 24 P 96, ≤ 2 con, cách 64–128"),
+        new Scn("medusa_front", "-*900", "Simon (200,176) quay phải đứng: EdgeSpawner Medusa Head trước mặt — 1.25 px/tick, sinh ở đỉnh chân − 49, sóng 1−cos A 33.75 P 100, ≤ 2 con, đều 128 tick (video Map_2)"),
         new Scn("medusa_back", "-*240", "Simon quay TRÁI giữa màn ⇒ Medusa Head ra từ mép trái, bay sang phải"),
         new Scn("medusa_kill", "-*30 " + WHIP5 + " -*40", "roi cấp 3 hạ Medusa Head bay ngang tầm: 1 đòn, +300"),
         new Scn("medusa_touch", "-*160", "Stage 5: Medusa Head chạm Simon: −2 vạch"),
-        new Scn("tower_fire", "-*420", "Bone Tower (260,176), Simon (150,176): nghỉ 48 ⇒ nháy tím/đỏ 32 ⇒ 2 cầu lửa (đầu trên rồi dưới cách 16) bay 1.5 px/tick ⇒ nghỉ 96–160"),
+        new Scn("tower_fire", "-*720", "Bone Tower (260,176), Simon (150,176): phát 1 ở tick 40 (đỏ 12 tick trước) ⇒ 2 cầu lửa CÙNG miệng đầu trên cách 40 tick, bay 2.0 px/tick ⇒ lượt kế sau 185–314 tick (video Map_2)"),
+        new Scn("tower_face", "R*120 -*60", "CVM2 08: Simon đi phải ngang qua Bone Tower (180,176) ⇒ tháp quay mặt theo Simon NGAY (video Map_2 f4982/4992/5034), cầu lửa bay về hướng đang quay"),
         new Scn("tower_fire_hit", "-*220", "Stage 6: cầu lửa Bone Tower trúng Simon: −2 vạch"),
-        new Scn("tower_whip_ball", "-*88 " + WHIP5 + " -*60", "quất vỡ cầu lửa (wiki): cầu biến mất + 100 đ (suy luận), Simon không mất máu"),
+        new Scn("tower_whip_ball", "-*44 " + WHIP5 + " -*60", "quất vỡ cầu lửa (wiki): cầu biến mất + 100 đ (suy luận), Simon không mất máu (video Map_2 không có lần phá)"),
         new Scn("tower_kill_l1", WHIP10 + " -*30", "roi da hạ Bone Tower: đúng 8 đòn, +400"),
         new Scn("tower_kill_l2", WHIP10 + " -*30", "roi xích: đúng 6 đòn"),
-        new Scn("ghost_chase", "-*600", "Ghost (260,100), Simon (150,176) đứng: bám theo, tăng tốc dần, trần 0.625/0.5 px/tick, vượt quá rồi vòng lại"),
+        new Scn("ghost_chase", "-*900", "Ghost (260,100), Simon (150,176) đứng: sinh đủ tốc 0.75 về phía Simon, trần 0.75/0.125 px/tick (video Map_2), vượt quá rồi vòng lại (wiki)"),
+        new Scn("ghost_spawn", "-*120", "CVM2 08: EdgeSpawner BehindPlayer Ghost: Simon (200,176) quay phải ⇒ Ghost hiện ở cx + 32 (96 px sau lưng), tâm = chân Simon (video Map_2 2/2)"),
         new Scn("ghost_kill_l1", WHIP10 + " -*30", "roi da hạ Ghost: đúng 3 đòn, +300"),
         new Scn("ghost_kill_l2", WHIP10 + " -*30", "roi xích: đúng 2 đòn"),
         new Scn("ghost_touch", "-*200", "Stage 7: Ghost chạm Simon: −3 vạch"),
@@ -74,7 +82,8 @@ public static class EnemyB23Probe
         new Scn("flea_hops", "R*60 -*540", "Fleaman (300,176) chờ; Simon đi phải từ 150: bật khi |dx| < 112, chu kỳ nhảy ngắn-ngắn-vọt, nghỉ 4–16"),
         new Scn("flea_touch", "-*120", "Stage 7: Fleaman nhảy vào Simon: −3 vạch"),
         new Scn("flea_kill", "-*2 " + WHIP5 + " -*20", "roi da hạ Fleaman: 1 đòn, +500"),
-        new Scn("bat_black", "R*100 -*200", "Black Bat treo (300,96); Simon đi phải từ 150: |dx| < 64 ⇒ sà xuống 1.5 px/tick tới chân Simon − 14 rồi bay sóng như dơi đỏ"),
+        new Scn("bat_black", "R*100 -*200", "Dơi treo (300,100) — chân Simon thấp hơn 76 < 80; Simon đi phải từ 150: |dx| < 96 ⇒ sà 31 px theo 1/4 sin trong 42 tick, ngang 1.5 px/tick, rồi bay ngang thẳng (video Map_2 Hall C)"),
+        new Scn("bat_black_high", "-*200", "CVM2 08: dơi treo (210,88) — chân Simon (200,176) thấp hơn 88 ≥ 80 ⇒ KHÔNG rời chỗ dù |dx| 10 (video Map_2 Hall C đứng dy 87 chưa rời; TEA dy 107 không)"),
         new Scn("freeze_b23", "-*60 Sub -*400", "Stopwatch: mọi enemy Block 2–3 + đạn + bộ sinh Medusa Head dừng 300 tick rồi chạy tiếp"),
         new Scn("freeze_whip", "-*2 Sub -*10 " + WHIP5 + " -*40", "Stopwatch + roi da: Spear Knight đứng yên vẫn ăn đủ 3 đòn (bộ đếm bất tử chạy khi đóng băng — wiki)"),
         new Scn("rosary_b23", "-*200", "Rosary (RosaryClear) tick 150: mọi enemy + đạn Block 2–3 trên màn biến mất, 0 điểm"),
@@ -93,6 +102,8 @@ public static class EnemyB23Probe
         public readonly List<string> states = new List<string>();
         public readonly List<string> anims = new List<string>();
         public readonly List<int> facing = new List<int>();
+        public readonly List<int> frames = new List<int>();     // CVM2 08: chỉ số khung anim từng tick
+        public readonly List<int> hitRels = new List<int>();    // CVM2 08: tick (rel) nhận đòn
     }
 
     public class Shot
@@ -309,7 +320,15 @@ public static class EnemyB23Probe
                         var t = First(eEnemyId.SpearKnight);
                         if (t == null) return;
                         Expect("không rời sàn y 176 (tick sai)", 0, CountWhere(t, k => t.path[k].y != 176));
-                        LegChecks(t, EST_KNIGHT_VX, EST_KNIGHT_LEG_MAX, 2);
+                        LegChecks(t, VIDEO_KNIGHT_VX, VIDEO_KNIGHT_LEG_MAX, 2);
+                        int badA = 0, runA = 1;
+                        for (int k = 1; k < t.anims.Count; k++)
+                        {
+                            if (t.frames[k] == t.frames[k - 1]) { runA++; continue; }
+                            if (runA != VIDEO_KNIGHT_FRAME && k - runA > 0) badA++;
+                            runA = 1;
+                        }
+                        Expect("khung walk 0→1→2→1 đổi mỗi 17 tick (lần sai)", 0, badA);
                     };
                 }
                 break;
@@ -325,6 +344,27 @@ public static class EnemyB23Probe
                         Expect("đứng trên đỉnh tường y 144 suốt (tick sai)", 0, CountWhere(t, k => t.path[k].y != 144));
                         Expect("x trong [416, 431] (không bước khỏi mép)", 0, CountWhere(t, k => t.path[k].x < 416 || t.path[k].x > 431));
                         ExpectRange("quay đầu ở mép (lần)", 2, 999, t.e is SpearKnight ? ((SpearKnight)t.e).turns : 0);
+                        int mn = 999, mx = -999;
+                        foreach (var v in t.path) { mn = Math.Min(mn, v.x); mx = Math.Max(mx, v.x); }
+                        Expect("quay ở mép trái: x nhỏ nhất = 416 + 4 − 1 (dò sàn pivot − 4)", 416 + VIDEO_KNIGHT_EDGE - 1, mn);
+                        Expect("quay ở mép phải: x lớn nhất = 431 − 4 + 1", 431 - VIDEO_KNIGHT_EDGE + 1, mx);
+                    };
+                }
+                break;
+            case "knight_wall":
+                {
+                    Go("Arena", 60, 176, 1);
+                    var k = Put(knight, 380, 176, 1) as SpearKnight;
+                    k.legTimer = 9999;
+                    Photo(20, 40);
+                    finish = () =>
+                    {
+                        var t = First(eEnemyId.SpearKnight);
+                        if (t == null) return;
+                        int mx = -999;
+                        foreach (var v in t.path) mx = Math.Max(mx, v.x);
+                        Expect("quay trước tường thấp x 416: x lớn nhất = 416 − 16", 416 - VIDEO_KNIGHT_WALL, mx);
+                        ExpectRange("đã quay đầu (lần)", 1, 1, t.e is SpearKnight ? ((SpearKnight)t.e).turns : 0);
                     };
                 }
                 break;
@@ -352,7 +392,11 @@ public static class EnemyB23Probe
                     var k = Put(knight, 236, 176, -1) as SpearKnight;
                     k.legTimer = 9999;
                     Photo(20, 44);
-                    finish = () => KillChecks(eEnemyId.SpearKnight, strong ? WIKI_KNIGHT_S : WIKI_KNIGHT_W, WIKI_SCORE_KNIGHT, true);
+                    finish = () =>
+                    {
+                        KillChecks(eEnemyId.SpearKnight, strong ? WIKI_KNIGHT_S : WIKI_KNIGHT_W, WIKI_SCORE_KNIGHT, true);
+                        StunChecks(eEnemyId.SpearKnight, VIDEO_KNIGHT_STUN);
+                    };
                 }
                 break;
             case "medusa_front":
@@ -370,31 +414,31 @@ public static class EnemyB23Probe
                         int cx = recs.Count > 0 ? recs[0].cx : 0;
                         ExpectRange("số lần sinh", back ? 1 : 6, 99, ts.Count);
                         if (ts.Count == 0) return;
-                        Expect("lần sinh đầu (tick)", EST_MEDUSA_FIRST - 1, ts[0].spawnRel);
+                        ExpectRange("lần sinh đầu (tick) — video 17 / 56", VIDEO_MEDUSA_FIRST_MIN - 1, VIDEO_MEDUSA_FIRST_MAX - 1, ts[0].spawnRel);
                         int badX = 0, badF = 0, badY = 0;
                         foreach (var t in ts)
                         {
                             if (t.x0 != (back ? cx + 8 : cx + NesCoord.SCREEN_W - 8)) badX++;
                             if (t.facing0 != (back ? 1 : -1)) badF++;
-                            if (t.y0 != 176 - EST_MEDUSA_ABOVE) badY++;
+                            if (t.y0 != 176 - VIDEO_MEDUSA_ABOVE) badY++;
                         }
                         Expect(back ? "Simon quay trái ⇒ sinh mép trái (cx + 8) — số lần sai" : "sinh mép trước mặt (cx + 248) — số lần sai", 0, badX);
                         Expect("bay vào màn — số lần sai", 0, badF);
-                        Expect("tâm sóng = chân Simon − 24 — số lần sai", 0, badY);
+                        Expect("sinh ở ĐỈNH sóng = chân Simon − 49 — số lần sai", 0, badY);
                         var t0 = ts[0];
                         int badV = 0, n = 0, minY = 999, maxY = -999;
                         for (int k = 1; k < t0.fpath.Count; k++, n++)
-                            if (t0.fpath[k].x - t0.fpath[k - 1].x != t0.facing0 * EST_MEDUSA_VX) badV++;
+                            if (t0.fpath[k].x - t0.fpath[k - 1].x != t0.facing0 * VIDEO_MEDUSA_VX) badV++;
                         for (int k = 0; k < t0.path.Count; k++) { minY = Math.Min(minY, t0.path[k].y); maxY = Math.Max(maxY, t0.path[k].y); }
-                        Expect("ngang 1.0 px/tick (tick sai / " + n + ")", 0, badV);
-                        ExpectRange("biên độ đỉnh–đáy (px) — ước lượng 2·24", 2 * EST_MEDUSA_A - 1, 2 * EST_MEDUSA_A + 1, maxY - minY);
+                        Expect("ngang 1.25 px/tick (tick sai / " + n + ")", 0, badV);
+                        ExpectRange("đỉnh–đáy (px) — video 67–68", 66, 68, maxY - minY);
                         int badW = 0;
                         for (int k = 0; k < t0.fpath.Count; k++)
                         {
-                            int want = t0.y0 * 256 - (int)Math.Round(EST_MEDUSA_A * Math.Sin(2 * Math.PI * k / EST_MEDUSA_P) * 256);
+                            int want = t0.y0 * 256 + (int)Math.Round(VIDEO_MEDUSA_A * (1 - Math.Cos(2 * Math.PI * k / VIDEO_MEDUSA_P)) * 256);
                             if (Math.Abs(t0.fpath[k].y - want) > 1) badW++;
                         }
-                        Expect("y = y0 − 24·sin(2πt/96) đúng từng tick (tick sai)", 0, badW);
+                        Expect("y = y0 + 33.75·(1 − cos 2πt/100) đúng từng tick (tick sai)", 0, badW);
                         if (!back)
                         {
                             ExpectRange("tối đa sống cùng lúc", 1, 2, MaxOf(r => r.enemies));
@@ -405,10 +449,10 @@ public static class EnemyB23Probe
                                 int d = ts[i].spawnRel - ts[i - 1].spawnRel;
                                 bool cap = ts[i].spawnRel - 1 >= 0 && recs[ts[i].spawnRel - 1].enemies >= 2;
                                 sb.Append(d).Append(cap ? "* " : " ");
-                                if (d < EST_MEDUSA_GAP_MIN || (d > EST_MEDUSA_GAP_MAX + 1 && !cap)) badGap++;
+                                if (d != VIDEO_MEDUSA_GAP && !cap) badGap++;
                             }
                             measures.Add(sb.ToString());
-                            Expect("khoảng sinh 64–128 tick — số lần sai", 0, badGap);
+                            Expect("khoảng sinh đều 128 tick (video 126.8–129.0) — số lần sai", 0, badGap);
                         }
                     };
                 }
@@ -417,7 +461,7 @@ public static class EnemyB23Probe
                 {
                     ses.whipLevel = 3;
                     Go("Arena", 200, 176, 1);
-                    Put(medusa, 300, 176 - EST_MEDUSA_ABOVE, -1);
+                    Put(medusa, 300, 112, -1);   // CVM2 08: sinh ở đỉnh 112 ⇒ tick 30–40 ngang tầm roi
                     Photo(30, 46);
                     finish = () => KillChecks(eEnemyId.MedusaHead, 1, WIKI_SCORE_MEDUSA, false);
                 }
@@ -427,7 +471,7 @@ public static class EnemyB23Probe
                     CvgpDebug.CheatInvincible = false;
                     world.Stage = 5;
                     Go("Arena", 200, 176, 1);
-                    Put(medusa, 300, 176 - EST_MEDUSA_ABOVE, -1);
+                    Put(medusa, 300, 176 - VIDEO_MEDUSA_ABOVE, -1);
                     finish = () =>
                     {
                         Expect("Medusa Head chạm Simon: −2 vạch (Stage 5)", GameSession.MAX_HP - WIKI_DMG_B2, Last.hp);
@@ -445,34 +489,70 @@ public static class EnemyB23Probe
                         if (t == null) return;
                         Expect("bất động (tick x/y đổi)", 0, CountWhere(t, k => t.path[k] != t.path[0]));
                         int kW = t.states.IndexOf("Warn"), kF = t.states.IndexOf("Fire");
-                        Expect("đứng nghỉ đầu (tick trước khi nháy)", EST_TOWER_FIRST, kW);
-                        Expect("nháy kéo dài (tick)", EST_TOWER_WARN, kF - kW);
+                        Expect("cảnh báo đỏ kéo dài (tick) — video 8–14", VIDEO_TOWER_WARN, kF - kW);
                         int red = 0, flips = 0;
                         for (int k = kW; k < kF; k++)
                         {
                             if (t.anims[k] == "red") red++;
                             if (k > kW && t.anims[k] != t.anims[k - 1]) flips++;
                         }
-                        Expect("nháy tím/đỏ mỗi 4 tick: số lần đổi màu trong 32 tick (+ đổi về tím lúc bắn)", EST_TOWER_WARN / 4, flips);
-                        ExpectRange("tick đỏ khi nháy", 12, 20, red);
+                        Expect("đỏ LIỀN khi cảnh báo (số lần đổi màu)", 0, flips);
+                        Expect("tick đỏ khi cảnh báo", kF - kW, red);
                         var balls = ShotsOf("BoneTowerFireball");
                         ExpectRange("số cầu lửa (≥ 2 lượt)", 4, 99, balls.Count);
+                        if (balls.Count == 0) return;
+                        Expect("phát 1 lượt đầu ở tick (video: 40 tick sau khi hết đóng băng)", VIDEO_TOWER_FIRST_SHOT, balls[0].spawnRel);
                         int badPair = 0, badVx = 0, badY = 0;
                         for (int i = 0; i + 1 < balls.Count; i += 2)
-                        {
-                            if (balls[i + 1].spawnRel - balls[i].spawnRel != EST_TOWER_GAP) badPair++;
-                            if (balls[i].fpath.Count > 0 && Fixed.ToPx(balls[i].fpath[0].y) != 176 - EST_TOWER_TOP) badY++;
-                            if (balls[i + 1].fpath.Count > 0 && Fixed.ToPx(balls[i + 1].fpath[0].y) != 176 - EST_TOWER_BOTTOM) badY++;
-                        }
+                            if (balls[i + 1].spawnRel - balls[i].spawnRel != VIDEO_TOWER_GAP) badPair++;
+                        foreach (var b in balls)
+                            if (b.fpath.Count > 0 && Fixed.ToPx(b.fpath[0].y) != 176 - VIDEO_TOWER_ABOVE) badY++;
                         foreach (var b in balls)
                             for (int k = 1; k < b.fpath.Count; k++)
-                                if (b.fpath[k].x - b.fpath[k - 1].x != -EST_TOWER_BALL_VX || b.fpath[k].y != b.fpath[0].y) badVx++;
-                        Expect("2 cầu/lượt cách 16 tick — số lượt sai", 0, badPair);
-                        Expect("đầu trên y − 16, đầu dưới y − 0 — số cầu sai", 0, badY);
-                        Expect("bay ngang −1.5 px/tick về phía Simon (tick sai)", 0, badVx);
-                        int gap = balls.Count >= 3 ? balls[2].spawnRel - balls[1].spawnRel : -1;
-                        ExpectRange("nghỉ giữa 2 lượt (cầu dưới → cầu trên kế, tick) = nghỉ 96–160 + nháy 32", EST_TOWER_IDLE_MIN + EST_TOWER_WARN, EST_TOWER_IDLE_MAX + EST_TOWER_WARN + 1, gap);
+                                if (b.fpath[k].x - b.fpath[k - 1].x != -VIDEO_TOWER_BALL_VX || b.fpath[k].y != b.fpath[0].y) badVx++;
+                        Expect("2 cầu/lượt cách 40 tick — số lượt sai", 0, badPair);
+                        Expect("cả 2 cầu từ miệng đầu TRÊN (chân − 15) — số cầu sai", 0, badY);
+                        Expect("bay ngang −2.0 px/tick về phía Simon (tick sai)", 0, badVx);
+                        int badCycle = 0;
+                        var sbc = new StringBuilder("phát 1 → phát 1 (tick): ");
+                        for (int i = 2; i < balls.Count; i += 2)
+                        {
+                            int c = balls[i].spawnRel - balls[i - 2].spawnRel;
+                            sbc.Append(c).Append(' ');
+                            if (c < VIDEO_TOWER_CYCLE_MIN || c > VIDEO_TOWER_CYCLE_MAX) badCycle++;
+                        }
+                        measures.Add(sbc.ToString());
+                        Expect("khoảng 2 lượt trong 185–314 tick (video 6 mẫu) — số lần sai", 0, badCycle);
                         measures.Add("cầu lửa sinh ở tick: " + string.Join(" ", balls.ConvertAll(b => b.spawnRel.ToString()).ToArray()));
+                    };
+                }
+                break;
+            case "tower_face":
+                {
+                    Go("Arena", 120, 176, 1);
+                    Put(tower, 180, 176, -1);
+                    Photo(30, 80);
+                    finish = () =>
+                    {
+                        var t = First(eEnemyId.BoneTower);
+                        if (t == null) return;
+                        int bad = 0;
+                        for (int k = 0; k < t.facing.Count; k++)
+                        {
+                            int rel = t.spawnRel + k;
+                            int sx = rel < recs.Count ? recs[rel].sx : 0;
+                            if (sx != 180 && t.facing[k] != Math.Sign(sx - 180) && k > 0) bad++;
+                        }
+                        Expect("tháp luôn quay về Simon (tick sai — trễ 1 tick cho phép ở tick đổi)", 0, Math.Max(0, bad - 2));
+                        var balls = ShotsOf("BoneTowerFireball");
+                        int badDir = 0;
+                        foreach (var b in balls)
+                        {
+                            int sx = b.spawnRel < recs.Count ? recs[b.spawnRel].sx : 0;
+                            if (b.fpath.Count > 1 && Math.Sign(b.fpath[1].x - b.fpath[0].x) != Math.Sign(sx - 180)) badDir++;
+                        }
+                        ExpectRange("có cầu lửa", 1, 99, balls.Count);
+                        Expect("cầu lửa bay về phía Simon lúc bắn (số cầu sai)", 0, badDir);
                     };
                 }
                 break;
@@ -530,14 +610,15 @@ public static class EnemyB23Probe
                         for (int k = 1; k < t.fpath.Count; k++)
                         {
                             int dx = Math.Abs(t.fpath[k].x - t.fpath[k - 1].x), dy = Math.Abs(t.fpath[k].y - t.fpath[k - 1].y);
-                            if (dx > EST_GHOST_VX || dy > EST_GHOST_VY) badV++;
+                            if (dx > VIDEO_GHOST_VX || dy > VIDEO_GHOST_VY) badV++;
                             int rel = t.spawnRel + k;
                             int sx = rel < recs.Count ? recs[rel].sx : 150;
                             if (Math.Sign(t.path[k].x - sx) != Math.Sign(t.path[k - 1].x - sx) && t.path[k].x != sx) crosses++;
                             int d = Math.Abs(t.path[k].x - sx) + Math.Abs(t.path[k].y - (176 - 16));
                             if (d < minD) { minD = d; kMin = k; }
                         }
-                        Expect("tốc độ ≤ 0.625 ngang / 0.5 dọc (tick vượt)", 0, badV);
+                        Expect("tốc độ ≤ 0.75 ngang / 0.125 dọc (tick vượt)", 0, badV);
+                        Expect("sinh đủ tốc: tick đầu vx = −0.75 về phía Simon", -VIDEO_GHOST_VX, t.fpath.Count > 1 ? t.fpath[1].x - t.fpath[0].x : 0);
                         ExpectRange("tới sát tâm thân Simon (khoảng cách |dx|+|dy| nhỏ nhất)", 0, 12, minD);
                         ExpectRange("vượt qua Simon rồi vòng lại (số lần cắt ngang x Simon)", 2, 999, crosses);
                         int badF = CountWhere(t, k => k > 0 && t.fpath[k].x != t.fpath[k - 1].x && t.facing[k] != Math.Sign(t.fpath[k].x - t.fpath[k - 1].x));
@@ -553,7 +634,30 @@ public static class EnemyB23Probe
                     ses.whipLevel = strong ? 2 : 1;
                     Go("Arena", 150, 176, 1);
                     Put(ghost, 196, 156, -1);
-                    finish = () => KillChecks(eEnemyId.Ghost, strong ? WIKI_GHOST_S : WIKI_GHOST_W, WIKI_SCORE_GHOST, true);
+                    finish = () =>
+                    {
+                        KillChecks(eEnemyId.Ghost, strong ? WIKI_GHOST_S : WIKI_GHOST_W, WIKI_SCORE_GHOST, true);
+                        StunChecks(eEnemyId.Ghost, VIDEO_GHOST_STUN);
+                    };
+                }
+                break;
+            case "ghost_spawn":
+                {
+                    Go("Arena", 200, 176, 1);
+                    var sp = AddSpawner<EdgeSpawner>(ghost);
+                    sp.side = eSpawnSide.BehindPlayer;
+                    sp.playerRelativeY = true;
+                    Photo(4, 40);
+                    finish = () =>
+                    {
+                        var ts = Tracks(eEnemyId.Ghost);
+                        Expect("1 Ghost (maxAlive 1)", 1, ts.Count);
+                        if (ts.Count == 0) return;
+                        int cx = recs.Count > 0 ? recs[0].cx : 0;
+                        Expect("hiện 96 px SAU lưng Simon: x = cx + 32", cx + 32, ts[0].x0);
+                        Expect("tâm = chân Simon (y 176)", 176, ts[0].y0);
+                        Expect("bay về phía Simon (quay phải)", 1, ts[0].facing0);
+                    };
                 }
                 break;
             case "ghost_touch":
@@ -769,23 +873,47 @@ public static class EnemyB23Probe
             case "bat_black":
                 {
                     Go("Arena", 150, 176, 1);
-                    var b = Put(bat, 300, 96, -1) as Bat;
+                    var b = Put(bat, 300, 100, -1) as Bat;
                     b.ForcePerch();
                     Photo(60, 100, 130, 160, 220);
                     finish = () =>
                     {
                         var t = First(eEnemyId.Bat);
                         if (t == null) return;
-                        int kS = t.states.IndexOf("Swoop"), kF = t.states.IndexOf("Fly");
+                        int kS = t.states.IndexOf("Swoop"), kF = t.states.IndexOf("Glide");
                         int simX = kS >= 0 ? recs[t.spawnRel + kS].sx : -1;
-                        Expect("rời chỗ treo khi |dx| < 64: Simon X = 300 − 63", 300 - (EST_BAT_PERCH - 1), simX);
+                        Expect("rời chỗ treo khi |dx| < 96: Simon X = 300 − 95", 300 - (VIDEO_BAT_PERCH - 1), simX);
                         Expect("treo yên trước đó (tick đổi vị trí)", 0, CountWhere(t, k => k < kS && t.path[k] != t.path[0]));
-                        int bad = 0;
-                        for (int k = kS + 1; k < kF; k++)
-                            if (t.fpath[k].y - t.fpath[k - 1].y != EST_BAT_SWOOP_VY || t.fpath[k].x - t.fpath[k - 1].x != -288) bad++;
-                        Expect("sà xuống 1.5 px/tick + ngang 1.125 (tick sai)", 0, bad);
-                        Expect("chuyển bay sóng ở tick đầu tâm ≥ chân Simon − 14", 1, kF > 1 && t.path[kF].y >= 176 - EST_BAT_SWOOP_ABOVE && t.path[kF - 1].y < 176 - EST_BAT_SWOOP_ABOVE ? 1 : 0);
+                        Expect("treo bằng bat_purple_0 (anim purple_hang)", "purple_hang", kS > 0 ? t.anims[kS - 1] : "");
+                        int bad = 0, y0 = kS > 0 ? t.fpath[kS - 1].y : 0;
+                        for (int k = kS; k < kF && k > 0; k++)
+                        {
+                            int i = k - kS + 1;
+                            int want = y0 + (int)Math.Round(VIDEO_BAT_DROP * Math.Sin(0.5 * Math.PI * Math.Min(i, VIDEO_BAT_SWOOP) / VIDEO_BAT_SWOOP) * 256);
+                            if (t.fpath[k].y != want || t.fpath[k].x - t.fpath[k - 1].x != -VIDEO_BAT_VX) bad++;
+                        }
+                        Expect("sà 31 px theo 1/4 sin + ngang 1.5 px/tick (tick sai)", 0, bad);
+                        Expect("sà dài 42 tick rồi bay ngang", VIDEO_BAT_SWOOP, kF - kS);
+                        int badG = 0;
+                        for (int k = kF + 1; k < t.fpath.Count && kF > 0; k++)
+                            if (t.fpath[k].y != t.fpath[kF].y || t.fpath[k].x - t.fpath[k - 1].x != -VIDEO_BAT_VX) badG++;
+                        Expect("bay ngang thẳng 1.5 px/tick sau khi sà (tick sai)", 0, badG);
+                        Expect("bay bằng anim purple_fly", "purple_fly", kF > 0 ? t.anims[kF] : "");
                         measures.Add("treo tới tick " + kS + ", sà tới tick " + kF + " (y " + (kF > 0 ? t.path[kF - 1].y : -1) + ")");
+                    };
+                }
+                break;
+            case "bat_black_high":
+                {
+                    Go("Arena", 200, 176, 1);
+                    var b = Put(bat, 210, 88, -1) as Bat;
+                    b.ForcePerch();
+                    Photo(100);
+                    finish = () =>
+                    {
+                        var t = First(eEnemyId.Bat);
+                        if (t == null) return;
+                        Expect("chân Simon thấp hơn dơi 88 ≥ 80 px ⇒ không rời chỗ (tick ở state khác Perch)", 0, CountWhere(t, k => t.states[k] != "Perch"));
                     };
                 }
                 break;
@@ -937,7 +1065,7 @@ public static class EnemyB23Probe
         if (en != null)
         {
             var t = TrackOf(en, rel);
-            if (t != null) t.hits++;
+            if (t != null) { t.hits++; t.hitRels.Add(rel); }
         }
         if (h.victim == world.Player)
             playerHits.Add(h.hitbox.layer + ":" + (h.attacker != null ? h.attacker.GetType().Name : "?") + "@" + rel + " −" + h.damage);
@@ -1016,6 +1144,7 @@ public static class EnemyB23Probe
             t.states.Add(en.DebugState.Split(' ')[0]);
             t.anims.Add(en.Anim != null && en.Anim.Current != null ? en.Anim.Current.name : "");
             t.facing.Add(en.Facing);
+            t.frames.Add(en.Anim != null ? en.Anim.FrameIndex : 0);
             Mix((int)en.EnemyId); Mix(en.fx); Mix(en.fy); Mix(en.Facing);
         }
         foreach (var t in tracks)
@@ -1262,6 +1391,26 @@ public static class EnemyB23Probe
         Expect("tốc độ 0.5 px/tick (đoạn sai)", 0, badV);
     }
 
+    /// <summary>CVM2 08: sau mỗi đòn chưa hạ enemy đứng yên + anim dừng đúng `stun` tick (video Map_2 Spear Knight / Ghost).</summary>
+    static void StunChecks(eEnemyId id, int stun)
+    {
+        var t = First(id);
+        if (t == null || t.hitRels.Count == 0) return;
+        int bad = 0;
+        var sb = new StringBuilder("khựng sau đòn (tick đứng yên): ");
+        for (int h = 0; h < t.hitRels.Count; h++)
+        {
+            if (t.defeated && h == t.hitRels.Count - 1) break;   // đòn hạ: không khựng
+            int k0 = t.hitRels[h] - t.spawnRel;
+            int still = 0;
+            for (int k = k0 + 1; k < t.fpath.Count && t.fpath[k] == t.fpath[k0] && t.frames[k] == t.frames[k0]; k++) still++;
+            sb.Append(still).Append(' ');
+            if (still < stun) bad++;
+        }
+        measures.Add(sb.ToString());
+        Expect("đứng yên + anim dừng ≥ " + stun + " tick sau đòn chưa hạ (đòn sai)", 0, bad);
+    }
+
     /// <summary>Hạ bằng đúng `hits` đòn, đúng điểm wiki; nhiều đòn ⇒ có tia lửa ở đòn chưa hạ.</summary>
     static void KillChecks(eEnemyId id, int hits, int score, bool spark)
     {
@@ -1290,6 +1439,14 @@ public static class EnemyB23Probe
     }
 
     static void Expect(string what, int want, int got)
+    {
+        bool ok = want == got;
+        if (!ok)
+            Fails++;
+        checks.Add("    " + (ok ? "ĐẠT " : "FAIL ") + what + ": kỳ vọng " + want + ", được " + got);
+    }
+
+    static void Expect(string what, string want, string got)
     {
         bool ok = want == got;
         if (!ok)

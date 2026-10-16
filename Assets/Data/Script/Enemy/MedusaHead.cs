@@ -7,17 +7,18 @@ public enum eMedusaHeadState
 }
 
 /// <summary>
-/// MedusaHead (CVGP 17, theo wiki — GẦN ĐÚNG, không có video Block 2–3). Wiki Enemies#Medusa Heads: xuất hiện từ phía Simon đang
-/// nhìn (quay lưng ⇒ tới từ cả hai phía), bay ngang theo đường sóng, xuyên địa hình; 1/1 đòn, 300 đ; có thể húc Simon rơi hố.
-/// Ước lượng (Enemy.MedusaHead): ngang 1.0 px/tick theo hướng sinh; dọc y = y0 − A·sin(2πt/P), A 24, P 96 (sinh ở TÂM sóng rồi đi
-/// lên) ⇒ đỉnh qua đầu Simon, đáy chạm chân (wiki: "nhảy qua hoặc đi/ngồi dưới"). Pivot = tâm sprite. Sinh: EdgeSpawner
-/// FrontOfPlayer + playerRelativeY (tâm sóng = chân Simon − spawnAboveFeetPx) — cùng bộ sinh dơi routine 13.
+/// MedusaHead (CVGP 17 theo wiki; CVM2 08 ĐO LẠI video Map_2 — 19 con ở Hall A/B + sảnh Medusa). Wiki Enemies#Medusa Heads: xuất hiện từ
+/// phía Simon đang nhìn, bay ngang theo sóng, xuyên địa hình; 1/1 đòn, 300 đ; có thể húc Simon rơi hố.
+/// Video (Enemy.MedusaHead): ngang 1.25 px/tick theo hướng sinh; dọc y = y0 + A·(1 − cos 2πt/P), A 33.75, P 100 (khớp sin 19 vết, rms
+/// trung vị 0.95 px — tốt hơn cung parabol 1.27 / tam giác 2.95): SINH Ở ĐỈNH sóng rồi đi XUỐNG (đỉnh = chân Simon − 49 lúc sinh, kể cả
+/// khi Simon đang nhảy; đáy = chân + 19 ⇒ đi xuyên sàn). Pivot = tâm sprite. Sinh: EdgeSpawner FrontOfPlayer + playerRelativeY, đều
+/// 128 tick/con (15 khoảng 126.8–129.0).
 /// </summary>
 public class MedusaHead : EnemyBase
 {
     public StateMachine<MedusaHead, eMedusaHeadState> Fsm { get; private set; }
     [System.NonSerialized] public int flyVx, baseFy, waveTick;
-    private int[] wave;   // độ lệch y fixed theo pha (1 chu kỳ)
+    private int[] wave;   // độ lệch y fixed theo pha (1 chu kỳ) — 0 ở đỉnh (lúc sinh), 2A ở đáy
     private AnimSet.Anim aFly;
 
     public override string DebugState => Fsm != null && Fsm.HasState ? Fsm.CurState + " t" + waveTick : "-";
@@ -56,14 +57,14 @@ public class MedusaHead : EnemyBase
     protected override void LoadTuning(GameConfig cfg)
     {
         var id = enemyId;
-        flyVx = EnemyParams.MoveSpeed(cfg, id, 1f);
-        float amp = EnemyParams.Get(cfg, id, "waveAmplitudePx", 24f);
-        int period = Mathf.Max(2, EnemyParams.Int(cfg, id, "wavePeriodTicks", 96));
+        flyVx = EnemyParams.MoveSpeed(cfg, id, 1.25f);
+        float amp = EnemyParams.Get(cfg, id, "waveAmplitudePx", 33.75f);
+        int period = Mathf.Max(2, EnemyParams.Int(cfg, id, "wavePeriodTicks", 100));
         if (wave == null || wave.Length != period)
             wave = new int[period];
-        // bảng sóng tính 1 lần bằng double (như Bat 13) ⇒ tất định; lưu fixed 1/256 px
+        // bảng sóng tính 1 lần bằng double (như Bat 13) ⇒ tất định; lưu fixed 1/256 px. Sinh ở đỉnh (pha 0) rồi đi xuống (video)
         for (int i = 0; i < period; i++)
-            wave[i] = -(int)System.Math.Round(amp * System.Math.Sin(2.0 * System.Math.PI * i / period) * Fixed.ONE);
+            wave[i] = (int)System.Math.Round(amp * (1.0 - System.Math.Cos(2.0 * System.Math.PI * i / period)) * Fixed.ONE);
         Fsm.SetState(eMedusaHeadState.Fly);
     }
 

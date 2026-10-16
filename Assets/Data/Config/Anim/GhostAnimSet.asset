@@ -17,12 +17,12 @@ MonoBehaviour:
     frames:
     - {fileID: 21300000, guid: 8d0042e1d5408b14891221c86d6f129c, type: 3}
     - {fileID: 21300000, guid: b46968d495593db47a65586f051a115b, type: 3}
-    durations: 0800000008000000
+    durations: 0900000009000000
     loop: 1
-    measured: 0
+    measured: 1
     overlays: []
     overlayOffsets: []
     overlayOnTop: 
-    note: "routine 17: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video Block 2\u20133)
-      \u2014 nh\u1ECBp 8 tick/khung gi\u1EEF m\u1EB7c \u0111\u1ECBnh; Ghost bay \u0111u\u1ED5i"
+    note: "CVM2 08: video Map_2 2 Ghost Hall C \u2014 ghost_0\u21941 \u0111\u1ED5i
+      m\u1ED7i \u2248 4.5 frame = 9 tick (f5817\u20135849: 8 l\u1EA7n \u0111\u1ED5i)"
   palettes: []

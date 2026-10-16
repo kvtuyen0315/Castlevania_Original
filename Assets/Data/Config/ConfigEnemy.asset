@@ -211,10 +211,9 @@ MonoBehaviour:
     dropRule: "kh\xF4ng n\xEAu ri\xEAng"
     moveSpeed:
       has: 1
-      value: 1
-    src_moveSpeed: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video)
-      \u2014 routine 17; wiki Enemies#Medusa Heads bay ngang theo s\xF3ng \u2014
-      ch\u1ECDn 1.0 (gi\u1EEFa d\u01A1i 1.125 v\xE0 Zombie 0.875)"
+      value: 1.25
+    src_moveSpeed: "\u0111o:cvm2-08 video:Map_2 19 v\u1EBFt: |vx| 1.23\u20131.28
+      (trung v\u1ECB 1.25) = 320/256, h\u01B0\u1EDBng sinh (v\u1EC1 ph\xEDa Simon)"
     behaviorShort: "Xu\u1EA5t hi\u1EC7n t\u1EEB ph\xEDa Simon \u0111ang nh\xECn;
       bay ngang theo \u0111\u01B0\u1EDDng s\xF3ng; quay l\u01B0ng th\xEC t\u1EDBi
       t\u1EEB c\u1EA3 hai ph\xEDa"
@@ -260,7 +259,10 @@ MonoBehaviour:
     hitsStrong:
       has: 1
       value: 2
-    src_hits: 
+    src_hits: "wiki:Enemies#Ghosts; \u0111o:cvm2-08 video:Map_2 2 Ghost Hall C m\u1ED7i
+      con h\u1EA1 b\u1EB1ng 2 nh\xE1t roi c\u1EA5p 3 (f5008+5020, f5851+5863) = 2
+      \u0111\xF2n m\u1EA1nh (kh\u1EDBp); \u0111\xF2n y\u1EBFu kh\xF4ng c\xF3 trong
+      video"
     score:
       has: 1
       value: 300
@@ -270,10 +272,10 @@ MonoBehaviour:
     dropRule: "kh\xF4ng n\xEAu ri\xEAng"
     moveSpeed:
       has: 1
-      value: 0.625
-    src_moveSpeed: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video)
-      \u2014 routine 17; wiki Enemies#Ghosts \"ch\u1EADm nh\u01B0ng b\xE1m theo\"
-      \u2014 t\u1ED1c \u0111\u1ED9 tr\u1EA7n khi \u0111u\u1ED5i (gia t\u1ED1c chaseAccel)"
+      value: 0.75
+    src_moveSpeed: "\u0111o:cvm2-08 video:Map_2 2 Ghost Hall C: ngang 0.739 / 0.749
+      px/tick (tr\u1EEB l\xFAc kh\u1EF1ng) \u21D2 0.75 = 192/256 \u2014 t\u1ED1c
+      \u0111\u1ED9 \u0111\u1EC1u t\u1EEB l\xFAc hi\u1EC7n (tr\u1EA7n ngang khi \u0111u\u1ED5i)"
     behaviorShort: "Xu\u1EA5t hi\u1EC7n \u1EDF \u0111i\u1EC3m c\u1ED1 \u0111\u1ECBnh;
       ch\u1EADm nh\u01B0ng b\xE1m theo v\u1ECB tr\xED Simon t\u1EEB g\xF3c l\u1EA1"
     source: wiki:Enemies#Ghosts
@@ -320,7 +322,10 @@ MonoBehaviour:
     hitsStrong:
       has: 1
       value: 2
-    src_hits: 
+    src_hits: "wiki:Enemies#Spear Knights; \u0111o:cvm2-08 video:Map_2 h\u1EA1 b\u1EB1ng
+      2 r\xECu (TEA f224/f250) v\xE0 2 nh\xE1t roi c\u1EA5p 3 (\xD74 con: TEB f1315/1331,
+      Hall B f3215/3233, f3481/3507, f3589/3615) = 2 \u0111\xF2n m\u1EA1nh (kh\u1EDBp);
+      \u0111\xF2n y\u1EBFu (roi da) kh\xF4ng c\xF3 trong video"
     score:
       has: 1
       value: 400
@@ -331,9 +336,9 @@ MonoBehaviour:
     moveSpeed:
       has: 1
       value: 0.5
-    src_moveSpeed: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video)
-      \u2014 routine 17; wiki Enemies#Spear Knights \"\u0111i t\u1EDBi lui, ch\u1EADm\"
-      \u21D2 ch\u1EADm h\u01A1n Zombie 0.875 (\u0111o 13) \u2014 ch\u1ECDn 0.5"
+    src_moveSpeed: "\u0111o:cvm2-08 video:Map_2 7 Spear Knight: \u0111\u1EC1u 1 px/frame
+      = 0.50 px/tick (Hall B f3283\u20133363 484\u2192564: 80 px/160 tick; TEB khe
+      12 px/24 tick \xD730 l\u01B0\u1EE3t)"
     behaviorShort: "\u0110i t\u1EDBi lui ch\u1EADm; c\xF3 th\u1EC3 quay \u0111\u1EA7u
       b\u1EA5t c\u1EE9 l\xFAc n\xE0o; ch\u1EC9 g\xE2y h\u1EA1i khi va ch\u1EA1m"
     source: wiki:Enemies#Spear Knights

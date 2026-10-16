@@ -7,6 +7,7 @@ public enum eSpawnSide
     Left,
     Alternate,        // luân phiên phải/trái (wiki "từ cả hai phía" — QUY ƯỚC, không có video)
     FrontOfPlayer,    // mép trước mặt Simon; Simon cách mép đó < edgeScreenMarginPx ⇒ mép kia (video: dơi Crypt A 6/6)
+    BehindPlayer,     // CVM2 08: mép SAU lưng Simon (video Map_2: Ghost 2/2 lần hiện ở x màn 224 / 30 = 96 px sau lưng Simon)
 }
 
 /// <summary>
@@ -27,6 +28,8 @@ public class EdgeSpawner : EnemySpawner
     public bool playerRelativeY;
     [Tooltip("ObjectId khối gạch (vd CryptA_X16_10): vỡ ⇒ sinh ngay 1 con.")]
     public string releaseOnBlock = "";
+    /// <summary>Harness (CVM2 08 — so video): ≥ 0 ⇒ thay độ trễ con đầu (Roll firstDelay) bằng số tick này. Mặc định −1 = Config.</summary>
+    [System.NonSerialized] public int forceFirstDelay = -1;
 
     // nhịp (đọc Config khi vào vùng)
     private int groupSize, groupGap, waveMin, waveSpan, respawnMin, respawnSpan, firstMin, firstSpan, maxAlive, inset, aboveFeet, edgeMargin;
@@ -101,7 +104,7 @@ public class EdgeSpawner : EnemySpawner
         if (!wasInZone)
         {
             wasInZone = true;
-            timer = Roll(w, firstMin, firstSpan);
+            timer = forceFirstDelay >= 0 ? forceFirstDelay : Roll(w, firstMin, firstSpan);
             pending = groupSize;
         }
         if (timer > 0)
@@ -132,6 +135,11 @@ public class EdgeSpawner : EnemySpawner
             case eSpawnSide.Alternate:
                 altSide = -altSide;
                 return -altSide;
+            case eSpawnSide.BehindPlayer:
+                {
+                    var p = w.Player;
+                    return p != null ? -p.Facing : -1;
+                }
             case eSpawnSide.FrontOfPlayer:
                 {
                     var p = w.Player;

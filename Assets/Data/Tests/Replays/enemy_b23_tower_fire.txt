@@ -1,3 +1,3 @@
-# 420 tick, hash 6ea5d195
-# CVGP 17 EnemyB23Probe kịch bản 'tower_fire': Bone Tower (260,176), Simon (150,176): nghỉ 48 ⇒ nháy tím/đỏ 32 ⇒ 2 cầu lửa (đầu trên rồi dưới cách 16) bay 1.5 px/tick ⇒ nghỉ 96–160
--*420
+# 720 tick, hash a011a805
+# CVGP 17 EnemyB23Probe kịch bản 'tower_fire': Bone Tower (260,176), Simon (150,176): phát 1 ở tick 40 (đỏ 12 tick trước) ⇒ 2 cầu lửa CÙNG miệng đầu trên cách 40 tick, bay 2.0 px/tick ⇒ lượt kế sau 185–314 tick (video Map_2)
+-*720
