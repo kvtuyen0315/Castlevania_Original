@@ -294,6 +294,7 @@ public class SimonController : Entity
         drawOffset = Vector2Int.zero;
         movedXTick = movedYTick = -1;
         InvincibleTicks = 0;
+        hazardDeath = false;
         invisibleLeft = invisibleAge = 0;
         InputLocked = false;
         flashFrom = 1;
@@ -374,6 +375,25 @@ public class SimonController : Entity
         lastDeath = eTileCollision.Empty;
         Fsm.SetState(eSimonState.Dead);
     }
+
+    /// <summary>
+    /// CVM2 06: chạm gai bẫy ép (Crusher) — wiki Gameplay "hitting spikes will instantly kill you" ⇒ chết ngay tại chỗ (Dead, khung chết như
+    /// hết máu — suy luận: video không có lần chạm), Died(Hazard). Như nước/hố: bỏ qua bất tử nháy + tàng hình (bên gọi kiểm cheat).
+    /// </summary>
+    public void KillByHazard()
+    {
+        if (IsDying)
+            return;
+        lastDeath = eTileCollision.Hazard;
+        hazardDeath = true;
+        Fsm.SetState(eSimonState.Dead);
+    }
+
+    /// <summary>CVM2 06: Dead hiện tại do gai (Died báo Hazard thay vì Empty).</summary>
+    [NonSerialized] public bool hazardDeath;
+
+    /// <summary>CVM2 06: đứng được trên bệ di động khi không ở thang / không đang chết / không đi xuyên địa hình qua cửa.</summary>
+    public override bool RidesPlatforms => Fsm != null && !OnStairs && !IsDying && !(Fsm.Is(eSimonState.AutoWalk) && autoWalkNoClip);
 
     internal void RaiseDyingStarted()
     {

@@ -7,6 +7,7 @@ public class ConfigActorParam : ConfigTable<ConfigActorParamRow>
     public static string ActorKey(eBossId id) { return "Boss." + id; }
     public static string ActorKey(eSubWeapon id) { return "SubWeapon." + id; }
     public static string ActorKey(eItemId id) { return "Item." + id; }
+    public static string ActorKey(eObjectId id) { return "Object." + id; }
 
     /// <summary>Dòng (actor, key) hoặc null nếu không có (không log — tham số tuỳ chọn).</summary>
     public ConfigActorParamRow Find(string actor, string key)

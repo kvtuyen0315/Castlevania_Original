@@ -26,7 +26,7 @@ public class SimonDeadState : SimonState
     public override void CheckNextState()
     {
         if (StateFrame >= owner.deathTicks)
-            owner.RaiseDied(eTileCollision.Empty);
+            owner.RaiseDied(owner.hazardDeath ? eTileCollision.Hazard : eTileCollision.Empty);   // CVM2 06: gai bẫy ép ⇒ Hazard
     }
 
     public override void OnExitState()

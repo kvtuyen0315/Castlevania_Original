@@ -6225,3 +6225,330 @@ MonoBehaviour:
     source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
       routine 18; nh\u1EAFm t\xE2m th\xE2n Simon"
     note: 
+  - actor: Object.MovingPlatform
+    key: centerXTEB
+    value:
+      has: 1
+      value: 64
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px section
+    source: "\u0111o:cvm2-06 video:Map_2 0:45.0\u20130:51.7 (f1351\u20131552, 143
+      frame s\u1EA1ch, mech6_platform.py gh\xE9p n\u1EC1n + sprite): m\xE9p tr\xE1i
+      dao \u0111\u1ED9ng sin t\xE2m 47.99 bi\xEAn 15.51 \u21D2 pivot (gi\u1EEFa b\u1EC7)
+      t\xE2m 48+16; b\u1EC7 ch\u1EA1m 2 b\u1EDD khe x 32\u201396 \u1EDF 2 \u0111\u1EA7u"
+    note: "TowerEntranceB marker platform_lane_TEB; x = t\xE2m + bi\xEAn\xB7cos(2\u03C0t/chu
+      k\u1EF3), l\xFAc sinh \u1EDF m\xE9p ph\u1EA3i"
+  - actor: Object.MovingPlatform
+    key: amplitudeTEB
+    value:
+      has: 1
+      value: 16
+    min:
+      has: 1
+      value: 15.5
+    max:
+      has: 1
+      value: 16
+    unit: px
+    source: "\u0111o:cvm2-06 video:Map_2 f1351\u20131552: bi\xEAn kh\u1EDBp sin 15.51
+      (rms 0.41 px; m\xE9p tr\xE1i \u0111o 32\u201364)"
+    note: 
+  - actor: Object.MovingPlatform
+    key: periodTicksTEB
+    value:
+      has: 1
+      value: 201.4
+    min:
+      has: 1
+      value: 201
+    max:
+      has: 1
+      value: 201.75
+    unit: tick
+    source: "\u0111o:cvm2-06 video:Map_2 f1351\u20131552: chu k\u1EF3 kh\u1EDBp sin
+      201.40 tick (1 frame = 2.0033 tick); gia t\u1ED1c h\u1EB1ng rms 0.59, t\u1ED1c
+      \u0111\u1ED9 \u0111\u1EC1u 1.34 \u21D2 lo\u1EA1i"
+    note: "\u2248 2\u03C0\xB732"
+  - actor: Object.MovingPlatform
+    key: centerXHallB1
+    value:
+      has: 1
+      value: 304
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px section
+    source: "\u0111o:cvm2-06 video:Map_2 1:41.0\u20131:48.2 (f3030\u20133246) + 2:11.5\u20132:18.5
+      (f3945\u20134153) gh\xE9p 1 h\xE0m pha li\xEAn t\u1EE5c: m\xE9p tr\xE1i t\xE2m
+      287.94 bi\xEAn 31.48 \u21D2 pivot t\xE2m 288+16; ch\u1EA1m 2 b\u1EDD khe x
+      256\u2013352"
+    note: "TowerHallB marker platform_lane_HallB_1; b\u1EC7 ch\u1EA1y li\xEAn t\u1EE5c
+      c\u1EA3 khi ngo\xE0i khung (pha 2 l\u01B0\u1EE3t n\u1ED1i li\u1EC1n)"
+  - actor: Object.MovingPlatform
+    key: amplitudeHallB1
+    value:
+      has: 1
+      value: 32
+    min:
+      has: 1
+      value: 31.4
+    max:
+      has: 1
+      value: 32
+    unit: px
+    source: "\u0111o:cvm2-06 video:Map_2 f3030\u20133246 + f3945\u20134153: bi\xEAn
+      31.48 (rms 0.49 px; m\xE9p tr\xE1i \u0111o 256\u2013320)"
+    note: 
+  - actor: Object.MovingPlatform
+    key: periodTicksHallB1
+    value:
+      has: 1
+      value: 402.4
+    min:
+      has: 1
+      value: 401
+    max:
+      has: 1
+      value: 402.5
+    unit: tick
+    source: "\u0111o:cvm2-06 video:Map_2 f3030\u20134153 (2 l\u01B0\u1EE3t, ~4.6
+      chu k\u1EF3): chu k\u1EF3 kh\u1EDBp sin 402.37 tick"
+    note: "\u2248 2\u03C0\xB764"
+  - actor: Object.MovingPlatform
+    key: centerXHallB2
+    value:
+      has: 1
+      value: 432
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px section
+    source: "\u0111o:cvm2-06 video:Map_2 1:43.9\u20131:51.3 (f3117\u20133339) + 2:09.2\u20132:14.6
+      (f3876\u20134037) gh\xE9p: m\xE9p tr\xE1i t\xE2m 415.93 bi\xEAn 23.45 \u21D2
+      pivot t\xE2m 416+16; KH\xD4NG ch\u1EA1m b\u1EDD (khe x 384\u2013480, b\u1EC7
+      392\u2013472)"
+    note: TowerHallB marker platform_lane_HallB_2
+  - actor: Object.MovingPlatform
+    key: amplitudeHallB2
+    value:
+      has: 1
+      value: 24
+    min:
+      has: 1
+      value: 23.4
+    max:
+      has: 1
+      value: 24
+    unit: px
+    source: "\u0111o:cvm2-06 video:Map_2 f3117\u20134037: bi\xEAn 23.45 (rms 0.53
+      px; m\xE9p tr\xE1i \u0111o 392\u2013440); ch\u1ECDn 24 = c\xF9ng ki\u1EC3u
+      s\u1ED1 nguy\xEAn v\u1EDBi 16/32 (sai \u2264 0.6 px)"
+    note: 
+  - actor: Object.MovingPlatform
+    key: periodTicksHallB2
+    value:
+      has: 1
+      value: 201.8
+    min:
+      has: 1
+      value: 201
+    max:
+      has: 1
+      value: 201.82
+    unit: tick
+    source: "\u0111o:cvm2-06 video:Map_2 f3117\u20134037 (2 l\u01B0\u1EE3t, ~8 chu
+      k\u1EF3): chu k\u1EF3 kh\u1EDBp sin 201.82 tick"
+    note: 
+  - actor: Object.Crusher
+    key: downStepTicks
+    value:
+      has: 1
+      value: 4
+    min:
+      has: 1
+      value: 4
+    max:
+      has: 1
+      value: 4
+    unit: tick
+    source: "\u0111o:cvm2-06 video:Map_2 2:35.6\u20133:15.7 (f4668\u20135872, 3 b\u1EABy,
+      mech6_runs.py): m\u1ED7i n\u1EA5c h\u1EA1 8 px k\xE9o 2 frame video = 4.0 tick
+      (\xB12 rung nh\u1ECBp quay); n\u1EA5c ngay sau khung t\u1ED1i \u0111a = \u0111\u1ED5i
+      chi\u1EC1u l\xEAn 1 n\u1EA5c"
+    note: 
+  - actor: Object.Crusher
+    key: gridTicks
+    value:
+      has: 1
+      value: 16
+    min:
+      has: 1
+      value: 16
+    max:
+      has: 1
+      value: 16
+    unit: tick
+    source: "\u0111o:cvm2-06 video:Map_2 f4626\u20135872: m\u1ED7i n\u1EA5c l\xEAn
+      8 frame = 16 tick; khung 0 gi\u1EEF 16 tick; 3 b\u1EABy \u0111\u1ED5i n\u1EA5c
+      C\xD9NG frame (f4827, f4923) tr\xF9ng nh\u1ECBp gi\u1EA3m TIME 64 tick (= 4
+      \xF4)"
+    note: "l\u01B0\u1EDBi chung 3 b\u1EABy (c\xF9ng tick sinh)"
+  - actor: Object.Crusher
+    key: maxFrame1
+    value:
+      has: 1
+      value: 6
+    min:
+      has: 1
+      value: 6
+    max:
+      has: 1
+      value: 6
+    unit: khung
+    source: "\u0111o:cvm2-06 video:Map_2 6 chu k\u1EF3 b\u1EABy 1 (wx 368) \u0111\u1EC1u
+      d\u1EEBng \u1EDF khung 6 (\u0111\xE1y kh\u1ED1i y 136), chu k\u1EF3 112 tick
+      (f5612\u21925667\u21925723)"
+    note: TowerHallC marker crusher_1
+  - actor: Object.Crusher
+    key: maxFrame2
+    value:
+      has: 1
+      value: 4
+    min:
+      has: 1
+      value: 4
+    max:
+      has: 1
+      value: 4
+    unit: khung
+    source: "\u0111o:cvm2-06 video:Map_2 8 chu k\u1EF3 b\u1EABy 2 (wx 432) d\u1EEBng
+      \u1EDF khung 4 (\u0111\xE1y kh\u1ED1i y 120), chu k\u1EF3 80 tick (f4747\u21924787,
+      f5707\u21925746\u21925786); wiki:Stages 4-6 'drops a much shorter distance'
+      \u2713"
+    note: TowerHallC marker crusher_2
+  - actor: Object.Crusher
+    key: maxFrame3
+    value:
+      has: 1
+      value: 7
+    min:
+      has: 1
+      value: 7
+    max:
+      has: 1
+      value: 7
+    unit: khung
+    source: "\u0111o:cvm2-06 video:Map_2 7 chu k\u1EF3 b\u1EABy 3 (wx 496) h\u1EA1
+      h\u1EBFt khung 7 (gai ch\u1EA1m s\xE0n y 144), chu k\u1EF3 128 tick (f4660\u21924725\u21924788)"
+    note: TowerHallC marker crusher_3
+  - actor: Object.Crusher
+    key: startTick1
+    value:
+      has: 1
+      value: 55
+    min:
+      has: 1
+      value: 53
+    max:
+      has: 1
+      value: 57
+    unit: tick
+    source: "\u0111o:cvm2-06 video:Map_2 l\u01B0\u1EE3t d\u01B0\u1EDBi f4600\u20134828
+      kh\u1EDBp m\xF4 h\xECnh (88 % frame \u0111\xFAng khung; l\u1EC7ch c\xF2n l\u1EA1i
+      \xB11 n\u1EA5c = rung nh\u1ECBp quay): tick trong chu k\u1EF3 l\xFAc Hall C
+      hi\u1EC7n (f4479 cx 512, cu\u1ED1i c\u1EEDa tr\xE1i #2) = 55.3"
+    note: "0 = b\u1EAFt \u0111\u1EA7u h\u1EA1; b\u1EABy 1 \u0111i tr\u01B0\u1EDBc
+      b\u1EABy 2/3 \u0111\xFAng 3 \xF4 l\u01B0\u1EDBi"
+  - actor: Object.Crusher
+    key: startTick2
+    value:
+      has: 1
+      value: 7
+    min:
+      has: 1
+      value: 5
+    max:
+      has: 1
+      value: 9
+    unit: tick
+    source: "\u0111o:cvm2-06 video:Map_2 l\u01B0\u1EE3t d\u01B0\u1EDBi f4600\u20134828:
+      tick trong chu k\u1EF3 l\xFAc Hall C hi\u1EC7n (f4479) = 7.3 (b\u1EAFt \u0111\u1EA7u
+      h\u1EA1 7 tick tr\u01B0\u1EDBc, C\xD9NG l\xFAc b\u1EABy 3)"
+    note: 
+  - actor: Object.Crusher
+    key: startTick3
+    value:
+      has: 1
+      value: 7
+    min:
+      has: 1
+      value: 5
+    max:
+      has: 1
+      value: 9
+    unit: tick
+    source: "\u0111o:cvm2-06 video:Map_2 l\u01B0\u1EE3t d\u01B0\u1EDBi f4600\u20134828:
+      tick trong chu k\u1EF3 l\xFAc Hall C hi\u1EC7n (f4479) = 7.3"
+    note: 
+  - actor: Object.MovingPlatform
+    key: startTickTEB
+    value:
+      has: 1
+      value: 4
+    min:
+      has: 1
+      value: 3
+    max:
+      has: 1
+      value: 4
+    unit: tick
+    source: "\u0111o:cvm2-06 video:Map_2 f1351\u20131552 so m\xF4 h\xECnh (mech6_compare.py):
+      b\u1EC7 \u0110\xC3 ch\u1EA1y \u03C4 tick t\u1EEB m\xE9p ph\u1EA3i khi TEB hi\u1EC7n
+      (f866) \u2014 \u03C4 0 rms 1.46 px, \u03C4 4 rms 0.75 px (t\u1ED1t nh\u1EA5t
+      3.5)"
+    note: "b\u1EAFt \u0111\u1EA7u trong m\xE0n \u0111en chuy\u1EC3n t\u1EA7ng 22
+      tick"
+  - actor: Object.MovingPlatform
+    key: startTickHallB1
+    value:
+      has: 1
+      value: 6
+    min:
+      has: 1
+      value: 5
+    max:
+      has: 1
+      value: 6
+    unit: tick
+    source: "\u0111o:cvm2-06 video:Map_2 f3030\u20134153: \u03C4 tick l\xFAc Hall
+      B hi\u1EC7n (f2801) \u2014 \u03C4 0 rms 2.11 px, \u03C4 6 rms 0.79 px (t\u1ED1t
+      nh\u1EA5t 5.75)"
+    note: 
+  - actor: Object.MovingPlatform
+    key: startTickHallB2
+    value:
+      has: 1
+      value: 6
+    min:
+      has: 1
+      value: 6
+    max:
+      has: 1
+      value: 6
+    unit: tick
+    source: "\u0111o:cvm2-06 video:Map_2 f3117\u20134037: \u03C4 l\xFAc Hall B hi\u1EC7n
+      (f2801) \u2014 \u03C4 0 rms 3.41 px, \u03C4 6 rms 0.79 px (t\u1ED1t nh\u1EA5t
+      6.0; c\xF9ng \u03C4 b\u1EC7 1 \u21D2 2 b\u1EC7 sinh c\xF9ng l\xFAc n\u1EA1p
+      section)"
+    note: 

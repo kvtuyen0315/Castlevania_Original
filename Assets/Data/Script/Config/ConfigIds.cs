@@ -71,6 +71,14 @@ public enum eItemId
     BreakableBlock = 103,
 }
 
+/// <summary>CVM2 06 — cơ chế địa hình động (ConfigActorParam actor "Object.X"): bệ di động, bẫy ép gai.</summary>
+public enum eObjectId
+{
+    None = 0,
+    MovingPlatform = 1,
+    Crusher = 2,
+}
+
 /// <summary>Khoá bảng ConfigSimon.csv.</summary>
 public enum eSimonParam
 {

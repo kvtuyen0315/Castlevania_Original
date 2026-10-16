@@ -443,10 +443,11 @@ public static class CvgpConfigImporter
                 case "Boss": t = typeof(eBossId); break;
                 case "SubWeapon": t = typeof(eSubWeapon); break;
                 case "Item": t = typeof(eItemId); break;
+                case "Object": t = typeof(eObjectId); break;   // CVM2 06 — bệ di động, bẫy ép
             }
         }
         if (t == null || !Enum.GetNames(t).Contains(parts[1]) || parts[1] == "None")
-            err.Add(n, line, "actor", "actor '" + actor + "' phải dạng Enemy.X / Boss.X / SubWeapon.X / Item.X với X là id hợp lệ");
+            err.Add(n, line, "actor", "actor '" + actor + "' phải dạng Enemy.X / Boss.X / SubWeapon.X / Item.X / Object.X với X là id hợp lệ");
     }
 
     /// <summary>Đủ 100 % id: mọi giá trị enum (trừ None) có dòng.</summary>

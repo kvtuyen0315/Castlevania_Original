@@ -11,11 +11,11 @@ using UnityEngine;
 /// BỘ CHẠY HỒI QUY 1 LỆNH (CVM2 00; gộp cvgp-fix-05) — CHỈ Editor, đang Play. Chạy NỐI TIẾP các probe qua EditorApplication.update,
 /// ghi từng bộ ra &lt;dir&gt;/suites/&lt;bộ&gt;.txt + SUMMARY.txt (bộ | đạt/tổng | hash | hash chuẩn | khớp?) + progress.txt + ALL.done, rồi so
 /// BẢNG HASH CHUẨN (EXPECTED dưới — chép ở CVM2_MEMORY §4; chỉ đổi khi routine CỐ Ý đổi hành vi, ghi lý do vào sổ).
-///   RegressionRunner.Start("all", 240, dir)   scene Arena, Player = Simon: long, simon, attack, item, enemy, boss, b23, b46, b24, b56, holy (CVM2 04), rules
+///   RegressionRunner.Start("all", 240, dir)   scene Arena, Player = Simon: long, simon, attack, item, enemy, boss, b23, b46, b24, b56, holy (CVM2 04), mech (CVM2 06), rules
 ///   RegressionRunner.Start("full", 240, dir)  = all + gallery (25 nhân vật × 3 replay, KHÔNG chụp; ~4 phút)
 ///   RegressionRunner.Start("core", 240, dir)  scene Arena với EditorPrefs CVGP.ArenaUseDummy = true (Player = ArenaDummy) — Play MỚI
 ///   RegressionRunner.Start("main", 60, dir)   scene Main: flow (luồng thật Title → STAGE 04 + h8 5 mốc) + spam1..4 (spam phím 4 lượt)
-///   Tên lẻ (cách nhau dấu phẩy): long,simon,attack,item,enemy,boss,b23,b46,b24,b56,holy,rules,gallery,core,flow,flow30,flow144,spam,spam1..spam4
+///   Tên lẻ (cách nhau dấu phẩy): long,simon,attack,item,enemy,boss,b23,b46,b24,b56,holy,mech,rules,gallery,core,flow,flow30,flow144,spam,spam1..spam4
 ///   RegressionRunner.Status() ⇒ tiến độ / SUMMARY khi xong; RegressionRunner.Abort().
 /// Thứ tự: long ĐẦU phiên (RegressionProbe rò trạng thái khi chạy sau RulesProbe — CVM2_MEMORY §4), rules CUỐI (sau fix-05 vẫn để cuối cho chắc).
 /// fps = targetFrameRate cho cả bộ (hash tất định theo fps); gallery tự chạy 240; spam tự chạy ≥ 144. Trả lại fps/vSync/runInBackground khi xong.
@@ -30,11 +30,12 @@ public static class RegressionRunner
         { "b24", "7adfbc54" }, { "b56", "6cb8a1ad" }, { "rules", "03fafb24" }, { "core", "76516076" },
         { "gallery", "517442ed" }, { "flow", "e0b2d54c" }, { "flow30", "e0b2d54c" }, { "flow144", "e0b2d54c" },
         { "holy", "52c59864" },   // CVM2 04 (HolyPierceProbe — bộ mới)
+        { "mech", "91215ebd" },   // CVM2 06 (Map2MechProbe — bộ mới: bệ di động, bẫy ép gai, hố)
         { "h8", "352/432/448/890/922" },
     };
 
     const string CORE_NAMES = "walk300,wallR,wallR3,wallR24,wallL,wallL3,ledge,stairs,stair2,water,pit,camR,camL,hit,touch,matrix,spawn,freeze,freezeEnemy,mix,mix";
-    const string ARENA_ALL = "long,simon,attack,item,enemy,boss,b23,b46,b24,b56,holy,rules";
+    const string ARENA_ALL = "long,simon,attack,item,enemy,boss,b23,b46,b24,b56,holy,mech,rules";
 
     class Result
     {
@@ -395,6 +396,14 @@ public static class RegressionRunner
                     start = () => { HolyPierceProbe.RunSuite(HolyPierceProbe.ScenarioNames()); return null; },
                     done = () => HolyPierceProbe.SuiteDone,
                     finish = () => FromSuite(HolyPierceProbe.SuiteReports, HolyPierceProbe.SuiteFails, HolyPierceProbe.SuiteHash, HolyPierceProbe.SuiteReport())
+                };
+            case "mech":
+                return new SuiteDef
+                {
+                    name = name, session = "arena",
+                    start = () => { Map2MechProbe.ShotDir = null; return Map2MechProbe.RunSuite(Map2MechProbe.ScenarioNames()) > 0 ? null : "Map2MechProbe không chạy (thiếu section Block 2?)"; },
+                    done = () => Map2MechProbe.SuiteDone,
+                    finish = () => FromSuite(Map2MechProbe.SuiteReports, Map2MechProbe.SuiteFails, Map2MechProbe.SuiteHash, Map2MechProbe.SuiteReport())
                 };
             case "rules":
                 {

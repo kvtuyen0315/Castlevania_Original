@@ -1,0 +1,20 @@
+== (1) quy dao be: video vs mo hinh Unity (be sinh o mep phai luc nap section)
+be | diem | rms tau=0 | rms Unity (tau=startTick) | |lech| max Unity | tau tot nhat (tick) | rms tau tot | ghi chu
+TEB | 143 | 1.46 px | 0.75 px (startTick 4) | 2 | +3.50 | 0.69 px | t0 = f866
+HallB_1 | 328 | 2.11 px | 0.79 px (startTick 6) | 3 | +5.75 | 0.77 px | t0 = f2801
+HallB_2 | 289 | 3.41 px | 0.79 px (startTick 6) | 2 | +6.00 | 0.79 px | t0 = f2801
+
+== (2) Simon dung yen tren be: x Simon - x be (mep trai)
+video TEB f1466-1484: 14 frame, lech TB 29.79, rms quanh TB 0.56 px, khoang 29..31
+video HallB_2 f3953-3970: 15 frame, lech TB 0.93, rms quanh TB 0.25 px, khoang 0..1
+video HallB_1 f4009-4032: 19 frame, lech TB 15.00, rms quanh TB 0.00 px, khoang 15..15
+Unity plat_ride_teb: 404 tick, lech TB 16.16, rms quanh TB 0.37 px, khoang 16..17 (fixed Simon - be khong doi — probe)
+Unity plat_ride_hallb: 402 tick, lech TB 16.15, rms quanh TB 0.36 px, khoang 16..17 (fixed Simon - be khong doi — probe)
+
+== (3) bay ep: khung video vs mo hinh Unity (startTick 55/7/7 tai f4479, chu ky 112/80/128, kmax 6/4/7)
+luot duoi truoc dong ho, bay 1: 36/37 frame dung khung (97%); 11 moc doi khung, lech TB -0.7 tick, rms 1.2 tick
+luot duoi truoc dong ho, bay 2: 55/71 frame dung khung (77%); 18 moc doi khung, lech TB +0.8 tick, rms 1.0 tick
+luot duoi truoc dong ho, bay 3: 125/138 frame dung khung (91%); 39 moc doi khung, lech TB -1.1 tick, rms 1.6 tick
+luot tren (sau dong ho + camera roi di), bay 1: 17/142 frame dung khung (12%); 36 moc doi khung, lech TB +12.9 tick, rms 13.0 tick
+luot tren (sau dong ho + camera roi di), bay 2: 89/97 frame dung khung (92%); 20 moc doi khung, lech TB -1.9 tick, rms 2.2 tick
+luot tren (sau dong ho + camera roi di), bay 3: 9/130 frame dung khung (7%); 0 moc doi khung, lech TB +0.0 tick, rms 0.0 tick

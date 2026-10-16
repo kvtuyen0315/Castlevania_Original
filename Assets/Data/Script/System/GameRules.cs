@@ -7,6 +7,7 @@ public enum eDeathCause
     Damage,
     TimeUp,
     Fall,
+    Hazard,   // CVM2 06: gai bẫy ép (Crusher)
 }
 
 /// <summary>

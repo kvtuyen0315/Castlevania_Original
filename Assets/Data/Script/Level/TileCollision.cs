@@ -72,6 +72,9 @@ public class TileCollision
     /// <summary>CVGP 14 — tường vô hình (px): cột x &lt; WallMinX hoặc ≥ WallMaxX coi là đặc khi đi ngang (BossArena: mép màn khi camera khoá).
     /// Dựng lại mỗi LoadSection ⇒ mặc định không có.</summary>
     public int WallMinX = int.MinValue, WallMaxX = int.MaxValue;
+    /// <summary>CVM2 06 — bệ di động đang sống của section (StageWorld gán, dùng chung danh sách). Mặt trên bệ = sàn một chiều (chỉ đáp
+    /// từ trên xuống) cho thực thể RidesPlatforms. Null/rỗng ⇒ va chạm y hệt trước (Block 1 không có bệ).</summary>
+    public System.Collections.Generic.List<MovingPlatform> Platforms;
     public int StairCount => stairs.Length;
 
     public TileCollision(LevelSectionData data)
@@ -173,11 +176,25 @@ public class TileCollision
         return false;
     }
 
-    /// <summary>Đứng trên mặt sàn: hàng Y (ngay dưới hộp) là mặt trên ô đặc trong bề rộng hộp.</summary>
+    /// <summary>Đứng trên mặt sàn: hàng Y (ngay dưới hộp) là mặt trên ô đặc (hoặc mặt bệ di động — CVM2 06) trong bề rộng hộp.</summary>
     public bool IsOnGround(Entity e)
     {
         var b = e.BodyRect;
-        return RowLandable(b.yMax, b.xMin, b.xMax - 1);
+        return RowLandable(b.yMax, b.xMin, b.xMax - 1) || PlatformAt(e, b.yMax, b.xMin, b.xMax - 1) != null;
+    }
+
+    /// <summary>CVM2 06: bệ di động có MẶT TRÊN đúng hàng y, chồng cột x0..x1 (chỉ thực thể RidesPlatforms). Không có ⇒ null.</summary>
+    public MovingPlatform PlatformAt(Entity e, int y, int x0, int x1)
+    {
+        if (Platforms == null || Platforms.Count == 0 || !e.RidesPlatforms)
+            return null;
+        for (int i = 0; i < Platforms.Count; i++)
+        {
+            var p = Platforms[i];
+            if (p.Alive && p.Top == y && x1 >= p.Left && x0 < p.Left + p.Width)
+                return p;
+        }
+        return null;
     }
 
     /// <summary>Hộp chạm ô chết (Water/Pit/Hazard) hoặc đã ra hẳn khỏi đáy section (⇒ Pit).</summary>
@@ -255,7 +272,7 @@ public class TileCollision
         {
             int steps = newPx - oldPx;
             for (int s = 1; s <= steps; s++)
-                if (RowLandable(b.yMax + s - 1, b.xMin, b.xMax - 1))
+                if (RowLandable(b.yMax + s - 1, b.xMin, b.xMax - 1) || PlatformAt(e, b.yMax + s - 1, b.xMin, b.xMax - 1) != null)
                 {
                     e.fy = Fixed.FromPx(oldPx + s - 1);
                     return true;

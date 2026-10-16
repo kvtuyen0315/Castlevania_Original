@@ -96,6 +96,9 @@ public class Entity : MonoBehaviour
     /// <summary>Boss (và thực thể chính của boss): Rosary không diệt (wiki Items#Rosary) — routine 14/19/20 override.</summary>
     public virtual bool IsBoss => false;
 
+    /// <summary>CVM2 06: đứng được trên bệ di động (TileCollision tính mặt bệ là sàn). Chỉ Simon — video Map_2 không có enemy nào đứng bệ.</summary>
+    public virtual bool RidesPlatforms => false;
+
     protected virtual void Awake()
     {
         EnsureBuilt();

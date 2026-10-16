@@ -77,7 +77,10 @@ public static class Cvm2TerrainProbe
         }
         foreach (var s in added)
             if (s != null)
+            {
+                W.RemoveSection(s);   // CVM2 06: không để tham chiếu chết trong StageWorld (Warp sau đó sẽ lỗi)
                 UnityEngine.Object.DestroyImmediate(s.gameObject);
+            }
         added.Clear();
         return "đã gỡ section Block 2";
     }

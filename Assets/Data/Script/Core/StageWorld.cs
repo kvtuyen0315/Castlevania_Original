@@ -6,6 +6,7 @@ using UnityEngine;
 /// Bộ điều phối gameplay theo tick (CVGP 07, CVGP_PLAN §5.1) — con của màn gameplay (routine 15) / scene Arena.
 /// CHỈ StageWorld đăng ký NesClock.OnTick (thực thể không tự đăng ký ⇒ thứ tự tất định, H7). Mỗi tick (Step):
 ///   (1) NesPad.Tick (đã chốt ở OnSystemTick nếu có GameManager; Arena tự gọi — NesPad chặn gọi 2 lần/tick)
+///   (1b) CVM2 06: bệ di động (MovingPlatform.StepPlatform) — đi trước, kéo Simon đang đứng trên theo dx
 ///   (2–5) OnTick thực thể theo nhóm Player → PlayerWeapon → Enemy → EnemyShot → Item → Prop → Effect, trong nhóm theo thứ tự
 ///         đăng ký; thực thể sinh trong tick T bắt đầu OnTick từ T+1; sau OnTick kiểm ô chết (checkDeadlyTiles)
 ///   (6) CombatResolver (bỏ qua khi đóng băng thế giới)
@@ -41,6 +42,7 @@ public class StageWorld : MonoBehaviour
     private readonly List<SpawnPoint> spawnPoints = new List<SpawnPoint>();
     private readonly List<EnemySpawner> spawners = new List<EnemySpawner>();
     private readonly List<LevelSection> sections = new List<LevelSection>();
+    private readonly List<MovingPlatform> platforms = new List<MovingPlatform>();
     private readonly List<Entity> scratch = new List<Entity>();
     private readonly CombatResolver combat = new CombatResolver();
     private readonly EntityPool pool = new EntityPool();
@@ -229,6 +231,7 @@ public class StageWorld : MonoBehaviour
         s.PlaceForCamera(0);
         s.RestoreCells();   // lưới va chạm dựng mới ⇒ khối đã phá hiện lại trên Tilemap (CVGP 11)
         Tiles = new TileCollision(s.data);
+        Tiles.Platforms = platforms;   // CVM2 06: bệ di động (rỗng ở Block 1 ⇒ va chạm như cũ)
         spawnPoints.Clear();
         s.GetComponentsInChildren(true, spawnPoints);
         for (int i = 0; i < spawnPoints.Count; i++)
@@ -246,6 +249,12 @@ public class StageWorld : MonoBehaviour
     {
         if (s != null && !sections.Contains(s))
             sections.Add(s);
+    }
+
+    /// <summary>CVM2 06: gỡ section dựng lúc chạy trước khi huỷ (harness) — LoadSection duyệt cả danh sách.</summary>
+    public void RemoveSection(LevelSection s)
+    {
+        sections.Remove(s);
     }
 
     /// <summary>Đổi section: dọn mọi thực thể trừ Player, đặt Player tại (x, y), camera cắt theo Player.</summary>
@@ -434,6 +443,20 @@ public class StageWorld : MonoBehaviour
         enemyFreezeTo = TickCount + ticks;
     }
 
+    /// <summary>CVM2 06: bệ di động vào/ra thế giới (MovingPlatform.OnSpawned/OnRemoved) — đi ở bước (1b) trước nhóm Player.</summary>
+    internal void AddPlatform(MovingPlatform p)
+    {
+        if (!platforms.Contains(p))
+            platforms.Add(p);
+    }
+
+    internal void RemovePlatform(MovingPlatform p)
+    {
+        platforms.Remove(p);
+    }
+
+    public IReadOnlyList<MovingPlatform> Platforms => platforms;
+
     internal void RaiseHit(ref HitInfo info)
     {
         if (Hit != null)
@@ -467,6 +490,18 @@ public class StageWorld : MonoBehaviour
         if (!Paused)
         {
             TickCount++;
+            // (1b) CVM2 06: bệ di động đi TRƯỚC mọi nhóm ⇒ Simon đứng trên bệ được kéo theo dx rồi mới tính input/sàn trong tick này.
+            // Block 1 không có bệ ⇒ vòng rỗng, thứ tự cũ y nguyên.
+            if (platforms.Count > 0)
+            {
+                bool pwf = IsWorldFrozen, pef = IsEnemyFrozen;
+                for (int i = 0; i < platforms.Count; i++)
+                {
+                    var p = platforms[i];
+                    if (p.Alive && p.SpawnTick != TickCount && !p.IsFrozenBy(pwf, pef))
+                        p.StepPlatform();
+                }
+            }
             for (int g = 0; g < groups.Length; g++)
             {
                 bool wf = IsWorldFrozen, ef = IsEnemyFrozen;

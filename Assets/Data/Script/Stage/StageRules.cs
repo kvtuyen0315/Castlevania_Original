@@ -356,7 +356,8 @@ public class StageRules : MonoBehaviour
 
     private void OnSimonDied(SimonController who, eTileCollision kind)
     {
-        deathCause = kind != eTileCollision.Empty ? eDeathCause.Fall : timeUpPending ? eDeathCause.TimeUp : eDeathCause.Damage;
+        deathCause = kind == eTileCollision.Hazard ? eDeathCause.Hazard
+                   : kind != eTileCollision.Empty ? eDeathCause.Fall : timeUpPending ? eDeathCause.TimeUp : eDeathCause.Damage;
         timeUpPending = false;
         deathPending = true;
     }
