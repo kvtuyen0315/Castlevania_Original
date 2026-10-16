@@ -11,6 +11,7 @@ using UnityEngine;
 public static class CvgpSpriteManifest
 {
     public const string RELATIVE_PATH = "Tools/cvgp/slices_gameplay.json";
+    public const string MAP2_RELATIVE_PATH = "Tools/cvm2/slices_map2.json";   // CVM2 01: sprite mới Map 2 (chỉ cần pivot)
     public const string ART_ROOT = "Assets/Data/Art/";
 
     [Serializable]
@@ -87,6 +88,30 @@ public static class CvgpSpriteManifest
         if (Load() == null)
             return null;
         Slice s;
-        return byAssetPath.TryGetValue(assetPath, out s) ? s : null;
+        if (byAssetPath.TryGetValue(assetPath, out s))
+            return s;
+        return FindMap2Slice(assetPath);
+    }
+
+    static Doc map2Cached;
+    static DateTime map2Time;
+    static Dictionary<string, Slice> map2ByAssetPath;
+
+    static Slice FindMap2Slice(string assetPath)
+    {
+        var path = Path.Combine(Directory.GetParent(Application.dataPath).FullName, MAP2_RELATIVE_PATH);
+        if (!File.Exists(path))
+            return null;
+        var t = File.GetLastWriteTimeUtc(path);
+        if (map2Cached == null || t != map2Time)
+        {
+            map2Cached = JsonUtility.FromJson<Doc>(File.ReadAllText(path));
+            map2Time = t;
+            map2ByAssetPath = new Dictionary<string, Slice>();
+            foreach (var s in map2Cached.slices)
+                map2ByAssetPath[s.outDir + "/" + s.name + ".png"] = s;
+        }
+        Slice r;
+        return map2ByAssetPath.TryGetValue(assetPath, out r) ? r : null;
     }
 }

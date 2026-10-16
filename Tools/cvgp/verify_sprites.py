@@ -2,6 +2,8 @@
 
   python -P -E Tools/cvgp/verify_sprites.py [--meta]
 
+0. (CVM2 01) `--manifest Tools/cvm2/slices_map2.json [--meta]`: manifest khác — chỉ kiểm pixel + platform = 4 × brick_0 + khung bẫy ép
+   dài dần + meta; lệnh không tham số = CVGP như cũ.
 1. Pixel: mọi PNG trong manifest so lại sheet: pixel sheet = key (keyColor, hoặc nền sheet nếu bgIsKey) ⇔ PNG trong
    suốt (0,0,0,0); còn lại PNG đục đúng màu sheet; 0 pixel đục màu nền sheet (0,128,0); đúng kích thước.
 2. Ô tách/lặp: 2 nửa Dragon Skull ghép lại = ô 16x32 gốc; brick_0 = cả 4 khối của obj_brick_set.
@@ -30,8 +32,81 @@ def rgba(path):
     return np.array(Image.open(path).convert("RGBA")).astype(np.int64)
 
 
+def meta_errs(e):
+    """Kiểm .meta của 1 PNG theo mục manifest (dùng cho chế độ --manifest)."""
+    mp = f"{e['outDir']}/{e['name']}.png.meta"
+    if not os.path.exists(mp):
+        return [f"{mp}: chưa có (chưa import?)"]
+    t = open(mp, encoding="utf-8").read()
+    w, h = e["rect"][2], e["rect"][3]
+    want = (e["pivot"][0] / w, 1 - e["pivot"][1] / h)
+
+    def g(k):
+        m = re.search(r"\n\s*" + k + r": (.*)", t)
+        return m.group(1).strip() if m else None
+    pm = re.search(r"spritePivot: \{x: ([-\d.e]+), y: ([-\d.e]+)\}", t)
+    got = (float(pm.group(1)), float(pm.group(2))) if pm else None
+    checks = {"spritePixelsToUnits": "16", "filterMode": "0", "textureCompression": "0", "enableMipMap": "0",
+              "spriteMode": "1", "alignment": "9", "spriteMeshType": "0", "textureType": "8"}
+    bad = [f"{k}={g(k)}" for k, v in checks.items() if g(k) != v]
+    if got is None or abs(got[0] - want[0]) > 1e-6 or abs(got[1] - want[1]) > 1e-6:
+        bad.append(f"pivot {got} ≠ {want}")
+    return [f"{mp}: " + ", ".join(bad)] if bad else []
+
+
+def main_manifest(path):
+    """CVM2 01: kiểm manifest khác (slices_map2.json) — pixel so sheet, platform = 4 × brick_0, bẫy ép dài dần."""
+    doc = json.load(open(path, encoding="utf-8"))
+    bg = tuple(doc["sheetBg"])
+    errs, img, sheets = [], {}, {}
+    for e in doc["slices"]:
+        sp = e["sheet"]
+        if sp not in sheets:
+            sheets[sp] = np.array(Image.open(sp).convert("RGB")).astype(np.int64)
+        x, y, w, h = e["rect"]
+        src = sheets[sp][y:y + h, x:x + w]
+        out = f"{e['outDir']}/{e['name']}.png"
+        P = rgba(out)
+        img[e["name"]] = P
+        if P.shape[:2] != (h, w):
+            errs.append(f"{out}: kích thước {P.shape[1]}x{P.shape[0]} ≠ {w}x{h}")
+            continue
+        key = np.zeros((h, w), bool)
+        if e.get("keyColor"):
+            key |= np.all(src == e["keyColor"], axis=2)
+        if e.get("bgIsKey"):
+            key |= np.all(src == bg, axis=2)
+        bad_t = int((key & ~np.all(P == 0, axis=2)).sum())
+        bad_o = int((~key & ((P[:, :, 3] != 255) | np.any(P[:, :, :3] != src, axis=2))).sum())
+        green = int(((P[:, :, 3] == 255) & np.all(P[:, :, :3] == bg, axis=2)).sum())
+        if bad_t or bad_o or green:
+            errs.append(f"{out}: lệch trong suốt {bad_t}, lệch màu đục {bad_o}, xanh nền đục {green}")
+    if "platform" in img:  # bệ di động = 4 khối brick_0 (CVGP 05 cắt từ obj_brick_set)
+        B, P = rgba(ART + "Object/brick_0.png"), img["platform"]
+        for i in range(4):
+            if not np.array_equal(P[:, 8 * i:8 * i + 8], B):
+                errs.append(f"platform khối {i} ≠ brick_0")
+    cr = [img[f"crusher_{k}"] for k in range(8) if f"crusher_{k}" in img]
+    for k in range(1, len(cr)):  # mỗi khung đục thêm đúng 30 px so với khung trước
+        grew = int((cr[k][:, :, 3] == 255).sum()) - int((cr[k - 1][:, :, 3] == 255).sum())
+        if grew != 30:
+            errs.append(f"crusher_{k}: đục tăng {grew} px so với khung trước (chờ 30)")
+    n_meta = 0
+    if "--meta" in sys.argv:
+        for e in doc["slices"]:
+            errs += meta_errs(e)
+            n_meta += 1
+    print(f"pixel: {len(doc['slices'])} PNG; platform = 4×brick_0; bẫy ép {len(cr)} khung" + (f"; meta: {n_meta}" if n_meta else ""))
+    if errs:
+        print("LỖI (" + str(len(errs)) + "):\n  " + "\n  ".join(errs[:60]))
+        sys.exit(1)
+    print("0 lỗi.")
+
+
 def main():
     sys.stdout.reconfigure(encoding="utf-8")
+    if "--manifest" in sys.argv:  # CVM2 01
+        return main_manifest(sys.argv[sys.argv.index("--manifest") + 1])
     doc = json.load(open(MAN, encoding="utf-8"))
     bg = tuple(doc["sheetBg"])
     sheets, errs = {}, []

@@ -22,7 +22,7 @@ Video kèm: `C:\Users\kvtuy\Videos\Screen Recordings\Castlevania_Original\Map_2.
 | # | taskId | Trạng thái | Commit | Ngày | Ghi chú |
 |---|---|---|---|---|---|
 | 00 | cvm2-00-ha-tang-so-ghi-nho-bo-chay-hoi-quy | **XONG** | (commit "CVM2 00") | 16/10/2026 | sổ này + commit đồ planner (48 file) + `RegressionRunner` (bộ chạy hồi quy, gộp `cvgp-fix-05`) + **Bảng hash chuẩn** (17 dòng, mọi hash = CVGP 21, H8 khớp) |
-| 01 | cvm2-01-nhap-sheet-level2-va-sprite-moi | chưa chạy | | | |
+| 01 | cvm2-01-nhap-sheet-level2-va-sprite-moi | **XONG** | (commit "CVM2 01") | 16/10/2026 | 2 sheet sha256 khớp + SOURCES; kiểm kê chạy lại y hệt planner; đối chiếu Tilesets (§3b); 9 sprite mới (crusher_0..7 + platform) md5 lặp y hệt, verify 0 lỗi; importer đọc pivot manifest Map 2 |
 | 02 | cvm2-02-hieu-chuan-video-timeline-va-su-kien | chưa chạy | | | |
 | 03 | cvm2-03-nhac-16-bai-va-moc-nhac-map1-map2 | chưa chạy | | | |
 | 04 | cvm2-04-lo-nuoc-thanh-xuyen-dich | chưa chạy | | | |
@@ -72,6 +72,50 @@ Video boss (23 s): tượng Medusa giữa phòng → ~2.5 s đầu Medusa bay ra
 | Harness sửa ở routine 00 (không đổi hash) | `RulesProbe.cs` (trả StageRules/AutoRespawn/sự kiện cuối bộ; bia `touchDamage = true`), `BossB24Probe.cs` (`DestroyImmediate`), `Map1AcceptProbe.cs` (`StartSpam` thêm tham số warp/mạng/máu) | `§7 Routine 00` |
 | Kết quả baseline routine 00 | `ClaudeNotes/cvm2/_cache/00/{arena,arena60,core,main,order,alias}/suites/*.txt` + `SUMMARY.txt`, ảnh `_cache/shots/00/` | không commit |
 | Công cụ video Map_2 | `ClaudeNotes/cvm2/_cache/tools/` (chạy từ `ClaudeNotes/cvm2/_cache/`; bản lưu `ref/tools/`), `nes2.py` (hệ số Map_2) | python `-P -E`; ffmpeg `C:\ffmpeg\bin\ffmpeg.exe` |
+
+### 3b. Routine 01 (16/10/2026) — nhập sheet + sprite mới
+| Thứ | Đường dẫn | Ghi chú |
+|---|---|---|
+| Sheet Level 2 | `Art_Source/spriters-resource/level2_main_hall.png` | nguyên byte, sha256 `6d09c60e…9313fd`, 95 606 B (khớp lúc chép) |
+| Sheet Tilesets | `Art_Source/spriters-resource/tilesets.png` | nguyên byte, sha256 `dd679ecd…378491`, 180 462 B; `SOURCES.md` +2 dòng |
+| Công cụ | `Tools/cvm2/{nes2,inv_level2_tiles,inv_level2,calib_map2,locate_map2}.py`, `cmp_tilesets.py` (mới), `slices_map2.json` | `nes2.SHEET`/`inv_level2_tiles` trỏ sheet trong repo (theo `__file__`), video giữ đường dẫn tuyệt đối; chạy từ gốc repo, `python -P -E` |
+| Sprite mới | `Assets/Data/Art/Object/crusher_0..7.png` (32×64), `platform.png` (32×16) + `.meta` | cắt bằng `slice_sprites.py --manifest Tools/cvm2/slices_map2.json`; kiểm `verify_sprites.py --manifest Tools/cvm2/slices_map2.json [--meta]` (tham số mới, lệnh cũ không đổi) |
+| Importer | `CvgpSpriteManifest.FindSlice` đọc thêm `Tools/cvm2/slices_map2.json` | để pivot Custom từ manifest Map 2 (hàm mới `FindMap2Slice`, không đổi hành vi với PNG CVGP) |
+| Ảnh đã xem | `ClaudeNotes/cvm2/_cache/shots/01/{new_sprites_2x,crusher_sheet4x,vid_156.3,vid_159.0,tiles_diff}.png` | không commit |
+
+**Kiểm kê chạy lại**: `inv_level2_tiles.py` ⇒ JSON và ảnh chú thích **trùng byte** bản planner (6 vùng, 82 tile 8×8 / 69 metatile 16×16, 6144 px teal ở TowerHallC = 3 ô 32×64 tại cột 352/416/480, hàng 80–143 của vùng ⇒ NES y 112–175).
+
+**Sprite mới — quyết định**
+- Bẫy ép: 8 khung, mỗi khung đục thêm đúng 30 px (xích + khối dài ra, khối hạ 8 px/khung). **Đen quanh = vòm hành lang** (video Map_2 154.0–159.0: bẫy treo trong vòm đen; 3 ô teal có viền trái toàn đen) ⇒ key đen trong suốt (nhìn y hệt trên nền đen). Xám (116,116,116) 20 px = đầu gai thật ⇒ GIỮ đục (khác bệ). pivot **[16,0]** (giữa-trên = điểm treo). Nguồn `đo:cvm2-01`.
+- Bệ di động `platform` 32×16 = 4 × `brick_0` (kiểm 0 lệch trong `verify_sprites`); xám = khoá trong suốt chỉ trong ô sprite; pivot [16,0] (giữa mép trên = mặt đứng). **`brick_0` = 1 khối bệ di động** (CVGP 05 ghi "chưa rõ công dụng" — đã rõ).
+- Chu kỳ/độ hạ từng bẫy, tốc độ bệ: để routine 02/06 đo video.
+
+**Đối chiếu sheet Tilesets** (cột "LEVEL2: MAIN HALL": lưới ô **32×32** bước 33, gốc (408,92), 5 cột × 8 hàng; ô cuối trống; so theo HÌNH — nhãn màu theo thứ tự xuất hiện, bỏ qua màu tuyệt đối; mỗi ô cắt thành 4 phần 16×16 / 16 phần 8×8):
+
+| So | Bản đồ (duy nhất theo hình) | Tilesets | Chung | Chỉ bản đồ | Chỉ Tilesets |
+|---|---|---|---|---|---|
+| 16×16 | 68 (69 theo màu: 1 cặp chỉ khác màu) | 71 | **64** | 4: TEA(10,1), TEA(1,10), TEB(16,11), HallB(7,11) | 7: ô 1 q(1,0), ô 11 q(0,0)/(1,0), ô 25 q(0,0), ô 27 q(1,1), ô 29 q(0,1)/(1,1) |
+| 8×8 | 78 (82 theo màu) | 80 | 75 | 3: TEA(21,3), TEB(32,22), HallB(15,23) | 5 |
+
+Đọc: 64/68 metatile bản đồ có trong Tilesets ⇒ đủ để routine 05 kiểm dựng Tilemap. 4 metatile chỉ-bản-đồ (xem `shots/01/tiles_diff.png`) là biến thể có chi tiết vẽ đè (khối cam lớn viền xanh ở TEB(16,11); mảng đỏ-xám ở TEA/HallB) — **chưa rõ nguồn** (có thể vật thể ghép sẵn trên sheet bản đồ) ⇒ routine 05 kiểm trên ảnh. 7 metatile chỉ-Tilesets (viền/đất, mảng đỏ đậm, phần tượng) có thể là khối chưa xuất hiện trên bản đồ. Script `Tools/cvm2/cmp_tilesets.py` (ghi `_cache/01/cmp_tilesets.json`).
+
+**Kiểm kê sprite Block 2 đã có** (`Assets/Data/Art/…`; AnimSet ở `Assets/Data/Config/Anim/`)
+
+| Nhân vật | Thư mục / file | AnimSet |
+|---|---|---|
+| Spear Knight (BlackKnight) | `Enemy/BlackKnight/blackknight_0..2` | `BlackKnightAnimSet` |
+| Medusa Head | `Enemy/MedusaHead/medusahead_0,1` | `MedusaHeadAnimSet` |
+| Bone Tower (DragonSkullCannon) | `Enemy/DragonSkullCannon/dragonskull_{purple,red}_{top,bottom}`, `dragonskull_fireball` | `DragonSkullCannonAnimSet` |
+| Ghost | `Enemy/Ghost/ghost_0,1` | `GhostAnimSet` |
+| Bat | `Enemy/VampireBat/bat_purple_0..3`, `bat_red_0..2` | `VampireBatAnimSet` |
+| Queen Medusa | `Boss/Medusa/medusa_bust_0,1`, `medusa_head`, `medusa_stone`, `snake_0,1` | `MedusaAnimSet` |
+| Item | `Item/{cross,cross_spin_0,1,crown_0..3,chest_0..3,roast,double,triple,stopwatch,…}` | `ItemAnimSet` |
+| Object | `Object/{door_0,1,brick_0,candle_*,torch_*}` + **mới** `crusher_0..7`, `platform` | `ObjectAnimSet` (chưa có anim crusher/platform — routine 06 thêm) |
+| Bản đồ lâu đài | `CastleMap/castlemap_{bg,marker,bat_0..3}` | `CastleMapAnimSet` |
+
+Không thấy thiếu sprite thật ⇒ không có câu hỏi §5 mới.
+
+**Tượng Medusa (cho routine 09)**: `medusa_bust_0` (32×48) **khớp 0 px** tại (96,96) của vùng Medusa (rect [1,11,768,192]) ⇒ tượng vẽ sẵn trên nền ở x 96–127, NES y 128–175, cùng pixel với sprite CVGP. `medusa_bust_1`, `medusa_head`, `medusa_stone` KHÔNG có trên nền (lệch tốt nhất 232/302/332 px) ⇒ là khung sprite riêng. Routine 09: xoá ô tượng trên nền khi thức + vẽ sprite theo video.
 
 ## §4 Quyết định kỹ thuật đã chốt
 
@@ -150,3 +194,11 @@ Quy ước: **3 lệnh / 3 phiên Play** cho đủ bộ (Arena-Simon · Arena-Du
 - **Lệch / xấp xỉ**: không có hash lệch. `base_L930` không so được (đã ghi). Số `all` 17.5 phút + core 1.5 + main 7.5 ≈ 27 phút (≤ 30). gallery 8 phút (routine 21 đo 3.5 phút — máy bận hơn).
 - **Câu hỏi §5 mới**: không.
 - **Nghiệm thu routine 00**: [x] đồ planner commit đủ (48 file; `_cache/` không vào git; kiểm mẫu planner ghi §2a/§7) · [x] `CVM2_MEMORY.md` đủ §1–§7, Bảng hash chuẩn 17 dòng · [x] bộ chạy chạy hết không thao tác giữa chừng trong từng phiên (3 phiên Play: Arena-Simon / Arena-Dummy / Main — ghi rõ), SUMMARY đã đọc · [x] mọi hash = CVGP 21, H8 khớp, console sạch (chỉ lỗi nền).
+
+### Routine 01 — 16/10/2026 — Nhập sheet Level 2 + Tilesets, kiểm kê, sprite bẫy ép + bệ
+- **Bước 0**: cổng 00 = XONG; `main`, nhiễu nền giữ nguyên. MCP `Castlevania_Original-main@5669a9bbfcade130` (set bằng Name@hash — chỉ truyền tên thì lỗi), dataPath đúng. Không vào Play (không đụng gameplay ⇒ không chạy bộ hồi quy; hash không đổi).
+- Sheet: sha256 trong Downloads khớp planner; chép nguyên byte, đọc lại sha khớp; `SOURCES.md` +2 dòng.
+- Kiểm kê: JSON + ảnh chú thích trùng byte planner. Tilesets: bảng ở §3b.
+- Sprite: cắt 2 lần ⇒ md5 y hệt từng file (crusher_0 `b192b0d3…`, platform `5a35e692…`); `verify_sprites.py` CVGP vẫn 0 lỗi (246 PNG, 371/371 ô); chế độ `--manifest` mới 0 lỗi + `--meta` 0 lỗi sau nhập lại (lần nhập đầu dùng importer chưa biên dịch ⇒ pivot sai; đã xoá 9 `.meta` mới và nhập lại). Console chỉ lỗi nền (Odin path1, Unity.Mathematics, GUIClips). Ảnh `new_sprites_2x.png` đã xem.
+- Sửa ngoài sprite (H9, nhỏ): `CvgpSpriteManifest.FindSlice` (+~25 dòng) để importer dùng pivot manifest Map 2; `verify_sprites.py` thêm `--manifest` (lệnh CVGP không đổi). Không đổi file Block 1/gameplay.
+- **Nghiệm thu routine 01**: [x] 2 sheet sha256 khớp + SOURCES · [x] kiểm kê khớp, bảng Tilesets §3b · [x] 9 sprite md5 lặp y hệt, verify 0 lỗi, ảnh đã xem, quyết định đen/pivot có bằng chứng video (frame 156.3/159.0) · [x] git diff chỉ thêm (trừ 2 sửa công cụ/importer nêu trên).
