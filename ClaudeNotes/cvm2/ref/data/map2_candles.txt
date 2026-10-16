@@ -1,0 +1,17 @@
+#1 TowerEntranceA candle wx 144 wy 58 seen 0:06.23-0:23.60 BROKEN-ON-SCREEN
+#4 TowerEntranceA candle wx 80 wy 154 seen 0:06.23-0:07.70 BROKEN-ON-SCREEN -> drop #11 f249-250 ?  w15h13 (69,133)->(74,124) col or0 cr0 red0 pur38 blu0 wht11
+#59 TowerEntranceB candle wx 144 wy 56 seen 0:41.43-0:45.73 BROKEN-ON-SCREEN
+#86 TowerHallA candle wx 656 wy 58 seen 0:58.73-1:00.60 BROKEN-ON-SCREEN -> drop #93 f1829-1885 SubWeapon/cross_spin_1 0.66 w15h14 (664,80)->(666,88) col or0 cr34 red1 pur0 blu27 wht32
+#107 TowerHallA candle wx 528 wy 59 seen 1:07.70-1:08.20 BROKEN-ON-SCREEN
+#128 TowerHallA candle wx 272 wy 88 seen 1:13.67-1:21.47 left-view -> drop #147 f2453-2507 Object/candle_1 0.36 w8h13 (272,87)->(272,87) col or0 cr0 red13 pur0 blu0 wht0
+#136 TowerHallA candle wx 208 wy 55 seen 1:16.37-1:20.40 left-view
+#147 TowerHallA candle wx 272 wy 87 seen 1:21.77-1:23.57 BROKEN-ON-SCREEN -> drop #154 f2520-2559 Item/heart_large 0.41 w8h11 (272,88)->(273,107) col or0 cr0 red22 pur1 blu0 wht0
+#152 TowerHallA candle wx 144 wy 88 seen 1:23.90-1:29.00 BROKEN-ON-SCREEN
+#161 TowerHallB candle wx 144 wy 58 seen 1:33.37-1:42.57 left-view
+#175 TowerHallB candle wx 272 wy 58 seen 1:38.67-1:46.70 left-view
+#183 TowerHallB candle wx 334 wy 144 seen 1:41.03-1:43.47 BROKEN-ON-SCREEN -> drop #193 f3123-3169 Object/candle_0 0.40 w8h11 (334,144)->(340,144) col or0 cr0 red17 pur1 blu0 wht1
+#188 TowerHallB candle wx 398 wy 58 seen 1:42.80-1:51.13 left-view
+#192 TowerHallB candle wx 462 wy 145 seen 1:44.03-1:47.00 BROKEN-ON-SCREEN
+#204 TowerHallB candle wx 590 wy 58 seen 1:50.37-2:01.73 BROKEN-ON-SCREEN -> drop #241 f3664-3827 Object/candle_0 0.49 w8h14 (590,58)->(591,136) col or0 cr1 red25 pur1 blu1 wht1
+#210 TowerHallB candle wx 718 wy 56 seen 1:52.60-1:59.07 left-view
+#360 TowerHallC candle wx 272 wy 154 seen 2:42.93-2:45.33 BROKEN-ON-SCREEN

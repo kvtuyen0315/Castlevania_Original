@@ -1,0 +1,111 @@
+# map2_events — mỗi lần HUD đổi (trừ TIME) + nghĩa. f = frame video (30 fps), tick ≈ f × 2.0033 (sai số mốc đơn ±2–3 tick: nhịp capture)
+# cột: frame | m:ss.ss | tick | TIME | thay đổi | vị trí Simon lúc đó | nghĩa
+f0     0:00.00 tick 0      TIME 0000 | start | Simon - | 
+f187   0:06.23 tick 375    TIME 0400 | ebar:0->16 eempty:16->0 | Simon TowerEntranceA wx 64 Y 208 | bắt đầu Stage 04 (sau màn đen): ENEMY 16 vạch; TIME 0400
+f207   0:06.90 tick 415    TIME 0400 | hearts:05->04 | Simon TowerEntranceA wx 64 Y 172 | dùng vũ khí phụ -1 tim
+f239   0:07.97 tick 479    TIME 0399 | hearts:04->03 | Simon TowerEntranceA wx 64 Y 176 | dùng vũ khí phụ -1 tim
+f251   0:08.37 tick 503    TIME 0398 | score:023370->023770 | Simon TowerEntranceA wx 64 Y 193 | Spear Knight (TEA, tầng trên) chết vì RÌU ném (hearts 05->04 f207, 04->03 f239 = 2 rìu)
+f274   0:09.13 tick 549    TIME 0398 | sub:axe->cross mult:II-> | Simon TowerEntranceA wx 75 Y 208 | nhặt THẬP TỰ (boomerang), mất II (nhân đôi); thập tự rơi từ nến trong TEA
+f341   0:11.37 tick 683    TIME 0396 | hearts:03->08 | Simon TowerEntranceA wx 199 Y 208 | nhặt tim LỚN +5
+f593   0:19.77 tick 1188   TIME 0388 | score:023770->025770 | Simon TowerEntranceA wx 124 Y 196 | nhặt VƯƠNG MIỆN (crown) dưới chân thang TEA (mọc từ sàn từ 0:17.0 sau khi phá tường phải TEA)
+f734   0:24.47 tick 1470   TIME 0383 | score:025770->025870 | Simon TowerEntranceA wx 149 Y 112 | túi tiền ĐỎ (rơi từ nến trên cao) +100
+f748   0:24.93 tick 1498   TIME 0383 | hearts:08->07 | Simon TowerEntranceA wx 149 Y 87 | dùng vũ khí phụ -1 tim
+f778   0:25.93 tick 1559   TIME 0382 | score:025870->026070 | Simon TowerEntranceA wx 141 Y 112 | THẬP TỰ (boomerang) ném trúng DƠI TREO (oval hồng, TEA/TEB tường trái) +200
+f1002  0:33.40 tick 2007   TIME 0376 | hearts:07->06 | Simon TowerEntranceB wx 437 Y 90 | dùng vũ khí phụ -1 tim
+f1040  0:34.67 tick 2083   TIME 0375 | score:026070->026270 | Simon TowerEntranceB wx 445 Y 105 | THẬP TỰ trúng DƠI TREO #2 (TEB) +200
+f1082  0:36.07 tick 2168   TIME 0374 | score:026270->026370 | Simon TowerEntranceB wx 458 Y 144 | túi tiền ĐỎ +100
+f1125  0:37.50 tick 2254   TIME 0372 | hearts:06->07 | Simon TowerEntranceB wx 404 Y 112 | nhặt tim NHỎ +1
+f1236  0:41.20 tick 2476   TIME 0369 | hearts:07->08 | Simon TowerEntranceB wx 277 Y 112 | nhặt tim NHỎ +1
+f1311  0:43.70 tick 2626   TIME 0366 | hearts:08->09 | Simon TowerEntranceB wx 204 Y 112 | nhặt tim NHỎ +1
+f1331  0:44.37 tick 2666   TIME 0366 | score:026370->026770 | Simon TowerEntranceB wx 204 Y 112 | Spear Knight (TEB) chết vì ROI +400
+f1375  0:45.83 tick 2755   TIME 0364 | score:026770->027470 | Simon TowerEntranceB wx 153 Y 112 | túi tiền TRẮNG +700 (rơi từ nến trên cao)
+f1506  0:50.20 tick 3017   TIME 0360 | score:027470->027570 | Simon TowerEntranceB wx 86 Y 144 | túi tiền ĐỎ +100 (cạnh bệ di động TEB)
+f1762  0:58.73 tick 3530   TIME 0359 | stage:04->05 | Simon TowerHallA wx 720 Y 112 | HUD đổi STAGE (cuối đoạn cuộn thứ 2 của cửa trái, ~1.5 frame sau khi camera dừng)
+f1816  1:00.53 tick 3638   TIME 0358 | hearts:09->08 | Simon TowerHallA wx 739 Y 78 | dùng vũ khí phụ -1 tim
+f1845  1:01.50 tick 3696   TIME 0357 | hearts:08->09 | Simon TowerHallA wx 729 Y 107 | nhặt tim NHỎ +1
+f1872  1:02.40 tick 3750   TIME 0356 | score:027570->027870 | Simon TowerHallA wx 691 Y 112 | Medusa Head (Hall A) chết vì thập tự +300
+f1930  1:04.33 tick 3866   TIME 0354 | hearts:09->10 | Simon TowerHallA wx 647 Y 112 | nhặt tim NHỎ +1
+f1944  1:04.80 tick 3894   TIME 0354 | sub:cross->occ | Simon TowerHallA wx 634 Y 112 | (nhiễu) sprite thập tự đang bay đè lên ô vũ khí phụ — KHÔNG đổi vũ khí
+f1951  1:05.03 tick 3908   TIME 0353 | sub:occ->cross | Simon TowerHallA wx 620 Y 112 | (nhiễu) sprite thập tự đang bay đè lên ô vũ khí phụ — KHÔNG đổi vũ khí
+f2005  1:06.83 tick 4017   TIME 0352 | sub:cross->occ | Simon TowerHallA wx 601 Y 112 | (nhiễu) sprite thập tự đang bay đè lên ô vũ khí phụ — KHÔNG đổi vũ khí
+f2012  1:07.07 tick 4031   TIME 03?2 | hearts:10->11 sub:occ->cross | Simon TowerHallA wx 588 Y 112 | nhặt tim NHỎ +1
+f2056  1:08.53 tick 4119   TIME 0350 | score:027870->028170 | Simon TowerHallA wx 580 Y 112 | Medusa Head chết vì ROI +300
+f2073  1:09.10 tick 4153   TIME 0350 | hearts:11->12 | Simon TowerHallA wx 553 Y 112 | nhặt tim NHỎ +1
+f2082  1:09.40 tick 4171   TIME 0349 | score:028170->028270 | Simon TowerHallA wx 535 Y 112 | túi tiền ĐỎ +100
+f2237  1:14.57 tick 4481   TIME 0344 | hearts:12->13 | Simon TowerHallA wx 386 Y 112 | nhặt tim NHỎ +1
+f2283  1:16.10 tick 4574   TIME 0343 | score:028270->028370 | Simon TowerHallA wx 345 Y 112 | túi tiền ĐỎ +100
+f2441  1:21.37 tick 4890   TIME 0338 | score:028370->030370 p:03->04 | Simon TowerHallA wx 388 Y 112 | RƯƠNG BÁU (treasure chest) +2000, đồng thời P 03->04 (qua 30000 điểm = +1 mạng)
+f2564  1:25.47 tick 5136   TIME 0334 | hearts:13->18 | Simon TowerHallA wx 264 Y 112 | nhặt tim LỚN +5
+f2629  1:27.63 tick 5267   TIME 0332 | hearts:18->19 | Simon TowerHallA wx 208 Y 112 | nhặt tim NHỎ +1
+f2673  1:29.10 tick 5355   TIME 0331 | hearts:19->24 | Simon TowerHallA wx 155 Y 112 | nhặt tim LỚN +5
+f2741  1:31.37 tick 5491   TIME 0329 | hearts:24->25 | Simon TowerHallA wx 79 Y 112 | nhặt tim NHỎ +1
+f2892  1:36.40 tick 5794   TIME 0325 | hearts:25->24 | Simon TowerHallB wx 121 Y 192 | dùng vũ khí phụ -1 tim
+f2934  1:37.80 tick 5878   TIME 0323 | score:030370->030670 | Simon TowerHallB wx 121 Y 192 | Medusa Head (Hall B) chết vì roi +300
+f2983  1:39.43 tick 5976   TIME 0322 | score:030670->030970 | Simon TowerHallB wx 175 Y 192 | Medusa Head chết vì thập tự +300
+f3171  1:45.70 tick 6352   TIME 0316 | hearts:24->25 | Simon TowerHallB wx 352 Y 176 | nhặt tim NHỎ +1
+f3235  1:47.83 tick 6481   TIME 0314 | score:030970->031370 | Simon TowerHallB wx 420 Y 176 | Spear Knight (Hall B) chết vì roi +400
+f3303  1:50.10 tick 6617   TIME 0312 | score:031370->031470 | Simon TowerHallB wx 456 Y 176 | túi tiền ĐỎ +100
+f3420  1:54.00 tick 6851   TIME 0308 | score:031470->032170 | Simon TowerHallB wx 649 Y 176 | túi tiền TRẮNG +700
+f3507  1:56.90 tick 7026   TIME 0305 | score:032170->032570 | Simon TowerHallB wx 610 Y 108 | Spear Knight chết vì roi +400
+f3615  2:00.50 tick 7242   TIME 0302 | score:032570->032970 | Simon TowerHallB wx 591 Y 109 | Spear Knight chết vì roi +400
+f3673  2:02.43 tick 7358   TIME 0300 | sub:cross->occ | Simon TowerHallB wx 624 Y 65 | (nhiễu) sprite thập tự đang bay đè lên ô vũ khí phụ — KHÔNG đổi vũ khí
+f3688  2:02.93 tick 7388   TIME 0300 | sub:occ->cross | Simon TowerHallB wx 655 Y 73 | (nhiễu) sprite thập tự đang bay đè lên ô vũ khí phụ — KHÔNG đổi vũ khí
+f3728  2:04.27 tick 7468   TIME 0298 | score:032970->033070 | Simon TowerHallB wx 714 Y 112 | túi tiền ĐỎ +100
+f3777  2:05.90 tick 7566   TIME 0297 | hearts:25->24 | Simon TowerHallB wx 638 Y 77 | dùng vũ khí phụ -1 tim
+f3830  2:07.67 tick 7673   TIME 0295 | score:033070->033170 | Simon TowerHallB wx 595 Y 152 | túi tiền ĐỎ +100
+f3877  2:09.23 tick 7767   TIME 0294 | sub:cross->watch | Simon TowerHallB wx 535 Y 112 | nhặt ĐỒNG HỒ (stopwatch) — KHÔNG phải nước thánh (planner ghi nhầm)
+f3972  2:12.40 tick 7957   TIME 0291 | hearts:24->25 | Simon TowerHallB wx 396 Y 102 | nhặt tim NHỎ +1
+f4095  2:16.50 tick 8203   TIME 0287 | hearts:25->26 | Simon TowerHallB wx 277 Y 112 | nhặt tim NHỎ +1
+f4188  2:19.60 tick 8390   TIME 0284 | score:033170->033470 | Simon TowerHallB wx 176 Y 112 | Medusa Head (Hall B) chết vì roi +300
+f4208  2:20.27 tick 8430   TIME 0283 | hearts:26->27 | Simon TowerHallB wx 144 Y 112 | nhặt tim NHỎ +1
+f4480  2:29.33 tick 8975   TIME 0281 | stage:05->06 | Simon TowerHallC wx 720 Y 144 | HUD đổi STAGE (cuối đoạn cuộn thứ 2 của cửa trái, ~1.5 frame sau khi camera dừng)
+f4590  2:33.00 tick 9195   TIME 0278 | hearts:27->28 | Simon TowerHallC wx 678 Y 160 | nhặt tim NHỎ +1
+f4652  2:35.07 tick 9319   TIME 0276 | hearts:28->29 | Simon TowerHallC wx 597 Y 203 | nhặt tim NHỎ +1
+f4723  2:37.43 tick 9462   TIME 0274 | hearts:29->30 | Simon TowerHallC wx 532 Y 208 | nhặt tim NHỎ +1
+f4829  2:40.97 tick 9674   TIME 0270 | hearts:30->25 | Simon TowerHallC wx 438 Y 176 | dùng ĐỒNG HỒ (stopwatch) -5 tim
+f4853  2:41.77 tick 9722   TIME 0270 | score:033470->033870 | Simon TowerHallC wx 410 Y 176 | túi tiền TÍM +400 (nến Hall C)
+f4922  2:44.07 tick 9860   TIME 0270 | score:033870->033970 | Simon TowerHallC wx 345 Y 176 | túi tiền ĐỎ +100
+f4965  2:45.50 tick 9946   TIME 0268 | score:033970->034070 | Simon TowerHallC wx 281 Y 176 | túi tiền ĐỎ +100
+f5022  2:47.40 tick 10061  TIME 0266 | score:034070->034370 | Simon TowerHallC wx 262 Y 176 | Ghost (Hall C) chết vì roi +300
+f5083  2:49.43 tick 10183  TIME 0265 | hearts:25->26 | Simon TowerHallC wx 233 Y 176 | nhặt tim NHỎ +1
+f5148  2:51.60 tick 10313  TIME 0262 | score:034370->035070 | Simon TowerHallC wx 132 Y 171 | túi tiền TRẮNG +700
+f5269  2:55.63 tick 10555  TIME 0259 | hearts:26->27 | Simon TowerHallC wx 166 Y 151 | nhặt tim NHỎ +1
+f5349  2:58.30 tick 10716  TIME 0256 | hearts:27->32 | Simon TowerHallC wx 91 Y 176 | nhặt tim LỚN +5
+f5501  3:03.37 tick 11020  TIME 0251 | score:035070->035470 | Simon TowerHallC wx 207 Y 128 | Bone Tower chết vì roi +400
+f5653  3:08.43 tick 11325  TIME 0247 | score:035470->035870 | Simon TowerHallC wx 267 Y 80 | Bone Tower #2 chết vì roi +400
+f5865  3:15.50 tick 11749  TIME 0240 | score:035870->036170 | Simon TowerHallC wx 596 Y 80 | Ghost (Hall C tầng trên) chết vì roi +300
+f6062  3:22.07 tick 12144  TIME 0235 | hearts:32->33 | Simon Medusa wx 715 Y 176 | nhặt tim NHỎ +1
+f6134  3:24.47 tick 12288  TIME 0233 | hearts:33->34 | Simon Medusa wx 678 Y 160 | nhặt tim NHỎ +1
+f6194  3:26.47 tick 12408  TIME 0231 | hearts:34->35 | Simon Medusa wx 586 Y 160 | nhặt tim NHỎ +1
+f6227  3:27.57 tick 12475  TIME 0230 | score:036170->036470 | Simon Medusa wx 586 Y 160 | Medusa Head (sảnh Medusa) chết vì roi +300
+f6242  3:28.07 tick 12505  TIME 0229 | hearts:35->36 | Simon Medusa wx 563 Y 160 | nhặt tim NHỎ +1
+f6389  3:32.97 tick 12799  TIME 0225 | hearts:36->37 | Simon Medusa wx 461 Y 160 | nhặt tim NHỎ +1
+f6526  3:37.53 tick 13073  TIME 0221 | hearts:37->38 | Simon Medusa wx 400 Y 160 | nhặt tim NHỎ +1
+f6565  3:38.83 tick 13152  TIME 0219 | hearts:38->39 | Simon Medusa wx 349 Y 160 | nhặt tim NHỎ +1
+f6629  3:40.97 tick 13280  TIME 0217 | hearts:39->40 | Simon Medusa wx 288 Y 160 | nhặt tim NHỎ +1
+f6690  3:43.00 tick 13402  TIME 0215 | hearts:40->45 | Simon Medusa wx 217 Y 168 | nhặt tim LỚN +5
+f6837  3:47.90 tick 13697  TIME 0211 | hearts:45->40 | Simon Medusa wx 61 Y 176 | dùng ĐỒNG HỒ (stopwatch) -5 tim
+f6846  3:48.20 tick 13715  TIME 0211 | score:036470->036570 | Simon Medusa wx 59 Y 174 | rắn của Medusa (xanh) chết vì roi +100 (trong lúc đồng hồ đang dừng)
+f6849  3:48.30 tick 13721  TIME 0211 | ebar:16->15 eempty:0->1 | Simon Medusa wx 56 Y 177 | thanh ENEMY (Medusa) -1 vạch
+f6861  3:48.70 tick 13745  TIME 0211 | ebar:15->14 eempty:1->2 | Simon Medusa wx 58 Y 171 | thanh ENEMY (Medusa) -1 vạch
+f6876  3:49.20 tick 13775  TIME 0211 | ebar:14->13 eempty:2->3 | Simon Medusa wx 61 Y 176 | thanh ENEMY (Medusa) -1 vạch
+f6892  3:49.73 tick 13807  TIME 0211 | ebar:13->12 eempty:3->4 | Simon Medusa wx 58 Y 171 | thanh ENEMY (Medusa) -1 vạch
+f6907  3:50.23 tick 13837  TIME 0211 | ebar:12->11 eempty:4->5 | Simon Medusa wx 58 Y 171 | thanh ENEMY (Medusa) -1 vạch
+f6925  3:50.83 tick 13873  TIME 0211 | ebar:11->10 eempty:5->6 | Simon Medusa wx 61 Y 176 | thanh ENEMY (Medusa) -1 vạch
+f6928  3:50.93 tick 13879  TIME 0211 | hearts:40->35 | Simon Medusa wx 61 Y 176 | dùng ĐỒNG HỒ (stopwatch) -5 tim
+f6941  3:51.37 tick 13905  TIME 0211 | ebar:10->9 eempty:6->7 | Simon Medusa wx 61 Y 176 | thanh ENEMY (Medusa) -1 vạch
+f6956  3:51.87 tick 13935  TIME 0211 | ebar:9->8 eempty:7->8 | Simon Medusa wx 56 Y 176 | thanh ENEMY (Medusa) -1 vạch
+f6973  3:52.43 tick 13969  TIME 0211 | ebar:8->7 eempty:8->9 | Simon Medusa wx 61 Y 176 | thanh ENEMY (Medusa) -1 vạch
+f6990  3:53.00 tick 14003  TIME 0211 | ebar:7->6 eempty:9->10 | Simon Medusa wx 56 Y 176 | thanh ENEMY (Medusa) -1 vạch
+f7002  3:53.40 tick 14027  TIME 0211 | ebar:6->5 eempty:10->11 | Simon Medusa wx 56 Y 177 | thanh ENEMY (Medusa) -1 vạch
+f7014  3:53.80 tick 14051  TIME 0211 | ebar:5->4 eempty:11->12 | Simon Medusa wx 61 Y 176 | thanh ENEMY (Medusa) -1 vạch
+f7025  3:54.17 tick 14073  TIME 0211 | ebar:4->3 eempty:12->13 | Simon Medusa wx 61 Y 176 | thanh ENEMY (Medusa) -1 vạch
+f7031  3:54.37 tick 14085  TIME 0211 | hearts:35->30 | Simon Medusa wx 61 Y 176 | dùng ĐỒNG HỒ (stopwatch) -5 tim
+f7042  3:54.73 tick 14107  TIME 0211 | ebar:3->2 eempty:13->14 | Simon - | thanh ENEMY (Medusa) -1 vạch
+f7061  3:55.37 tick 14145  TIME 0211 | ebar:2->1 eempty:14->15 | Simon - | thanh ENEMY (Medusa) -1 vạch
+f7069  3:55.63 tick 14161  TIME 0211 | score:036570->039570 | Simon Medusa wx 61 Y 176 | Queen Medusa chết +3000 (thanh E về 0 ở f7073)
+f7073  3:55.77 tick 14169  TIME 0211 | ebar:1->0 eempty:15->16 | Simon Medusa wx 61 Y 176 | thanh ENEMY (Medusa) -1 vạch
+f7380  4:06.00 tick 14784  TIME 0000 | score:039570->041670 | Simon - | 
+f7596  4:13.20 tick 15217  TIME 0000 | stage:06->07 hearts:00->05 | Simon - | HUD STAGE 07 + tim 00→05 (bản đồ lâu đài Block 2 hiện; tim đặt lại 5)
+f7806  4:20.20 tick 15638  TIME 0500 | ebar:0->16 eempty:16->0 | Simon - | bắt đầu Stage 04 (sau màn đen): ENEMY 16 vạch; TIME 0400
+# tally (f7380–7526): mỗi 4 frame video ≈ 8 tick: tim -1, SCORE +100 (30 tim → +3000); xem map2_events_raw.txt

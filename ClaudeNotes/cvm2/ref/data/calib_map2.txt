@@ -1,0 +1,20 @@
+iter 0 ZNCC TB 0.9453 {'sx': np.float64(3.627), 'sy': np.float64(3.1), 'ox': np.float64(267.72), 'oy': np.float64(-19.6)} sx/sy 1.1700
+iter 1 ZNCC TB 0.9466 {'sx': np.float64(3.621), 'sy': np.float64(3.1), 'ox': np.float64(268.788), 'oy': np.float64(-19.6)} sx/sy 1.1681
+iter 2 ZNCC TB 0.9468 {'sx': np.float64(3.621), 'sy': np.float64(3.101), 'ox': np.float64(268.888), 'oy': np.float64(-19.736)} sx/sy 1.1677
+--- per frame (cx tinh) ---
+t=  13.47 TowerEntranceA  cx    0 (guess    0) ZNCC 0.9326
+t=  44.40 TowerEntranceB  cx   76 (guess   76) ZNCC 0.9370
+t=  63.27 TowerHallA      cx  512 (guess  512) ZNCC 0.9442
+t=  91.73 TowerHallA      cx    0 (guess    0) ZNCC 0.9570
+t=  99.97 TowerHallB      cx   47 (guess   47) ZNCC 0.9179
+t= 122.87 TowerHallB      cx  512 (guess  512) ZNCC 0.9545
+t= 178.77 TowerHallC      cx    0 (guess    0) ZNCC 0.9540
+t= 196.90 TowerHallC      cx  512 (guess  512) ZNCC 0.9678
+t= 204.90 Medusa          cx  512 (guess  512) ZNCC 0.9425
+t= 225.33 Medusa          cx    0 (guess    0) ZNCC 0.9603
+--- sensitivity (delta ZNCC TB vs optimum) ---
+sx -0.006:-0.0018 -0.003:-0.0004 +0.003:-0.0003 +0.006:-0.0011
+sy -0.006:-0.0051 -0.003:-0.0019 +0.003:-0.0007 +0.006:-0.0012
+cxv -0.600:-0.0014 -0.300:-0.0002 +0.300:-0.0004 +0.600:-0.0022
+cyv -0.600:-0.0164 -0.300:-0.0036 +0.300:-0.0023 +0.600:-0.0075
+final {'sx': 3.621, 'sy': 3.101, 'ox': 268.888, 'oy': -19.736} ZNCC TB 0.9468

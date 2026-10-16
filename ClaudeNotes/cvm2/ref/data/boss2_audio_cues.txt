@@ -1,0 +1,22 @@
+# boss2_audio_cues — điểm nhạc của Boss_Map_2_Behaviour.mp4 (23.3 s; routine cvm2-02)
+# Video quay trình duyệt YouTube; nhạc + SFX trộn. RMS 0.009–0.028 (nhỏ hơn Map_2).
+ 0:00.00–0:01.10  im lặng/nhỏ (RMS 0–3; 0:00.35–0:01.10 < 0.004) — trước khi Medusa thức (2.27 s)
+ 0:01.10–           nhạc/SFX bắt đầu (RMS 8→19 tại 1.5–2.0 s)
+ Phần còn lại: RMS dao động 9–26, nhấp nhô theo nhịp ném nước thánh/SFX (2 chu kỳ lớn ≈ 5.0–6.5 s và 8.0–9.0, 13.0–14.5, 15.5–17.0); phổ đổi nhẹ tại 4.5, 10.0, 13.0, 17.5 s — không có khoảng lặng ≥ 0.25 s nào sau 1.1 s, KHÔNG thấy im lặng khi boss chết (16.37 s) hoặc quả cầu (18.87 s)
+ 20.5–23.3 s: RMS 10–11 phẳng (sau nhặt cầu + hồi máu): nhạc nền yếu, không có jingle Stage Clear trong 23.3 s video
+# ===== SỐ LIỆU THÔ =====
+duration 23.27 s, sr 16000, hop 0.05 s; rms median 0.0117 p10 0.0090 p90 0.0278 max 0.0305
+--- khoang lang (rms < 0.004) >= 0.25 s
+lang 0:00.35 - 0:01.10 (0.75 s)
+--- diem doi pho (khoang cach pho 1s truoc/sau), dinh cuc bo > p90 va > 1.2 ; thoi diem = giua 2 cua so
+doi 0:04.50  dist 1.52
+doi 0:10.00  dist 1.60
+doi 0:13.00  dist 1.37
+doi 0:17.50  dist 1.45
+--- rms moi 0.5 s (x1000)
+0:00.00:3  0:00.50:1  0:01.00:8  0:01.50:17  0:02.00:19  0:02.50:9  0:03.00:9  0:03.50:10
+0:04.00:10  0:04.50:13  0:05.00:24  0:05.50:25  0:06.00:24  0:06.50:14  0:07.00:11  0:07.50:11
+0:08.00:26  0:08.50:26  0:09.00:21  0:09.50:13  0:10.00:10  0:10.50:10  0:11.00:10  0:11.50:12
+0:12.00:10  0:12.50:10  0:13.00:20  0:13.50:24  0:14.00:25  0:14.50:17  0:15.00:12  0:15.50:20
+0:16.00:24  0:16.50:24  0:17.00:18  0:17.50:12  0:18.00:11  0:18.50:11  0:19.00:10  0:19.50:10
+0:20.00:11  0:20.50:11  0:21.00:11  0:21.50:10  0:22.00:9  0:22.50:10

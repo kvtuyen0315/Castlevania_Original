@@ -1,0 +1,105 @@
+f0 0:00.00 TIME 0000 | start | Simon -
+f187 0:06.23 TIME 0400 | ebar:0->16 eempty:16->0 | Simon TowerEntranceA wx 64 Y 208
+f207 0:06.90 TIME 0400 | hearts:05->04 | Simon TowerEntranceA wx 64 Y 172
+f239 0:07.97 TIME 0399 | hearts:04->03 | Simon TowerEntranceA wx 64 Y 176
+f251 0:08.37 TIME 0398 | score:023370->023770 | Simon TowerEntranceA wx 64 Y 193 || track #8 TowerE f235-251 (0:07.83-0:08.37) (79,200)->(79,200) 15x14 SubWeapon/cross_spin_1 0.80
+f274 0:09.13 TIME 0398 | sub:axe->cross mult:II-> | Simon TowerEntranceA wx 75 Y 208
+f341 0:11.37 TIME 0396 | hearts:03->08 | Simon TowerEntranceA wx 199 Y 208 || track #17 TowerE f333-337 (0:11.10-0:11.23) (208,197)->(208,202) 10x9 Item/heart_small 0.68
+f593 0:19.77 TIME 0388 | score:023770->025770 | Simon TowerEntranceA wx 124 Y 196
+f734 0:24.47 TIME 0383 | score:025770->025870 | Simon TowerEntranceA wx 149 Y 112 || track #33 TowerE f715-732 (0:23.83-0:24.40) (120,59)->(144,70) 13x13 Item/moneybag_white 0.42
+f748 0:24.93 TIME 0383 | hearts:08->07 | Simon TowerEntranceA wx 149 Y 87
+f778 0:25.93 TIME 0382 | score:025870->026070 | Simon TowerEntranceA wx 141 Y 112
+f1002 0:33.40 TIME 0376 | hearts:07->06 | Simon TowerEntranceB wx 437 Y 90
+f1040 0:34.67 TIME 0375 | score:026070->026270 | Simon TowerEntranceB wx 445 Y 105
+f1082 0:36.07 TIME 0374 | score:026270->026370 | Simon TowerEntranceB wx 458 Y 144 || track #54 TowerE f1070-1080 (0:35.67-0:36.00) (464,126)->(464,136) 14x14 Item/moneybag_white 0.68
+f1125 0:37.50 TIME 0372 | hearts:06->07 | Simon TowerEntranceB wx 404 Y 112 || track #42 TowerE f866-1121 (0:28.87-0:37.37) (400,59)->(394,100) 8x11 Item/heart_small 0.43
+f1236 0:41.20 TIME 0369 | hearts:07->08 | Simon TowerEntranceB wx 277 Y 112
+f1311 0:43.70 TIME 0366 | hearts:08->09 | Simon TowerEntranceB wx 204 Y 112 || track #56 TowerE f1163-1310 (0:38.77-0:43.67) (208,58)->(214,74) 8x14 Object/candle_0 0.73
+f1331 0:44.37 TIME 0366 | score:026370->026770 | Simon TowerEntranceB wx 204 Y 112
+f1375 0:45.83 TIME 0364 | score:026770->027470 | Simon TowerEntranceB wx 153 Y 112 || track #59 TowerE f1243-1372 (0:41.43-0:45.73) (144,56)->(145,67) 8x11 Object/candle_0 0.35
+f1506 0:50.20 TIME 0360 | score:027470->027570 | Simon TowerEntranceB wx 86 Y 144
+f1762 0:58.73 TIME 0359 | stage:04->05 | Simon TowerHallA wx 720 Y 112
+f1816 1:00.53 TIME 0358 | hearts:09->08 | Simon TowerHallA wx 739 Y 78
+f1845 1:01.50 TIME 0357 | hearts:08->09 | Simon TowerHallA wx 729 Y 107 || track #87 TowerH f1762-1844 (0:58.73-1:01.47) (720,58)->(726,74) 8x14 SubWeapon/holywater_fire_1 0.42
+f1872 1:02.40 TIME 0356 | score:027570->027870 | Simon TowerHallA wx 691 Y 112
+f1930 1:04.33 TIME 0354 | hearts:09->10 | Simon TowerHallA wx 647 Y 112 || track #98 TowerH f1903-1929 (1:03.43-1:04.30) (656,58)->(658,76) 7x6 Enemy/SkeleDragon/skeledragon_fireball 0.63
+f1944 1:04.80 TIME 0354 | sub:cross->occ | Simon TowerHallA wx 634 Y 112
+f1951 1:05.03 TIME 0353 | sub:occ->cross | Simon TowerHallA wx 620 Y 112
+f2005 1:06.83 TIME 0352 | sub:cross->occ | Simon TowerHallA wx 601 Y 112
+f2012 1:07.07 TIME 03?2 | hearts:10->11 sub:occ->cross | Simon TowerHallA wx 588 Y 112 || track #88 TowerH f1762-2009 (0:58.73-1:06.97) (592,59)->(578,88) 8x14 Object/candle_0 0.36
+f2056 1:08.53 TIME 0350 | score:027870->028170 | Simon TowerHallA wx 580 Y 112
+f2073 1:09.10 TIME 0350 | hearts:11->12 | Simon TowerHallA wx 553 Y 112 || track #112 TowerH f2066-2070 (1:08.87-1:09.00) (534,86)->(538,89) 7x7 Object/score_0 0.61
+f2082 1:09.40 TIME 0349 | score:028170->028270 | Simon TowerHallA wx 535 Y 112
+f2237 1:14.57 TIME 0344 | hearts:12->13 | Simon TowerHallA wx 386 Y 112
+f2283 1:16.10 TIME 0343 | score:028270->028370 | Simon TowerHallA wx 345 Y 112
+f2441 1:21.37 TIME 0338 | score:028370->030370 p:03->04 | Simon TowerHallA wx 388 Y 112
+f2564 1:25.47 TIME 0334 | hearts:13->18 | Simon TowerHallA wx 264 Y 112 || track #154 TowerH f2520-2559 (1:24.00-1:25.30) (272,88)->(273,107) 8x11 Item/heart_large 0.41
+f2629 1:27.63 TIME 0332 | hearts:18->19 | Simon TowerHallA wx 208 Y 112 || track #150 TowerH f2484-2627 (1:22.80-1:27.57) (208,56)->(217,74) 8x11 FX/brick_debris 0.44
+f2673 1:29.10 TIME 0331 | hearts:19->24 | Simon TowerHallA wx 155 Y 112 || track #152 TowerH f2517-2670 (1:23.90-1:29.00) (144,88)->(144,94) 8x11 FX/brick_debris 0.34
+f2741 1:31.37 TIME 0329 | hearts:24->25 | Simon TowerHallA wx 79 Y 112 || track #158 TowerH f2639-2740 (1:27.97-1:31.33) (80,58)->(86,75) 8x14 FX/hit_0 0.42
+f2892 1:36.40 TIME 0325 | hearts:25->24 | Simon TowerHallB wx 121 Y 192
+f2934 1:37.80 TIME 0323 | score:030370->030670 | Simon TowerHallB wx 121 Y 192
+f2983 1:39.43 TIME 0322 | score:030670->030970 | Simon TowerHallB wx 175 Y 192
+f3171 1:45.70 TIME 0316 | hearts:24->25 | Simon TowerHallB wx 352 Y 176 || track #193 TowerH f3123-3169 (1:44.10-1:45.63) (334,144)->(340,144) 8x11 Object/candle_0 0.40
+f3235 1:47.83 TIME 0314 | score:030970->031370 | Simon TowerHallB wx 420 Y 176
+f3303 1:50.10 TIME 0312 | score:031370->031470 | Simon TowerHallB wx 456 Y 176 || track #197 TowerH f3193-3297 (1:46.43-1:49.90) (494,161)->(462,147) 12x16 Object/candle_1 0.26
+f3420 1:54.00 TIME 0308 | score:031470->032170 | Simon TowerHallB wx 649 Y 176
+f3507 1:56.90 TIME 0305 | score:032170->032570 | Simon TowerHallB wx 610 Y 108
+f3615 2:00.50 TIME 0302 | score:032570->032970 | Simon TowerHallB wx 591 Y 109
+f3673 2:02.43 TIME 0300 | sub:cross->occ | Simon TowerHallB wx 624 Y 65
+f3688 2:02.93 TIME 0300 | sub:occ->cross | Simon TowerHallB wx 655 Y 73
+f3728 2:04.27 TIME 0298 | score:032970->033070 | Simon TowerHallB wx 714 Y 112 || track #240 TowerH f3661-3723 (2:02.03-2:04.10) (718,56)->(719,104) 8x14 Object/candle_1 0.66
+f3777 2:05.90 TIME 0297 | hearts:25->24 | Simon TowerHallB wx 638 Y 77
+f3830 2:07.67 TIME 0295 | score:033070->033170 | Simon TowerHallB wx 595 Y 152 || track #241 TowerH f3664-3827 (2:02.13-2:07.57) (590,58)->(591,136) 8x14 Object/candle_0 0.49
+f3877 2:09.23 TIME 0294 | sub:cross->watch | Simon TowerHallB wx 535 Y 112 || track #256 TowerH f3823-3874 (2:07.43-2:09.13) (527,82)->(526,104) 14x16 Item/stopwatch 0.62
+f3972 2:12.40 TIME 0291 | hearts:24->25 | Simon TowerHallB wx 396 Y 102 || track #278 TowerH f3949-3971 (2:11.63-2:12.37) (401,52)->(404,75) 7x6 Enemy/SkeleDragon/skeledragon_fireball 0.64
+f4095 2:16.50 TIME 0287 | hearts:25->26 | Simon TowerHallB wx 277 Y 112 || track #283 TowerH f3974-4094 (2:12.47-2:16.47) (272,58)->(280,74) 8x14 FX/brick_debris 0.39
+f4188 2:19.60 TIME 0284 | score:033170->033470 | Simon TowerHallB wx 176 Y 112
+f4208 2:20.27 TIME 0283 | hearts:26->27 | Simon TowerHallB wx 144 Y 112 || track #302 TowerH f4164-4206 (2:18.80-2:20.20) (86,52)->(132,92) 14x14 Item/heart_large 0.34
+f4480 2:29.33 TIME 0281 | stage:05->06 | Simon TowerHallC wx 720 Y 144
+f4590 2:33.00 TIME 0278 | hearts:27->28 | Simon TowerHallC wx 678 Y 160 || track #321 TowerH f4481-4589 (2:29.37-2:32.97) (655,154)->(668,156) 6x14 FX/hit_0 0.25
+f4652 2:35.07 TIME 0276 | hearts:28->29 | Simon TowerHallC wx 597 Y 203 || track #320 TowerH f4481-4651 (2:29.37-2:35.03) (590,154)->(602,166) 6x14 FX/hit_0 0.24
+f4723 2:37.43 TIME 0274 | hearts:29->30 | Simon TowerHallC wx 532 Y 208 || track #319 TowerH f4481-4722 (2:29.37-2:37.40) (526,154)->(534,170) 6x14 FX/hit_0 0.25
+f4829 2:40.97 TIME 0270 | hearts:30->25 | Simon TowerHallC wx 438 Y 176 || track #349 TowerH f4821-4828 (2:40.70-2:40.93) (463,152)->(462,152) 5x9 Enemy/SkeleDragon/skeledragon_fireball 0.24
+f4853 2:41.77 TIME 0270 | score:033470->033870 | Simon TowerHallC wx 410 Y 176
+f4922 2:44.07 TIME 0270 | score:033870->033970 | Simon TowerHallC wx 345 Y 176
+f4965 2:45.50 TIME 0268 | score:033970->034070 | Simon TowerHallC wx 281 Y 176 || track #360 TowerH f4888-4960 (2:42.93-2:45.33) (272,154)->(273,152) 8x14 Object/candle_0 0.42
+f5022 2:47.40 TIME 0266 | score:034070->034370 | Simon TowerHallC wx 262 Y 176
+f5083 2:49.43 TIME 0265 | hearts:25->26 | Simon TowerHallC wx 233 Y 176 || track #364 TowerH f4930-5080 (2:44.33-2:49.33) (208,144)->(223,151) 8x11 SubWeapon/holywater_bottle 0.49
+f5148 2:51.60 TIME 0262 | score:034370->035070 | Simon TowerHallC wx 132 Y 171
+f5269 2:55.63 TIME 0259 | hearts:26->27 | Simon TowerHallC wx 166 Y 151 || track #386 TowerH f5115-5267 (2:50.50-2:55.57) (136,166)->(156,148) 6x12 Enemy/SkeleDragon/skeledragon_fireball 0.41
+f5349 2:58.30 TIME 0256 | hearts:27->32 | Simon TowerHallC wx 91 Y 176 || track #393 TowerH f5199-5345 (2:53.30-2:58.17) (80,118)->(80,170) 6x9 Object/score_20 0.23
+f5501 3:03.37 TIME 0251 | score:035070->035470 | Simon TowerHallC wx 207 Y 128
+f5653 3:08.43 TIME 0247 | score:035470->035870 | Simon TowerHallC wx 267 Y 80
+f5865 3:15.50 TIME 0240 | score:035870->036170 | Simon TowerHallC wx 596 Y 80
+f6062 3:22.07 TIME 0235 | hearts:32->33 | Simon Medusa wx 715 Y 176 || track #468 Medusa f5924-6061 (3:17.47-3:22.03) (720,114)->(712,138) 8x14 Object/score_10 0.46
+f6134 3:24.47 TIME 0233 | hearts:33->34 | Simon Medusa wx 678 Y 160 || track #467 Medusa f5924-6132 (3:17.47-3:24.40) (655,112)->(670,120) 6x14 FX/hit_0 0.28
+f6194 3:26.47 TIME 0231 | hearts:34->35 | Simon Medusa wx 586 Y 160 || track #470 Medusa f6162-6191 (3:25.40-3:26.37) (596,112)->(600,130) 6x6 Object/score_0 0.62
+f6227 3:27.57 TIME 0230 | score:036170->036470 | Simon Medusa wx 586 Y 160
+f6242 3:28.07 TIME 0229 | hearts:35->36 | Simon Medusa wx 563 Y 160 || track #471 Medusa f6191-6238 (3:26.37-3:27.93) (466,112)->(555,150) 14x15 Enemy/VampireBat/bat_purple_0 0.46
+f6389 3:32.97 TIME 0225 | hearts:36->37 | Simon Medusa wx 461 Y 160 || track #475 Medusa f6268-6386 (3:28.93-3:32.87) (463,112)->(451,148) 6x9 Object/score_0 0.25
+f6526 3:37.53 TIME 0221 | hearts:37->38 | Simon Medusa wx 400 Y 160
+f6565 3:38.83 TIME 0219 | hearts:38->39 | Simon Medusa wx 349 Y 160 || track #505 Medusa f6539-6562 (3:37.97-3:38.73) (344,112)->(350,120) 6x6 Object/score_0 0.51
+f6629 3:40.97 TIME 0217 | hearts:39->40 | Simon Medusa wx 288 Y 160 || track #504 Medusa f6530-6628 (3:37.67-3:40.93) (272,114)->(286,122) 8x14 SubWeapon/holywater_fire_1 0.51
+f6690 3:43.00 TIME 0215 | hearts:40->45 | Simon Medusa wx 217 Y 168 || track #506 Medusa f6576-6686 (3:39.20-3:42.87) (208,120)->(208,130) 6x9 Object/score_0 0.25
+f6837 3:47.90 TIME 0211 | hearts:45->40 | Simon Medusa wx 61 Y 176
+f6846 3:48.20 TIME 0211 | score:036470->036570 | Simon Medusa wx 59 Y 174 || track #560 Medusa f6821-6845 (3:47.37-3:48.17) (42,115)->(49,148) 6x5 Object/score_0 0.12
+f6849 3:48.30 TIME 0211 | ebar:16->15 eempty:0->1 | Simon Medusa wx 56 Y 177 || track #560 Medusa f6821-6845 (3:47.37-3:48.17) (42,115)->(49,148) 6x5 Object/score_0 0.12
+f6861 3:48.70 TIME 0211 | ebar:15->14 eempty:1->2 | Simon Medusa wx 58 Y 171
+f6876 3:49.20 TIME 0211 | ebar:14->13 eempty:2->3 | Simon Medusa wx 61 Y 176
+f6892 3:49.73 TIME 0211 | ebar:13->12 eempty:3->4 | Simon Medusa wx 58 Y 171
+f6907 3:50.23 TIME 0211 | ebar:12->11 eempty:4->5 | Simon Medusa wx 58 Y 171
+f6925 3:50.83 TIME 0211 | ebar:11->10 eempty:5->6 | Simon Medusa wx 61 Y 176
+f6928 3:50.93 TIME 0211 | hearts:40->35 | Simon Medusa wx 61 Y 176
+f6941 3:51.37 TIME 0211 | ebar:10->9 eempty:6->7 | Simon Medusa wx 61 Y 176
+f6956 3:51.87 TIME 0211 | ebar:9->8 eempty:7->8 | Simon Medusa wx 56 Y 176
+f6973 3:52.43 TIME 0211 | ebar:8->7 eempty:8->9 | Simon Medusa wx 61 Y 176
+f6990 3:53.00 TIME 0211 | ebar:7->6 eempty:9->10 | Simon Medusa wx 56 Y 176
+f7002 3:53.40 TIME 0211 | ebar:6->5 eempty:10->11 | Simon Medusa wx 56 Y 177
+f7014 3:53.80 TIME 0211 | ebar:5->4 eempty:11->12 | Simon Medusa wx 61 Y 176
+f7025 3:54.17 TIME 0211 | ebar:4->3 eempty:12->13 | Simon Medusa wx 61 Y 176
+f7031 3:54.37 TIME 0211 | hearts:35->30 | Simon Medusa wx 61 Y 176
+f7042 3:54.73 TIME 0211 | ebar:3->2 eempty:13->14 | Simon -
+f7061 3:55.37 TIME 0211 | ebar:2->1 eempty:14->15 | Simon -
+f7069 3:55.63 TIME 0211 | score:036570->039570 | Simon Medusa wx 61 Y 176
+f7073 3:55.77 TIME 0211 | ebar:1->0 eempty:15->16 | Simon Medusa wx 61 Y 176

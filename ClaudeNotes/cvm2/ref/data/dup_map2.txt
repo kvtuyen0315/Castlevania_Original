@@ -1,0 +1,28 @@
+do dai chuoi frame giong nhau: [(1, 4979), (2, 1081), (3, 67), (4, 23), (5, 10), (6, 4), (9, 2), (10, 3), (11, 4), (14, 2)]
+ty le frame lap toan video: 0.209 -> 23.7 frame moi/s
+0:00-0:10  frame moi/s =  25.2
+0:10-0:20  frame moi/s =  25.8
+0:20-0:30  frame moi/s =  24.5
+0:30-0:40  frame moi/s =  25.8
+0:40-0:50  frame moi/s =  25.1
+0:50-1:00  frame moi/s =  21.7
+1:00-1:10  frame moi/s =  25.2
+1:10-1:20  frame moi/s =  22.9
+1:20-1:30  frame moi/s =  24.2
+1:30-1:40  frame moi/s =  24.6
+1:40-1:50  frame moi/s =  26.6
+1:50-2:00  frame moi/s =  26.0
+2:00-2:10  frame moi/s =  26.1
+2:10-2:20  frame moi/s =  23.8
+2:20-2:30  frame moi/s =  21.2
+2:30-2:40  frame moi/s =  22.2
+2:40-2:50  frame moi/s =  24.5
+2:50-3:00  frame moi/s =  23.5
+3:00-3:10  frame moi/s =  24.3
+3:10-3:20  frame moi/s =  24.9
+3:20-3:30  frame moi/s =  25.6
+3:30-3:40  frame moi/s =  26.0
+3:40-3:50  frame moi/s =  22.9
+3:50-4:00  frame moi/s =  18.1
+4:00-4:10  frame moi/s =  16.3
+4:10-4:20  frame moi/s =  20.8

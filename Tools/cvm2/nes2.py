@@ -11,8 +11,9 @@ VID = {
 }
 # x_v = ox + sx * x_nes ; y_v = oy + sy * y_nes (pixel video, goc tren-trai). Gia tri cuoi = calib_map2.py
 CALIB = {
-    'map2': dict(sx=3.617, sy=3.10, ox=270.0, oy=-19.6),
-    'boss2': dict(sx=3.61, sy=3.10, ox=276.0, oy=-20.0),
+    # CVM2 02 (16/10/2026): calib_fine.py (10 frame sach, ZNCC TB 0.9468) / calib_boss.py (7 frame, ZNCC gradient TB 0.9550). Quy uoc: chi so pixel video = round(ox + sx*(x+0.5))
+    'map2': dict(sx=3.621, sy=3.101, ox=268.888, oy=-19.736),
+    'boss2': dict(sx=3.608, sy=3.156, ox=274.456, oy=-23.016),
 }
 REPO = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..'))
 SHEET = os.path.join(REPO, 'Art_Source', 'spriters-resource', 'level2_main_hall.png')  # CVM2 01: chep nguyen byte tu Downloads
@@ -52,7 +53,7 @@ def read_frames(video, ss=None, t=None, fps=None):
     if fps:
         cmd += ['-vf', 'fps=%s' % fps]
     cmd += ['-f', 'rawvideo', '-pix_fmt', 'rgb24', '-']
-    p = subprocess.Popen(cmd, stdout=subprocess.PIPE, bufsize=W * H * 3 * 4)
+    p = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.DEVNULL, bufsize=W * H * 3 * 4)
     n = W * H * 3
     try:
         while True:
@@ -64,11 +65,23 @@ def read_frames(video, ss=None, t=None, fps=None):
         p.stdout.close(); p.wait()
 
 
-def nes_sample(img, cal, y0=0, y1=240, x0=0, x1=256):
-    """lay mau tam tung pixel NES (bilinear-free: nearest) -> mang (y1-y0, x1-x0, 3)"""
+def nes_sample(img, cal, y0=0, y1=240, x0=0, x1=256, box=0):
+    """lay mau tam tung pixel NES (nearest) -> mang (y1-y0, x1-x0, 3). box=1: TB 3x3 pixel video quanh tam (giam nhieu nen h264; CVM2 02)"""
     H, W = img.shape[:2]
-    xs = np.clip(np.round(cal['ox'] + cal['sx'] * (np.arange(x0, x1) + 0.5)).astype(int), 0, W - 1)
+    xs = np.round(cal['ox'] + cal['sx'] * (np.arange(x0, x1) + 0.5)).astype(int)
     ys = np.round(cal['oy'] + cal['sy'] * (np.arange(y0, y1) + 0.5)).astype(int)
+    if box:
+        acc = np.zeros((y1 - y0, x1 - x0, 3), float)
+        n = 0
+        for dy in range(-box, box + 1):
+            for dx in range(-box, box + 1):
+                yy = np.clip(ys + dy, 0, H - 1)
+                acc += img[yy][:, np.clip(xs + dx, 0, W - 1)]
+                n += 1
+        acc /= n
+        acc[(ys < 0) | (ys >= H)] = 0
+        return acc
+    xs = np.clip(xs, 0, W - 1)
     out = np.zeros((y1 - y0, x1 - x0, 3), float)
     ok = (ys >= 0) & (ys < H)
     out[ok] = img[ys[ok]][:, xs].astype(float)
