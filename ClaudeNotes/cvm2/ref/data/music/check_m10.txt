@@ -1,0 +1,55 @@
+tap tap_m10.wav bai 10: loopStart 407924 loopEnd 736977 (len 329053) | sr tap 48000
+  tap  0.000 s  songpos    692880 (15.7116 s)  ncc 0.998
+  tap  0.050 s  songpos    695085 (15.7616 s)  ncc 0.999
+  tap  0.100 s  songpos    697290 (15.8116 s)  ncc 0.999
+  tap  0.150 s  songpos    699495 (15.8616 s)  ncc 0.992
+  tap  0.200 s  songpos    701700 (15.9116 s)  ncc 0.998
+  tap  0.250 s  songpos    703905 (15.9616 s)  ncc 0.999
+  tap  0.300 s  songpos    706110 (16.0116 s)  ncc 0.999
+  tap  0.350 s  songpos    708315 (16.0616 s)  ncc 0.999
+  tap  0.400 s  songpos    710520 (16.1116 s)  ncc 0.999
+  tap  0.450 s  songpos    712725 (16.1616 s)  ncc 0.999
+  tap  0.500 s  songpos    714930 (16.2116 s)  ncc 0.999
+  tap  0.550 s  songpos    717135 (16.2616 s)  ncc 0.999
+  tap  0.600 s  songpos    719340 (16.3116 s)  ncc 0.999
+  tap  0.650 s  songpos    721545 (16.3616 s)  ncc 0.999
+  tap  0.700 s  songpos    723750 (16.4116 s)  ncc 0.999
+  tap  0.750 s  songpos    725955 (16.4616 s)  ncc 0.999
+  tap  0.800 s  songpos    728160 (16.5116 s)  ncc 0.999
+  tap  0.850 s  songpos    730365 (16.5616 s)  ncc 0.999
+  tap  0.900 s  songpos    732570 (16.6116 s)  ncc 0.999
+  tap  0.950 s  songpos    734775 (16.6616 s)  ncc 0.999
+  tap  1.000 s  songpos    407926 (9.2500 s)  ncc 0.997  <-- NHAY -326849 mau (loopLen 329053, lech -1)
+  tap  1.050 s  songpos    410131 (9.3000 s)  ncc 0.996
+  tap  1.100 s  songpos    412336 (9.3500 s)  ncc 0.996
+  tap  1.150 s  songpos    414541 (9.4000 s)  ncc 0.999
+  tap  1.200 s  songpos    416746 (9.4500 s)  ncc 0.997
+  tap  1.250 s  songpos    418951 (9.5000 s)  ncc 0.999
+  tap  1.300 s  songpos    421156 (9.5500 s)  ncc 0.998
+  tap  1.350 s  songpos    423361 (9.6000 s)  ncc 0.998
+  tap  1.400 s  songpos    425566 (9.6500 s)  ncc 0.998
+  tap  1.450 s  songpos    427771 (9.7000 s)  ncc 0.998
+  tap  1.500 s  songpos    429976 (9.7500 s)  ncc 0.999
+  tap  1.550 s  songpos    432181 (9.8000 s)  ncc 0.997
+  tap  1.600 s  songpos    434386 (9.8500 s)  ncc 0.999
+  tap  1.650 s  songpos    436591 (9.9000 s)  ncc 0.998
+  tap  1.700 s  songpos    438796 (9.9500 s)  ncc 0.998
+  tap  1.750 s  songpos    441001 (10.0000 s)  ncc 0.998
+  tap  1.800 s  songpos    443206 (10.0500 s)  ncc 0.998
+  tap  1.850 s  songpos    445411 (10.1000 s)  ncc 0.999
+  tap  1.900 s  songpos    447616 (10.1500 s)  ncc 0.997
+  tap  1.950 s  songpos    449821 (10.2000 s)  ncc 0.999
+  tap  2.000 s  songpos    452026 (10.2500 s)  ncc 0.993
+  tap  2.050 s  songpos    454231 (10.3000 s)  ncc 0.993
+  tap  2.100 s  songpos    456436 (10.3500 s)  ncc 0.997
+  tap  2.150 s  songpos    458641 (10.4000 s)  ncc 0.998
+  tap  2.200 s  songpos    460846 (10.4500 s)  ncc 0.999
+  tap  2.250 s  songpos    463051 (10.5000 s)  ncc 0.998
+  tap  2.300 s  songpos    465256 (10.5500 s)  ncc 0.999
+  tap  2.350 s  songpos    467461 (10.6000 s)  ncc 0.997
+  tap  2.400 s  songpos    469666 (10.6500 s)  ncc 0.998
+  tap  2.450 s  songpos    471871 (10.7000 s)  ncc 0.998
+rms 10 ms quanh cu nhay (x1000): 184 164 187 162 186 181 197 181 187 177 181 181 170 184 164 187 169 196 169 191 168 186 172 176 173 168 178 162 233 204 180 199 173 192 178 175 188 168 180 179
+rms bai goc cung vi tri (x1000):   184 163 185 161 186 181 196 180 186 178 178 179 172 183 165 184 170 196 169 190 167 186 170 177 174 168 178 162 232 207 183 200 172 193 180 175 187 166 179 179
+rms toan ban ghi trung vi 182, min quanh cu nhay 162
+ncc min 0.992, trung vi 0.999, so cua so 50

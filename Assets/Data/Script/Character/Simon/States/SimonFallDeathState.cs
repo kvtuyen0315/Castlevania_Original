@@ -10,6 +10,7 @@ public class SimonFallDeathState : SimonState
         owner.Hurt.active = false;
         owner.PlayStatic(owner.aIdle);
         owner.drawOffset = Vector2Int.zero;
+        owner.RaiseDyingStarted();
     }
 
     public override void OnExecuteState()

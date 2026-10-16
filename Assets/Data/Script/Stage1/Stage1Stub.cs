@@ -6,14 +6,13 @@ using UnityEngine;
 /// </summary>
 public class Stage1Stub : GameScreen
 {
-    [Tooltip("Nhạc Vampire Killer (loop) — chưa có file (CVTI_MEMORY §5 #3), để trống thì im lặng.")]
-    [SerializeField] private AudioClip music;
+    [SerializeField] private eMusic musicId = eMusic.VampireKiller;
 
     public override eGameScreen Id => eGameScreen.Stage1;
 
     public override void OnEnter()
     {
         if (AudioManager.I != null)
-            AudioManager.I.PlayMusic(music, true);
+            AudioManager.I.PlayMusic(musicId);
     }
 }

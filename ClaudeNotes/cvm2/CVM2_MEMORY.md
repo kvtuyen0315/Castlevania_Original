@@ -24,7 +24,7 @@ Video kèm: `C:\Users\kvtuy\Videos\Screen Recordings\Castlevania_Original\Map_2.
 | 00 | cvm2-00-ha-tang-so-ghi-nho-bo-chay-hoi-quy | **XONG** | (commit "CVM2 00") | 16/10/2026 | sổ này + commit đồ planner (48 file) + `RegressionRunner` (bộ chạy hồi quy, gộp `cvgp-fix-05`) + **Bảng hash chuẩn** (17 dòng, mọi hash = CVGP 21, H8 khớp) |
 | 01 | cvm2-01-nhap-sheet-level2-va-sprite-moi | **XONG** | (commit "CVM2 01") | 16/10/2026 | 2 sheet sha256 khớp + SOURCES; kiểm kê chạy lại y hệt planner; đối chiếu Tilesets (§3b); 9 sprite mới (crusher_0..7 + platform) md5 lặp y hệt, verify 0 lỗi; importer đọc pivot manifest Map 2 |
 | 02 | cvm2-02-hieu-chuan-video-timeline-va-su-kien | **XONG** | (commit "CVM2 02") | 16/10/2026 | hiệu chuẩn tinh (Map_2 ZNCC 0.9468/10 frame, boss gradient 0.955/7 frame; **hàng NES nhìn thấy 8–231**); HUD 7814 frame (20/20 frame kiểm mắt đúng); camera 100 %, Simon 92.9 %; 78 sự kiện HUD có nghĩa; 12 chuyển cảnh đo tick; **MAP2_TIMELINE.md viết lại (57 dòng §3 + §3b–d + §4 boss + §7)**; bảng số ở `ref/data/`; **phát hiện: vũ khí "nước thánh" của Map_2 là ĐỒNG HỒ (stopwatch)**, STAGE đổi ngay cuối cuộn 2 của cửa, đồng hồ đứng 186–196 tick (wiki 5 s) — không sửa game (H9) |
-| 03 | cvm2-03-nhac-16-bai-va-moc-nhac-map1-map2 | chưa chạy | | | |
+| 03 | cvm2-03-nhac-16-bai-va-moc-nhac-map1-map2 | **XONG** | (commit "CVM2 03") | 16/10/2026 | 16 MP3 nhập (sha256 §3d) + `eMusic`/`MusicLibrary` + lặp theo mẫu (10 bài; ±1 mẫu ở đầu ra thật); bài ↔ mốc bằng xcorr 5 video (§2d: Block 2 = **Stalker**, boss = Poison Mind, Stage Clear = nhặt cầu, bản đồ im); mốc Map 1 trong Unity §2e; **bảng mốc Map 2 §2f cho routine 11**; 24 ô Config → `eMusic` + nguồn; Death lúc bắt đầu chết; mọi hash = bảng chuẩn |
 | 04 | cvm2-04-lo-nuoc-thanh-xuyen-dich | chưa chạy | | | |
 | 05 | cvm2-05-tilemap-va-luoi-va-cham-block2 | chưa chạy | | | |
 | 06 | cvm2-06-be-di-dong-bay-ep-gai-va-ho-chet | chưa chạy | | | |
@@ -80,7 +80,92 @@ Video boss (23 s): tượng Medusa giữa phòng → ~2.5 s đầu Medusa bay ra
 | Boss video | Medusa thức f68 (2.27 s), bay sóng thấp ≈1 px/tick, nháy xanh↔tím mỗi ≈9 tick, E 16→0 khi bị lửa nước thánh (1 vạch/30 tick), **hit −2 vạch ×3**; **knock-back hit #3 = 31 px/36 tick, đỉnh −14 px** (cho `cvgp-fix-03`); quả cầu +150 tick sau chết, rơi 26 tick; PLAYER hồi +1/7.4 tick |
 | PLAYER Map_2 | **16/16 suốt video (không bị trúng, không rơi hố)**; P 03→04 do SCORE ≥ 30000 (1:21.37) |
 
-*(Các routine sau thêm 2d… — số đo của mình.)*
+### 2d. Routine 03 (16/10/2026) — nhạc: bài nào ở đâu (tương quan chéo âm thanh 5 video) + điểm lặp
+**Cách đo** (`Tools/cvm2/music3.py`, python `-P -E`, từ gốc repo; wav giải mã ffmpeg ở `ClaudeNotes/cvm2/_cache/03/audio/`): phổ log 64 băng (90 Hz–6 kHz, hop 11.6 ms, chuẩn hoá từng khung) — cửa sổ video 3 s bước 0.5 s tương quan chéo (FFT) với CẢ 16 bài ⇒ bài + songpos + NCC (`ident`), gộp đoạn phát liền theo "gốc bài" = t − songpos (`seg`, songpos đưa về vòng 1); mép bắt đầu/dừng đo bằng cửa sổ 0.1–0.2 s (`Tools/cvm2/music3_track.py`). Bảng thô `ref/data/music/ident_<video>.csv`. Bài có lặp nội bộ (VK 3.73 s / 33.55 s, Stalker 4.26 s) cho "gốc bài" giả cách nhau đúng độ lặp đó — dòng chính chọn theo đoạn dài nhất + mốc hình ảnh.
+
+| Video | Gốc bài (s) | Bài | NCC | Mốc hình / sự kiện | Hành vi |
+|---|---|---|---|---|---|
+| Title_Intro | 0–8.43 | — | — | Title | im lặng (CVTI) |
+| Title_Intro | **8.429** | Prologue | 0.87 | Intro hiện L448 = 8.497 s ⇒ nhạc sớm **4 tick** (CVTI silencedetect 8.436) | 1 lần (không lặp), hết 14.86 |
+| Title_Intro | **16.40** | Vampire Killer | 0.93 | Stage 01 L922 (CVTI 16.414) — lệch 0.2 tick | lặp |
+| Map_1 | **2.215** | Vampire Killer | 0.94 | STAGE 01 (0:02.2) | lặp; gốc 2.24→32.02→61.88→91.71‖97.96→127.73→157.56→187.42 (vòng 29.78–29.86 s; ‖ = video cắt ≈6.25 s quanh 1:48 trang YouTube) ⇒ **chạy liền qua cổng 0:16–0:20, cửa 1:28, STAGE 02 1:31.9, đổi tầng, cửa 2:47, STAGE 03 2:50.9 — KHÔNG phát lại** |
+| Map_1 | **198.80** | Poison Mind | 0.96 | VK tắt 198.7 (cùng lúc); camera khoá cx 512 **197.40** (+1.40 s); dơi đổi sprite thức **199.47** (−0.67 s); lao đầu ≈200.0 (−1.2 s) | lặp tới nhặt cầu (CVGP ghi ≈200.17 NCC 0.69 — số mới chính xác hơn) |
+| Map_1 | **213.06** | Stage Clear | 0.93 | nhặt cầu f6391 = 213.03 | 1 lần (kêu 4.10 s) |
+| Map_1 | 217–239.8 | — | < 0.5 | tally → đen → bản đồ B1 | **không có bài nhạc** (chỉ SFX đếm + SFX bước bản đồ `MapStep`) |
+| Boss_Map_1 | 0–2.6 | Vampire Killer | 0.6–0.86 | Simon vào phòng | — |
+| Boss_Map_1 | **2.81** | Poison Mind | 0.93 | dơi thức f66 = 2.20 (+0.61 s) ≈ **lao đầu 2.79** (CVGP: thức + 33 tick) | lặp |
+| Boss_Map_1 | **20.76** | Stage Clear | 0.92 | nhặt cầu / hồi máu ≈ 20.9 | 1 lần |
+| Map_2 | 0–6.0 | — | 0.43–0.50 (bài 09, songpos đứng yên = không phải nhạc) | bản đồ B1 + đen 5.77–6.20 | **không nhạc** (âm nhỏ = SFX bước bản đồ) |
+| Map_2 | **6.177** | **Stalker** | 0.94 | STAGE 04 hiện 6.23 (đen hết 6.20); tiếng đầu 6.195 | lặp; gốc 6.177→36.00→65.82→95.66→125.48 (vòng 29.82–29.84) ⇒ **chạy liền qua đổi tầng 0:28.5 / 1:33 / 3:17.1, cửa trái #1 0:51.8–57.7 (STAGE 05), cửa trái #2 2:22.3–2:28.3 (STAGE 06) — KHÔNG phát lại** |
+| Map_2 | 161.0 → 163.4 | Stalker | — | **2:40.97 dùng đồng hồ**: nhạc tắt 161.0, SFX đồng hồ 161.1–162.8, lặng 162.9–163.3, nhạc **chạy tiếp đúng chỗ** 163.4 | gốc 125.48 → 157.71 (= +29.826 + **2.40 s**) ⇒ nhạc **đứng 2.40 s (144 tick)**, không phát lại |
+| Map_2 | 157.71→187.53 | Stalker | 0.7–0.9 | tới 3:47.8 (qua khoá camera cx 0 3:44.50) | — |
+| Map_2 | **≈228.14** (≡ 198.3 mod 7.4615) | Poison Mind | 0.45–0.49 (SFX đồng hồ che) → **0.95–0.98** ở 236.8–238.7 | Medusa thức **227.37** (+0.77 s); đồng hồ 227.90 / 230.93 / 234.37 (không thấy đứng 2.4 s như Stalker — ±0.4 s); Medusa chết 235.63, lặng 236.2–236.6 | lặp tới nhặt cầu |
+| Map_2 | **238.83** | Stage Clear | 0.93 | nhặt cầu (cầu hiện = chết + 150 tick = 238.13, rơi 26 tick → 238.56, Simon tới px 113) | 1 lần |
+| Map_2 | 241–259.8 | — | — | tally SFX 4:02.6–4:10.9 → lặng 4:11.3–4:16.25 → bản đồ B2 (SFX bước) → đen 4:19.80 | không nhạc |
+| Map_2 | **259.80** | **Wicked Child** | 0.48 (bài kế 0.14; chỉ 0.3 s) | STAGE 07 (4:20.15) | bằng chứng yếu cho Block 3 |
+| Boss_Map_2 | 0–3.0 | Stalker | 0.6–0.93 | trước khi Medusa thức | — |
+| Boss_Map_2 | **3.22** | Poison Mind | 0.94 | Medusa thức 2.27 (**+0.95 s**); không dùng đồng hồ ⇒ gốc không lệch suốt trận | lặp |
+| Boss_Map_2 | **20.70** | Stage Clear | 0.92 | nhặt cầu 20.6–20.7 | 1 lần |
+
+**Kết luận**: Block 1 = Vampire Killer, **Block 2 = Stalker (xác nhận)**, boss Block 1–2 = Poison Mind, Stage Clear = lúc nhặt cầu (4/4 video, ±0.05 s), bản đồ lâu đài + tally = không nhạc, Intro = Prologue, STAGE 07 = Wicked Child (yếu). Không video: Death, Game Over, bài Block 4–6, Dracula, ending ⇒ suy luận. Tempo bài = tempo game (vòng trong video 29.78–29.86 s ≈ vòng MP3 29.82 s).
+**Phantom Bat — 2 video lệch nhau**: PM bắt đầu ở Map_1 0.67 s TRƯỚC khi dơi đổi sprite thức, ở video boss 0.61 s SAU (= lúc lao đầu). Không quy tắc vị trí/khoá camera nào khớp cả hai (Map_1 Simon px 141 lúc PM; video boss Simon đứng px 184) ⇒ giữ quy tắc CVGP (PM lúc lao đầu = thức + 33 tick — khớp video boss ±0.03 s), hỏi §5 #6. Giả thuyết: ở Map_1 Simon ném rìu 197.43/197.97 có thể đánh thức dơi sớm hơn lúc sprite đổi.
+**Medusa**: PM = Medusa hiện/thức + 0.77–0.95 s (≈ 46–57 tick) ở cả 2 video — `QueenMedusa` hiện gọi `StartBossMusic` lúc hết Emerge (32 tick, số CVGP 19) ⇒ routine 09 đặt lại theo số này.
+
+**Điểm lặp** (`music3.py loop2` + `export` ⇒ `Tools/cvm2/music_loops.json` ⇒ `MusicLibrary.asset`): bản rip KHÔNG lặp đúng từng mẫu (độ trễ giữa 2 vòng dao động ±12 ms — jitter khung ghi âm; NCC dạng sóng 1 s chỉ 0.3–0.7) ⇒ điểm lặp chọn theo **khớp dạng sóng cục bộ 80 ms hai phía điểm nhảy** (quét 0.05 s trong 10 s đầu vùng lặp, lag ±50 ms quanh độ dài vòng thô lấy từ ma trận tự tương đồng). Mẫu = clip Unity 44.1 kHz (= ffmpeg + **2257** — Unity giữ độ trễ bộ mã MP3 1105 + 1 khung 1152; đo 5/5 jingle NCC ≥ 0.999); phát từ mẫu 2257.
+
+| # | Bài | Dài (s) | Lặp | loopStart → loopEnd (mẫu Unity) | vòng (s) | NCC trước/sau | gain ở loopEnd | ghi chú |
+|---|---|---|---|---|---|---|---|---|
+| 01 | Underground (FDS) | 28.98 | có | 244 806 → 669 180 | 9.623 | 0.993 / 1.000 | 0.99 | không dùng |
+| 02 | Prologue | 7.06 | **không** | — | — | — | — | Intro |
+| 03 | Vampire Killer | 67.00 | có | 33 127 → 1 350 059 | 29.862 | 0.977 / 0.990 | 1.19 | vòng từ 0.70 s (gần đầu bài) |
+| 04 | Stalker | 72.01 | có | 579 967 → 1 895 019 | 29.820 | 0.922 / 0.949 | 0.99 | intro ≈ 4 s |
+| 05 | Wicked Child | 76.02 | có | 1 009 942 → 3 006 096 | 45.264 | 0.921 / 0.944 | **0.49** | **xấp xỉ**: rip chỉ 1 vòng rồi fade — điểm nhảy rơi vào đầu fade |
+| 06 | Walking on the Edge | 82.01 | có | 394 747 → 1 945 585 | 35.166 | 0.998 / 1.000 | 0.94 | |
+| 07 | Heart of Fire | 71.01 | có | 90 457 → 2 556 382 | 55.917 | 0.961 / 0.937 | 0.95 | |
+| 08 | Out of Time | 70.01 | có | 121 326 → 1 530 338 | 31.950 | 0.917 / 0.972 | 0.95 | |
+| 09 | Nothing to Lose | 39.98 | có | 8 872 → 1 556 726 | 35.099 | 0.984 / 0.975 | **0.71** | **xấp xỉ**: 1 vòng + fade (như 05) |
+| 10 | Poison Mind | 38.00 | có | 410 181 → 739 234 | 7.462 | 0.977 / 0.996 | 0.99 | cả bài tuần hoàn 7.46 s |
+| 11 | Black Night | 41.98 | có | 368 286 → 1 072 798 | 15.975 | 0.970 / 0.979 | 1.00 | |
+| 12 | Stage Clear | 5.06 | **không** | — | — | — | — | kêu 4.10 s |
+| 13 | Game Complete | 5.06 | không | — | — | — | — | chưa dùng |
+| 14 | Voyager (Ending) | 52.06 | không | — | — | — | — | không thấy vòng; chưa dùng |
+| 15 | Death | 2.07 | **không** | — | — | — | — | |
+| 16 | Game Over | 5.06 | **không** | — | — | — | — | |
+
+**Kiểm trong Unity (âm thanh đầu ra thật — `MusicProbeTap` ghi WAV 48 kHz, `Tools/cvm2/music3_tapcheck.py`)**: đặt timeSamples = loopEnd − 1 s rồi ghi 2.5 s: VK / Stalker / Poison Mind — vị trí bài sau cú nhảy tiếp đúng **±1 mẫu** (VK 0, Stalker −1, PM −1), NCC từng cửa sổ 50 ms với bài gốc **min 0.985 / 0.965 / 0.992** (trung vị 0.998 / 0.994 / 0.999), RMS 10 ms quanh cú nhảy bám đúng đường RMS bài gốc (không ô ~0 ⇒ không khoảng lặng). Log `AudioManager` (MusicProbe): VK 1 350 423 → 33 491 (vượt loopEnd 364 mẫu = 8 ms trước khi Update lùi — đoạn sau loopEnd là vòng 2 cùng nội dung nên không nghe ra).
+
+### 2e. Mốc nhạc luồng Map 1 trong Unity (luồng THẬT Title → STAGE 04, `MusicProbe` + `RegressionRunner "flow"`, L = frame − L0)
+| Mốc | Unity | Video | Lệch | Ghi chú |
+|---|---|---|---|---|
+| Title | StopMusic L0 | im | — | |
+| Prologue | **L448** (tick bật Intro) | L443.9 (8.429 s) | **+4.1 tick = +0.07 s** | ≤ 0.1 s; giữ phát ở OnEnter (CVTI §4.3) ⇒ H8 không đổi |
+| Prologue hết | L876 (clip 7.13 s) | 14.86 s | — | cuối clip im (kêu tới 6.42 s) |
+| Vampire Killer | **L922** (StageScreen.OnEnter) | L922.2 | −0.2 tick | lặp mỗi **1792 tick** (29.87 s: L2756, L4548, L6340) đúng vòng đo; KHÔNG phát lại ở cổng/cửa/STAGE 02/03 |
+| Poison Mind | L6366 = boss thức L6334 + **32** tick (lao đầu) | thức + 0.61 s (video boss) / −0.67 s (Map_1) | quy tắc CVGP | lộ trình autopilot nhanh hơn video ⇒ so theo sự kiện, không theo giây tuyệt đối |
+| Stage Clear | **L8168** = tick nhặt cầu L8168 | = nhặt cầu (4 video ±0.05 s) | 0 | 1 lần, hết L8473 |
+| Bản đồ lâu đài | StopMusic L8948 | im | 0 | |
+| STAGE 04 (Stage4Stub) | Stalker **L9370** | Map_2 0:06.18 = STAGE 04 hiện | 0 | Stage4Stub là điểm cuối luồng Map 1 (vốn có trường nhạc Stalker) |
+| Chết (spam4) | Death lúc Simon BẮT ĐẦU chết, kêu đủ 126 tick → GAME OVER (+30) → Game Over; CONTINUE → VK từ đầu | không video | suy luận | trước sửa: Death phát SAU 124 tick chết và bị màn GAME OVER cắt sau 32 tick |
+Hai lần chạy (trước/sau sửa Death) cho mốc luồng y hệt (tất định). 0 lần "đứng" (timeSamples không tăng khi đang phát).
+
+### 2f. BẢNG MỐC NHẠC MAP 2 — cho routine 11 (routine 03 KHÔNG gắn vào luồng Map 2 — luồng chưa có)
+| # | Sự kiện luồng Map 2 | Video Map_2 (boss video) | Bài | Hành vi | Cách dựng (API có sẵn) |
+|---|---|---|---|---|---|
+| 1 | bản đồ B1 → đen 28 tick | 0:00–6.20 | — | im | `CastleMapScreen` đã `StopMusic` |
+| 2 | STAGE 04 hiện (TEA cx 0) | **0:06.18** (STAGE 04 hiện 0:06.23) | Stalker | phát từ đầu ở tick bật màn | `StageScreen.OnEnter → flow.PlayStageMusic()` (đọc `ConfigStage[4].music` = Stalker) |
+| 3 | đổi tầng bằng thang (TEA→TEB 0:28.5; Hall A→B 1:33.0; Hall C→Medusa 3:17.1) | — | Stalker | **TIẾP TỤC** | không gọi `PlayMusic` |
+| 4 | cửa trái #1 → STAGE 05 (0:51.8–57.7); #2 → STAGE 06 (2:22.3–2:28.3) | — | Stalker | **TIẾP TỤC** (không phát lại) | `GameRules.EnterStage` không gọi nhạc; đừng gọi `PlayStageMusic` khi đổi stage |
+| 5 | dùng đồng hồ | 2:40.97 | Stalker | **đứng 2.40 s (144 tick)** rồi chạy tiếp đúng chỗ (SFX đồng hồ) | CHƯA dựng (H9 — chính sách SFX↔nhạc); 3 lần dùng trong trận boss không thấy đứng (±0.4 s) ⇒ chưa chắc — §6 |
+| 6 | khoá camera phòng boss cx 0 | 3:44.50 | Stalker | TIẾP TỤC | — |
+| 7 | Medusa thức (tượng vỡ) | 3:47.37 (boss 2.27) | **Poison Mind** | phát **+0.77–0.95 s (≈ 46–57 tick)** sau khi Medusa hiện | `BossBase.StartBossMusic()` (đọc `ConfigBlock[2].bossMusic`); routine 09 dời lời gọi trong `QueenMedusa` (hiện = hết Emerge 32 tick) |
+| 8 | Medusa chết | 3:55.63 | Poison Mind | TIẾP TỤC tới nhặt cầu | (lặng 0.4 s ở 3:56.2 — có lẽ SFX) |
+| 9 | nhặt quả cầu | **3:58.83** (boss 20.70) | Stage Clear | phát 1 lần cùng tick | `StageFlow.OnCrystal` (có sẵn) |
+| 10 | tally → đen 22 → bản đồ B2 | 4:02.6–4:19.8 | — | im | bài SC tự hết; `CastleMapScreen.StopMusic` |
+| 11 | STAGE 07 (Stage7Stub) | **4:19.80** | Wicked Child | phát từ đầu | `AudioManager.PlayMusic(ConfigStage[7].music)` |
+| 12 | Simon chết / hồi sinh | (không có trong video) | Death → bài stage từ đầu | đã dựng | `SimonController.DyingStarted` → Death; `OnRespawned → PlayStageMusic` |
+| 13 | Pause (Start) | (không có) | — | tạm dừng / chạy tiếp | `StageRules` → `AudioManager.PauseMusic` (CVGP 12) |
+
+*(Các routine sau thêm 2g… — số đo của mình.)*
 
 ## §3 Tài nguyên (đường dẫn sinh ra)
 
@@ -144,6 +229,39 @@ Không thấy thiếu sprite thật ⇒ không có câu hỏi §5 mới.
 | Bộ đệm lớn (KHÔNG commit) | `ClaudeNotes/cvm2/_cache/02/work/` | `map2_nes.npy` 1.3 GB, `map2_blobs.csv`, `map2_track_pts.csv`, `map2_lut.npz` (bảng màu sheet→video), `boss2_*`; ảnh xem `_cache/02/shots/` |
 | Công cụ (commit) | `Tools/cvm2/` | `calib_fine`, `calib_boss`, `extract_nes2`, `dup_frames2`, `hud_read2`, `hud_events2`, `hud_check2`, `camera_track2`, `fg2`, `objects2`, `simon2`, `tracks2`, `classify2`, `track_sheet2`, `event_triplets2`, `pickups2`, `candles2`, `events_annot2`, `platform2`, `boss2_blobs`, `simon_boss2`, `audio_cues2`, `frames_sheet2`, `ref_images2` (+ `nes2.py` thêm `box`, `stderr` im, CALIB mới); **cách chạy: MAP2_TIMELINE §6** |
 
+### 3d. Routine 03 (16/10/2026) — nhạc
+**16 bài** (chép nguyên byte từ `Art_Source/music/` — sha256 đọc lại sau khi chép trùng nguồn, KHÔNG sửa nội dung âm thanh):
+
+| # | Tên gốc (`Art_Source/music/`) | Tên mới (`Assets/Data/Audio/Music/`) | sha256 | eMusic |
+|---|---|---|---|---|
+| 01 | `01. Underground (Name Entry) [Famicom Disk System].mp3` | `m01_underground.mp3` | `1ed97f88d0dc8777686722f16fde9a873da15b99686839b13c9f469b79489314` | Underground |
+| 02 | `02. Prologue (Castle Gate).mp3` | `m02_prologue.mp3` | `961f10d99266a9b472bfb0bafe3de3a816ce1a9889aa79f74730a5e90abbf3fa` | Prologue |
+| 03 | `03. Vampire Killer (Courtyard).mp3` | `m03_vampire_killer.mp3` | `0f4453be75adc4db0c79f2452bea033a2ee08ee2c51ad93d9b1307a4f2434608` | VampireKiller |
+| 04 | `04. Stalker (Armory).mp3` | `m04_stalker.mp3` | `5b3902b0ffdadcde17a6a58589bb850a3f628c99222ae4f1004f2294a9d5b2b5` | Stalker |
+| 05 | `05. Wicked Child (Upper Yard).mp3` | `m05_wicked_child.mp3` | `d2548e3ab2b56ae255e5453a8c17349a865f194f8201f9ebf6911b70be8f31a0` | WickedChild |
+| 06 | `06. Walking on the Edge (Castle Swamp).mp3` | `m06_walking_on_the_edge.mp3` | `cfbd1cd4d902d93c418b31f0572cb804f8a2991df9a18ca81a48eb4c511ef97e` | WalkingOnTheEdge |
+| 07 | `07. Heart of Fire (Prisonhold).mp3` | `m07_heart_of_fire.mp3` | `26c7d15ba6bbe2b828a6ad362de7c75f21900fc6dd8e12573c43a0bd891ea935` | HeartOfFire |
+| 08 | `08. Out of Time (Upper Terrace).mp3` | `m08_out_of_time.mp3` | `846f6e6308724cebaa44d6fe1515e55015a9faaff0944f5a2a759d61dc38237b` | OutOfTime |
+| 09 | `09. Nothing to Lose (Dracula's Quarters).mp3` | `m09_nothing_to_lose.mp3` | `d71e7a56c1628ef9fe374e335fba7de1293b479c45c52bb77b89d0eddc0e40a1` | NothingToLose |
+| 10 | `10. Poison Mind (Boss Theme).mp3` | `m10_poison_mind.mp3` | `a2f1b1d89c8e2ff9c6c43df01688a75118e11ae50710fa0bb99e2c2aa8707cd0` | PoisonMind |
+| 11 | `11. Black Night (Final Battle).mp3` | `m11_black_night.mp3` | `d40255c0066f3c144bd97bcd4b6d0f0516bb8509580055a4a0ed6c3d49b32b78` | BlackNight |
+| 12 | `12. Stage Clear.mp3` | `m12_stage_clear.mp3` | `c328c0d000d352154b4df7fe2f84b150c68fc34ec0e4bc1d5bafb09337695816` | StageClear |
+| 13 | `13. Game Complete.mp3` | `m13_game_complete.mp3` | `a8dbc4c3d7ad745c8089724dbae2b121819efc7e3212f5bde1367e5f8b03f644` | GameComplete |
+| 14 | `14. Voyager (Ending).mp3` | `m14_voyager.mp3` | `a1f9898ff6b5c5671ed18b25cd0c871b530db568b66f809d506afbecdc1e3288` | Voyager |
+| 15 | `15. Death.mp3` | `m15_death.mp3` | `1c38509058c5bec2d9a8af10e072697d879c7e6944fdb3af926c4b49b5cd0677` | Death |
+| 16 | `16. Game Over.mp3` | `m16_game_over.mp3` | `d0fc421596c640caa42467fc0db880b0bb702e94984e47d63bfb467da2ec644e` | GameOver |
+
+| Thứ | Đường dẫn | Ghi chú |
+|---|---|---|
+| Preset import | `Assets/Data/Editor/MusicImporter.cs` | `Assets/Data/Audio/Music/**`: stereo, giữ 44.1 kHz, Vorbis 70 %, preload, không nạp nền; bài dài Compressed In Memory (đặt timeSamples chính xác — không Streaming), jingle (m02/m12/m13/m15/m16) Decompress On Load; chỉ đặt lần đầu import |
+| Tên bài | `Assets/Data/Script/Audio/eMusic.cs` | giá trị = số file NN |
+| Thư viện | `Assets/Data/Script/Audio/MusicLibrary.cs` + asset `Assets/Data/Audio/MusicLibrary.asset` | Entry: id, clip, startSample (2257), loop, loopStart, loopEnd, source |
+| Builder | `Assets/Data/Editor/MusicLibraryBuilder.cs` — menu **`CVGP/Build MusicLibrary`** | đọc `Tools/cvm2/music_loops.json`; kiểm id/số/điểm lặp; gán `AudioManager.musicLibrary` trên `GameManager.prefab` nếu trống; chạy lại ⇒ "không đổi" |
+| Đo nhạc | `Tools/cvm2/music3.py` (`loop`, `loop2`, `export`, `ident`, `seg`, `pos`), `music3_track.py` (mép cục bộ), `music3_tapcheck.py` (kiểm WAV đầu ra Unity) | chạy từ gốc repo `python -P -E`; cần wav giải mã ở `ClaudeNotes/cvm2/_cache/03/audio/` (lệnh ffmpeg ở §7 routine 03) |
+| Dữ liệu (commit) | `Tools/cvm2/music_loops.json` (đầu vào builder), `ClaudeNotes/cvm2/ref/data/music/` (`ident_<video>.csv`, `loops2.json` mẫu ffmpeg, `check_m03/04/10.txt` kiểm lặp, `unity_music_flow_spam.txt` log Unity) | |
+| Probe (chỉ Editor) | `Assets/Data/Script/Debug/MusicProbe.cs` (`Start()` / `Stop(path)` — log `AudioManager.MusicEvent` + mẫu mỗi 60 tick + cảnh báo "đứng"), `MusicProbeTap.cs` (`Begin(giây, wav)` — ghi đầu ra thật qua OnAudioFilterRead) | chỉ đọc, không đổi hash |
+| Bộ đệm (KHÔNG commit) | `ClaudeNotes/cvm2/_cache/03/` (`audio/` wav, `unity/` mẫu Unity, `loop/` WAV tap, `main*/` `arena*/` kết quả bộ hồi quy, `doc/`), ảnh `_cache/shots/03/` | |
+
 ## §4 Quyết định kỹ thuật đã chốt
 
 ### Bảng hash chuẩn (H11 — baseline = CVGP 21, đo lại ở routine 00 ngày 16/10/2026)
@@ -200,12 +318,23 @@ Quy ước: **3 lệnh / 3 phiên Play** cho đủ bộ (Arena-Simon · Arena-Du
 - **H8**: chạy kèm mọi `flow*` — đọc 5 mốc từ `Map1AcceptProbe.Events` (`Title: Start`, `Title→Black`, `Black→Intro`, `Intro→Black`, `Black→Stage1`) ⇒ `suites/h8_<flow>.txt`.
 - Play Mode an toàn (Odin MemoryStream crash): `EditorSettings.enterPlayModeOptionsEnabled = true` + `DisableDomainReload`; routine 00 chạy 5 phiên Play + 4 lần biên dịch không crash.
 
+- **(03) Nhạc theo tên**: `AudioManager.PlayMusic(eMusic)` (thư viện `MusicLibrary` gán trên `GameManager.prefab`); API cũ `PlayMusic(AudioClip, bool)` giữ nguyên. Màn hình giữ **id** (trường mới `musicId` / `stageClearId` / `deathId` — tên MỚI để không đọc nhầm giá trị `{fileID: 0}` cũ của trường AudioClip trong prefab; trường cũ còn trong YAML prefab, Unity bỏ qua). Nhạc stage đọc `ConfigStage.music` theo `GameSession.stage`, nhạc boss đọc `ConfigBlock.bossMusic` (stage → block) ⇒ Map 2 + các block sau chỉ cần dữ liệu.
+- **(03) Lặp theo mẫu bằng `AudioManager.Update`** — NGOẠI LỆ hợp lệ của H4: chỉ âm thanh (đọc/đặt `timeSamples`), không đụng trạng thái gameplay hay hash. Vượt loopEnd ⇒ lùi đúng (loopEnd − loopStart): đoạn sau loopEnd trong file là vòng 2 (cùng nội dung) nên trễ ≤ 1 khung không nghe ra (đo: vượt 8 ms, vị trí sau nhảy ±1 mẫu). Không dùng PlayScheduled 2 nguồn (Pause của StageRules sẽ phá lịch DSP). Bài lặp có loopEnd ⇒ `AudioSource.loop = false`; bài không lặp phát 1 lần, `MusicEvent("end")` khi hết.
+- **(03) Phát từ mẫu 2257** (bỏ độ trễ bộ mã MP3 mà Unity giữ) ⇒ tiếng đầu trùng mốc video (≤ 1 ms); điểm lặp lưu theo mẫu Unity = mẫu ffmpeg + 2257.
+- **(03) Hash luồng không chứa âm thanh**: `Map1AcceptProbe`/`Map1RouteProbe` băm trạng thái game (màn, session, thực thể, FSM) — không băm log/âm thanh ⇒ không cần tách; mọi hash giữ nguyên (§7 routine 03).
+- **(03) Mốc nhạc chốt**: Intro — Prologue ở tick bật Intro (video sớm 4 tick = 0.07 s; không dời để H8/CVTI §4.3 nguyên vẹn). Stage — `PlayStageMusic` ở `StageScreen.OnEnter` + hồi sinh, KHÔNG phát lại ở cổng/cửa/đổi stage (video Map_1 + Map_2). Boss — Phantom Bat giữ quy tắc CVGP (lao đầu); Medusa: số đo cho routine 09 (§2f #7). Nhặt cầu — Stage Clear cùng tick (4 video). Bản đồ lâu đài/tally — im (video: không bài nào). Stage4Stub (điểm cuối luồng Map 1) — Stalker (video Map_2 0:06.18 = STAGE 04 hiện; trường có sẵn từ CVGP 15 — KHÔNG phải luồng Map 2).
+- **(03) Death phát lúc Simon BẮT ĐẦU chết** (sự kiện tĩnh mới `SimonController.DyingStarted`, bắn ở `OnEnterState` của Dead/FallDeath — chỉ báo, không đổi trạng thái): suy luận — DeathTicks 124 vốn lấy theo độ dài bài Death 2.07 s ⇒ bài phủ cả cảnh chết; trước đây phát ở `LifeLost` (SAU cảnh chết) và bị màn GAME OVER cắt sau 32 tick (spam4). Không video Simon chết ⇒ ghi suy luận.
+- **(03) Chính sách SFX ↔ nhạc (NES dùng chung kênh — KHÔNG giả lập kênh)**: nhặt cầu ⇒ thay bằng Stage Clear; chết ⇒ thay bằng Death; Pause ⇒ tạm dừng (CVGP 12); **dùng đồng hồ ⇒ video Map_2 cho thấy Stalker đứng 2.40 s rồi chạy tiếp** (chưa dựng — §6); các SFX khác (roi, tim, rìu…) chỉ chồng lên nhạc (video: RMS tụt ngắn 0.1–0.3 s ở 9 chỗ — SFX ăn kênh, nhạc không dừng/không lệch gốc bài).
+- **(03) Ô nguồn nhạc Config**: 24 ô (6 `ConfigBlock.bossMusic` + 18 `ConfigStage.music`) đổi kiểu **chuỗi → `eMusic`** (importer validate tên enum); nguồn: video (Block 1–2 boss, Stage 1–7) hoặc "suy luận … chưa có video" (Block 3–6 boss, Stage 8–18) — lý do giữ ghi trong ô.
+
 ## §5 Câu hỏi cho người dùng (chép từ `CVM2_PLAN §9` — đừng tự quyết thay)
 1. **`cvgp-fix-03` (Simon knockback/nước thánh/mép rơi) + `cvgp-fix-04` (báo #3, Phantom Bat)** — chỉ Map 1, chưa tạo; người dùng duyệt thì tạo sau (routine 09/12 ghi thêm mẫu đo từ Map 2 nếu có).
 2. (vẫn mở từ CVGP) sheet HUD bản US (chữ số TẠM) — `CVGP_MEMORY §5 #39a`; bấm thử gamepad Flydigi — `#39b`.
 3. Bẫy ép gai: chạm = mất 2 vạch + knockback hay chết ngay? Video có thể không cho thấy (Simon né được) ⇒ routine 06 chọn theo bằng chứng có được, ghi `suy luận`, hỏi lại ở đây.
 4. Cụm sau: **Map 3 (Block 3, Stage 7–9, boss Mummy Men)** cần sheet `NES - Castlevania - Stages - Level 3_ ...` (spriters-resource — tải tay) + video `Map_3.mp4` / `Boss_Map_3_Behaviour.mp4`. Sheet Tilesets đã có bảng tile Level 3–6 nhưng KHÔNG thay được sheet bản đồ.
 5. Kết thúc game (credits/ending/Second Quest) — vẫn chờ (`CVGP_MEMORY §5 #60`).
+6. (03) **Nhạc boss Phantom Bat bắt đầu lúc nào?** Video Map_1: Poison Mind 3:18.80 — 0.67 s TRƯỚC khi dơi đổi sprite thức (1.40 s sau khi camera khoá); video boss: 0.61 s SAU khi thức (= lúc lao đầu). Đang giữ quy tắc CVGP (lúc lao đầu). Nếu người dùng có thêm 1 clip vào phòng Phantom Bat (không ném vũ khí trước khi dơi thức) thì đo lại được.
+7. (03) **Dùng đồng hồ có làm nhạc dừng không?** Map_2 2:40.97: Stalker đứng 2.40 s rồi chạy tiếp; nhưng 3 lần dùng trong trận Medusa không thấy Poison Mind đứng. Chưa dựng — cần thêm 1 clip dùng đồng hồ (ngoài trận boss) để chốt.
 
 ## §6 Nợ & việc ngoài phạm vi
 - (00) `ArenaTarget.OnSpawned` không đặt lại `touchDamage` (bia từ pool mang cờ của probe trước); đã vá phía `RulesProbe`. Probe mới dùng `ArenaTarget` phải tự đặt `touchDamage` sau khi `Spawn`.
@@ -222,6 +351,13 @@ Quy ước: **3 lệnh / 3 phiên Play** cho đủ bộ (Arena-Simon · Arena-Du
 - (02) **Bệ di động / bẫy ép chỉ đo thô** (`platform2.py` chỉ bắt 321 frame vì viền kem; bẫy ép đo bằng blob đỏ 3 chu kỳ) — routine 06 phải khớp mẫu từng frame (viền kem bệ 32×8; thân bẫy 32 rộng).
 - (02) **Thịt nướng Hall B (1:57)** và **nguồn của khối gạch/nến cụ thể** chưa rõ nguồn rơi (xuất hiện trước khi vào khung) — routine 10 xem lại bằng ảnh `ev/*.png` + `candles2.py`.
 - (02) **Nhạc**: stage 04–06 phát liên tục 6.0 s → 3:56.0, không thấy đổi nhạc khi vào phòng boss (RMS/phổ) — routine 03 phải tương quan chéo (mốc im lặng ở `ref/data/map2_audio_cues.txt`: 0:05.85–6.15 đen, 2:42.80–2:43.45 lặng 0.65 s lạ, 3:56.10–3:56.80 → Stage Clear, 4:11.30–4:16.25 lặng 4.95 s).
+  → **(03) đã giải**: Stalker liền 0:06.18 → 3:47.8; Poison Mind ≈ 3:48.1 (Medusa thức + 0.77 s, bị SFX đồng hồ che nên phổ trung bình không thấy); lặng 2:42.80–2:43.45 = nhạc đứng khi dùng đồng hồ; "3:56.8 Stage Clear" thực ra là Poison Mind tiếp tục, Stage Clear bắt đầu 3:58.83 = nhặt cầu; bản đồ B1/B2 KHÔNG có nhạc (âm nhỏ = SFX bước) — §2d.
+- (03) **Đồng hồ dừng nhạc 2.40 s** (Map_2 2:40.97, 1 lần đo; trong trận boss 3 lần không thấy) — chưa dựng (chính sách SFX↔nhạc, H9). Routine 08/11 (hoặc fix sau) nếu muốn: `ItemEffects` stopwatch ⇒ `AudioManager.PauseMusic(true)` 144 tick rồi `false` (tick-driven) — cần thêm bằng chứng (§5 #7).
+- (03) **Medusa: `QueenMedusa` gọi `StartBossMusic` lúc hết Emerge (32 tick)**; video: Poison Mind = Medusa hiện + 46–57 tick ⇒ routine 09 dời (đọc §2f #7).
+- (03) **Phantom Bat**: video Map_1 vs video boss lệch nhau ~1.3 s về mốc nhạc boss (§2d, §5 #6) — giữ quy tắc CVGP.
+- (03) Bài 05 Wicked Child / 09 Nothing to Lose: bản rip chỉ có 1 vòng rồi fade ⇒ điểm nhảy nằm ở đầu fade (gain 0.49 / 0.71 — nghe tụt âm lượng khi lặp). Cụm Map 3 / Block 6 cần: (a) bản rip 2 vòng (người dùng cung cấp), hoặc (b) chấp nhận + bù gain (không sửa file — H2; có thể nhân `volume` theo đoạn — chưa làm).
+- (03) Prefab màn hình (`IntroScreen`, `GameOverScreen`, `Stage4Stub`, `Stage1Stub`, `StageScreen`) còn trường YAML cũ `music`/`stageMusic`/`stageClearMusic`/`deathMusic: {fileID: 0}` (Unity bỏ qua) — sẽ tự mất khi prefab được lưu lại lần sau; không lưu lại ở routine 03 để diff gọn.
+- (03) Video Map_1 bị cắt ≈ 6.25 s quanh 1:48 (trang YouTube chen vào — gốc bài Vampire Killer nhảy 91.71 → 97.96 không đúng 1 vòng): mốc thời gian Map_1 sau 1:48 so với game thật lệch hằng số đó (đã biết từ CVGP — ghi lại bằng chứng âm thanh).
 - (02) **Simon Medusa 71 %**: thiếu 4:01.7–4:12.8 (tư thế thắng không có trong bộ sprite `simon_fit`) — không ảnh hưởng dựng.
 - (02) Ảnh `ref/nes` 36 ảnh planner dùng hiệu chuẩn cũ (lệch ≤ 0.3 px NES); nếu cần so chính xác dùng `Tools/cvm2/ref_images2.py` để xuất lại.
 
@@ -256,3 +392,16 @@ Quy ước: **3 lệnh / 3 phiên Play** cho đủ bộ (Arena-Simon · Arena-Du
 - **Âm thanh**: `audio_cues2.py` + file cues (khoảng lặng/mốc nhạc); nhận dạng bài chưa kết luận (cho routine 03).
 - **Ảnh**: 36 ảnh planner đã xem (2 bảng `refs_a/b.png`): 32 đúng, **4 đã `git mv` đổi tên**; thêm 10 ảnh Map_2 + 2 ảnh boss (hiệu chuẩn mới).
 - **Nghiệm thu routine 02**: [x] hiệu chuẩn ≥6 frame Map_2 (ZNCC TB 0.9468 ≥ 0.93, 10 frame) + ≥4 frame boss (7) + hàng nhìn thấy + watermark · [x] HUD từng frame + bảng sự kiện, 20 frame mắt 0 sai · [x] Simon 92.9 % + camera 100 % + 12 chuyển cảnh có tick · [x] `MAP2_TIMELINE.md` §1/§3/§4/§7 mở rộng + `CVM2_MEMORY §2c` · [x] ảnh mốc đã xem. **Chưa đạt/ xấp xỉ**: bệ di động + bẫy ép + Spear Knight/Ghost chỉ đo thô (chuyển 06/08); nguồn một số vật phẩm rơi (thịt nướng Hall B, III Hall C) chưa rõ.
+
+### Routine 03 — 16/10/2026 — Nhạc 16 bài, xác nhận bài + mốc bằng âm thanh video, gắn nhạc Map 1, bảng mốc Map 2
+- **Bước 0**: `main`; nhiễu nền giữ nguyên; cổng 00 + 02 = XONG. MCP `Castlevania_Original-main@5669a9bbfcade130`, dataPath đúng. Play an toàn (DisableDomainReload) 5 phiên, không crash; cuối phiên EditorSettings = HEAD (CRLF), `CVGP.ArenaUseDummy` = false, fps/vSync mặc định, Main.unity mở không dirty. **Sai sót quy trình (đã xử lý)**: ghi 4 file .cs (sửa Death) khi Editor còn Play sau bộ spam — thoát Play ngay, biên dịch lại sạch, chạy LẠI toàn bộ hồi quy sau đó (kết quả dưới là của bản cuối).
+- **Giải mã** (ffmpeg): `cd Art_Source/music; ffmpeg -i "<NN…>.mp3" -vn -ac 1 -ar 22050 -c:a pcm_s16le _cache/03/audio/mNN.wav` (+ `sNN.wav` stereo 44.1 kHz); video: `-vn -ac 1 -ar 22050` ⇒ `v_<video>.wav` (5 video).
+- **Nhập**: 16 MP3 chép nguyên byte ⇒ `Assets/Data/Audio/Music/mNN_*.mp3` (sha256 = nguồn, §3d); preset `MusicImporter`; Unity: 44.1 kHz stereo, độ trễ +2257 mẫu so ffmpeg (5/5 jingle NCC ≥ 0.999).
+- **Nhận dạng** (§2d): 5 video × 16 bài; Block 1 = VK, Block 2 = Stalker (xác nhận), boss = Poison Mind, Stage Clear = nhặt cầu (4/4), bản đồ/tally không nhạc, Prologue ở Intro, STAGE 07 = Wicked Child (yếu). Phát hiện: dùng đồng hồ làm Stalker đứng 2.40 s; Phantom Bat 2 video lệch nhau (§5 #6); Medusa PM = thức + 0.77–0.95 s.
+- **Điểm lặp** (§2d): 10 bài lặp + 6 không lặp; khớp cục bộ NCC 0.92–1.00; 05/09 xấp xỉ (rip 1 vòng + fade). Kiểm đầu ra thật VK/Stalker/PM: ±1 mẫu, NCC min 0.965, không khoảng lặng (`ref/data/music/check_m*.txt`).
+- **Code**: `eMusic`, `MusicLibrary` (+ asset, builder `CVGP/Build MusicLibrary` — chạy 2 lần: ghi rồi "không đổi"), `AudioManager.PlayMusic(eMusic)` + lặp theo mẫu + `MusicEvent`; `StageFlow` (ConfigStage.music, StageClear, Death lúc bắt đầu chết qua `SimonController.DyingStarted`), `BossBase.StartBossMusic` (ConfigBlock.bossMusic), `IntroScreen`/`GameOverScreen`/`Stage4Stub`/`Stage1Stub` (id nhạc); `ConfigRows` music/bossMusic → `eMusic`; 2 CSV 24 ô nguồn mới ⇒ `CVGP/Import Config` OK (12 bảng 673 dòng, ghi 2); `CVGP/Export Stats Report` (CHARACTER_STATS cột nhạc). Probe Editor `MusicProbe`, `MusicProbeTap`. Hiệu đính 3 dòng `CVGP_MEMORY` (ghi "(CVM2 03)").
+- **Mốc Unity ↔ video** (§2e): Prologue L448 (video L443.9, +0.07 s), VK L922 (−0.2 tick), lặp mỗi 1792 tick, PM lúc lao đầu L6366, Stage Clear cùng tick nhặt cầu L8168, bản đồ im L8948, Stalker L9370; Death 126 tick → GAME OVER → Game Over → CONTINUE → VK. 2 lần chạy y hệt.
+- **Hồi quy H11 (bản cuối, 3 phiên Play)**: Main `flow` `e0b2d54c` + **h8 5/5** (352/432/448/890/922), `spam1..4` 0 lỗi console (437 s) — trước đó (trước sửa Death) `flow30`/`flow144` `e0b2d54c` + h8 5/5 ×2; Arena-Simon `all` @60: long `5963c4ba` · simon `b2954cbe` 20/20 · attack `eee2cdfb` 21/21 · item `7ca5bf56` 14/14 · enemy `f288b0ce` 20/20 · boss `31e6d711` 12/12 · b23 `171be0c1` 31/31 · b46 `58a8edf9` 26/26 · b24 `7adfbc54` 16/16 · b56 `6cb8a1ad` 14/14 · rules `03fafb24` 68/68 (1047 s, 0 lệch); Arena-Dummy `core` `76516076` 21/21. **Không hash nào đổi** (nhạc không chạm trạng thái game). gallery không chạy (không đổi số nhân vật — H13 không kích hoạt). flow30/144 không chạy lại sau sửa Death (sửa chỉ thêm sự kiện; flow 60 + spam đã chạy lại).
+- **Ảnh đã xem**: `_cache/shots/03/flow_L930_vk.png` (Stage 01 L930 lúc VK đang phát — HUD STAGE 01 TIME 0300, Simon cạnh tượng) ; `_cache/shots/03/ssm_05_07_09.png` (ma trận tự tương đồng — xác định vòng 07/09).
+- **Câu hỏi §5 mới**: #6 (mốc nhạc Phantom Bat), #7 (đồng hồ dừng nhạc).
+- **Nghiệm thu routine 03**: [x] 16 bài nhập, tên/sha256 §3d; điểm lặp đo cho mọi bài lặp (10; 05/09 xấp xỉ có lý do) · [x] bảng bài ↔ mốc Map_1 + Map_2 + Intro + 2 video boss có NCC (§2d); 24 ô Config có nguồn video hoặc lý do giữ suy luận · [x] nhạc Map 1 phát đúng mốc (log §2e, lệch ≤ 0.07 s ở mọi mốc so được; Phantom Bat theo quy tắc có ghi lệch) ; bảng mốc Map 2 §2f sẵn cho 11 · [x] mọi hash bảng chuẩn y nguyên, H8 5/5, console chỉ lỗi nền. **Xấp xỉ/thiếu**: Death/Game Over/bài Block 3–6 không có video (suy luận); mốc nhạc Phantom Bat 2 video mâu thuẫn; đồng hồ-dừng-nhạc chưa dựng; không nghe trực tiếp (kiểm bằng log + WAV đầu ra).

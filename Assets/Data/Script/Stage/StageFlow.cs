@@ -13,8 +13,9 @@ using UnityEngine;
 ///   • Cầu thang cắt mép (kind Stair): đi lên quá STAIR_UP_EXIT_Y / xuống quá STAIR_DOWN_EXIT_Y ⇒ đen STAIR_BLACK_TICKS ⇒ section đích,
 ///     Simon trên thang đích ở Y đến đo video (x theo đường thang), TIME pha mới.
 ///   • Hết Block 1: StageRules.TallyDone ⇒ GameManager.GoTo(CastleMap, MAP_BLACK_TICKS).
-///   • Nhạc (chưa import — §6 nợ 02 ⇒ clip null = im lặng + log): Vampire Killer từ đầu stage (video 2.205 s, chạy liền qua cổng/cửa/
-///     Stage 02/03 — songpos), Stage Clear lúc nhặt quả cầu (12), Death khi mất mạng; nhạc boss do BossBase (14).
+///   • Nhạc (CVM2 03 — tương quan âm thanh video, CVM2_MEMORY §2d): ConfigStage.music từ đầu stage + hồi sinh (Map_1: Vampire Killer
+///     0:02.22, chạy liền qua cổng/cửa/Stage 02/03 — KHÔNG phát lại), Stage Clear lúc nhặt quả cầu (Map_1 3:33.06), Death khi mất mạng
+///     (suy luận — không video); nhạc boss do BossBase (ConfigBlock.bossMusic).
 /// </summary>
 [DisallowMultipleComponent]
 public class StageFlow : MonoBehaviour
@@ -42,13 +43,11 @@ public class StageFlow : MonoBehaviour
     [SerializeField] private Sprite doorLeaf;
     [Tooltip("Object/door_1 — cửa mở 24×48.")]
     [SerializeField] private Sprite doorOpen;
-    [Header("Nhạc — chưa import (Art_Source/music): để trống ⇒ PlayMusic(null) im lặng + log")]
-    [Tooltip("03. Vampire Killer (Courtyard) — loop, Stage 01–03.")]
-    [SerializeField] private AudioClip stageMusic;
-    [Tooltip("12. Stage Clear — nhặt quả cầu.")]
-    [SerializeField] private AudioClip stageClearMusic;
-    [Tooltip("15. Death — mất mạng.")]
-    [SerializeField] private AudioClip deathMusic;
+    [Header("Nhạc (CVM2 03) — nhạc stage đọc ConfigStage.music theo stage đang chơi")]
+    [Tooltip("Nhặt quả cầu (video Map_1 3:33.06, Map_2 3:58.83, 2 video boss).")]
+    [SerializeField] private eMusic stageClearId = eMusic.StageClear;
+    [Tooltip("Mất mạng (suy luận — không có video Simon chết).")]
+    [SerializeField] private eMusic deathId = eMusic.Death;
 
     /// <summary>Mốc luồng (harness Map1RouteProbe ghi log): "gate", "eh", "door", "door_open", "stage2", "stair_down", …</summary>
     public static event Action<StageFlow, string> Milestone;
@@ -86,6 +85,7 @@ public class StageFlow : MonoBehaviour
             rules.LifeLost += OnLifeLost;
         }
         ItemEffects.CrystalPicked += OnCrystal;
+        SimonController.DyingStarted += OnDying;
         ResetFlow();
     }
 
@@ -103,6 +103,7 @@ public class StageFlow : MonoBehaviour
             rules.LifeLost -= OnLifeLost;
         }
         ItemEffects.CrystalPicked -= OnCrystal;
+        SimonController.DyingStarted -= OnDying;
         ResetFlow();
     }
 
@@ -120,12 +121,15 @@ public class StageFlow : MonoBehaviour
             world.SpawnersPaused = false;
     }
 
-    /// <summary>Đầu stage (StageScreen.OnEnter, hồi sinh): nhạc stage — clip null ⇒ im lặng + log (nhạc chưa import).</summary>
+    /// <summary>Đầu stage (StageScreen.OnEnter, hồi sinh): nhạc stage = ConfigStage.music (phát từ đầu bài).</summary>
     public void PlayStageMusic()
     {
-        Log("nhạc Vampire Killer (loop" + (stageMusic == null ? " — chưa import, im lặng" : "") + ")");
+        var cfg = GameConfig.Current;
+        var row = cfg != null && GameSession.Current != null ? cfg.GetStage(GameSession.Current.stage) : null;
+        var id = row != null ? row.music : eMusic.VampireKiller;
+        Log("nhạc stage " + id);
         if (AudioManager.I != null)
-            AudioManager.I.PlayMusic(stageMusic, true);
+            AudioManager.I.PlayMusic(id);
     }
 
     // ---------------------------------------------------------------- tick
@@ -466,18 +470,27 @@ public class StageFlow : MonoBehaviour
 
     private void OnLifeLost(eDeathCause cause, bool alive)
     {
-        Log("nhạc Death (" + (deathMusic == null ? "chưa import — im lặng" : deathMusic.name) + ")");
+        Log("mất mạng (" + cause + (alive ? ", còn mạng" : ", hết mạng") + ")");
+    }
+
+    /// <summary>Nhạc Death lúc Simon BẮT ĐẦU chết (CVM2 03 — suy luận: DeathTicks 124 = độ dài bài Death 2.07 s ⇒ bài phủ cả cảnh chết;
+    /// trước đây phát ở LifeLost = SAU cảnh chết và bị màn GAME OVER cắt).</summary>
+    private void OnDying(SimonController who)
+    {
+        if (who == null || who.World != world)
+            return;
+        Log("nhạc " + deathId);
         if (AudioManager.I != null)
-            AudioManager.I.PlayMusic(deathMusic, false);
+            AudioManager.I.PlayMusic(deathId);
     }
 
     private void OnCrystal(StageWorld w)
     {
         if (w != world)
             return;
-        Log("nhạc Stage Clear (" + (stageClearMusic == null ? "chưa import — im lặng" : stageClearMusic.name) + ")");
+        Log("nhạc " + stageClearId);
         if (AudioManager.I != null)
-            AudioManager.I.PlayMusic(stageClearMusic, false);
+            AudioManager.I.PlayMusic(stageClearId);
         Mark("crystal");
     }
 

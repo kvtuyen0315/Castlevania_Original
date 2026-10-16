@@ -147,7 +147,7 @@ public class ConfigBlockRow
     public string src_timeLimit;
     public int damageToSimon;
     public string src_damage;
-    public string bossMusic;
+    public eMusic bossMusic;
     public string src_music;
     public string descriptionShort;
     public string source;
@@ -162,7 +162,7 @@ public class ConfigStageRow
     public string areaShort;
     [CfgEnumList(typeof(eEnemyId))] public string enemies;
     public eBossId boss;
-    public string music;
+    public eMusic music;
     public string src_music;
     public string source;
 }

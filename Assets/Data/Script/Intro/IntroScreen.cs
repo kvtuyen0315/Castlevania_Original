@@ -49,8 +49,8 @@ public class IntroScreen : GameScreen
     const int BAT_HALF_W = 4;
     const int BAT_HALF_H = 3;
 
-    [Tooltip("Nhạc Prologue — chưa có file (CVTI_MEMORY §5 #3), để trống thì im lặng.")]
-    [SerializeField] private AudioClip music;
+    [Tooltip("Nhạc Intro (CVM2 03: video Title_Intro — Prologue bắt đầu 8.43 s ≈ 4 tick TRƯỚC khi Intro hiện; phát ở tick bật Intro, lệch 0.07 s).")]
+    [SerializeField] private eMusic musicId = eMusic.Prologue;
     [SerializeField] private SpriteRenderer simon;
     [Tooltip("walk_0, walk_1, walk_2 (sheet Simon, quay trái — không flipX).")]
     [SerializeField] private Sprite[] simonWalk = new Sprite[0];
@@ -69,7 +69,7 @@ public class IntroScreen : GameScreen
         ShowFrame(0);
         CvtiDebug.Log("Intro: Simon bắt đầu đi");
         if (AudioManager.I != null)
-            AudioManager.I.PlayMusic(music, false);
+            AudioManager.I.PlayMusic(musicId);
     }
 
     public override void OnTick(int localFrame)

@@ -1,0 +1,54 @@
+tap tap_m04.wav bai 04: loopStart 577710 loopEnd 1892762 (len 1315052) | sr tap 48000
+  tap  0.032 s  songpos   1850053 (41.9513 s)  ncc 0.965
+  tap  0.082 s  songpos   1852258 (42.0013 s)  ncc 0.972
+  tap  0.132 s  songpos   1854463 (42.0513 s)  ncc 0.997
+  tap  0.182 s  songpos   1856668 (42.1013 s)  ncc 0.999
+  tap  0.232 s  songpos   1858873 (42.1513 s)  ncc 0.999
+  tap  0.282 s  songpos   1861078 (42.2013 s)  ncc 0.996
+  tap  0.332 s  songpos   1863283 (42.2513 s)  ncc 0.996
+  tap  0.382 s  songpos   1865488 (42.3013 s)  ncc 0.999
+  tap  0.432 s  songpos   1867693 (42.3513 s)  ncc 0.993
+  tap  0.482 s  songpos   1869898 (42.4013 s)  ncc 0.998
+  tap  0.532 s  songpos   1872103 (42.4513 s)  ncc 0.998
+  tap  0.582 s  songpos   1874308 (42.5013 s)  ncc 0.994
+  tap  0.632 s  songpos   1876513 (42.5513 s)  ncc 0.999
+  tap  0.682 s  songpos   1878718 (42.6013 s)  ncc 0.999
+  tap  0.732 s  songpos   1880923 (42.6513 s)  ncc 1.000
+  tap  0.782 s  songpos   1883128 (42.7013 s)  ncc 0.999
+  tap  0.832 s  songpos   1885333 (42.7513 s)  ncc 0.999
+  tap  0.882 s  songpos   1887538 (42.8013 s)  ncc 0.999
+  tap  0.932 s  songpos   1889743 (42.8513 s)  ncc 0.994
+  tap  0.982 s  songpos    577498 (13.0952 s)  ncc 0.990  <-- NHAY -1312245 mau (loopLen 1315052, lech +602)
+  tap  1.032 s  songpos    579100 (13.1315 s)  ncc 0.998  <-- NHAY +1602 mau (loopLen 1315052, lech +1314449)
+  tap  1.082 s  songpos    581305 (13.1815 s)  ncc 0.992
+  tap  1.132 s  songpos    607685 (13.7797 s)  ncc 0.994  <-- NHAY +26380 mau (loopLen 1315052, lech +1339227)
+  tap  1.182 s  songpos    585715 (13.2815 s)  ncc 0.989  <-- NHAY -21970 mau (loopLen 1315052, lech +1290877)
+  tap  1.232 s  songpos    587920 (13.3315 s)  ncc 0.994
+  tap  1.282 s  songpos    590125 (13.3815 s)  ncc 0.999
+  tap  1.332 s  songpos    592330 (13.4315 s)  ncc 0.988
+  tap  1.382 s  songpos    594535 (13.4815 s)  ncc 0.998
+  tap  1.432 s  songpos    596740 (13.5315 s)  ncc 0.998
+  tap  1.482 s  songpos    598945 (13.5815 s)  ncc 0.968
+  tap  1.532 s  songpos    601150 (13.6315 s)  ncc 0.992
+  tap  1.582 s  songpos    603355 (13.6815 s)  ncc 0.989
+  tap  1.632 s  songpos    605560 (13.7315 s)  ncc 0.967
+  tap  1.682 s  songpos    583591 (13.2334 s)  ncc 0.997  <-- NHAY -21969 mau (loopLen 1315052, lech +1290878)
+  tap  1.732 s  songpos    609970 (13.8315 s)  ncc 0.972  <-- NHAY +26379 mau (loopLen 1315052, lech +1339226)
+  tap  1.782 s  songpos    612175 (13.8815 s)  ncc 0.987
+  tap  1.832 s  songpos    585462 (13.2758 s)  ncc 0.996  <-- NHAY -26713 mau (loopLen 1315052, lech +1286134)
+  tap  1.882 s  songpos    616585 (13.9815 s)  ncc 0.967  <-- NHAY +31123 mau (loopLen 1315052, lech +1343970)
+  tap  1.932 s  songpos    609151 (13.8129 s)  ncc 0.996  <-- NHAY -7434 mau (loopLen 1315052, lech +1305413)
+  tap  1.982 s  songpos    620995 (14.0815 s)  ncc 0.989  <-- NHAY +11844 mau (loopLen 1315052, lech +1324691)
+  tap  2.032 s  songpos    623200 (14.1315 s)  ncc 0.994
+  tap  2.082 s  songpos    625405 (14.1815 s)  ncc 0.999
+  tap  2.132 s  songpos    627610 (14.2315 s)  ncc 0.993
+  tap  2.182 s  songpos    629815 (14.2815 s)  ncc 0.993
+  tap  2.232 s  songpos    632020 (14.3315 s)  ncc 0.993
+  tap  2.282 s  songpos    634225 (14.3815 s)  ncc 0.992
+  tap  2.332 s  songpos    636430 (14.4315 s)  ncc 0.999
+  tap  2.382 s  songpos    638635 (14.4815 s)  ncc 0.993
+  tap  2.432 s  songpos    640840 (14.5315 s)  ncc 0.991
+rms 10 ms quanh cu nhay (x1000): 193 187 81 64 75 66 74 65 73 67 73 67 72 68 71 69 69 70 148 203 192 186 184 181 186 186 178 190 142 74 67 70 71 71 68 70 68 68 69 71
+rms bai goc cung vi tri (x1000):   194 190 84 64 75 66 75 65 74 67 73 67 72 69 71 70 70 71 150 206 183 185 184 182 186 183 179 112 65 74 68 71 71 70 69 70 68 70 70 71
+rms toan ban ghi trung vi 139, min quanh cu nhay 65
+ncc min 0.965, trung vi 0.994, so cua so 49

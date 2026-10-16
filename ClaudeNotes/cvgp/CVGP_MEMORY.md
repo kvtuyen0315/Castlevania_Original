@@ -266,7 +266,7 @@ Chép từ CVGP_PLAN §3c / `ref/MAP1_TIMELINE.md §4`: Simon đi 1.00 px/tick; 
 | Thức | Map_1 f5984 ngay khi Simon đi tới x màn 180→182 (trên bệ chân thang); video boss f66, Simon tới 181 ở f57, 184 ở f60 — trễ 12–18 tick chưa giải thích (§5 #29) | Simon.X ≥ **693** ⇒ thức cùng tick (wake_video: Simon 693 ở rel 17) | Map_1 0; boss ~+15 tick |
 | Lượn tại chỗ | thức → bắt đầu lao: boss 35.6, Map_1 31.6 tick | **33** tick đứng yên | ±2.4 |
 | Vỗ cánh | `phantombat_1` ↔ `_2`, chu kỳ 8.9 frame = 17.8 tick (boss f66–159), khung đầu `_1` (2 video) | anim fly 9/9 | — |
-| Nhạc boss | Poison Mind (xcorr 1.2 s đầu bài): boss 2.784 s (NCC 0.87), Map_1 ≈ 200.17 s (0.69) ≈ lúc hết lượn tại chỗ | `StartBossMusic()` khi bắt đầu cú lao đầu = `PlayMusic(null)` (chưa import nhạc) | — |
+| Nhạc boss | Poison Mind (xcorr 1.2 s đầu bài): boss 2.784 s (NCC 0.87), Map_1 ≈ 200.17 s (0.69) ≈ lúc hết lượn tại chỗ — *(CVM2 03: đo lại cửa sổ ngắn: Map_1 **198.80 s** NCC 0.96 = 0.67 s TRƯỚC khi dơi đổi sprite thức; video boss 2.81 s; giữ quy tắc lao đầu — CVM2_MEMORY §2d)* | `StartBossMusic()` khi bắt đầu cú lao đầu = `PlayMusic(null)` (chưa import nhạc) | — |
 | Bổ nhào (5 cú) | khớp **y = y0 + d(2s − s²), s = t/T**, x thẳng: boss lao đầu T 54 d 41 vx 1.29 · Map_1 lao đầu T 60 d 42 vx 1.22 · boss lao 2 T 54 d 41 vx 1.65 · Map_1 lao (trừ 2 lần khựng) T 60 d 44 vx 1.56 · boss lao 3 T 44 d 31 vx 2.10 — rms y 0.4–1.1 px ⇒ vy đầu = 2d/T = 1.40–1.52 | vy0 **1.46**, d = min(**41**, **156** − y0), T = 2d/vy0, vx = (Simon.X − x0)/T kẹp [**1.22**, **2.1**] hướng về Simon | so `wake_video`: lao đầu dx rms 5.7 (boss) / 4.0 (Map_1), dy 1.9 / 1.0 (2 video lệch nhau 4 tick lúc bắt đầu lao) |
 | Đáy | lao đầu y màn **114** (2 video, x 693 / 690 khi Simon 696); lao 2 boss + Map_1 ≈ y 165 (ngang trên đầu Simon — không chạm); lao 3 từ y 157 ⇒ 188 (= sàn − 20, CHẠM Simon) | lao đầu (697, 82); đáy ≤ y 156 | x +4..7 |
 | Lao 4 (boss f459–469) | vx 2.0, vy ≈ 1.75 không giảm, kẹt lửa sau 20 tick — KHÔNG khớp mô hình (§6) | — | — |
@@ -1153,7 +1153,7 @@ Thời lượng = `StateFrame` (Execute đầu thấy 1 ⇒ "sau N tick" = `Stat
 
 - (12) **Crash Editor nền (Odin)**: mỗi domain reload, Unity báo "Unloading broken assembly …/Sirenix.OdinInspector.Editor.dll" rồi import lại DLL (artifact đổi mỗi lần); vào Play (domain reload) ⇒ hộp thoại **Fatal "The file 'MemoryStream' is corrupted! [Position out of bounds!]"** — Editor tắt 1 lần khi biên dịch sau Play và 2 lần khi vào Play scene Arena (log lưu `_cache/12/editor_crash2.log`). DLL Sirenix trong submodule đang ` M` (ngày 01/2026 + 4 DLL 11/10/2026) — không do cụm sửa (H3). Cách kiểm tạm: bật `EditorSettings.enterPlayModeOptionsEnabled` (tắt domain reload) trong lúc Play rồi trả lại (file y HEAD). Đề xuất người dùng cập nhật/khôi phục Odin trong submodule hoặc `cvgp-fix` (xoá artifact `Library/` của DLL rồi import lại) — routine 13+ có thể gặp lại.
 - (12 → 15) Màn chơi thật chưa có `StageRules`/StageWorld trong Main (Stage1Stub): CONTINUE hiện về `Stage1Stub`; `Title → Intro` chưa gọi `GameRules.NewGame` (phiên chỉ đặt lại khi END hoặc lúc nạp domain) — 15 thêm khi nối luồng (giữ H8).
-- (12) Nhạc `15. Death`, `16. Game Over`, `12. Stage Clear` chưa import (nợ 02) ⇒ im lặng; `GameOverScreen.music` để trống.
+- (12) Nhạc `15. Death`, `16. Game Over`, `12. Stage Clear` chưa import (nợ 02) ⇒ im lặng; `GameOverScreen.music` để trống. *(CVM2 03: đã nhập 16 bài + gắn mốc — CVM2_MEMORY §2d–§2f, §3d.)*
 - (12) Chờ trước tally 260 (Map_1) vs 220 (video boss) chưa giải thích (có thể theo nhạc Stage Clear 4.10 s hoặc lúc Simon chạm đất) — theo Map_1.
 - (12) Hết giờ khi Simon đang trên không ⇒ Dead tại chỗ (không rơi) — chưa có video; ít gặp.
 - (12) `CVGP/Build HUD (CVGP 12)` dựng lại HUD.prefab KHÔNG ra byte y hệt (Unity sinh fileID con mới mỗi lần — như builder CVTI); fileID gốc giữ ⇒ Intro/Stage1 không hỏng. Chỉ chạy khi đổi layout.
@@ -1204,7 +1204,7 @@ Thời lượng = `StateFrame` (Execute đầu thấy 1 ⇒ "sau N tick" = `Stat
 - (19) Tượng Medusa là renderer con của boss ⇒ biến mất khi boss bị gỡ (lúc quả cầu hiện); bản gốc có thể còn tượng mất đầu — làm prop riêng khi dựng map Block 2.
 - (19) Vị trí quả cầu sau boss 2–4 dùng số đo Phantom Bat (x màn 128, y 104) — phòng Mummy thử cầu rơi lên gờ y 112 (autopilot leo thang nhặt). Bản gốc mỗi boss có thể khác.
 - (19) Mummy không leo cầu thang (đi sàn, khối/tường chặn ⇒ đứng); Monster/Igor không đổi tầng; Igor có thể nhảy xuyên Monster. Holy Water "hoá đá" Mummy dùng cơ chế giữ chân chung 14 (không kịch bản riêng ở 19 — BossProbe `holy_hold` đã kiểm cơ chế).
-- (19) Nhạc boss (Poison Mind) vẫn `PlayMusic(null)` — nợ nhạc 02/16.
+- (19) Nhạc boss (Poison Mind) vẫn `PlayMusic(null)` — nợ nhạc 02/16. *(CVM2 03: `StartBossMusic` phát `ConfigBlock.bossMusic`.)*
 - (19) `_cache/19/` (add_params.py, mem19.py, sheet.py, smoke_*.txt, suite60.txt, md5_*.txt, sheet_*.png) + `_cache/shots/19/` (~70 ảnh + h8) — xoá tay được.
 - (20) Death + Dracula chưa đặt vào map nào (chưa có map Block 5–6); phòng thử ghép ô Block 1 (§5 #58). Màn kết thúc sau `GameRules.OnGameCleared` (**credits, ending, Second Quest Stage 19+ với sát thương 4 vạch**) CHƯA làm — đề bài ngoài phạm vi; hiện chỉ bắn sự kiện + tally như boss thường.
 - (20) Nhạc Dracula/Death (ConfigBlock 5/6 bossMusic) vẫn `PlayMusic(null)` — nợ nhạc 02/16; Death gọi nhạc khi bắt đầu bay, Dracula ở lần hiện đầu.

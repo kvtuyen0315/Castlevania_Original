@@ -11,6 +11,7 @@ public class SimonDeadState : SimonState
         if (owner.Anim != null && owner.aDeath != null)
             owner.Anim.SetFrame(owner.aDeath, 0);
         owner.drawOffset = new Vector2Int(0, owner.crouchDrawY);
+        owner.RaiseDyingStarted();
     }
 
     public override void OnExecuteState()

@@ -19,9 +19,10 @@ MonoBehaviour:
       l\xE2u \u0111\xE0i"
     enemies: Ghoul;Panther
     boss: 0
-    music: M03_VampireKiller
-    src_music: "suy lu\u1EADn: t\xEAn file Art_Source/music (Courtyard) \u2014 CH\u01AFA
-      \u0111\u1ED1i chi\u1EBFu video"
+    music: 3
+    src_music: "video:Map_1 0:02.22 Vampire Killer \u0111\u1EA7u b\xE0i (xcorr NCC
+      0.94) + video:Title_Intro 16.40 s (= L922 Stage 01) \u2014 \u0111o:cvm2-03
+      Tools/cvm2/music3.py"
     source: wiki:Stages 1-3#Stage 1
   - stage: 2
     block: 1
@@ -29,99 +30,102 @@ MonoBehaviour:
       ch\u1EBFt)"
     enemies: Fishman;Bat
     boss: 0
-    music: M03_VampireKiller
-    src_music: "suy lu\u1EADn: t\xEAn file Art_Source/music \u2014 CH\u01AFA \u0111\u1ED1i
-      chi\u1EBFu video"
+    music: 3
+    src_music: "video:Map_1 1:31\u20132:50 Vampire Killer ch\u1EA1y li\u1EC1n t\u1EEB
+      Stage 01 qua c\u1EEDa (kh\xF4ng ph\xE1t l\u1EA1i; g\u1ED1c b\xE0i kh\xF4ng
+      \u0111\u1ED5i \xB10.03 s/v\xF2ng 29.82 s) \u2014 \u0111o:cvm2-03 Tools/cvm2/music3.py"
     source: wiki:Stages 1-3#Stage 2
   - stage: 3
     block: 1
     areaShort: "H\xE0nh lang c\u1EA7u thang xu\u1ED1ng ph\xF2ng boss"
     enemies: Ghoul
     boss: 1
-    music: M03_VampireKiller
-    src_music: "suy lu\u1EADn: t\xEAn file Art_Source/music \u2014 CH\u01AFA \u0111\u1ED1i
-      chi\u1EBFu video"
+    music: 3
+    src_music: "video:Map_1 2:51\u20133:18.7 Vampire Killer ch\u1EA1y li\u1EC1n t\u1EDBi
+      khi Poison Mind (kh\xF4ng ph\xE1t l\u1EA1i) \u2014 \u0111o:cvm2-03 Tools/cvm2/music3.py"
     source: wiki:Stages 1-3#Stage 3
   - stage: 4
     block: 2
     areaShort: "Ng\u1EAFn; Spear Knight canh c\u1EEDa cu\u1ED1i"
     enemies: SpearKnight;Bat
     boss: 0
-    music: M04_Stalker
-    src_music: "suy lu\u1EADn: t\xEAn file Art_Source/music (Armory) \u2014 CH\u01AFA
-      \u0111\u1ED1i chi\u1EBFu video"
+    music: 4
+    src_music: "video:Map_2 0:06.18 Stalker \u0111\u1EA7u b\xE0i (xcorr NCC 0.94;
+      STAGE 04 hi\u1EC7n 0:06.23) \u2014 \u0111o:cvm2-03 Tools/cvm2/music3.py"
     source: wiki:Stages 4-6#Stage 4; wiki:Enemies
   - stage: 5
     block: 2
     areaShort: "Nhi\u1EC1u h\u1ED1; Medusa Head ngay t\u1EEB \u0111\u1EA7u"
     enemies: MedusaHead;SpearKnight
     boss: 0
-    music: M04_Stalker
-    src_music: "suy lu\u1EADn: t\xEAn file Art_Source/music \u2014 CH\u01AFA \u0111\u1ED1i
-      chi\u1EBFu video"
+    music: 4
+    src_music: "video:Map_2 0:57.7\u20132:22 Stalker ch\u1EA1y li\u1EC1n qua c\u1EEDa
+      tr\xE1i #1 (kh\xF4ng ph\xE1t l\u1EA1i) \u2014 \u0111o:cvm2-03 Tools/cvm2/music3.py"
     source: wiki:Stages 4-6#Stage 5; wiki:Enemies
   - stage: 6
     block: 2
     areaShort: "B\u1EABy gai v\xE0 s\u1EA3nh v\xF2m"
     enemies: BoneTower;Ghost;MedusaHead
     boss: 2
-    music: M04_Stalker
-    src_music: "suy lu\u1EADn: t\xEAn file Art_Source/music \u2014 CH\u01AFA \u0111\u1ED1i
-      chi\u1EBFu video"
+    music: 4
+    src_music: "video:Map_2 2:28\u20133:47.8 Stalker ch\u1EA1y li\u1EC1n qua c\u1EEDa
+      tr\xE1i #2 + s\u1EA3nh Medusa (d\u1EEBng 2.40 s l\xFAc d\xF9ng \u0111\u1ED3ng
+      h\u1ED3 2:40.97 r\u1ED3i ch\u1EA1y ti\u1EBFp) \u2014 \u0111o:cvm2-03 Tools/cvm2/music3.py"
     source: wiki:Stages 4-6#Stage 6; wiki:Enemies
   - stage: 7
     block: 3
     areaShort: "B\u1EE5c v\xE0 kh\u1ED1i nh\xF4; s\xE1t th\u01B0\u01A1ng 3 v\u1EA1ch"
     enemies: Ghost;Fleaman;Skeleton;Raven
     boss: 0
-    music: M05_WickedChild
-    src_music: "suy lu\u1EADn: t\xEAn file Art_Source/music (Upper Yard) \u2014 CH\u01AFA
-      \u0111\u1ED1i chi\u1EBFu video"
+    music: 5
+    src_music: "video:Map_2 4:20.15\u20134:20.40 (0.3 s \u0111\u1EA7u STAGE 07):
+      Wicked Child songpos 0.35 NCC 0.48 (b\xE0i k\u1EBF 0.14) \u2014 b\u1EB1ng ch\u1EE9ng
+      y\u1EBFu; \u0111o:cvm2-03 Tools/cvm2/music3.py"
     source: wiki:Stages 7-9#Stage 7; wiki:Enemies
   - stage: 8
     block: 3
     areaShort: "T\u1EA7ng d\u01B0\u1EDBi + t\u1EA7ng tr\xEAn"
     enemies: MedusaHead;Skeleton;BoneTower;Raven
     boss: 0
-    music: M05_WickedChild
-    src_music: "suy lu\u1EADn: t\xEAn file Art_Source/music \u2014 CH\u01AFA \u0111\u1ED1i
-      chi\u1EBFu video"
+    music: 5
+    src_music: "suy lu\u1EADn: c\xF9ng b\xE0i Stage 07 (Block 3 ch\u1EA1y li\u1EC1n
+      nh\u01B0 Block 1\u20132) \u2014 ch\u01B0a c\xF3 video"
     source: wiki:Stages 7-9#Stage 8
   - stage: 9
     block: 3
     areaShort: "C\u1EA7u h\u1ECFng; ph\xF2ng Mummy"
     enemies: Raven;Skeleton;BoneTower;MedusaHead
     boss: 3
-    music: M05_WickedChild
-    src_music: "suy lu\u1EADn: t\xEAn file Art_Source/music \u2014 CH\u01AFA \u0111\u1ED1i
-      chi\u1EBFu video"
+    music: 5
+    src_music: "suy lu\u1EADn: c\xF9ng b\xE0i Stage 07 (Block 3 ch\u1EA1y li\u1EC1n
+      nh\u01B0 Block 1\u20132) \u2014 ch\u01B0a c\xF3 video"
     source: wiki:Stages 7-9#Stage 9; wiki:Enemies
   - stage: 10
     block: 4
     areaShort: "H\u1EA7m n\u01B0\u1EDBc c\xF3 b\u1EC7 n\u1ED5i; tr\u1EA7n th\u1EA5p"
     enemies: Fishman;Bat
     boss: 0
-    music: M06_WalkingOnTheEdge
+    music: 6
     src_music: "suy lu\u1EADn: t\xEAn file Art_Source/music (Castle Swamp) \u2014
-      CH\u01AFA \u0111\u1ED1i chi\u1EBFu video"
+      ch\u01B0a c\xF3 video"
     source: wiki:Stages 10-12#Stage 10
   - stage: 11
     block: 4
     areaShort: "Tr\xEAn m\u1EB7t \u0111\u1EA5t; Eagle li\xEAn t\u1EE5c; 1 Bone Dragon"
     enemies: Eagle;Fleaman;BoneDragon
     boss: 0
-    music: M06_WalkingOnTheEdge
-    src_music: "suy lu\u1EADn: t\xEAn file Art_Source/music \u2014 CH\u01AFA \u0111\u1ED1i
-      chi\u1EBFu video"
+    music: 6
+    src_music: "suy lu\u1EADn: t\xEAn file Art_Source/music \u2014 ch\u01B0a c\xF3
+      video"
     source: wiki:Stages 10-12#Stage 11; wiki:Enemies
   - stage: 12
     block: 4
     areaShort: "C\u1ED1ng ng\u1EA7m; 2 Bone Dragon"
     enemies: BoneDragon
     boss: 4
-    music: M06_WalkingOnTheEdge
-    src_music: "suy lu\u1EADn: t\xEAn file Art_Source/music \u2014 CH\u01AFA \u0111\u1ED1i
-      chi\u1EBFu video"
+    music: 6
+    src_music: "suy lu\u1EADn: t\xEAn file Art_Source/music \u2014 ch\u01B0a c\xF3
+      video"
     source: wiki:Stages 10-12#Stage 12
   - stage: 13
     block: 5
@@ -129,52 +133,52 @@ MonoBehaviour:
       4 v\u1EA1ch"
     enemies: Fleaman;Skeleton;RedSkeleton
     boss: 0
-    music: M07_HeartOfFire
-    src_music: "suy lu\u1EADn: t\xEAn file Art_Source/music (Prisonhold) \u2014 CH\u01AFA
-      \u0111\u1ED1i chi\u1EBFu video"
+    music: 7
+    src_music: "suy lu\u1EADn: t\xEAn file Art_Source/music (Prisonhold) \u2014 ch\u01B0a
+      c\xF3 video"
     source: wiki:Stages 13-15#Stage 13; wiki:Enemies
   - stage: 14
     block: 5
     areaShort: "Nhi\u1EC1u Axe Knight"
     enemies: AxeKnight;RedSkeleton;Fleaman
     boss: 0
-    music: M07_HeartOfFire
-    src_music: "suy lu\u1EADn: t\xEAn file Art_Source/music \u2014 CH\u01AFA \u0111\u1ED1i
-      chi\u1EBFu video"
+    music: 7
+    src_music: "suy lu\u1EADn: t\xEAn file Art_Source/music \u2014 ch\u01B0a c\xF3
+      video"
     source: wiki:Stages 13-15#Stage 14; wiki:Enemies
   - stage: 15
     block: 5
     areaShort: "B\u1EADc thang qua Bone Tower r\u1ED3i h\xE0nh lang cu\u1ED1i"
     enemies: BoneTower;AxeKnight;MedusaHead;Ghost;RedSkeleton
     boss: 5
-    music: M07_HeartOfFire
-    src_music: "suy lu\u1EADn: t\xEAn file Art_Source/music \u2014 CH\u01AFA \u0111\u1ED1i
-      chi\u1EBFu video"
+    music: 7
+    src_music: "suy lu\u1EADn: t\xEAn file Art_Source/music \u2014 ch\u01B0a c\xF3
+      video"
     source: wiki:Stages 13-15#Stage 15; wiki:Enemies
   - stage: 16
     block: 6
     areaShort: "C\u1EA7u d\xE0i t\u1EDBi th\xE1p chu\xF4ng"
     enemies: PhantomBatMinor
     boss: 0
-    music: M08_OutOfTime
+    music: 8
     src_music: "suy lu\u1EADn: t\xEAn file Art_Source/music (Upper Terrace) \u2014
-      CH\u01AFA \u0111\u1ED1i chi\u1EBFu video"
+      ch\u01B0a c\xF3 video"
     source: wiki:Stages 16-18#Stage 16
   - stage: 17
     block: 6
     areaShort: "Th\xE1p \u0111\u1ED3ng h\u1ED3 (b\xE1nh r\u0103ng)"
     enemies: Skeleton;Eagle;Fleaman
     boss: 0
-    music: M08_OutOfTime
-    src_music: "suy lu\u1EADn: t\xEAn file Art_Source/music \u2014 CH\u01AFA \u0111\u1ED1i
-      chi\u1EBFu video"
+    music: 8
+    src_music: "suy lu\u1EADn: t\xEAn file Art_Source/music \u2014 ch\u01B0a c\xF3
+      video"
     source: wiki:Stages 16-18#Stage 17
   - stage: 18
     block: 6
     areaShort: "Ph\xF2ng Dracula (\u0111\u1EC9nh l\xE2u \u0111\xE0i)"
     enemies: 
     boss: 6
-    music: M09_NothingToLose
+    music: 9
     src_music: "suy lu\u1EADn: t\xEAn file Art_Source/music (Dracula's Quarters)
-      \u2014 CH\u01AFA \u0111\u1ED1i chi\u1EBFu video"
+      \u2014 ch\u01B0a c\xF3 video"
     source: wiki:Stages 16-18#Stage 18

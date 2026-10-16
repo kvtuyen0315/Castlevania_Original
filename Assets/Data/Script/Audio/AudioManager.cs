@@ -1,17 +1,32 @@
+using System;
 using afsdk;
 using UnityEngine;
 
 /// <summary>
-/// 1 kênh nhạc + 1 kênh SFX (CVTI_MEMORY §4.3). Clip do màn hình giữ (serialized trên prefab màn), không Resources.Load.
-/// Gọi PlayMusic trong cùng tick bật màn (OnEnter) để nhạc khớp frame cắt cảnh. Title im lặng ⇒ Title gọi StopMusic.
+/// 1 kênh nhạc + 1 kênh SFX (CVTI_MEMORY §4.3). Gọi PlayMusic trong cùng tick bật màn / sự kiện (OnEnter, hồi sinh, quả cầu…)
+/// để nhạc khớp frame cắt cảnh. Title im lặng ⇒ Title gọi StopMusic.
+/// CVM2 03: nhạc theo tên (eMusic → MusicLibrary: clip + mẫu bắt đầu + điểm lặp đo bằng tương quan dạng sóng). Lặp theo mẫu:
+/// Update đọc timeSamples, vượt loopEnd ⇒ lùi đúng (loopEnd − loopStart) mẫu — đoạn sau loopEnd trong file = vòng 2 (cùng nội dung)
+/// nên trễ ≤ 1 khung không nghe ra. Update ở đây là NGOẠI LỆ hợp lệ của H4 (chỉ âm thanh, không đụng trạng thái gameplay/hash —
+/// CVM2_MEMORY §4).
 /// </summary>
 public class AudioManager : ManualSingletonMono<AudioManager>
 {
     [SerializeField] private AudioSource musicSource;
     [SerializeField] private AudioSource sfxSource;
     [SerializeField] private SfxLibrary sfxLibrary;
+    [SerializeField] private MusicLibrary musicLibrary;
+
+    /// <summary>Probe/log: (sự kiện, bài) — "play", "stop", "pause", "unpause", "loop" (lùi điểm lặp), "end" (bài không lặp hết).</summary>
+    public static event Action<string, eMusic> MusicEvent;
+
+    private eMusic curMusic;
+    private int curLoopStart, curLoopEnd;
+    private bool curWasPlaying;
 
     public bool IsMusicPlaying => musicSource != null && musicSource.isPlaying;
+    public eMusic CurrentMusic => curMusic;
+    public AudioSource MusicSource => musicSource;
 
     protected override void Awake()
     {
@@ -22,10 +37,68 @@ public class AudioManager : ManualSingletonMono<AudioManager>
             sfxSource = CreateSource();
     }
 
-    /// <summary>Phát nhạc từ đầu (dừng bài cũ). clip null ⇒ chỉ dừng nhạc (chưa có file nhạc, CVTI_MEMORY §5 #3).</summary>
+    /// <summary>Phát bài theo tên từ đầu (dừng bài cũ). None / không có trong thư viện ⇒ chỉ dừng nhạc + log.</summary>
+    public void PlayMusic(eMusic id)
+    {
+        musicSource.Stop();
+        curMusic = eMusic.None;
+        curLoopStart = curLoopEnd = 0;
+        MusicLibrary.Entry e;
+        if (id == eMusic.None || musicLibrary == null || !musicLibrary.TryGet(id, out e))
+        {
+            CvtiDebug.Log("PlayMusic " + id + ": không có clip — im lặng");
+            Raise("stop", id);
+            return;
+        }
+        musicSource.clip = e.clip;
+        // tự lặp theo điểm đo (loopEnd > 0) ⇒ tắt loop của AudioSource; loopEnd 0 + loop ⇒ lặp cả clip
+        musicSource.loop = e.loop && e.loopEnd <= 0;
+        musicSource.timeSamples = Mathf.Clamp(e.startSample, 0, e.clip.samples - 1);
+        musicSource.Play();
+        curMusic = id;
+        if (e.loop && e.loopEnd > e.loopStart)
+        {
+            curLoopStart = e.loopStart;
+            curLoopEnd = e.loopEnd;
+        }
+        curWasPlaying = true;
+        paused = false;
+        CvtiDebug.Log("PlayMusic " + id + " (" + e.clip.name + (e.loop ? ", lặp " + e.loopStart + "–" + e.loopEnd : "") + ")");
+        Raise("play", id);
+    }
+
+    /// <summary>Lặp theo mẫu + báo bài không lặp đã hết (âm thanh — không phải gameplay).</summary>
+    private void Update()
+    {
+        if (musicSource == null || curMusic == eMusic.None)
+            return;
+        if (curLoopEnd > 0 && musicSource.isPlaying && musicSource.timeSamples >= curLoopEnd)
+        {
+            int before = musicSource.timeSamples;
+            musicSource.timeSamples = before - (curLoopEnd - curLoopStart);
+            CvtiDebug.Log("Music loop " + curMusic + " " + before + " → " + musicSource.timeSamples);
+            Raise("loop", curMusic);
+        }
+        bool playing = musicSource.isPlaying;
+        if (curWasPlaying && !playing && !paused && !musicSource.loop && curLoopEnd == 0)
+            Raise("end", curMusic);
+        curWasPlaying = playing;
+    }
+
+    private bool paused;
+
+    private static void Raise(string what, eMusic id)
+    {
+        if (MusicEvent != null)
+            MusicEvent(what, id);
+    }
+
+    /// <summary>Phát clip từ đầu (API CVTI cũ — dừng bài cũ). clip null ⇒ chỉ dừng nhạc.</summary>
     public void PlayMusic(AudioClip clip, bool loop)
     {
         musicSource.Stop();
+        curMusic = eMusic.None;
+        curLoopStart = curLoopEnd = 0;
         if (clip == null)
         {
             CvtiDebug.Log("PlayMusic: chưa có clip — im lặng");
@@ -42,6 +115,11 @@ public class AudioManager : ManualSingletonMono<AudioManager>
         if (musicSource.isPlaying)
             CvtiDebug.Log("StopMusic");
         musicSource.Stop();
+        var was = curMusic;
+        curMusic = eMusic.None;
+        curLoopStart = curLoopEnd = 0;
+        paused = false;
+        Raise("stop", was);
     }
 
     public void PlaySfx(AudioClip clip)
@@ -72,7 +150,9 @@ public class AudioManager : ManualSingletonMono<AudioManager>
             musicSource.Pause();
         else
             musicSource.UnPause();
+        this.paused = paused;
         CvtiDebug.Log(paused ? "PauseMusic" : "UnPauseMusic");
+        Raise(paused ? "pause" : "unpause", curMusic);
     }
 
     /// <summary>

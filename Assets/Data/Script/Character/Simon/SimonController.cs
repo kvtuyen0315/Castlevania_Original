@@ -102,6 +102,8 @@ public class SimonController : Entity
     // ---------------------------------------------------------------- sự kiện / đếm (HUD, luật chơi routine 12, harness)
     /// <summary>Hết máu (sau DeathTicks) hoặc rơi hố/nước (sau DeathTicks). Tham số: loại ô (Empty = hết máu).</summary>
     public event Action<SimonController, eTileCollision> Died;
+    /// <summary>CVM2 03: BẮT ĐẦU chết (vào Dead / FallDeath) — chỉ để phát nhạc Death đúng lúc (không đổi trạng thái gameplay).</summary>
+    public static event Action<SimonController> DyingStarted;
     public event Action<SimonController> AutoWalkDone;
     [NonSerialized] public int hitsTaken, deathCount, landCount, jumpCount, whipCount, throwCount, throwFailCount;
     [NonSerialized] public eTileCollision lastDeath;
@@ -371,6 +373,12 @@ public class SimonController : Entity
             return;
         lastDeath = eTileCollision.Empty;
         Fsm.SetState(eSimonState.Dead);
+    }
+
+    internal void RaiseDyingStarted()
+    {
+        if (DyingStarted != null)
+            DyingStarted(this);
     }
 
     internal void RaiseDied(eTileCollision kind)

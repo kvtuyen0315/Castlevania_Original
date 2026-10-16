@@ -128,15 +128,18 @@ public abstract class BossBase : EnemyBase
         Bar(BarValue());
     }
 
-    /// <summary>Nhạc boss: chưa import nhạc (CVGP_MEMORY §6 nợ 02) ⇒ PlayMusic(null) = im lặng + log (H2 — không thay bài khác).</summary>
+    /// <summary>Nhạc boss = ConfigBlock.bossMusic của block đang chơi (CVM2 03: Poison Mind — video Map_1/Boss_Map_1/Map_2/Boss_Map_2).</summary>
     protected void StartBossMusic()
     {
         if (!PlaysBossMusic)
             return;
+        var cfg = GameConfig.Current;
+        var block = cfg != null && GameSession.Current != null ? cfg.GetBlockOfStage(GameSession.Current.stage) : null;
+        var id = block != null ? block.bossMusic : eMusic.PoisonMind;
         if (AudioManager.I != null)
-            AudioManager.I.PlayMusic(null, true);
+            AudioManager.I.PlayMusic(id);
         if (CvgpDebug.LogState)
-            CvgpDebug.Log("[Boss] " + bossId + ": nhạc boss (ConfigBlock.bossMusic) — chưa có clip");
+            CvgpDebug.Log("[Boss] " + bossId + ": nhạc boss " + id);
     }
 
     protected sealed override void TickStates()
