@@ -1,0 +1,99 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c4c25d45acf3c14e9c6005b7044ce18, type: 3}
+  m_Name: TowerEntranceA
+  m_EditorClassIdentifier: 
+  id: TowerEntranceA
+  stage: 4
+  width: 256
+  height: 192
+  cols: 16
+  rows: 12
+  cameraMinX: 0
+  cameraMaxX: 0
+  bossLockCx: -1
+  hasSimonStart: 1
+  simonStart: {x: 64, y: 176}
+  simonStartDir: 1
+  simonStartSrc: 'video Map_2 0:06.23 (f187-199): STAGE 04 bat dau, cx 0, Simon px
+    64 Y 208 NES (ysec 176 = mat san hang 11) idle_0 quay PHAI dung yen 13 frame'
+  collision:
+  - '#........S....##'
+  - '#.......S.....##'
+  - '#......S......##'
+  - '#.....S.......##'
+  - '##...S........##'
+  - '##########....X#'
+  - '##............X#'
+  - '##........S#####'
+  - D........S....##
+  - D.......S.....##
+  - D......S......##
+  - '################'
+  foreground: []
+  stairs:
+  - id: TowerEntranceA_stair0
+    dir: 0
+    steps: 10
+    foot: {x: 80, y: 72}
+    top: {x: 152, y: 0}
+    cutBottom: 0
+    cutTop: 1
+  - id: TowerEntranceA_stair1
+    dir: 0
+    steps: 8
+    foot: {x: 112, y: 168}
+    top: {x: 168, y: 112}
+    cutBottom: 0
+    cutTop: 0
+  connections:
+  - id: stair_up_to_TowerEntranceB
+    kind: 2
+    target: TowerEntranceB
+    targetStage: 4
+    trigger:
+      x: 80
+      y: 0
+      width: 80
+      height: 80
+    triggerSimonX: -1
+    stair: TowerEntranceA_stair0
+    targetStair: TowerEntranceB_stair0
+    targetOrigin: {x: -224, y: -192}
+    entry: {x: 0, y: 0}
+    dir: 0
+    src: 'thang len-phai 10 bac (80,72)->(152,0) cat mep tren; bac ke tren mep (160,-8)
+      = chan thang TEB (384,184): TEB(x,y) = TEA(x+224, y+192). Video 0:27.7-0:28.47
+      Simon leo wx 103->127 Y 87->63 NES (ysec 55->31 = duong thang +2 px); den 0:28.50-0:28.83
+      (11 frame = 22 tick); TEB 0:28.87 Simon wx 386 ysec 189 van leo (MAP2_TIMELINE
+      7 #2)'
+  - id: door_entry
+    kind: 1
+    target: 
+    targetStage: 4
+    trigger:
+      x: 8
+      y: 128
+      width: 8
+      height: 48
+    triggerSimonX: -1
+    stair: 
+    targetStair: 
+    targetOrigin: {x: 0, y: 0}
+    entry: {x: 0, y: 0}
+    dir: -1
+    src: 'cot cua do-trang (mau (255,136,51)) cot 0 hang 8-10 tren san hang 11 =
+      cua VAO stage (Simon den tu ban do lau dai): trang tri, KHONG noi (nhu door_end
+      Phantom Bat). Khong chan rieng: mep trai section = tuong (TileCollision ngoai
+      luoi trai = Solid). Video: Simon bat dau x 64 va di PHAI, khong lan nao toi
+      mep trai TEA'
+  markers: []

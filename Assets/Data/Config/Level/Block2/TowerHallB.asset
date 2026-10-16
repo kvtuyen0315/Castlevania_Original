@@ -1,0 +1,154 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c4c25d45acf3c14e9c6005b7044ce18, type: 3}
+  m_Name: TowerHallB
+  m_EditorClassIdentifier: 
+  id: TowerHallB
+  stage: 5
+  width: 768
+  height: 192
+  cols: 48
+  rows: 12
+  cameraMinX: 0
+  cameraMaxX: 512
+  bossLockCx: -1
+  hasSimonStart: 0
+  simonStart: {x: 0, y: 0}
+  simonStartDir: 0
+  simonStartSrc: khong co diem bat dau stage (chi vao qua cau thang tu Hall A)
+  collision:
+  - '##............................................##'
+  - '##............................................##'
+  - '##............................................##'
+  - '##....................................#X......##'
+  - D.............................................##
+  - D...############......##......######....########
+  - D.............................................##
+  - '####................................##........##'
+  - '##............................................##'
+  - '##............####..####..######################'
+  - '##...S##..##..................................##'
+  - '##..S.........................................##'
+  foreground: []
+  stairs:
+  - id: TowerHallB_stair0
+    dir: 0
+    steps: 4
+    foot: {x: 64, y: 184}
+    top: {x: 88, y: 160}
+    cutBottom: 1
+    cutTop: 0
+  connections:
+  - id: stair_down_to_TowerHallA
+    kind: 2
+    target: TowerHallA
+    targetStage: 5
+    trigger:
+      x: 64
+      y: 160
+      width: 32
+      height: 32
+    triggerSimonX: -1
+    stair: TowerHallB_stair0
+    targetStair: TowerHallA_stair0
+    targetOrigin: {x: -32, y: 192}
+    entry: {x: 0, y: 0}
+    dir: 0
+    src: 'nghich dao stair_up_to_TowerHallB: thang len-phai 4 bac (64,184)->(88,160)
+      cat mep duoi; bac ke duoi mep (56,192) = dinh thang Hall A (88,0). Video: chi
+      di len (1:33.37-1:34.37 Simon leo tu ysec 189 toi dinh x 97 ysec 160)'
+  - id: door_to_TowerHallC
+    kind: 1
+    target: TowerHallC
+    targetStage: 6
+    trigger:
+      x: 8
+      y: 64
+      width: 8
+      height: 48
+    triggerSimonX: 26
+    stair: 
+    targetStair: 
+    targetOrigin: {x: -768, y: 0}
+    entry: {x: 720, y: 112}
+    dir: -1
+    src: 'cot cua cot 0 hang 4-6 tren go hang 7 (cot 0-3, y 112). Video 2:22.20-2:22.30
+      (f4266-4269) Simon di TRAI x 30, 28, 26, 26 roi f4270 camera cuon (cx 766)
+      => nguong X <= 26 (+-1: 1 frame video = 2 tick); Hall C ghep LIEN TRAI (toa
+      do ghep HallC>HallB); cuon 128 -> dung ~166 tick -> Simon tu di tu ghep 794
+      toi 720 (74 px, f4349-4384) -> cuon 128 -> Hall C cx 512 Simon x 720 ysec 112;
+      STAGE 06 f4480 (MAP2_TIMELINE 7 #5)'
+  markers:
+  - id: platform_lane_HallB_1
+    kind: platformLane
+    rect:
+      x: 256
+      y: 80
+      width: 96
+      height: 16
+    src: 'khe san hang 5 cot 16-21 (x 256-351, y 80): be di dong video Map_2 1:41.2-1:44.3
+      wx 256->301, 2:11.7-2:18.4 wx 259-301 (MAP2_TIMELINE 3d, do tho - routine 06
+      do lai)'
+  - id: platform_lane_HallB_2
+    kind: platformLane
+    rect:
+      x: 384
+      y: 80
+      width: 96
+      height: 16
+    src: 'khe san hang 5 cot 24-29 (x 384-479, y 80): be di dong video Map_2 1:48.2
+      wx 393-397 (do tho; co the la be thu 2 - routine 06)'
+  - id: pit_5_18
+    kind: pit
+    rect:
+      x: 288
+      y: 80
+      width: 32
+      height: 112
+    src: 'tu dong (build_collision2): khe san hang 5 cot 16-21 (2 ben dac), cot 18-19
+      trong toi day section => roi ra day = chet Pit (TileCollision.CheckDeadly)'
+  - id: pit_5_24
+    kind: pit
+    rect:
+      x: 384
+      y: 80
+      width: 32
+      height: 112
+    src: 'tu dong (build_collision2): khe san hang 5 cot 24-29 (2 ben dac), cot 24-25
+      trong toi day section => roi ra day = chet Pit (TileCollision.CheckDeadly)'
+  - id: pit_9_18
+    kind: pit
+    rect:
+      x: 288
+      y: 144
+      width: 32
+      height: 48
+    src: 'tu dong (build_collision2): khe san hang 9 cot 18-19 (2 ben dac), cot 18-19
+      trong toi day section => roi ra day = chet Pit (TileCollision.CheckDeadly)'
+  - id: pit_9_24
+    kind: pit
+    rect:
+      x: 384
+      y: 144
+      width: 32
+      height: 48
+    src: 'tu dong (build_collision2): khe san hang 9 cot 24-25 (2 ben dac), cot 24-25
+      trong toi day section => roi ra day = chet Pit (TileCollision.CheckDeadly)'
+  - id: pit_10_8
+    kind: pit
+    rect:
+      x: 128
+      y: 160
+      width: 32
+      height: 32
+    src: 'tu dong (build_collision2): khe san hang 10 cot 8-9 (2 ben dac), cot 8-9
+      trong toi day section => roi ra day = chet Pit (TileCollision.CheckDeadly)'

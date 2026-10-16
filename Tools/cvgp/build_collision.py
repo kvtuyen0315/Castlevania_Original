@@ -19,6 +19,7 @@ Chạy từ gốc repo (SAU build_tileset.py):  python -P -E Tools/cvgp/build_co
 Đầu ra:  Assets/Data/Config/Level/Block1/Level1Map.json   (CvgpLevelBuilder đọc)
          ClaudeNotes/cvgp/ref/level1/collision_<Section>.png  (ảnh overlay 2x; --no-images để bỏ)
 Ký tự lưới (1 ký tự / ô 16x16, hàng 0 = trên): . Empty  # Solid  S Stair  = StairFloor  ~ Water  P Pit  D Door  X Breakable  ! Hazard
+CVM2 05: check_graph / section_json / render tách hàm để Tools/cvm2/build_collision2.py (Level 2) dùng lại — đầu ra Level 1 KHÔNG đổi (H12).
 """
 import hashlib
 import json
@@ -78,6 +79,108 @@ def classify_metatile(b):
 
 def fail(msg):
     sys.exit("LOI: " + msg)
+
+
+def check_graph(graph, grids, stairs, sections):
+    """Kiểm đồ thị section (dùng chung CVGP 06 / CVM2 05): biên camera, simonStart đứng trên ô đặc, trigger cửa trùng ô Door,
+    thang nối liền qua phép dời targetOrigin, mọi thang chạm mép đều có nối. sections = [(id, idKiểmKê, rect, stage)]. Trả {id: section}."""
+    gsec = {s["id"]: s for s in graph["sections"]}
+    if sorted(gsec) != sorted(sid for sid, _i, _r, _s in sections):
+        fail("do thi section thieu/thua section")
+    for sid, sec in gsec.items():
+        w = [r[2] for (a, _i, r, _st) in sections if a == sid][0]
+        if sec["cameraMinX"] != 0 or sec["cameraMaxX"] != w - 256:
+            fail(sid + ": bien camera phai la [0, rong-256]")
+        if sec["simonStart"] is not None:
+            x, yy = sec["simonStart"]
+            c, r = x // CELL, yy // CELL
+            if grids[sid][r][c] not in ("Solid", "StairFloor"):
+                fail(sid + ": simonStart khong dung tren o dac")
+            if grids[sid][r - 1][c] != "Empty" or grids[sid][r - 2][c] != "Empty":
+                fail(sid + ": simonStart bi chan tren dau")
+        for fg in sec["foreground"]:
+            if not fg.get("src"):
+                fail(sid + ": foreground thieu src")
+        for cn in sec["connections"]:
+            if not cn.get("src"):
+                fail(sid + "/" + cn["id"] + ": thieu src")
+            if cn["target"] and cn["target"] not in gsec:
+                fail(sid + "/" + cn["id"] + ": dich la")
+            if cn["kind"] == "Door":
+                tx, ty, tw, th = cn["trigger"]
+                cs = {grids[sid][r][c] for r in range(ty // CELL, (ty + th - 1) // CELL + 1) for c in range(tx // CELL, (tx + tw - 1) // CELL + 1)}
+                if cs != {"Door"}:
+                    fail(sid + "/" + cn["id"] + ": trigger khong trung o Door " + str(cs))
+                if cn["target"] and "triggerSimonX" not in cn:
+                    fail(sid + "/" + cn["id"] + ": thieu triggerSimonX")
+            if cn["kind"] == "Stair":
+                a = stairs[cn["stair"]]
+                b = stairs[cn["targetStair"]]
+                ox, oy = cn["targetOrigin"]
+                dx_down = 8 if a["dir"] == "UpLeft" else -8   # đi xuống: ↖ sang phải, ↗ sang trái
+                if a["cutBottom"]:
+                    nxt = (a["foot"][0] + dx_down, a["foot"][1] + 8)       # bậc kế tiếp phía dưới mép
+                    want = b["top"]
+                    if not b["cutTop"] or b["dir"] != a["dir"] or [nxt[0] - ox, nxt[1] - oy] != want:
+                        fail("%s: thang %s -> %s khong noi lien (%s -> %s)" % (cn["id"], a["id"], b["id"], nxt, want))
+                elif a["cutTop"]:
+                    prv = (a["top"][0] - dx_down, a["top"][1] - 8)        # bậc kế tiếp phía trên mép
+                    want = b["foot"]
+                    if not b["cutBottom"] or b["dir"] != a["dir"] or [prv[0] - ox, prv[1] - oy] != want:
+                        fail("%s: thang %s -> %s khong noi lien (%s -> %s)" % (cn["id"], a["id"], b["id"], prv, want))
+                else:
+                    fail(cn["id"] + ": thang khong cham mep section")
+    linked = {cn["stair"] for s in gsec.values() for cn in s["connections"] if cn["kind"] == "Stair"}
+    for st in stairs.values():
+        if (st["cutBottom"] or st["cutTop"]) != (st["id"] in linked):
+            fail(st["id"] + ": thang cham mep nhung khong co noi (hoac nguoc lai)")
+    print("do thi section: dat (", sum(len(s["connections"]) for s in gsec.values()), "noi )")
+    return gsec
+
+
+def section_json(sec, sid, stage, rect, g, stairs):
+    """1 section ra JSON (schema Level1Map.json — CvgpLevelBuilder đọc). Khoá CVM2 05 (dir của nối, simonStartDir, markers) CHỈ ghi khi
+    có trong dữ liệu nguồn ⇒ Level 1 (không có các khoá này) ra byte y hệt."""
+    cnt = Counter(t for row in g for t in row)
+    o = OrderedDict()
+    o["id"] = sid
+    o["stage"] = stage
+    if sec["stage"] != stage:
+        fail(sid + ": stage lech")
+    o["width"], o["height"] = rect[2], rect[3]
+    o["cols"], o["rows"] = rect[2] // CELL, rect[3] // CELL
+    o["cameraMinX"], o["cameraMaxX"], o["bossLockCx"] = sec["cameraMinX"], sec["cameraMaxX"], sec["bossLockCx"]
+    o["hasSimonStart"] = sec["simonStart"] is not None
+    o["simonStart"] = sec["simonStart"] or [0, 0]
+    if "simonStartDir" in sec:
+        o["simonStartDir"] = sec["simonStartDir"]
+    o["simonStartSrc"] = sec["simonStartSrc"] + ((" | camera: " + sec["bossLockSrc"]) if sec.get("bossLockSrc") else "")
+    o["collision"] = ["".join(TYPES[t] for t in row) for row in g]
+    o["counts"] = OrderedDict((k, cnt.get(k, 0)) for k in TYPES)
+    o["foreground"] = [{"cols": f["cols"], "rows": f["rows"], "src": f["src"]} for f in sec["foreground"]]
+    o["stairs"] = [{k: st[k] for k in ("id", "dir", "steps", "foot", "top", "cutBottom", "cutTop")}
+                   for st in sorted(stairs.values(), key=lambda s: s["id"]) if st["section"] == sid]
+    if "markers" in sec:
+        o["markers"] = [OrderedDict([("id", m["id"]), ("kind", m["kind"]), ("rect", m["rect"]), ("src", m["src"])]) for m in sec["markers"]]
+    o["connections"] = []
+    for cn in sec["connections"]:
+        c2 = OrderedDict()
+        c2["id"], c2["kind"], c2["target"], c2["targetStage"] = cn["id"], cn["kind"], cn["target"], cn["targetStage"]
+        c2["trigger"] = cn.get("trigger", [0, 0, 0, 0])
+        if cn["kind"] == "Stair":
+            st = stairs[cn["stair"]]
+            tx = min(st["foot"][0], st["top"][0])
+            ty = min(st["foot"][1], st["top"][1])
+            c2["trigger"] = [tx, ty, abs(st["foot"][0] - st["top"][0]) + 8, abs(st["foot"][1] - st["top"][1]) + 8]
+        c2["triggerSimonX"] = cn.get("triggerSimonX", -1)
+        c2["stair"], c2["targetStair"] = cn.get("stair", ""), cn.get("targetStair", "")
+        c2["targetOrigin"] = cn["targetOrigin"]
+        c2["entry"] = cn.get("entry", [0, 0])
+        if "dir" in cn:
+            c2["dir"] = cn["dir"]
+        c2["src"] = cn["src"]
+        o["connections"].append(c2)
+    return o
 
 
 def main():
@@ -200,57 +303,7 @@ def main():
     print("cau thang:", len(stairs), "- moi bac nam trong o Stair/StairFloor va nguoc lai")
 
     # ---------------------------------------------------------------- 5. đồ thị section
-    gsec = {s["id"]: s for s in graph["sections"]}
-    if sorted(gsec) != sorted(sid for sid, _i, _r, _s in SECTIONS):
-        fail("level1_sections.json thieu/thua section")
-    for sid, sec in gsec.items():
-        w = [r[2] for (a, _i, r, _st) in SECTIONS if a == sid][0]
-        if sec["cameraMinX"] != 0 or sec["cameraMaxX"] != w - 256:
-            fail(sid + ": bien camera phai la [0, rong-256]")
-        if sec["simonStart"] is not None:
-            x, yy = sec["simonStart"]
-            c, r = x // CELL, yy // CELL
-            if grids[sid][r][c] not in ("Solid", "StairFloor"):
-                fail(sid + ": simonStart khong dung tren o dac")
-            if grids[sid][r - 1][c] != "Empty" or grids[sid][r - 2][c] != "Empty":
-                fail(sid + ": simonStart bi chan tren dau")
-        for fg in sec["foreground"]:
-            if not fg.get("src"):
-                fail(sid + ": foreground thieu src")
-        for cn in sec["connections"]:
-            if not cn.get("src"):
-                fail(sid + "/" + cn["id"] + ": thieu src")
-            if cn["target"] and cn["target"] not in gsec:
-                fail(sid + "/" + cn["id"] + ": dich la")
-            if cn["kind"] == "Door":
-                tx, ty, tw, th = cn["trigger"]
-                cs = {grids[sid][r][c] for r in range(ty // CELL, (ty + th - 1) // CELL + 1) for c in range(tx // CELL, (tx + tw - 1) // CELL + 1)}
-                if cs != {"Door"}:
-                    fail(sid + "/" + cn["id"] + ": trigger khong trung o Door " + str(cs))
-                if cn["target"] and "triggerSimonX" not in cn:
-                    fail(sid + "/" + cn["id"] + ": thieu triggerSimonX")
-            if cn["kind"] == "Stair":
-                a = stairs[cn["stair"]]
-                b = stairs[cn["targetStair"]]
-                ox, oy = cn["targetOrigin"]
-                dx_down = 8 if a["dir"] == "UpLeft" else -8   # đi xuống: ↖ sang phải, ↗ sang trái
-                if a["cutBottom"]:
-                    nxt = (a["foot"][0] + dx_down, a["foot"][1] + 8)       # bậc kế tiếp phía dưới mép
-                    want = b["top"]
-                    if not b["cutTop"] or b["dir"] != a["dir"] or [nxt[0] - ox, nxt[1] - oy] != want:
-                        fail("%s: thang %s -> %s khong noi lien (%s -> %s)" % (cn["id"], a["id"], b["id"], nxt, want))
-                elif a["cutTop"]:
-                    prv = (a["top"][0] - dx_down, a["top"][1] - 8)        # bậc kế tiếp phía trên mép
-                    want = b["foot"]
-                    if not b["cutBottom"] or b["dir"] != a["dir"] or [prv[0] - ox, prv[1] - oy] != want:
-                        fail("%s: thang %s -> %s khong noi lien (%s -> %s)" % (cn["id"], a["id"], b["id"], prv, want))
-                else:
-                    fail(cn["id"] + ": thang khong cham mep section")
-    linked = {cn["stair"] for s in gsec.values() for cn in s["connections"] if cn["kind"] == "Stair"}
-    for st in stairs.values():
-        if (st["cutBottom"] or st["cutTop"]) != (st["id"] in linked):
-            fail(st["id"] + ": thang cham mep nhung khong co noi (hoac nguoc lai)")
-    print("do thi section: dat (", sum(len(s["connections"]) for s in gsec.values()), "noi )")
+    gsec = check_graph(graph, grids, stairs, SECTIONS)
 
     # ---------------------------------------------------------------- 6. ghi JSON
     out = OrderedDict()
@@ -261,42 +314,7 @@ def main():
     out["order"] = graph["order"]
     out["sections"] = []
     for sid, iid, rect, stage in SECTIONS:
-        sec = gsec[sid]
-        g = grids[sid]
-        cnt = Counter(t for row in g for t in row)
-        o = OrderedDict()
-        o["id"] = sid
-        o["stage"] = stage
-        if sec["stage"] != stage:
-            fail(sid + ": stage lech")
-        o["width"], o["height"] = rect[2], rect[3]
-        o["cols"], o["rows"] = rect[2] // CELL, rect[3] // CELL
-        o["cameraMinX"], o["cameraMaxX"], o["bossLockCx"] = sec["cameraMinX"], sec["cameraMaxX"], sec["bossLockCx"]
-        o["hasSimonStart"] = sec["simonStart"] is not None
-        o["simonStart"] = sec["simonStart"] or [0, 0]
-        o["simonStartSrc"] = sec["simonStartSrc"] + ((" | camera: " + sec["bossLockSrc"]) if sec.get("bossLockSrc") else "")
-        o["collision"] = ["".join(TYPES[t] for t in row) for row in g]
-        o["counts"] = OrderedDict((k, cnt.get(k, 0)) for k in TYPES)
-        o["foreground"] = [{"cols": f["cols"], "rows": f["rows"], "src": f["src"]} for f in sec["foreground"]]
-        o["stairs"] = [{k: st[k] for k in ("id", "dir", "steps", "foot", "top", "cutBottom", "cutTop")}
-                       for st in sorted(stairs.values(), key=lambda s: s["id"]) if st["section"] == sid]
-        o["connections"] = []
-        for cn in sec["connections"]:
-            c2 = OrderedDict()
-            c2["id"], c2["kind"], c2["target"], c2["targetStage"] = cn["id"], cn["kind"], cn["target"], cn["targetStage"]
-            c2["trigger"] = cn.get("trigger", [0, 0, 0, 0])
-            if cn["kind"] == "Stair":
-                st = stairs[cn["stair"]]
-                tx = min(st["foot"][0], st["top"][0])
-                ty = min(st["foot"][1], st["top"][1])
-                c2["trigger"] = [tx, ty, abs(st["foot"][0] - st["top"][0]) + 8, abs(st["foot"][1] - st["top"][1]) + 8]
-            c2["triggerSimonX"] = cn.get("triggerSimonX", -1)
-            c2["stair"], c2["targetStair"] = cn.get("stair", ""), cn.get("targetStair", "")
-            c2["targetOrigin"] = cn["targetOrigin"]
-            c2["entry"] = cn.get("entry", [0, 0])
-            c2["src"] = cn["src"]
-            o["connections"].append(c2)
-        out["sections"].append(o)
+        out["sections"].append(section_json(gsec[sid], sid, stage, rect, grids[sid], stairs))
     out["metatiles"] = meta_info
     js = (json.dumps(out, ensure_ascii=True, indent=1) + "\n").encode("ascii")
     path = os.path.join(REPO, OUT_REL)
@@ -318,8 +336,8 @@ def main():
     print("CHECK (khong ghi)" if check else "OK")
 
 
-def render(out, regs):
-    os.makedirs(IMG_DIR, exist_ok=True)
+def render(out, regs, img_dir=IMG_DIR):
+    os.makedirs(img_dir, exist_ok=True)
     Z = 2
     CH = 768   # cắt section dài thành đoạn 768 px xếp dọc
     for o in out["sections"]:
@@ -383,7 +401,7 @@ def render(out, regs):
             lx += 26 + 7 * len(t) + 8
         ld.rectangle([lx, yy + 6, lx + 14, yy + 20], outline=(0, 255, 255, 255), width=2)
         ld.text((lx + 18, yy + 8), "FG", fill=(255, 255, 255, 255))
-        out_img.convert("RGB").save(os.path.join(IMG_DIR, "collision_%s.png" % o["id"]), optimize=True)
+        out_img.convert("RGB").save(os.path.join(img_dir, "collision_%s.png" % o["id"]), optimize=True)
 
 
 if __name__ == "__main__":

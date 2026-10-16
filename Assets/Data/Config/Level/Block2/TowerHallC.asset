@@ -1,0 +1,110 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c4c25d45acf3c14e9c6005b7044ce18, type: 3}
+  m_Name: TowerHallC
+  m_EditorClassIdentifier: 
+  id: TowerHallC
+  stage: 6
+  width: 768
+  height: 192
+  cols: 48
+  rows: 12
+  cameraMinX: 0
+  cameraMaxX: 512
+  bossLockCx: -1
+  hasSimonStart: 1
+  simonStart: {x: 720, y: 112}
+  simonStartDir: -1
+  simonStartSrc: 'video Map_2 2:29.30 (f4479) sau cua trai #2: Hall C cx 512, Simon
+    px 208 = x 720, Y 144 NES (ysec 112 = mat bac hang 7), idle_0 quay TRAI; HUD
+    STAGE 06 f4480'
+  collision:
+  - '##.........................................S..##'
+  - '##........................................S...##'
+  - '##.......................................S....##'
+  - '##..............################################'
+  - '##..............................................'
+  - '##............##................................'
+  - '##.........S##..................................'
+  - '##........S.................................X###'
+  - '##......X#................................######'
+  - '################################..........######'
+  - '##............................##..........######'
+  - '##............................##################'
+  foreground: []
+  stairs:
+  - id: TowerHallC_stair0
+    dir: 0
+    steps: 4
+    foot: {x: 160, y: 120}
+    top: {x: 184, y: 96}
+    cutBottom: 0
+    cutTop: 0
+  - id: TowerHallC_stair1
+    dir: 0
+    steps: 6
+    foot: {x: 656, y: 40}
+    top: {x: 696, y: 0}
+    cutBottom: 0
+    cutTop: 1
+  connections:
+  - id: stair_up_to_Medusa
+    kind: 2
+    target: Medusa
+    targetStage: 6
+    trigger:
+      x: 656
+      y: 0
+      width: 48
+      height: 48
+    triggerSimonX: -1
+    stair: TowerHallC_stair1
+    targetStair: Medusa_stair0
+    targetOrigin: {x: 32, y: -192}
+    entry: {x: 0, y: 0}
+    dir: 0
+    src: 'thang len-phai 6 bac (656,40)->(696,0) cat mep tren (tu san tren hang 3
+      y 48); bac ke tren mep (704,-8) = chan thang Medusa (672,184): Medusa(x,y)
+      = HallC(x-32, y+192). Video 3:16.4-3:17.10 Simon leo toi wx 671 ysec 31 ->
+      den 3:17.13-3:17.43 (10 frame = 20 tick) -> Medusa 3:17.47 wx 674 ysec 189
+      van leo (MAP2_TIMELINE 7 #6)'
+  markers:
+  - id: crusher_1
+    kind: crusher
+    rect:
+      x: 352
+      y: 80
+      width: 32
+      height: 64
+    src: 'o teal sheet (da va den) = bay ep gai #1: video Map_2 2:33.9-2:49.6 (luot
+      duoi) + 3:04.3-3:16.2 (luot tren, nhin tu tang tren): tam wx 368, diem treo
+      NES y 113 (y 81), day khoi 119->175 NES (y 87..143); chu ky chua du vong (MAP2_TIMELINE
+      3d). KHONG danh dau Hazard tren luoi: o 16x16 Hazard se giet Simon ca khi bay
+      dang thu len tren - routine 06 gan thuc the Crusher (hop va cham theo khung)'
+  - id: crusher_2
+    kind: crusher
+    rect:
+      x: 416
+      y: 80
+      width: 32
+      height: 64
+    src: 'bay ep gai #2 (wiki: ''ha xuong mot doan NGAN hon nhieu''): tam wx 432,
+      chu ky 80 tick (f4699, 4738, 4779, 4819 - do tho CVM2 02)'
+  - id: crusher_3
+    kind: crusher
+    rect:
+      x: 480
+      y: 80
+      width: 32
+      height: 64
+    src: 'bay ep gai #3: tam wx 496, chu ky 128 tick (f4652, 4716, 4780 - do tho
+      CVM2 02)'

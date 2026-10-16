@@ -1,0 +1,179 @@
+{
+ "note": "CVM2 05 - sinh boi Tools/cvm2/build_tileset2.py; KHONG sua tay",
+ "sheet": "Art_Source/spriters-resource/level2_main_hall.png",
+ "sheetSha256": "6d09c60ef9b25ad19fe7138779030a0505d5c7d3b15a5599ea001d060b9313fd",
+ "tileSize": 8,
+ "columns": 16,
+ "count": 81,
+ "png": "Assets/Data/Art/Level/Block2/level2_tiles.png",
+ "levelRowToNesY": 32,
+ "patches": [
+  {
+   "section": "TowerHallC",
+   "rect": [
+    352,
+    80,
+    32,
+    64
+   ],
+   "from": [
+    0,
+    128,
+    128
+   ],
+   "to": [
+    0,
+    0,
+    0
+   ],
+   "tile": 7,
+   "src": "CVM2 05: 3 o teal 32x64 = cho sheet chua cho bay ep gai (Object/crusher_0..7) -> den (tile den co san, vom den quanh bay). Bang chung video Map_2 2:33-2:41 + 3:04-3:16: Tools/cvm2/terrain5.py teal - moi pixel teal deu den o video khi bay khong che (11-12 px/bay o y 80-87 luon bi xich bay che); anh _cache/work/sheet_map2_crusher_00.png"
+  },
+  {
+   "section": "TowerHallC",
+   "rect": [
+    416,
+    80,
+    32,
+    64
+   ],
+   "from": [
+    0,
+    128,
+    128
+   ],
+   "to": [
+    0,
+    0,
+    0
+   ],
+   "tile": 7,
+   "src": "CVM2 05: 3 o teal 32x64 = cho sheet chua cho bay ep gai (Object/crusher_0..7) -> den (tile den co san, vom den quanh bay). Bang chung video Map_2 2:33-2:41 + 3:04-3:16: Tools/cvm2/terrain5.py teal - moi pixel teal deu den o video khi bay khong che (11-12 px/bay o y 80-87 luon bi xich bay che); anh _cache/work/sheet_map2_crusher_00.png"
+  },
+  {
+   "section": "TowerHallC",
+   "rect": [
+    480,
+    80,
+    32,
+    64
+   ],
+   "from": [
+    0,
+    128,
+    128
+   ],
+   "to": [
+    0,
+    0,
+    0
+   ],
+   "tile": 7,
+   "src": "CVM2 05: 3 o teal 32x64 = cho sheet chua cho bay ep gai (Object/crusher_0..7) -> den (tile den co san, vom den quanh bay). Bang chung video Map_2 2:33-2:41 + 3:04-3:16: Tools/cvm2/terrain5.py teal - moi pixel teal deu den o video khi bay khong che (11-12 px/bay o y 80-87 luon bi xich bay che); anh _cache/work/sheet_map2_crusher_00.png"
+  }
+ ],
+ "sections": [
+  {
+   "id": "TowerEntranceA",
+   "inventoryId": "TowerEntranceA",
+   "stage": 4,
+   "sheetRect": [
+    1803,
+    632,
+    256,
+    192
+   ],
+   "width": 256,
+   "height": 192,
+   "cols8": 32,
+   "rows8": 24,
+   "uniqueTiles": 32,
+   "csv": "Assets/Data/Config/Level/Block2/TowerEntranceA_tiles.csv"
+  },
+  {
+   "id": "TowerEntranceB",
+   "inventoryId": "TowerEntranceB",
+   "stage": 4,
+   "sheetRect": [
+    1547,
+    425,
+    512,
+    192
+   ],
+   "width": 512,
+   "height": 192,
+   "cols8": 64,
+   "rows8": 24,
+   "uniqueTiles": 42,
+   "csv": "Assets/Data/Config/Level/Block2/TowerEntranceB_tiles.csv"
+  },
+  {
+   "id": "TowerHallA",
+   "inventoryId": "TowerHallA",
+   "stage": 5,
+   "sheetRect": [
+    774,
+    425,
+    768,
+    192
+   ],
+   "width": 768,
+   "height": 192,
+   "cols8": 96,
+   "rows8": 24,
+   "uniqueTiles": 43,
+   "csv": "Assets/Data/Config/Level/Block2/TowerHallA_tiles.csv"
+  },
+  {
+   "id": "TowerHallB",
+   "inventoryId": "TowerHallB",
+   "stage": 5,
+   "sheetRect": [
+    774,
+    218,
+    768,
+    192
+   ],
+   "width": 768,
+   "height": 192,
+   "cols8": 96,
+   "rows8": 24,
+   "uniqueTiles": 56,
+   "csv": "Assets/Data/Config/Level/Block2/TowerHallB_tiles.csv"
+  },
+  {
+   "id": "TowerHallC",
+   "inventoryId": "TowerHallC",
+   "stage": 6,
+   "sheetRect": [
+    1,
+    218,
+    768,
+    192
+   ],
+   "width": 768,
+   "height": 192,
+   "cols8": 96,
+   "rows8": 24,
+   "uniqueTiles": 43,
+   "csv": "Assets/Data/Config/Level/Block2/TowerHallC_tiles.csv"
+  },
+  {
+   "id": "Medusa",
+   "inventoryId": "Medusa",
+   "stage": 6,
+   "sheetRect": [
+    1,
+    11,
+    768,
+    192
+   ],
+   "width": 768,
+   "height": 192,
+   "cols8": 96,
+   "rows8": 24,
+   "uniqueTiles": 64,
+   "csv": "Assets/Data/Config/Level/Block2/Medusa_tiles.csv"
+  }
+ ]
+}

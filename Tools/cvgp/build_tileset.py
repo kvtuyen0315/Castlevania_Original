@@ -77,6 +77,59 @@ def write_if_changed(rel, data, check, report):
         f.write(data)
 
 
+def dedupe_regions(regions, tile=TILE):
+    """regions: list (id, ndarray HxWx3) theo thứ tự quét ⇒ (tiles, maps): tile 8x8 duy nhất (KHÔNG gộp lật) + ma trận chỉ số từng vùng.
+    Dùng chung CVGP 06 (Level 1) và CVM2 05 (Tools/cvm2/build_tileset2.py, Level 2)."""
+    tiles = []          # list ndarray 8x8x3
+    index = {}          # bytes -> id
+    maps = {}
+    for sid, reg in regions:
+        h, w = reg.shape[:2]
+        rows, cols = h // tile, w // tile
+        m = np.zeros((rows, cols), np.int32)
+        for j in range(rows):
+            for i in range(cols):
+                t = reg[j * tile:(j + 1) * tile, i * tile:(i + 1) * tile]
+                k = t.tobytes()
+                if k not in index:
+                    index[k] = len(tiles)
+                    tiles.append(t.copy())
+                m[j, i] = index[k]
+        maps[sid] = m
+    return tiles, maps
+
+
+def tileset_png(tiles, columns=COLUMNS, tile=TILE):
+    """PNG tileset `columns` tile/hàng, ô thừa trong suốt (0,0,0,0)."""
+    n = len(tiles)
+    trows = (n + columns - 1) // columns
+    ts = np.zeros((trows * tile, columns * tile, 4), np.uint8)
+    for k, t in enumerate(tiles):
+        r, c = divmod(k, columns)
+        ts[r * tile:(r + 1) * tile, c * tile:(c + 1) * tile, :3] = t
+        ts[r * tile:(r + 1) * tile, c * tile:(c + 1) * tile, 3] = 255
+    return png_bytes(Image.fromarray(ts, "RGBA"))
+
+
+def rebuild_check(png, regions, maps, columns=COLUMNS, tile=TILE):
+    """Tự kiểm: dựng lại từng vùng từ tileset (đọc lại từ PNG đã mã hoá) + ma trận ⇒ {id: (pixel lệch, số tile duy nhất)}, tổng lệch."""
+    ts2 = np.asarray(Image.open(io.BytesIO(png)).convert("RGBA"))
+    diff_total = 0
+    per = {}
+    for sid, reg in regions:
+        h, w = reg.shape[:2]
+        m = maps[sid]
+        out = np.zeros((h, w, 3), np.uint8)
+        for j in range(m.shape[0]):
+            for i in range(m.shape[1]):
+                r, c = divmod(int(m[j, i]), columns)
+                out[j * tile:(j + 1) * tile, i * tile:(i + 1) * tile] = ts2[r * tile:(r + 1) * tile, c * tile:(c + 1) * tile, :3]
+        d = int((out != reg).any(axis=2).sum())
+        per[sid] = (d, len(set(m.flatten().tolist())))
+        diff_total += d
+    return per, diff_total
+
+
 def build():
     if sha256(SHEET) != SHEET_SHA256:
         sys.exit("sheet level1_entrance.png sai sha256")
@@ -88,9 +141,7 @@ def build():
         sys.exit("sheet có pixel không đục")
     rgb = a[..., :3]
 
-    tiles = []          # list ndarray 8x8x3
-    index = {}          # bytes -> id
-    maps = {}
+    regions = []
     for sid, iid, (x, y, w, h), _stage in SECTIONS:
         if inv_rects.get(iid) != [x, y, w, h]:
             sys.exit("rect %s lech kiem ke: %s" % (sid, inv_rects.get(iid)))
@@ -98,43 +149,14 @@ def build():
         # vùng phải đặc (không có nền xanh sheet) và viền 1 px quanh vùng = nền xanh
         if ((reg == (0, 128, 0)).all(axis=2)).any():
             sys.exit("%s co pixel nen xanh ben trong" % sid)
-        rows, cols = h // TILE, w // TILE
-        m = np.zeros((rows, cols), np.int32)
-        for j in range(rows):
-            for i in range(cols):
-                t = reg[j * TILE:(j + 1) * TILE, i * TILE:(i + 1) * TILE]
-                k = t.tobytes()
-                if k not in index:
-                    index[k] = len(tiles)
-                    tiles.append(t.copy())
-                m[j, i] = index[k]
-        maps[sid] = m
-
-    n = len(tiles)
-    trows = (n + COLUMNS - 1) // COLUMNS
-    ts = np.zeros((trows * TILE, COLUMNS * TILE, 4), np.uint8)
-    for k, t in enumerate(tiles):
-        r, c = divmod(k, COLUMNS)
-        ts[r * TILE:(r + 1) * TILE, c * TILE:(c + 1) * TILE, :3] = t
-        ts[r * TILE:(r + 1) * TILE, c * TILE:(c + 1) * TILE, 3] = 255
-
+        regions.append((sid, reg))
+    tiles, maps = dedupe_regions(regions)
     # tự kiểm: dựng lại vùng từ tileset (đọc lại từ mảng PNG đã mã hoá) + ma trận
-    png = png_bytes(Image.fromarray(ts, "RGBA"))
-    ts2 = np.asarray(Image.open(io.BytesIO(png)).convert("RGBA"))
-    diff_total = 0
-    per = {}
-    for sid, iid, (x, y, w, h), _stage in SECTIONS:
-        m = maps[sid]
-        out = np.zeros((h, w, 3), np.uint8)
-        for j in range(m.shape[0]):
-            for i in range(m.shape[1]):
-                r, c = divmod(int(m[j, i]), COLUMNS)
-                out[j * TILE:(j + 1) * TILE, i * TILE:(i + 1) * TILE] = ts2[r * TILE:(r + 1) * TILE, c * TILE:(c + 1) * TILE, :3]
-        d = int((out != rgb[y:y + h, x:x + w]).any(axis=2).sum())
-        per[sid] = (d, len(set(m.flatten().tolist())))
+    png = tileset_png(tiles)
+    per, diff_total = rebuild_check(png, regions, maps)
+    for sid, iid, _rect, _stage in SECTIONS:
         if per[sid][1] != inv_unique[iid]:
             sys.exit("%s: so tile duy nhat %d khac kiem ke %d" % (sid, per[sid][1], inv_unique[iid]))
-        diff_total += d
     return tiles, maps, png, per, diff_total
 
 

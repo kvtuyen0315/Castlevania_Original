@@ -1,0 +1,112 @@
+{
+ "note": "CVM2 05 - do thi section Map 2 (Level 2 = Block 2 = Stage 4-6). Viet tay, moi so co nguon. Tools/cvm2/build_collision2.py doc + kiem + gop vao Assets/Data/Config/Level/Block2/Level2Map.json. Toa do = px trong section (goc tren-trai vung 192 dong; dong r <-> NES y 32 + r). Video Map_2: toa do Simon = ClaudeNotes/cvm2/ref/data/map2_simon.csv (CVM2 02: px = x tam than, Y = hang mat san NES, ysec = Y - 32); flip 1 = quay PHAI, 0 = quay TRAI.",
+ "conventions": {
+  "levelRowToNesY": 32,
+  "simonStart": "[x tam than Simon, y mat san (dinh o dac duoi chan)] nhu Level 1",
+  "simonStartDir": "CVM2 05 (khoa moi, chi Level 2): huong Simon luc vao stage: 1 = quay phai, -1 = quay trai. LevelSectionData.simonStartDir: 0 (du lieu cu Block 1) = phai",
+  "dir": "CVM2 05 (khoa moi, chi Level 2) - Connection kind Door: -1 = cua o mep TRAI (camera cuon trai, Simon tu di trai, section dich ghep LIEN TRAI: targetOrigin = (-rong dich, 0)), dieu kien kich hoat = Simon tren dat, X <= triggerSimonX va Y = day trigger; 1 = cua phai nhu Map 1. LevelSectionData.Connection.dir: 0 (du lieu cu Block 1) = 1",
+  "targetOrigin": "goc tren-trai section DICH tinh trong toa do section NGUON (dich(x,y) = nguon(x,y) - targetOrigin) - nhu Level 1",
+  "camera": "cx kep [cameraMinX, cameraMaxX]; khong cuon doc; bossLockCx >= 0 = phong boss khoa o cx do (Medusa: 0 = mep TRAI - NesCameraController.autoBossLock hien so X >= bossLockCx (Map 1 khoa ben phai) => routine 09/11 tong quat theo huong)",
+  "markers": "CVM2 05 (khoa moi): vung danh dau cho routine sau - KHONG doi luoi va cham. kind: crusher (vung bay ep - 06 gan thuc the), statue / statueHead (tuong Medusa ve tren nen - 09 xoa bang LevelSection.ClearTileRect), platformLane (khe san co be di dong - 06), pit (khe san ma ben duoi trong toi day section = roi ra day = chet Pit; build_collision2.py tu tinh)"
+ },
+ "sections": [
+  {
+   "id": "TowerEntranceA", "stage": 4, "cameraMinX": 0, "cameraMaxX": 0, "bossLockCx": -1,
+   "simonStart": [64, 176], "simonStartDir": 1,
+   "simonStartSrc": "video Map_2 0:06.23 (f187-199): STAGE 04 bat dau, cx 0, Simon px 64 Y 208 NES (ysec 176 = mat san hang 11) idle_0 quay PHAI dung yen 13 frame",
+   "foreground": [],
+   "foregroundSrc": "khong co lop FG: video Map_2 Simon ve DE len cot/tuong o moi section (vd f2070 Hall A tru cot 34-35, anh _cache/05/view/halla_f2070.png)",
+   "markers": [],
+   "connections": [
+    {"id": "stair_up_to_TowerEntranceB", "kind": "Stair", "stair": "TowerEntranceA_stair0", "target": "TowerEntranceB", "targetStair": "TowerEntranceB_stair0", "targetOrigin": [-224, -192], "targetStage": 4,
+     "src": "thang len-phai 10 bac (80,72)->(152,0) cat mep tren; bac ke tren mep (160,-8) = chan thang TEB (384,184): TEB(x,y) = TEA(x+224, y+192). Video 0:27.7-0:28.47 Simon leo wx 103->127 Y 87->63 NES (ysec 55->31 = duong thang +2 px); den 0:28.50-0:28.83 (11 frame = 22 tick); TEB 0:28.87 Simon wx 386 ysec 189 van leo (MAP2_TIMELINE 7 #2)"},
+    {"id": "door_entry", "kind": "Door", "trigger": [8, 128, 8, 48], "target": "", "targetOrigin": [0, 0], "entry": [0, 0], "targetStage": 4, "dir": -1,
+     "src": "cot cua do-trang (mau (255,136,51)) cot 0 hang 8-10 tren san hang 11 = cua VAO stage (Simon den tu ban do lau dai): trang tri, KHONG noi (nhu door_end Phantom Bat). Khong chan rieng: mep trai section = tuong (TileCollision ngoai luoi trai = Solid). Video: Simon bat dau x 64 va di PHAI, khong lan nao toi mep trai TEA"}
+   ]
+  },
+  {
+   "id": "TowerEntranceB", "stage": 4, "cameraMinX": 0, "cameraMaxX": 256, "bossLockCx": -1,
+   "simonStart": null,
+   "simonStartSrc": "khong co diem bat dau stage (chi vao qua cau thang tu TEA)",
+   "foreground": [],
+   "markers": [
+    {"id": "platform_lane_TEB", "kind": "platformLane", "rect": [32, 80, 64, 16],
+     "src": "khe san hang 5 cot 2-5 (x 32-95, mat san y 80): be di dong (Object/platform 32x8 vien kem) - video Map_2 0:46.5-0:48.0 va 0:49.9-0:51.3 (MAP2_TIMELINE 3d, do tho); Simon dung tren be o ysec 80 wx 86 (0:49.1-0:49.5) va wx 61-64 (0:50.7) roi nhay sang go trai x 0-31 (0:51.37). Duoi khe: cot 1-3 trong toi day (ho), cot 4-5 co khoi hang 7 (y 112) - Simon roi xuong do 0:50.2 (wx 86 ysec 112)"}
+   ],
+   "connections": [
+    {"id": "stair_down_to_TowerEntranceA", "kind": "Stair", "stair": "TowerEntranceB_stair0", "target": "TowerEntranceA", "targetStair": "TowerEntranceA_stair0", "targetOrigin": [224, 192], "targetStage": 4,
+     "src": "nghich dao stair_up_to_TowerEntranceB: thang len-phai 10 bac (384,184)->(456,112) cat mep duoi; bac ke duoi mep (376,192) = dinh thang TEA (152,0). Video khong di nguoc (chi len)"},
+    {"id": "door_to_TowerHallA", "kind": "Door", "trigger": [8, 32, 8, 48], "triggerSimonX": 26, "target": "TowerHallA", "targetOrigin": [-768, 0], "entry": [720, 80], "targetStage": 5, "dir": -1,
+     "src": "cot cua cot 0 hang 2-4 tren go hang 5 (x 0-31, y 80). Video 0:51.77 (f1553) Simon dap xuong go o x 23 ysec 80 -> f1554 camera bat dau cuon TRAI (cua #2 Hall B cho nguong chinh xac 26); Hall A ghep LIEN TRAI (toa do ghep HallA>TEB cua map2_camera.csv: TEB x = ghep - 768); cuon 1 128 tick -> dung ~158 tick (canh cua hien) -> Simon tu di TRAI tu ghep 791 toi 720 (71 px, f1629-1665) -> cuon 2 128 tick -> Hall A cx 512, Simon x 720 ysec 80 quay trai; STAGE 05 f1762 (MAP2_TIMELINE 7 #3). Ca 2 cua trai Simon dung DUNG x dich 720 (TEB 71 px, Hall B 74 px) => tu di toi entry.x, khong phai so px co dinh (khac Map 1 68 px) - routine 11"}
+   ]
+  },
+  {
+   "id": "TowerHallA", "stage": 5, "cameraMinX": 0, "cameraMaxX": 512, "bossLockCx": -1,
+   "simonStart": [720, 80], "simonStartDir": -1,
+   "simonStartSrc": "video Map_2 0:58.70 (f1761) sau cua trai #1: Hall A cx 512, Simon px 208 = x 720, Y 112 NES (ysec 80 = mat san hang 5), idle_0 quay TRAI; HUD STAGE 05 f1762",
+   "foreground": [],
+   "markers": [],
+   "connections": [
+    {"id": "stair_up_to_TowerHallB", "kind": "Stair", "stair": "TowerHallA_stair0", "target": "TowerHallB", "targetStair": "TowerHallB_stair0", "targetOrigin": [32, -192], "targetStage": 5,
+     "src": "thang len-phai 6 bac (48,40)->(88,0) cat mep tren (tu bo hang 3 cot 2-3 y 48); bac ke tren mep (96,-8) = chan thang Hall B (64,184): HallB(x,y) = HallA(x-32, y+192). Video 1:31.4-1:32.97 Simon leo toi wx 63 ysec 31 -> den 1:33.00-1:33.33 (22 tick) -> Hall B 1:33.37 wx 66 ysec 189 van leo (MAP2_TIMELINE 7 #4)"}
+   ]
+  },
+  {
+   "id": "TowerHallB", "stage": 5, "cameraMinX": 0, "cameraMaxX": 512, "bossLockCx": -1,
+   "simonStart": null,
+   "simonStartSrc": "khong co diem bat dau stage (chi vao qua cau thang tu Hall A)",
+   "foreground": [],
+   "markers": [
+    {"id": "platform_lane_HallB_1", "kind": "platformLane", "rect": [256, 80, 96, 16],
+     "src": "khe san hang 5 cot 16-21 (x 256-351, y 80): be di dong video Map_2 1:41.2-1:44.3 wx 256->301, 2:11.7-2:18.4 wx 259-301 (MAP2_TIMELINE 3d, do tho - routine 06 do lai)"},
+    {"id": "platform_lane_HallB_2", "kind": "platformLane", "rect": [384, 80, 96, 16],
+     "src": "khe san hang 5 cot 24-29 (x 384-479, y 80): be di dong video Map_2 1:48.2 wx 393-397 (do tho; co the la be thu 2 - routine 06)"}
+   ],
+   "connections": [
+    {"id": "stair_down_to_TowerHallA", "kind": "Stair", "stair": "TowerHallB_stair0", "target": "TowerHallA", "targetStair": "TowerHallA_stair0", "targetOrigin": [-32, 192], "targetStage": 5,
+     "src": "nghich dao stair_up_to_TowerHallB: thang len-phai 4 bac (64,184)->(88,160) cat mep duoi; bac ke duoi mep (56,192) = dinh thang Hall A (88,0). Video: chi di len (1:33.37-1:34.37 Simon leo tu ysec 189 toi dinh x 97 ysec 160)"},
+    {"id": "door_to_TowerHallC", "kind": "Door", "trigger": [8, 64, 8, 48], "triggerSimonX": 26, "target": "TowerHallC", "targetOrigin": [-768, 0], "entry": [720, 112], "targetStage": 6, "dir": -1,
+     "src": "cot cua cot 0 hang 4-6 tren go hang 7 (cot 0-3, y 112). Video 2:22.20-2:22.30 (f4266-4269) Simon di TRAI x 30, 28, 26, 26 roi f4270 camera cuon (cx 766) => nguong X <= 26 (+-1: 1 frame video = 2 tick); Hall C ghep LIEN TRAI (toa do ghep HallC>HallB); cuon 128 -> dung ~166 tick -> Simon tu di tu ghep 794 toi 720 (74 px, f4349-4384) -> cuon 128 -> Hall C cx 512 Simon x 720 ysec 112; STAGE 06 f4480 (MAP2_TIMELINE 7 #5)"}
+   ]
+  },
+  {
+   "id": "TowerHallC", "stage": 6, "cameraMinX": 0, "cameraMaxX": 512, "bossLockCx": -1,
+   "simonStart": [720, 112], "simonStartDir": -1,
+   "simonStartSrc": "video Map_2 2:29.30 (f4479) sau cua trai #2: Hall C cx 512, Simon px 208 = x 720, Y 144 NES (ysec 112 = mat bac hang 7), idle_0 quay TRAI; HUD STAGE 06 f4480",
+   "foreground": [],
+   "markers": [
+    {"id": "crusher_1", "kind": "crusher", "rect": [352, 80, 32, 64],
+     "src": "o teal sheet (da va den) = bay ep gai #1: video Map_2 2:33.9-2:49.6 (luot duoi) + 3:04.3-3:16.2 (luot tren, nhin tu tang tren): tam wx 368, diem treo NES y 113 (y 81), day khoi 119->175 NES (y 87..143); chu ky chua du vong (MAP2_TIMELINE 3d). KHONG danh dau Hazard tren luoi: o 16x16 Hazard se giet Simon ca khi bay dang thu len tren - routine 06 gan thuc the Crusher (hop va cham theo khung)"},
+    {"id": "crusher_2", "kind": "crusher", "rect": [416, 80, 32, 64],
+     "src": "bay ep gai #2 (wiki: 'ha xuong mot doan NGAN hon nhieu'): tam wx 432, chu ky 80 tick (f4699, 4738, 4779, 4819 - do tho CVM2 02)"},
+    {"id": "crusher_3", "kind": "crusher", "rect": [480, 80, 32, 64],
+     "src": "bay ep gai #3: tam wx 496, chu ky 128 tick (f4652, 4716, 4780 - do tho CVM2 02)"}
+   ],
+   "connections": [
+    {"id": "stair_up_to_Medusa", "kind": "Stair", "stair": "TowerHallC_stair1", "target": "Medusa", "targetStair": "Medusa_stair0", "targetOrigin": [32, -192], "targetStage": 6,
+     "src": "thang len-phai 6 bac (656,40)->(696,0) cat mep tren (tu san tren hang 3 y 48); bac ke tren mep (704,-8) = chan thang Medusa (672,184): Medusa(x,y) = HallC(x-32, y+192). Video 3:16.4-3:17.10 Simon leo toi wx 671 ysec 31 -> den 3:17.13-3:17.43 (10 frame = 20 tick) -> Medusa 3:17.47 wx 674 ysec 189 van leo (MAP2_TIMELINE 7 #6)"}
+   ]
+  },
+  {
+   "id": "Medusa", "stage": 6, "cameraMinX": 0, "cameraMaxX": 512, "bossLockCx": 0,
+   "simonStart": null,
+   "simonStartSrc": "khong co diem bat dau stage (chi vao qua cau thang tu Hall C)",
+   "bossLockSrc": "video Map_2 3:44.50 (f6735) camera cuon trai toi cx 0 roi KHOA toi het tally (MAP2_TIMELINE 7 #7); video boss: phong co dinh cx 0",
+   "foreground": [],
+   "markers": [
+    {"id": "statue", "kind": "statue", "rect": [96, 104, 32, 40],
+     "src": "tuong Medusa ve SAN tren nen: 14 tile 8x8 x 96-127 y 104-143 (NES y 136-175); = sprite Boss/Medusa/medusa_bust_0 (32x48 dat tai (96,96), hang tren trong suot - CVM2 01 khop 0 px)"},
+    {"id": "statue_head", "kind": "statueHead", "rect": [96, 104, 32, 24],
+     "src": "phan DAU tuong bi xoa khi Medusa thuc: video Map_2 tu 3:47.50 (f6825, Medusa hien f6821) 8 tile 8x8 y 104-127 thanh den (ti le den 0.73-1.00, Tools/cvm2/terrain5.py), than tuong y 128-143 GIU NGUYEN suot tran (video boss: than o lai be) - routine 09 dung LevelSection.ClearTileRect(96, 104, 32, 24)"}
+   ],
+   "connections": [
+    {"id": "stair_down_to_TowerHallC", "kind": "Stair", "stair": "Medusa_stair0", "target": "TowerHallC", "targetStair": "TowerHallC_stair1", "targetOrigin": [-32, 192], "targetStage": 6,
+     "src": "nghich dao stair_up_to_Medusa: thang len-phai 6 bac (672,184)->(712,144) cat mep duoi; bac ke duoi mep (664,192) = dinh thang Hall C (696,0). Video chi di len (3:17.47-3:19.03 Simon leo toi dinh x 721 ysec 144 roi nhay len san hang 8)"},
+    {"id": "door_end", "kind": "Door", "trigger": [8, 96, 8, 48], "target": "", "targetOrigin": [0, 0], "entry": [0, 0], "targetStage": 7, "dir": -1,
+     "src": "cot cua cot 0 hang 6-8 tren san phong boss hang 9 (y 144). KHONG dung trong video: ha Medusa -> qua cau -> tally -> ban do lau dai Block 2 -> STAGE 07 (3:55.6-4:20.2) - nhu door_end Phantom Bat"}
+   ]
+  }
+ ],
+ "order": ["TowerEntranceA", "TowerEntranceB", "TowerHallA", "TowerHallB", "TowerHallC", "Medusa"],
+ "orderSrc": "thu tu di trong video Map_2: TEA 0:06.23 -> (thang len-phai cat mep tren) TEB 0:28.87 -> (cua TRAI) Hall A 0:58.70 / STAGE 05 -> (thang) Hall B 1:33.37 -> (cua TRAI) Hall C 2:29.30 / STAGE 06 -> (thang) Medusa 3:17.47 -> phong boss khoa cx 0 3:44.50"
+}

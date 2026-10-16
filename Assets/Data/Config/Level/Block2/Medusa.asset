@@ -1,0 +1,111 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c4c25d45acf3c14e9c6005b7044ce18, type: 3}
+  m_Name: Medusa
+  m_EditorClassIdentifier: 
+  id: Medusa
+  stage: 6
+  width: 768
+  height: 192
+  cols: 48
+  rows: 12
+  cameraMinX: 0
+  cameraMaxX: 512
+  bossLockCx: 0
+  hasSimonStart: 0
+  simonStart: {x: 0, y: 0}
+  simonStartDir: 0
+  simonStartSrc: 'khong co diem bat dau stage (chi vao qua cau thang tu Hall C) |
+    camera: video Map_2 3:44.50 (f6735) camera cuon trai toi cx 0 roi KHOA toi het
+    tally (MAP2_TIMELINE 7 #7); video boss: phong co dinh cx 0'
+  collision:
+  - '##............................................##'
+  - '##............................................##'
+  - '##............................................##'
+  - '##............................................##'
+  - '##............................................##'
+  - '##............................................##'
+  - D.............................................##
+  - D.............................................##
+  - D.............##############################..##
+  - '##############..............................S###'
+  - ...........................................S..##
+  - ..........................................S...##
+  foreground: []
+  stairs:
+  - id: Medusa_stair0
+    dir: 0
+    steps: 6
+    foot: {x: 672, y: 184}
+    top: {x: 712, y: 144}
+    cutBottom: 1
+    cutTop: 0
+  connections:
+  - id: stair_down_to_TowerHallC
+    kind: 2
+    target: TowerHallC
+    targetStage: 6
+    trigger:
+      x: 672
+      y: 144
+      width: 48
+      height: 48
+    triggerSimonX: -1
+    stair: Medusa_stair0
+    targetStair: TowerHallC_stair1
+    targetOrigin: {x: -32, y: 192}
+    entry: {x: 0, y: 0}
+    dir: 0
+    src: 'nghich dao stair_up_to_Medusa: thang len-phai 6 bac (672,184)->(712,144)
+      cat mep duoi; bac ke duoi mep (664,192) = dinh thang Hall C (696,0). Video
+      chi di len (3:17.47-3:19.03 Simon leo toi dinh x 721 ysec 144 roi nhay len
+      san hang 8)'
+  - id: door_end
+    kind: 1
+    target: 
+    targetStage: 7
+    trigger:
+      x: 8
+      y: 96
+      width: 8
+      height: 48
+    triggerSimonX: -1
+    stair: 
+    targetStair: 
+    targetOrigin: {x: 0, y: 0}
+    entry: {x: 0, y: 0}
+    dir: -1
+    src: 'cot cua cot 0 hang 6-8 tren san phong boss hang 9 (y 144). KHONG dung trong
+      video: ha Medusa -> qua cau -> tally -> ban do lau dai Block 2 -> STAGE 07
+      (3:55.6-4:20.2) - nhu door_end Phantom Bat'
+  markers:
+  - id: statue
+    kind: statue
+    rect:
+      x: 96
+      y: 104
+      width: 32
+      height: 40
+    src: 'tuong Medusa ve SAN tren nen: 14 tile 8x8 x 96-127 y 104-143 (NES y 136-175);
+      = sprite Boss/Medusa/medusa_bust_0 (32x48 dat tai (96,96), hang tren trong
+      suot - CVM2 01 khop 0 px)'
+  - id: statue_head
+    kind: statueHead
+    rect:
+      x: 96
+      y: 104
+      width: 32
+      height: 24
+    src: 'phan DAU tuong bi xoa khi Medusa thuc: video Map_2 tu 3:47.50 (f6825, Medusa
+      hien f6821) 8 tile 8x8 y 104-127 thanh den (ti le den 0.73-1.00, Tools/cvm2/terrain5.py),
+      than tuong y 128-143 GIU NGUYEN suot tran (video boss: than o lai be) - routine
+      09 dung LevelSection.ClearTileRect(96, 104, 32, 24)'

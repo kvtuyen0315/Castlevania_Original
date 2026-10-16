@@ -1,0 +1,81 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c4c25d45acf3c14e9c6005b7044ce18, type: 3}
+  m_Name: TowerHallA
+  m_EditorClassIdentifier: 
+  id: TowerHallA
+  stage: 5
+  width: 768
+  height: 192
+  cols: 48
+  rows: 12
+  cameraMinX: 0
+  cameraMaxX: 512
+  bossLockCx: -1
+  hasSimonStart: 1
+  simonStart: {x: 720, y: 80}
+  simonStartDir: -1
+  simonStartSrc: 'video Map_2 0:58.70 (f1761) sau cua trai #1: Hall A cx 512, Simon
+    px 208 = x 720, Y 112 NES (ysec 80 = mat san hang 5), idle_0 quay TRAI; HUD STAGE
+    05 f1762'
+  collision:
+  - '##...S..........................................'
+  - '##..S...........................................'
+  - '##.S............................................'
+  - '####..............##............................'
+  - '##..............................................'
+  - '##################..############################'
+  - '##............................................##'
+  - '##............................................##'
+  - '##............................................##'
+  - '##............................................##'
+  - '##............................................##'
+  - '##............................................##'
+  foreground: []
+  stairs:
+  - id: TowerHallA_stair0
+    dir: 0
+    steps: 6
+    foot: {x: 48, y: 40}
+    top: {x: 88, y: 0}
+    cutBottom: 0
+    cutTop: 1
+  connections:
+  - id: stair_up_to_TowerHallB
+    kind: 2
+    target: TowerHallB
+    targetStage: 5
+    trigger:
+      x: 48
+      y: 0
+      width: 48
+      height: 48
+    triggerSimonX: -1
+    stair: TowerHallA_stair0
+    targetStair: TowerHallB_stair0
+    targetOrigin: {x: 32, y: -192}
+    entry: {x: 0, y: 0}
+    dir: 0
+    src: 'thang len-phai 6 bac (48,40)->(88,0) cat mep tren (tu bo hang 3 cot 2-3
+      y 48); bac ke tren mep (96,-8) = chan thang Hall B (64,184): HallB(x,y) = HallA(x-32,
+      y+192). Video 1:31.4-1:32.97 Simon leo toi wx 63 ysec 31 -> den 1:33.00-1:33.33
+      (22 tick) -> Hall B 1:33.37 wx 66 ysec 189 van leo (MAP2_TIMELINE 7 #4)'
+  markers:
+  - id: pit_5_18
+    kind: pit
+    rect:
+      x: 288
+      y: 80
+      width: 32
+      height: 112
+    src: 'tu dong (build_collision2): khe san hang 5 cot 18-19 (2 ben dac), cot 18-19
+      trong toi day section => roi ra day = chet Pit (TileCollision.CheckDeadly)'

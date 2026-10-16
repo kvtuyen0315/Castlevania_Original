@@ -18,6 +18,10 @@ using UnityEngine.Tilemaps;
 /// CVGP 07: cùng đường dựng cho section thử Arena (Tools/cvgp/build_arena.py → Assets/Data/Config/Level/Arena/*.json) —
 /// menu CVGP/Build Arena Section ⇒ Assets/Data/Config/Level/Arena/Arena.asset + Assets/Data/Prefabs/Level/Test/Arena.prefab
 /// (dùng chung tileset + Tile asset của Block 1).
+/// CVM2 05: tổng quát theo block — Spec mang thư mục Tile + tiền tố tên tile; Block 2 (Map 2, Stage 4–6) từ
+/// Assets/Data/Config/Level/Block2/Level2Tiles.json + Level2Map.json (Tools/cvm2/build_tileset2.py + build_collision2.py) ⇒ tileset
+/// level2_tiles.png (sprite l2t_NNN) · Tile Assets/Data/Art/Level/Block2/Tiles/l2t_NNN.asset · Assets/Data/Config/Level/Block2/&lt;Section&gt;.asset ·
+/// Assets/Data/Prefabs/Level/Block2/&lt;Section&gt;.prefab — menu CVM2/Build Map2 Tilemaps (Cvm2LevelMenu). Block 1/Arena: đường dựng y hệt cũ.
 /// </summary>
 public static class CvgpLevelBuilder
 {
@@ -31,10 +35,11 @@ public static class CvgpLevelBuilder
     const string ARENA_CFG_DIR = "Assets/Data/Config/Level/Arena";
     const string ARENA_PREFAB_DIR = "Assets/Data/Prefabs/Level/Test";
 
-    /// <summary>Bộ đường dẫn của 1 lần dựng (Map 1 hoặc Arena).</summary>
+    /// <summary>Bộ đường dẫn của 1 lần dựng (Map 1, Arena, phòng boss thử, Map 2). tileDir/tilePrefix: Tile asset + tên sprite tileset.</summary>
     class Spec
     {
         public string label, tilesJson, mapJson, cfgDir, prefabDir;
+        public string tileDir = TILE_DIR, tilePrefix = TILE_PREFIX;
     }
 
     static readonly Spec MAP1 = new Spec { label = "Map1", tilesJson = TILES_JSON, mapJson = MAP_JSON, cfgDir = CFG_DIR, prefabDir = PREFAB_DIR };
@@ -42,6 +47,15 @@ public static class CvgpLevelBuilder
     {
         label = "Arena", tilesJson = ARENA_CFG_DIR + "/ArenaTiles.json", mapJson = ARENA_CFG_DIR + "/ArenaMap.json",
         cfgDir = ARENA_CFG_DIR, prefabDir = ARENA_PREFAB_DIR
+    };
+
+    /// <summary>CVM2 05: Map 2 = Block 2 (Stage 4–6) — tileset + Tile riêng (l2t_), dữ liệu + prefab ở thư mục Block2 (H12).</summary>
+    const string MAP2_CFG_DIR = "Assets/Data/Config/Level/Block2";
+    static readonly Spec MAP2 = new Spec
+    {
+        label = "Map2", tilesJson = MAP2_CFG_DIR + "/Level2Tiles.json", mapJson = MAP2_CFG_DIR + "/Level2Map.json",
+        cfgDir = MAP2_CFG_DIR, prefabDir = "Assets/Data/Prefabs/Level/Block2",
+        tileDir = "Assets/Data/Art/Level/Block2/Tiles", tilePrefix = "l2t_"
     };
 
     /// <summary>CVGP 19: 3 phòng boss thử (Tools/cvgp/build_boss_rooms.py — ghép ô Map 1) ⇒ Arena/Boss*.asset + Prefabs/Level/Test/Boss*.prefab.</summary>
@@ -56,14 +70,16 @@ public static class CvgpLevelBuilder
     [Serializable] class MapDoc { public int cellSize; public int levelRowToNesY; public string[] order; public MapSection[] sections; }
     [Serializable] class MapFg { public int[] cols; public int[] rows; public string src; }
     [Serializable] class MapStair { public string id; public string dir; public int steps; public int[] foot; public int[] top; public bool cutBottom; public bool cutTop; }
-    [Serializable] class MapConn { public string id; public string kind; public string target; public int targetStage; public int[] trigger; public int triggerSimonX; public string stair; public string targetStair; public int[] targetOrigin; public int[] entry; public string src; }
+    [Serializable] class MapConn { public string id; public string kind; public string target; public int targetStage; public int[] trigger; public int triggerSimonX; public string stair; public string targetStair; public int[] targetOrigin; public int[] entry; public int dir; public string src; }
+    [Serializable] class MapMarker { public string id; public string kind; public int[] rect; public string src; }
     [Serializable]
     class MapSection
     {
         public string id; public int stage; public int width; public int height; public int cols; public int rows;
         public int cameraMinX; public int cameraMaxX; public int bossLockCx;
-        public bool hasSimonStart; public int[] simonStart; public string simonStartSrc;
+        public bool hasSimonStart; public int[] simonStart; public int simonStartDir; public string simonStartSrc;
         public string[] collision; public MapFg[] foreground; public MapStair[] stairs; public MapConn[] connections;
+        public MapMarker[] markers;
     }
 
     [MenuItem("CVGP/Build Map1 Tilemaps")]
@@ -100,6 +116,12 @@ public static class CvgpLevelBuilder
     public static string BuildArena()
     {
         return Build(ARENA);
+    }
+
+    /// <summary>CVM2 05: địa hình Map 2 (Block 2) — menu CVM2/Build Map2 Tilemaps (Cvm2LevelMenu). Độc lập Block 1.</summary>
+    public static string BuildMap2()
+    {
+        return Build(MAP2);
     }
 
     static string Build(Spec spec)
@@ -145,29 +167,29 @@ public static class CvgpLevelBuilder
 
         var sb = new StringBuilder(spec.label + ": ");
         // ---- 1. tileset Multiple
-        bool texChanged = EnsureTileset(tiles, texRows);
+        bool texChanged = EnsureTileset(spec, tiles, texRows);
         sb.Append("tileset ").Append(texChanged ? "cắt lại" : "không đổi");
         var sprites = new Sprite[tiles.count];
         foreach (var o in AssetDatabase.LoadAllAssetRepresentationsAtPath(tiles.png))
         {
             var sp = o as Sprite;
             int idx;
-            if (sp != null && sp.name.StartsWith(TILE_PREFIX) && int.TryParse(sp.name.Substring(TILE_PREFIX.Length), out idx) && idx >= 0 && idx < tiles.count)
+            if (sp != null && sp.name.StartsWith(spec.tilePrefix) && int.TryParse(sp.name.Substring(spec.tilePrefix.Length), out idx) && idx >= 0 && idx < tiles.count)
                 sprites[idx] = sp;
         }
         for (int i = 0; i < sprites.Length; i++)
             if (sprites[i] == null)
-                errors.Add("thiếu sprite " + TileName(i));
+                errors.Add("thiếu sprite " + TileName(spec, i));
         if (errors.Count > 0)
             return Fail(spec, errors);
 
         // ---- 2. Tile asset
-        EnsureFolder(TILE_DIR);
+        EnsureFolder(spec.tileDir);
         var tileAssets = new Tile[tiles.count];
         int tileWritten = 0;
         for (int i = 0; i < tiles.count; i++)
         {
-            string path = TILE_DIR + "/" + TileName(i) + ".asset";
+            string path = spec.tileDir + "/" + TileName(spec, i) + ".asset";
             var t = AssetDatabase.LoadAssetAtPath<Tile>(path);
             if (t == null)
             {
@@ -239,7 +261,15 @@ public static class CvgpLevelBuilder
                 errors.Add(ms.id + "/" + c.id + ": kind lạ " + c.kind);
             if (c.trigger == null || c.trigger.Length != 4 || c.targetOrigin == null || c.targetOrigin.Length != 2 || c.entry == null || c.entry.Length != 2)
                 errors.Add(ms.id + "/" + c.id + ": trigger/targetOrigin/entry sai độ dài");
+            if (c.dir < -1 || c.dir > 1)
+                errors.Add(ms.id + "/" + c.id + ": dir phải −1/0/+1");
         }
+        if (ms.simonStartDir < -1 || ms.simonStartDir > 1)
+            errors.Add(ms.id + ": simonStartDir phải −1/0/+1");
+        foreach (var m in ms.markers ?? new MapMarker[0])
+            if (string.IsNullOrEmpty(m.id) || string.IsNullOrEmpty(m.kind) || m.rect == null || m.rect.Length != 4 || m.rect[2] <= 0 || m.rect[3] <= 0
+                || m.rect[0] < 0 || m.rect[1] < 0 || m.rect[0] + m.rect[2] > ms.width || m.rect[1] + m.rect[3] > ms.height)
+                errors.Add(ms.id + "/" + m.id + ": marker sai");
         foreach (var f in ms.foreground ?? new MapFg[0])
             if (f.cols == null || f.cols.Length != 2 || f.rows == null || f.rows.Length != 2
                 || f.cols[0] < 0 || f.cols[1] >= ms.cols || f.rows[0] < 0 || f.rows[1] >= ms.rows || f.cols[0] > f.cols[1] || f.rows[0] > f.rows[1])
@@ -277,7 +307,7 @@ public static class CvgpLevelBuilder
     }
 
     // ------------------------------------------------------------------ tileset
-    static bool EnsureTileset(TilesDoc tiles, int texRows)
+    static bool EnsureTileset(Spec spec, TilesDoc tiles, int texRows)
     {
         var importer = (TextureImporter)AssetImporter.GetAtPath(tiles.png);
         bool changed = false;
@@ -310,12 +340,12 @@ public static class CvgpLevelBuilder
             int r = i / tiles.columns, c = i % tiles.columns;
             want[i] = new SpriteRect
             {
-                name = TileName(i),
+                name = TileName(spec, i),
                 rect = new Rect(c * ts, (texRows - 1 - r) * ts, ts, ts),   // Unity: gốc dưới-trái
                 alignment = SpriteAlignment.Center,
                 pivot = new Vector2(0.5f, 0.5f),
                 border = Vector4.zero,
-                spriteID = DeterministicGuid(tiles.png + "#" + TileName(i)),
+                spriteID = DeterministicGuid(tiles.png + "#" + TileName(spec, i)),
             };
         }
         var have = dp.GetSpriteRects();
@@ -361,9 +391,9 @@ public static class CvgpLevelBuilder
         t.colliderType = Tile.ColliderType.None;   // va chạm gameplay = lưới dữ liệu riêng (H4), không TilemapCollider2D
     }
 
-    static string TileName(int i)
+    static string TileName(Spec spec, int i)
     {
-        return TILE_PREFIX + i.ToString("000");
+        return spec.tilePrefix + i.ToString("000");
     }
 
     // ------------------------------------------------------------------ LevelSectionData
@@ -383,6 +413,7 @@ public static class CvgpLevelBuilder
         temp.bossLockCx = ms.bossLockCx;
         temp.hasSimonStart = ms.hasSimonStart;
         temp.simonStart = V2(ms.simonStart);
+        temp.simonStartDir = ms.simonStartDir;     // CVM2 05 — Block 1 không có khoá ⇒ 0 (như trường chưa có trong .asset cũ)
         temp.simonStartSrc = ms.simonStartSrc;
         temp.collision = ms.collision;
         var fgs = new List<LevelSectionData.CellRange>();
@@ -407,10 +438,14 @@ public static class CvgpLevelBuilder
                 id = c.id, kind = k, target = c.target ?? "", targetStage = c.targetStage,
                 trigger = new RectInt(c.trigger[0], c.trigger[1], c.trigger[2], c.trigger[3]),
                 triggerSimonX = c.triggerSimonX, stair = c.stair ?? "", targetStair = c.targetStair ?? "",
-                targetOrigin = V2(c.targetOrigin), entry = V2(c.entry), src = c.src ?? ""
+                targetOrigin = V2(c.targetOrigin), entry = V2(c.entry), dir = c.dir, src = c.src ?? ""
             });
         }
         temp.connections = cn.ToArray();
+        var mk = new List<LevelSectionData.Marker>();
+        foreach (var m in ms.markers ?? new MapMarker[0])
+            mk.Add(new LevelSectionData.Marker { id = m.id, kind = m.kind, rect = new RectInt(m.rect[0], m.rect[1], m.rect[2], m.rect[3]), src = m.src ?? "" });
+        temp.markers = mk.ToArray();
 
         var existing = AssetDatabase.LoadAssetAtPath<LevelSectionData>(path);
         if (existing == null)

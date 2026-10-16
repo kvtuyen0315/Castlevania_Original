@@ -1,0 +1,1503 @@
+{
+ "note": "CVM2 05 - sinh boi Tools/cvm2/build_collision2.py tu sheet (da va teal) + level2_collision_overrides.json + level2_sections.json; KHONG sua tay",
+ "cellSize": 16,
+ "levelRowToNesY": 32,
+ "types": [
+  {
+   "name": "Empty",
+   "char": "."
+  },
+  {
+   "name": "Solid",
+   "char": "#"
+  },
+  {
+   "name": "Stair",
+   "char": "S"
+  },
+  {
+   "name": "StairFloor",
+   "char": "="
+  },
+  {
+   "name": "Water",
+   "char": "~"
+  },
+  {
+   "name": "Pit",
+   "char": "P"
+  },
+  {
+   "name": "Door",
+   "char": "D"
+  },
+  {
+   "name": "Breakable",
+   "char": "X"
+  },
+  {
+   "name": "Hazard",
+   "char": "!"
+  }
+ ],
+ "order": [
+  "TowerEntranceA",
+  "TowerEntranceB",
+  "TowerHallA",
+  "TowerHallB",
+  "TowerHallC",
+  "Medusa"
+ ],
+ "sections": [
+  {
+   "id": "TowerEntranceA",
+   "stage": 4,
+   "width": 256,
+   "height": 192,
+   "cols": 16,
+   "rows": 12,
+   "cameraMinX": 0,
+   "cameraMaxX": 0,
+   "bossLockCx": -1,
+   "hasSimonStart": true,
+   "simonStart": [
+    64,
+    176
+   ],
+   "simonStartDir": 1,
+   "simonStartSrc": "video Map_2 0:06.23 (f187-199): STAGE 04 bat dau, cx 0, Simon px 64 Y 208 NES (ysec 176 = mat san hang 11) idle_0 quay PHAI dung yen 13 frame",
+   "collision": [
+    "#........S....##",
+    "#.......S.....##",
+    "#......S......##",
+    "#.....S.......##",
+    "##...S........##",
+    "##########....X#",
+    "##............X#",
+    "##........S#####",
+    "D........S....##",
+    "D.......S.....##",
+    "D......S......##",
+    "################"
+   ],
+   "counts": {
+    "Empty": 119,
+    "Solid": 59,
+    "Stair": 9,
+    "StairFloor": 0,
+    "Water": 0,
+    "Pit": 0,
+    "Door": 3,
+    "Breakable": 2,
+    "Hazard": 0
+   },
+   "foreground": [],
+   "stairs": [
+    {
+     "id": "TowerEntranceA_stair0",
+     "dir": "UpRight",
+     "steps": 10,
+     "foot": [
+      80,
+      72
+     ],
+     "top": [
+      152,
+      0
+     ],
+     "cutBottom": false,
+     "cutTop": true
+    },
+    {
+     "id": "TowerEntranceA_stair1",
+     "dir": "UpRight",
+     "steps": 8,
+     "foot": [
+      112,
+      168
+     ],
+     "top": [
+      168,
+      112
+     ],
+     "cutBottom": false,
+     "cutTop": false
+    }
+   ],
+   "markers": [],
+   "connections": [
+    {
+     "id": "stair_up_to_TowerEntranceB",
+     "kind": "Stair",
+     "target": "TowerEntranceB",
+     "targetStage": 4,
+     "trigger": [
+      80,
+      0,
+      80,
+      80
+     ],
+     "triggerSimonX": -1,
+     "stair": "TowerEntranceA_stair0",
+     "targetStair": "TowerEntranceB_stair0",
+     "targetOrigin": [
+      -224,
+      -192
+     ],
+     "entry": [
+      0,
+      0
+     ],
+     "src": "thang len-phai 10 bac (80,72)->(152,0) cat mep tren; bac ke tren mep (160,-8) = chan thang TEB (384,184): TEB(x,y) = TEA(x+224, y+192). Video 0:27.7-0:28.47 Simon leo wx 103->127 Y 87->63 NES (ysec 55->31 = duong thang +2 px); den 0:28.50-0:28.83 (11 frame = 22 tick); TEB 0:28.87 Simon wx 386 ysec 189 van leo (MAP2_TIMELINE 7 #2)"
+    },
+    {
+     "id": "door_entry",
+     "kind": "Door",
+     "target": "",
+     "targetStage": 4,
+     "trigger": [
+      8,
+      128,
+      8,
+      48
+     ],
+     "triggerSimonX": -1,
+     "stair": "",
+     "targetStair": "",
+     "targetOrigin": [
+      0,
+      0
+     ],
+     "entry": [
+      0,
+      0
+     ],
+     "dir": -1,
+     "src": "cot cua do-trang (mau (255,136,51)) cot 0 hang 8-10 tren san hang 11 = cua VAO stage (Simon den tu ban do lau dai): trang tri, KHONG noi (nhu door_end Phantom Bat). Khong chan rieng: mep trai section = tuong (TileCollision ngoai luoi trai = Solid). Video: Simon bat dau x 64 va di PHAI, khong lan nao toi mep trai TEA"
+    }
+   ]
+  },
+  {
+   "id": "TowerEntranceB",
+   "stage": 4,
+   "width": 512,
+   "height": 192,
+   "cols": 32,
+   "rows": 12,
+   "cameraMinX": 0,
+   "cameraMaxX": 256,
+   "bossLockCx": -1,
+   "hasSimonStart": false,
+   "simonStart": [
+    0,
+    0
+   ],
+   "simonStartSrc": "khong co diem bat dau stage (chi vao qua cau thang tu TEA)",
+   "collision": [
+    "#.............................##",
+    "#.............................##",
+    "D.............................##",
+    "D.............................##",
+    "D.............................##",
+    "##....####..######....X#####..##",
+    "#.......##....###.....##......##",
+    "#...##..##....###.##..##....S###",
+    "#.......##....###.....##...S..##",
+    "#.......##....###...####..S...##",
+    "#.......##....###........S....##",
+    "#.......##....###.......S.....##"
+   ],
+   "counts": {
+    "Empty": 281,
+    "Solid": 94,
+    "Stair": 5,
+    "StairFloor": 0,
+    "Water": 0,
+    "Pit": 0,
+    "Door": 3,
+    "Breakable": 1,
+    "Hazard": 0
+   },
+   "foreground": [],
+   "stairs": [
+    {
+     "id": "TowerEntranceB_stair0",
+     "dir": "UpRight",
+     "steps": 10,
+     "foot": [
+      384,
+      184
+     ],
+     "top": [
+      456,
+      112
+     ],
+     "cutBottom": true,
+     "cutTop": false
+    }
+   ],
+   "markers": [
+    {
+     "id": "platform_lane_TEB",
+     "kind": "platformLane",
+     "rect": [
+      32,
+      80,
+      64,
+      16
+     ],
+     "src": "khe san hang 5 cot 2-5 (x 32-95, mat san y 80): be di dong (Object/platform 32x8 vien kem) - video Map_2 0:46.5-0:48.0 va 0:49.9-0:51.3 (MAP2_TIMELINE 3d, do tho); Simon dung tren be o ysec 80 wx 86 (0:49.1-0:49.5) va wx 61-64 (0:50.7) roi nhay sang go trai x 0-31 (0:51.37). Duoi khe: cot 1-3 trong toi day (ho), cot 4-5 co khoi hang 7 (y 112) - Simon roi xuong do 0:50.2 (wx 86 ysec 112)"
+    },
+    {
+     "id": "pit_5_2",
+     "kind": "pit",
+     "rect": [
+      32,
+      80,
+      32,
+      112
+     ],
+     "src": "tu dong (build_collision2): khe san hang 5 cot 2-5 (2 ben dac), cot 2-3 trong toi day section => roi ra day = chet Pit (TileCollision.CheckDeadly)"
+    },
+    {
+     "id": "pit_5_10",
+     "kind": "pit",
+     "rect": [
+      160,
+      80,
+      32,
+      112
+     ],
+     "src": "tu dong (build_collision2): khe san hang 5 cot 10-11 (2 ben dac), cot 10-11 trong toi day section => roi ra day = chet Pit (TileCollision.CheckDeadly)"
+    }
+   ],
+   "connections": [
+    {
+     "id": "stair_down_to_TowerEntranceA",
+     "kind": "Stair",
+     "target": "TowerEntranceA",
+     "targetStage": 4,
+     "trigger": [
+      384,
+      112,
+      80,
+      80
+     ],
+     "triggerSimonX": -1,
+     "stair": "TowerEntranceB_stair0",
+     "targetStair": "TowerEntranceA_stair0",
+     "targetOrigin": [
+      224,
+      192
+     ],
+     "entry": [
+      0,
+      0
+     ],
+     "src": "nghich dao stair_up_to_TowerEntranceB: thang len-phai 10 bac (384,184)->(456,112) cat mep duoi; bac ke duoi mep (376,192) = dinh thang TEA (152,0). Video khong di nguoc (chi len)"
+    },
+    {
+     "id": "door_to_TowerHallA",
+     "kind": "Door",
+     "target": "TowerHallA",
+     "targetStage": 5,
+     "trigger": [
+      8,
+      32,
+      8,
+      48
+     ],
+     "triggerSimonX": 26,
+     "stair": "",
+     "targetStair": "",
+     "targetOrigin": [
+      -768,
+      0
+     ],
+     "entry": [
+      720,
+      80
+     ],
+     "dir": -1,
+     "src": "cot cua cot 0 hang 2-4 tren go hang 5 (x 0-31, y 80). Video 0:51.77 (f1553) Simon dap xuong go o x 23 ysec 80 -> f1554 camera bat dau cuon TRAI (cua #2 Hall B cho nguong chinh xac 26); Hall A ghep LIEN TRAI (toa do ghep HallA>TEB cua map2_camera.csv: TEB x = ghep - 768); cuon 1 128 tick -> dung ~158 tick (canh cua hien) -> Simon tu di TRAI tu ghep 791 toi 720 (71 px, f1629-1665) -> cuon 2 128 tick -> Hall A cx 512, Simon x 720 ysec 80 quay trai; STAGE 05 f1762 (MAP2_TIMELINE 7 #3). Ca 2 cua trai Simon dung DUNG x dich 720 (TEB 71 px, Hall B 74 px) => tu di toi entry.x, khong phai so px co dinh (khac Map 1 68 px) - routine 11"
+    }
+   ]
+  },
+  {
+   "id": "TowerHallA",
+   "stage": 5,
+   "width": 768,
+   "height": 192,
+   "cols": 48,
+   "rows": 12,
+   "cameraMinX": 0,
+   "cameraMaxX": 512,
+   "bossLockCx": -1,
+   "hasSimonStart": true,
+   "simonStart": [
+    720,
+    80
+   ],
+   "simonStartDir": -1,
+   "simonStartSrc": "video Map_2 0:58.70 (f1761) sau cua trai #1: Hall A cx 512, Simon px 208 = x 720, Y 112 NES (ysec 80 = mat san hang 5), idle_0 quay TRAI; HUD STAGE 05 f1762",
+   "collision": [
+    "##...S..........................................",
+    "##..S...........................................",
+    "##.S............................................",
+    "####..............##............................",
+    "##..............................................",
+    "##################..############################",
+    "##............................................##",
+    "##............................................##",
+    "##............................................##",
+    "##............................................##",
+    "##............................................##",
+    "##............................................##"
+   ],
+   "counts": {
+    "Empty": 489,
+    "Solid": 84,
+    "Stair": 3,
+    "StairFloor": 0,
+    "Water": 0,
+    "Pit": 0,
+    "Door": 0,
+    "Breakable": 0,
+    "Hazard": 0
+   },
+   "foreground": [],
+   "stairs": [
+    {
+     "id": "TowerHallA_stair0",
+     "dir": "UpRight",
+     "steps": 6,
+     "foot": [
+      48,
+      40
+     ],
+     "top": [
+      88,
+      0
+     ],
+     "cutBottom": false,
+     "cutTop": true
+    }
+   ],
+   "markers": [
+    {
+     "id": "pit_5_18",
+     "kind": "pit",
+     "rect": [
+      288,
+      80,
+      32,
+      112
+     ],
+     "src": "tu dong (build_collision2): khe san hang 5 cot 18-19 (2 ben dac), cot 18-19 trong toi day section => roi ra day = chet Pit (TileCollision.CheckDeadly)"
+    }
+   ],
+   "connections": [
+    {
+     "id": "stair_up_to_TowerHallB",
+     "kind": "Stair",
+     "target": "TowerHallB",
+     "targetStage": 5,
+     "trigger": [
+      48,
+      0,
+      48,
+      48
+     ],
+     "triggerSimonX": -1,
+     "stair": "TowerHallA_stair0",
+     "targetStair": "TowerHallB_stair0",
+     "targetOrigin": [
+      32,
+      -192
+     ],
+     "entry": [
+      0,
+      0
+     ],
+     "src": "thang len-phai 6 bac (48,40)->(88,0) cat mep tren (tu bo hang 3 cot 2-3 y 48); bac ke tren mep (96,-8) = chan thang Hall B (64,184): HallB(x,y) = HallA(x-32, y+192). Video 1:31.4-1:32.97 Simon leo toi wx 63 ysec 31 -> den 1:33.00-1:33.33 (22 tick) -> Hall B 1:33.37 wx 66 ysec 189 van leo (MAP2_TIMELINE 7 #4)"
+    }
+   ]
+  },
+  {
+   "id": "TowerHallB",
+   "stage": 5,
+   "width": 768,
+   "height": 192,
+   "cols": 48,
+   "rows": 12,
+   "cameraMinX": 0,
+   "cameraMaxX": 512,
+   "bossLockCx": -1,
+   "hasSimonStart": false,
+   "simonStart": [
+    0,
+    0
+   ],
+   "simonStartSrc": "khong co diem bat dau stage (chi vao qua cau thang tu Hall A)",
+   "collision": [
+    "##............................................##",
+    "##............................................##",
+    "##............................................##",
+    "##....................................#X......##",
+    "D.............................................##",
+    "D...############......##......######....########",
+    "D.............................................##",
+    "####................................##........##",
+    "##............................................##",
+    "##............####..####..######################",
+    "##...S##..##..................................##",
+    "##..S.........................................##"
+   ],
+   "counts": {
+    "Empty": 465,
+    "Solid": 105,
+    "Stair": 2,
+    "StairFloor": 0,
+    "Water": 0,
+    "Pit": 0,
+    "Door": 3,
+    "Breakable": 1,
+    "Hazard": 0
+   },
+   "foreground": [],
+   "stairs": [
+    {
+     "id": "TowerHallB_stair0",
+     "dir": "UpRight",
+     "steps": 4,
+     "foot": [
+      64,
+      184
+     ],
+     "top": [
+      88,
+      160
+     ],
+     "cutBottom": true,
+     "cutTop": false
+    }
+   ],
+   "markers": [
+    {
+     "id": "platform_lane_HallB_1",
+     "kind": "platformLane",
+     "rect": [
+      256,
+      80,
+      96,
+      16
+     ],
+     "src": "khe san hang 5 cot 16-21 (x 256-351, y 80): be di dong video Map_2 1:41.2-1:44.3 wx 256->301, 2:11.7-2:18.4 wx 259-301 (MAP2_TIMELINE 3d, do tho - routine 06 do lai)"
+    },
+    {
+     "id": "platform_lane_HallB_2",
+     "kind": "platformLane",
+     "rect": [
+      384,
+      80,
+      96,
+      16
+     ],
+     "src": "khe san hang 5 cot 24-29 (x 384-479, y 80): be di dong video Map_2 1:48.2 wx 393-397 (do tho; co the la be thu 2 - routine 06)"
+    },
+    {
+     "id": "pit_5_18",
+     "kind": "pit",
+     "rect": [
+      288,
+      80,
+      32,
+      112
+     ],
+     "src": "tu dong (build_collision2): khe san hang 5 cot 16-21 (2 ben dac), cot 18-19 trong toi day section => roi ra day = chet Pit (TileCollision.CheckDeadly)"
+    },
+    {
+     "id": "pit_5_24",
+     "kind": "pit",
+     "rect": [
+      384,
+      80,
+      32,
+      112
+     ],
+     "src": "tu dong (build_collision2): khe san hang 5 cot 24-29 (2 ben dac), cot 24-25 trong toi day section => roi ra day = chet Pit (TileCollision.CheckDeadly)"
+    },
+    {
+     "id": "pit_9_18",
+     "kind": "pit",
+     "rect": [
+      288,
+      144,
+      32,
+      48
+     ],
+     "src": "tu dong (build_collision2): khe san hang 9 cot 18-19 (2 ben dac), cot 18-19 trong toi day section => roi ra day = chet Pit (TileCollision.CheckDeadly)"
+    },
+    {
+     "id": "pit_9_24",
+     "kind": "pit",
+     "rect": [
+      384,
+      144,
+      32,
+      48
+     ],
+     "src": "tu dong (build_collision2): khe san hang 9 cot 24-25 (2 ben dac), cot 24-25 trong toi day section => roi ra day = chet Pit (TileCollision.CheckDeadly)"
+    },
+    {
+     "id": "pit_10_8",
+     "kind": "pit",
+     "rect": [
+      128,
+      160,
+      32,
+      32
+     ],
+     "src": "tu dong (build_collision2): khe san hang 10 cot 8-9 (2 ben dac), cot 8-9 trong toi day section => roi ra day = chet Pit (TileCollision.CheckDeadly)"
+    }
+   ],
+   "connections": [
+    {
+     "id": "stair_down_to_TowerHallA",
+     "kind": "Stair",
+     "target": "TowerHallA",
+     "targetStage": 5,
+     "trigger": [
+      64,
+      160,
+      32,
+      32
+     ],
+     "triggerSimonX": -1,
+     "stair": "TowerHallB_stair0",
+     "targetStair": "TowerHallA_stair0",
+     "targetOrigin": [
+      -32,
+      192
+     ],
+     "entry": [
+      0,
+      0
+     ],
+     "src": "nghich dao stair_up_to_TowerHallB: thang len-phai 4 bac (64,184)->(88,160) cat mep duoi; bac ke duoi mep (56,192) = dinh thang Hall A (88,0). Video: chi di len (1:33.37-1:34.37 Simon leo tu ysec 189 toi dinh x 97 ysec 160)"
+    },
+    {
+     "id": "door_to_TowerHallC",
+     "kind": "Door",
+     "target": "TowerHallC",
+     "targetStage": 6,
+     "trigger": [
+      8,
+      64,
+      8,
+      48
+     ],
+     "triggerSimonX": 26,
+     "stair": "",
+     "targetStair": "",
+     "targetOrigin": [
+      -768,
+      0
+     ],
+     "entry": [
+      720,
+      112
+     ],
+     "dir": -1,
+     "src": "cot cua cot 0 hang 4-6 tren go hang 7 (cot 0-3, y 112). Video 2:22.20-2:22.30 (f4266-4269) Simon di TRAI x 30, 28, 26, 26 roi f4270 camera cuon (cx 766) => nguong X <= 26 (+-1: 1 frame video = 2 tick); Hall C ghep LIEN TRAI (toa do ghep HallC>HallB); cuon 128 -> dung ~166 tick -> Simon tu di tu ghep 794 toi 720 (74 px, f4349-4384) -> cuon 128 -> Hall C cx 512 Simon x 720 ysec 112; STAGE 06 f4480 (MAP2_TIMELINE 7 #5)"
+    }
+   ]
+  },
+  {
+   "id": "TowerHallC",
+   "stage": 6,
+   "width": 768,
+   "height": 192,
+   "cols": 48,
+   "rows": 12,
+   "cameraMinX": 0,
+   "cameraMaxX": 512,
+   "bossLockCx": -1,
+   "hasSimonStart": true,
+   "simonStart": [
+    720,
+    112
+   ],
+   "simonStartDir": -1,
+   "simonStartSrc": "video Map_2 2:29.30 (f4479) sau cua trai #2: Hall C cx 512, Simon px 208 = x 720, Y 144 NES (ysec 112 = mat bac hang 7), idle_0 quay TRAI; HUD STAGE 06 f4480",
+   "collision": [
+    "##.........................................S..##",
+    "##........................................S...##",
+    "##.......................................S....##",
+    "##..............################################",
+    "##..............................................",
+    "##............##................................",
+    "##.........S##..................................",
+    "##........S.................................X###",
+    "##......X#................................######",
+    "################################..........######",
+    "##............................##..........######",
+    "##............................##################"
+   ],
+   "counts": {
+    "Empty": 431,
+    "Solid": 138,
+    "Stair": 5,
+    "StairFloor": 0,
+    "Water": 0,
+    "Pit": 0,
+    "Door": 0,
+    "Breakable": 2,
+    "Hazard": 0
+   },
+   "foreground": [],
+   "stairs": [
+    {
+     "id": "TowerHallC_stair0",
+     "dir": "UpRight",
+     "steps": 4,
+     "foot": [
+      160,
+      120
+     ],
+     "top": [
+      184,
+      96
+     ],
+     "cutBottom": false,
+     "cutTop": false
+    },
+    {
+     "id": "TowerHallC_stair1",
+     "dir": "UpRight",
+     "steps": 6,
+     "foot": [
+      656,
+      40
+     ],
+     "top": [
+      696,
+      0
+     ],
+     "cutBottom": false,
+     "cutTop": true
+    }
+   ],
+   "markers": [
+    {
+     "id": "crusher_1",
+     "kind": "crusher",
+     "rect": [
+      352,
+      80,
+      32,
+      64
+     ],
+     "src": "o teal sheet (da va den) = bay ep gai #1: video Map_2 2:33.9-2:49.6 (luot duoi) + 3:04.3-3:16.2 (luot tren, nhin tu tang tren): tam wx 368, diem treo NES y 113 (y 81), day khoi 119->175 NES (y 87..143); chu ky chua du vong (MAP2_TIMELINE 3d). KHONG danh dau Hazard tren luoi: o 16x16 Hazard se giet Simon ca khi bay dang thu len tren - routine 06 gan thuc the Crusher (hop va cham theo khung)"
+    },
+    {
+     "id": "crusher_2",
+     "kind": "crusher",
+     "rect": [
+      416,
+      80,
+      32,
+      64
+     ],
+     "src": "bay ep gai #2 (wiki: 'ha xuong mot doan NGAN hon nhieu'): tam wx 432, chu ky 80 tick (f4699, 4738, 4779, 4819 - do tho CVM2 02)"
+    },
+    {
+     "id": "crusher_3",
+     "kind": "crusher",
+     "rect": [
+      480,
+      80,
+      32,
+      64
+     ],
+     "src": "bay ep gai #3: tam wx 496, chu ky 128 tick (f4652, 4716, 4780 - do tho CVM2 02)"
+    }
+   ],
+   "connections": [
+    {
+     "id": "stair_up_to_Medusa",
+     "kind": "Stair",
+     "target": "Medusa",
+     "targetStage": 6,
+     "trigger": [
+      656,
+      0,
+      48,
+      48
+     ],
+     "triggerSimonX": -1,
+     "stair": "TowerHallC_stair1",
+     "targetStair": "Medusa_stair0",
+     "targetOrigin": [
+      32,
+      -192
+     ],
+     "entry": [
+      0,
+      0
+     ],
+     "src": "thang len-phai 6 bac (656,40)->(696,0) cat mep tren (tu san tren hang 3 y 48); bac ke tren mep (704,-8) = chan thang Medusa (672,184): Medusa(x,y) = HallC(x-32, y+192). Video 3:16.4-3:17.10 Simon leo toi wx 671 ysec 31 -> den 3:17.13-3:17.43 (10 frame = 20 tick) -> Medusa 3:17.47 wx 674 ysec 189 van leo (MAP2_TIMELINE 7 #6)"
+    }
+   ]
+  },
+  {
+   "id": "Medusa",
+   "stage": 6,
+   "width": 768,
+   "height": 192,
+   "cols": 48,
+   "rows": 12,
+   "cameraMinX": 0,
+   "cameraMaxX": 512,
+   "bossLockCx": 0,
+   "hasSimonStart": false,
+   "simonStart": [
+    0,
+    0
+   ],
+   "simonStartSrc": "khong co diem bat dau stage (chi vao qua cau thang tu Hall C) | camera: video Map_2 3:44.50 (f6735) camera cuon trai toi cx 0 roi KHOA toi het tally (MAP2_TIMELINE 7 #7); video boss: phong co dinh cx 0",
+   "collision": [
+    "##............................................##",
+    "##............................................##",
+    "##............................................##",
+    "##............................................##",
+    "##............................................##",
+    "##............................................##",
+    "D.............................................##",
+    "D.............................................##",
+    "D.............##############################..##",
+    "##############..............................S###",
+    "...........................................S..##",
+    "..........................................S...##"
+   ],
+   "counts": {
+    "Empty": 489,
+    "Solid": 81,
+    "Stair": 3,
+    "StairFloor": 0,
+    "Water": 0,
+    "Pit": 0,
+    "Door": 3,
+    "Breakable": 0,
+    "Hazard": 0
+   },
+   "foreground": [],
+   "stairs": [
+    {
+     "id": "Medusa_stair0",
+     "dir": "UpRight",
+     "steps": 6,
+     "foot": [
+      672,
+      184
+     ],
+     "top": [
+      712,
+      144
+     ],
+     "cutBottom": true,
+     "cutTop": false
+    }
+   ],
+   "markers": [
+    {
+     "id": "statue",
+     "kind": "statue",
+     "rect": [
+      96,
+      104,
+      32,
+      40
+     ],
+     "src": "tuong Medusa ve SAN tren nen: 14 tile 8x8 x 96-127 y 104-143 (NES y 136-175); = sprite Boss/Medusa/medusa_bust_0 (32x48 dat tai (96,96), hang tren trong suot - CVM2 01 khop 0 px)"
+    },
+    {
+     "id": "statue_head",
+     "kind": "statueHead",
+     "rect": [
+      96,
+      104,
+      32,
+      24
+     ],
+     "src": "phan DAU tuong bi xoa khi Medusa thuc: video Map_2 tu 3:47.50 (f6825, Medusa hien f6821) 8 tile 8x8 y 104-127 thanh den (ti le den 0.73-1.00, Tools/cvm2/terrain5.py), than tuong y 128-143 GIU NGUYEN suot tran (video boss: than o lai be) - routine 09 dung LevelSection.ClearTileRect(96, 104, 32, 24)"
+    }
+   ],
+   "connections": [
+    {
+     "id": "stair_down_to_TowerHallC",
+     "kind": "Stair",
+     "target": "TowerHallC",
+     "targetStage": 6,
+     "trigger": [
+      672,
+      144,
+      48,
+      48
+     ],
+     "triggerSimonX": -1,
+     "stair": "Medusa_stair0",
+     "targetStair": "TowerHallC_stair1",
+     "targetOrigin": [
+      -32,
+      192
+     ],
+     "entry": [
+      0,
+      0
+     ],
+     "src": "nghich dao stair_up_to_Medusa: thang len-phai 6 bac (672,184)->(712,144) cat mep duoi; bac ke duoi mep (664,192) = dinh thang Hall C (696,0). Video chi di len (3:17.47-3:19.03 Simon leo toi dinh x 721 ysec 144 roi nhay len san hang 8)"
+    },
+    {
+     "id": "door_end",
+     "kind": "Door",
+     "target": "",
+     "targetStage": 7,
+     "trigger": [
+      8,
+      96,
+      8,
+      48
+     ],
+     "triggerSimonX": -1,
+     "stair": "",
+     "targetStair": "",
+     "targetOrigin": [
+      0,
+      0
+     ],
+     "entry": [
+      0,
+      0
+     ],
+     "dir": -1,
+     "src": "cot cua cot 0 hang 6-8 tren san phong boss hang 9 (y 144). KHONG dung trong video: ha Medusa -> qua cau -> tally -> ban do lau dai Block 2 -> STAGE 07 (3:55.6-4:20.2) - nhu door_end Phantom Bat"
+    }
+   ]
+  }
+ ],
+ "metatiles": [
+  {
+   "id": 0,
+   "auto": "Solid",
+   "rule": "L3",
+   "count": 566,
+   "firstSection": "TowerEntranceA",
+   "firstCol": 0,
+   "firstRow": 0
+  },
+  {
+   "id": 1,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 462,
+   "firstSection": "TowerEntranceA",
+   "firstCol": 1,
+   "firstRow": 0
+  },
+  {
+   "id": 2,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 334,
+   "firstSection": "TowerEntranceA",
+   "firstCol": 2,
+   "firstRow": 0
+  },
+  {
+   "id": 3,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 333,
+   "firstSection": "TowerEntranceA",
+   "firstCol": 3,
+   "firstRow": 0
+  },
+  {
+   "id": 4,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 12,
+   "firstSection": "TowerEntranceA",
+   "firstCol": 8,
+   "firstRow": 0
+  },
+  {
+   "id": 5,
+   "auto": "Stair",
+   "rule": "L2",
+   "count": 21,
+   "firstSection": "TowerEntranceA",
+   "firstCol": 9,
+   "firstRow": 0
+  },
+  {
+   "id": 6,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 14,
+   "firstSection": "TowerEntranceA",
+   "firstCol": 10,
+   "firstRow": 0
+  },
+  {
+   "id": 7,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 18,
+   "firstSection": "TowerEntranceA",
+   "firstCol": 11,
+   "firstRow": 0
+  },
+  {
+   "id": 8,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 35,
+   "firstSection": "TowerEntranceA",
+   "firstCol": 10,
+   "firstRow": 1
+  },
+  {
+   "id": 9,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 35,
+   "firstSection": "TowerEntranceA",
+   "firstCol": 11,
+   "firstRow": 1
+  },
+  {
+   "id": 10,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 20,
+   "firstSection": "TowerEntranceA",
+   "firstCol": 10,
+   "firstRow": 2
+  },
+  {
+   "id": 11,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 20,
+   "firstSection": "TowerEntranceA",
+   "firstCol": 11,
+   "firstRow": 2
+  },
+  {
+   "id": 12,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 20,
+   "firstSection": "TowerEntranceA",
+   "firstCol": 10,
+   "firstRow": 3
+  },
+  {
+   "id": 13,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 20,
+   "firstSection": "TowerEntranceA",
+   "firstCol": 11,
+   "firstRow": 3
+  },
+  {
+   "id": 14,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 29,
+   "firstSection": "TowerEntranceA",
+   "firstCol": 8,
+   "firstRow": 4
+  },
+  {
+   "id": 15,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 29,
+   "firstSection": "TowerEntranceA",
+   "firstCol": 9,
+   "firstRow": 4
+  },
+  {
+   "id": 16,
+   "auto": "Stair",
+   "rule": "L2",
+   "count": 3,
+   "firstSection": "TowerEntranceA",
+   "firstCol": 10,
+   "firstRow": 7
+  },
+  {
+   "id": 17,
+   "auto": "Door",
+   "rule": "L1",
+   "count": 4,
+   "firstSection": "TowerEntranceA",
+   "firstCol": 0,
+   "firstRow": 8
+  },
+  {
+   "id": 18,
+   "auto": "Door",
+   "rule": "L1",
+   "count": 4,
+   "firstSection": "TowerEntranceA",
+   "firstCol": 0,
+   "firstRow": 9
+  },
+  {
+   "id": 19,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 4,
+   "firstSection": "TowerEntranceA",
+   "firstCol": 1,
+   "firstRow": 9
+  },
+  {
+   "id": 20,
+   "auto": "Door",
+   "rule": "L1",
+   "count": 4,
+   "firstSection": "TowerEntranceA",
+   "firstCol": 0,
+   "firstRow": 10
+  },
+  {
+   "id": 21,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 4,
+   "firstSection": "TowerEntranceA",
+   "firstCol": 1,
+   "firstRow": 10
+  },
+  {
+   "id": 22,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 34,
+   "firstSection": "TowerEntranceB",
+   "firstCol": 2,
+   "firstRow": 0
+  },
+  {
+   "id": 23,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 34,
+   "firstSection": "TowerEntranceB",
+   "firstCol": 3,
+   "firstRow": 0
+  },
+  {
+   "id": 24,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 34,
+   "firstSection": "TowerEntranceB",
+   "firstCol": 2,
+   "firstRow": 1
+  },
+  {
+   "id": 25,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 34,
+   "firstSection": "TowerEntranceB",
+   "firstCol": 3,
+   "firstRow": 1
+  },
+  {
+   "id": 26,
+   "auto": "Solid",
+   "rule": "L3",
+   "count": 1,
+   "firstSection": "TowerEntranceB",
+   "firstCol": 16,
+   "firstRow": 11
+  },
+  {
+   "id": 27,
+   "auto": "Stair",
+   "rule": "L2",
+   "count": 1,
+   "firstSection": "TowerHallA",
+   "firstCol": 3,
+   "firstRow": 2
+  },
+  {
+   "id": 28,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 47,
+   "firstSection": "TowerHallA",
+   "firstCol": 4,
+   "firstRow": 6
+  },
+  {
+   "id": 29,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 47,
+   "firstSection": "TowerHallA",
+   "firstCol": 5,
+   "firstRow": 6
+  },
+  {
+   "id": 30,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 44,
+   "firstSection": "TowerHallA",
+   "firstCol": 6,
+   "firstRow": 6
+  },
+  {
+   "id": 31,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 44,
+   "firstSection": "TowerHallA",
+   "firstCol": 7,
+   "firstRow": 6
+  },
+  {
+   "id": 32,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 196,
+   "firstSection": "TowerHallA",
+   "firstCol": 4,
+   "firstRow": 7
+  },
+  {
+   "id": 33,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 6,
+   "firstSection": "TowerHallB",
+   "firstCol": 26,
+   "firstRow": 6
+  },
+  {
+   "id": 34,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 4,
+   "firstSection": "TowerHallB",
+   "firstCol": 27,
+   "firstRow": 6
+  },
+  {
+   "id": 35,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 1,
+   "firstSection": "TowerHallB",
+   "firstCol": 24,
+   "firstRow": 8
+  },
+  {
+   "id": 36,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 1,
+   "firstSection": "TowerHallB",
+   "firstCol": 25,
+   "firstRow": 8
+  },
+  {
+   "id": 37,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 1,
+   "firstSection": "TowerHallB",
+   "firstCol": 24,
+   "firstRow": 9
+  },
+  {
+   "id": 38,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 1,
+   "firstSection": "TowerHallB",
+   "firstCol": 25,
+   "firstRow": 9
+  },
+  {
+   "id": 39,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 2,
+   "firstSection": "TowerHallB",
+   "firstCol": 7,
+   "firstRow": 11
+  },
+  {
+   "id": 40,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 48,
+   "firstSection": "TowerHallC",
+   "firstCol": 2,
+   "firstRow": 0
+  },
+  {
+   "id": 41,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 48,
+   "firstSection": "TowerHallC",
+   "firstCol": 3,
+   "firstRow": 0
+  },
+  {
+   "id": 42,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 48,
+   "firstSection": "TowerHallC",
+   "firstCol": 2,
+   "firstRow": 1
+  },
+  {
+   "id": 43,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 48,
+   "firstSection": "TowerHallC",
+   "firstCol": 3,
+   "firstRow": 1
+  },
+  {
+   "id": 44,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 44,
+   "firstSection": "TowerHallC",
+   "firstCol": 2,
+   "firstRow": 4
+  },
+  {
+   "id": 45,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 3,
+   "firstSection": "TowerHallC",
+   "firstCol": 22,
+   "firstRow": 4
+  },
+  {
+   "id": 46,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 3,
+   "firstSection": "TowerHallC",
+   "firstCol": 23,
+   "firstRow": 4
+  },
+  {
+   "id": 47,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 1,
+   "firstSection": "TowerHallC",
+   "firstCol": 10,
+   "firstRow": 6
+  },
+  {
+   "id": 48,
+   "auto": "Stair",
+   "rule": "L2",
+   "count": 2,
+   "firstSection": "TowerHallC",
+   "firstCol": 11,
+   "firstRow": 6
+  },
+  {
+   "id": 49,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 8,
+   "firstSection": "TowerHallC",
+   "firstCol": 3,
+   "firstRow": 8
+  },
+  {
+   "id": 50,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 1,
+   "firstSection": "Medusa",
+   "firstCol": 6,
+   "firstRow": 1
+  },
+  {
+   "id": 51,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 1,
+   "firstSection": "Medusa",
+   "firstCol": 7,
+   "firstRow": 1
+  },
+  {
+   "id": 52,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 8,
+   "firstSection": "Medusa",
+   "firstCol": 6,
+   "firstRow": 2
+  },
+  {
+   "id": 53,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 4,
+   "firstSection": "Medusa",
+   "firstCol": 4,
+   "firstRow": 3
+  },
+  {
+   "id": 54,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 4,
+   "firstSection": "Medusa",
+   "firstCol": 5,
+   "firstRow": 3
+  },
+  {
+   "id": 55,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 12,
+   "firstSection": "Medusa",
+   "firstCol": 4,
+   "firstRow": 4
+  },
+  {
+   "id": 56,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 12,
+   "firstSection": "Medusa",
+   "firstCol": 5,
+   "firstRow": 4
+  },
+  {
+   "id": 57,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 7,
+   "firstSection": "Medusa",
+   "firstCol": 18,
+   "firstRow": 4
+  },
+  {
+   "id": 58,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 7,
+   "firstSection": "Medusa",
+   "firstCol": 19,
+   "firstRow": 4
+  },
+  {
+   "id": 59,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 14,
+   "firstSection": "Medusa",
+   "firstCol": 18,
+   "firstRow": 5
+  },
+  {
+   "id": 60,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 21,
+   "firstSection": "Medusa",
+   "firstCol": 19,
+   "firstRow": 5
+  },
+  {
+   "id": 61,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 1,
+   "firstSection": "Medusa",
+   "firstCol": 6,
+   "firstRow": 6
+  },
+  {
+   "id": 62,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 1,
+   "firstSection": "Medusa",
+   "firstCol": 7,
+   "firstRow": 6
+  },
+  {
+   "id": 63,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 7,
+   "firstSection": "Medusa",
+   "firstCol": 18,
+   "firstRow": 6
+  },
+  {
+   "id": 64,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 1,
+   "firstSection": "Medusa",
+   "firstCol": 6,
+   "firstRow": 7
+  },
+  {
+   "id": 65,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 1,
+   "firstSection": "Medusa",
+   "firstCol": 7,
+   "firstRow": 7
+  },
+  {
+   "id": 66,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 1,
+   "firstSection": "Medusa",
+   "firstCol": 6,
+   "firstRow": 8
+  },
+  {
+   "id": 67,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 1,
+   "firstSection": "Medusa",
+   "firstCol": 7,
+   "firstRow": 8
+  }
+ ]
+}

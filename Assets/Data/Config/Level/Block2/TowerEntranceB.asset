@@ -1,0 +1,124 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c4c25d45acf3c14e9c6005b7044ce18, type: 3}
+  m_Name: TowerEntranceB
+  m_EditorClassIdentifier: 
+  id: TowerEntranceB
+  stage: 4
+  width: 512
+  height: 192
+  cols: 32
+  rows: 12
+  cameraMinX: 0
+  cameraMaxX: 256
+  bossLockCx: -1
+  hasSimonStart: 0
+  simonStart: {x: 0, y: 0}
+  simonStartDir: 0
+  simonStartSrc: khong co diem bat dau stage (chi vao qua cau thang tu TEA)
+  collision:
+  - '#.............................##'
+  - '#.............................##'
+  - D.............................##
+  - D.............................##
+  - D.............................##
+  - '##....####..######....X#####..##'
+  - '#.......##....###.....##......##'
+  - '#...##..##....###.##..##....S###'
+  - '#.......##....###.....##...S..##'
+  - '#.......##....###...####..S...##'
+  - '#.......##....###........S....##'
+  - '#.......##....###.......S.....##'
+  foreground: []
+  stairs:
+  - id: TowerEntranceB_stair0
+    dir: 0
+    steps: 10
+    foot: {x: 384, y: 184}
+    top: {x: 456, y: 112}
+    cutBottom: 1
+    cutTop: 0
+  connections:
+  - id: stair_down_to_TowerEntranceA
+    kind: 2
+    target: TowerEntranceA
+    targetStage: 4
+    trigger:
+      x: 384
+      y: 112
+      width: 80
+      height: 80
+    triggerSimonX: -1
+    stair: TowerEntranceB_stair0
+    targetStair: TowerEntranceA_stair0
+    targetOrigin: {x: 224, y: 192}
+    entry: {x: 0, y: 0}
+    dir: 0
+    src: 'nghich dao stair_up_to_TowerEntranceB: thang len-phai 10 bac (384,184)->(456,112)
+      cat mep duoi; bac ke duoi mep (376,192) = dinh thang TEA (152,0). Video khong
+      di nguoc (chi len)'
+  - id: door_to_TowerHallA
+    kind: 1
+    target: TowerHallA
+    targetStage: 5
+    trigger:
+      x: 8
+      y: 32
+      width: 8
+      height: 48
+    triggerSimonX: 26
+    stair: 
+    targetStair: 
+    targetOrigin: {x: -768, y: 0}
+    entry: {x: 720, y: 80}
+    dir: -1
+    src: 'cot cua cot 0 hang 2-4 tren go hang 5 (x 0-31, y 80). Video 0:51.77 (f1553)
+      Simon dap xuong go o x 23 ysec 80 -> f1554 camera bat dau cuon TRAI (cua #2
+      Hall B cho nguong chinh xac 26); Hall A ghep LIEN TRAI (toa do ghep HallA>TEB
+      cua map2_camera.csv: TEB x = ghep - 768); cuon 1 128 tick -> dung ~158 tick
+      (canh cua hien) -> Simon tu di TRAI tu ghep 791 toi 720 (71 px, f1629-1665)
+      -> cuon 2 128 tick -> Hall A cx 512, Simon x 720 ysec 80 quay trai; STAGE 05
+      f1762 (MAP2_TIMELINE 7 #3). Ca 2 cua trai Simon dung DUNG x dich 720 (TEB 71
+      px, Hall B 74 px) => tu di toi entry.x, khong phai so px co dinh (khac Map
+      1 68 px) - routine 11'
+  markers:
+  - id: platform_lane_TEB
+    kind: platformLane
+    rect:
+      x: 32
+      y: 80
+      width: 64
+      height: 16
+    src: 'khe san hang 5 cot 2-5 (x 32-95, mat san y 80): be di dong (Object/platform
+      32x8 vien kem) - video Map_2 0:46.5-0:48.0 va 0:49.9-0:51.3 (MAP2_TIMELINE
+      3d, do tho); Simon dung tren be o ysec 80 wx 86 (0:49.1-0:49.5) va wx 61-64
+      (0:50.7) roi nhay sang go trai x 0-31 (0:51.37). Duoi khe: cot 1-3 trong toi
+      day (ho), cot 4-5 co khoi hang 7 (y 112) - Simon roi xuong do 0:50.2 (wx 86
+      ysec 112)'
+  - id: pit_5_2
+    kind: pit
+    rect:
+      x: 32
+      y: 80
+      width: 32
+      height: 112
+    src: 'tu dong (build_collision2): khe san hang 5 cot 2-5 (2 ben dac), cot 2-3
+      trong toi day section => roi ra day = chet Pit (TileCollision.CheckDeadly)'
+  - id: pit_5_10
+    kind: pit
+    rect:
+      x: 160
+      y: 80
+      width: 32
+      height: 112
+    src: 'tu dong (build_collision2): khe san hang 5 cot 10-11 (2 ben dac), cot 10-11
+      trong toi day section => roi ra day = chet Pit (TileCollision.CheckDeadly)'
