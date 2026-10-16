@@ -310,6 +310,38 @@ public static class RegressionProbe
         Simon.Teleport(startX, 176, 1);
         if (world.CameraCtl != null)
             world.CameraCtl.SnapToTarget();
+        return BeginSteps(dir, tag, rle, firstShot, count);
+    }
+
+    /// <summary>
+    /// CVM2 07: như StepShots nhưng đặt Simon trong một section Block 2 (dựng lúc chạy bằng Cvm2TerrainProbe.Setup — không bệ/bẫy) tại (x, y) quay facing.
+    /// Xong gọi Map2MechProbe.BackToArena().
+    /// </summary>
+    public static int StepShotsAt(string dir, string tag, string section, int x, int y, int facing, string rle, int firstShot, int count)
+    {
+        if (!Prepare(0, 0, false))
+            return -1;
+        Cvm2TerrainProbe.Setup();
+        var sec = Cvm2TerrainProbe.Find(section);
+        if (sec == null)
+        {
+            Debug.LogError("[RegressionProbe] không có section " + section);
+            return -1;
+        }
+        GameSession.Current.whipLevel = 1;
+        world.Warp(sec, x, y);
+        Simon.Teleport(x, y, facing);
+        world.ResetRng();
+        if (world.CameraCtl != null)
+        {
+            world.CameraCtl.Target = world.Player;
+            world.CameraCtl.SnapToTarget();
+        }
+        return BeginSteps(dir, tag, rle, firstShot, count);
+    }
+
+    private static int BeginSteps(string dir, string tag, string rle, int firstShot, int count)
+    {
         var ticks = NesReplay.Decode(rle);
         Directory.CreateDirectory(dir);
         shotDir = dir;

@@ -68,7 +68,6 @@ public static class RegressionRunner
     static int fpsParam, mismatches, skips, failed;
     static int prevFps, prevVSync;
     static bool prevBg;
-    static bool started;
 
     // ---------------------------------------------------------------- vào
 
@@ -106,7 +105,6 @@ public static class RegressionRunner
         if (StageWorld.Current != null && GameSession.Current != null && StageWorld.Current.Player is SimonController)
             GameSession.Current.ResetForNewGame();   // static không reset giữa các phiên Play (domain reload tắt)
         allStart = EditorApplication.timeSinceStartup;
-        started = false;
         cur = null;
         Running = true;
         Done = false;
