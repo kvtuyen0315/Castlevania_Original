@@ -1,0 +1,190 @@
+{
+ "sheet": "NES - Castlevania - Stages - Level 2_ Main Hall.png",
+ "size": [
+  2060,
+  825
+ ],
+ "bytes": 95606,
+ "sha256": "6d09c60ef9b25ad19fe7138779030a0505d5c7d3b15a5599ea001d060b9313fd",
+ "background_key": [
+  0,
+  128,
+  0
+ ],
+ "credit": "Sprites ripped by Mister Mike. Give credit if used. (logo [1576,792,224,32])",
+ "row_to_nes_y": "dong r cua vung <-> NES y = 32 + r (kiem bang ZNCC video Map_2: TEA 0:12 0.934 voi cal planner)",
+ "regions": [
+  {
+   "name": "TowerEntranceA",
+   "stage": 4,
+   "rect": [
+    1803,
+    632,
+    256,
+    192
+   ],
+   "screens": 1,
+   "cx_max": 0,
+   "unique8": 32,
+   "unique16": 22,
+   "colors": 8,
+   "teal_px": 0,
+   "note": "Stage 04 dau (video 0:06) - cua vao ben trai, thang len o phai"
+  },
+  {
+   "name": "TowerEntranceB",
+   "stage": 4,
+   "rect": [
+    1547,
+    425,
+    512,
+    192
+   ],
+   "screens": 2,
+   "cx_max": 256,
+   "unique8": 42,
+   "unique16": 27,
+   "colors": 9,
+   "teal_px": 0,
+   "note": "Stage 04 tang tren (video 0:29) - be di dong + cua TRAI cuoi stage (0:52)"
+  },
+  {
+   "name": "TowerHallA",
+   "stage": 5,
+   "rect": [
+    774,
+    425,
+    768,
+    192
+   ],
+   "screens": 3,
+   "cx_max": 512,
+   "unique8": 43,
+   "unique16": 26,
+   "colors": 6,
+   "teal_px": 0,
+   "note": "Stage 05 tang duoi (video 0:58, vao tu phai cx 512, di trai) - thang len trai"
+  },
+  {
+   "name": "TowerHallB",
+   "stage": 5,
+   "rect": [
+    774,
+    218,
+    768,
+    192
+   ],
+   "screens": 3,
+   "cx_max": 512,
+   "unique8": 56,
+   "unique16": 37,
+   "colors": 8,
+   "teal_px": 0,
+   "note": "Stage 05 tang tren (video 1:33, cx 0 -> 512 -> 0) - be di dong, cua TRAI (2:22)"
+  },
+  {
+   "name": "TowerHallC",
+   "stage": 6,
+   "rect": [
+    1,
+    218,
+    768,
+    192
+   ],
+   "screens": 3,
+   "cx_max": 512,
+   "unique8": 44,
+   "unique16": 32,
+   "colors": 7,
+   "teal_px": 6144,
+   "note": "Stage 06 (video 2:28, vao tu phai) - 3 o teal = vung bay ep gai, thang trai len tang tren, thang phai len sanh Medusa"
+  },
+  {
+   "name": "Medusa",
+   "stage": 6,
+   "rect": [
+    1,
+    11,
+    768,
+    192
+   ],
+   "screens": 3,
+   "cx_max": 512,
+   "unique8": 64,
+   "unique16": 44,
+   "colors": 11,
+   "teal_px": 0,
+   "note": "Stage 06 sanh + phong boss (video 3:17 vao tu phai-duoi, khoa cx 0 o phong boss); tuong Medusa ve SAN tren nen"
+  }
+ ],
+ "sprites": [
+  {
+   "name": "Crusher",
+   "rects": [
+    [
+     1,
+     425,
+     32,
+     64
+    ],
+    [
+     34,
+     425,
+     32,
+     64
+    ],
+    [
+     67,
+     425,
+     32,
+     64
+    ],
+    [
+     100,
+     425,
+     32,
+     64
+    ],
+    [
+     133,
+     425,
+     32,
+     64
+    ],
+    [
+     166,
+     425,
+     32,
+     64
+    ],
+    [
+     199,
+     425,
+     32,
+     64
+    ],
+    [
+     232,
+     425,
+     32,
+     64
+    ]
+   ],
+   "note": "8 khung bay ep gai (keo dai dan), nen den"
+  },
+  {
+   "name": "MovingPlatform",
+   "rects": [
+    [
+     269,
+     425,
+     32,
+     16
+    ]
+   ],
+   "note": "be di dong 4 khoi"
+  }
+ ],
+ "total_unique8": 82,
+ "total_unique16": 69
+}

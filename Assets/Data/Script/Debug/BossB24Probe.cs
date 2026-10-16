@@ -1016,7 +1016,7 @@ public static class BossB24Probe
         if (addedRules && rules != null)
         {
             rules.enabled = false;
-            UnityEngine.Object.Destroy(rules);
+            UnityEngine.Object.DestroyImmediate(rules);   // kịch bản kế chạy NGAY cùng frame (như BossB56Probe; CVM2 00)
             if (Simon != null)
                 Simon.AutoRespawn = savedAutoRespawn;
         }

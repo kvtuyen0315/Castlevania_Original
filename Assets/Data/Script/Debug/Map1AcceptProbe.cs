@@ -484,7 +484,11 @@ public static class Map1AcceptProbe
     private static bool spamWithStart;
     private static eGameScreen spamLastScreen;
 
-    public static string StartSpam(int stage, int ticks, int seed, bool withStart)
+    /// <summary>
+    /// warpSection ≠ null ⇒ ngay sau khi vào màn: Warp + Teleport Simon tới (warpX, warpY); lives &gt; 0 ⇒ đặt số mạng; hp &gt; 0 ⇒ đặt máu
+    /// (lượt spam PB/CB của routine 16/21 đặt tay các số này — CVM2 00 đưa vào tham số).
+    /// </summary>
+    public static string StartSpam(int stage, int ticks, int seed, bool withStart, string warpSection = null, int warpX = 0, int warpY = 0, int lives = 0, int hp = 0)
     {
         string why;
         if (!CanStart(out why))
@@ -508,6 +512,21 @@ public static class Map1AcceptProbe
         spamLastScreen = GameManager.I.State;
         spamStart = NesClock.Frame;
         spamWorldTicks0 = W != null ? W.TickCount : 0;
+        if (warpSection != null && W != null && S != null)
+            foreach (var sec in W.Sections)
+                if (sec.name == warpSection)
+                {
+                    W.Warp(sec, warpX, warpY);
+                    S.Teleport(warpX, warpY, 1);
+                    break;
+                }
+        if (lives > 0)
+            GameSession.Current.lives = lives;
+        if (hp > 0)
+        {
+            GameSession.Current.playerHp = hp;
+            GameSession.Current.NotifyChanged();
+        }
         Running = true;
         Mark("spam stage " + stage + " " + ticks + " tick seed " + seed + (withStart ? " (cả Start/Select)" : " (không Start/Select)"));
         return "spam bắt đầu";

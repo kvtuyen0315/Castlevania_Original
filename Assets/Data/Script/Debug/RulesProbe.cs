@@ -37,6 +37,7 @@ public static class RulesProbe
     static StageRules rules;
     static SimonController simon;
     static string cur;
+    static bool addedRules, savedAutoRespawn = true;   // trả lại cuối bộ (CVM2 00 — gộp cvgp-fix-05)
 
     public static string ScenarioNames()
     {
@@ -54,8 +55,13 @@ public static class RulesProbe
             return false;
         }
         rules = world.GetComponent<StageRules>();
+        simon = world.Player as SimonController;
         if (rules == null)
+        {
+            savedAutoRespawn = simon != null ? simon.AutoRespawn : true;   // StageRules tắt autoRespawn của Simon và không trả lại
             rules = world.gameObject.AddComponent<StageRules>();
+            addedRules = true;
+        }
         if (stepMethod == null)
             stepMethod = typeof(NesClock).GetMethod("Step", BindingFlags.Instance | BindingFlags.NonPublic);
         NesClock.I.enabled = false;
@@ -175,8 +181,32 @@ public static class RulesProbe
             CvgpDebug.LogRules = logRules;
             Fresh();
             Release();
+            Restore();
         }
         return SuiteReport();
+    }
+
+    /// <summary>Trả trạng thái cuối bộ: gỡ StageRules do bộ này thêm + Simon.AutoRespawn + sự kiện ⇒ bộ khác chạy cùng phiên Play (CVM2 00).</summary>
+    static void Restore()
+    {
+        if (rules != null)
+        {
+            rules.LifeLost -= OnLifeLost;
+            rules.Respawned -= OnRespawned;
+            rules.TallyDone -= OnTallyDone;
+        }
+        GameRules.OneUp -= OnOneUp;
+        if (addedRules && rules != null)
+        {
+            rules.enabled = false;
+            UnityEngine.Object.DestroyImmediate(rules);   // bộ kế chạy NGAY cùng frame
+            if (simon != null)
+                simon.AutoRespawn = savedAutoRespawn;
+        }
+        addedRules = false;
+        rules = null;
+        world = null;
+        simon = null;
     }
 
     public static string SuiteReport()
@@ -341,6 +371,7 @@ public static class RulesProbe
         simon.Teleport(300, 176, 1);
         world.CameraCtl.SnapToTarget();
         var target = world.Spawn(prefab, 330, 176, -1);
+        ((ArenaTarget)target).touchDamage = true;   // bia lấy từ pool mang touchDamage = false của probe trước (RegressionProbe/AttackProbe) — CVM2 00
         NesPad.I.Inject(eNesButton.Right, 40);
         int hit = RunUntil(() => S.playerHp == 0, 60);
         Expect(hit > 0, "chạm bia (EnemyBody) mất 2 vạch ⇒ máu 0 sau " + hit + " tick");
