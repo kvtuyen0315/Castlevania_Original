@@ -10,8 +10,10 @@ using UnityEngine;
 /// <summary>
 /// Harness NGHIỆM THU Map 1 (CVGP 16; routine 21 chạy lại) — CHỈ Editor, scene Main.unity khi Play. Chỉ ĐO, không đổi gameplay. Qua MCP:
 ///   StartFlow(fps, shotDir)   ⇒ luồng THẬT theo thời gian thực (NesClock bật, targetFrameRate = fps): GoTo(Title,0) = L0, nhấn Start ở L352
-///                               (như harness H8), phát map1_route.txt từ tick Stage 01 bật (L922) tới STAGE 04 + 60 tick; hash trạng thái
-///                               CÙNG công thức Map1RouteProbe (so e0b2d54c); log mốc luồng, SFX, enemy sinh/chết, item, vật vỡ, TIME;
+///                               (như harness H8), phát map1_route.txt từ tick Stage 01 bật (L922); CVM2 11: tới tick màn STAGE 04 (StageScreen)
+///                               bật thì phát tiếp map2_route.txt tới STAGE 07 stub + 60 tick (không có map2_route ⇒ dừng ở STAGE 04 + 60 như
+///                               cũ); hash trạng thái CÙNG công thức Map1RouteProbe (= Map2RouteProbe.Replay), "trước STAGE 04" = 165b9aef
+///                               (Map 1 không đổi); log mốc luồng, SFX, enemy sinh/chết, item, vật vỡ, TIME;
 ///                               shotDir ≠ null ⇒ ảnh H8 L10/L600/L930. Cheat bất tử bật suốt (như lộ trình 15), trả lại khi xong.
 ///   StartSpam(stage, ticks, seed, withStart) ⇒ bấm ngẫu nhiên MỌI nút mỗi tick (không bất tử) từ đầu stage; đếm lỗi console.
 ///   StartKeyLog() / StopKeyLog() ⇒ ghi Held/Pressed NesPad mỗi tick (kiểm phím thật bấm từ ngoài — PowerShell keybd_event).
@@ -38,11 +40,16 @@ public static class Map1AcceptProbe
     public static readonly List<int> ObjectCounts = new List<int>();
     /// <summary>Lỗi console (Error/Exception/Assert) trong lúc chạy.</summary>
     public static readonly List<string> ConsoleErrors = new List<string>();
+    /// <summary>CVM2 11: hash ngay trước tick màn STAGE 04 bật (= Map1RouteProbe.PreStage4Hash) + tick đó.</summary>
+    public static uint PreStage4Hash { get; private set; }
+    public static int Stage4Tick => stage4Tick;
 
     // ---- trạng thái chung
     private static Action<int> gmHandler;
     private static bool hooked;
-    private static int f0 = -1, replayFrame = -1, stage4Tick = -1, bossWakeTick = -1;
+    private static int f0 = -1, replayFrame = -1, stage4Tick = -1, bossWakeTick = -1, stage7Tick = -1;
+    private static List<int> route2;     // CVM2 11: map2_route (null ⇒ luồng cũ dừng ở STAGE 04)
+    private static bool route2Started;
     private static eGameScreen lastScreen;
     private static string lastSection = "";
     private static bool prevInvincible, prevLogFlow;
@@ -122,7 +129,10 @@ public static class Map1AcceptProbe
         brokenSeen.Clear();
         brokenPending.Clear();
         lastTime = -1;
-        f0 = replayFrame = stage4Tick = bossWakeTick = -1;
+        f0 = replayFrame = stage4Tick = bossWakeTick = stage7Tick = -1;
+        route2 = null;
+        route2Started = false;
+        PreStage4Hash = 0;
         lastSection = "";
         frameSum = frameMax = 0;
         frameCount = 0;
@@ -173,6 +183,7 @@ public static class Map1AcceptProbe
         ResetCommon(eMode.Flow);
         Fps = fps;
         route = NesReplay.Decode(File.ReadAllText(Map1RouteProbe.REPLAY));
+        route2 = File.Exists(Map2RouteProbe.REPLAY) ? NesReplay.Decode(File.ReadAllText(Map2RouteProbe.REPLAY)) : null;
         shotDir = dir;
         if (dir != null)
             Directory.CreateDirectory(dir);
@@ -193,7 +204,7 @@ public static class Map1AcceptProbe
         }
         Running = true;
         Mark("GoTo(Title,0) abs " + f0 + " = L0");
-        return "flow bắt đầu @" + fps + " fps, route " + route.Count + " tick";
+        return "flow bắt đầu @" + fps + " fps, route " + route.Count + " tick" + (route2 != null ? " + map2 " + route2.Count + " tick" : "");
     }
 
     private static int Lof(int frame) => f0 >= 0 ? frame - f0 : -1;
@@ -230,18 +241,34 @@ public static class Map1AcceptProbe
             }
             return;
         }
+        // CVM2 11: tick màn đen cuối trước STAGE 04 (bản đồ lâu đài → StageScreen stage 4) ⇒ phát map2_route (như Map2RouteProbe)
+        if (route2 != null && !route2Started)
+        {
+            var gm = GameManager.I;
+            if (gm.IsTransitioning && PendingNext() == eGameScreen.Stage1 && BlackLeft() == 1 && GameSession.Current.stage == 4)
+            {
+                NesPad.I.PlayReplay(route2);
+                route2Started = true;
+                Mark("phát map2_route ở L" + L + " (" + route2.Count + " tick)");
+            }
+        }
         int k = frame - replayFrame;   // tick k của lộ trình đã xong
         if (k < 1)
             return;
         Tick = k;
         Observe();
-        if (stage4Tick >= 0 && Tick - stage4Tick >= Map1RouteProbe.TAIL_TICKS)
+        if (route2 == null && stage4Tick >= 0 && Tick - stage4Tick >= Map1RouteProbe.TAIL_TICKS)
         {
             Finish(null);
             return;
         }
-        if (Tick > route.Count + 200)
-            Finish("hết lộ trình mà chưa tới STAGE 04");
+        if (route2 != null && stage7Tick >= 0 && Tick - stage7Tick >= Map2RouteProbe.TAIL_TICKS)
+        {
+            Finish(null);
+            return;
+        }
+        if (Tick > route.Count + (route2 != null ? route2.Count : 0) + 200)
+            Finish(route2 != null ? "hết lộ trình mà chưa tới STAGE 07" : "hết lộ trình mà chưa tới STAGE 04");
     }
 
     private static eGameScreen PendingNext()
@@ -264,8 +291,13 @@ public static class Map1AcceptProbe
         {
             lastScreen = gm.State;
             Mark("màn " + gm.State);
-            if (gm.State == eGameScreen.Stage4Stub)
+            if (Map1RouteProbe.IsStage4Screen(gm.State) && stage4Tick < 0)
+            {
                 stage4Tick = Tick;
+                PreStage4Hash = Hash;
+            }
+            if (gm.State == eGameScreen.Stage7Stub && stage7Tick < 0)
+                stage7Tick = Tick;
         }
         if (InStage)
         {
@@ -503,7 +535,7 @@ public static class Map1AcceptProbe
         SubscribeGameEvents();
         Hook();
         GameRules.NewGame();
-        GameSession.Current.stage = Mathf.Clamp(stage, 1, 3);
+        GameSession.Current.stage = Mathf.Clamp(stage, 1, StageScreen.LAST_PLAYABLE_STAGE);   // CVM2 11: + Block 2 (stage 4–6)
         if (!GameManager.I.GoTo(eGameScreen.Stage1, 0))
         {
             Finish("GameManager đang chuyển cảnh");
@@ -793,6 +825,8 @@ public static class Map1AcceptProbe
         var sb = new StringBuilder();
         sb.Append(Mode).Append(Running ? " ĐANG CHẠY" : Finished ? " xong" : "").Append(" @").Append(Fps).Append(" fps — tick ").Append(Tick)
           .Append(", hash ").Append(Hash.ToString("x8")).Append(Error.Length > 0 ? ", LỖI: " + Error : "").Append('\n');
+        sb.Append("trước STAGE 04: tick ").Append(stage4Tick).Append(" hash ").Append(PreStage4Hash.ToString("x8")).Append(" (chuẩn 8449 / 165b9aef)")
+          .Append(" | STAGE 07 ở tick ").Append(stage7Tick).Append('\n');
         sb.Append("checkpoints: ");
         foreach (var c in Checkpoints)
             sb.Append(c.ToString("x8")).Append(' ');

@@ -27,6 +27,12 @@ public class MechSpawner : EnemySpawner
 
     protected override void OnTick(StageWorld w, int cx)
     {
+        SpawnNow(w);
+    }
+
+    /// <summary>CVM2 11: sinh ngay (nếu chưa) — StageFlow gọi khi nạp section ở CUỐI tick (sau cửa trái) để khung hình đầu đã có bẫy đúng pha.</summary>
+    public void SpawnNow(StageWorld w)
+    {
         if (done)
             return;
         done = true;

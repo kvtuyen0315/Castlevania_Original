@@ -38,6 +38,10 @@ public static class Map1RouteProbe
     public static readonly List<uint> Checkpoints = new List<uint>();
     /// <summary>Số GameObject trong scene sau mỗi lần chạy (kiểm rò).</summary>
     public static readonly List<int> ObjectCounts = new List<int>();
+    /// <summary>CVM2 11: hash trạng thái ngay TRƯỚC tick màn STAGE 04 bật (Stage4Stub cũ / StageScreen stage 4) — chứng minh phần Map 1
+    /// không đổi khi luồng sau STAGE 04 đổi (đo trên code cũ = mốc chuẩn, CVM2_MEMORY §4).</summary>
+    public static uint PreStage4Hash { get; private set; }
+    public static int Stage4Tick => stage4Tick;
 
     private static MethodInfo stepMethod;
     private static Pilot pilot;
@@ -105,7 +109,7 @@ public static class Map1RouteProbe
                                           && GameSession.Current.hearts > 0 && TallyGap()),
             new Shot("map_f7100", () => GameManager.I != null && GameManager.I.State == eGameScreen.CastleMap && mapEnterFrame >= 0
                                         && NesClock.Frame - mapEnterFrame == 171 + 97),
-            new Shot("stage4_f7180", () => GameManager.I != null && GameManager.I.State == eGameScreen.Stage4Stub && stage4Tick >= 0
+            new Shot("stage4_f7180", () => GameManager.I != null && IsStage4Screen(GameManager.I.State) && stage4Tick >= 0
                                            && Tick - stage4Tick == 6),
         };
     }
@@ -188,6 +192,7 @@ public static class Map1RouteProbe
         Checkpoints.Clear();
         lastSection = "";
         stage4Tick = -1;
+        PreStage4Hash = 0;
         doorOpenTick = -1;
         mapEnterFrame = -1;
         bossWakeTick = -1;
@@ -323,8 +328,11 @@ public static class Map1RouteProbe
             Mark("màn " + gm.State);
             if (gm.State == eGameScreen.CastleMap)
                 mapEnterFrame = NesClock.Frame;
-            if (gm.State == eGameScreen.Stage4Stub)
+            if (IsStage4Screen(gm.State) && stage4Tick < 0)
+            {
                 stage4Tick = Tick;
+                PreStage4Hash = Hash;
+            }
         }
         if (InStage)
         {
@@ -374,6 +382,12 @@ public static class Map1RouteProbe
     private static uint Mix(uint h, int v)
     {
         return (h ^ (uint)v) * 16777619u;
+    }
+
+    /// <summary>CVM2 11: màn của STAGE 04 — Stage4Stub (luồng Map 1 cũ) hoặc StageScreen chơi stage 4 (Map 2 thật).</summary>
+    public static bool IsStage4Screen(eGameScreen s)
+    {
+        return s == eGameScreen.Stage4Stub || (s == eGameScreen.Stage1 && GameSession.Current.stage == 4);
     }
 
     private static bool TakeShots()
@@ -438,6 +452,7 @@ public static class Map1RouteProbe
         var sb = new StringBuilder();
         sb.Append(Mode).Append(Running ? " ĐANG CHẠY" : Finished ? " xong" : "").Append(" — tick ").Append(Tick).Append(", hash ").Append(Hash.ToString("x8"))
           .Append(", ảnh ").Append(ShotsTaken).Append(Error.Length > 0 ? ", LỖI: " + Error : "").Append('\n');
+        sb.Append("trước STAGE 04: tick ").Append(stage4Tick).Append(" hash ").Append(PreStage4Hash.ToString("x8")).Append('\n');
         sb.Append("checkpoints: ");
         foreach (var c in Checkpoints)
             sb.Append(c.ToString("x8")).Append(' ');

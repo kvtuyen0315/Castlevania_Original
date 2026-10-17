@@ -236,3 +236,25 @@ Boss (8 cũ + 2 mới): `b2_00_0s_tuong_medusa_simon_vao` · `b2_02_5s_medusa_th
 | 12 | Bản đồ B2 → đen → **Stage 07** | đen f7792–7805; Stage f7806–7813 | 4:19.73–4:20.17; Stage 4:20.20–4:20.43 | đen **14 frame = 28.0 tick**; Stage 07 hiện 8 frame | TIME **0500** (Block 3 — thêm bằng chứng cho `ConfigBlock`), tim 05, P 04, ENEMY rỗng→16; nền xanh-xám + rêu |
 
 **Luật đổi số STAGE trên HUD (xác nhận, giải quyết nghi vấn routine 00)**: **số stage đổi ở cuối đoạn cuộn thứ 2 của cửa (khi camera vào section mới, ≈ 2 frame = 4 tick sau camera dừng)** — giống Map 1 (đổi ngay khi section hiện). Planner/routine 00 thấy "đổi ~1 s sau khi section hiện" vì coi section hiện từ lúc BẮT ĐẦU cuộn 2 (0:57.70) — thật ra camera còn 128 px mới tới; **không có độ trễ riêng** (0:58.73 = hết cuộn). Khung "2:28.4 STAGE 05 / 2:38 STAGE 06" của planner cũng là hệ quả (cuộn 2 đang chạy, kết thúc 2:29.27, đổi 2:29.33).
+
+### §7b. (CVM2 11) Mốc chi tiết đo lại cho luồng Unity — khớp mẫu từng frame (`ClaudeNotes/cvm2/_cache/11/tools/door11b.py`, `cmap11b.py`; camera = đồng hồ khi cuộn 1 px/tick)
+
+| Bước | Cửa #1 TEB → Hall A | Cửa #2 Hall B → Hall C | Map 1 (CVGP 15) |
+|---|---|---|---|
+| Kích hoạt | Simon đáp gờ x 23 f1553 | Simon đi tới x 26 f4269 | x ≥ 1516 / 492 |
+| Cuộn 1 (1 px/tick) | f1553.0 → **f1616.5** (cx ghép 766 @ f1554 = tick 2, 641 @ f1616 = tick 127) | f4269.0 → **f4332.0** | 128 tick |
+| door_0 (cánh hẹp, **lật ngang**, góc trái x cột − 16) | f1618 ⇒ **+2** | f4334 ⇒ **+3** | +2 (door_0 ở x cột + 8) |
+| door_1 (cửa mở, lật ngang, góc trái x cột − 16) | f1621 ⇒ **+8** | f4340 ⇒ **+15** | +12 (door_1 ở x cột) |
+| Simon tự đi TRÁI 1 px/tick | 791 → 790 f1629 ⇒ **+24**, tới **720** (71 px) f1665 | 794 → 793 f4349 ⇒ **+33**, tới **720** (74 px) f4384 | +26, 68 px cố định |
+| door_0 lại | f1669 ⇒ **+104** | f4388 ⇒ **+111** | +97 |
+| cột cửa trở lại | f1672 ⇒ **+110** | f4392 ⇒ **+119** | +106 |
+| Cuộn 2 bắt đầu | f1696.5 ⇒ **+160** (cx 639 @ f1697) | f4414.8 ⇒ **+166** | +152 |
+| Hết cuộn 2 / STAGE đổi | cx 512 f1761 / STAGE 05 f1762 (+1 frame) | f4479 / STAGE 06 f4480 | cùng tick |
+| Bệ di động | **bị gỡ ở khung cuộn đầu** (bệ TEB x màn 56 f1551 → không còn f1554; khớp mẫu platform.png) | (bệ Hall B ngoài khung) | — |
+| Nến section mới | Hall A thấy ngay f1762 | Hall C HC_C08–10 thấy từ f4481 (2 frame sau camera dừng) | thấy ngay |
+
+Hai cửa trái lệch nhau 7–9 tick từ bước "cửa mở" (Map 1 hai cửa trùng nhau) — luật NES chưa rõ (có thể theo bộ đếm khung chung) ⇒ Unity dùng mốc đo của TỪNG cửa (`Map2FlowTiming.DOOR_TO_HALL_A/C`).
+Đổi tầng: Simon rời ở Y 31 (khung cuối f854/f2789/f5913), hiện **Y 189** (walk_1 NES 221) ở f866 / f2801 / f5924 với x 386 / 66 / 674; đen 11 / 11 / 10 frame ⇒ **21 tick** (cả 3 trong ±1).
+TIME sau khi vào section (giảm lần đầu): Stage 04 +58 tick (f187→216), TEB +58 (f866→895), Hall A +56 (f1761→1789), Hall B +60 (f2801→2831), Hall C +58 (f4479→4508), Medusa +62 (f5924→5955) — Map_1 60–64 (Unity 64 — CVGP 12; giữ như Block 1, CVM2_MEMORY §6).
+Tally: nhặt cầu (Stage Clear 3:58.83 = f7164.9) → TIME đếm đầu **f7277 = 224.6 tick** (Map_1 260, video boss Map_1 220); TIME 0000 f7380 → tim đầu f7409 = **58.1 tick** (Map_1 54); tim 1/8.0 tick; tim cuối f7525 → sân chơi đen f7584 = **118.2 tick** (Map 1 120); đen → bản đồ B2 bật (dx 256 hồi quy f7594.7) = **20.4–21.4 tick** (Map 1 23).
+Bản đồ B2: trượt dx 256 → 0 @ 1.4975 px/tick (f7610 dx 210 … f7679 dx 3, f7680 dx 0) = 170.9 tick như Block 1; **dơi (164, 99)** (castlemap_bat_0/1 khớp sai 19 f7681–7700), **chấm (76, 111)** cùng pha bat_1, đổi mỗi 8 tick; Simon hiện f7681 x 18, tới 241 f7791; đen 14 frame → STAGE 07 f7806 TIME 0500.

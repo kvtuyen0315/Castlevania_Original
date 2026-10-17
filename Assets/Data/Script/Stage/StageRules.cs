@@ -184,21 +184,35 @@ public class StageRules : MonoBehaviour
     /// <summary>Đầu stage đang chơi: section + vị trí (StageStart của GameSession.stage, không có ⇒ section hiện tại + simonStart).</summary>
     public void GetStageStart(int stage, out LevelSection section, out Vector2Int pos)
     {
+        int facing;
+        GetStageStart(stage, out section, out pos, out facing);
+    }
+
+    /// <summary>CVM2 11: + hướng Simon — dùng simonStart của section ⇒ LevelSectionData.SimonStartFacing (Map 2 Hall A/C quay TRÁI sau cửa
+    /// trái — video 0:58.70 / 2:29.30); vị trí đặt tay (Block 1 Stage 02/03) ⇒ phải như cũ.</summary>
+    public void GetStageStart(int stage, out LevelSection section, out Vector2Int pos, out int facing)
+    {
         section = null;
         pos = Vector2Int.zero;
+        facing = 1;
         for (int i = 0; i < stageStarts.Count; i++)
         {
             var st = stageStarts[i];
             if (st.stage == stage && st.section != null)
             {
                 section = st.section;
-                pos = st.useSectionStart && st.section.data.hasSimonStart ? st.section.data.simonStart : st.position;
+                bool fromSection = st.useSectionStart && st.section.data.hasSimonStart;
+                pos = fromSection ? st.section.data.simonStart : st.position;
+                facing = fromSection ? st.section.data.SimonStartFacing : 1;
                 return;
             }
         }
         section = world.Section;
         if (section != null && section.data.hasSimonStart)
+        {
             pos = section.data.simonStart;
+            facing = section.data.SimonStartFacing;
+        }
         else if (simon != null)
             pos = simon.home;
     }
@@ -209,14 +223,15 @@ public class StageRules : MonoBehaviour
         var s = GameSession.Current;
         LevelSection sec;
         Vector2Int pos;
-        GetStageStart(s.stage, out sec, out pos);
+        int facing;
+        GetStageStart(s.stage, out sec, out pos, out facing);
         GameRules.ApplyDeathReset();
         world.Stage = s.stage;
         if (sec != null)
             world.Warp(sec, pos.x, pos.y);
         if (simon != null)
         {
-            simon.Teleport(pos.x, pos.y, 1);
+            simon.Teleport(pos.x, pos.y, facing);   // CVM2 11: Block 2 Hall A/C quay trái (Block 1 luôn phải)
             if (world.CameraCtl != null)
                 world.CameraCtl.SnapToTarget();
         }
@@ -432,8 +447,11 @@ public class StageRules : MonoBehaviour
         SetClockHold(eClockHold.StageClear, true);
         if (simon != null)
             simon.InputLocked = true;
-        tally.Start(GameConfig.Current);
-        Log("nhặt quả cầu ⇒ TIME đứng " + GameSession.Current.time.ToString("0000") + ", tally sau " + GameConfig.Current.rules.GetInt(eRuleParam.StageClearToTallyTicks, 260) + " tick");
+        // CVM2 11: Block 2 chờ/nghỉ đo video Map_2 (Map2FlowTiming.TALLY_*); block khác giữ Config (video Map_1)
+        bool b2 = Map2FlowTiming.AppliesTo(world.Stage);
+        tally.Start(GameConfig.Current, b2 ? Map2FlowTiming.TALLY_WAIT_TICKS : -1, b2 ? Map2FlowTiming.TALLY_GAP_TICKS : -1);
+        Log("nhặt quả cầu ⇒ TIME đứng " + GameSession.Current.time.ToString("0000") + ", tally sau "
+            + (b2 ? Map2FlowTiming.TALLY_WAIT_TICKS : GameConfig.Current.rules.GetInt(eRuleParam.StageClearToTallyTicks, 260)) + " tick");
     }
 
     private static void Log(string msg)

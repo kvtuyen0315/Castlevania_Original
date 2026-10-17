@@ -1,0 +1,12 @@
+# 8260 tick, hash ec0acde9
+# CVM2 11 map2_route: lộ trình Map 2 từ tick màn STAGE 04 bật (sau map1_route — Map2RouteProbe phát map1_route trước) tới STAGE 07 stub — ghi bằng autopilot Map2RouteProbe.Pilot, CHEAT BẤT TỬ bật suốt (CVGP.CheatInvincible) — phát lại: Map2RouteProbe.Replay
+-*1 R*47 U*128 R*11 L*1 L+A*1 L*105 U*272 R*7 L*1 L+A*1 L*108
+L+A*1 L*49 L+A*1 L*113 L+A*1 L*95 -*60 L*21 -*74 L*24 -*416 L*378
+L+A*1 L*61 -*3 L*193 L+A*1 L*36 U*112 R*29 R+A*1 R*65 R+A*1 R*93
+R+A*1 R*95 R+A*1 R*186 R+A*1 R*43 L*1 L+A*1 L*113 -*104 L+A*1 L*39
+-*57 L+A*1 L*50 -*247 L*22 -*171 L*217 -*3 L*27 -*422 L*24 -*1
+L*31 -*24 L*121 L+A*1 L*361 L+A*1 L*35 R*19 U*64 R*15 R+A*1 R*35
+L*12 R+A*1 R*424 U*144 L*1 L+A*1 L*501 -*1 L*154 -*113 R+B*1 -*24
+B*1 -*24 B*1 -*24 B*1 -*24 L+B*1 -*24 B*1 -*24 B*1 -*24
+B*1 -*24 B*1 -*24 R+B*1 -*24 B*1 -*24 B*1 -*24 B*1 -*24
+B*1 -*24 B*1 -*24 B*1 -*24 L+B*1 -*165 R*52 -*1242

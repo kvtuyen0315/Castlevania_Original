@@ -51,10 +51,10 @@ MonoBehaviour:
     stages: 7;8;9
     boss: 3
     timeLimit:
-      has: 0
-      value: 0
-    src_timeLimit: "kh\xF4ng r\xF5 \u2014 kh\xF4ng c\xF3 video (wiki kh\xF4ng n\xEAu
-      gi\u1EDD)"
+      has: 1
+      value: 500
+    src_timeLimit: "video:Map_2 4:20.20 f7806 STAGE 07 TIME 0500 (8 frame cu\u1ED1i
+      video \u2014 \u0111o:cvm2-11; wiki kh\xF4ng n\xEAu gi\u1EDD)"
     damageToSimon: 3
     src_damage: "wiki:Gameplay#Damage (Stage 7\u201312 = 3 v\u1EA1ch); wiki:Stages
       7-9"

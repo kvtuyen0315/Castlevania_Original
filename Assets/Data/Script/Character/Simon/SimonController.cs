@@ -524,14 +524,32 @@ public class SimonController : Entity
         Fsm.SetState(eSimonState.Fall);
     }
 
-    /// <summary>1 tick bay theo bảng nhảy: ngang airVx (đụng tường thì dừng), dọc jumpDy[jumpTick] (chặn trần). Trả true khi chạm đất.</summary>
+    /// <summary>
+    /// CVM2 11: nhảy KHÔNG va trần — video Map_2 f3359–3366 (Hall B x 567–574): Simon nhảy từ dưới mái (ô đặc x 480–575, y 80–95) lên khối
+    /// y 112, chân lên tới y 112 trong khi thân chồng mái (NES không chặn đầu); CVGP 08 chặn trần vì "không có video phản chứng".
+    /// </summary>
+    public const bool JUMP_HITS_CEILING = false;
+
+    /// <summary>1 tick bay theo bảng nhảy: ngang airVx (đụng tường thì dừng), dọc jumpDy[jumpTick] (không chặn trần — JUMP_HITS_CEILING). Trả true khi chạm đất.</summary>
     public bool AirStep()
     {
         jumpTick++;
         if (airVx != 0)
-            StepX(airVx);
+        {
+            if (jumpTick >= tuckStart && (jumpTick < untuck || jumpTuckAfterAttack))
+            {
+                // CVM2 11: đang co chân ⇒ va tường ngang theo hộp co chân (đỉnh = tuckHurt, đáy = chân) — video Map_2 f2945–2966 Hall B:
+                // nhảy dưới mái (ô đặc y 80–95) cao đủ 36, thân đứng 32 px sẽ quét mái nhưng Simon vẫn đi ngang qua cột 9→10 không bị chặn
+                var saved = body;
+                body = new RectInt(body.x, tuckHurt.y, body.width, -tuckHurt.y);
+                StepX(airVx);
+                body = saved;
+            }
+            else
+                StepX(airVx);
+        }
         int dy = jumpTick <= jumpTicks ? jumpDy[jumpTick] : 0;
-        if (dy != 0 && StepY(Fixed.FromPx(dy), true) && dy > 0)
+        if (dy != 0 && StepY(Fixed.FromPx(dy), JUMP_HITS_CEILING) && dy > 0)
         {
             jumpLanded = true;
             landCount++;

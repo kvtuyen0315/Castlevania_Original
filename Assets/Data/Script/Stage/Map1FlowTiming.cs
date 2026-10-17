@@ -1,6 +1,6 @@
 /// <summary>
 /// Hằng thời lượng / vị trí của luồng Map 1 (CVGP 15 — H6 "lớp hằng có tên"): cổng lâu đài, cửa cuối stage, đổi tầng qua cầu thang,
-/// bản đồ lâu đài, Stage 04 stub. Mọi số đo trên video Map_1 bằng khớp mẫu sprite (Tools/cvgp/simon_fit.py, enemy_fit.py, map1_grab.py)
+/// bản đồ lâu đài, vào Stage 04. CVM2 11: Block 2 dùng chung các số trùng video Map_2 (±2), số khác ở Map2FlowTiming. Mọi số đo trên video Map_1 bằng khớp mẫu sprite (Tools/cvgp/simon_fit.py, enemy_fit.py, map1_grab.py)
 /// — chi tiết + frame ở ClaudeNotes/cvgp/MAP1_PLACEMENT.md §3 và CVGP_MEMORY §2m. 1 frame video = 2.003 tick; mốc đơn ±1 frame.
 /// </summary>
 public static class Map1FlowTiming
@@ -67,7 +67,8 @@ public static class Map1FlowTiming
     public const int MAP_SIMON_FRAME_TICKS = 7;
     /// <summary>SFX MapStep (07) mỗi 16 tick, lần đầu ~14 tick sau khi dừng (3:55.3 = f7059 ⇐ dừng f7051.8) — 14 lần như video.</summary>
     public const int MAP_STEP_SFX_FIRST = 14, MAP_STEP_SFX_EVERY = 16;
-    /// <summary>Simon tới x 240 ⇒ đen ≈ 27 tick (f7163.6 → Stage 04 f7177).</summary>
+    /// <summary>Simon tới x 240 ⇒ đen ≈ 27 tick (f7163.6 → Stage 04 f7177). CVM2 11: dùng chung cho bản đồ B1 → STAGE 04 thật và bản đồ B2 →
+    /// STAGE 07 (video Map_2: 14 frame ≈ 28 cả 2 lần — trong ±2).</summary>
     public const int MAP_TO_STAGE4_BLACK_TICKS = 27;
 
     // ---------------------------------------------------------------- điểm vào section (khớp mẫu — 06 dùng x_med lệch +1 khi quay phải)

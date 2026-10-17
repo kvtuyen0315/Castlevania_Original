@@ -14,8 +14,10 @@ using UnityEngine;
 ///   RegressionRunner.Start("all", 240, dir)   scene Arena, Player = Simon: long, simon, attack, item, enemy, boss, b23, b46, b24, b56, holy (CVM2 04), mech (CVM2 06), rules
 ///   RegressionRunner.Start("full", 240, dir)  = all + gallery (25 nhân vật × 3 replay, KHÔNG chụp; ~4 phút)
 ///   RegressionRunner.Start("core", 240, dir)  scene Arena với EditorPrefs CVGP.ArenaUseDummy = true (Player = ArenaDummy) — Play MỚI
-///   RegressionRunner.Start("main", 60, dir)   scene Main: flow (luồng thật Title → STAGE 04 + h8 5 mốc) + spam1..4 (spam phím 4 lượt)
-///   Tên lẻ (cách nhau dấu phẩy): long,simon,attack,item,enemy,boss,b23,b46,b24,b56,holy,mech,rules,gallery,core,flow,flow30,flow144,spam,spam1..spam4
+///   RegressionRunner.Start("main", 60, dir)   scene Main: flow (luồng thật Title → STAGE 07 + h8 5 mốc + "trước STAGE 04" = Map 1) + map2 (lộ trình
+///                                             Map 1 → Map 2 tua nhanh) + spam1..4 (Map 1) + spam5..7 (Block 2: Stage 04/05/06 — CVM2 11)
+///   Tên lẻ (cách nhau dấu phẩy): long,simon,attack,item,enemy,boss,b23,b46,b24,b56,holy,mech,rules,gallery,core,flow,flow30,flow144,map2,spam,
+///   spam1..spam7, spamb2 (= spam5..7)
 ///   RegressionRunner.Status() ⇒ tiến độ / SUMMARY khi xong; RegressionRunner.Abort().
 /// Thứ tự: long ĐẦU phiên (RegressionProbe rò trạng thái khi chạy sau RulesProbe — CVM2_MEMORY §4), rules CUỐI (sau fix-05 vẫn để cuối cho chắc).
 /// fps = targetFrameRate cho cả bộ (hash tất định theo fps); gallery tự chạy 240; spam tự chạy ≥ 144. Trả lại fps/vSync/runInBackground khi xong.
@@ -28,11 +30,16 @@ public static class RegressionRunner
         { "long", "5963c4ba" }, { "simon", "b2954cbe" }, { "attack", "eee2cdfb" }, { "item", "7ca5bf56" },
         { "enemy", "f288b0ce" }, { "boss", "31e6d711" }, { "b23", "5eb00c5b" } /* CVM2 08 (đo video Map_2; cũ 171be0c1) */, { "b46", "58a8edf9" },
         { "b24", "9b218696" } /* CVM2 09 (Medusa + rắn đo video, phòng thật; cũ 7adfbc54) */, { "b56", "6cb8a1ad" }, { "rules", "03fafb24" }, { "core", "76516076" },
-        { "gallery", "25b99169" } /* CVM2 09 (Medusa + rắn; CVM2 08 8548b2de) */, { "flow", "e0b2d54c" }, { "flow30", "e0b2d54c" }, { "flow144", "e0b2d54c" },
+        { "gallery", "ffd5b71e" } /* CVM2 11 (nhảy không va trần — PhantomBat_attack; CVM2 09 25b99169) */,
+        // CVM2 11: luồng thật Title → STAGE 07 (map1_route + map2_route; cũ Title → STAGE 04 e0b2d54c — phần Map 1 = PRE4 dưới)
+        { "flow", "caf21ae2" }, { "flow30", "caf21ae2" }, { "flow144", "caf21ae2" }, { "map2", "caf21ae2" },
         { "holy", "b1033a3f" },   // CVM2 04 (HolyPierceProbe — bộ mới) → CVM2 09 (Medusa thức 180 tick sau khoá; cũ 52c59864)
         { "mech", "91215ebd" },   // CVM2 06 (Map2MechProbe — bộ mới: bệ di động, bẫy ép gai, hố)
         { "h8", "352/432/448/890/922" },
     };
+
+    /// <summary>CVM2 11: hash lộ trình ngay TRƯỚC tick màn STAGE 04 bật (đo trên code CVM2 10 — luồng cũ Stage4Stub) — Map 1 không đổi.</summary>
+    public const string PRE4 = "165b9aef";
 
     const string CORE_NAMES = "walk300,wallR,wallR3,wallR24,wallL,wallL3,ledge,stairs,stair2,water,pit,camR,camL,hit,touch,matrix,spawn,freeze,freezeEnemy,mix,mix";
     const string ARENA_ALL = "long,simon,attack,item,enemy,boss,b23,b46,b24,b56,holy,mech,rules";
@@ -89,8 +96,9 @@ public static class RegressionRunner
             var n = raw.Trim();
             if (n == "all") foreach (var a in ARENA_ALL.Split(',')) Add(a);
             else if (n == "full") { foreach (var a in ARENA_ALL.Split(',')) Add(a); Add("gallery"); }
-            else if (n == "main") { Add("flow"); Add("spam1"); Add("spam2"); Add("spam3"); Add("spam4"); }
+            else if (n == "main") { Add("flow"); Add("map2"); Add("spam1"); Add("spam2"); Add("spam3"); Add("spam4"); Add("spam5"); Add("spam6"); Add("spam7"); }
             else if (n == "spam") { Add("spam1"); Add("spam2"); Add("spam3"); Add("spam4"); }
+            else if (n == "spamb2") { Add("spam5"); Add("spam6"); Add("spam7"); }
             else if (n.Length > 0) Add(n);
         }
         foreach (var d in queue)
@@ -443,7 +451,7 @@ public static class RegressionRunner
                     int f = name == "flow30" ? 30 : name == "flow144" ? 144 : 0;
                     return new SuiteDef
                     {
-                        name = name, session = "main", fps = f, timeoutSec = 900,
+                        name = name, session = "main", fps = f, timeoutSec = 1500,
                         start = () =>
                         {
                             string r = Map1AcceptProbe.StartFlow(f > 0 ? f : fpsParam, outDir + "/shots/" + name);
@@ -453,10 +461,12 @@ public static class RegressionRunner
                         finish = () =>
                         {
                             Map1AcceptProbe.SaveReport(outDir + "/suites/" + name + "_report.txt");
+                            bool pre4 = Map1AcceptProbe.PreStage4Hash.ToString("x8") == PRE4;
                             var res = new Result
                             {
-                                total = 1, pass = string.IsNullOrEmpty(Map1AcceptProbe.Error) && Map1AcceptProbe.ConsoleErrors.Count == 0 ? 1 : 0,
+                                total = 2, pass = (string.IsNullOrEmpty(Map1AcceptProbe.Error) && Map1AcceptProbe.ConsoleErrors.Count == 0 ? 1 : 0) + (pre4 ? 1 : 0),
                                 hash = Map1AcceptProbe.Hash.ToString("x8"),
+                                note = "trước STAGE 04 " + Map1AcceptProbe.PreStage4Hash.ToString("x8") + (pre4 ? " = " : " ≠ ") + PRE4,
                                 text = Map1AcceptProbe.Report() + "\nGameObject: " + string.Join(" ", Map1AcceptProbe.ObjectCounts.ConvertAll(x => x.ToString()).ToArray())
                             };
                             H8(name);
@@ -464,10 +474,37 @@ public static class RegressionRunner
                         }
                     };
                 }
+            case "map2":
+                return new SuiteDef
+                {
+                    name = name, session = "main", timeoutSec = 900,
+                    start = () =>
+                    {
+                        string r = Map2RouteProbe.Replay(null, 40);
+                        return r.StartsWith("replay bắt đầu") ? null : r;
+                    },
+                    done = () => Map2RouteProbe.Finished && !Map2RouteProbe.Running,
+                    finish = () =>
+                    {
+                        Map2RouteProbe.SaveReport(outDir + "/suites/map2_report.txt");
+                        bool pre4 = Map2RouteProbe.PreStage4Hash.ToString("x8") == PRE4;
+                        return new Result
+                        {
+                            total = 2, pass = (string.IsNullOrEmpty(Map2RouteProbe.Error) && Map2RouteProbe.Stage7Tick > 0 ? 1 : 0) + (pre4 ? 1 : 0),
+                            hash = Map2RouteProbe.Hash.ToString("x8"),
+                            note = "trước STAGE 04 " + Map2RouteProbe.PreStage4Hash.ToString("x8") + (pre4 ? " = " : " ≠ ") + PRE4,
+                            text = Map2RouteProbe.Report()
+                        };
+                    }
+                };
             case "spam1": return Spam(name, 1, 3600, 16001, false, null, 0, 0, 0, 0);
             case "spam2": return Spam(name, 2, 3600, 16002, true, null, 0, 0, 0, 0);
             case "spam3": return Spam(name, 3, 4800, 16003, true, null, 0, 0, 1, 2);
             case "spam4": return Spam(name, 2, 4800, 16004, true, "CryptB", 240, 96, 1, 0);
+            // CVM2 11 — Block 2: đầu Stage 04 / 05 / 06 (Stage 06: 2 mạng để có hồi sinh + GAME OVER); đạt = 0 lỗi console
+            case "spam5": return Spam(name, 4, 3600, 16005, false, null, 0, 0, 0, 0);
+            case "spam6": return Spam(name, 5, 4800, 16006, true, null, 0, 0, 0, 0);
+            case "spam7": return Spam(name, 6, 4800, 16007, true, null, 0, 0, 2, 2);
         }
         return null;
     }

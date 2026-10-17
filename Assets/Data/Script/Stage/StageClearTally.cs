@@ -46,13 +46,15 @@ public class StageClearTally
         TimeStartTick = TimeEndTick = HeartStartTick = HeartEndTick = DoneTick = 0;
     }
 
-    public void Start(GameConfig cfg)
+    /// <summary>waitOverride / gapOverride ≥ 0 ⇒ thay StageClearToTallyTicks / TallyGapTicks (CVM2 11: Block 2 đo video Map_2 —
+    /// Map2FlowTiming.TALLY_*; Block 1 giữ Config = video Map_1).</summary>
+    public void Start(GameConfig cfg, int waitOverride = -1, int gapOverride = -1)
     {
         Reset();
-        waitStart = cfg.rules.GetInt(eRuleParam.StageClearToTallyTicks, 260);
+        waitStart = waitOverride >= 0 ? waitOverride : cfg.rules.GetInt(eRuleParam.StageClearToTallyTicks, 260);
         perUnit = Mathf.Max(1, cfg.score.GetInt(eScoreParam.TallyTicksPerTimeUnit, 1));
         perHeart = Mathf.Max(1, cfg.score.GetInt(eScoreParam.TallyTicksPerHeart, 8));
-        gap = cfg.score.GetInt(eScoreParam.TallyGapTicks, 54);
+        gap = gapOverride >= 0 ? gapOverride : cfg.score.GetInt(eScoreParam.TallyGapTicks, 54);
         endWait = cfg.score.GetInt(eScoreParam.TallyEndWaitTicks, 120);
         sfxEvery = Mathf.Max(1, cfg.score.GetInt(eScoreParam.TallySfxEveryTicks, 8));
         ptsUnit = cfg.score.GetInt(eScoreParam.TallyPointsPerTimeUnit, 10);

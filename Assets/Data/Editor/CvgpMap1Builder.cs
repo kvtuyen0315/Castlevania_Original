@@ -15,8 +15,10 @@ using UnityEngine.SceneManagement;
 ///     EdgeSpawner/WaterSpawner (vùng sinh), kho báu bí mật (SpawnPoint SecretTrigger + SecretTriggerSpec), BossArena. Lớp vật thể là prefab
 ///     RIÊNG (không lồng vào prefab section của 06 — scene Arena dùng chung prefab section, thêm vật vào đó sẽ đổi kết quả bộ kiểm 07–14).
 ///     Nội dung so EditorJsonUtility với prefab cũ ⇒ không khác thì không ghi (chạy lại = 0 ghi).
-///   • CVGP/Build Map1 Screens: dựng Assets/Data/Prefabs/Screens/{StageScreen, CastleMapScreen, Stage4Stub}.prefab (giữ GUID + fileID gốc)
-///     và lắp vào Main.unity/ScreenRoot thay instance Stage1Stub (Stage1Stub.prefab + script giữ lại cho builder CVTI — không còn trong scene).
+///   • CVGP/Build Map1 Screens (= CVM2/Build Map2 Screens): dựng Assets/Data/Prefabs/Screens/{StageScreen, CastleMapScreen, Stage7Stub}.prefab
+///     (giữ GUID + fileID gốc) và lắp vào Main.unity/ScreenRoot thay instance Stage1Stub (Stage1Stub.prefab + script giữ lại cho builder CVTI —
+///     không còn trong scene). CVM2 11: StageScreen chứa thêm 6 section Block 2 + lớp vật thể (CVM2/Build Map2 Objects), điểm đầu Stage 04–06;
+///     Stage4Stub bỏ (STAGE 04 thật = StageScreen) — builder gỡ instance cũ khỏi Main.unity; Stage7Stub cuối luồng.
 /// </summary>
 public static class CvgpMap1Builder
 {
@@ -26,12 +28,16 @@ public static class CvgpMap1Builder
     const string SCREEN_DIR = "Assets/Data/Prefabs/Screens/";
     const string STAGE_SCREEN = SCREEN_DIR + "StageScreen.prefab";
     const string CASTLEMAP_SCREEN = SCREEN_DIR + "CastleMapScreen.prefab";
-    const string STAGE4_SCREEN = SCREEN_DIR + "Stage4Stub.prefab";
+    const string STAGE4_SCREEN = SCREEN_DIR + "Stage4Stub.prefab";   // CVM2 11: đã xoá — chỉ để gỡ instance cũ khỏi Main.unity
+    const string STAGE7_SCREEN = SCREEN_DIR + "Stage7Stub.prefab";
     const string STAGE1_STUB = SCREEN_DIR + "Stage1Stub.prefab";
     const string MAIN_SCENE = "Assets/Scenes/Main.unity";
     const string HUD_PREFAB = "Assets/Data/Prefabs/UI/HUD.prefab";
     const string GAME_CONFIG = "Assets/Data/Config/GameConfig.asset";
     static readonly string[] SECTIONS = { "CastleEntrance", "EntranceHall", "CryptA", "CryptB", "PhantomBat" };
+    /// <summary>CVM2 11 — section Block 2 (CVM2/Build Map2 Tilemaps + Objects) thêm vào StageScreen sau Block 1 (đang tắt).</summary>
+    const string SECTION_DIR_B2 = "Assets/Data/Prefabs/Level/Block2/";
+    static readonly string[] SECTIONS_B2 = { "TowerEntranceA", "TowerEntranceB", "TowerHallA", "TowerHallB", "TowerHallC", "Medusa" };
 
     // ------------------------------------------------------------------ bảng JSON (JsonUtility)
     // CVM2 10: thêm trường tuỳ chọn cho Map 2 (Point.param, Edge.zoneMinY/zoneMaxY/maxSpawns, Secret.riseSpeed, Section.mechSpawners,
@@ -59,6 +65,13 @@ public static class CvgpMap1Builder
 
     [MenuItem("CVGP/Build Map1 Screens")]
     static void BuildScreensMenu()
+    {
+        Debug.Log(BuildScreens());
+    }
+
+    /// <summary>CVM2 11 — cùng builder (StageScreen chứa cả Block 1 + Block 2, bản đồ lâu đài, Stage7Stub).</summary>
+    [MenuItem("CVM2/Build Map2 Screens")]
+    static void BuildScreensMap2Menu()
     {
         Debug.Log(BuildScreens());
     }
@@ -276,12 +289,16 @@ public static class CvgpMap1Builder
         foreach (var id in SECTIONS)
             if (AssetDatabase.LoadAssetAtPath<GameObject>(OBJ_DIR + "/" + id + "_Objects.prefab") == null)
                 return "[Map1] thiếu " + id + "_Objects.prefab — chạy CVGP/Build Map1 Objects trước";
+        foreach (var id in SECTIONS_B2)
+            if (AssetDatabase.LoadAssetAtPath<GameObject>(OBJ_DIR_MAP2 + "/" + id + "_Objects.prefab") == null
+                || AssetDatabase.LoadAssetAtPath<GameObject>(SECTION_DIR_B2 + id + ".prefab") == null)
+                return "[Map1] thiếu Block 2 " + id + " — chạy CVM2/Build Map2 Tilemaps + CVM2/Build Map2 Objects trước";
         BuildStageScreen();
         BuildCastleMap();
-        BuildStage4();
+        BuildStage7();
         var msg = InstallInMain();
         AssetDatabase.SaveAssets();
-        return "[Map1] Build Map1 Screens: StageScreen, CastleMapScreen, Stage4Stub — " + msg;
+        return "[Map1] Build Map1 Screens: StageScreen (Block 1 + 2), CastleMapScreen, Stage7Stub — " + msg;
     }
 
     static GameObject OpenOrNew(string path, string name)
@@ -345,6 +362,15 @@ public static class CvgpMap1Builder
             s.SetActive(id == "CastleEntrance");
             secs[id] = s.GetComponent<LevelSection>();
         }
+        foreach (var id in SECTIONS_B2)   // CVM2 11
+        {
+            var s = (GameObject)PrefabUtility.InstantiatePrefab(AssetDatabase.LoadAssetAtPath<GameObject>(SECTION_DIR_B2 + id + ".prefab"), worldGo.transform);
+            s.name = id;
+            var objs = (GameObject)PrefabUtility.InstantiatePrefab(AssetDatabase.LoadAssetAtPath<GameObject>(OBJ_DIR_MAP2 + "/" + id + "_Objects.prefab"), s.transform);
+            objs.name = id + "_Objects";
+            s.SetActive(false);
+            secs[id] = s.GetComponent<LevelSection>();
+        }
         var entities = new GameObject("Entities");
         entities.transform.SetParent(worldGo.transform, false);
         entities.transform.localPosition = NesCoord.ToWorld(0, LevelSectionData.SCREEN_Y);
@@ -377,10 +403,14 @@ public static class CvgpMap1Builder
         var rso = new SerializedObject(rules);
         rso.FindProperty("world").objectReferenceValue = world;
         var st = rso.FindProperty("stageStarts");
-        st.arraySize = 3;
+        st.arraySize = 6;
         SetStart(st.GetArrayElementAtIndex(0), 1, secs["CastleEntrance"], true, Vector2Int.zero);
         SetStart(st.GetArrayElementAtIndex(1), 2, secs["CryptA"], false, new Vector2Int(Map1FlowTiming.STAGE_ENTRY_X, Map1FlowTiming.STAGE_ENTRY_Y));
         SetStart(st.GetArrayElementAtIndex(2), 3, secs["PhantomBat"], false, new Vector2Int(Map1FlowTiming.STAGE_ENTRY_X, Map1FlowTiming.STAGE_ENTRY_Y));
+        // CVM2 11 — Block 2: simonStart + simonStartDir của section (CVM2 05 đo video: TEA (64,176) phải; Hall A (720,80) / Hall C (720,112) trái)
+        SetStart(st.GetArrayElementAtIndex(3), 4, secs["TowerEntranceA"], true, Vector2Int.zero);
+        SetStart(st.GetArrayElementAtIndex(4), 5, secs["TowerHallA"], true, Vector2Int.zero);
+        SetStart(st.GetArrayElementAtIndex(5), 6, secs["TowerHallC"], true, Vector2Int.zero);
         rso.ApplyModifiedPropertiesWithoutUndo();
 
         var fso = new SerializedObject(flow);
@@ -435,13 +465,13 @@ public static class CvgpMap1Builder
         Save(root, CASTLEMAP_SCREEN);
     }
 
-    static void BuildStage4()
+    static void BuildStage7()
     {
-        var root = OpenOrNew(STAGE4_SCREEN, "Stage4Stub");
+        var root = OpenOrNew(STAGE7_SCREEN, "Stage7Stub");
         root.transform.localPosition = Vector3.zero;
-        GetOrAdd<Stage4Stub>(root);
+        GetOrAdd<Stage7Stub>(root);
         AddHud(root.transform);
-        Save(root, STAGE4_SCREEN);
+        Save(root, STAGE7_SCREEN);
     }
 
     static SpriteRenderer MakeRenderer(Transform parent, string name, Sprite sprite, string layer, int order, int x, int y)
@@ -471,7 +501,7 @@ public static class CvgpMap1Builder
         return s;
     }
 
-    /// <summary>Main.unity/ScreenRoot: bỏ instance Stage1Stub, thêm StageScreen (cùng chỗ), CastleMapScreen, Stage4Stub — tắt sẵn.</summary>
+    /// <summary>Main.unity/ScreenRoot: bỏ instance Stage1Stub (+ Stage4Stub — CVM2 11), thêm StageScreen (cùng chỗ), CastleMapScreen, Stage7Stub — tắt sẵn.</summary>
     static string InstallInMain()
     {
         var scene = SceneManager.GetActiveScene();
@@ -498,10 +528,15 @@ public static class CvgpMap1Builder
                 UnityEngine.Object.DestroyImmediate(c);
                 changes.Add("bỏ Stage1Stub");
             }
+            else if (c.name == "Stage4Stub" || PrefabUtility.GetPrefabAssetPathOfNearestInstanceRoot(c) == STAGE4_SCREEN)
+            {
+                UnityEngine.Object.DestroyImmediate(c);   // CVM2 11: STAGE 04 thật = StageScreen
+                changes.Add("bỏ Stage4Stub");
+            }
         }
         Ensure(screenRoot.transform, STAGE_SCREEN, index, changes);
         Ensure(screenRoot.transform, CASTLEMAP_SCREEN, -1, changes);
-        Ensure(screenRoot.transform, STAGE4_SCREEN, -1, changes);
+        Ensure(screenRoot.transform, STAGE7_SCREEN, -1, changes);
         if (changes.Count == 0)
             return "Main.unity không đổi";
         EditorSceneManager.MarkSceneDirty(scene);

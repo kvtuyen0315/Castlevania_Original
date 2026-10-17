@@ -13,6 +13,9 @@ using UnityEngine;
 ///   • Cầu thang cắt mép (kind Stair): đi lên quá STAIR_UP_EXIT_Y / xuống quá STAIR_DOWN_EXIT_Y ⇒ đen STAIR_BLACK_TICKS ⇒ section đích,
 ///     Simon trên thang đích ở Y đến đo video (x theo đường thang), TIME pha mới.
 ///   • Hết Block 1: StageRules.TallyDone ⇒ GameManager.GoTo(CastleMap, MAP_BLACK_TICKS).
+///   • CVM2 11 — Map 2 (Block 2, Map2FlowTiming đo video Map_2): cửa TRÁI (Connection.dir −1): Simon trên đất X ≤ triggerSimonX ⇒ cuộn
+///     camera ÂM 128 + 128 px (section đích ghép liền trái), cánh cửa lật ngang ở x cột − 16, Simon tự đi TRÁI tới entry.x của section đích,
+///     mốc từng cửa đo riêng; đổi tầng đen 21 tick, hiện ở Y 189; tally chờ 224 / nghỉ 58; tally → bản đồ đen 21. Block 1 giữ nguyên số Map 1.
 ///   • Nhạc (CVM2 03 — tương quan âm thanh video, CVM2_MEMORY §2d): ConfigStage.music từ đầu stage + hồi sinh (Map_1: Vampire Killer
 ///     0:02.22, chạy liền qua cổng/cửa/Stage 02/03 — KHÔNG phát lại), Stage Clear lúc nhặt quả cầu (Map_1 3:33.06), Death khi mất mạng
 ///     (suy luận — không video); nhạc boss do BossBase (ConfigBlock.bossMusic).
@@ -62,6 +65,9 @@ public class StageFlow : MonoBehaviour
     private int cx0, doorX, doorY, walkFromX;
     private int doorStep;                 // 0 cuộn 1, 1 dừng (cửa), 2 cuộn 2
     private int stairDir, stairArriveY;
+    // CVM2 11: cửa theo hướng (Map 1 phải: số Map1FlowTiming; Map 2 trái: Map2FlowTiming theo từng cửa)
+    private int doorDir, doorLeafX, doorOpenX, walkToX;
+    private int tLeaf, tOpen, tWalk, tClosing, tClosed, tScroll2;
 
     public ePhase Phase => phase;
     public StageWorld World => world;
@@ -195,7 +201,9 @@ public class StageFlow : MonoBehaviour
                     }
                     break;
                 case eLevelLink.Door:
-                    if (onGround && c.triggerSimonX >= 0 && simon.X >= c.triggerSimonX && simon.Y == c.trigger.y + c.trigger.height)
+                    // CVM2 11: cửa TRÁI (dir −1) kích hoạt khi X ≤ triggerSimonX (video Map_2 f1553 x 23, f4269 x 26)
+                    if (onGround && c.triggerSimonX >= 0 && (c.Dir < 0 ? simon.X <= c.triggerSimonX : simon.X >= c.triggerSimonX)
+                        && simon.Y == c.trigger.y + c.trigger.height)
                     {
                         StartDoor(simon, c);
                         return;
@@ -261,11 +269,45 @@ public class StageFlow : MonoBehaviour
         seqTick = world.TickCount;
         walkFromX = simon.X;
         doorX = c.trigger.x;
-        doorY = Map1FlowTiming.DOOR_SPRITE_Y;
+        doorDir = c.Dir;
+        if (doorDir > 0)
+        {
+            // Map 1 (CVGP 15): cửa phải — giữ nguyên số
+            doorY = Map1FlowTiming.DOOR_SPRITE_Y;
+            doorLeafX = doorX + Map1FlowTiming.DOOR_LEAF_DX;
+            doorOpenX = doorX;
+            walkToX = walkFromX + Map1FlowTiming.DOOR_WALK_PX;
+            tLeaf = Map1FlowTiming.DOOR_LEAF_TICK;
+            tOpen = Map1FlowTiming.DOOR_OPEN_TICK;
+            tWalk = Map1FlowTiming.DOOR_WALK_TICK;
+            tClosing = Map1FlowTiming.DOOR_CLOSING_TICK;
+            tClosed = Map1FlowTiming.DOOR_CLOSED_TICK;
+            tScroll2 = Map1FlowTiming.DOOR_SCROLL2_TICK;
+        }
+        else
+        {
+            // CVM2 11 — cửa trái Map 2: cánh cửa lật ngang ở x cột − 16, đỉnh cột + 1; Simon tự đi tới entry.x của section đích (toạ độ nguồn)
+            var dt = Map2FlowTiming.Door(c.id);
+            doorY = c.trigger.y + Map2FlowTiming.DOOR_DY;
+            doorLeafX = doorOpenX = doorX + Map2FlowTiming.DOOR_LEFT_DX;
+            walkToX = c.entry.x + c.targetOrigin.x;
+            tLeaf = dt.leaf;
+            tOpen = dt.open;
+            tWalk = dt.walk;
+            tClosing = dt.closing;
+            tClosed = dt.closed;
+            tScroll2 = dt.scroll2;
+        }
         Hold(true);
         world.SpawnersPaused = true;
         world.KillGroup(eEntityGroup.Enemy, eKillReason.Cleared);
         world.KillGroup(eEntityGroup.EnemyShot, eKillReason.Cleared);
+        // CVM2 11: bệ di động cũng bị gỡ ở khung cuộn đầu (video Map_2 f1551 bệ TEB ở x màn 56 → f1554 mất — khớp mẫu platform.png);
+        // Map 1 không có bệ ⇒ vòng rỗng
+        var plats = world.Platforms;
+        for (int i = 0; i < plats.Count; i++)
+            if (plats[i] != null && plats[i].Alive)
+                plats[i].Kill(eKillReason.Cleared);
         simon.InputLocked = true;
         simon.Fsm.SetState(eSimonState.Idle);
         // section đích hiện liền phải (gốc đích = targetOrigin trong toạ độ section nguồn — CVGP 06)
@@ -279,7 +321,7 @@ public class StageFlow : MonoBehaviour
         {
             cx0 = cam.X;
             cam.Target = null;
-            cam.ScrollTo(cx0 + Map1FlowTiming.DOOR_SCROLL_PX, Map1FlowTiming.DOOR_SCROLL_SPEED_FIXED);
+            cam.ScrollTo(cx0 + doorDir * Map1FlowTiming.DOOR_SCROLL_PX, Map1FlowTiming.DOOR_SCROLL_SPEED_FIXED);
         }
         Mark("door");
     }
@@ -299,23 +341,23 @@ public class StageFlow : MonoBehaviour
         }
         if (doorStep == 1)
         {
-            if (k == Map1FlowTiming.DOOR_LEAF_TICK)
+            if (k == tLeaf)
             {
                 world.Section.ClearTileRect(conn.trigger.x, conn.trigger.y, conn.trigger.width, conn.trigger.height);
-                ShowDoor(doorLeaf, doorX + Map1FlowTiming.DOOR_LEAF_DX);
+                ShowDoor(doorLeaf, doorLeafX);
             }
-            else if (k == Map1FlowTiming.DOOR_OPEN_TICK)
+            else if (k == tOpen)
             {
-                ShowDoor(doorOpen, doorX);
+                ShowDoor(doorOpen, doorOpenX);
                 if (AudioManager.I != null)
                     AudioManager.I.PlaySfx(eSfx.Door);
                 Mark("door_open");
             }
-            else if (k == Map1FlowTiming.DOOR_WALK_TICK)
-                simon.StartAutoWalk(walkFromX + Map1FlowTiming.DOOR_WALK_PX, 0, true);
-            else if (k == Map1FlowTiming.DOOR_CLOSING_TICK)
-                ShowDoor(doorLeaf, doorX + Map1FlowTiming.DOOR_LEAF_DX);
-            else if (k == Map1FlowTiming.DOOR_CLOSED_TICK)
+            else if (k == tWalk)
+                simon.StartAutoWalk(walkToX, 0, true);
+            else if (k == tClosing)
+                ShowDoor(doorLeaf, doorLeafX);
+            else if (k == tClosed)
             {
                 if (doorView != null)
                     doorView.enabled = false;
@@ -324,32 +366,53 @@ public class StageFlow : MonoBehaviour
                     AudioManager.I.PlaySfx(eSfx.Door);
                 Mark("door_closed");
             }
-            else if (k == Map1FlowTiming.DOOR_SCROLL2_TICK)
+            else if (k == tScroll2)
             {
                 doorStep = 2;
                 if (cam != null)
-                    cam.ScrollTo(cx0 + 2 * Map1FlowTiming.DOOR_SCROLL_PX, Map1FlowTiming.DOOR_SCROLL_SPEED_FIXED);
+                    cam.ScrollTo(cx0 + doorDir * 2 * Map1FlowTiming.DOOR_SCROLL_PX, Map1FlowTiming.DOOR_SCROLL_SPEED_FIXED);
             }
             return;
         }
         if (cam != null && cam.IsScrolling)
             return;
-        // cuộn lần 2 xong: nạp section đích cùng khung hình (camera đích = cx0 + 256 − gốc đích)
+        // cuộn lần 2 xong: nạp section đích cùng khung hình (camera đích = cx0 ± 256 − gốc đích)
         phase = ePhase.None;
         var c = conn;
         simon.InputLocked = false;
         GameRules.EnterStage(c.targetStage, false);
         world.Stage = c.targetStage;
-        ArriveSection(target, simon.X - c.targetOrigin.x, simon.Y - c.targetOrigin.y, "stage" + c.targetStage);
+        ArriveSection(target, simon.X - c.targetOrigin.x, simon.Y - c.targetOrigin.y, "stage" + c.targetStage, doorDir);
+        if (doorDir < 0)
+            SpawnMechNow();
     }
 
+    /// <summary>
+    /// CVM2 11: bệ/bẫy (MechSpawner) của section vừa nạp sau cửa sinh NGAY tick này (nạp ở cuối tick — sau bước 8) ⇒ khung hình đầu đã có bẫy
+    /// ép ở đúng pha startTick (CVM2 06 đo từ frame ĐẦU Hall C hiện, f4479). Đổi tầng nạp ở đầu tick (PreTick) ⇒ bước 8 cùng tick tự sinh.
+    /// </summary>
+    private void SpawnMechNow()
+    {
+        var list = world.Spawners;
+        for (int i = 0; i < list.Count; i++)
+        {
+            var ms = list[i] as MechSpawner;
+            if (ms != null)
+                ms.SpawnNow(world);
+        }
+    }
+
+    /// <summary>Cánh cửa với góc TRÊN-TRÁI ở (x, doorY) px section. CVM2 11: cửa trái = gương cửa phải (khớp mẫu lật ngang) — sprite pivot
+    /// trên-trái nên khi lật vẽ về phía trái của pivot ⇒ đặt pivot ở x + rộng.</summary>
     private void ShowDoor(Sprite s, int x)
     {
         if (doorView == null)
             return;
         doorView.sprite = s;
         doorView.enabled = s != null;
-        doorView.transform.localPosition = NesCoord.ToWorld(x, doorY);
+        bool flip = doorDir < 0;
+        doorView.flipX = flip;
+        doorView.transform.localPosition = NesCoord.ToWorld(flip && s != null ? x + Mathf.RoundToInt(s.rect.width) : x, doorY);
     }
 
     // ---------------------------------------------------------------- cầu thang đổi tầng
@@ -359,9 +422,11 @@ public class StageFlow : MonoBehaviour
         conn = c;
         target = FindSection(c.target);
         stairDir = dir;
-        stairArriveY = dir > 0 ? Map1FlowTiming.STAIR_UP_ARRIVE_Y : Map1FlowTiming.STAIR_DOWN_ARRIVE_Y;
+        // CVM2 11: Block 2 lên hiện ở Y 189, đen 21 (video Map_2 ×3); xuống chưa có video ⇒ số Map 1
+        bool b2 = Map2FlowTiming.AppliesTo(world.Stage);
+        stairArriveY = dir > 0 ? (b2 ? Map2FlowTiming.STAIR_UP_ARRIVE_Y : Map1FlowTiming.STAIR_UP_ARRIVE_Y) : Map1FlowTiming.STAIR_DOWN_ARRIVE_Y;
         Hold(true);
-        StartBlack(Map1FlowTiming.STAIR_BLACK_TICKS, ePending.StairArrive);
+        StartBlack(b2 ? Map2FlowTiming.STAIR_BLACK_TICKS : Map1FlowTiming.STAIR_BLACK_TICKS, ePending.StairArrive);
         Mark(dir > 0 ? "stair_up" : "stair_down");
     }
 
@@ -392,13 +457,13 @@ public class StageFlow : MonoBehaviour
 
     // ---------------------------------------------------------------- chung
 
-    private void ArriveSection(LevelSection s, int x, int y, string mark)
+    private void ArriveSection(LevelSection s, int x, int y, string mark, int facing = 1)
     {
         var simon = Simon;
         if (s == null || simon == null)
             return;
         world.Warp(s, x, y);
-        simon.Teleport(x, y, 1);
+        simon.Teleport(x, y, facing);   // CVM2 11: qua cửa trái ⇒ quay trái (video Hall A f1761 / Hall C f4479 idle_0 quay trái)
         AfterArrive(mark);
     }
 
@@ -453,7 +518,7 @@ public class StageFlow : MonoBehaviour
     {
         Mark("tally_done");
         if (GameManager.I != null)
-            GameManager.I.GoTo(eGameScreen.CastleMap, Map1FlowTiming.MAP_BLACK_TICKS);
+            GameManager.I.GoTo(eGameScreen.CastleMap, Map2FlowTiming.AppliesTo(world.Stage) ? Map2FlowTiming.MAP_BLACK_TICKS : Map1FlowTiming.MAP_BLACK_TICKS);
     }
 
     private void OnRespawned(StageRules r)
