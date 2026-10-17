@@ -56,6 +56,13 @@ public class ItemPickup : Entity
             Anim.Visible = false;
     }
 
+    /// <summary>CVM2 10: tốc độ trồi riêng của 1 bí mật (fixed 1/256 px/tick, gọi ngay sau Setup) — Block 2 đo video 0.25; ≤ 0 ⇒ giữ ConfigRule.</summary>
+    public void OverrideRiseSpeed(int fixed256)
+    {
+        if (fixed256 > 0)
+            riseSpeed = fixed256;
+    }
+
     /// <summary>Đặt loại item + chuyển động (gọi ngay sau World.Spawn). rise = trồi từ sau sàn (bí mật).</summary>
     public void Setup(eItemId itemId, bool rise)
     {

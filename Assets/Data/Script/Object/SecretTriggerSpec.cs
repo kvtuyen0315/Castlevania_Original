@@ -14,4 +14,6 @@ public class SecretTriggerSpec : MonoBehaviour
     [Tooltip("Pivot item (x tâm, y = mặt sàn chỗ item đứng).")]
     public Vector2Int spawnAt;
     public bool rise = true;
+    [Tooltip("CVM2 10: tốc độ trồi (px/tick); 0 = ConfigRule.SecretRiseSpeed (Block 1). Block 2 đo video Map_2 0.25 (vương miện, rương).")]
+    public float riseSpeed;
 }

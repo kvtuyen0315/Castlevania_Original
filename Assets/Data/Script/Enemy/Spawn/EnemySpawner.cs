@@ -15,6 +15,9 @@ public abstract class EnemySpawner : MonoBehaviour
     [Tooltip("Vùng Simon phải đứng trong (px section, x tâm) để bộ sinh chạy.")]
     public int zoneMinX;
     public int zoneMaxX = 4096;
+    [Tooltip("CVM2 10: giới hạn thêm theo Y Simon (mặt sàn, px section) — tách tầng trên/dưới cùng khoảng x (Ghost Hall C). Mặc định cả section.")]
+    public int zoneMinY = -4096;
+    public int zoneMaxY = 4096;
     public bool spawnEnabled = true;
 
     private readonly List<EnemyBase> live = new List<EnemyBase>(4);
@@ -45,7 +48,7 @@ public abstract class EnemySpawner : MonoBehaviour
     {
         Prune();
         var p = w.Player;
-        InZone = spawnEnabled && prefab != null && p != null && p.Alive && p.X >= zoneMinX && p.X <= zoneMaxX;
+        InZone = spawnEnabled && prefab != null && p != null && p.Alive && p.X >= zoneMinX && p.X <= zoneMaxX && p.Y >= zoneMinY && p.Y <= zoneMaxY;
         OnTick(w, cx);
     }
 

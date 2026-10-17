@@ -34,14 +34,22 @@ public static class CvgpMap1Builder
     static readonly string[] SECTIONS = { "CastleEntrance", "EntranceHall", "CryptA", "CryptB", "PhantomBat" };
 
     // ------------------------------------------------------------------ bảng JSON (JsonUtility)
+    // CVM2 10: thêm trường tuỳ chọn cho Map 2 (Point.param, Edge.zoneMinY/zoneMaxY/maxSpawns, Secret.riseSpeed, Section.mechSpawners,
+    // Section.objectWindowInsetPx = khung hiện nến/enemy [cx + N, cx + 256 − N) ⇒ activate/despawnMargin −N) —
+    // Map1Objects.json không có ⇒ giá trị 0 = hành vi/serialize cũ (prefab Block 1 dựng lại "không đổi").
     [Serializable] class Candle { public string id, kind, content, src; public int x, y; }
-    [Serializable] class Point { public string name, prefab, src; public int x, y, facing; public bool respawn; }
-    [Serializable] class Edge { public string name, prefab, side, releaseOnBlock, src; public int[] rows; public bool playerRelativeY; public int zoneMinX, zoneMaxX; }
+    [Serializable] class Point { public string name, prefab, src; public int x, y, facing, param; public bool respawn; }
+    [Serializable] class Edge { public string name, prefab, side, releaseOnBlock, src; public int[] rows; public bool playerRelativeY; public int zoneMinX, zoneMaxX, zoneMinY, zoneMaxY, maxSpawns; }
     [Serializable] class Water { public string name, prefab, src; public int surfaceY, zoneMinX, zoneMaxX; }
-    [Serializable] class Secret { public string name, condition, item, src; public int x, y, holdTicks; public int[] area, spawnAt; public bool rise; }
+    [Serializable] class Secret { public string name, condition, item, src; public int x, y, holdTicks; public int[] area, spawnAt; public bool rise; public float riseSpeed; }
     [Serializable] class Arena { public string name, prefab, src; public int zoneMinX, zoneMaxX; public bool useConfigPosition, screenWalls; public int[] bossPosition; }
-    [Serializable] class Section { public string id; public Candle[] candles; public Point[] spawnPoints; public Edge[] edgeSpawners; public Water[] waterSpawners; public Secret[] secrets; public Arena[] bossArenas; }
+    [Serializable] class Mech { public string name, platformPrefab, crusherPrefab, src; }
+    [Serializable] class Section { public string id; public Candle[] candles; public Point[] spawnPoints; public Edge[] edgeSpawners; public Water[] waterSpawners; public Secret[] secrets; public Arena[] bossArenas; public Mech[] mechSpawners; public int objectWindowInsetPx; }
     [Serializable] class Table { public string note; public Section[] sections; }
+
+    /// <summary>CVM2 10 — bảng + thư mục lớp vật thể Map 2 (Block 2) — menu CVM2/Build Map2 Objects (Cvm2LevelMenu).</summary>
+    public const string TABLE_MAP2 = "Assets/Data/Config/Level/Block2/Map2Objects.json";
+    public const string OBJ_DIR_MAP2 = "Assets/Data/Prefabs/Level/Block2/Objects";
 
     [MenuItem("CVGP/Build Map1 Objects")]
     static void BuildObjectsMenu()
@@ -59,18 +67,24 @@ public static class CvgpMap1Builder
 
     public static string BuildObjects()
     {
+        return BuildObjectsFrom(TABLE, OBJ_DIR, "Map1");
+    }
+
+    /// <summary>CVM2 10: phần chung Map 1 / Map 2 — bảng JSON ⇒ &lt;objDir&gt;/&lt;Section&gt;_Objects.prefab (giống ⇒ không ghi).</summary>
+    public static string BuildObjectsFrom(string tablePath, string objDir, string tag)
+    {
         if (EditorApplication.isPlaying)
-            return "[Map1] đang Play — thoát Play rồi dựng";
-        var table = JsonUtility.FromJson<Table>(File.ReadAllText(TABLE, Encoding.UTF8));
+            return "[" + tag + "] đang Play — thoát Play rồi dựng";
+        var table = JsonUtility.FromJson<Table>(File.ReadAllText(tablePath, Encoding.UTF8));
         var cat = AssetDatabase.LoadAssetAtPath<ItemCatalog>(CvgpItemBuilder.CATALOG);
         if (table == null || table.sections == null || cat == null)
-            return "[Map1] lỗi: thiếu bảng " + TABLE + " hoặc ItemCatalog";
+            return "[" + tag + "] lỗi: thiếu bảng " + tablePath + " hoặc ItemCatalog";
         var errors = new List<string>();
-        EnsureFolder(OBJ_DIR);
+        EnsureFolder(objDir);
         int written = 0, same = 0, n = 0;
         foreach (var s in table.sections)
         {
-            string path = OBJ_DIR + "/" + s.id + "_Objects.prefab";
+            string path = objDir + "/" + s.id + "_Objects.prefab";
             var root = new GameObject(s.id + "_Objects");
             try
             {
@@ -92,9 +106,9 @@ public static class CvgpMap1Builder
             }
         }
         if (errors.Count > 0)
-            return "[Map1] lỗi bảng — không ghi:\n" + string.Join("\n", errors.ToArray());
+            return "[" + tag + "] lỗi bảng — không ghi:\n" + string.Join("\n", errors.ToArray());
         AssetDatabase.SaveAssets();
-        return "[Map1] Build Map1 Objects: " + n + " vật / " + table.sections.Length + " section — ghi " + written + ", không đổi " + same;
+        return "[" + tag + "] Build " + tag + " Objects: " + n + " vật / " + table.sections.Length + " section — ghi " + written + ", không đổi " + same;
     }
 
     static int Fill(Transform root, Section s, ItemCatalog cat, List<string> errors)
@@ -107,13 +121,16 @@ public static class CvgpMap1Builder
                 var sp = MakePoint(root, "Candle_" + c.id, prefab, c.x, c.y, -1, false);
                 sp.keepIfOffscreen = true;
                 sp.dataKey = c.id;
+                Window(sp, s.objectWindowInsetPx);
                 n++;
             }
         if (s.spawnPoints != null)
             foreach (var p in s.spawnPoints)
             {
                 var prefab = LoadEntity<Entity>(p.prefab, errors);
-                MakePoint(root, p.name, prefab, p.x, p.y, p.facing, p.respawn);
+                var sp = MakePoint(root, p.name, prefab, p.x, p.y, p.facing, p.respawn);
+                sp.param = p.param;   // CVM2 10: dơi treo param 1 (Bat.Perch)
+                Window(sp, s.objectWindowInsetPx);
                 n++;
             }
         if (s.edgeSpawners != null)
@@ -131,6 +148,12 @@ public static class CvgpMap1Builder
                 sp.zoneMinX = e.zoneMinX;
                 sp.zoneMaxX = e.zoneMaxX;
                 sp.releaseOnBlock = e.releaseOnBlock ?? "";
+                if (e.zoneMaxY > e.zoneMinY)   // CVM2 10: có khoá ⇒ vùng theo Y; không có (0, 0) ⇒ mặc định cả section
+                {
+                    sp.zoneMinY = e.zoneMinY;
+                    sp.zoneMaxY = e.zoneMaxY;
+                }
+                sp.maxSpawns = e.maxSpawns;
                 n++;
             }
         if (s.waterSpawners != null)
@@ -162,6 +185,7 @@ public static class CvgpMap1Builder
                 spec.item = item;
                 spec.spawnAt = new Vector2Int(q.spawnAt[0], q.spawnAt[1]);
                 spec.rise = q.rise;
+                spec.riseSpeed = q.riseSpeed;
                 n++;
             }
         if (s.bossArenas != null)
@@ -177,7 +201,25 @@ public static class CvgpMap1Builder
                 ar.screenWalls = a.screenWalls;
                 n++;
             }
+        if (s.mechSpawners != null)   // CVM2 10: bệ di động / bẫy ép (sinh từ marker section — Map2Mechanisms)
+            foreach (var m in s.mechSpawners)
+            {
+                var go = Child(root, m.name, 0, 0);
+                var ms = go.AddComponent<MechSpawner>();
+                ms.platformPrefab = string.IsNullOrEmpty(m.platformPrefab) ? null : LoadEntity<MovingPlatform>(m.platformPrefab, errors);
+                ms.crusherPrefab = string.IsNullOrEmpty(m.crusherPrefab) ? null : LoadEntity<Crusher>(m.crusherPrefab, errors);
+                n++;
+            }
         return n;
+    }
+
+    /// <summary>CVM2 10: inset &gt; 0 ⇒ điểm chỉ sinh/giữ khi x ∈ [cx + inset, cx + 256 − inset) (video Map_2: nến/Bone Tower chỉ hiện ở x màn 8–248).</summary>
+    static void Window(SpawnPoint sp, int inset)
+    {
+        if (inset <= 0)
+            return;
+        sp.activateMargin = -inset;
+        sp.despawnMargin = -inset;
     }
 
     static SpawnPoint MakePoint(Transform root, string name, Entity prefab, int x, int y, int facing, bool respawn)

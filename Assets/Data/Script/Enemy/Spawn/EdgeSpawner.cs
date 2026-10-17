@@ -28,6 +28,8 @@ public class EdgeSpawner : EnemySpawner
     public bool playerRelativeY;
     [Tooltip("ObjectId khối gạch (vd CryptA_X16_10): vỡ ⇒ sinh ngay 1 con.")]
     public string releaseOnBlock = "";
+    [Tooltip("CVM2 10: tối đa số con trong 1 lần nạp section (0 = không giới hạn) — Ghost Hall C: video 1 con/vùng, không sinh lại.")]
+    public int maxSpawns;
     /// <summary>Harness (CVM2 08 — so video): ≥ 0 ⇒ thay độ trễ con đầu (Roll firstDelay) bằng số tick này. Mặc định −1 = Config.</summary>
     [System.NonSerialized] public int forceFirstDelay = -1;
 
@@ -113,7 +115,7 @@ public class EdgeSpawner : EnemySpawner
             if (timer > 0)
                 return;
         }
-        if (LiveCount >= maxAlive)
+        if (LiveCount >= maxAlive || (maxSpawns > 0 && SpawnCount >= maxSpawns))
             return;
         if (!Spawn(w, cx))
             return;

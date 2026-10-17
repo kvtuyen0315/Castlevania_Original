@@ -28,6 +28,8 @@ public class SecretTrigger : Entity
     [Tooltip("Pivot item (x tâm, y = mặt sàn chỗ item đứng).")]
     public Vector2Int spawnAt;
     public bool rise = true;
+    [Tooltip("CVM2 10: tốc độ trồi px/tick (0 = ConfigRule.SecretRiseSpeed).")]
+    public float riseSpeed;
 
     [NonSerialized] public int held;
     [NonSerialized] public bool fired;
@@ -47,6 +49,7 @@ public class SecretTrigger : Entity
             item = spec.item;
             spawnAt = spec.spawnAt;
             rise = spec.rise;
+            riseSpeed = spec.riseSpeed;
         }
         held = 0;
         fired = false;
@@ -76,6 +79,8 @@ public class SecretTrigger : Entity
             return;
         fired = true;
         spawnedItem = ItemDrops.Spawn(World, item, spawnAt.x, spawnAt.y, rise);
+        if (spawnedItem != null && rise && riseSpeed > 0f)
+            spawnedItem.OverrideRiseSpeed(Fixed.FromFloat(riseSpeed));
         Kill();
     }
 

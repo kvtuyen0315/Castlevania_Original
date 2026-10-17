@@ -6,7 +6,7 @@ using UnityEngine;
 ///   kind "crusher"      ⇒ Crusher (Object.Crusher: maxFrame&lt;H&gt;, startTick&lt;H&gt; + chung downStepTicks, gridTicks)
 /// &lt;H&gt; = hậu tố id marker (bỏ tiền tố "platform_lane_"/"crusher_" và dấu "_": platform_lane_HallB_1 ⇒ HallB1, crusher_2 ⇒ 2).
 /// Mặt treo/mặt bệ = rect.y của marker. Gọi NGAY sau Warp/LoadSection (cùng tick — thực thể chạy từ tick sau, như SpawnSectionProps).
-/// Routine 06 chỉ dùng ở harness (Map2MechProbe); gắn vào luồng thật (SpawnSectionProps / StageFlow) là việc routine 10/11 (CVM2_MEMORY §6).
+/// Routine 06 chỉ dùng ở harness (Map2MechProbe); CVM2 10: luồng section gọi qua MechSpawner (lớp &lt;Section&gt;_Objects, tick đầu sau khi nạp).
 /// </summary>
 public static class Map2Mechanisms
 {

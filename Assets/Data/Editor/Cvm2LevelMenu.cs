@@ -15,4 +15,20 @@ public static class Cvm2LevelMenu
     {
         Debug.Log(CvgpLevelBuilder.BuildMap2());
     }
+
+    /// <summary>
+    /// CVM2 10 — lớp vật thể Block 2: Assets/Data/Config/Level/Block2/Map2Objects.json (sinh bởi python -P -E Tools/cvm2/gen_map2_objects.py —
+    /// bảng MAP2_PLACEMENT.md đo video) ⇒ Assets/Data/Prefabs/Level/Block2/Objects/&lt;Section&gt;_Objects.prefab (nến, enemy, bộ sinh, bí mật,
+    /// bệ/bẫy, phòng boss). Dùng chung phần dựng của CVGP/Build Map1 Objects; giống ⇒ không ghi ("ghi 0").
+    /// </summary>
+    [MenuItem("CVM2/Build Map2 Objects")]
+    public static void BuildMap2ObjectsMenu()
+    {
+        Debug.Log(BuildMap2Objects());
+    }
+
+    public static string BuildMap2Objects()
+    {
+        return CvgpMap1Builder.BuildObjectsFrom(CvgpMap1Builder.TABLE_MAP2, CvgpMap1Builder.OBJ_DIR_MAP2, "Map2");
+    }
 }

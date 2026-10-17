@@ -460,3 +460,399 @@ MonoBehaviour:
       c\u1EA7u thang tr\xE1i \u2014 \xF4 (6,10)"
     source: "wiki:Bosses#Mummy Men + Stages 7-9#Stage 9 (Pot Roast \u1EDF kh\u1ED1i
       th\u1EA5p nh\u1EA5t c\u1EA7u thang tr\xE1i ph\xF2ng boss)"
+  - objectId: TEA_C1
+    stage: 4
+    container: 102
+    item: 14
+    note: "n\u1EBFn TowerEntranceA x 80 y 128"
+    source: "video:Map_2 v\u1EE1 f215 (0:07.17) \u2192 th\u1EADp t\u1EF1 r\u01A1i
+      f225\u2013237 (d\u1EA3i \u1EA3nh tea80.png), nh\u1EB7t f274 0:09.13 (HUD r\xECu
+      \u2192 th\u1EADp t\u1EF1); wiki Stage 4 #1 \"Boomerang n\u1EBFn \u0111\u1EA7u
+      ti\xEAn\""
+  - objectId: TEA_C2
+    stage: 4
+    container: 102
+    item: 3
+    note: "n\u1EBFn TowerEntranceA x 144 y 32"
+    source: "video:Map_2 v\u1EE1 f715 \u2192 t\xFAi \u0111\u1ECF f726 (err 0.066),
+      +100 f734 (0:24.47)"
+  - objectId: TEA_C3
+    stage: 4
+    container: 102
+    item: 2
+    note: "n\u1EBFn TowerEntranceA x 208 y 128"
+    source: "video:Map_2 v\u1EE1 f314 \u2192 tim l\u1EDBn f335 (0.062), +5 f341 (0:11.37)"
+  - objectId: TEB_C1
+    stage: 4
+    container: 102
+    item: 3
+    note: "n\u1EBFn TowerEntranceB x 81 y 32"
+    source: "video:Map_2 v\u1EE1 f1426 \u2192 t\xFAi \u0111\u1ECF f1438 (0.064),
+      +100 f1506 (0:50.20, c\u1EA1nh b\u1EC7)"
+  - objectId: TEB_C2
+    stage: 4
+    container: 102
+    item: 5
+    note: "n\u1EBFn TowerEntranceB x 145 y 32"
+    source: "video:Map_2 v\u1EE1 f1357 \u2192 t\xFAi tr\u1EAFng f1373 (0.092), +700
+      f1375 (0:45.83)"
+  - objectId: TEB_C3
+    stage: 4
+    container: 102
+    item: 1
+    note: "n\u1EBFn TowerEntranceB x 208 y 32"
+    source: "video:Map_2 v\u1EE1 f1275 \u2192 tim nh\u1ECF f1289 (0.056), +1 f1311"
+  - objectId: TEB_C4
+    stage: 4
+    container: 102
+    item: 1
+    note: "n\u1EBFn TowerEntranceB x 272 y 32"
+    source: "video:Map_2 v\u1EE1 f1202 \u2192 tim nh\u1ECF f1217 (0.049), +1 f1236"
+  - objectId: TEB_C5
+    stage: 4
+    container: 102
+    item: 1
+    note: "n\u1EBFn TowerEntranceB x 336 y 32"
+    source: "video:Map_2 v\u1EE1 f1032 \u2192 tim nh\u1ECF f1073 (0.056) r\u01A1i
+      xu\u1ED1ng khe \u2014 kh\xF4ng nh\u1EB7t"
+  - objectId: TEB_C6
+    stage: 4
+    container: 102
+    item: 1
+    note: "n\u1EBFn TowerEntranceB x 400 y 32"
+    source: "video:Map_2 v\u1EE1 f1016 \u2192 tim nh\u1ECF f1052 (0.054), +1 f1125"
+  - objectId: TEB_C7
+    stage: 4
+    container: 102
+    item: 3
+    note: "n\u1EBFn TowerEntranceB x 464 y 32"
+    source: "video:Map_2 v\u1EE1 f1049 \u2192 t\xFAi \u0111\u1ECF f1079 (0.065),
+      +100 f1082 (0:36.07)"
+  - objectId: HA_C01
+    stage: 5
+    container: 102
+    item: 1
+    note: "n\u1EBFn TowerHallA x 81 y 32"
+    source: "video:Map_2 v\u1EE1 f2708 \u2192 tim nh\u1ECF f2734 (0.062), +1 f2741"
+  - objectId: HA_C02
+    stage: 5
+    container: 102
+    item: 2
+    note: "n\u1EBFn TowerHallA x 145 y 64"
+    source: "video:Map_2 v\u1EE1 f2656 \u2192 tim l\u1EDBn f2672 (0.073), +5 f2673
+      (1:29.10)"
+  - objectId: HA_C03
+    stage: 5
+    container: 102
+    item: 1
+    note: "n\u1EBFn TowerHallA x 209 y 32"
+    source: "video:Map_2 v\u1EE1 f2595 \u2192 tim nh\u1ECF f2611 (0.060), +1 f2629"
+  - objectId: HA_C04
+    stage: 5
+    container: 102
+    item: 2
+    note: "n\u1EBFn TowerHallA x 273 y 64"
+    source: "video:Map_2 v\u1EE1 f2541 \u2192 tim l\u1EDBn f2558 (0.066), +5 f2564
+      (1:25.47)"
+  - objectId: HA_C05
+    stage: 5
+    container: 102
+    item: 3
+    note: "n\u1EBFn TowerHallA x 337 y 32"
+    source: "video:Map_2 v\u1EE1 f2261 \u2192 t\xFAi \u0111\u1ECF f2277 (0.073),
+      +100 f2283"
+  - objectId: HA_C06
+    stage: 5
+    container: 102
+    item: 1
+    note: "n\u1EBFn TowerHallA x 401 y 32"
+    source: "video:Map_2 v\u1EE1 f2178 \u2192 tim nh\u1ECF f2220 (0.059), +1 f2237"
+  - objectId: HA_C07
+    stage: 5
+    container: 102
+    item: 11
+    note: "n\u1EBFn TowerHallA x 464 y 32"
+    source: "video:Map_2 v\u1EE1 f2103 (1:10.10) \u2192 dao g\u0103m r\u01A1i xu\u1ED1ng
+      s\xE0n f2116\u20132124, n\u1EB1m t\u1EDBi f2160 \u2014 kh\xF4ng nh\u1EB7t (d\u1EA3i
+      \u1EA3nh ha464.png); wiki Stage 5 #1 \"dao g\u0103m trong n\u1EBFn g\u1EA7n
+      gi\u1EEFa t\u1EA7ng d\u01B0\u1EDBi\" (icon wiki \u2248 x 526 \u2014 H1: theo
+      video)"
+  - objectId: HA_C08
+    stage: 5
+    container: 102
+    item: 3
+    note: "n\u1EBFn TowerHallA x 528 y 32"
+    source: "video:Map_2 v\u1EE1 f2028 \u2192 t\xFAi \u0111\u1ECF f2056 (0.066) tr\xEAn
+      s\xE0n, +100 f2082 (tim +1 f2073 l\xE0 t\u1EEB Medusa Head b\u1ECB h\u1EA1
+      f2056 \u2014 ha528.png)"
+  - objectId: HA_C09
+    stage: 5
+    container: 102
+    item: 1
+    note: "n\u1EBFn TowerHallA x 592 y 32"
+    source: "video:Map_2 v\u1EE1 f1961 \u2192 tim nh\u1ECF f1981 (0.057), +1 f2012"
+  - objectId: HA_C10
+    stage: 5
+    container: 102
+    item: 1
+    note: "n\u1EBFn TowerHallA x 656 y 32"
+    source: "video:Map_2 v\u1EE1 f1891 \u2192 tim nh\u1ECF f1912 (0.060), +1 f1930"
+  - objectId: HA_C11
+    stage: 5
+    container: 102
+    item: 1
+    note: "n\u1EBFn TowerHallA x 720 y 32"
+    source: "video:Map_2 v\u1EE1 f1811 \u2192 tim nh\u1ECF f1823 (0.059), +1 f1845"
+  - objectId: HB_C01
+    stage: 5
+    container: 102
+    item: 5
+    note: "n\u1EBFn TowerHallB x 80 y 128"
+    source: "video:Map_2 v\u1EE1 f2859 \u2192 t\xFAi tr\u1EAFng f2871\u20132879 r\u01A1i
+      xu\u1ED1ng h\u1ED1 c\u1EA1nh ch\xE2n thang \u2014 kh\xF4ng nh\u1EB7t (d\u1EA3i
+      \u1EA3nh hb80.png, err 0.094)"
+  - objectId: HB_C02
+    stage: 5
+    container: 102
+    item: 1
+    note: "n\u1EBFn TowerHallB x 144 y 32"
+    source: "video:Map_2 v\u1EE1 f4157 \u2192 tim nh\u1ECF f4197 (0.057), +1 f4208"
+  - objectId: HB_C03
+    stage: 5
+    container: 102
+    item: 3
+    note: "n\u1EBFn TowerHallB x 208 y 120"
+    source: "video:Map_2 v\u1EE1 f3002 \u2192 t\xFAi \u0111\u1ECF f3014\u20133022
+      r\u01A1i xu\u1ED1ng khe \u2014 kh\xF4ng nh\u1EB7t (d\u1EA3i \u1EA3nh hb208.png,
+      err 0.062)"
+  - objectId: HB_C04
+    stage: 5
+    container: 102
+    item: 1
+    note: "n\u1EBFn TowerHallB x 272 y 32"
+    source: "video:Map_2 v\u1EE1 f4060 \u2192 tim nh\u1ECF f4072 (0.057), +1 f4095"
+  - objectId: HB_C05
+    stage: 5
+    container: 102
+    item: 1
+    note: "n\u1EBFn TowerHallB x 335 y 120"
+    source: "video:Map_2 v\u1EE1 f3155 \u2192 tim nh\u1ECF f3165 (0.064), +1 f3171"
+  - objectId: HB_C06
+    stage: 5
+    container: 102
+    item: 1
+    note: "n\u1EBFn TowerHallB x 399 y 32"
+    source: "video:Map_2 v\u1EE1 f3937 \u2192 tim nh\u1ECF f3965 (0.058), +1 f3972"
+  - objectId: HB_C07
+    stage: 5
+    container: 102
+    item: 3
+    note: "n\u1EBFn TowerHallB x 463 y 120"
+    source: "video:Map_2 v\u1EE1 f3282 \u2192 t\xFAi \u0111\u1ECF f3294 (0.060),
+      +100 f3303"
+  - objectId: HB_C08
+    stage: 5
+    container: 102
+    item: 15
+    note: "n\u1EBFn TowerHallB x 527 y 32"
+    source: "video:Map_2 v\u1EE1 f3806 \u2192 \u0111\u1ED3ng h\u1ED3 f3840 (0.091),
+      nh\u1EB7t f3877 2:09.23 (HUD th\u1EADp t\u1EF1 \u2192 \u0111\u1ED3ng h\u1ED3);
+      wiki Stage 5 #4 \"Stop Watch trong n\u1EBFn g\u1EA7n Pot Roast\""
+  - objectId: HB_C09
+    stage: 5
+    container: 102
+    item: 3
+    note: "n\u1EBFn TowerHallB x 591 y 32"
+    source: "video:Map_2 v\u1EE1 f3790 \u2192 t\xFAi \u0111\u1ECF f3813 (0.065),
+      +100 f3830"
+  - objectId: HB_C10
+    stage: 5
+    container: 102
+    item: 5
+    note: "n\u1EBFn TowerHallB x 655 y 128"
+    source: "video:Map_2 v\u1EE1 f3398 \u2192 t\xFAi tr\u1EAFng f3408 (0.092), +700
+      f3420 (1:54.00)"
+  - objectId: HB_C11
+    stage: 5
+    container: 102
+    item: 3
+    note: "n\u1EBFn TowerHallB x 719 y 32"
+    source: "video:Map_2 v\u1EE1 f3690 \u2192 t\xFAi \u0111\u1ECF f3716 (0.059),
+      +100 f3728"
+  - objectId: HC_C01
+    stage: 6
+    container: 102
+    item: 2
+    note: "n\u1EBFn TowerHallC x 81 y 96"
+    source: "video:Map_2 v\u1EE1 f5320 \u2192 tim l\u1EDBn f5348 (0.068), +5 f5349
+      (2:58.30)"
+  - objectId: HC_C02
+    stage: 6
+    container: 102
+    item: 1
+    note: "n\u1EBFn TowerHallC x 145 y 120"
+    source: "video:Map_2 v\u1EE1 f5201 \u2192 tim nh\u1ECF f5219 (0.049), +1 f5269"
+  - objectId: HC_C03
+    stage: 6
+    container: 102
+    item: 1
+    note: "n\u1EBFn TowerHallC x 209 y 120"
+    source: "video:Map_2 v\u1EE1 f5058 \u2192 tim nh\u1ECF f5068 (0.066), +1 f5083"
+  - objectId: HC_C04
+    stage: 6
+    container: 102
+    item: 3
+    note: "n\u1EBFn TowerHallC x 273 y 128"
+    source: "video:Map_2 v\u1EE1 f4948 \u2192 t\xFAi \u0111\u1ECF f4959 (0.066),
+      +100 f4965"
+  - objectId: HC_C05
+    stage: 6
+    container: 102
+    item: 3
+    note: "n\u1EBFn TowerHallC x 337 y 128"
+    source: "video:Map_2 v\u1EE1 f4909 \u2192 t\xFAi \u0111\u1ECF f4919 (0.073),
+      +100 f4922"
+  - objectId: HC_C06
+    stage: 6
+    container: 102
+    item: 4
+    note: "n\u1EBFn TowerHallC x 401 y 128"
+    source: "video:Map_2 v\u1EE1 f4837 \u2192 t\xFAi t\xEDm f4847 (0.067), +400 f4853
+      (2:41.77)"
+  - objectId: HC_C07
+    stage: 6
+    container: 102
+    item: 13
+    note: "n\u1EBFn TowerHallC x 464 y 128"
+    source: "video:Map_2 v\u1EE1 f4871 \u2192 n\u01B0\u1EDBc th\xE1nh f4909 (0.074)
+      n\u1EB1m s\xE0n \u2014 kh\xF4ng nh\u1EB7t (HUD gi\u1EEF \u0111\u1ED3ng h\u1ED3);
+      wiki \u1EA3nh b\u1EA3n \u0111\u1ED3 Stage 6 icon n\u01B0\u1EDBc th\xE1nh gi\u1EEFa
+      t\u1EA7ng d\u01B0\u1EDBi"
+  - objectId: HC_C08
+    stage: 6
+    container: 102
+    item: 1
+    note: "n\u1EBFn TowerHallC x 528 y 128"
+    source: "video:Map_2 v\u1EE1 f4690 \u2192 tim nh\u1ECF f4719 (0.052), +1 f4723"
+  - objectId: HC_C09
+    stage: 6
+    container: 102
+    item: 1
+    note: "n\u1EBFn TowerHallC x 592 y 128"
+    source: "video:Map_2 v\u1EE1 f4621 \u2192 tim nh\u1ECF f4649 (0.051), +1 f4652"
+  - objectId: HC_C10
+    stage: 6
+    container: 102
+    item: 1
+    note: "n\u1EBFn TowerHallC x 656 y 128"
+    source: "video:Map_2 v\u1EE1 f4568 \u2192 tim nh\u1ECF f4589 (0.058), +1 f4590"
+  - objectId: MD_C1
+    stage: 6
+    container: 102
+    item: 2
+    note: "n\u1EBFn Medusa x 209 y 96"
+    source: "video:Map_2 v\u1EE1 f6671 \u2192 tim l\u1EDBn f6684 (0.072), +5 f6690
+      (3:43.00)"
+  - objectId: MD_C2
+    stage: 6
+    container: 102
+    item: 1
+    note: "n\u1EBFn Medusa x 273 y 88"
+    source: "video:Map_2 v\u1EE1 f6604 \u2192 tim nh\u1ECF f6623 (0.060), +1 f6629"
+  - objectId: MD_C3
+    stage: 6
+    container: 102
+    item: 1
+    note: "n\u1EBFn Medusa x 337 y 88"
+    source: "video:Map_2 v\u1EE1 f6539 \u2192 tim nh\u1ECF f6558 (0.050), +1 f6565"
+  - objectId: MD_C4
+    stage: 6
+    container: 102
+    item: 1
+    note: "n\u1EBFn Medusa x 401 y 88"
+    source: "video:Map_2 v\u1EE1 f6467 \u2192 tim nh\u1ECF f6493 (0.054), +1 f6526"
+  - objectId: MD_C5
+    stage: 6
+    container: 102
+    item: 1
+    note: "n\u1EBFn Medusa x 464 y 88"
+    source: "video:Map_2 v\u1EE1 f6332 \u2192 tim nh\u1ECF f6351 (0.054), +1 f6389"
+  - objectId: MD_C6
+    stage: 6
+    container: 102
+    item: 18
+    note: "n\u1EBFn Medusa x 528 y 88"
+    source: "video:Map_2 v\u1EE1 f6255 \u2192 rosary f6292 (0.068), nh\u1EB7t \u21D2
+      nh\xE1y m\xE0n f6304 3:30.13"
+  - objectId: MD_C7
+    stage: 6
+    container: 102
+    item: 1
+    note: "n\u1EBFn Medusa x 592 y 88"
+    source: "video:Map_2 v\u1EE1 f6160 \u2192 tim nh\u1ECF f6178 (0.050), +1 f6194
+      (tim +1 f6242 l\xE0 t\u1EEB Medusa Head b\u1ECB h\u1EA1 f6227 \u2014 md_heart.png)"
+  - objectId: MD_C8
+    stage: 6
+    container: 102
+    item: 1
+    note: "n\u1EBFn Medusa x 656 y 88"
+    source: "video:Map_2 v\u1EE1 f6109 \u2192 tim nh\u1ECF f6125 (0.051), +1 f6134"
+  - objectId: MD_C9
+    stage: 6
+    container: 102
+    item: 1
+    note: "n\u1EBFn Medusa x 720 y 88"
+    source: "video:Map_2 v\u1EE1 f6020 \u2192 tim nh\u1ECF f6048 (0.056), +1 f6062"
+  - objectId: TowerEntranceA_X14_5
+    stage: 4
+    container: 103
+    item: 0
+    note: "t\u01B0\u1EDDng ph\u1EA3i b\u1EE5c tr\xEAn thang \u0111\u1EA7u \u2014
+      \xF4 tr\xEAn (\xF4 (14,5))"
+    source: "video:Map_2 0:15.63 roi v\u1EE1 (f469), kh\xF4ng r\u01A1i g\xEC (d\u1EA3i
+      \u1EA3nh tea_wall.png); m\u1EDF khe cho b\xED m\u1EADt v\u01B0\u01A1ng mi\u1EC7n"
+  - objectId: TowerEntranceA_X14_6
+    stage: 4
+    container: 103
+    item: 0
+    note: "t\u01B0\u1EDDng ph\u1EA3i b\u1EE5c tr\xEAn thang \u0111\u1EA7u \u2014
+      \xF4 d\u01B0\u1EDBi (\xF4 (14,6))"
+    source: "video:Map_2 0:16.10 roi v\u1EE1 (f486), kh\xF4ng r\u01A1i g\xEC (tea_wall.png);
+      wiki Stage 4 #1 \"ph\xE1 c\xE1c kh\u1ED1i t\u01B0\u1EDDng b\xEAn ph\u1EA3i,
+      b\u01B0\u1EDBc v\xE0o khe\""
+  - objectId: TowerEntranceB_X22_5
+    stage: 4
+    container: 103
+    item: 16
+    note: "kh\u1ED1i g\xF3c ph\u1EA3i b\u1EE5c (d\u01B0\u1EDBi l\xE0 khe Spear Knight)
+      (\xF4 (22,5))"
+    source: "wiki:Stages 4-6 Stage 4 #2 \"ph\xE1 kh\u1ED1i \u1EDF g\xF3c b\u1EE5c
+      b\xEAn ph\u1EA3i \u21D2 Shot Multiplier\" + icon II \u1EA3nh b\u1EA3n \u0111\u1ED3
+      wiki \u2014 video kh\xF4ng ph\xE1 (CVM2 05)"
+  - objectId: TowerHallB_X39_3
+    stage: 5
+    container: 103
+    item: 20
+    note: "b\u1EADc cao nh\u1EA5t g\xF3c tr\xEAn-ph\u1EA3i (\xF4 (39,3))"
+    source: "video:Map_2 1:55.9 roi v\u1EE1 (f3474\u20133478) \u2192 th\u1ECBt n\u01B0\u1EDBng
+      r\u01A1i xu\u1ED1ng b\u1EADc d\u01B0\u1EDBi f3486 (d\u1EA3i \u1EA3nh hb_roast.png);
+      wiki Stage 5 #4 Pot Roast"
+  - objectId: TowerHallC_X44_7
+    stage: 6
+    container: 103
+    item: 20
+    note: "kh\u1ED1i \u0111\u1EA7u stage (b\u1EADc l\u1ED1i v\xE0o, Simon ng\u1ED3i
+      qu\u1EA5t) (\xF4 (44,7))"
+    source: "video:Map_2 2:30.8 roi ng\u1ED3i v\u1EE1 (f4524\u20134528) \u2192 th\u1ECBt
+      n\u01B0\u1EDBng l\u1ED9 ngay, nh\u1EB7t khi \u0111\u1EA7y m\xE1u (d\u1EA3i
+      \u1EA3nh hc_roast.png); wiki Stage 6 #1"
+  - objectId: TowerHallC_X8_8
+    stage: 6
+    container: 103
+    item: 16
+    note: "kh\u1ED1i tr\xE1i b\u1EC7 ch\xE2n thang ng\u1EAFn (\xF4 (8,8))"
+    source: "video:Map_2 2:50.4 roi v\u1EE1 (f5110\u20135116) \u2192 II (Double Shot
+      \u2014 b\u1EA3ng m\xE0u xanh-kem, KH\xD4NG ph\u1EA3i III nh\u01B0 CVM2 02 ghi)
+      r\u01A1i xu\u1ED1ng s\xE0n, nh\u1EB7t f5148 khi c\u1EA7m \u0111\u1ED3ng h\u1ED3
+      \u21D2 +700 (2:51.60; hc_iii_zoom.png); wiki Stage 6 #3 Shot Multiplier kh\u1ED1i
+      ch\xE2n c\u1EA7u thang"

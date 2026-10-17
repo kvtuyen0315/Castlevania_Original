@@ -784,5 +784,62 @@ Máu = **số đòn** để hạ: *yếu* (roi da, Holy Water, Dagger) / *mạnh
 | CryptB_X29_6 | 2 | BreakableBlock | None | khối trên-phải (ô (29,6)) — phá để thả xuống, bí mật = ngồi trên khối thấp (SecretTrigger) | video:Map_1 2:19.05; wiki:Secrets Bonuses Stage 2 |
 | PhantomBat_X43_9 | 3 | BreakableBlock | DoubleShot | khối PHẢI bệ chân thang phòng boss (ô (43,9)) | video:Map_1 3:17.62–3:18.0 (II rơi ra); wiki:Secrets Shot Multiplier Stage 3 |
 | BossMummy_X6_10 | 9 | BreakableBlock | PotRoast | phòng Mummy thử (Arena, CVGP 19): khối thấp nhất cầu thang trái — ô (6,10) | wiki:Bosses#Mummy Men + Stages 7-9#Stage 9 (Pot Roast ở khối thấp nhất cầu thang trái phòng boss) |
+| TEA_C1 | 4 | WallCandle | Cross | nến TowerEntranceA x 80 y 128 | video:Map_2 vỡ f215 (0:07.17) → thập tự rơi f225–237 (dải ảnh tea80.png), nhặt f274 0:09.13 (HUD rìu → thập tự); wiki Stage 4 #1 "Boomerang nến đầu tiên" |
+| TEA_C2 | 4 | WallCandle | RedMoneyBag | nến TowerEntranceA x 144 y 32 | video:Map_2 vỡ f715 → túi đỏ f726 (err 0.066), +100 f734 (0:24.47) |
+| TEA_C3 | 4 | WallCandle | LargeHeart | nến TowerEntranceA x 208 y 128 | video:Map_2 vỡ f314 → tim lớn f335 (0.062), +5 f341 (0:11.37) |
+| TEB_C1 | 4 | WallCandle | RedMoneyBag | nến TowerEntranceB x 81 y 32 | video:Map_2 vỡ f1426 → túi đỏ f1438 (0.064), +100 f1506 (0:50.20, cạnh bệ) |
+| TEB_C2 | 4 | WallCandle | WhiteMoneyBag | nến TowerEntranceB x 145 y 32 | video:Map_2 vỡ f1357 → túi trắng f1373 (0.092), +700 f1375 (0:45.83) |
+| TEB_C3 | 4 | WallCandle | SmallHeart | nến TowerEntranceB x 208 y 32 | video:Map_2 vỡ f1275 → tim nhỏ f1289 (0.056), +1 f1311 |
+| TEB_C4 | 4 | WallCandle | SmallHeart | nến TowerEntranceB x 272 y 32 | video:Map_2 vỡ f1202 → tim nhỏ f1217 (0.049), +1 f1236 |
+| TEB_C5 | 4 | WallCandle | SmallHeart | nến TowerEntranceB x 336 y 32 | video:Map_2 vỡ f1032 → tim nhỏ f1073 (0.056) rơi xuống khe — không nhặt |
+| TEB_C6 | 4 | WallCandle | SmallHeart | nến TowerEntranceB x 400 y 32 | video:Map_2 vỡ f1016 → tim nhỏ f1052 (0.054), +1 f1125 |
+| TEB_C7 | 4 | WallCandle | RedMoneyBag | nến TowerEntranceB x 464 y 32 | video:Map_2 vỡ f1049 → túi đỏ f1079 (0.065), +100 f1082 (0:36.07) |
+| HA_C01 | 5 | WallCandle | SmallHeart | nến TowerHallA x 81 y 32 | video:Map_2 vỡ f2708 → tim nhỏ f2734 (0.062), +1 f2741 |
+| HA_C02 | 5 | WallCandle | LargeHeart | nến TowerHallA x 145 y 64 | video:Map_2 vỡ f2656 → tim lớn f2672 (0.073), +5 f2673 (1:29.10) |
+| HA_C03 | 5 | WallCandle | SmallHeart | nến TowerHallA x 209 y 32 | video:Map_2 vỡ f2595 → tim nhỏ f2611 (0.060), +1 f2629 |
+| HA_C04 | 5 | WallCandle | LargeHeart | nến TowerHallA x 273 y 64 | video:Map_2 vỡ f2541 → tim lớn f2558 (0.066), +5 f2564 (1:25.47) |
+| HA_C05 | 5 | WallCandle | RedMoneyBag | nến TowerHallA x 337 y 32 | video:Map_2 vỡ f2261 → túi đỏ f2277 (0.073), +100 f2283 |
+| HA_C06 | 5 | WallCandle | SmallHeart | nến TowerHallA x 401 y 32 | video:Map_2 vỡ f2178 → tim nhỏ f2220 (0.059), +1 f2237 |
+| HA_C07 | 5 | WallCandle | Dagger | nến TowerHallA x 464 y 32 | video:Map_2 vỡ f2103 (1:10.10) → dao găm rơi xuống sàn f2116–2124, nằm tới f2160 — không nhặt (dải ảnh ha464.png); wiki Stage 5 #1 "dao găm trong nến gần giữa tầng dưới" (icon wiki ≈ x 526 — H1: theo video) |
+| HA_C08 | 5 | WallCandle | RedMoneyBag | nến TowerHallA x 528 y 32 | video:Map_2 vỡ f2028 → túi đỏ f2056 (0.066) trên sàn, +100 f2082 (tim +1 f2073 là từ Medusa Head bị hạ f2056 — ha528.png) |
+| HA_C09 | 5 | WallCandle | SmallHeart | nến TowerHallA x 592 y 32 | video:Map_2 vỡ f1961 → tim nhỏ f1981 (0.057), +1 f2012 |
+| HA_C10 | 5 | WallCandle | SmallHeart | nến TowerHallA x 656 y 32 | video:Map_2 vỡ f1891 → tim nhỏ f1912 (0.060), +1 f1930 |
+| HA_C11 | 5 | WallCandle | SmallHeart | nến TowerHallA x 720 y 32 | video:Map_2 vỡ f1811 → tim nhỏ f1823 (0.059), +1 f1845 |
+| HB_C01 | 5 | WallCandle | WhiteMoneyBag | nến TowerHallB x 80 y 128 | video:Map_2 vỡ f2859 → túi trắng f2871–2879 rơi xuống hố cạnh chân thang — không nhặt (dải ảnh hb80.png, err 0.094) |
+| HB_C02 | 5 | WallCandle | SmallHeart | nến TowerHallB x 144 y 32 | video:Map_2 vỡ f4157 → tim nhỏ f4197 (0.057), +1 f4208 |
+| HB_C03 | 5 | WallCandle | RedMoneyBag | nến TowerHallB x 208 y 120 | video:Map_2 vỡ f3002 → túi đỏ f3014–3022 rơi xuống khe — không nhặt (dải ảnh hb208.png, err 0.062) |
+| HB_C04 | 5 | WallCandle | SmallHeart | nến TowerHallB x 272 y 32 | video:Map_2 vỡ f4060 → tim nhỏ f4072 (0.057), +1 f4095 |
+| HB_C05 | 5 | WallCandle | SmallHeart | nến TowerHallB x 335 y 120 | video:Map_2 vỡ f3155 → tim nhỏ f3165 (0.064), +1 f3171 |
+| HB_C06 | 5 | WallCandle | SmallHeart | nến TowerHallB x 399 y 32 | video:Map_2 vỡ f3937 → tim nhỏ f3965 (0.058), +1 f3972 |
+| HB_C07 | 5 | WallCandle | RedMoneyBag | nến TowerHallB x 463 y 120 | video:Map_2 vỡ f3282 → túi đỏ f3294 (0.060), +100 f3303 |
+| HB_C08 | 5 | WallCandle | Stopwatch | nến TowerHallB x 527 y 32 | video:Map_2 vỡ f3806 → đồng hồ f3840 (0.091), nhặt f3877 2:09.23 (HUD thập tự → đồng hồ); wiki Stage 5 #4 "Stop Watch trong nến gần Pot Roast" |
+| HB_C09 | 5 | WallCandle | RedMoneyBag | nến TowerHallB x 591 y 32 | video:Map_2 vỡ f3790 → túi đỏ f3813 (0.065), +100 f3830 |
+| HB_C10 | 5 | WallCandle | WhiteMoneyBag | nến TowerHallB x 655 y 128 | video:Map_2 vỡ f3398 → túi trắng f3408 (0.092), +700 f3420 (1:54.00) |
+| HB_C11 | 5 | WallCandle | RedMoneyBag | nến TowerHallB x 719 y 32 | video:Map_2 vỡ f3690 → túi đỏ f3716 (0.059), +100 f3728 |
+| HC_C01 | 6 | WallCandle | LargeHeart | nến TowerHallC x 81 y 96 | video:Map_2 vỡ f5320 → tim lớn f5348 (0.068), +5 f5349 (2:58.30) |
+| HC_C02 | 6 | WallCandle | SmallHeart | nến TowerHallC x 145 y 120 | video:Map_2 vỡ f5201 → tim nhỏ f5219 (0.049), +1 f5269 |
+| HC_C03 | 6 | WallCandle | SmallHeart | nến TowerHallC x 209 y 120 | video:Map_2 vỡ f5058 → tim nhỏ f5068 (0.066), +1 f5083 |
+| HC_C04 | 6 | WallCandle | RedMoneyBag | nến TowerHallC x 273 y 128 | video:Map_2 vỡ f4948 → túi đỏ f4959 (0.066), +100 f4965 |
+| HC_C05 | 6 | WallCandle | RedMoneyBag | nến TowerHallC x 337 y 128 | video:Map_2 vỡ f4909 → túi đỏ f4919 (0.073), +100 f4922 |
+| HC_C06 | 6 | WallCandle | PurpleMoneyBag | nến TowerHallC x 401 y 128 | video:Map_2 vỡ f4837 → túi tím f4847 (0.067), +400 f4853 (2:41.77) |
+| HC_C07 | 6 | WallCandle | HolyWater | nến TowerHallC x 464 y 128 | video:Map_2 vỡ f4871 → nước thánh f4909 (0.074) nằm sàn — không nhặt (HUD giữ đồng hồ); wiki ảnh bản đồ Stage 6 icon nước thánh giữa tầng dưới |
+| HC_C08 | 6 | WallCandle | SmallHeart | nến TowerHallC x 528 y 128 | video:Map_2 vỡ f4690 → tim nhỏ f4719 (0.052), +1 f4723 |
+| HC_C09 | 6 | WallCandle | SmallHeart | nến TowerHallC x 592 y 128 | video:Map_2 vỡ f4621 → tim nhỏ f4649 (0.051), +1 f4652 |
+| HC_C10 | 6 | WallCandle | SmallHeart | nến TowerHallC x 656 y 128 | video:Map_2 vỡ f4568 → tim nhỏ f4589 (0.058), +1 f4590 |
+| MD_C1 | 6 | WallCandle | LargeHeart | nến Medusa x 209 y 96 | video:Map_2 vỡ f6671 → tim lớn f6684 (0.072), +5 f6690 (3:43.00) |
+| MD_C2 | 6 | WallCandle | SmallHeart | nến Medusa x 273 y 88 | video:Map_2 vỡ f6604 → tim nhỏ f6623 (0.060), +1 f6629 |
+| MD_C3 | 6 | WallCandle | SmallHeart | nến Medusa x 337 y 88 | video:Map_2 vỡ f6539 → tim nhỏ f6558 (0.050), +1 f6565 |
+| MD_C4 | 6 | WallCandle | SmallHeart | nến Medusa x 401 y 88 | video:Map_2 vỡ f6467 → tim nhỏ f6493 (0.054), +1 f6526 |
+| MD_C5 | 6 | WallCandle | SmallHeart | nến Medusa x 464 y 88 | video:Map_2 vỡ f6332 → tim nhỏ f6351 (0.054), +1 f6389 |
+| MD_C6 | 6 | WallCandle | Rosary | nến Medusa x 528 y 88 | video:Map_2 vỡ f6255 → rosary f6292 (0.068), nhặt ⇒ nháy màn f6304 3:30.13 |
+| MD_C7 | 6 | WallCandle | SmallHeart | nến Medusa x 592 y 88 | video:Map_2 vỡ f6160 → tim nhỏ f6178 (0.050), +1 f6194 (tim +1 f6242 là từ Medusa Head bị hạ f6227 — md_heart.png) |
+| MD_C8 | 6 | WallCandle | SmallHeart | nến Medusa x 656 y 88 | video:Map_2 vỡ f6109 → tim nhỏ f6125 (0.051), +1 f6134 |
+| MD_C9 | 6 | WallCandle | SmallHeart | nến Medusa x 720 y 88 | video:Map_2 vỡ f6020 → tim nhỏ f6048 (0.056), +1 f6062 |
+| TowerEntranceA_X14_5 | 4 | BreakableBlock | None | tường phải bục trên thang đầu — ô trên (ô (14,5)) | video:Map_2 0:15.63 roi vỡ (f469), không rơi gì (dải ảnh tea_wall.png); mở khe cho bí mật vương miện |
+| TowerEntranceA_X14_6 | 4 | BreakableBlock | None | tường phải bục trên thang đầu — ô dưới (ô (14,6)) | video:Map_2 0:16.10 roi vỡ (f486), không rơi gì (tea_wall.png); wiki Stage 4 #1 "phá các khối tường bên phải, bước vào khe" |
+| TowerEntranceB_X22_5 | 4 | BreakableBlock | DoubleShot | khối góc phải bục (dưới là khe Spear Knight) (ô (22,5)) | wiki:Stages 4-6 Stage 4 #2 "phá khối ở góc bục bên phải ⇒ Shot Multiplier" + icon II ảnh bản đồ wiki — video không phá (CVM2 05) |
+| TowerHallB_X39_3 | 5 | BreakableBlock | PotRoast | bậc cao nhất góc trên-phải (ô (39,3)) | video:Map_2 1:55.9 roi vỡ (f3474–3478) → thịt nướng rơi xuống bậc dưới f3486 (dải ảnh hb_roast.png); wiki Stage 5 #4 Pot Roast |
+| TowerHallC_X44_7 | 6 | BreakableBlock | PotRoast | khối đầu stage (bậc lối vào, Simon ngồi quất) (ô (44,7)) | video:Map_2 2:30.8 roi ngồi vỡ (f4524–4528) → thịt nướng lộ ngay, nhặt khi đầy máu (dải ảnh hc_roast.png); wiki Stage 6 #1 |
+| TowerHallC_X8_8 | 6 | BreakableBlock | DoubleShot | khối trái bệ chân thang ngắn (ô (8,8)) | video:Map_2 2:50.4 roi vỡ (f5110–5116) → II (Double Shot — bảng màu xanh-kem, KHÔNG phải III như CVM2 02 ghi) rơi xuống sàn, nhặt f5148 khi cầm đồng hồ ⇒ +700 (2:51.60; hc_iii_zoom.png); wiki Stage 6 #3 Shot Multiplier khối chân cầu thang |
 
 

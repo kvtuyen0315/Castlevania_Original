@@ -191,7 +191,8 @@ def main():
     rename = {'EH_X63_7': 'EntranceHall_X63_7', 'CA_X16_10': 'CryptA_X16_10', 'CA_X16_9': 'CryptA_X16_9',
               'CB_X29_6': 'CryptB_X29_6', 'PB_X43_9': 'PhantomBat_X43_9'}
     for r in rows[1:]:
-        if r[2] == 'BreakableBlock':
+        # CVM2 10: giữ cả dòng Block 2+ (stage ≥ 4 — Tools/cvm2/gen_map2_objects.py ghi cuối file) ⇒ chạy lại script này không xoá chúng
+        if r[2] == 'BreakableBlock' or int(r[1]) >= 4:
             r[0] = rename.get(r[0], r[0])
             keep.append(r)
     out = []

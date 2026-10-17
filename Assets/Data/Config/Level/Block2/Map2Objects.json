@@ -1,0 +1,767 @@
+{
+ "note": "CVM2 10 — vật thể Map 2 (Block 2: Stage 04–06) đặt theo video Map_2 (ClaudeNotes/cvm2/MAP2_PLACEMENT.md). Sinh bởi Tools/cvm2/gen_map2_objects.py; menu CVM2/Build Map2 Objects dựng Assets/Data/Prefabs/Level/Block2/Objects/<Section>_Objects.prefab. Toạ độ px section (x tâm, y = mặt đáy pivot). Nội dung nến/khối = ConfigDrop.csv theo id. bossArenas chép từ Tools/cvm2/map2_boss.json (CVM2 09). objectWindowInsetPx 8 = nến/enemy SpawnPoint chỉ hiện ở x màn 8–247 (video:Map_2 8–248).",
+ "sections": [
+  {
+   "id": "TowerEntranceA",
+   "candles": [
+    {
+     "id": "TEA_C1",
+     "kind": "candle",
+     "x": 80,
+     "y": 128,
+     "content": "Cross",
+     "src": "video:Map_2 khớp mẫu candle_0/1 mọi frame không lặp, camera ref/data/map2_camera.csv (Tools/cvm2/props10.py; x = mốt khung camera đứng, Y = đáy đo − 1 vì Candle viewOffset +1); wiki: ảnh bản đồ nửa tỉ lệ (Tools/cvm2/wiki10.py) cùng vị trí ±2 px — x 80, y đáy 128; nội dung: video:Map_2 vỡ f215 (0:07.17) → thập tự rơi f225–237 (dải ảnh tea80.png), nhặt f274 0:09.13 (HUD rìu → thập tự); wiki Stage 4 #1 \"Boomerang nến đầu tiên\""
+    },
+    {
+     "id": "TEA_C2",
+     "kind": "candle",
+     "x": 144,
+     "y": 32,
+     "content": "RedMoneyBag",
+     "src": "video:Map_2 khớp mẫu candle_0/1 mọi frame không lặp, camera ref/data/map2_camera.csv (Tools/cvm2/props10.py; x = mốt khung camera đứng, Y = đáy đo − 1 vì Candle viewOffset +1); wiki: ảnh bản đồ nửa tỉ lệ (Tools/cvm2/wiki10.py) cùng vị trí ±2 px — x 144, y đáy 32; nội dung: video:Map_2 vỡ f715 → túi đỏ f726 (err 0.066), +100 f734 (0:24.47)"
+    },
+    {
+     "id": "TEA_C3",
+     "kind": "candle",
+     "x": 208,
+     "y": 128,
+     "content": "LargeHeart",
+     "src": "video:Map_2 khớp mẫu candle_0/1 mọi frame không lặp, camera ref/data/map2_camera.csv (Tools/cvm2/props10.py; x = mốt khung camera đứng, Y = đáy đo − 1 vì Candle viewOffset +1); wiki: ảnh bản đồ nửa tỉ lệ (Tools/cvm2/wiki10.py) cùng vị trí ±2 px — x 208, y đáy 128; nội dung: video:Map_2 vỡ f314 → tim lớn f335 (0.062), +5 f341 (0:11.37)"
+    }
+   ],
+   "spawnPoints": [
+    {
+     "name": "SpearKnight_TEA",
+     "prefab": "Assets/Data/Prefabs/Enemy/SpearKnight.prefab",
+     "x": 142,
+     "y": 80,
+     "facing": -1,
+     "respawn": true,
+     "src": "video:Map_2 f187 (0:06.23, section hiện) Spear Knight tầng trên-trái (142, 80) quay TRÁI rồi đi trái 0.5 px/tick (CVM2 08 trk_sk_tea); wiki Stage 4 \"chỉ Spear Knight + Bat\""
+    },
+    {
+     "name": "Bat_TEA",
+     "prefab": "Assets/Data/Prefabs/Enemy/Bat.prefab",
+     "x": 48,
+     "y": 33,
+     "facing": -1,
+     "respawn": true,
+     "src": "video:Map_2 f187–776 dơi treo bat_purple_0 (48, 33) (CVM2 08 §2j; Y = vị trí vẽ, viewOffset 0) — param 1 = treo (Bat.Perch); +200 khi thập tự trúng 0:25.93",
+     "param": 1
+    }
+   ],
+   "edgeSpawners": [],
+   "waterSpawners": [],
+   "secrets": [
+    {
+     "name": "Secret_Crown",
+     "x": 228,
+     "y": 112,
+     "area": [
+      217,
+      96,
+      23,
+      17
+     ],
+     "condition": "Enter",
+     "holdTicks": 0,
+     "item": "Crown",
+     "spawnAt": [
+      136,
+      177
+     ],
+     "rise": true,
+     "riseSpeed": 0.25,
+     "src": "video:Map_2 0:15.6–0:19.8: phá 2 ô tường (14,5)/(14,6) rồi Simon bước vào khe (x 220 f502 → 225 f504 → 232 f508) ⇒ vương miện trồi dưới cầu thang (khớp mẫu crown_0..3: x 136, đáy đo 178 ⇒ Y 177; lên 1 px/2 frame tới f531 ⇒ bắt đầu ≈ f499–500 ⇒ kích hoạt khi thân Simon (±8) chồng ô khe = pivot x ≥ 217 — chưa phá thì tường chặn ở x ≤ 216), nhặt f593 +2000; wiki Stage 4 #1 \"step inside, a flashing crown will appear under the stairway\"; tốc độ trồi 0.25 px/tick = video:Map_2 1 px / 2 frame (vương miện f512–531: 188→178; rương f2399–2406: 86→82) — Block 1 ConfigRule.SecretRiseSpeed 0.3125 giữ nguyên (H12, §6)"
+    }
+   ],
+   "bossArenas": [],
+   "mechSpawners": [],
+   "objectWindowInsetPx": 8
+  },
+  {
+   "id": "TowerEntranceB",
+   "candles": [
+    {
+     "id": "TEB_C1",
+     "kind": "candle",
+     "x": 81,
+     "y": 32,
+     "content": "RedMoneyBag",
+     "src": "video:Map_2 khớp mẫu candle_0/1 mọi frame không lặp, camera ref/data/map2_camera.csv (Tools/cvm2/props10.py; x = mốt khung camera đứng, Y = đáy đo − 1 vì Candle viewOffset +1); wiki: ảnh bản đồ nửa tỉ lệ (Tools/cvm2/wiki10.py) cùng vị trí ±2 px — x 81, y đáy 32; nội dung: video:Map_2 vỡ f1426 → túi đỏ f1438 (0.064), +100 f1506 (0:50.20, cạnh bệ)"
+    },
+    {
+     "id": "TEB_C2",
+     "kind": "candle",
+     "x": 145,
+     "y": 32,
+     "content": "WhiteMoneyBag",
+     "src": "video:Map_2 khớp mẫu candle_0/1 mọi frame không lặp, camera ref/data/map2_camera.csv (Tools/cvm2/props10.py; x = mốt khung camera đứng, Y = đáy đo − 1 vì Candle viewOffset +1); wiki: ảnh bản đồ nửa tỉ lệ (Tools/cvm2/wiki10.py) cùng vị trí ±2 px — x 145, y đáy 32; nội dung: video:Map_2 vỡ f1357 → túi trắng f1373 (0.092), +700 f1375 (0:45.83)"
+    },
+    {
+     "id": "TEB_C3",
+     "kind": "candle",
+     "x": 208,
+     "y": 32,
+     "content": "SmallHeart",
+     "src": "video:Map_2 khớp mẫu candle_0/1 mọi frame không lặp, camera ref/data/map2_camera.csv (Tools/cvm2/props10.py; x = mốt khung camera đứng, Y = đáy đo − 1 vì Candle viewOffset +1); wiki: ảnh bản đồ nửa tỉ lệ (Tools/cvm2/wiki10.py) cùng vị trí ±2 px — x 208, y đáy 32; nội dung: video:Map_2 vỡ f1275 → tim nhỏ f1289 (0.056), +1 f1311"
+    },
+    {
+     "id": "TEB_C4",
+     "kind": "candle",
+     "x": 272,
+     "y": 32,
+     "content": "SmallHeart",
+     "src": "video:Map_2 khớp mẫu candle_0/1 mọi frame không lặp, camera ref/data/map2_camera.csv (Tools/cvm2/props10.py; x = mốt khung camera đứng, Y = đáy đo − 1 vì Candle viewOffset +1); wiki: ảnh bản đồ nửa tỉ lệ (Tools/cvm2/wiki10.py) cùng vị trí ±2 px — x 272, y đáy 32; nội dung: video:Map_2 vỡ f1202 → tim nhỏ f1217 (0.049), +1 f1236"
+    },
+    {
+     "id": "TEB_C5",
+     "kind": "candle",
+     "x": 336,
+     "y": 32,
+     "content": "SmallHeart",
+     "src": "video:Map_2 khớp mẫu candle_0/1 mọi frame không lặp, camera ref/data/map2_camera.csv (Tools/cvm2/props10.py; x = mốt khung camera đứng, Y = đáy đo − 1 vì Candle viewOffset +1); wiki: ảnh bản đồ nửa tỉ lệ (Tools/cvm2/wiki10.py) cùng vị trí ±2 px — x 336, y đáy 32; nội dung: video:Map_2 vỡ f1032 → tim nhỏ f1073 (0.056) rơi xuống khe — không nhặt"
+    },
+    {
+     "id": "TEB_C6",
+     "kind": "candle",
+     "x": 400,
+     "y": 32,
+     "content": "SmallHeart",
+     "src": "video:Map_2 khớp mẫu candle_0/1 mọi frame không lặp, camera ref/data/map2_camera.csv (Tools/cvm2/props10.py; x = mốt khung camera đứng, Y = đáy đo − 1 vì Candle viewOffset +1); wiki: ảnh bản đồ nửa tỉ lệ (Tools/cvm2/wiki10.py) cùng vị trí ±2 px — x 400, y đáy 32; nội dung: video:Map_2 vỡ f1016 → tim nhỏ f1052 (0.054), +1 f1125"
+    },
+    {
+     "id": "TEB_C7",
+     "kind": "candle",
+     "x": 464,
+     "y": 32,
+     "content": "RedMoneyBag",
+     "src": "video:Map_2 khớp mẫu candle_0/1 mọi frame không lặp, camera ref/data/map2_camera.csv (Tools/cvm2/props10.py; x = mốt khung camera đứng, Y = đáy đo − 1 vì Candle viewOffset +1); wiki: ảnh bản đồ nửa tỉ lệ (Tools/cvm2/wiki10.py) cùng vị trí ±2 px — x 464, y đáy 32; nội dung: video:Map_2 vỡ f1049 → túi đỏ f1079 (0.065), +100 f1082 (0:36.07)"
+    }
+   ],
+   "spawnPoints": [
+    {
+     "name": "SpearKnight_TEB_gap",
+     "prefab": "Assets/Data/Prefabs/Enemy/SpearKnight.prefab",
+     "x": 336,
+     "y": 77,
+     "facing": 1,
+     "respawn": true,
+     "src": "video:Map_2 f866 (0:28.87, TEB hiện) Spear Knight lơ lửng (336, 81) đang rơi vào khe x 320–351 (sàn y 144) — điểm đặt (336, 77) quay PHẢI theo CVM2 08 (Map2EnemyProbe sk_teb, g 0.125 ⇒ đáy đo 81 sau 6 tick); wiki Stage 4 #2 \"Spear Knight đứng bên dưới\" chỗ khối II"
+    },
+    {
+     "name": "SpearKnight_TEB_door",
+     "prefab": "Assets/Data/Prefabs/Enemy/SpearKnight.prefab",
+     "x": 145,
+     "y": 80,
+     "facing": 1,
+     "respawn": true,
+     "src": "video:Map_2 f1244 (0:41.47) lần đầu thấy đủ hình ở x màn 10 (cx 135, camera cuộn trái) tại (145, 80) quay PHẢI (trk_sk_teb #2), chết +400 0:44.37; wiki Stage 4 #3 \"Spear Knight trước cửa cuối\" — XẤP XỈ (chưa thấy lúc sinh)"
+    },
+    {
+     "name": "Bat_TEB",
+     "prefab": "Assets/Data/Prefabs/Enemy/Bat.prefab",
+     "x": 304,
+     "y": 33,
+     "facing": -1,
+     "respawn": true,
+     "src": "video:Map_2 f866–1040 dơi treo (304, 33) (CVM2 08 §2j), +200 thập tự 0:34.67",
+     "param": 1
+    }
+   ],
+   "edgeSpawners": [],
+   "waterSpawners": [],
+   "secrets": [],
+   "bossArenas": [],
+   "mechSpawners": [
+    {
+     "name": "Mech_TEB",
+     "platformPrefab": "Assets/Data/Prefabs/Level/Block2/Mech/MovingPlatform.prefab",
+     "crusherPrefab": "",
+     "src": "CVM2 06 §2i: bệ di động marker platform_lane_TEB (Config Object.MovingPlatform centerX/amplitude/periodTicks/startTick TEB) — video:Map_2 0:46.5–0:51.3"
+    }
+   ],
+   "objectWindowInsetPx": 8
+  },
+  {
+   "id": "TowerHallA",
+   "candles": [
+    {
+     "id": "HA_C01",
+     "kind": "candle",
+     "x": 81,
+     "y": 32,
+     "content": "SmallHeart",
+     "src": "video:Map_2 khớp mẫu candle_0/1 mọi frame không lặp, camera ref/data/map2_camera.csv (Tools/cvm2/props10.py; x = mốt khung camera đứng, Y = đáy đo − 1 vì Candle viewOffset +1); wiki: ảnh bản đồ nửa tỉ lệ (Tools/cvm2/wiki10.py) cùng vị trí ±2 px — x 81, y đáy 32; nội dung: video:Map_2 vỡ f2708 → tim nhỏ f2734 (0.062), +1 f2741"
+    },
+    {
+     "id": "HA_C02",
+     "kind": "candle",
+     "x": 145,
+     "y": 64,
+     "content": "LargeHeart",
+     "src": "video:Map_2 khớp mẫu candle_0/1 mọi frame không lặp, camera ref/data/map2_camera.csv (Tools/cvm2/props10.py; x = mốt khung camera đứng, Y = đáy đo − 1 vì Candle viewOffset +1); wiki: ảnh bản đồ nửa tỉ lệ (Tools/cvm2/wiki10.py) cùng vị trí ±2 px — x 145, y đáy 64; nội dung: video:Map_2 vỡ f2656 → tim lớn f2672 (0.073), +5 f2673 (1:29.10)"
+    },
+    {
+     "id": "HA_C03",
+     "kind": "candle",
+     "x": 209,
+     "y": 32,
+     "content": "SmallHeart",
+     "src": "video:Map_2 khớp mẫu candle_0/1 mọi frame không lặp, camera ref/data/map2_camera.csv (Tools/cvm2/props10.py; x = mốt khung camera đứng, Y = đáy đo − 1 vì Candle viewOffset +1); wiki: ảnh bản đồ nửa tỉ lệ (Tools/cvm2/wiki10.py) cùng vị trí ±2 px — x 209, y đáy 32; nội dung: video:Map_2 vỡ f2595 → tim nhỏ f2611 (0.060), +1 f2629"
+    },
+    {
+     "id": "HA_C04",
+     "kind": "candle",
+     "x": 273,
+     "y": 64,
+     "content": "LargeHeart",
+     "src": "video:Map_2 khớp mẫu candle_0/1 mọi frame không lặp, camera ref/data/map2_camera.csv (Tools/cvm2/props10.py; x = mốt khung camera đứng, Y = đáy đo − 1 vì Candle viewOffset +1); wiki: ảnh bản đồ nửa tỉ lệ (Tools/cvm2/wiki10.py) cùng vị trí ±2 px — x 273, y đáy 64; nội dung: video:Map_2 vỡ f2541 → tim lớn f2558 (0.066), +5 f2564 (1:25.47)"
+    },
+    {
+     "id": "HA_C05",
+     "kind": "candle",
+     "x": 337,
+     "y": 32,
+     "content": "RedMoneyBag",
+     "src": "video:Map_2 khớp mẫu candle_0/1 mọi frame không lặp, camera ref/data/map2_camera.csv (Tools/cvm2/props10.py; x = mốt khung camera đứng, Y = đáy đo − 1 vì Candle viewOffset +1); wiki: ảnh bản đồ nửa tỉ lệ (Tools/cvm2/wiki10.py) cùng vị trí ±2 px — x 337, y đáy 32; nội dung: video:Map_2 vỡ f2261 → túi đỏ f2277 (0.073), +100 f2283"
+    },
+    {
+     "id": "HA_C06",
+     "kind": "candle",
+     "x": 401,
+     "y": 32,
+     "content": "SmallHeart",
+     "src": "video:Map_2 khớp mẫu candle_0/1 mọi frame không lặp, camera ref/data/map2_camera.csv (Tools/cvm2/props10.py; x = mốt khung camera đứng, Y = đáy đo − 1 vì Candle viewOffset +1); wiki: ảnh bản đồ nửa tỉ lệ (Tools/cvm2/wiki10.py) cùng vị trí ±2 px — x 401, y đáy 32; nội dung: video:Map_2 vỡ f2178 → tim nhỏ f2220 (0.059), +1 f2237"
+    },
+    {
+     "id": "HA_C07",
+     "kind": "candle",
+     "x": 464,
+     "y": 32,
+     "content": "Dagger",
+     "src": "video:Map_2 khớp mẫu candle_0/1 mọi frame không lặp, camera ref/data/map2_camera.csv (Tools/cvm2/props10.py; x = mốt khung camera đứng, Y = đáy đo − 1 vì Candle viewOffset +1); wiki: ảnh bản đồ nửa tỉ lệ (Tools/cvm2/wiki10.py) cùng vị trí ±2 px — x 464, y đáy 32; nội dung: video:Map_2 vỡ f2103 (1:10.10) → dao găm rơi xuống sàn f2116–2124, nằm tới f2160 — không nhặt (dải ảnh ha464.png); wiki Stage 5 #1 \"dao găm trong nến gần giữa tầng dưới\" (icon wiki ≈ x 526 — H1: theo video)"
+    },
+    {
+     "id": "HA_C08",
+     "kind": "candle",
+     "x": 528,
+     "y": 32,
+     "content": "RedMoneyBag",
+     "src": "video:Map_2 khớp mẫu candle_0/1 mọi frame không lặp, camera ref/data/map2_camera.csv (Tools/cvm2/props10.py; x = mốt khung camera đứng, Y = đáy đo − 1 vì Candle viewOffset +1); wiki: ảnh bản đồ nửa tỉ lệ (Tools/cvm2/wiki10.py) cùng vị trí ±2 px — x 528, y đáy 32; nội dung: video:Map_2 vỡ f2028 → túi đỏ f2056 (0.066) trên sàn, +100 f2082 (tim +1 f2073 là từ Medusa Head bị hạ f2056 — ha528.png)"
+    },
+    {
+     "id": "HA_C09",
+     "kind": "candle",
+     "x": 592,
+     "y": 32,
+     "content": "SmallHeart",
+     "src": "video:Map_2 khớp mẫu candle_0/1 mọi frame không lặp, camera ref/data/map2_camera.csv (Tools/cvm2/props10.py; x = mốt khung camera đứng, Y = đáy đo − 1 vì Candle viewOffset +1); wiki: ảnh bản đồ nửa tỉ lệ (Tools/cvm2/wiki10.py) cùng vị trí ±2 px — x 592, y đáy 32; nội dung: video:Map_2 vỡ f1961 → tim nhỏ f1981 (0.057), +1 f2012"
+    },
+    {
+     "id": "HA_C10",
+     "kind": "candle",
+     "x": 656,
+     "y": 32,
+     "content": "SmallHeart",
+     "src": "video:Map_2 khớp mẫu candle_0/1 mọi frame không lặp, camera ref/data/map2_camera.csv (Tools/cvm2/props10.py; x = mốt khung camera đứng, Y = đáy đo − 1 vì Candle viewOffset +1); wiki: ảnh bản đồ nửa tỉ lệ (Tools/cvm2/wiki10.py) cùng vị trí ±2 px — x 656, y đáy 32; nội dung: video:Map_2 vỡ f1891 → tim nhỏ f1912 (0.060), +1 f1930"
+    },
+    {
+     "id": "HA_C11",
+     "kind": "candle",
+     "x": 720,
+     "y": 32,
+     "content": "SmallHeart",
+     "src": "video:Map_2 khớp mẫu candle_0/1 mọi frame không lặp, camera ref/data/map2_camera.csv (Tools/cvm2/props10.py; x = mốt khung camera đứng, Y = đáy đo − 1 vì Candle viewOffset +1); wiki: ảnh bản đồ nửa tỉ lệ (Tools/cvm2/wiki10.py) cùng vị trí ±2 px — x 720, y đáy 32; nội dung: video:Map_2 vỡ f1811 → tim nhỏ f1823 (0.059), +1 f1845"
+    }
+   ],
+   "spawnPoints": [
+    {
+     "name": "SpearKnight_HA",
+     "prefab": "Assets/Data/Prefabs/Enemy/SpearKnight.prefab",
+     "x": 211,
+     "y": 80,
+     "facing": 1,
+     "respawn": true,
+     "src": "video:Map_2 f2293 (1:16.43) lần đầu thấy đủ hình x màn 15 (cx 196, cuộn trái) tại (211, 80) quay PHẢI rồi quay trái đi 211→186 (trk_sk_ha) — XẤP XỈ (chưa thấy lúc sinh)"
+    }
+   ],
+   "edgeSpawners": [
+    {
+     "name": "MedusaHead_HA",
+     "prefab": "Assets/Data/Prefabs/Enemy/MedusaHead.prefab",
+     "side": "FrontOfPlayer",
+     "rows": [],
+     "playerRelativeY": true,
+     "zoneMinX": 550,
+     "zoneMaxX": 4096,
+     "releaseOnBlock": "",
+     "src": "video:Map_2 (CVM2 08 §2j, ref/data/enemy8/mh_spawns.csv + map2_simon.csv): Hall A sinh 5 con khi Simon x 720 → 581 (đỉnh sóng f1770–2026, cách 128 tick), KHÔNG sinh ở lượt kế f2090 (Simon 518) ⇒ biên trái ∈ (518, 581] — chọn 550 (giữa, XẤP XỈ); con đầu 17 tick sau khi section hiện (firstDelay Config)"
+    }
+   ],
+   "waterSpawners": [],
+   "secrets": [
+    {
+     "name": "Secret_TreasureChest",
+     "x": 304,
+     "y": 48,
+     "area": [
+      288,
+      32,
+      32,
+      17
+     ],
+     "condition": "StandStill",
+     "holdTicks": 120,
+     "item": "TreasureChest",
+     "spawnAt": [
+      400,
+      81
+     ],
+     "rise": true,
+     "riseSpeed": 0.25,
+     "src": "video:Map_2 1:16.2–1:21.4: Simon nhảy lên 2 khối nhô (cột 18–19, mặt y 48) f2288–2297, bước cuối f2312 (x 307) rồi ĐỨNG YÊN x 306 từ f2314; rương trồi ở x 400 (khớp mẫu chest_0..3, đáy đo 82 ⇒ Y 81) lên 1 px/2 frame, tới đỉnh f2406 ⇒ bắt đầu ≈ f2374 (16 px @ 0.25) ⇒ đứng yên ≈ (2374 − 2313.5) × 2.0033 = 121 tick ⇒ holdTicks 120 (±3); nhặt f2441 +2000 (P 03→04); wiki Stage 5 #2 \"đứng trên 2 khối nhô cao một lúc ⇒ Treasure Box trồi từ các khối bên phải\"; tốc độ trồi 0.25 px/tick = video:Map_2 1 px / 2 frame (vương miện f512–531: 188→178; rương f2399–2406: 86→82) — Block 1 ConfigRule.SecretRiseSpeed 0.3125 giữ nguyên (H12, §6)"
+    }
+   ],
+   "bossArenas": [],
+   "mechSpawners": [],
+   "objectWindowInsetPx": 8
+  },
+  {
+   "id": "TowerHallB",
+   "candles": [
+    {
+     "id": "HB_C01",
+     "kind": "candle",
+     "x": 80,
+     "y": 128,
+     "content": "WhiteMoneyBag",
+     "src": "video:Map_2 khớp mẫu candle_0/1 mọi frame không lặp, camera ref/data/map2_camera.csv (Tools/cvm2/props10.py; x = mốt khung camera đứng, Y = đáy đo − 1 vì Candle viewOffset +1); wiki: ảnh bản đồ nửa tỉ lệ (Tools/cvm2/wiki10.py) cùng vị trí ±2 px — x 80, y đáy 128; nội dung: video:Map_2 vỡ f2859 → túi trắng f2871–2879 rơi xuống hố cạnh chân thang — không nhặt (dải ảnh hb80.png, err 0.094)"
+    },
+    {
+     "id": "HB_C02",
+     "kind": "candle",
+     "x": 144,
+     "y": 32,
+     "content": "SmallHeart",
+     "src": "video:Map_2 khớp mẫu candle_0/1 mọi frame không lặp, camera ref/data/map2_camera.csv (Tools/cvm2/props10.py; x = mốt khung camera đứng, Y = đáy đo − 1 vì Candle viewOffset +1); wiki: ảnh bản đồ nửa tỉ lệ (Tools/cvm2/wiki10.py) cùng vị trí ±2 px — x 144, y đáy 32; nội dung: video:Map_2 vỡ f4157 → tim nhỏ f4197 (0.057), +1 f4208"
+    },
+    {
+     "id": "HB_C03",
+     "kind": "candle",
+     "x": 208,
+     "y": 120,
+     "content": "RedMoneyBag",
+     "src": "video:Map_2 khớp mẫu candle_0/1 mọi frame không lặp, camera ref/data/map2_camera.csv (Tools/cvm2/props10.py; x = mốt khung camera đứng, Y = đáy đo − 1 vì Candle viewOffset +1); wiki: ảnh bản đồ nửa tỉ lệ (Tools/cvm2/wiki10.py) cùng vị trí ±2 px — x 208, y đáy 120; nội dung: video:Map_2 vỡ f3002 → túi đỏ f3014–3022 rơi xuống khe — không nhặt (dải ảnh hb208.png, err 0.062)"
+    },
+    {
+     "id": "HB_C04",
+     "kind": "candle",
+     "x": 272,
+     "y": 32,
+     "content": "SmallHeart",
+     "src": "video:Map_2 khớp mẫu candle_0/1 mọi frame không lặp, camera ref/data/map2_camera.csv (Tools/cvm2/props10.py; x = mốt khung camera đứng, Y = đáy đo − 1 vì Candle viewOffset +1); wiki: ảnh bản đồ nửa tỉ lệ (Tools/cvm2/wiki10.py) cùng vị trí ±2 px — x 272, y đáy 32; nội dung: video:Map_2 vỡ f4060 → tim nhỏ f4072 (0.057), +1 f4095"
+    },
+    {
+     "id": "HB_C05",
+     "kind": "candle",
+     "x": 335,
+     "y": 120,
+     "content": "SmallHeart",
+     "src": "video:Map_2 khớp mẫu candle_0/1 mọi frame không lặp, camera ref/data/map2_camera.csv (Tools/cvm2/props10.py; x = mốt khung camera đứng, Y = đáy đo − 1 vì Candle viewOffset +1); wiki: ảnh bản đồ nửa tỉ lệ (Tools/cvm2/wiki10.py) cùng vị trí ±2 px — x 335, y đáy 120; nội dung: video:Map_2 vỡ f3155 → tim nhỏ f3165 (0.064), +1 f3171"
+    },
+    {
+     "id": "HB_C06",
+     "kind": "candle",
+     "x": 399,
+     "y": 32,
+     "content": "SmallHeart",
+     "src": "video:Map_2 khớp mẫu candle_0/1 mọi frame không lặp, camera ref/data/map2_camera.csv (Tools/cvm2/props10.py; x = mốt khung camera đứng, Y = đáy đo − 1 vì Candle viewOffset +1); wiki: ảnh bản đồ nửa tỉ lệ (Tools/cvm2/wiki10.py) cùng vị trí ±2 px — x 399, y đáy 32; nội dung: video:Map_2 vỡ f3937 → tim nhỏ f3965 (0.058), +1 f3972"
+    },
+    {
+     "id": "HB_C07",
+     "kind": "candle",
+     "x": 463,
+     "y": 120,
+     "content": "RedMoneyBag",
+     "src": "video:Map_2 khớp mẫu candle_0/1 mọi frame không lặp, camera ref/data/map2_camera.csv (Tools/cvm2/props10.py; x = mốt khung camera đứng, Y = đáy đo − 1 vì Candle viewOffset +1); wiki: ảnh bản đồ nửa tỉ lệ (Tools/cvm2/wiki10.py) cùng vị trí ±2 px — x 463, y đáy 120; nội dung: video:Map_2 vỡ f3282 → túi đỏ f3294 (0.060), +100 f3303"
+    },
+    {
+     "id": "HB_C08",
+     "kind": "candle",
+     "x": 527,
+     "y": 32,
+     "content": "Stopwatch",
+     "src": "video:Map_2 khớp mẫu candle_0/1 mọi frame không lặp, camera ref/data/map2_camera.csv (Tools/cvm2/props10.py; x = mốt khung camera đứng, Y = đáy đo − 1 vì Candle viewOffset +1); wiki: ảnh bản đồ nửa tỉ lệ (Tools/cvm2/wiki10.py) cùng vị trí ±2 px — x 527, y đáy 32; nội dung: video:Map_2 vỡ f3806 → đồng hồ f3840 (0.091), nhặt f3877 2:09.23 (HUD thập tự → đồng hồ); wiki Stage 5 #4 \"Stop Watch trong nến gần Pot Roast\""
+    },
+    {
+     "id": "HB_C09",
+     "kind": "candle",
+     "x": 591,
+     "y": 32,
+     "content": "RedMoneyBag",
+     "src": "video:Map_2 khớp mẫu candle_0/1 mọi frame không lặp, camera ref/data/map2_camera.csv (Tools/cvm2/props10.py; x = mốt khung camera đứng, Y = đáy đo − 1 vì Candle viewOffset +1); wiki: ảnh bản đồ nửa tỉ lệ (Tools/cvm2/wiki10.py) cùng vị trí ±2 px — x 591, y đáy 32; nội dung: video:Map_2 vỡ f3790 → túi đỏ f3813 (0.065), +100 f3830"
+    },
+    {
+     "id": "HB_C10",
+     "kind": "candle",
+     "x": 655,
+     "y": 128,
+     "content": "WhiteMoneyBag",
+     "src": "video:Map_2 khớp mẫu candle_0/1 mọi frame không lặp, camera ref/data/map2_camera.csv (Tools/cvm2/props10.py; x = mốt khung camera đứng, Y = đáy đo − 1 vì Candle viewOffset +1); wiki: ảnh bản đồ nửa tỉ lệ (Tools/cvm2/wiki10.py) cùng vị trí ±2 px — x 655, y đáy 128; nội dung: video:Map_2 vỡ f3398 → túi trắng f3408 (0.092), +700 f3420 (1:54.00)"
+    },
+    {
+     "id": "HB_C11",
+     "kind": "candle",
+     "x": 719,
+     "y": 32,
+     "content": "RedMoneyBag",
+     "src": "video:Map_2 khớp mẫu candle_0/1 mọi frame không lặp, camera ref/data/map2_camera.csv (Tools/cvm2/props10.py; x = mốt khung camera đứng, Y = đáy đo − 1 vì Candle viewOffset +1); wiki: ảnh bản đồ nửa tỉ lệ (Tools/cvm2/wiki10.py) cùng vị trí ±2 px — x 719, y đáy 32; nội dung: video:Map_2 vỡ f3690 → túi đỏ f3716 (0.059), +100 f3728"
+    }
+   ],
+   "spawnPoints": [
+    {
+     "name": "SpearKnight_HB_low",
+     "prefab": "Assets/Data/Prefabs/Enemy/SpearKnight.prefab",
+     "x": 494,
+     "y": 144,
+     "facing": -1,
+     "respawn": true,
+     "src": "video:Map_2 f3193 (1:46.43) lần đầu thấy x màn 245 (cx 249, cuộn phải) tầng dưới (494, 144) quay TRÁI (trk_sk_hb #0), +400 1:47.83 — XẤP XỈ"
+    },
+    {
+     "name": "SpearKnight_HB_up1",
+     "prefab": "Assets/Data/Prefabs/Enemy/SpearKnight.prefab",
+     "x": 526,
+     "y": 80,
+     "facing": -1,
+     "respawn": true,
+     "src": "video:Map_2 f3209 (1:46.97) x màn 246 tầng trên (526, 80) quay TRÁI (trk_sk_hb #1; CVM2 08 Map2EnemyProbe sk_hb), +400 2:00.50"
+    },
+    {
+     "name": "SpearKnight_HB_up2",
+     "prefab": "Assets/Data/Prefabs/Enemy/SpearKnight.prefab",
+     "x": 718,
+     "y": 80,
+     "facing": -1,
+     "respawn": true,
+     "src": "video:Map_2 f3380 (1:52.67) x màn 245 tầng trên (718, 80) quay TRÁI (trk_sk_hb #2), +400 1:56.90"
+    }
+   ],
+   "edgeSpawners": [
+    {
+     "name": "MedusaHead_HB",
+     "prefab": "Assets/Data/Prefabs/Enemy/MedusaHead.prefab",
+     "side": "FrontOfPlayer",
+     "rows": [],
+     "playerRelativeY": true,
+     "zoneMinX": 0,
+     "zoneMaxX": 288,
+     "releaseOnBlock": "",
+     "src": "video:Map_2 (CVM2 08 §2j, ref/data/enemy8/mh_spawns.csv + map2_simon.csv): Hall B lượt dưới sinh 5 con khi Simon x 94 → 279 (f2829–3084), không sinh f3148 (Simon 352); lượt trên (đi trái) con đầu f4092.6 lúc Simon 277 ⇒ vào vùng 17–56 tick trước = Simon 281–295; sinh tới Simon 120 ⇒ biên phải ∈ [281, 295] (chung 2 tầng) — chọn 288 (XẤP XỈ), biên trái 0 (Simon vào từ chân thang x 66)"
+    }
+   ],
+   "waterSpawners": [],
+   "secrets": [],
+   "bossArenas": [],
+   "mechSpawners": [
+    {
+     "name": "Mech_HB",
+     "platformPrefab": "Assets/Data/Prefabs/Level/Block2/Mech/MovingPlatform.prefab",
+     "crusherPrefab": "",
+     "src": "CVM2 06 §2i: 2 bệ di động marker platform_lane_HallB_1 / _2 (Config Object.MovingPlatform HallB1/HallB2) — video:Map_2 1:41–1:48, 2:11–2:18"
+    }
+   ],
+   "objectWindowInsetPx": 8
+  },
+  {
+   "id": "TowerHallC",
+   "candles": [
+    {
+     "id": "HC_C01",
+     "kind": "candle",
+     "x": 81,
+     "y": 96,
+     "content": "LargeHeart",
+     "src": "video:Map_2 khớp mẫu candle_0/1 mọi frame không lặp, camera ref/data/map2_camera.csv (Tools/cvm2/props10.py; x = mốt khung camera đứng, Y = đáy đo − 1 vì Candle viewOffset +1); wiki: ảnh bản đồ nửa tỉ lệ (Tools/cvm2/wiki10.py) cùng vị trí ±2 px — x 81, y đáy 96; nội dung: video:Map_2 vỡ f5320 → tim lớn f5348 (0.068), +5 f5349 (2:58.30)"
+    },
+    {
+     "id": "HC_C02",
+     "kind": "candle",
+     "x": 145,
+     "y": 120,
+     "content": "SmallHeart",
+     "src": "video:Map_2 khớp mẫu candle_0/1 mọi frame không lặp, camera ref/data/map2_camera.csv (Tools/cvm2/props10.py; x = mốt khung camera đứng, Y = đáy đo − 1 vì Candle viewOffset +1); wiki: ảnh bản đồ nửa tỉ lệ (Tools/cvm2/wiki10.py) cùng vị trí ±2 px — x 145, y đáy 120; nội dung: video:Map_2 vỡ f5201 → tim nhỏ f5219 (0.049), +1 f5269"
+    },
+    {
+     "id": "HC_C03",
+     "kind": "candle",
+     "x": 209,
+     "y": 120,
+     "content": "SmallHeart",
+     "src": "video:Map_2 khớp mẫu candle_0/1 mọi frame không lặp, camera ref/data/map2_camera.csv (Tools/cvm2/props10.py; x = mốt khung camera đứng, Y = đáy đo − 1 vì Candle viewOffset +1); wiki: ảnh bản đồ nửa tỉ lệ (Tools/cvm2/wiki10.py) cùng vị trí ±2 px — x 209, y đáy 120; nội dung: video:Map_2 vỡ f5058 → tim nhỏ f5068 (0.066), +1 f5083"
+    },
+    {
+     "id": "HC_C04",
+     "kind": "candle",
+     "x": 273,
+     "y": 128,
+     "content": "RedMoneyBag",
+     "src": "video:Map_2 khớp mẫu candle_0/1 mọi frame không lặp, camera ref/data/map2_camera.csv (Tools/cvm2/props10.py; x = mốt khung camera đứng, Y = đáy đo − 1 vì Candle viewOffset +1); wiki: ảnh bản đồ nửa tỉ lệ (Tools/cvm2/wiki10.py) cùng vị trí ±2 px — x 273, y đáy 128; nội dung: video:Map_2 vỡ f4948 → túi đỏ f4959 (0.066), +100 f4965"
+    },
+    {
+     "id": "HC_C05",
+     "kind": "candle",
+     "x": 337,
+     "y": 128,
+     "content": "RedMoneyBag",
+     "src": "video:Map_2 khớp mẫu candle_0/1 mọi frame không lặp, camera ref/data/map2_camera.csv (Tools/cvm2/props10.py; x = mốt khung camera đứng, Y = đáy đo − 1 vì Candle viewOffset +1); wiki: ảnh bản đồ nửa tỉ lệ (Tools/cvm2/wiki10.py) cùng vị trí ±2 px — x 337, y đáy 128; nội dung: video:Map_2 vỡ f4909 → túi đỏ f4919 (0.073), +100 f4922"
+    },
+    {
+     "id": "HC_C06",
+     "kind": "candle",
+     "x": 401,
+     "y": 128,
+     "content": "PurpleMoneyBag",
+     "src": "video:Map_2 khớp mẫu candle_0/1 mọi frame không lặp, camera ref/data/map2_camera.csv (Tools/cvm2/props10.py; x = mốt khung camera đứng, Y = đáy đo − 1 vì Candle viewOffset +1); wiki: ảnh bản đồ nửa tỉ lệ (Tools/cvm2/wiki10.py) cùng vị trí ±2 px — x 401, y đáy 128; nội dung: video:Map_2 vỡ f4837 → túi tím f4847 (0.067), +400 f4853 (2:41.77)"
+    },
+    {
+     "id": "HC_C07",
+     "kind": "candle",
+     "x": 464,
+     "y": 128,
+     "content": "HolyWater",
+     "src": "video:Map_2 khớp mẫu candle_0/1 mọi frame không lặp, camera ref/data/map2_camera.csv (Tools/cvm2/props10.py; x = mốt khung camera đứng, Y = đáy đo − 1 vì Candle viewOffset +1); wiki: ảnh bản đồ nửa tỉ lệ (Tools/cvm2/wiki10.py) cùng vị trí ±2 px — x 464, y đáy 128; nội dung: video:Map_2 vỡ f4871 → nước thánh f4909 (0.074) nằm sàn — không nhặt (HUD giữ đồng hồ); wiki ảnh bản đồ Stage 6 icon nước thánh giữa tầng dưới"
+    },
+    {
+     "id": "HC_C08",
+     "kind": "candle",
+     "x": 528,
+     "y": 128,
+     "content": "SmallHeart",
+     "src": "video:Map_2 khớp mẫu candle_0/1 mọi frame không lặp, camera ref/data/map2_camera.csv (Tools/cvm2/props10.py; x = mốt khung camera đứng, Y = đáy đo − 1 vì Candle viewOffset +1); wiki: ảnh bản đồ nửa tỉ lệ (Tools/cvm2/wiki10.py) cùng vị trí ±2 px — x 528, y đáy 128; nội dung: video:Map_2 vỡ f4690 → tim nhỏ f4719 (0.052), +1 f4723"
+    },
+    {
+     "id": "HC_C09",
+     "kind": "candle",
+     "x": 592,
+     "y": 128,
+     "content": "SmallHeart",
+     "src": "video:Map_2 khớp mẫu candle_0/1 mọi frame không lặp, camera ref/data/map2_camera.csv (Tools/cvm2/props10.py; x = mốt khung camera đứng, Y = đáy đo − 1 vì Candle viewOffset +1); wiki: ảnh bản đồ nửa tỉ lệ (Tools/cvm2/wiki10.py) cùng vị trí ±2 px — x 592, y đáy 128; nội dung: video:Map_2 vỡ f4621 → tim nhỏ f4649 (0.051), +1 f4652"
+    },
+    {
+     "id": "HC_C10",
+     "kind": "candle",
+     "x": 656,
+     "y": 128,
+     "content": "SmallHeart",
+     "src": "video:Map_2 khớp mẫu candle_0/1 mọi frame không lặp, camera ref/data/map2_camera.csv (Tools/cvm2/props10.py; x = mốt khung camera đứng, Y = đáy đo − 1 vì Candle viewOffset +1); wiki: ảnh bản đồ nửa tỉ lệ (Tools/cvm2/wiki10.py) cùng vị trí ±2 px — x 656, y đáy 128; nội dung: video:Map_2 vỡ f4568 → tim nhỏ f4589 (0.058), +1 f4590"
+    }
+   ],
+   "spawnPoints": [
+    {
+     "name": "Bat_HC",
+     "prefab": "Assets/Data/Prefabs/Enemy/Bat.prefab",
+     "x": 145,
+     "y": 57,
+     "facing": -1,
+     "respawn": true,
+     "src": "video:Map_2 f4974–5101 dơi treo (145, 57) rời chỗ f5043 khi Simon nhảy (CVM2 08 §2j)",
+     "param": 1
+    },
+    {
+     "name": "BoneTower_HC_low",
+     "prefab": "Assets/Data/Prefabs/Enemy/BoneTower.prefab",
+     "x": 249,
+     "y": 80,
+     "facing": -1,
+     "respawn": true,
+     "src": "video:Map_2 2:41.4–3:03.37 Bone Tower (249, 80) (CVM2 08 §2j, Map2EnemyProbe bt_c; Y = chân, viewOffset +1) — luôn quay về Simon; +400 roi"
+    },
+    {
+     "name": "BoneTower_HC_up",
+     "prefab": "Assets/Data/Prefabs/Enemy/BoneTower.prefab",
+     "x": 313,
+     "y": 48,
+     "facing": -1,
+     "respawn": true,
+     "src": "video:Map_2 2:41.4–3:08.43 Bone Tower (313, 48) (CVM2 08 §2j); +400 roi (rơi rosary khi chết — §6)"
+    }
+   ],
+   "edgeSpawners": [
+    {
+     "name": "Ghost_HC_low",
+     "prefab": "Assets/Data/Prefabs/Enemy/Ghost.prefab",
+     "side": "BehindPlayer",
+     "rows": [],
+     "playerRelativeY": true,
+     "zoneMinX": 0,
+     "zoneMaxX": 256,
+     "releaseOnBlock": "",
+     "src": "video:Map_2 Ghost #1 hiện f4979 (2:45.97) 96 px SAU LƯNG Simon (Simon đi trái tầng dưới y 144, x 257 f4978 → 254 f4980; CVM2 08 §2j) ⇒ biên phải 256 (Config Ghost không có firstDelay ⇒ sinh ngay khi vào vùng); Simon quay lại x 262 f5022 rồi đi trái tới 132 + leo thang ≈ 480 tick không thấy Ghost nữa ⇒ 1 con / lần nạp section (maxSpawns 1); khoá Y tầng dưới [129, 192] (tầng trên y 48 cùng khoảng x không sinh — Simon đi qua 3:00–3:08) — XẤP XỈ",
+     "zoneMinY": 129,
+     "zoneMaxY": 192,
+     "maxSpawns": 1
+    },
+    {
+     "name": "Ghost_HC_up",
+     "prefab": "Assets/Data/Prefabs/Enemy/Ghost.prefab",
+     "side": "BehindPlayer",
+     "rows": [],
+     "playerRelativeY": true,
+     "zoneMinX": 576,
+     "zoneMaxX": 4096,
+     "releaseOnBlock": "",
+     "src": "video:Map_2 Ghost #2 hiện f5813 (3:13.77) sau lưng Simon đi PHẢI tầng trên y 48 (x 572 f5810 → 576 f5812 → 580 f5814) ⇒ biên trái 576; khoá Y tầng trên [0, 64] (lúc vào Hall C Simon ở x 720 → 530 tầng dưới/bậc y 112–176 KHÔNG thấy Ghost); 1 con (maxSpawns 1 — như Ghost #1) — XẤP XỈ",
+     "zoneMinY": 0,
+     "zoneMaxY": 64,
+     "maxSpawns": 1
+    }
+   ],
+   "waterSpawners": [],
+   "secrets": [],
+   "bossArenas": [],
+   "mechSpawners": [
+    {
+     "name": "Mech_HC",
+     "platformPrefab": "",
+     "crusherPrefab": "Assets/Data/Prefabs/Level/Block2/Mech/Crusher.prefab",
+     "src": "CVM2 06 §2i: 3 bẫy ép gai marker crusher_1..3 (Config Object.Crusher maxFrame/startTick 1..3) — video:Map_2 2:33–2:41 (lượt 2 lệch pha: §5 #8)"
+    }
+   ],
+   "objectWindowInsetPx": 8
+  },
+  {
+   "id": "Medusa",
+   "candles": [
+    {
+     "id": "MD_C1",
+     "kind": "candle",
+     "x": 209,
+     "y": 96,
+     "content": "LargeHeart",
+     "src": "video:Map_2 khớp mẫu candle_0/1 mọi frame không lặp, camera ref/data/map2_camera.csv (Tools/cvm2/props10.py; x = mốt khung camera đứng, Y = đáy đo − 1 vì Candle viewOffset +1); wiki: ảnh bản đồ nửa tỉ lệ (Tools/cvm2/wiki10.py) cùng vị trí ±2 px — x 209, y đáy 96; nội dung: video:Map_2 vỡ f6671 → tim lớn f6684 (0.072), +5 f6690 (3:43.00)"
+    },
+    {
+     "id": "MD_C2",
+     "kind": "candle",
+     "x": 273,
+     "y": 88,
+     "content": "SmallHeart",
+     "src": "video:Map_2 khớp mẫu candle_0/1 mọi frame không lặp, camera ref/data/map2_camera.csv (Tools/cvm2/props10.py; x = mốt khung camera đứng, Y = đáy đo − 1 vì Candle viewOffset +1); wiki: ảnh bản đồ nửa tỉ lệ (Tools/cvm2/wiki10.py) cùng vị trí ±2 px — x 273, y đáy 88; nội dung: video:Map_2 vỡ f6604 → tim nhỏ f6623 (0.060), +1 f6629"
+    },
+    {
+     "id": "MD_C3",
+     "kind": "candle",
+     "x": 337,
+     "y": 88,
+     "content": "SmallHeart",
+     "src": "video:Map_2 khớp mẫu candle_0/1 mọi frame không lặp, camera ref/data/map2_camera.csv (Tools/cvm2/props10.py; x = mốt khung camera đứng, Y = đáy đo − 1 vì Candle viewOffset +1); wiki: ảnh bản đồ nửa tỉ lệ (Tools/cvm2/wiki10.py) cùng vị trí ±2 px — x 337, y đáy 88; nội dung: video:Map_2 vỡ f6539 → tim nhỏ f6558 (0.050), +1 f6565"
+    },
+    {
+     "id": "MD_C4",
+     "kind": "candle",
+     "x": 401,
+     "y": 88,
+     "content": "SmallHeart",
+     "src": "video:Map_2 khớp mẫu candle_0/1 mọi frame không lặp, camera ref/data/map2_camera.csv (Tools/cvm2/props10.py; x = mốt khung camera đứng, Y = đáy đo − 1 vì Candle viewOffset +1); wiki: ảnh bản đồ nửa tỉ lệ (Tools/cvm2/wiki10.py) cùng vị trí ±2 px — x 401, y đáy 88; nội dung: video:Map_2 vỡ f6467 → tim nhỏ f6493 (0.054), +1 f6526"
+    },
+    {
+     "id": "MD_C5",
+     "kind": "candle",
+     "x": 464,
+     "y": 88,
+     "content": "SmallHeart",
+     "src": "video:Map_2 khớp mẫu candle_0/1 mọi frame không lặp, camera ref/data/map2_camera.csv (Tools/cvm2/props10.py; x = mốt khung camera đứng, Y = đáy đo − 1 vì Candle viewOffset +1); wiki: ảnh bản đồ nửa tỉ lệ (Tools/cvm2/wiki10.py) cùng vị trí ±2 px — x 464, y đáy 88; nội dung: video:Map_2 vỡ f6332 → tim nhỏ f6351 (0.054), +1 f6389"
+    },
+    {
+     "id": "MD_C6",
+     "kind": "candle",
+     "x": 528,
+     "y": 88,
+     "content": "Rosary",
+     "src": "video:Map_2 khớp mẫu candle_0/1 mọi frame không lặp, camera ref/data/map2_camera.csv (Tools/cvm2/props10.py; x = mốt khung camera đứng, Y = đáy đo − 1 vì Candle viewOffset +1); wiki: ảnh bản đồ nửa tỉ lệ (Tools/cvm2/wiki10.py) cùng vị trí ±2 px — x 528, y đáy 88; nội dung: video:Map_2 vỡ f6255 → rosary f6292 (0.068), nhặt ⇒ nháy màn f6304 3:30.13"
+    },
+    {
+     "id": "MD_C7",
+     "kind": "candle",
+     "x": 592,
+     "y": 88,
+     "content": "SmallHeart",
+     "src": "video:Map_2 khớp mẫu candle_0/1 mọi frame không lặp, camera ref/data/map2_camera.csv (Tools/cvm2/props10.py; x = mốt khung camera đứng, Y = đáy đo − 1 vì Candle viewOffset +1); wiki: ảnh bản đồ nửa tỉ lệ (Tools/cvm2/wiki10.py) cùng vị trí ±2 px — x 592, y đáy 88; nội dung: video:Map_2 vỡ f6160 → tim nhỏ f6178 (0.050), +1 f6194 (tim +1 f6242 là từ Medusa Head bị hạ f6227 — md_heart.png)"
+    },
+    {
+     "id": "MD_C8",
+     "kind": "candle",
+     "x": 656,
+     "y": 88,
+     "content": "SmallHeart",
+     "src": "video:Map_2 khớp mẫu candle_0/1 mọi frame không lặp, camera ref/data/map2_camera.csv (Tools/cvm2/props10.py; x = mốt khung camera đứng, Y = đáy đo − 1 vì Candle viewOffset +1); wiki: ảnh bản đồ nửa tỉ lệ (Tools/cvm2/wiki10.py) cùng vị trí ±2 px — x 656, y đáy 88; nội dung: video:Map_2 vỡ f6109 → tim nhỏ f6125 (0.051), +1 f6134"
+    },
+    {
+     "id": "MD_C9",
+     "kind": "candle",
+     "x": 720,
+     "y": 88,
+     "content": "SmallHeart",
+     "src": "video:Map_2 khớp mẫu candle_0/1 mọi frame không lặp, camera ref/data/map2_camera.csv (Tools/cvm2/props10.py; x = mốt khung camera đứng, Y = đáy đo − 1 vì Candle viewOffset +1); wiki: ảnh bản đồ nửa tỉ lệ (Tools/cvm2/wiki10.py) cùng vị trí ±2 px — x 720, y đáy 88; nội dung: video:Map_2 vỡ f6020 → tim nhỏ f6048 (0.056), +1 f6062"
+    }
+   ],
+   "spawnPoints": [],
+   "edgeSpawners": [
+    {
+     "name": "MedusaHead_MD",
+     "prefab": "Assets/Data/Prefabs/Enemy/MedusaHead.prefab",
+     "side": "FrontOfPlayer",
+     "rows": [],
+     "playerRelativeY": true,
+     "zoneMinX": 384,
+     "zoneMaxX": 612,
+     "releaseOnBlock": "",
+     "src": "video:Map_2 (CVM2 08 §2j, ref/data/enemy8/mh_spawns.csv + map2_simon.csv): sảnh Medusa sinh 6 con khi Simon x 586 → 434 (f6190–6509), không sinh f6573 (Simon 334) ⇒ biên trái ∈ (334, 434] — chọn 384; con đầu f6189.9 ⇒ vào vùng 17–56 tick trước = Simon 602–624 ⇒ biên phải 612 (XẤP XỈ); không vào phòng boss (x < 256)"
+    }
+   ],
+   "waterSpawners": [],
+   "secrets": [
+    {
+     "name": "Secret_ArchBag",
+     "x": 492,
+     "y": 128,
+     "area": [
+      471,
+      112,
+      43,
+      17
+     ],
+     "condition": "StandStill",
+     "holdTicks": 120,
+     "item": "FlashingMoneyBag",
+     "spawnAt": [
+      492,
+      129
+     ],
+     "rise": true,
+     "riseSpeed": 0.25,
+     "src": "wiki:Secrets Bonuses Stage 6 \"sảnh có vòm + Medusa Head: đứng yên vài giây ở vòm thứ 4 ⇒ money bag\" — CHỈ WIKI (video Simon không đứng yên ≥ 24 tick ở x 471–513: f6343–6351, f6417–6427). Vòm thứ 4 (đếm từ trái hay phải đều là vòm giữa) = khoảng tối x 471–513 của sheet (hàng y 100/120); sàn y 128. holdTicks 120 = suy luận theo rương Stage 5 (cùng luật \"đứng yên\", đo video); điểm trồi (492, 129) giữa vòm = suy luận (wiki không nói); FlashingMoneyBag 1000 (wiki Secrets: bonus money bag); tốc độ trồi 0.25 px/tick = video:Map_2 1 px / 2 frame (vương miện f512–531: 188→178; rương f2399–2406: 86→82) — Block 1 ConfigRule.SecretRiseSpeed 0.3125 giữ nguyên (H12, §6)"
+    }
+   ],
+   "bossArenas": [
+    {
+     "name": "BossArena_QueenMedusa",
+     "prefab": "Assets/Data/Prefabs/Boss/QueenMedusa.prefab",
+     "zoneMinX": 0,
+     "zoneMaxX": 4096,
+     "useConfigPosition": false,
+     "bossPosition": [
+      112,
+      144
+     ],
+     "screenWalls": true,
+     "src": "CVM2 09: Medusa sinh (ẩn trong tượng) ngay khi vào section; tượng = tile nền marker statue [96,104,32,40] (chân (112,144)); camera khoá cx 0 khi cuộn trái tới mép (video Map_2 3:44.50, Simon x 128) ⇒ tường mép màn; thức 180 tick sau khi khoá (3:47.50); đầu tượng (marker statueHead [96,104,32,24]) xoá bằng LevelSection.ClearTileRect lúc thức"
+    }
+   ],
+   "mechSpawners": [],
+   "objectWindowInsetPx": 8
+  }
+ ]
+}
