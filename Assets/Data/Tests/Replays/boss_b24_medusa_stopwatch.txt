@@ -1,3 +1,3 @@
-# 601 tick, hash c6ece1bf
-# CVGP 19 BossB24Probe kịch bản 'medusa_stopwatch': Stopwatch ở tick 201 (wiki: boss CUỐI Stopwatch còn tác dụng): Medusa + rắn đứng yên 300 tick rồi chạy tiếp
--*200 Sub*1 -*400
+# 701 tick, hash eecf492f
+# CVGP 19 BossB24Probe kịch bản 'medusa_stopwatch': Stopwatch ở tick 201 (đang bay; wiki: boss CUỐI Stopwatch còn tác dụng): Medusa + rắn đứng yên 300 tick rồi chạy tiếp; nhạc boss vẫn đúng thức + 57 (video Map_2: đồng hồ không giữ nhạc)
+-*200 Sub*1 -*500

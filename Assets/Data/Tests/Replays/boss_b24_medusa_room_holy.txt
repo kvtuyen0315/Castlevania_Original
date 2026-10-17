@@ -1,0 +1,3 @@
+# 446 tick, hash f4c494fd
+# CVGP 19 BossB24Probe kịch bản 'medusa_room_holy': PHÒNG THẬT: Simon (61,144) quay phải cầm nước thánh, ném ở tick 206 khi Medusa bay tới: lọ trúng 1 lần (−1 vạch), Medusa đứng yên lúc chạm lọ/lửa và giữ khung tím (video Boss_Map_2 f135–196)
+-*205 Sub*1 -*240

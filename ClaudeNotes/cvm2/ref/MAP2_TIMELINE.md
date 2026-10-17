@@ -101,7 +101,7 @@ Suốt Map_2 (trước boss): **PLAYER = 16/16 vạch (Simon KHÔNG hề bị tr
 | 43 | 3:17.47–3:30.10 (f5924–6303) | 06 | 0239 | 036170 | 32 | đồng hồ | Medusa · cx 344..512 | **Sảnh Medusa cx 512**: Simon leo thang rồi đi TRÁI. **Medusa Head ×8** (#471–#503, 3:26.4–3:39.0, +1.0–1.26 px/tick). Camera bắt đầu cuộn trái ≈3:25 (Simon px khoá 128). 3:22.07, 3:24.47, 3:26.47 tim +1. |
 | 44 | 3:30.13–3:30.53 (f6304–6316) | 06 | 0227 | 036470 | 36 | đồng hồ | Medusa · cx 389..404 | **3:30.13–3:30.53: ROSARY lần 2** (nháy màn 13 frame); trước đó **3:27.57 +300** MH. |
 | 45 | 3:30.57–3:44.67 (f6317–6740) | 06 | 0227 | 036470 | 36 | đồng hồ | Medusa · cx 0..387 | Camera cuộn TRÁI cx 512→0, đạt **cx 0 ở f6735 (3:44.50)** — KHOÁ phòng boss. Tim +1 (3:28.07, 3:32.97, 3:37.53, 3:38.83, 3:40.97), **tim lớn +5 (3:43.00)**; MH #498–#503 tới 3:39. |
-| 46 | 3:44.70–3:47.87 (f6741–6836) | 06 | 0214 | 036470 | 45 | đồng hồ | Medusa · cx 0..0 | Simon (px 100→49→61, wx 61, Y 176) đi vào phòng boss; tượng Medusa (wx 96–127, y 128–175) trên nền; **Medusa đầu xanh hiện f6821 (3:47.37)**. |
+| 46 | 3:44.70–3:47.87 (f6741–6836) | 06 | 0214 | 036470 | 45 | đồng hồ | Medusa · cx 0..0 | Simon (px 100→49→61, wx 61, Y 176) đi vào phòng boss; tượng Medusa (wx 96–127, y 128–175) trên nền; **Medusa đầu xanh hiện f6821 (3:47.37)** — (CVM2 09) khớp mẫu từng frame: tượng còn nguyên tới f6824, **đầu tượng thành đen f6825 (3:47.50)**, Medusa hiện **f6826**. |
 | 47 | 3:47.90–3:55.77 (f6837–7073) | 06 | 0211 | 036470 | 40 | đồng hồ | Medusa · cx 0..0 | **TRẬN QUEEN MEDUSA** (xem §4): **3:47.90 dùng đồng hồ (−5 tim) ×3** (f6837, f6928, f7031): Medusa + rắn đứng yên ≈186–196 tick/lần; Simon (wx 56–61, Y 176) quất liên tục (1 vạch ENEMY/≈15 frame = 30 tick): E 16→0 từ 3:48.30 tới 3:55.77; **3:48.20 +100** rắn chết; **3:55.63 +3000** (f7069) rồi E=0 (f7073). |
 | 48 | 3:55.80–3:57.90 (f7074–7137) | 06 | 0211 | 039570 | 30 | đồng hồ | Medusa · cx 0..0 | Quả cầu + đi nhặt: Simon px 61→113 (3:57.17–3:58.0); **TIME 0211→0210 ở f7137 (3:57.9)** = TIME hết đứng. |
 | 49 | 3:57.93–4:02.53 (f7138–7276) | 06 | 0210 | 039570 | 30 | đồng hồ | Medusa · cx 0..0 | Chờ nhạc Stage Clear ≈ **136 frame ≈ 272 tick** (f7141–7276) — TIME giữ 0210. |
@@ -164,7 +164,7 @@ HUD đầu video: SCORE 005800, TIME 0083, STAGE 06, **hearts 18→17 (f30)**, P
 |---|---|
 | 0–0.7 (f0–22) | lớp phủ ▶ YouTube; tượng Medusa (đầu trắng + thân đỏ-trắng, wx 101–121 × y 136–158 phần thân) giữa phòng — Simon (74→82,176) đứng/đi nhẹ quay phải. (blob 114–141 × 105–131 trong f0–~22 = nút ▶ YouTube, không phải tượng) |
 | **2.13 (f64)** | tia hồng ở chân tượng (f64–66) |
-| **2.27 (f68)** | **Medusa thức: đầu xanh + tóc rắn (42×47) bay ra khỏi tượng**, tâm (116,152); thân tượng (101–121 × 136–158) ở lại bệ SUỐT trận |
+| **2.27 (f68)** | **Medusa thức: đầu xanh + tóc rắn (42×47) bay ra khỏi tượng**, tâm (116,152); thân tượng (101–121 × 136–158) ở lại bệ SUỐT trận — (CVM2 09) khớp mẫu medusa_head: tâm (113,144) f68 rồi bay trái-xuống 0.875 px/tick; rắn 1 thả cùng lúc tại (113,150); số chính thức `CVM2_MEMORY §2k` |
 | 2.3–3.1 | bay **sang TRÁI sát sàn, đường sóng thấp** (x 116→68, y 148–158) ≈ **1.0 px/tick** về phía Simon; Simon (82→39) nhảy lên tránh (jumpduck, đỉnh Y 144) rồi đáp (35,176) |
 | **3.53 (f106) hit #1** | Medusa đè Simon ở sát tường trái: Simon `hurt_0` (33,176)→(23,162), **PLAYER 10→9 (f107)→8 (f111)** (2 vạch, cách nhau ~4 frame = 8 tick); knock-back chỉ 10 px vì tường; Y 176→162 (−14) trong 0.2 s rồi rơi (f122 Y 170) |
 | 4.5–6.4 | Medusa lơ lửng thấp x 47–55, y 144–155, **màu nhấp nháy** (§ dưới); Simon ném nước thánh (lửa trên sàn), E 16→**15 (f149, 4.97 s)**, 14 (5.5), 13 (5.9), 12 (6.03), 11 (6.33), 10 (7.07) |
@@ -179,7 +179,7 @@ HUD đầu video: SCORE 005800, TIME 0083, STAGE 06, **hearts 18→17 (f30)**, P
 | 19.27–20.6 | quả cầu nằm (122–133 × 162–174, đổi màu); Simon đi tới (px 47→111); **nhặt ≈ 20.6–20.7 s (f620–622)** |
 | 20.83–22.30 | **PLAYER 4→16** (+1 vạch/≈4 frame ≈ 7.4 tick; 12 vạch trong 1.47 s); TIME giữ 0064 (đã dừng từ khi nhặt/chết); video hết 23.30 s |
 
-**Đổi màu Medusa (nháy)**: bảng màu đầu xanh ↔ tím đổi **mỗi ≈ 4.6 frame video ≈ 9 tick** (chu kỳ 18 tick ≈ 3.3 Hz; 51 pha trong 22 s) khi bay bình thường; khi bị đánh/nằm trong lửa giữ **tím liên tục** (f135–196 = 61 frame = 2.0 s; f200–225). Nguồn: `boss2_medusa.csv` cột `state` (B/P).
+**Đổi màu Medusa (nháy)** — (CVM2 09) thực ra là 2 SPRITE khác nhau `medusa_head` (xanh) ↔ `medusa_stone` (tím), không phải đổi bảng màu: bảng màu đầu xanh ↔ tím đổi **mỗi ≈ 4.6 frame video ≈ 9 tick** (chu kỳ 18 tick ≈ 3.3 Hz; 51 pha trong 22 s) khi bay bình thường; khi bị đánh/nằm trong lửa giữ **tím liên tục** (f135–196 = 61 frame = 2.0 s; f200–225). Nguồn: `boss2_medusa.csv` cột `state` (B/P).
 
 **Phòng boss**: camera cx 0 khoá; sàn Y 176 (mặt gạch); Simon trong Map_2 đứng px 49–61 (wx 61) suốt trận (dùng đồng hồ + quất liên tục); Medusa ở Map_2 **xuất hiện lúc 3:47.37 (f6821) — 2.87 s sau khi camera khoá (3:44.50)** và Simon đứng ở px ≈ 61–100.
 
@@ -229,7 +229,7 @@ Boss (8 cũ + 2 mới): `b2_00_0s_tuong_medusa_simon_vao` · `b2_02_5s_medusa_th
 | 5 | **CỬA TRÁI #2** (Hall B → Hall C) | cuộn 1 f4270–4332 · dừng f4333–4415 · cuộn 2 f4416–4478 | 2:22.33 → 2:29.27 (**209 frame ≈ 419 tick**) | 128 · **≈166** · 128 tick | Hall B cx 0, Simon px 30 (Y 144, tầng thấp hơn cửa 1) → như #3: cánh cửa f4334–4391 (58 frame), Simon bắt đầu đi f4351 (18 frame = 36 tick sau dừng), khuất f4354–4369, đứng px 80; **STAGE 05→06 ở f4480 (2:29.33)**; TIME 0281 đứng f4267→f4507 |
 | 6 | **Hall C → sảnh Medusa** | đen f5914–5923; Medusa f5924 | 3:17.13–3:17.43 | **10 frame = 20.0 tick** | Hall C cx 512, Simon wx 671 Y 63 → Medusa **cx 512**, wx 674 Y 221 (+3), leo thang rồi đi TRÁI |
 | 7 | **Khoá camera phòng boss** | f6735 | 3:44.50 | camera cuộn trái 512→0 từ ≈3:25 (Simon px 128 mọi lúc) | cx **0 từ 3:44.50 và giữ** tới hết video; Simon px 100→49 (≈ 3:45–3:46) rồi đứng ≈ 61 |
-| 8 | Medusa thức (video Map_2) | f6821 | 3:47.37 | +**2.87 s sau khi camera khoá** | đầu xanh trên tượng (111,147), Simon wx 61; **+0.53 s sau đó Simon bấm đồng hồ** |
+| 8 | Medusa thức (video Map_2) | f6821 — (CVM2 09) **f6825** (đầu tượng đen; Medusa hiện f6826) | 3:47.37 — (CVM2 09) **3:47.50** | +**2.87 s sau khi camera khoá** — (CVM2 09) **90 frame = 180 tick** | đầu xanh trên tượng (111,147), Simon wx 61; **+0.53 s sau đó Simon bấm đồng hồ** |
 | 9 | **Medusa chết → quả cầu → tally** | +3000 f7069 · E=0 f7073 · TIME 0211→0210 f7137 · đếm TIME f7277–7380 · tim f7408–7526 | 3:55.63 · 3:55.77 · 3:57.9 · 4:02.57–4:06.0 · 4:06.93–4:10.87 | +3000 **4 frame TRƯỚC khi vạch ENEMY về 0**; chờ **≈272 tick** → TIME 208 tick → nghỉ 56 → tim 236 tick → chờ 118 | SCORE 039570 →(+2100) 041670 →(+3000) 044670 ✓ = luật Map 1; tim 30→0; TIME 0210→0000 |
 | 10 | Tally → **bản đồ lâu đài Block 2** | đen f7585–7595; bản đồ f7596 | 4:12.83–4:13.17 | **11 frame = 22.0 tick** | HUD **STAGE 07**, tim **05**, TIME 0000 (hiện ngay f7596) |
 | 11 | Bản đồ B2 (xem §3 dòng 55) | f7596–7791 | 4:13.20–4:19.70 | trượt vào 162 tick (f7599–7680) + đi 1.004 px/tick f7681–7791 | không có Simon f7596–7680 |

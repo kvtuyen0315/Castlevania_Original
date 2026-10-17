@@ -104,7 +104,7 @@ MonoBehaviour:
     width: 2
     height: 2
   view: {fileID: 1750006997151827987}
-  viewOffset: {x: 0, y: 1}
+  viewOffset: {x: 0, y: -1}
   animSet: {fileID: 11400000, guid: 8e4f1164ad1686c4d9f85ce5e67ab33d, type: 2}
   checkDeadlyTiles: 0
   despawnOffscreen: 0
@@ -113,12 +113,12 @@ MonoBehaviour:
   enemyId: 18
   hurtBox:
     x: -8
-    y: -9
+    y: -17
     width: 16
-    height: 10
+    height: 16
   touchBox:
     x: -8
-    y: -9
+    y: -17
     width: 16
-    height: 10
-  centerDy: -4
+    height: 16
+  centerDy: -9

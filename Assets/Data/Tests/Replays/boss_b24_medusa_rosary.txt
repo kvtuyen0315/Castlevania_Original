@@ -1,3 +1,3 @@
-# 320 tick, hash 97b79ec5
-# CVGP 19 BossB24Probe kịch bản 'medusa_rosary': Rosary (RosaryClear) tick 300: rắn bị gỡ, Medusa (boss) còn, 0 điểm
--*320
+# 360 tick, hash ee60a8e5
+# CVGP 19 BossB24Probe kịch bản 'medusa_rosary': Rosary (RosaryClear) tick 330 (rắn 2 vừa thả lúc rời chỗ dừng 1): rắn bị gỡ, Medusa (boss) còn, 0 điểm
+-*360

@@ -153,25 +153,27 @@ Boss.Dracula,p2LowVx,1.5,,,px/tick,suy luận: ước lượng (không video) �
 Boss.Dracula,p2Gravity,0.25,,,px/tick²,suy luận: ước lượng (không video) — routine 20; như rìu Simon (đo 09) / Igor (19),
 Boss.Dracula,p2MinScreenX,32,,,px màn,suy luận: ước lượng (không video) — routine 20; thân 48 rộng ⇒ mép 8 px trong màn,biên ngang khi nhảy
 Boss.Dracula,p2MaxScreenX,224,,,px màn,suy luận: ước lượng (không video) — routine 20; đối xứng p2MinScreenX,
-Boss.QueenMedusa,hitStunTicks,10,,,tick,suy luận: ước lượng (không video) — routine 19; như Phantom Bat (đo 14) — khung chung BossBase,
-Boss.QueenMedusa,invincibleTicks,16,,,tick,suy luận: ước lượng (không video) — routine 19; như Phantom Bat (suy luận 14),
-Boss.QueenMedusa,deathFxTicks,62,,,tick,suy luận: ước lượng (không video) — routine 19; cụm lửa bossdeath_m như Phantom Bat (đo 14),
-Boss.QueenMedusa,deathFxUpPx,0,,,px,suy luận: ước lượng (không video) — routine 19; pivot = tâm đầu ⇒ lửa ở tâm sprite,
-Boss.QueenMedusa,wakeDelayTicks,60,,,tick,suy luận: ước lượng (không video) — routine 19; wiki: vỡ ra từ tượng 'không báo trước' khi Simon đã vào phòng — chọn 1 s,từ lúc sinh (vào phòng)
-Boss.QueenMedusa,statueHeadUpPx,32,,,px,suy luận: ước lượng (không video) — routine 19; sheet: tượng medusa_bust 32×48 — đầu 32×32 hiện ở đỉnh tượng (tâm cao hơn chân tượng 48 − 16),
-Boss.QueenMedusa,emergeTicks,32,,,tick,suy luận: ước lượng (không video) — routine 19; thời gian vỡ tượng (nháy đá ↔ sống) — như Bone Tower nháy 17,đã nhận/gây đòn
-Boss.QueenMedusa,emergeFlashTicks,4,,,tick,suy luận: ước lượng (không video) — routine 19; nhịp nháy medusa_stone ↔ medusa_head như Bone Tower 17,
-Boss.QueenMedusa,flyAboveFloorPx,32,,,px,suy luận: ước lượng (không video) — routine 19; wiki: 'hầu như luôn bay thấp sát đất' (Holy Water dễ trúng) — tâm sóng ngang ngực Simon,tâm sóng so với sàn phòng
-Boss.QueenMedusa,flyAmplitudePx,16,,,px,"suy luận: ước lượng (không video) — routine 19; đáy sóng chạm chân (lao vào Simon), đỉnh sóng qua đầu Simon đứng",
-Boss.QueenMedusa,flyPeriodTicks,96,,,tick,suy luận: ước lượng (không video) — routine 19; như sóng Medusa Head 17 (cùng 'đầu Medusa'),
-Boss.QueenMedusa,overshootPx,32,,,px,suy luận: ước lượng (không video) — routine 19; wiki: 'cố va vào Simon' — vượt qua Simon 32 px rồi quay lại lao tiếp,
-Boss.QueenMedusa,screenMinX,16,,,px màn,suy luận: ước lượng (không video) — routine 19; quay đầu khi chạm mép (nửa bề ngang đầu 16),
+Boss.QueenMedusa,hitStunTicks,10,,,tick,đo:cvm2-09 video:Map_2 3:55.3–3:56.0 (f7016–7031: 2 nhát roi cách ~10 frame — giữa 2 nhát Medusa tím đứng ~5 frame rồi bay lại 7 px) khớp thô 10 tick như Phantom Bat (đo 14); không có đòn đơn lẻ khi đang bay ở video boss,
+Boss.QueenMedusa,invincibleTicks,16,,,tick,đo:cvm2-09 video:Map_2 3:48.3–3:55.8 16 nhát roi: khoảng giữa 2 lần ENEMY −1 ngắn nhất 9 frame = 18 tick (trễ HUD ≤ 8) ⇒ ≤ 18; giữ 16 (suy luận 14),
+Boss.QueenMedusa,deathFxTicks,62,,,tick,đo:cvm2-09 video:Map_2 3:55.63–3:56.67 (f7069–f7100: 6 ngọn lửa 3×2 nhịp mảnh → to → lùn như Phantom Bat; hết f7101 ≈ 64 tick) — khớp 62 của 14,
+Boss.QueenMedusa,deathFxUpPx,0,,,px,"đo:cvm2-09 video:Map_2 f7069 lưới lửa cột x 77/85/93 hàng 149/165 quanh tâm đầu (85,157) lúc chết ⇒ tâm cụm lửa = tâm đầu",
+Boss.QueenMedusa,wakeDelayTicks,180,,,tick,đo:cvm2-09 video:Map_2 camera khoá cx 0 f6735 (3:44.50) → đầu tượng thành đen f6825 (3:47.50) = 90 frame = 180 tick (Simon đứng yên x 61 từ f6798); video boss bắt đầu khi đã trong phòng (không đo được mốc khoá),đếm từ khi camera KHOÁ phòng (Arena thử: khoá ngay tick đầu)
+Boss.QueenMedusa,statueHeadUpPx,31,,,px,đo:cvm2-09 video:Boss_Map_2 f68 + Map_2 f6826: tâm đầu lúc hiện (khớp mô hình bay: NES y 145.2–145.6) = chân tượng NES 176 − 31 (Tools/cvm2/boss9_model.py),tâm đầu lúc thức so với chân tượng
+Boss.QueenMedusa,emergeDx,2,,,px,"đo:cvm2-09 video:Boss_Map_2 f68 + Map_2 f6826: x tâm đầu lúc hiện 113.5–114.2 (khớp mô hình bay) − x chân tượng 112 (marker statue [96,104,32,40]) ⇒ +2",tâm đầu lúc thức so với x chân tượng
+Boss.QueenMedusa,musicDelayTicks,57,,,tick,"đo:cvm2-09 video:Boss_Map_2 thức f68 (2.27 s) → Poison Mind 3.22 s (NCC 0.94 — CVM2 03) = 0.95 s; video:Map_2 thức 3:47.50 → ≈3:48.14 (±0.4 s, SFX đồng hồ che) dù Medusa bị đóng băng ⇒ đồng hồ thế giới",sau tick thức
+Boss.QueenMedusa,flyDipPx,13,12,14,px,"đo:cvm2-09 video:Boss_Map_2 f68–99 / f322–330 / f362–387 + Map_2 f6826–6837: sóng nhào y = y0 + P(1 − cos 2πτ/T)/2 (đi XUỐNG trước) P 13 (đoạn A 144→157, E 155→168) — rms 0.68–0.97 px 4 đoạn (Tools/cvm2/boss9_model.py)",biên đỉnh–đáy sóng nhào
+Boss.QueenMedusa,flyPeriodTicks,68,64,72,tick,đo:cvm2-09 video: cùng 4 đoạn — T 64/68/72 cho rms 0.88/0.77/0.76 (lệch gốc τ0 ≤ 2–3 tick) ⇒ 68,
+Boss.QueenMedusa,bounceRisePx,18,,,px,"đo:cvm2-09 video:Boss_Map_2 f196–f292 (1 mẫu): Simon trúng đòn thân f196 ⇒ Medusa quay ngang + nhào nốt tới đáy 157 rồi lên 139, xuống 157, lên 147 ⇒ sóng nảy P 18 (rms 0.53 px)",sóng sau khi va Simon (đi LÊN trước)
+Boss.QueenMedusa,bouncePeriodTicks,104,,,tick,đo:cvm2-09 video:Boss_Map_2 f222–f292 (trừ 2 lần khựng nước thánh) — T 104 (1 mẫu),
+Boss.QueenMedusa,floorClearancePx,8,,,px,đo:cvm2-09 video:Boss_Map_2 f376–382 tâm đầu sâu nhất NES 168 = sàn 176 − 8 (cũng = đáy sóng nhào đoạn E) — giới hạn dưới là suy luận (1 mẫu),tâm đầu thấp nhất = sàn − giá trị
+Boss.QueenMedusa,screenMinX,16,,,px màn,suy luận: ước lượng (không video) — routine 19; video 2 trận không có lần Medusa chạm mép màn (x tâm 40–162) — giữ quay đầu ở mép (nửa bề ngang đầu 16),
 Boss.QueenMedusa,screenMaxX,240,,,px màn,suy luận: ước lượng (không video) — routine 19; đối xứng screenMinX,
-Boss.QueenMedusa,snakeFirstTicks,48,,,tick,suy luận: ước lượng (không video) — routine 19; wiki: 'khi bay thả rắn' — rắn đầu sau 0.8 s bay,
-Boss.QueenMedusa,snakeMinTicks,96,,,tick,suy luận: ước lượng (không video) — routine 19; nhịp thả rắn (wiki không nêu) — như nghỉ Bone Tower 17,
-Boss.QueenMedusa,snakeSpanTicks,64,,,tick,"suy luận: ước lượng (không video) — routine 19; ngẫu nhiên đều [96, 160]",
-Boss.QueenMedusa,maxSnakes,2,,,con,suy luận: ước lượng (không video) — routine 19; giới hạn rắn sống cùng lúc (wiki không nêu),
-Boss.QueenMedusa,snakeDropBelowPx,8,,,px,suy luận: ước lượng (không video) — routine 19; rắn rơi ra từ dưới tâm đầu,
+Boss.QueenMedusa,firstMoveTicks,64,,,tick,đo:cvm2-09 video:Boss_Map_2 thức f68 → dừng 1 f98.7 (31 frame ≈ 62–64 tick); Map_2 bị đồng hồ chặn ở 24 tick,đoạn bay đầu sau khi thức
+Boss.QueenMedusa,moveUnitTicks,16,,,tick,đo:cvm2-09 video:Boss_Map_2 thời lượng 3 đoạn bay (trừ khựng): 64 / 164 / 16 tick ≈ bội 16 (sai số mốc ±4),đoạn sau = moveUnitTicks × (1 + ngẫu nhiên 0..moveUnitsMax−1)
+Boss.QueenMedusa,moveUnitsMax,10,,,bội,suy luận: video có đoạn 1 / 4 / 10 bội 16 (3 mẫu) — phân bố đều 1..10 (RNG thế giới) là suy luận,
+Boss.QueenMedusa,hoverTicks,64,60,66,tick,đo:cvm2-09 video:Boss_Map_2 3 lần dừng tại chỗ không bị khựng: f98.7–129.5 / f292–323.5 / f330–361.5 = 62 / 63 / 63 tick (mép ±1 frame) ⇒ 64,đứng yên rồi thả rắn + đoạn bay mới
+Boss.QueenMedusa,maxSnakes,2,,,con,"suy luận: ước lượng — routine 19; video Boss_Map_2 tối đa 2 rắn cùng lúc (f363–387), không thấy lần thả bị bỏ",
+Boss.QueenMedusa,snakeDropBelowPx,5,,,px,"đo:cvm2-09 video:Boss_Map_2 4 rắn: chân rắn lúc sinh = tâm đầu + 5 (khớp rơi: 149.5−145, 160−155, 150−145, 152.5−147); x = x Medusa",khi thức + mỗi lần rời chỗ dừng
 Boss.MummyMan,hitStunTicks,10,,,tick,suy luận: ước lượng (không video) — routine 19; như Phantom Bat (đo 14),
 Boss.MummyMan,invincibleTicks,16,,,tick,suy luận: ước lượng (không video) — routine 19; như Phantom Bat (suy luận 14),
 Boss.MummyMan,deathFxTicks,62,,,tick,suy luận: ước lượng (không video) — routine 19; cụm lửa bossdeath_m như Phantom Bat (đo 14),
@@ -220,7 +222,8 @@ Enemy.Igor,fireballSpeed,1.5,,,px/tick,suy luận: ước lượng (không video
 Enemy.Igor,aimAbovePx,16,,,px,suy luận: ước lượng (không video) — routine 19; nhắm tâm thân Simon (như 18),
 Enemy.Igor,stunTicks,120,,,tick,suy luận: ước lượng (không video) — routine 19; wiki: 'quất Igor 1 lần sẽ đóng băng nó' — đủ dồn vài đòn vào Monster (2 s),
 Enemy.Igor,hitInvincibleTicks,16,,,tick,suy luận: ước lượng (không video) — routine 19; như boss (14),
-Enemy.Snake,gravity,0.25,,,px/tick²,suy luận: ước lượng (không video) — routine 19; rơi như item (ConfigRule.ItemGravity 0.25 — đo 11),
+Enemy.Snake,gravity,0.125,0.10,0.145,px/tick²,"đo:cvm2-09 video:Boss_Map_2 4 rắn rơi từ đứng yên: g 0.135 / 0.130 / 0.100 / 0.115 (rms 0.14–1.23 px, Tools/cvm2/boss9_model.py) ⇒ 0.125",
+Enemy.Snake,despawnInsetPx,8,,,px,"đo:cvm2-09 video:Boss_Map_2 4 rắn trườn tới pivot x 8–9 (mép trái màn) rồi mất ⇒ gỡ khi pivot ra ngoài [cx + 8, cx + 248] (nửa bề ngang sprite)",
 SubWeapon.Dagger,spawnHeightAboveFeet,23,,,px,đo:routine 09 proj_fit.py video:Map_1 f2797 (góc trên sprite dao = Y−31 khi Simon Y 112) và f3214 trên thang (Y 216 ⇒ Y−31) ⇒ pivot tâm sprite 16×16 = Y−23; Tools/cvgp/attack_compare.py dy 0,pivot (tâm sprite) dao; x sinh = pivot Simon
 SubWeapon.Axe,apexPx,50,,,px,đo:routine 09 (= vy0²/2g với vy0 −5.0 g 0.25; video:Map_1 đỉnh tâm rìu Y−80.5 ≈ 28 + 50 + 2),thông tin
 SubWeapon.Axe,apexTicks,20,,,tick,đo:routine 09 (= |vy0|/g),thông tin

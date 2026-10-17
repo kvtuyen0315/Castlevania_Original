@@ -27,9 +27,9 @@ public static class RegressionRunner
     {
         { "long", "5963c4ba" }, { "simon", "b2954cbe" }, { "attack", "eee2cdfb" }, { "item", "7ca5bf56" },
         { "enemy", "f288b0ce" }, { "boss", "31e6d711" }, { "b23", "5eb00c5b" } /* CVM2 08 (đo video Map_2; cũ 171be0c1) */, { "b46", "58a8edf9" },
-        { "b24", "7adfbc54" }, { "b56", "6cb8a1ad" }, { "rules", "03fafb24" }, { "core", "76516076" },
-        { "gallery", "8548b2de" } /* CVM2 08 (cũ 517442ed) */, { "flow", "e0b2d54c" }, { "flow30", "e0b2d54c" }, { "flow144", "e0b2d54c" },
-        { "holy", "52c59864" },   // CVM2 04 (HolyPierceProbe — bộ mới)
+        { "b24", "9b218696" } /* CVM2 09 (Medusa + rắn đo video, phòng thật; cũ 7adfbc54) */, { "b56", "6cb8a1ad" }, { "rules", "03fafb24" }, { "core", "76516076" },
+        { "gallery", "25b99169" } /* CVM2 09 (Medusa + rắn; CVM2 08 8548b2de) */, { "flow", "e0b2d54c" }, { "flow30", "e0b2d54c" }, { "flow144", "e0b2d54c" },
+        { "holy", "b1033a3f" },   // CVM2 04 (HolyPierceProbe — bộ mới) → CVM2 09 (Medusa thức 180 tick sau khoá; cũ 52c59864)
         { "mech", "91215ebd" },   // CVM2 06 (Map2MechProbe — bộ mới: bệ di động, bẫy ép gai, hố)
         { "h8", "352/432/448/890/922" },
     };

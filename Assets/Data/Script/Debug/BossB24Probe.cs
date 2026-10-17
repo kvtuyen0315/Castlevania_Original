@@ -12,8 +12,11 @@ using UnityEngine;
 ///                                                        khi nhặt quả cầu ⇒ GHI replay boss_b24_*_kill_l1.txt (chạy lại khi đổi gameplay)
 ///   BossB24Probe.RunSuite(BossB24Probe.ScenarioNames()) ⇒ chạy (input ĐỌC TỪ FILE), ghi từng tick, TỰ CHẤM ⇒ SuiteReport()
 ///   BossB24Probe.ShotDir = thư mục ⇒ chụp Game view ở các tick cố định (≥ 6 ảnh/boss)
-/// Phòng thử: BossRoomSetup (Arena boss rooms, camera khoá cx 0). Không có video Block 2–4 ⇒ kỳ vọng = hằng WIKI_* (đòn, điểm, sát thương theo
+/// Phòng thử: BossRoomSetup (Arena boss rooms, camera khoá cx 0). Không có video Block 3–4 ⇒ kỳ vọng = hằng WIKI_* (đòn, điểm, sát thương theo
 /// stage) + EST_* (ước lượng routine 19 chép ĐỘC LẬP Config — đổi Config mà quên đổi đây thì bộ kiểm báo).
+/// CVM2 09: Queen Medusa + rắn ĐO VIDEO (Boss_Map_2 + Map_2 — CVM2_MEMORY §2k) ⇒ hằng VIDEO_*; thêm kịch bản PHÒNG THẬT medusa_room_*
+/// (section Block 2 "Medusa" + BossArena từ Tools/cvm2/map2_boss.json — Map2BossRoom): khoá camera cx 0 khi cuộn trái, đầu tượng tile nền
+/// xoá lúc thức, bay / rắn / va Simon ⇒ nảy / nước thánh / hạ bằng roi cấp 3 ⇒ quả cầu.
 /// </summary>
 public static class BossB24Probe
 {
@@ -23,9 +26,12 @@ public static class BossB24Probe
     public const int WIKI_MEDUSA_W = 12, WIKI_MUMMY_W = 48, WIKI_FRANK_W = 24;
     public const int WIKI_SCORE_MEDUSA = 3000, WIKI_SCORE_MUMMY = 3000, WIKI_SCORE_FRANK = 5000, WIKI_PROJ_SCORE = 100;
     public const int WIKI_DMG_ST6 = 2, WIKI_DMG_ST9 = 3, WIKI_DMG_ST12 = 3;   // wiki Gameplay#Damage
-    public const int EST_MEDUSA_WAKE = 60, EST_MEDUSA_EMERGE = 32, EST_MEDUSA_HEAD_UP = 32, EST_MEDUSA_V = 256, EST_MEDUSA_ABOVE = 32;
-    public const int EST_MEDUSA_AMP = 16, EST_MEDUSA_P = 96, EST_MEDUSA_OVER = 32, EST_SNAKE_FIRST = 48, EST_SNAKE_MIN = 96, EST_SNAKE_MAX = 160;
-    public const int EST_SNAKE_ALIVE = 2, EST_SNAKE_V = 128;
+    // CVM2 09 — Queen Medusa + rắn ĐO VIDEO (chép ĐỘC LẬP Config; nguồn CVM2_MEMORY §2k)
+    public const int VIDEO_MEDUSA_W = 16, VIDEO_MEDUSA_WAKE = 180, VIDEO_MEDUSA_EMERGE_DX = 2, VIDEO_MEDUSA_HEAD_UP = 31, VIDEO_MEDUSA_V = 224;
+    public const int VIDEO_MEDUSA_DIP = 13, VIDEO_MEDUSA_T = 68, VIDEO_MEDUSA_FIRST = 64, VIDEO_MEDUSA_HOVER = 64, VIDEO_MEDUSA_UNIT = 16;
+    public const int VIDEO_MEDUSA_UNITS = 10, VIDEO_MEDUSA_MUSIC = 57, VIDEO_MEDUSA_FLASH = 9, VIDEO_MEDUSA_CLEAR = 8, VIDEO_MEDUSA_RISE = 18;
+    public const int VIDEO_SNAKE_V = 352, VIDEO_SNAKE_G = 32, VIDEO_SNAKE_DROP = 5, VIDEO_SNAKE_SCORE = 100, VIDEO_SNAKE_EDGE = 8, EST_SNAKE_ALIVE = 2;
+    public const int VIDEO_ROOM_STATUE_X = 112, VIDEO_ROOM_FLOOR = 144, VIDEO_ROOM_LOCK_SIMON_X = 128;
     public const int EST_MUMMY_V = 96, EST_MUMMY_WAKE = 128, EST_MUMMY_DX = 40, EST_MUMMY_THROW_FIRST = 64, EST_MUMMY_POSE = 16;
     public const int EST_MUMMY_THROW_MIN = 128, EST_MUMMY_THROW_MAX = 224, EST_BANDAGE_V = 256, EST_BANDAGE_ABOVE = 28;
     public const int EST_FRANK_V = 64, EST_FRANK_WAKE = 16, EST_FRANK_ZONE_MIN = 128, EST_FRANK_ZONE_MAX = 216, EST_IGOR_START = 96;
@@ -42,12 +48,17 @@ public static class BossB24Probe
 
     private static readonly Scn[] SCENARIOS =
     {
-        new Scn("medusa_pattern", "-*640", "Medusa: tượng giữa phòng (128,176), Simon (32,176) đứng; tượng 60 tick ⇒ vỡ (nháy đá/sống 32, nhận đòn ngay) ⇒ bay sóng thấp ±1 px/tick về Simon (tâm sàn − 32, A 16, P 96), vượt 32 ⇒ quay; thả rắn (đầu 48, rồi 96–160, ≤ 2) rơi xuống sàn trườn 0.5 px/tick"),
-        new Scn("medusa_touch", "-*420", "Stage 6, Simon không bất tử đứng yên: Medusa/rắn chạm ⇒ −2 vạch/lần (wiki: mọi đòn boss = mức stage)"),
-        new Scn("medusa_snake_kill", "D*20 D+B D*40", "Arena: rắn rơi trước mặt Simon 28 px ⇒ roi da NGỒI (rắn sát sàn) 1 đòn là chết (wiki), 0 điểm (wiki không nêu)"),
-        new Scn("medusa_stopwatch", "-*200 Sub -*400", "Stopwatch ở tick 201 (wiki: boss CUỐI Stopwatch còn tác dụng): Medusa + rắn đứng yên 300 tick rồi chạy tiếp"),
-        new Scn("medusa_rosary", "-*320", "Rosary (RosaryClear) tick 300: rắn bị gỡ, Medusa (boss) còn, 0 điểm"),
-        new Scn("medusa_kill_l1", "", "AUTOPILOT roi da (cấp 1): quay về Medusa, quất khi đoán trúng; đúng 12 đòn (wiki), +3000, lửa, quả cầu sau 152, nhặt ⇒ tally", true),
+        new Scn("medusa_pattern", "-*760", "CVM2 09 (video): phòng thử, chân tượng (128,176), Simon (32,176) đứng; camera khoá tick đầu ⇒ thức sau 180 tick: đầu hiện ở (130,145), nhận/gây đòn ngay, thả rắn; bay ±0.875 px/tick về Simon, dọc nhào y0 + 13(1 − cos 2πτ/68)/2; đoạn đầu 64 tick, dừng 64 ⇒ thả rắn ⇒ đoạn mới bội 16 (16–160); nháy xanh/tím 9 tick; rắn rơi g 0.125 từ (x, tâm + 5) rồi trườn 1.375 về Simon, ra mép màn (x < 8) thì mất; nhạc boss thức + 57"),
+        new Scn("medusa_touch", "-*420", "Stage 6, Simon không bất tử đứng yên (64,176): Medusa chạm ⇒ −2 vạch/lần (wiki) + Medusa QUAY ngang ngay tick sau và nảy lên cao hơn đầu đoạn (video Boss_Map_2 f196)"),
+        new Scn("medusa_snake_kill", "D*20 D+B D*40", "Arena: rắn (150,168) rơi rồi trườn 1.375 về Simon (100,176) ⇒ roi da NGỒI 1 đòn là chết (wiki), +100 (video Map_2 3:48.20)"),
+        new Scn("medusa_snake_whip3", "-*20 B -*40", "Arena: rắn (150,168) trườn về Simon (100,176) ⇒ roi cấp 3 ĐỨNG hạ rắn (video Map_2 f6843–6849: roi ngang hàng NES 156–159 trúng rắn bò) 1 đòn, +100"),
+        new Scn("medusa_stopwatch", "-*200 Sub -*500", "Stopwatch ở tick 201 (đang bay; wiki: boss CUỐI Stopwatch còn tác dụng): Medusa + rắn đứng yên 300 tick rồi chạy tiếp; nhạc boss vẫn đúng thức + 57 (video Map_2: đồng hồ không giữ nhạc)"),
+        new Scn("medusa_rosary", "-*360", "Rosary (RosaryClear) tick 330 (rắn 2 vừa thả lúc rời chỗ dừng 1): rắn bị gỡ, Medusa (boss) còn, 0 điểm"),
+        new Scn("medusa_kill_l1", "", "AUTOPILOT roi da (cấp 1): quay về Medusa, quất khi đoán trúng; 16 đòn (video: mọi đòn −1 vạch — CVM2 09), +3000, lửa, quả cầu sau 152, nhặt ⇒ tally", true),
+        new Scn("medusa_room_wake", "L*139 -*600", "PHÒNG THẬT (section Medusa, BossArena map2_boss.json): Simon (200,144) đi TRÁI tới x 61 — camera khoá cx 0 lúc Simon x 128 (video Map_2 3:44.50), tường mép màn; 180 tick sau: xoá tile đầu tượng (marker statueHead), thân tượng giữ, đầu hiện (114,113), thả rắn; bay về Simon, dừng, rắn trườn trên sàn y 144 rồi ra mép trái; nhạc thức + 57"),
+        new Scn("medusa_room_touch", "-*480", "PHÒNG THẬT: Simon (61,144) quay phải, KHÔNG bất tử: Medusa thức, bay trái chạm Simon ⇒ −2 vạch, Medusa quay ngang ngay + nảy (sóng lên trước) như video Boss_Map_2 f196–f292"),
+        new Scn("medusa_room_holy", "-*205 Sub -*240", "PHÒNG THẬT: Simon (61,144) quay phải cầm nước thánh, ném ở tick 206 khi Medusa bay tới: lọ trúng 1 lần (−1 vạch), Medusa đứng yên lúc chạm lọ/lửa và giữ khung tím (video Boss_Map_2 f135–196)"),
+        new Scn("medusa_room_kill_l3", "", "AUTOPILOT PHÒNG THẬT roi cấp 3 (Strong): 16 nhát (video Map_2 3:48.30–3:55.77), +3000, lửa ở tâm đầu, quả cầu sau 152 ở (128,104) rơi xuống sàn y 144, nhặt ⇒ tally", true),
         new Scn("mummy_pattern", "R*1 -*899", "Mummy Men: Simon (128,176) đứng giữa sàn: 2 con (tím (216,176), đỏ cách 40 về trái) thức cùng tick; đi 0.375 px/tick, kẹp 2 phía (con phải nhắm Simon + 40, con trái Simon − 40), ném băng ngang 1 px/tick ở chân − 28 (đầu 64 + tư thế 16; sau 128–224)"),
         new Scn("mummy_duck", "D*700", "Stage 9: Simon NGỒI ở (80,176) sau khối Pot Roast (6,10): băng vải bay qua đầu (0 lần trúng — wiki 'ngồi quất')"),
         new Scn("mummy_stand", "-*700", "Stage 9: Simon ĐỨNG ở (80,176): băng vải trúng ⇒ −3 vạch (EnemyAttack)"),
@@ -78,7 +89,7 @@ public static class BossB24Probe
     {
         public int sx, sy, hp, score, ebar, cx, fx, shots;
         public eSimonState state;
-        public bool frozenE;
+        public bool frozenE, locked;
     }
 
     public static string Label { get; private set; } = "";
@@ -112,6 +123,11 @@ public static class BossB24Probe
     private static bool addedRules, savedAutoRespawn = true, pilotOn;
     private static ItemPickup crystal;
     private static int pilotPrev, pilotEnd, firstDefeatRel = -1;
+    // CVM2 09: phòng thật Map 2 + mốc riêng Medusa (nhạc boss, đòn thân lên Simon, ô nền tượng)
+    private static bool realRoom, musicSeen;
+    private static int musicRel = -1, statueHeadBefore = -1, statueHeadAfter = -1, statueBodyBefore = -1, statueBodyAfter = -1, wallMin = int.MinValue, wallMax = int.MaxValue;
+    private static readonly List<int> medusaHitRels = new List<int>();
+    private static int crystalX = -1, crystalY = -1;
 
     public static SimonController Simon => world != null ? world.Player as SimonController : null;
 
@@ -200,6 +216,11 @@ public static class BossB24Probe
         if (world == null || Simon == null)
             return;
         Cleanup();
+        if (realRoom)
+        {
+            Cvm2TerrainProbe.Cleanup();   // CVM2 09: gỡ section Block 2 dựng lúc chạy (bộ chạy sau thấy StageWorld như cũ)
+            realRoom = false;
+        }
         Go("Arena", 48, 176, 1);
         world.ResetRng();
         GameSession.Current.ResetForNewGame();
@@ -241,6 +262,66 @@ public static class BossB24Probe
         if (host != null)
             temp.Add(host);
         world.ResetRng();
+    }
+
+    /// <summary>CVM2 09: phòng boss thật (section Medusa + BossArena map2_boss.json), Medusa sinh ngay (ẩn trong tượng).</summary>
+    static void RealRoom(int x, int y, int facing)
+    {
+        GameObject host;
+        realRoom = true;
+        arena = Map2BossRoom.Enter(world, x, y, facing, true, out host);
+        if (host != null)
+            temp.Add(host);
+        world.ResetRng();
+    }
+
+    static QueenMedusa Med()
+    {
+        foreach (var e in world.GroupList(eEntityGroup.Enemy))
+            if (e.Alive && e is QueenMedusa)
+                return (QueenMedusa)e;
+        return null;
+    }
+
+    /// <summary>Theo dõi mỗi tick: lúc nhạc boss bắt đầu (musicAt ≥ 0 → −1), ô nền tượng trước/sau thức, tường mép màn.</summary>
+    static void WatchMedusa(int rel)
+    {
+        if (crystal != null && crystal.Alive)
+        {
+            crystalX = crystal.X;
+            crystalY = crystal.Y;
+        }
+        var q = Med();
+        if (q == null)
+            return;
+        if (q.musicAt >= 0)
+            musicSeen = true;
+        else if (musicSeen && musicRel < 0)
+            musicRel = rel;
+        if (realRoom && world.Section != null && world.Section.data != null)
+        {
+            var head = QueenMedusa.MarkerOfKind(world.Section.data, "statueHead");
+            var st = QueenMedusa.MarkerOfKind(world.Section.data, "statue");
+            if (head != null && st != null)
+            {
+                var body = new RectInt(st.rect.x, head.rect.yMax, st.rect.width, st.rect.yMax - head.rect.yMax);
+                if (!q.statueCleared)
+                {
+                    statueHeadBefore = Map2BossRoom.TilesIn(world, head.rect);
+                    statueBodyBefore = Map2BossRoom.TilesIn(world, body);
+                }
+                else if (statueHeadAfter < 0)
+                {
+                    statueHeadAfter = Map2BossRoom.TilesIn(world, head.rect);
+                    statueBodyAfter = Map2BossRoom.TilesIn(world, body);
+                }
+            }
+        }
+        if (world.Tiles != null && world.Tiles.WallMinX != int.MinValue && wallMin == int.MinValue)
+        {
+            wallMin = world.Tiles.WallMinX;
+            wallMax = world.Tiles.WallMaxX;
+        }
     }
 
     static void PlaceSimon(int x, int y, int facing)
@@ -317,6 +398,12 @@ public static class BossB24Probe
         finish = null;
         onTick = null;
         pilotOn = false;
+        musicSeen = false;
+        musicRel = statueHeadBefore = statueHeadAfter = statueBodyBefore = statueBodyAfter = -1;
+        wallMin = int.MinValue;
+        wallMax = int.MaxValue;
+        medusaHitRels.Clear();
+        crystalX = crystalY = -1;
         CvgpDebug.CheatInvincible = true;
         world.FreezeEnemies(0);
         world.ResetRng();
@@ -325,86 +412,58 @@ public static class BossB24Probe
             // ======================================================= Queen Medusa
             case "medusa_pattern":
                 Room(BossRoomSetup.MEDUSA);
-                Photo(30, 62, 66, 96, 150, 200, 260, 330, 420);
+                Photo(30, 179, 181, 190, 200, 230, 260, 300, 330, 420, 520);
                 finish = () =>
                 {
                     var m = First("QueenMedusa");
                     if (m == null) return;
-                    int emerge = FirstK(m, k => m.states[k] != "Statue"), fly = FirstK(m, k => m.states[k] == "Fly");
-                    Expect("tượng (ngủ) tới tick (wakeDelay 60)", EST_MEDUSA_WAKE - 1, emerge);
-                    Expect("vỡ tượng → bay (tick — nháy 32)", EST_MEDUSA_EMERGE, fly - emerge);
-                    Expect("không va chạm khi trong tượng (tick hộp bật)", 0, CountK(m, k => k < emerge && m.active[k]));
-                    Expect("nhận/gây đòn ngay khi vỡ (tick hộp tắt trong lúc vỡ/bay)", 0, CountK(m, k => k >= emerge && !m.active[k]));
-                    Expect("đầu ở đỉnh tượng: tâm = chân tượng − 32", 176 - EST_MEDUSA_HEAD_UP, Fixed.ToPx(m.fpath[0].y));
-                    var anims = new HashSet<string>();
-                    for (int k = emerge; k < fly; k++) anims.Add(m.anims[k]);
-                    Expect("nháy đá ↔ sống lúc vỡ (số anim khác nhau)", 2, anims.Count);
-                    int badV = 0, turns = 0, badY = 0, badX = 0;
-                    var wave = Wave(EST_MEDUSA_AMP, EST_MEDUSA_P);
-                    for (int k = fly + 1; k < m.fpath.Count; k++)
-                    {
-                        int dx = m.fpath[k].x - m.fpath[k - 1].x;
-                        if (Math.Abs(dx) != EST_MEDUSA_V) badV++;
-                        if (k > fly + 1 && Math.Sign(dx) != Math.Sign(m.fpath[k - 1].x - m.fpath[k - 2].x)) turns++;
-                        int t = k - fly + 1;   // tick vào Fly đã chạy FlyTick (t = 1)
-                        if (m.fpath[k].y != Fixed.FromPx(176 - EST_MEDUSA_ABOVE) + wave[t % EST_MEDUSA_P]) badY++;
-                        int sx = Fixed.ToPx(m.fpath[k].x);
-                        if (sx < 16 - 2 || sx > 240 + 2) badX++;
-                    }
-                    Expect("ngang ±1 px/tick khi bay (tick sai)", 0, badV);
-                    Expect("dọc = sàn − 32 − 16·sin(2πt/96) (tick sai)", 0, badY);
-                    Expect("trong màn [16, 240] (tick ra ngoài)", 0, badX);
-                    ExpectRange("quay đầu (vượt Simon 32 / chạm mép)", 3, 99, turns);
-                    var snakes = Tracks("Snake");
-                    ExpectRange("số rắn thả", 3, 99, snakes.Count);
-                    if (snakes.Count > 0) Expect("rắn đầu (tick bay thứ — 48, tick vào Fly = 1)", EST_SNAKE_FIRST, snakes[0].spawnRel - fly + 1);
-                    for (int i = 1; i < snakes.Count; i++) ExpectRange("khoảng thả rắn " + i + " (96–160 hoặc chờ vì đủ 2)", EST_SNAKE_MIN, 9999, snakes[i].spawnRel - snakes[i - 1].spawnRel);
-                    int maxAlive = 0;
-                    for (int rel = 0; rel < recs.Count; rel++)
-                    {
-                        int n = 0;
-                        foreach (var t in snakes) if (t.spawnRel <= rel && (t.endRel < 0 || rel < t.endRel)) n++;
-                        maxAlive = Math.Max(maxAlive, n);
-                    }
-                    ExpectRange("rắn sống cùng lúc", 1, EST_SNAKE_ALIVE, maxAlive);
-                    int badCrawl = 0, landed = 0;
-                    foreach (var t in snakes)
-                    {
-                        int k0 = FirstK(t, k => t.states[k] == "Crawl");
-                        if (k0 < 0) continue;
-                        landed++;
-                        if (Fixed.ToPx(t.fpath[k0].y) != 176) badCrawl++;
-                        for (int k = k0 + 1; k < t.fpath.Count; k++)
-                            if (t.states[k] == "Crawl" && Math.Abs(t.fpath[k].x - t.fpath[k - 1].x) != EST_SNAKE_V) badCrawl++;
-                    }
-                    ExpectRange("rắn chạm sàn rồi trườn", 1, 99, landed);
-                    Expect("rắn trườn trên sàn y 176, 0.5 px/tick (tick sai)", 0, badCrawl);
-                    var sb = new StringBuilder("rắn ở tick: ");
-                    foreach (var t in snakes) sb.Append(t.spawnRel).Append(' ');
-                    measures.Add("vỡ tượng rel " + emerge + ", bay rel " + fly + ", quay " + turns + " lần; " + sb);
+                    int wake = MedusaWakeChecks(m, 128, 176, 0);
+                    if (wake < 0) return;
+                    int badV, badY, badLen, badHover, segs = MedusaSegments(m, 128 + VIDEO_MEDUSA_EMERGE_DX, 176 - VIDEO_MEDUSA_HEAD_UP, 176, -1, out badV, out badY, out badLen, out badHover);
+                    Expect("ngang ±0.875 px/tick mọi tick bay (tick sai)", 0, badV);
+                    Expect("dọc nhào y0 + 13(1 − cos 2πτ/68)/2 từ đầu mỗi đoạn (tick sai)", 0, badY);
+                    Expect("độ dài đoạn: đầu 64, sau bội 16 trong [16, 160] (đoạn sai)", 0, badLen);
+                    Expect("dừng 63 tick ghi state Hover (64 theo Config — chuỗi state) không di chuyển (tick sai)", 0, badHover);
+                    ExpectRange("số đoạn bay", 3, 99, segs);
+                    MedusaFlashChecks(m, wake);
+                    SnakeChecks(m, Tracks("Snake"), 176, 0, true);
+                    Expect("nhạc boss: thức + 57 (tick)", VIDEO_MEDUSA_MUSIC, musicRel - wake);
                 };
                 break;
             case "medusa_touch":
                 Room(BossRoomSetup.MEDUSA);
                 CvgpDebug.CheatInvincible = false;
                 PlaceSimon(64, 176, 1);
-                Photo(140, 200);
-                finish = () => DamageChecks(WIKI_DMG_ST6, 1);
+                Photo(200, 230, 260);
+                finish = () =>
+                {
+                    DamageChecks(WIKI_DMG_ST6, 1);
+                    var m = First("QueenMedusa");
+                    if (m != null) BounceChecks(m);
+                };
                 break;
             case "medusa_snake_kill":
+            case "medusa_snake_whip3":
                 {
                     Go("Arena", 100, 176, 1);
                     world.Stage = 6;
-                    var sn = world.Spawn(Prefab<Snake>("Snake"), 128, 168, -1) as Snake;
-                    Photo(6, 32, 40);
+                    if (scenario == "medusa_snake_whip3") ses.whipLevel = 3;
+                    world.Spawn(Prefab<Snake>("Snake"), 150, 168, -1);
+                    Photo(6, 24, 34, 40);
                     finish = () =>
                     {
                         var t = First("Snake");
                         if (t == null) return;
                         Expect("rắn bị hạ", 1, t.defeated ? 1 : 0);
                         Expect("số đòn (wiki: 1 đòn roi)", 1, t.hits);
-                        Expect("điểm (wiki không nêu ⇒ 0)", 0, Last.score);
-                        measures.Add("rắn hạ ở tick " + t.endRel);
+                        Expect("điểm (video Map_2 3:48.20: +100)", VIDEO_SNAKE_SCORE, Last.score);
+                        int k0 = FirstK(t, k => t.states[k] == "Crawl");
+                        Expect("rắn chạm sàn y 176 (tick có)", 1, k0 >= 0 && Fixed.ToPx(t.fpath[k0].y) == 176 ? 1 : 0);
+                        int bad = 0;
+                        for (int k = k0 + 1; k0 >= 0 && k < t.fpath.Count; k++)
+                            if (t.states[k] == "Crawl" && t.states[k - 1] == "Crawl" && t.fpath[k].x - t.fpath[k - 1].x != -VIDEO_SNAKE_V) bad++;
+                        Expect("trườn về Simon (trái) 1.375 px/tick (tick sai)", 0, bad);
+                        measures.Add("rắn chạm sàn rel " + k0 + ", hạ ở tick " + t.endRel + " tại x " + (t.fpath.Count > 0 ? Fixed.ToPx(t.fpath[t.fpath.Count - 1].x) : -1));
                     };
                 }
                 break;
@@ -413,11 +472,12 @@ public static class BossB24Probe
                 ses.subWeapon = eSubWeapon.Stopwatch;
                 ses.hearts = 10;
                 PlaceSimon(40, 176, 1);
-                Photo(150, 300);
+                Photo(190, 300, 520);
                 finish = () =>
                 {
                     var m = First("QueenMedusa");
                     if (m == null) return;
+                    int wake = FirstK(m, k => m.states[k] != "Statue");
                     int f0 = FirstRel(0, r => r.frozenE);
                     ExpectRange("Stopwatch bắt đầu (tick — bấm 201 + ném)", 200, 220, f0);
                     if (f0 < 0) return;
@@ -427,7 +487,7 @@ public static class BossB24Probe
                     for (int rel = f0 + STOPWATCH_TICKS + 1; rel < recs.Count; rel++)
                         if (PosAt(m, rel) != PosAt(m, rel - 1)) movedAfter++;
                     Expect("Medusa đứng yên khi Stopwatch (tick di chuyển)", 0, moved);
-                    ExpectRange("Medusa bay tiếp sau 300 tick (tick di chuyển)", 50, 9999, movedAfter);
+                    ExpectRange("Medusa bay tiếp sau 300 tick (tick di chuyển)", 30, 9999, movedAfter);
                     int snakeMoved = 0, snakeSeen = 0;
                     foreach (var t in Tracks("Snake"))
                         for (int rel = Math.Max(f0 + 1, t.spawnRel + 1); rel < f0 + STOPWATCH_TICKS && (t.endRel < 0 || rel < t.endRel) && rel < recs.Count; rel++)
@@ -436,17 +496,19 @@ public static class BossB24Probe
                             if (PosAt(t, rel) != PosAt(t, rel - 1)) snakeMoved++;
                         }
                     Expect("rắn đứng yên khi Stopwatch (tick di chuyển)", 0, snakeMoved);
-                    measures.Add("Stopwatch tick " + f0 + "; rắn quan sát " + snakeSeen + " tick-con trong lúc giữ");
+                    ExpectRange("rắn bị giữ trong lúc Stopwatch (tick-con)", 1, 99999, snakeSeen);
+                    Expect("nhạc boss vẫn đúng thức + 57 lúc bị Stopwatch (tick)", VIDEO_MEDUSA_MUSIC, musicRel - wake);
+                    measures.Add("thức rel " + wake + ", Stopwatch tick " + f0 + "; rắn quan sát " + snakeSeen + " tick-con trong lúc giữ");
                 };
                 break;
             case "medusa_rosary":
                 {
                     Room(BossRoomSetup.MEDUSA);
                     int before = -1, killed = -1;
-                    Photo(298, 302);
+                    Photo(328, 332);
                     onTick = rel =>
                     {
-                        if (rel == 299) { before = OnScreen(eEntityGroup.Enemy); killed = world.RosaryClear(); }
+                        if (rel == 329) { before = OnScreen(eEntityGroup.Enemy); killed = world.RosaryClear(); }
                     };
                     finish = () =>
                     {
@@ -464,7 +526,91 @@ public static class BossB24Probe
                 Room(BossRoomSetup.MEDUSA);
                 AddRules();
                 Photo(100, 400, 800);
-                finish = () => KillChecks("QueenMedusa", WIKI_MEDUSA_W, WIKI_SCORE_MEDUSA, 1);
+                finish = () => KillChecks("QueenMedusa", VIDEO_MEDUSA_W, WIKI_SCORE_MEDUSA, 1);
+                break;
+
+            // ----------------------------------------------- CVM2 09: phòng boss THẬT (section Medusa + BossArena map2_boss.json)
+            case "medusa_room_wake":
+                RealRoom(200, 144, -1);
+                Photo(60, 71, 251, 252, 253, 258, 270, 300, 330, 380, 460);
+                finish = () =>
+                {
+                    var m = First("QueenMedusa");
+                    if (m == null) return;
+                    int lockRel = FirstRel(0, r => r.locked);
+                    Expect("camera khoá ở cx 0 (phòng boss trái)", 0, lockRel >= 0 ? recs[lockRel].cx : -1);
+                    Expect("khoá lúc Simon x 128 (video Map_2 f6735)", VIDEO_ROOM_LOCK_SIMON_X, lockRel >= 0 ? recs[lockRel].sx : -1);
+                    Expect("không khoá trước khi tới cx 0 (tick khoá mà cx > 0)", 0, CountRel(r => r.locked && r.cx != 0));
+                    Expect("tường mép màn trái (WallMinX)", 0, wallMin);
+                    Expect("tường mép màn phải (WallMaxX)", 256, wallMax);
+                    int wake = MedusaWakeChecks(m, VIDEO_ROOM_STATUE_X, VIDEO_ROOM_FLOOR, lockRel);
+                    ExpectRange("ô nền đầu tượng có trước khi thức", 1, 12, statueHeadBefore);
+                    Expect("ô nền đầu tượng xoá hết lúc thức", 0, statueHeadAfter);
+                    Expect("thân tượng giữ nguyên (ô nền trước = sau)", statueBodyBefore, statueBodyAfter);
+                    ExpectRange("thân tượng có ô nền", 1, 8, statueBodyBefore);
+                    int badV, badY, badLen, badHover, segs = MedusaSegments(m, VIDEO_ROOM_STATUE_X + VIDEO_MEDUSA_EMERGE_DX, VIDEO_ROOM_FLOOR - VIDEO_MEDUSA_HEAD_UP, VIDEO_ROOM_FLOOR, -1, out badV, out badY, out badLen, out badHover);
+                    Expect("ngang ±0.875 px/tick (tick sai)", 0, badV);
+                    Expect("dọc nhào (tick sai)", 0, badY);
+                    Expect("độ dài đoạn (đoạn sai)", 0, badLen);
+                    Expect("dừng không di chuyển (tick sai)", 0, badHover);
+                    ExpectRange("số đoạn bay", 2, 99, segs);
+                    if (wake >= 0) Expect("đoạn đầu bay TRÁI về Simon (dx tick thức)", -VIDEO_MEDUSA_V, m.fpath[wake].x - Fixed.FromPx(VIDEO_ROOM_STATUE_X + VIDEO_MEDUSA_EMERGE_DX));
+                    MedusaFlashChecks(m, wake);
+                    SnakeChecks(m, Tracks("Snake"), VIDEO_ROOM_FLOOR, 0, true);
+                    Expect("nhạc boss: thức + 57 (tick)", VIDEO_MEDUSA_MUSIC, musicRel - wake);
+                    measures.Add("khoá rel " + lockRel + " (Simon x " + (lockRel >= 0 ? recs[lockRel].sx : -1) + "), thức rel " + wake + ", nhạc rel " + musicRel
+                                 + ", ô nền đầu tượng " + statueHeadBefore + " → " + statueHeadAfter + ", thân " + statueBodyBefore + " → " + statueBodyAfter);
+                };
+                break;
+            case "medusa_room_touch":
+                RealRoom(61, 144, 1);
+                CvgpDebug.CheatInvincible = false;
+                Photo(181, 205, 215, 230, 260, 300);
+                finish = () =>
+                {
+                    DamageChecks(WIKI_DMG_ST6, 1);
+                    var m = First("QueenMedusa");
+                    if (m != null) BounceChecks(m);
+                };
+                break;
+            case "medusa_room_holy":
+                RealRoom(61, 144, 1);
+                ses.subWeapon = eSubWeapon.HolyWater;
+                ses.hearts = 10;
+                Photo(214, 220, 230, 250);
+                finish = () =>
+                {
+                    var m = First("QueenMedusa");
+                    if (m == null) return;
+                    ExpectRange("Medusa trúng nước thánh (lọ/lửa)", 1, 99, m.hits);
+                    int dec = 0, bad = 0;
+                    for (int i = 1; i < bars.Count; i++) { if (bars[i] < bars[i - 1]) dec++; if (bars[i] != bars[i - 1] - 1) bad++; }
+                    Expect("mỗi lần ENEMY đổi đúng −1 vạch (video: lọ / lửa 1 vạch)", 0, bad);
+                    int stunTicks = 0, stunMoved = 0, stunAnim = 0;
+                    for (int k = 1; k < m.fpath.Count; k++)
+                        if (m.states[k] == "Stun")
+                        {
+                            stunTicks++;
+                            if (m.states[k - 1] == "Stun" && m.fpath[k] != m.fpath[k - 1]) stunMoved++;
+                            if (!m.anims[k].StartsWith("hurt")) stunAnim++;
+                        }
+                    ExpectRange("Medusa khựng (tick)", 8, 9999, stunTicks);
+                    Expect("không di chuyển lúc khựng (tick)", 0, stunMoved);
+                    Expect("khung tím (hurt = medusa_stone) lúc khựng (tick sai)", 0, stunAnim);
+                    measures.Add("nước thánh: " + m.hits + " lần trúng, khựng " + stunTicks + " tick; vạch ENEMY: " + string.Join(",", bars));
+                };
+                break;
+            case "medusa_room_kill_l3":
+                RealRoom(61, 144, 1);
+                ses.whipLevel = 3;
+                AddRules();
+                Photo(300, 600);
+                finish = () =>
+                {
+                    KillChecks("QueenMedusa", VIDEO_MEDUSA_W, WIKI_SCORE_MEDUSA, 1);
+                    Expect("quả cầu ở x 128 (cx 0 + 128 — video 128)", 128, crystalX);
+                    Expect("quả cầu nằm trên sàn phòng y 144 (trước khi nhặt)", VIDEO_ROOM_FLOOR, crystalY);
+                };
                 break;
 
             // ======================================================= Mummy Men
@@ -830,6 +976,8 @@ public static class BossB24Probe
         if (t != null) t.hits++;
         if (h.victim == world.Player)
         {
+            if (h.attacker is QueenMedusa)
+                medusaHitRels.Add(Rel);
             playerHits.Add(h.hitbox.layer + ":" + (h.attacker != null ? h.attacker.GetType().Name : "?") + "@" + Rel + "−" + h.damage);
             playerDmg.Add(h.damage);
         }
@@ -915,13 +1063,14 @@ public static class BossB24Probe
         var r = new Rec
         {
             sx = s.X, sy = s.Y, hp = ses.playerHp, score = ses.score, state = s.Fsm.CurState, cx = w.CameraCtl != null ? w.CameraCtl.X : 0,
-            fx = fx, frozenE = w.IsEnemyFrozen, shots = shotsN, ebar = ses.enemyHp,
+            fx = fx, frozenE = w.IsEnemyFrozen, shots = shotsN, ebar = ses.enemyHp, locked = w.CameraCtl != null && w.CameraCtl.Locked,
         };
         recs.Add(r);
         Mix(rel); Mix(s.fx); Mix(s.fy); Mix((int)r.state); Mix(r.hp); Mix(r.score); Mix(r.ebar); Mix(fx); Mix(shotsN); Mix(w.Rng.State);
         string shot;
         if (shots.TryGetValue(rel, out shot))
             ScreenCapture.CaptureScreenshot(shot);
+        WatchMedusa(rel);
         if (onTick != null)
             onTick(rel);
         // ảnh theo sự kiện (kịch bản hạ boss): con đầu bị hạ, lửa chết, quả cầu rơi, sau khi nhặt
@@ -1160,7 +1309,10 @@ public static class BossB24Probe
             foreach (var t in ts) Expect(kind + " con (sinh rel " + t.spawnRel + ") số đòn (" + hitsWeak / entities + ")", hitsWeak / entities, t.hits);
         Expect("bị hạ (thực thể)", entities, defeated);
         ExpectRange("hạ (tick rel)", 1, PILOT_MAX_TICKS, defeatRel);
-        Expect("+" + score + " (+100 × cầu lửa phá " + brokenShots + ")", score + brokenShots * WIKI_PROJ_SCORE, defeatRel >= 0 ? recs[defeatRel].score : -1);
+        int snakeKills = 0;   // CVM2 09: rắn Medusa +100 (video Map_2 3:48.20) — roi hạ rắn trên đường quất Medusa
+        foreach (var t in Tracks("Snake")) if (t.defeated && t.endRel >= 0 && defeatRel >= 0 && t.endRel <= defeatRel) snakeKills++;
+        Expect("+" + score + " (+100 × cầu lửa phá " + brokenShots + ", +100 × rắn hạ " + snakeKills + ")", score + brokenShots * WIKI_PROJ_SCORE + snakeKills * VIDEO_SNAKE_SCORE,
+               defeatRel >= 0 ? recs[defeatRel].score : -1);
         Expect("ENEMY 0 lúc hạ", 0, defeatRel >= 0 ? recs[defeatRel].ebar : -1);
         int dec = 0;
         for (int i = 1; i < bars.Count; i++) if (bars[i] > bars[i - 1]) dec++;
@@ -1171,6 +1323,202 @@ public static class BossB24Probe
         Expect("tally đã bắt đầu (StageRules)", 1, rules != null && rules.Tally.Active ? 1 : 0);
         measures.Add(kind + ": " + hits + " đòn roi da, hạ ở tick " + defeatRel + " (" + (defeatRel / 60.0).ToString("0.0") + " s), cầu " + crystalRel
                      + ", nhặt " + pickRel + "; vạch ENEMY: " + string.Join(",", bars));
+    }
+
+    // ---------------------------------------------------------------- CVM2 09: chấm Queen Medusa / rắn theo số đo video
+
+    static int CountRel(Func<Rec, bool> f)
+    {
+        int n = 0;
+        foreach (var r in recs) if (f(r)) n++;
+        return n;
+    }
+
+    /// <summary>Bảng sóng nhào (fixed) y hệt QueenMedusa: P/2 · (1 − cos 2πi/T) với P = Fixed.FromFloat(px).</summary>
+    static int[] DipWave(int px, int period)
+    {
+        int p = Fixed.FromFloat(px);
+        var w = new int[period];
+        for (int i = 0; i < period; i++)
+            w[i] = (int)Math.Round(p * 0.5 * (1.0 - Math.Cos(2.0 * Math.PI * i / period)));
+        return w;
+    }
+
+    /// <summary>Thức (video): ẩn + không va chạm khi trong tượng, thức đúng 180 tick sau khi camera khoá, đầu ở (chân + 2, sàn − 31) — tick
+    /// thức đã bay 1 bước (chuỗi state Statue → Fly cùng tick), va chạm từ lúc thức. Trả rel thức (−1 nếu không thức).</summary>
+    static int MedusaWakeChecks(Track m, int statueX, int floorY, int lockRel)
+    {
+        int kw = FirstK(m, k => m.states[k] != "Statue");
+        if (kw < 0)
+        {
+            Expect("Medusa thức", 1, 0);
+            return -1;
+        }
+        int wake = m.spawnRel + kw;
+        Expect("thức sau khi camera khoá (tick — video Map_2 f6735 → f6825 = 180)", VIDEO_MEDUSA_WAKE, wake - lockRel);
+        Expect("không va chạm khi trong tượng (tick hộp bật)", 0, CountK(m, k => k < kw && m.active[k]));
+        Expect("nhận/gây đòn từ lúc thức (tick hộp tắt)", 0, CountK(m, k => k >= kw && !m.active[k] && m.states[k] != "Dying"));
+        int ex = Fixed.FromPx(statueX + VIDEO_MEDUSA_EMERGE_DX), ey = Fixed.FromPx(floorY - VIDEO_MEDUSA_HEAD_UP);
+        var dip = DipWave(VIDEO_MEDUSA_DIP, VIDEO_MEDUSA_T);
+        Expect("tick thức: y = đỉnh tượng (sàn − 31) + 1 bước nhào (1/256 px)", ey + dip[1], m.fpath[kw].y);
+        Expect("tick thức: |x − (chân + 2)| = 1 bước 0.875 (1/256 px)", VIDEO_MEDUSA_V, Math.Abs(m.fpath[kw].x - ex));
+        return wake;
+    }
+
+    /// <summary>Các đoạn bay (chuỗi state "Fly" liên tiếp; tick ghi "Hover" đầu tiên còn bước cuối): ngang ±224/tick, dọc nhào từ y đầu đoạn
+    /// (kẹp sàn − 8), độ dài (đầu 64, sau bội 16 trong [16, 160]), dừng ghi Hover 63 tick không di chuyển. Trả số đoạn.</summary>
+    static int MedusaSegments(Track m, int ex, int ey, int floorY, int bounceRel, out int badV, out int badY, out int badLen, out int badHover)
+    {
+        var dip = DipWave(VIDEO_MEDUSA_DIP, VIDEO_MEDUSA_T);
+        int lowest = Fixed.FromPx(floorY - VIDEO_MEDUSA_CLEAR);
+        badV = badY = badLen = badHover = 0;
+        int n = m.fpath.Count, k = 0, runs = 0;
+        while (k < n)
+        {
+            if (m.states[k] != "Fly") { k++; continue; }
+            int k0 = k;
+            while (k < n && m.states[k] == "Fly") k++;
+            int moves = k - k0 + 1;
+            bool complete = k < n && m.states[k] == "Hover";
+            runs++;
+            int y0 = runs == 1 ? Fixed.FromPx(ey) : m.fpath[k0 - 1].y;
+            int prevX = runs == 1 ? Fixed.FromPx(ex) : m.fpath[k0 - 1].x;
+            if (complete)
+            {
+                if (runs == 1) { if (moves != VIDEO_MEDUSA_FIRST) badLen++; }
+                else if (moves % VIDEO_MEDUSA_UNIT != 0 || moves < VIDEO_MEDUSA_UNIT || moves > VIDEO_MEDUSA_UNIT * VIDEO_MEDUSA_UNITS) badLen++;
+            }
+            for (int j = k0; j < Math.Min(n, k0 + moves); j++)
+            {
+                if (bounceRel >= 0 && m.spawnRel + j >= bounceRel) break;
+                if (Math.Abs(m.fpath[j].x - prevX) != VIDEO_MEDUSA_V) badV++;
+                prevX = m.fpath[j].x;
+                int want = y0 + dip[(j - k0 + 1) % VIDEO_MEDUSA_T];
+                if (want > lowest) want = lowest;
+                if (m.fpath[j].y != want) badY++;
+            }
+            if (complete)
+            {
+                int h = k;
+                while (h < n && m.states[h] == "Hover") h++;
+                if (h < n && h - k != VIDEO_MEDUSA_HOVER - 1) badHover++;
+                for (int j = k + 1; j < h; j++) if (m.fpath[j] != m.fpath[k]) badHover++;
+            }
+        }
+        return runs;
+    }
+
+    /// <summary>Nháy xanh ↔ tím: lúc bay/dừng anim "fly" đổi khung đúng mỗi 9 tick (bỏ chuỗi đầu).</summary>
+    static void MedusaFlashChecks(Track m, int wake)
+    {
+        if (wake < 0) return;
+        int kw = wake - m.spawnRel, bad = 0, run = 0;
+        string prev = null;
+        var lens = new List<int>();
+        for (int k = kw; k < m.fpath.Count && (m.states[k] == "Fly" || m.states[k] == "Hover"); k++)
+        {
+            string a = m.anims[k];
+            if (!a.StartsWith("fly:")) { bad++; continue; }
+            if (a != prev) { if (prev != null) lens.Add(run); run = 0; prev = a; }
+            run++;
+        }
+        for (int i = 1; i < lens.Count; i++) if (lens[i] != VIDEO_MEDUSA_FLASH) bad++;
+        ExpectRange("số lần đổi xanh ↔ tím", 4, 9999, lens.Count);
+        Expect("nháy xanh ↔ tím mỗi 9 tick (chuỗi sai)", 0, bad);
+    }
+
+    /// <summary>Rắn (video): sinh ĐÚNG lúc thức / rời chỗ dừng tại (x Medusa, tâm đầu + 5), rơi g 0.125 từ đứng yên, chạm sàn rồi trườn
+    /// ±1.375 về phía Simon (lúc chạm sàn), ra mép màn (pivot &lt; cx + 8) thì mất; ≤ 2 sống cùng lúc.</summary>
+    static void SnakeChecks(Track m, List<Track> snakes, int floorY, int cx, bool drops)
+    {
+        ExpectRange("số rắn thả", 2, 99, snakes.Count);
+        int badWhen = 0, badSpawn = 0, badFall = 0, badCrawl = 0, badDir = 0, badEdge = 0, landed = 0, edged = 0;
+        var dip = DipWave(VIDEO_MEDUSA_DIP, VIDEO_MEDUSA_T);
+        int floor = Fixed.FromPx(floorY);
+        foreach (var t in snakes)
+        {
+            int km = t.spawnRel - m.spawnRel;
+            if (km < 1 || km >= m.fpath.Count) { badWhen++; continue; }
+            bool atWake = m.states[km - 1] == "Statue" && m.states[km] == "Fly";
+            bool atHoverEnd = m.states[km - 1] == "Hover" && m.states[km] == "Fly";
+            if (drops && !atWake && !atHoverEnd) badWhen++;
+            int sxw, syw;
+            if (atWake)
+            {
+                // điểm thức = vị trí tick thức lùi 1 bước (ngang theo hướng bay tick kế, dọc dip[1]) — rắn thả trước bước bay đầu
+                int dir = km + 1 < m.fpath.Count ? Math.Sign(m.fpath[km + 1].x - m.fpath[km].x) : 0;
+                sxw = Fixed.ToPx(m.fpath[km].x - dir * VIDEO_MEDUSA_V);
+                syw = Fixed.ToPx(m.fpath[km].y - dip[1]) + VIDEO_SNAKE_DROP;
+            }
+            else
+            {
+                sxw = Fixed.ToPx(m.fpath[km - 1].x);
+                syw = Fixed.ToPx(m.fpath[km - 1].y) + VIDEO_SNAKE_DROP;
+            }
+            if (Fixed.ToPx(t.fpath[0].x) != sxw || Fixed.ToPx(t.fpath[0].y) != syw) badSpawn++;
+            int y0 = t.fpath[0].y, kl = -1;
+            for (int k = 1; k < t.fpath.Count; k++)
+            {
+                if (t.states[k] == "Drop" && t.fpath[k].y != y0 + VIDEO_SNAKE_G * k * (k + 1) / 2) badFall++;
+                if (t.states[k] == "Crawl")
+                {
+                    if (kl < 0)
+                    {
+                        kl = k;
+                        landed++;
+                        int rel = t.spawnRel + k;
+                        int sim = rel < recs.Count ? recs[rel].sx : 0;
+                        int want = sim > Fixed.ToPx(t.fpath[k - 1].x) ? 1 : -1;
+                        if (Math.Sign(t.fpath[k].x - t.fpath[k - 1].x) != want) badDir++;
+                    }
+                    if (Math.Abs(t.fpath[k].x - t.fpath[k - 1].x) != VIDEO_SNAKE_V || t.fpath[k].y != floor) badCrawl++;
+                }
+            }
+            if (t.endRel >= 0 && !t.defeated)
+            {
+                edged++;
+                int lx = Fixed.ToPx(t.fpath[t.fpath.Count - 1].x);
+                bool okL = lx >= cx + VIDEO_SNAKE_EDGE && lx < cx + VIDEO_SNAKE_EDGE + 2;
+                bool okR = lx <= cx + NesCoord.SCREEN_W - VIDEO_SNAKE_EDGE && lx > cx + NesCoord.SCREEN_W - VIDEO_SNAKE_EDGE - 2;
+                if (!okL && !okR) badEdge++;
+            }
+        }
+        Expect("rắn sinh đúng lúc thức / rời chỗ dừng (con sai)", 0, badWhen);
+        Expect("rắn sinh ở (x Medusa, tâm đầu + 5) (con sai)", 0, badSpawn);
+        Expect("rắn rơi g 0.125 từ đứng yên (tick sai)", 0, badFall);
+        ExpectRange("rắn chạm sàn rồi trườn (con)", 1, 99, landed);
+        Expect("trườn ±1.375 px/tick trên sàn (tick sai)", 0, badCrawl);
+        Expect("trườn về phía Simon lúc chạm sàn (con sai)", 0, badDir);
+        Expect("ra mép màn (pivot < cx + 8) thì mất (con sai)", 0, badEdge);
+        int maxAlive = 0;
+        for (int rel = 0; rel < recs.Count; rel++)
+        {
+            int nAlive = 0;
+            foreach (var t in snakes) if (t.spawnRel <= rel && (t.endRel < 0 || rel < t.endRel)) nAlive++;
+            maxAlive = Math.Max(maxAlive, nAlive);
+        }
+        ExpectRange("rắn sống cùng lúc", 1, EST_SNAKE_ALIVE, maxAlive);
+        var sb = new StringBuilder("rắn sinh ở tick: ");
+        foreach (var t in snakes) sb.Append(t.spawnRel).Append(t.endRel >= 0 ? "→" + t.endRel : "").Append(' ');
+        measures.Add(sb.Append("(ra mép " + edged + ")").ToString());
+    }
+
+    /// <summary>Va Simon (đòn thân được nhận) ⇒ Medusa quay ngang ngay tick sau (video Boss_Map_2 f196); đo độ nảy lên.</summary>
+    static void BounceChecks(Track m)
+    {
+        ExpectRange("Medusa chạm Simon (lần)", 1, 99, medusaHitRels.Count);
+        if (medusaHitRels.Count == 0) return;
+        int h = medusaHitRels[0], k = h - m.spawnRel;
+        if (k < 1 || k + 1 >= m.fpath.Count) return;
+        int dxBefore = m.fpath[k].x - m.fpath[k - 1].x, dxAfter = m.fpath[k + 1].x - m.fpath[k].x;
+        bool flying = m.states[k] == "Fly" && m.states[k + 1] == "Fly";
+        Expect("đang bay lúc chạm (tick)", 1, flying ? 1 : 0);
+        Expect("quay ngang NGAY tick sau khi chạm (dx đổi dấu)", 1, flying && dxBefore != 0 && Math.Sign(dxBefore) == -Math.Sign(dxAfter) ? 1 : 0);
+        int yh = m.fpath[k].y, minY = yh, flyTicks = 0;
+        for (int j = k + 1; j < m.fpath.Count && flyTicks < 70; j++)
+            if (m.states[j] == "Fly") { flyTicks++; minY = Math.Min(minY, m.fpath[j].y); }
+        measures.Add("chạm Simon rel " + h + " (dx " + dxBefore + " → " + dxAfter + "), sau đó lên cao nhất " + (Fixed.ToPx(yh) - Fixed.ToPx(minY))
+                     + " px trên mức lúc chạm (70 tick bay)");
     }
 
     static void Expect(string what, int want, int got)

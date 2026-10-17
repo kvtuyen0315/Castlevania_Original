@@ -8,7 +8,8 @@ using UnityEngine;
 /// Luật bám (đo routine 07 — Tools/cvgp/measure_camera.py trên Map_1): X = kẹp(target.X − FollowScreenX, MinX, MaxX),
 /// FollowScreenX = 128 (ConfigRule.CameraFollowScreenX) — pivot Simon luôn ở x màn 128 khi cuộn, CẢ HAI hướng, không vùng chết,
 /// không trễ (cùng tick), kể cả trên cầu thang (0.5 px/tick) và khi nhảy.
-/// Khoá: Lock(cx) (MinX = MaxX); autoBossLock ⇒ tự khoá khi X chạm LevelSectionData.bossLockCx (PB cx 512, video 3:17.4).
+/// Khoá: Lock(cx) (MinX = MaxX); autoBossLock ⇒ tự khoá khi X chạm LevelSectionData.bossLockCx (PB cx 512, video 3:17.4) — CVM2 09:
+/// phòng boss ở mép TRÁI (bossLockCx = cameraMinX &lt; cameraMaxX — sảnh Medusa cx 0, video Map_2 3:44.50) khoá khi X ≤ bossLockCx.
 /// Cuộn kịch bản: ScrollTo(x, tốc độ fixed) — chuỗi qua cửa (128 px @ 0.90–0.91 px/tick, routine 15), bỏ qua biên.
 /// Followers (HUD): dời cùng camera để giữ nguyên chỗ trên màn; ResetHome khi StageWorld tắt ⇒ Title/Intro thấy camera như cũ.
 /// Không Update: StageWorld gọi Tick() ở bước 7 mỗi tick.
@@ -39,6 +40,8 @@ public class NesCameraController : MonoBehaviour
     private int scrollTargetX;
     private int scrollSpeed;
     private int bossLockCx = -1;
+    /// <summary>CVM2 09: phòng boss ở mép trái section (khoá khi cuộn TỚI bossLockCx từ bên phải).</summary>
+    private bool bossLockLeft;
 
     public int X { get; private set; }
     public int MinX { get; private set; }
@@ -96,6 +99,7 @@ public class NesCameraController : MonoBehaviour
         MinX = data.cameraMinX;
         MaxX = data.cameraMaxX;
         bossLockCx = data.bossLockCx;
+        bossLockLeft = bossLockCx >= 0 && bossLockCx == data.cameraMinX && data.cameraMaxX > data.cameraMinX;
         Locked = false;
         scripted = false;
     }
@@ -149,7 +153,7 @@ public class NesCameraController : MonoBehaviour
         }
         else if (Target != null)
             X = Clamp(Target.X - FollowScreenX);
-        if (autoBossLock && !Locked && bossLockCx >= 0 && X >= bossLockCx)
+        if (autoBossLock && !Locked && bossLockCx >= 0 && (bossLockLeft ? X <= bossLockCx : X >= bossLockCx))
             Lock(bossLockCx);
         Apply();
     }

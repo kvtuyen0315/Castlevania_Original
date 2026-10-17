@@ -53,12 +53,17 @@ MonoBehaviour:
     entityCount: 1
     hitsWeak:
       has: 1
-      value: 12
+      value: 16
     hitsStrong:
       has: 1
-      value: 8
+      value: 16
     hitsScope: 0
-    src_hits: 
+    src_hits: "\u0111o:cvm2-09 video:Map_2 3:48.30\u20133:55.77 roi c\u1EA5p 3 (Strong)
+      16 nh\xE1t \u21D2 ENEMY 16\u21920 m\u1ED7i nh\xE1t \u22121 v\u1EA1ch (kh\xF4ng
+      c\xF3 c\u1EB7p \u22121 c\xE1ch 4 frame c\u1EE7a \u0111\xF2n 2 v\u1EA1ch) \u21D2
+      S 16; video:Boss_Map_2 f149 / f393 l\u1ECD n\u01B0\u1EDBc th\xE1nh (Weak) \u22121
+      v\u1EA1ch \u21D2 W 16 (wiki:Bosses#Queen Medusa 12/8 \u2014 m\xE2u thu\u1EABn
+      video, theo video H1)"
     score:
       has: 1
       value: 3000
@@ -70,10 +75,11 @@ MonoBehaviour:
     itemsInRoom: "Kh\xF4ng"
     moveSpeed:
       has: 1
-      value: 1
-    src_moveSpeed: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video)
-      \u2014 routine 19; ngang khi bay lao v\u1EC1 Simon (wiki: 'c\u1ED1 va v\xE0o
-      Simon'; nh\u01B0 Medusa Head 17 1.0); s\xF3ng d\u1ECDc \u1EDF ConfigActorParam"
+      value: 0.875
+    src_moveSpeed: "\u0111o:cvm2-09 video:Boss_Map_2 h\u1ED3i quy x 5 \u0111o\u1EA1n
+      bay: 0.881 / 0.98 (7 \u0111i\u1EC3m) / 0.892 / 0.867 + video:Map_2 f6826\u20136837
+      0.80 (10 \u0111i\u1EC3m) \u21D2 7/8 px/tick; s\xF3ng d\u1ECDc \u1EDF ConfigActorParam
+      Boss.QueenMedusa"
     source: wiki:Bosses#Queen Medusa
   - id: 3
     phase: 1

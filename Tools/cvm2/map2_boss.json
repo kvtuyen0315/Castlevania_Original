@@ -1,0 +1,20 @@
+{
+ "note": "CVM2 09 — vật thể phòng boss Map 2 (NGUỒN DUY NHẤT): routine 10 (gen_map2_objects.py / Map2Objects.json + builder) PHẢI chép/đọc mục bossArenas dưới đây vào section Medusa, không đặt tay lần nữa. Cùng khuôn Map1Objects.json (CVGP 15: name, prefab, zoneMinX/MaxX, useConfigPosition, bossPosition, screenWalls). Đến lúc builder 10 có: BossB24Probe / Map2BossProbe (harness 09) đọc file này để dựng BossArena lúc chạy. Toạ độ px section (pivot boss = CHÂN tượng).",
+ "sections": [
+  {
+   "id": "Medusa",
+   "bossArenas": [
+    {
+     "name": "BossArena_QueenMedusa",
+     "prefab": "Assets/Data/Prefabs/Boss/QueenMedusa.prefab",
+     "zoneMinX": 0,
+     "zoneMaxX": 4096,
+     "useConfigPosition": false,
+     "bossPosition": [112, 144],
+     "screenWalls": true,
+     "src": "CVM2 09: Medusa sinh (ẩn trong tượng) ngay khi vào section; tượng = tile nền marker statue [96,104,32,40] (chân (112,144)); camera khoá cx 0 khi cuộn trái tới mép (video Map_2 3:44.50, Simon x 128) ⇒ tường mép màn; thức 180 tick sau khi khoá (3:47.50); đầu tượng (marker statueHead [96,104,32,24]) xoá bằng LevelSection.ClearTileRect lúc thức"
+    }
+   ]
+  }
+ ]
+}

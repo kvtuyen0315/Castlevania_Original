@@ -2407,8 +2407,11 @@ MonoBehaviour:
       has: 0
       value: 0
     unit: tick
-    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
-      routine 19; nh\u01B0 Phantom Bat (\u0111o 14) \u2014 khung chung BossBase"
+    source: "\u0111o:cvm2-09 video:Map_2 3:55.3\u20133:56.0 (f7016\u20137031: 2 nh\xE1t
+      roi c\xE1ch ~10 frame \u2014 gi\u1EEFa 2 nh\xE1t Medusa t\xEDm \u0111\u1EE9ng
+      ~5 frame r\u1ED3i bay l\u1EA1i 7 px) kh\u1EDBp th\xF4 10 tick nh\u01B0 Phantom
+      Bat (\u0111o 14); kh\xF4ng c\xF3 \u0111\xF2n \u0111\u01A1n l\u1EBB khi \u0111ang
+      bay \u1EDF video boss"
     note: 
   - actor: Boss.QueenMedusa
     key: invincibleTicks
@@ -2422,8 +2425,9 @@ MonoBehaviour:
       has: 0
       value: 0
     unit: tick
-    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
-      routine 19; nh\u01B0 Phantom Bat (suy lu\u1EADn 14)"
+    source: "\u0111o:cvm2-09 video:Map_2 3:48.3\u20133:55.8 16 nh\xE1t roi: kho\u1EA3ng
+      gi\u1EEFa 2 l\u1EA7n ENEMY \u22121 ng\u1EAFn nh\u1EA5t 9 frame = 18 tick (tr\u1EC5
+      HUD \u2264 8) \u21D2 \u2264 18; gi\u1EEF 16 (suy lu\u1EADn 14)"
     note: 
   - actor: Boss.QueenMedusa
     key: deathFxTicks
@@ -2437,8 +2441,9 @@ MonoBehaviour:
       has: 0
       value: 0
     unit: tick
-    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
-      routine 19; c\u1EE5m l\u1EEDa bossdeath_m nh\u01B0 Phantom Bat (\u0111o 14)"
+    source: "\u0111o:cvm2-09 video:Map_2 3:55.63\u20133:56.67 (f7069\u2013f7100:
+      6 ng\u1ECDn l\u1EEDa 3\xD72 nh\u1ECBp m\u1EA3nh \u2192 to \u2192 l\xF9n nh\u01B0
+      Phantom Bat; h\u1EBFt f7101 \u2248 64 tick) \u2014 kh\u1EDBp 62 c\u1EE7a 14"
     note: 
   - actor: Boss.QueenMedusa
     key: deathFxUpPx
@@ -2452,14 +2457,15 @@ MonoBehaviour:
       has: 0
       value: 0
     unit: px
-    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
-      routine 19; pivot = t\xE2m \u0111\u1EA7u \u21D2 l\u1EEDa \u1EDF t\xE2m sprite"
+    source: "\u0111o:cvm2-09 video:Map_2 f7069 l\u01B0\u1EDBi l\u1EEDa c\u1ED9t x
+      77/85/93 h\xE0ng 149/165 quanh t\xE2m \u0111\u1EA7u (85,157) l\xFAc ch\u1EBFt
+      \u21D2 t\xE2m c\u1EE5m l\u1EEDa = t\xE2m \u0111\u1EA7u"
     note: 
   - actor: Boss.QueenMedusa
     key: wakeDelayTicks
     value:
       has: 1
-      value: 60
+      value: 180
     min:
       has: 0
       value: 0
@@ -2467,15 +2473,18 @@ MonoBehaviour:
       has: 0
       value: 0
     unit: tick
-    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
-      routine 19; wiki: v\u1EE1 ra t\u1EEB t\u01B0\u1EE3ng 'kh\xF4ng b\xE1o tr\u01B0\u1EDBc'
-      khi Simon \u0111\xE3 v\xE0o ph\xF2ng \u2014 ch\u1ECDn 1 s"
-    note: "t\u1EEB l\xFAc sinh (v\xE0o ph\xF2ng)"
+    source: "\u0111o:cvm2-09 video:Map_2 camera kho\xE1 cx 0 f6735 (3:44.50) \u2192
+      \u0111\u1EA7u t\u01B0\u1EE3ng th\xE0nh \u0111en f6825 (3:47.50) = 90 frame
+      = 180 tick (Simon \u0111\u1EE9ng y\xEAn x 61 t\u1EEB f6798); video boss b\u1EAFt
+      \u0111\u1EA7u khi \u0111\xE3 trong ph\xF2ng (kh\xF4ng \u0111o \u0111\u01B0\u1EE3c
+      m\u1ED1c kho\xE1)"
+    note: "\u0111\u1EBFm t\u1EEB khi camera KHO\xC1 ph\xF2ng (Arena th\u1EED: kho\xE1
+      ngay tick \u0111\u1EA7u)"
   - actor: Boss.QueenMedusa
     key: statueHeadUpPx
     value:
       has: 1
-      value: 32
+      value: 31
     min:
       has: 0
       value: 0
@@ -2483,16 +2492,31 @@ MonoBehaviour:
       has: 0
       value: 0
     unit: px
-    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
-      routine 19; sheet: t\u01B0\u1EE3ng medusa_bust 32\xD748 \u2014 \u0111\u1EA7u
-      32\xD732 hi\u1EC7n \u1EDF \u0111\u1EC9nh t\u01B0\u1EE3ng (t\xE2m cao h\u01A1n
-      ch\xE2n t\u01B0\u1EE3ng 48 \u2212 16)"
-    note: 
+    source: "\u0111o:cvm2-09 video:Boss_Map_2 f68 + Map_2 f6826: t\xE2m \u0111\u1EA7u
+      l\xFAc hi\u1EC7n (kh\u1EDBp m\xF4 h\xECnh bay: NES y 145.2\u2013145.6) = ch\xE2n
+      t\u01B0\u1EE3ng NES 176 \u2212 31 (Tools/cvm2/boss9_model.py)"
+    note: "t\xE2m \u0111\u1EA7u l\xFAc th\u1EE9c so v\u1EDBi ch\xE2n t\u01B0\u1EE3ng"
   - actor: Boss.QueenMedusa
-    key: emergeTicks
+    key: emergeDx
     value:
       has: 1
-      value: 32
+      value: 2
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "\u0111o:cvm2-09 video:Boss_Map_2 f68 + Map_2 f6826: x t\xE2m \u0111\u1EA7u
+      l\xFAc hi\u1EC7n 113.5\u2013114.2 (kh\u1EDBp m\xF4 h\xECnh bay) \u2212 x ch\xE2n
+      t\u01B0\u1EE3ng 112 (marker statue [96,104,32,40]) \u21D2 +2"
+    note: "t\xE2m \u0111\u1EA7u l\xFAc th\u1EE9c so v\u1EDBi x ch\xE2n t\u01B0\u1EE3ng"
+  - actor: Boss.QueenMedusa
+    key: musicDelayTicks
+    value:
+      has: 1
+      value: 57
     min:
       has: 0
       value: 0
@@ -2500,78 +2524,49 @@ MonoBehaviour:
       has: 0
       value: 0
     unit: tick
-    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
-      routine 19; th\u1EDDi gian v\u1EE1 t\u01B0\u1EE3ng (nh\xE1y \u0111\xE1 \u2194
-      s\u1ED1ng) \u2014 nh\u01B0 Bone Tower nh\xE1y 17"
-    note: "\u0111\xE3 nh\u1EADn/g\xE2y \u0111\xF2n"
+    source: "\u0111o:cvm2-09 video:Boss_Map_2 th\u1EE9c f68 (2.27 s) \u2192 Poison
+      Mind 3.22 s (NCC 0.94 \u2014 CVM2 03) = 0.95 s; video:Map_2 th\u1EE9c 3:47.50
+      \u2192 \u22483:48.14 (\xB10.4 s, SFX \u0111\u1ED3ng h\u1ED3 che) d\xF9 Medusa
+      b\u1ECB \u0111\xF3ng b\u0103ng \u21D2 \u0111\u1ED3ng h\u1ED3 th\u1EBF gi\u1EDBi"
+    note: "sau tick th\u1EE9c"
   - actor: Boss.QueenMedusa
-    key: emergeFlashTicks
+    key: flyDipPx
     value:
       has: 1
-      value: 4
+      value: 13
     min:
-      has: 0
-      value: 0
-    max:
-      has: 0
-      value: 0
-    unit: tick
-    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
-      routine 19; nh\u1ECBp nh\xE1y medusa_stone \u2194 medusa_head nh\u01B0 Bone
-      Tower 17"
-    note: 
-  - actor: Boss.QueenMedusa
-    key: flyAboveFloorPx
-    value:
       has: 1
-      value: 32
-    min:
-      has: 0
-      value: 0
+      value: 12
     max:
-      has: 0
-      value: 0
+      has: 1
+      value: 14
     unit: px
-    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
-      routine 19; wiki: 'h\u1EA7u nh\u01B0 lu\xF4n bay th\u1EA5p s\xE1t \u0111\u1EA5t'
-      (Holy Water d\u1EC5 tr\xFAng) \u2014 t\xE2m s\xF3ng ngang ng\u1EF1c Simon"
-    note: "t\xE2m s\xF3ng so v\u1EDBi s\xE0n ph\xF2ng"
-  - actor: Boss.QueenMedusa
-    key: flyAmplitudePx
-    value:
-      has: 1
-      value: 16
-    min:
-      has: 0
-      value: 0
-    max:
-      has: 0
-      value: 0
-    unit: px
-    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
-      routine 19; \u0111\xE1y s\xF3ng ch\u1EA1m ch\xE2n (lao v\xE0o Simon), \u0111\u1EC9nh
-      s\xF3ng qua \u0111\u1EA7u Simon \u0111\u1EE9ng"
-    note: 
+    source: "\u0111o:cvm2-09 video:Boss_Map_2 f68\u201399 / f322\u2013330 / f362\u2013387
+      + Map_2 f6826\u20136837: s\xF3ng nh\xE0o y = y0 + P(1 \u2212 cos 2\u03C0\u03C4/T)/2
+      (\u0111i XU\u1ED0NG tr\u01B0\u1EDBc) P 13 (\u0111o\u1EA1n A 144\u2192157, E
+      155\u2192168) \u2014 rms 0.68\u20130.97 px 4 \u0111o\u1EA1n (Tools/cvm2/boss9_model.py)"
+    note: "bi\xEAn \u0111\u1EC9nh\u2013\u0111\xE1y s\xF3ng nh\xE0o"
   - actor: Boss.QueenMedusa
     key: flyPeriodTicks
     value:
       has: 1
-      value: 96
+      value: 68
     min:
-      has: 0
-      value: 0
+      has: 1
+      value: 64
     max:
-      has: 0
-      value: 0
+      has: 1
+      value: 72
     unit: tick
-    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
-      routine 19; nh\u01B0 s\xF3ng Medusa Head 17 (c\xF9ng '\u0111\u1EA7u Medusa')"
+    source: "\u0111o:cvm2-09 video: c\xF9ng 4 \u0111o\u1EA1n \u2014 T 64/68/72 cho
+      rms 0.88/0.77/0.76 (l\u1EC7ch g\u1ED1c \u03C40 \u2264 2\u20133 tick) \u21D2
+      68"
     note: 
   - actor: Boss.QueenMedusa
-    key: overshootPx
+    key: bounceRisePx
     value:
       has: 1
-      value: 32
+      value: 18
     min:
       has: 0
       value: 0
@@ -2579,10 +2574,43 @@ MonoBehaviour:
       has: 0
       value: 0
     unit: px
-    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
-      routine 19; wiki: 'c\u1ED1 va v\xE0o Simon' \u2014 v\u01B0\u1EE3t qua Simon
-      32 px r\u1ED3i quay l\u1EA1i lao ti\u1EBFp"
+    source: "\u0111o:cvm2-09 video:Boss_Map_2 f196\u2013f292 (1 m\u1EABu): Simon
+      tr\xFAng \u0111\xF2n th\xE2n f196 \u21D2 Medusa quay ngang + nh\xE0o n\u1ED1t
+      t\u1EDBi \u0111\xE1y 157 r\u1ED3i l\xEAn 139, xu\u1ED1ng 157, l\xEAn 147 \u21D2
+      s\xF3ng n\u1EA3y P 18 (rms 0.53 px)"
+    note: "s\xF3ng sau khi va Simon (\u0111i L\xCAN tr\u01B0\u1EDBc)"
+  - actor: Boss.QueenMedusa
+    key: bouncePeriodTicks
+    value:
+      has: 1
+      value: 104
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "\u0111o:cvm2-09 video:Boss_Map_2 f222\u2013f292 (tr\u1EEB 2 l\u1EA7n
+      kh\u1EF1ng n\u01B0\u1EDBc th\xE1nh) \u2014 T 104 (1 m\u1EABu)"
     note: 
+  - actor: Boss.QueenMedusa
+    key: floorClearancePx
+    value:
+      has: 1
+      value: 8
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "\u0111o:cvm2-09 video:Boss_Map_2 f376\u2013382 t\xE2m \u0111\u1EA7u
+      s\xE2u nh\u1EA5t NES 168 = s\xE0n 176 \u2212 8 (c\u0169ng = \u0111\xE1y s\xF3ng
+      nh\xE0o \u0111o\u1EA1n E) \u2014 gi\u1EDBi h\u1EA1n d\u01B0\u1EDBi l\xE0 suy
+      lu\u1EADn (1 m\u1EABu)"
+    note: "t\xE2m \u0111\u1EA7u th\u1EA5p nh\u1EA5t = s\xE0n \u2212 gi\xE1 tr\u1ECB"
   - actor: Boss.QueenMedusa
     key: screenMinX
     value:
@@ -2596,8 +2624,9 @@ MonoBehaviour:
       value: 0
     unit: "px m\xE0n"
     source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
-      routine 19; quay \u0111\u1EA7u khi ch\u1EA1m m\xE9p (n\u1EEDa b\u1EC1 ngang
-      \u0111\u1EA7u 16)"
+      routine 19; video 2 tr\u1EADn kh\xF4ng c\xF3 l\u1EA7n Medusa ch\u1EA1m m\xE9p
+      m\xE0n (x t\xE2m 40\u2013162) \u2014 gi\u1EEF quay \u0111\u1EA7u \u1EDF m\xE9p
+      (n\u1EEDa b\u1EC1 ngang \u0111\u1EA7u 16)"
     note: 
   - actor: Boss.QueenMedusa
     key: screenMaxX
@@ -2615,39 +2644,7 @@ MonoBehaviour:
       routine 19; \u0111\u1ED1i x\u1EE9ng screenMinX"
     note: 
   - actor: Boss.QueenMedusa
-    key: snakeFirstTicks
-    value:
-      has: 1
-      value: 48
-    min:
-      has: 0
-      value: 0
-    max:
-      has: 0
-      value: 0
-    unit: tick
-    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
-      routine 19; wiki: 'khi bay th\u1EA3 r\u1EAFn' \u2014 r\u1EAFn \u0111\u1EA7u
-      sau 0.8 s bay"
-    note: 
-  - actor: Boss.QueenMedusa
-    key: snakeMinTicks
-    value:
-      has: 1
-      value: 96
-    min:
-      has: 0
-      value: 0
-    max:
-      has: 0
-      value: 0
-    unit: tick
-    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
-      routine 19; nh\u1ECBp th\u1EA3 r\u1EAFn (wiki kh\xF4ng n\xEAu) \u2014 nh\u01B0
-      ngh\u1EC9 Bone Tower 17"
-    note: 
-  - actor: Boss.QueenMedusa
-    key: snakeSpanTicks
+    key: firstMoveTicks
     value:
       has: 1
       value: 64
@@ -2658,9 +2655,59 @@ MonoBehaviour:
       has: 0
       value: 0
     unit: tick
-    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
-      routine 19; ng\u1EABu nhi\xEAn \u0111\u1EC1u [96, 160]"
+    source: "\u0111o:cvm2-09 video:Boss_Map_2 th\u1EE9c f68 \u2192 d\u1EEBng 1 f98.7
+      (31 frame \u2248 62\u201364 tick); Map_2 b\u1ECB \u0111\u1ED3ng h\u1ED3 ch\u1EB7n
+      \u1EDF 24 tick"
+    note: "\u0111o\u1EA1n bay \u0111\u1EA7u sau khi th\u1EE9c"
+  - actor: Boss.QueenMedusa
+    key: moveUnitTicks
+    value:
+      has: 1
+      value: 16
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "\u0111o:cvm2-09 video:Boss_Map_2 th\u1EDDi l\u01B0\u1EE3ng 3 \u0111o\u1EA1n
+      bay (tr\u1EEB kh\u1EF1ng): 64 / 164 / 16 tick \u2248 b\u1ED9i 16 (sai s\u1ED1
+      m\u1ED1c \xB14)"
+    note: "\u0111o\u1EA1n sau = moveUnitTicks \xD7 (1 + ng\u1EABu nhi\xEAn 0..moveUnitsMax\u22121)"
+  - actor: Boss.QueenMedusa
+    key: moveUnitsMax
+    value:
+      has: 1
+      value: 10
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: "b\u1ED9i"
+    source: "suy lu\u1EADn: video c\xF3 \u0111o\u1EA1n 1 / 4 / 10 b\u1ED9i 16 (3
+      m\u1EABu) \u2014 ph\xE2n b\u1ED1 \u0111\u1EC1u 1..10 (RNG th\u1EBF gi\u1EDBi)
+      l\xE0 suy lu\u1EADn"
     note: 
+  - actor: Boss.QueenMedusa
+    key: hoverTicks
+    value:
+      has: 1
+      value: 64
+    min:
+      has: 1
+      value: 60
+    max:
+      has: 1
+      value: 66
+    unit: tick
+    source: "\u0111o:cvm2-09 video:Boss_Map_2 3 l\u1EA7n d\u1EEBng t\u1EA1i ch\u1ED7
+      kh\xF4ng b\u1ECB kh\u1EF1ng: f98.7\u2013129.5 / f292\u2013323.5 / f330\u2013361.5
+      = 62 / 63 / 63 tick (m\xE9p \xB11 frame) \u21D2 64"
+    note: "\u0111\u1EE9ng y\xEAn r\u1ED3i th\u1EA3 r\u1EAFn + \u0111o\u1EA1n bay
+      m\u1EDBi"
   - actor: Boss.QueenMedusa
     key: maxSnakes
     value:
@@ -2673,15 +2720,15 @@ MonoBehaviour:
       has: 0
       value: 0
     unit: con
-    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
-      routine 19; gi\u1EDBi h\u1EA1n r\u1EAFn s\u1ED1ng c\xF9ng l\xFAc (wiki kh\xF4ng
-      n\xEAu)"
+    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng \u2014 routine 19; video
+      Boss_Map_2 t\u1ED1i \u0111a 2 r\u1EAFn c\xF9ng l\xFAc (f363\u2013387), kh\xF4ng
+      th\u1EA5y l\u1EA7n th\u1EA3 b\u1ECB b\u1ECF"
     note: 
   - actor: Boss.QueenMedusa
     key: snakeDropBelowPx
     value:
       has: 1
-      value: 8
+      value: 5
     min:
       has: 0
       value: 0
@@ -2689,9 +2736,10 @@ MonoBehaviour:
       has: 0
       value: 0
     unit: px
-    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
-      routine 19; r\u1EAFn r\u01A1i ra t\u1EEB d\u01B0\u1EDBi t\xE2m \u0111\u1EA7u"
-    note: 
+    source: "\u0111o:cvm2-09 video:Boss_Map_2 4 r\u1EAFn: ch\xE2n r\u1EAFn l\xFAc
+      sinh = t\xE2m \u0111\u1EA7u + 5 (kh\u1EDBp r\u01A1i: 149.5\u2212145, 160\u2212155,
+      150\u2212145, 152.5\u2212147); x = x Medusa"
+    note: "khi th\u1EE9c + m\u1ED7i l\u1EA7n r\u1EDDi ch\u1ED7 d\u1EEBng"
   - actor: Boss.MummyMan
     key: hitStunTicks
     value:
@@ -3448,17 +3496,33 @@ MonoBehaviour:
     key: gravity
     value:
       has: 1
-      value: 0.25
+      value: 0.125
+    min:
+      has: 1
+      value: 0.1
+    max:
+      has: 1
+      value: 0.145
+    unit: "px/tick\xB2"
+    source: "\u0111o:cvm2-09 video:Boss_Map_2 4 r\u1EAFn r\u01A1i t\u1EEB \u0111\u1EE9ng
+      y\xEAn: g 0.135 / 0.130 / 0.100 / 0.115 (rms 0.14\u20131.23 px, Tools/cvm2/boss9_model.py)
+      \u21D2 0.125"
+    note: 
+  - actor: Enemy.Snake
+    key: despawnInsetPx
+    value:
+      has: 1
+      value: 8
     min:
       has: 0
       value: 0
     max:
       has: 0
       value: 0
-    unit: "px/tick\xB2"
-    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
-      routine 19; r\u01A1i nh\u01B0 item (ConfigRule.ItemGravity 0.25 \u2014 \u0111o
-      11)"
+    unit: px
+    source: "\u0111o:cvm2-09 video:Boss_Map_2 4 r\u1EAFn tr\u01B0\u1EDDn t\u1EDBi
+      pivot x 8\u20139 (m\xE9p tr\xE1i m\xE0n) r\u1ED3i m\u1EA5t \u21D2 g\u1EE1 khi
+      pivot ra ngo\xE0i [cx + 8, cx + 248] (n\u1EEDa b\u1EC1 ngang sprite)"
     note: 
   - actor: SubWeapon.Dagger
     key: spawnHeightAboveFeet

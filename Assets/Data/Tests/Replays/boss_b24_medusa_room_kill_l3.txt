@@ -1,0 +1,6 @@
+# 999 tick, hash 35c9df77
+# CVGP 19 BossB24Probe kịch bản 'medusa_room_kill_l3': AUTOPILOT PHÒNG THẬT roi cấp 3 (Strong): 16 nhát (video Map_2 3:48.30–3:55.77), +3000, lửa ở tâm đầu, quả cầu sau 152 ở (128,104) rơi xuống sàn y 144, nhặt ⇒ tally — ghi bằng autopilot (CVGP 19), hash chạy ghi 3257bf4d
+-*182 B*1 -*22 B*1 -*22 B*1 -*22 B*1 -*22 B*1 -*22 B*1
+-*22 B*1 -*22 B*1 -*22 B*1 -*22 B*1 -*22 B*1 -*22 B*1
+-*22 B*1 -*22 B*1 -*22 B*1 -*93 R*3 -*123 B*1 -*165 R*49
+-*60

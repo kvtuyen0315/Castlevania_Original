@@ -30,7 +30,7 @@ public static class HolyPierceProbe
         new Scn("control", "-*2 Sub -*60", "đối chứng: Simon (300,176) quay phải ném nước thánh, không mục tiêu ⇒ tick + chỗ vỡ chuẩn"),
         new Scn("enemy", "-*2 Sub -*60", "bia (Enemy) đứng ngay trước mặt x 322: lọ trúng 1 lần, bay tiếp, vỡ ở sàn PHÍA SAU bia đúng tick/chỗ như đối chứng"),
         new Scn("bat", "-*2 Sub -*150", "Phantom Bat lơ lửng thấp (732,160): lọ trúng 1 lần rồi bay xuyên thân (dơi khựng đứng suốt lúc chạm), vỡ ở sàn dưới dơi ⇒ lửa giữ chân + đốt"),
-        new Scn("medusa", "-*130 Sub -*130", "Queen Medusa vỡ tượng bay sát sàn về Simon (32,176): lọ trúng 1 lần, xuyên thân, vỡ ở sàn phía sau"),
+        new Scn("medusa", "-*230 Sub -*130", "Queen Medusa thức (CVM2 09: 180 tick sau khi khoá camera) bay sát sàn về Simon (32,176): lọ trúng 1 lần, xuyên thân, vỡ ở sàn phía sau"),
         new Scn("count3", "-*2 Sub -*22 Sub -*22 Sub -*100", "Shot III: 3 lọ qua bia A (x 322) — mỗi lọ trúng A 1 lần; bia B (x 345) đứng chỗ lửa; subWeaponHits = tổng đòn lên enemy (luật 10 lần ⇒ multiplier)"),
     };
 

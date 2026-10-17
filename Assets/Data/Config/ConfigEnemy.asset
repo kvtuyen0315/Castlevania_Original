@@ -538,21 +538,24 @@ MonoBehaviour:
     hitsStrong:
       has: 1
       value: 1
-    src_hits: "wiki:Bosses#Queen Medusa (ch\u1EBFt b\u1EB1ng 1 \u0111\xF2n roi; \u0111\xF2n
-      m\u1EA1nh = 1 l\xE0 suy lu\u1EADn)"
+    src_hits: "wiki:Bosses#Queen Medusa (ch\u1EBFt b\u1EB1ng 1 \u0111\xF2n roi);
+      \u0111o:cvm2-09 video:Map_2 3:48.20 (f6849) 1 nh\xE1t roi c\u1EA5p 3 (Strong)
+      h\u1EA1 r\u1EAFn"
     score:
-      has: 0
-      value: 0
-    src_score: "kh\xF4ng r\xF5 \u2014 wiki kh\xF4ng n\xEAu \u0111i\u1EC3m"
+      has: 1
+      value: 100
+    src_score: "\u0111o:cvm2-09 video:Map_2 3:48.20 (f6849) +100 khi roi h\u1EA1
+      r\u1EAFn (wiki kh\xF4ng n\xEAu)"
     canDie: 1
     projectile: '-'
     dropRule: "kh\xF4ng n\xEAu"
     moveSpeed:
       has: 1
-      value: 0.5
-    src_moveSpeed: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video)
-      \u2014 routine 19; r\u1EAFn 'tr\u01B0\u1EDDn v\u1EC1 ph\xEDa Simon' \u2014
-      ch\u1EADm nh\u01B0 Spear Knight 0.5"
-    behaviorShort: "Do Queen Medusa th\u1EA3 xu\u1ED1ng; b\xF2 tr\xEAn s\xE0n v\u1EC1
-      ph\xEDa Simon"
+      value: 1.375
+    src_moveSpeed: "\u0111o:cvm2-09 video:Boss_Map_2 4 r\u1EAFn tr\u01B0\u1EDDn (h\u1ED3i
+      quy x): 1.387 / 1.396 / 1.376 / 1.378 px/tick \u21D2 11/8"
+    behaviorShort: "Medusa th\u1EA3 khi th\u1EE9c + m\u1ED7i l\u1EA7n r\u1EDDi ch\u1ED7
+      d\u1EEBng; r\u01A1i r\u1ED3i tr\u01B0\u1EDDn th\u1EB3ng v\u1EC1 ph\xEDa Simon
+      (kh\xF4ng quay \u0111\u1EA7u \u1EDF t\u01B0\u1EDDng), ra m\xE9p m\xE0n th\xEC
+      m\u1EA5t"
     source: wiki:Bosses#Queen Medusa

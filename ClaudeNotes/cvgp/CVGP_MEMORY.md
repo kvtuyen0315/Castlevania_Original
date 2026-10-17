@@ -350,6 +350,7 @@ Chép từ CVGP_PLAN §3c / `ref/MAP1_TIMELINE.md §4`: Simon đi 1.00 px/tick; 
 | phụ | Igor, Snake | `Boss/Frankenstein`, `Boss/Medusa` | `Igor` (+ prefab `IgorFireball` lớp `BoneTowerFireball`), `Snake` (Script/Boss) | 19 | không |
 
 ### 2p. Boss Block 2–4 (routine 19 — THEO WIKI, GẦN ĐÚNG: không có video Block 2–4; KHÔNG ghi "khớp bản gốc")
+> **(CVM2 09, 17/10/2026)** Queen Medusa + rắn đã **ĐO LẠI theo 2 video** (Boss_Map_2 + Map_2) — số/hành vi Medusa ở bảng dưới là ước lượng CŨ (tượng 60 tick, nháy 32, sóng 16/96, vượt Simon 32, rắn 96–160 / trườn 0.5, 12/8 đòn); số hiện hành + nguồn: `ClaudeNotes/cvm2/CVM2_MEMORY.md §2k` (thức 180 tick sau khoá camera, bay 0.875 theo đoạn + dừng 64, sóng nhào 13/68, rắn khi thức/rời chỗ dừng trườn 1.375, 16/16 đòn). Mummy Men, Frankenstein & Igor vẫn ước lượng.
 **Nguồn**: `CV_WIKI_DATA §4.1/§4.3` + `_cache/wiki_raw/text_Bosses.txt`, `text_Stages_4_-_6/7_-_9/10_-_12.txt`. Không có video mới trong `Videos\Screen Recordings\Castlevania_Original\` (3 video cũ). Mọi số hành vi ở `ConfigActorParam Boss.<id>.*` / `Enemy.{Snake,Igor}.*` + `ConfigBoss.moveSpeed`, nguồn `suy luận: ước lượng (không video) — routine 19; <lý do>`. Khung chung = BossBase 14 (khựng 10 + bất tử 16 khi trúng, giữ chân khi chạm nước thánh, chuỗi chết `bossdeath_m` 62 tick → quả cầu sau 152 ở (cx+128, 104) → tally). Sát thương lên Simon = mức stage (St 6 = 2, St 9/12 = 3 — wiki Gameplay#Damage). Kiểm: `BossB24Probe` (kỳ vọng hằng `WIKI_*`/`EST_*` độc lập Config).
 
 | Boss (sheet) | Wiki (đòn W/S · điểm · Stopwatch) | Hành vi theo wiki | Phán đoán (giá trị — lý do) | Unity (BossB24Probe) |
@@ -1202,7 +1203,7 @@ Thời lượng = `StateFrame` (Execute đầu thấy 1 ⇒ "sau N tick" = `Stat
 - (18) Bone Dragon: đầu nhận đòn kể cả khi miệng đóng; cổ không nhận đòn (wiki "chờ đầu hạ") — Boomerang/Axe trúng đốt cổ không có tác dụng (suy luận).
 - (18) `_cache/18/` (cfg18.py, mem18.py, probe_head/switch.cs, suite*.txt, reg_*.txt, holy_dbg.txt, sheets) + `_cache/shots/18/` (70 ảnh + h8) — xoá tay được.
 - (19) 3 boss Block 2–4 chưa đặt vào map nào (chưa có map Block 2–4 — đề bài: không dựng); phòng thử Arena ghép ô Block 1 KHÔNG giống phòng gốc (St 6 tượng giữa sảnh vòm, St 9 cầu thang trái nhiều khối, St 12 cống + bục góc) — dựng lại khi có sheet Level 2–4.
-- (19) Tượng Medusa là renderer con của boss ⇒ biến mất khi boss bị gỡ (lúc quả cầu hiện); bản gốc có thể còn tượng mất đầu — làm prop riêng khi dựng map Block 2.
+- (19) Tượng Medusa là renderer con của boss ⇒ biến mất khi boss bị gỡ (lúc quả cầu hiện); bản gốc có thể còn tượng mất đầu — làm prop riêng khi dựng map Block 2. — (CVM2 09) phòng thật Map 2: tượng là tile NỀN (marker statueHead xoá khi thức, thân ở lại suốt trận như video); renderer con chỉ còn ở phòng thử Arena.
 - (19) Vị trí quả cầu sau boss 2–4 dùng số đo Phantom Bat (x màn 128, y 104) — phòng Mummy thử cầu rơi lên gờ y 112 (autopilot leo thang nhặt). Bản gốc mỗi boss có thể khác.
 - (19) Mummy không leo cầu thang (đi sàn, khối/tường chặn ⇒ đứng); Monster/Igor không đổi tầng; Igor có thể nhảy xuyên Monster. Holy Water "hoá đá" Mummy dùng cơ chế giữ chân chung 14 (không kịch bản riêng ở 19 — BossProbe `holy_hold` đã kiểm cơ chế).
 - (19) Nhạc boss (Poison Mind) vẫn `PlayMusic(null)` — nợ nhạc 02/16. *(CVM2 03: `StartBossMusic` phát `ConfigBlock.bossMusic`.)*

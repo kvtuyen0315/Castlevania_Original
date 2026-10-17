@@ -27,13 +27,29 @@ MonoBehaviour:
   - name: fly
     frames:
     - {fileID: 21300000, guid: 4d903c73ffba59b40a61fe7c8002684c, type: 3}
-    durations: 08000000
+    - {fileID: 21300000, guid: f04fed118c210574d864b264202f6fe3, type: 3}
+    durations: 0900000009000000
     loop: 1
-    measured: 0
+    measured: 1
     overlays: []
     overlayOffsets: []
     overlayOnTop: 
-    note: 
+    note: "\u0111o cvm2-09 (Tools/cvm2/boss9_fit.py): bay/d\u1EEBng = \u0111\u1EA7u
+      xanh \u2194 t\xEDm \u0111\u1ED5i m\u1ED7i 9 tick (video Boss_Map_2 3 \u0111o\u1EA1n
+      TB 9.1 / 9.2 / 9.5; Map_2 f6826\u20136837) \u2014 b\u1EAFt \u0111\u1EA7u khung
+      xanh l\xFAc th\u1EE9c"
+  - name: hurt
+    frames:
+    - {fileID: 21300000, guid: f04fed118c210574d864b264202f6fe3, type: 3}
+    durations: 08000000
+    loop: 1
+    measured: 1
+    overlays: []
+    overlayOffsets: []
+    overlayOnTop: 
+    note: "\u0111o cvm2-09: kh\u1EF1ng (tr\xFAng \u0111\xF2n / trong l\u1EEDa n\u01B0\u1EDBc
+      th\xE1nh) gi\u1EEF khung t\xEDm (video Boss_Map_2 f135\u2013196, f388\u2013488;
+      Map_2 f7020\u20137025)"
   - name: stone
     frames:
     - {fileID: 21300000, guid: f04fed118c210574d864b264202f6fe3, type: 3}
@@ -48,11 +64,12 @@ MonoBehaviour:
     frames:
     - {fileID: 21300000, guid: 4876cc94f3bf6904eb3f02a09f0bfc47, type: 3}
     - {fileID: 21300000, guid: 68862b23fb6a3bf44ab1e012ab6cd65e, type: 3}
-    durations: 0800000008000000
+    durations: 0900000009000000
     loop: 1
-    measured: 0
+    measured: 1
     overlays: []
     overlayOffsets: []
     overlayOnTop: 
-    note: 
+    note: "\u0111o cvm2-09: 4 r\u1EAFn video Boss_Map_2 \u0111\u1ED5i khung m\u1ED7i
+      8.7\u20139.0 tick (c\u1EA3 l\xFAc r\u01A1i)"
   palettes: []

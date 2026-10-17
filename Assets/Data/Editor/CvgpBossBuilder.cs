@@ -41,7 +41,9 @@ public static class CvgpBossBuilder
     /// CVGP 19 — boss Block 2–4 (theo wiki, GẦN ĐÚNG). Hộp = bbox pixel đục sprite (XẤP XỈ, như 13/14), đi đất viewOffset (0,1) + body FEET
     /// (checklist enemy 13), bay viewOffset (0,0):
     ///   • QueenMedusa: pivot tâm đầu medusa_head 32×32 ⇒ (−16,−16,32,32); con "Statue" (SpriteRenderer order −3, sprite bust gán lúc chạy).
-    ///   • Snake: snake_0/1 16×16 đục hàng 6/7–15, pivot đáy-giữa ⇒ (−8,−9,16,10) tâm −4.
+    ///   • Snake: snake_0/1 16×16, pivot đáy-giữa. CVM2 09 (video): vẽ CAO hơn 1 px (viewOffset (0,−1) — Boss_Map_2 4 rắn trên sàn: hàng đáy
+    ///     sprite ở NES 174 khi sàn 176) và hộp nhận/chạm = CẢ ô 16×16 đã dời (−8,−17,16,16) tâm −9 — video Map_2 f6843–6849: roi cấp 3 ĐỨNG
+    ///     (hàng NES 156–159) hạ rắn đang bò (hàng đục 165–174) ⇒ hộp NES cao hơn phần đục (CVGP 19: (−8,−9,16,10) "roi đứng không tới").
     ///   • MummyMan: mummy_* 16×48 đục hàng 8/9–47 ⇒ (−8,−39,16,40) tâm −20; băng vải MummyBandage (tâm, hộp riêng trong lớp).
     ///   • Frankenstein: frankenstein_* 16×48 đục hàng 0/1–47 ⇒ (−8,−47,16,48) tâm −23; Igor igor_0/1 16×16 ⇒ (−8,−15,16,16) tâm −7;
     ///     cầu lửa Igor = lớp BoneTowerFireball (AnimSet Igor "fireball" — igor_fireball 8×16 cùng bbox cầu lửa Bone Tower).
@@ -51,8 +53,8 @@ public static class CvgpBossBuilder
         var medusaAnim = Anim("MedusaAnimSet");
         var mummyAnim = Anim("MummyAnimSet");
         var igorAnim = Anim("IgorAnimSet");
-        var snake = MakeEntity<Snake>("Snake", eEntityGroup.Enemy, FEET, new Vector2Int(0, 1), medusaAnim, ORDER, false, false, 32,
-            so => Enemy(so, eEnemyId.Snake, new RectInt(-8, -9, 16, 10), -4));
+        var snake = MakeEntity<Snake>("Snake", eEntityGroup.Enemy, FEET, new Vector2Int(0, -1), medusaAnim, ORDER, false, false, 32,
+            so => Enemy(so, eEnemyId.Snake, new RectInt(-8, -17, 16, 16), -9));
         var bandage = MakeEntity<MummyBandage>("MummyBandage", eEntityGroup.EnemyShot, new RectInt(-1, -1, 2, 2), Vector2Int.zero, mummyAnim, 1,
             false, true, 16, null);
         var igorBall = MakeEntity<BoneTowerFireball>("IgorFireball", eEntityGroup.EnemyShot, new RectInt(-1, -1, 2, 2), Vector2Int.zero, igorAnim, 1,

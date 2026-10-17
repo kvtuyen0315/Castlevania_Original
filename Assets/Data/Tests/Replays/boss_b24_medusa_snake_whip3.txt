@@ -1,0 +1,3 @@
+# 61 tick, hash 32e14e8f
+# CVGP 19 BossB24Probe kịch bản 'medusa_snake_whip3': Arena: rắn (150,168) trườn về Simon (100,176) ⇒ roi cấp 3 ĐỨNG hạ rắn (video Map_2 f6843–6849: roi ngang hàng NES 156–159 trúng rắn bò) 1 đòn, +100
+-*20 B*1 -*40

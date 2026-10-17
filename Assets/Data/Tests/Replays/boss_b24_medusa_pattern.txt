@@ -1,3 +1,3 @@
-# 640 tick, hash 455f9fc5
-# CVGP 19 BossB24Probe kịch bản 'medusa_pattern': Medusa: tượng giữa phòng (128,176), Simon (32,176) đứng; tượng 60 tick ⇒ vỡ (nháy đá/sống 32, nhận đòn ngay) ⇒ bay sóng thấp ±1 px/tick về Simon (tâm sàn − 32, A 16, P 96), vượt 32 ⇒ quay; thả rắn (đầu 48, rồi 96–160, ≤ 2) rơi xuống sàn trườn 0.5 px/tick
--*640
+# 760 tick, hash f37c3a25
+# CVGP 19 BossB24Probe kịch bản 'medusa_pattern': CVM2 09 (video): phòng thử, chân tượng (128,176), Simon (32,176) đứng; camera khoá tick đầu ⇒ thức sau 180 tick: đầu hiện ở (130,145), nhận/gây đòn ngay, thả rắn; bay ±0.875 px/tick về Simon, dọc nhào y0 + 13(1 − cos 2πτ/68)/2; đoạn đầu 64 tick, dừng 64 ⇒ thả rắn ⇒ đoạn mới bội 16 (16–160); nháy xanh/tím 9 tick; rắn rơi g 0.125 từ (x, tâm + 5) rồi trườn 1.375 về Simon, ra mép màn (x < 8) thì mất; nhạc boss thức + 57
+-*760
