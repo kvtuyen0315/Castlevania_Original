@@ -1,0 +1,17 @@
+== MAT 7 - nhac luong that (AudioManager.MusicEvent) vs video (CVM2_MEMORY 2f)
+  frame 9759 wt -1 - | stop StageClear
+  frame 10181 wt 0 TowerEntranceA | play Stalker
+  frame 12757 wt 2537 TowerHallB | loop Stalker
+  frame 14547 wt 4327 TowerHallC | loop Stalker
+  frame 16336 wt 6096 Medusa | loop Stalker
+  frame 16637 wt 6397 Medusa | play PoisonMind
+  frame 17198 wt 6958 Medusa | play StageClear
+  frame 17502 wt 7262 Medusa | end StageClear
+  frame 17958 wt -1 - | stop StageClear
+  frame 18380 wt -1 - | play WickedChild
+so lan play trong Map 2: 4 (play Stalker, play PoisonMind, play StageClear, play WickedChild) - video: Stalker 1 lan (KHONG phat lai o doi tang/cua), PM, SC, WC
+Stalker: frame 10181, khung STAGE 04 dau tien 10181 => +0 tick (video Stalker 6.177 s vs STAGE 04 hien 6.23 s => -3 tick)
+Stalker lap o frame [12757, 14547, 16336], khoang [1790, 1789] tick (video vong 29.82-29.84 s = 1789-1790 tick)
+Stage Clear: frame 17198, nhat cau frame 17198 => +0 (video cung luc +-0.05 s)
+dung nhac: [(9759, 'stop StageClear'), (17958, 'stop StageClear')] (video: ban do + tally im)
+Wicked Child: frame 18380, khung STAGE 07 dau tien 18380 => +0 tick (video 4:19.80 vs STAGE 07 hien 4:20.20 => ~ -24 tick; bang chung yeu NCC 0.48)

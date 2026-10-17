@@ -1,0 +1,24 @@
+== MAT 3 - be di dong + bay ep trong LUONG THAT (vet thu dong) vs video Map_2
+khung dau section (Unity frame/wt): TowerEntranceA f10181 wt1, TowerEntranceB f10593 wt393, TowerHallA f11718 wt1518, TowerHallB f12446 wt2226, TowerHallC f14495 wt4275, Medusa f15720 wt5480
+be | diem so | rms (px) | |lech| max | tick Unity co be | khoang t so (tick tu khung dau section) | ghi chu
+platform_lane_TEB | 0 diem chung (Unity roi section truoc luot video)
+platform_lane_HallB_1 | 163 | 0.73 | 2 | 1627 | 459..891 | bat dau tu khung dau section (startTick), chay lien tuc
+platform_lane_HallB_2 | 180 | 0.78 | 2 | 1627 | 633..1078 | bat dau tu khung dau section (startTick), chay lien tuc
+
+-- mo hinh Config left = floor(tam + bien*cos(2pi(t + startTick)/chu ky)) - 16, t = tick tu khung dau section
+platform_lane_TEB (tam 64 bien 16 chu ky 201.4 startTick 4): Unity luong that - cong thuc: 709 tick, |lech| max 0 px | video - cong thuc: 143 diem rms 0.75 px, max 2
+platform_lane_HallB_1 (tam 304 bien 32 chu ky 402.4 startTick 6): Unity luong that - cong thuc: 1627 tick, |lech| max 0 px | video - cong thuc: 328 diem rms 0.79 px, max 3
+platform_lane_HallB_2 (tam 432 bien 24 chu ky 201.8 startTick 6): Unity luong that - cong thuc: 1627 tick, |lech| max 1 px | video - cong thuc: 289 diem rms 0.79 px, max 2
+
+-- Simon dung tren be (Unity luong that): x Simon - mep trai be qua cac tick dung tren mat be (video: hang so +-0.56 / +-0.25 / +-0.00)
+platform_lane_TEB wt1005-1078 (74 tick): be troi 29 px, x Simon - mep be 17..18 (rms quanh TB 0.37 px)
+platform_lane_HallB_1 wt3436-3606 (171 tick): be troi 62 px, x Simon - mep be 17..18 (rms quanh TB 0.45 px)
+platform_lane_HallB_2 wt3059-3115 (57 tick): be troi 36 px, x Simon - mep be 16..17 (rms quanh TB 0.44 px)
+
+-- bay ep Hall C: khung video (crusher_low.csv f4479-4828, truoc dong ho) vs Unity luong that (cung tick tu khung dau Hall C)
+bay 1: 37 frame video co khung | trung khung CUNG tick 36 (97 %) | trung trong +-2 tick 37 (100 %)
+bay 2: 77 frame video co khung | trung khung CUNG tick 73 (95 %) | trung trong +-2 tick 77 (100 %)
+bay 3: 150 frame video co khung | trung khung CUNG tick 124 (83 %) | trung trong +-2 tick 150 (100 %)
+bay 1 Unity: khung toi da 6, 1205 tick quan sat
+bay 2 Unity: khung toi da 4, 1205 tick quan sat
+bay 3 Unity: khung toi da 7, 1205 tick quan sat

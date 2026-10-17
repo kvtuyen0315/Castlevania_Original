@@ -1,0 +1,16 @@
+bộ | đạt/tổng | hash | hash chuẩn | khớp? | thời gian
+h8(flow) | 5/5 | 352/432/448/890/922 | 352/432/448/890/922 | KHỚP | 0 s
+flow | 2/2 | caf21ae2 | caf21ae2 | KHỚP | 295 s | trước STAGE 04 165b9aef = 165b9aef
+map2 | 2/2 | caf21ae2 | caf21ae2 | KHỚP | 1 s | trước STAGE 04 165b9aef = 165b9aef
+spam1 | 1/1 | - | - | KHỚP | 60 s | không có hash — đạt = 0 lỗi console, kết thúc đúng
+spam2 | 1/1 | - | - | KHỚP | 60 s | không có hash — đạt = 0 lỗi console, kết thúc đúng
+spam3 | 1/1 | - | - | KHỚP | 80 s | không có hash — đạt = 0 lỗi console, kết thúc đúng
+spam4 | 1/1 | - | - | KHỚP | 80 s | không có hash — đạt = 0 lỗi console, kết thúc đúng
+spam5 | 1/1 | - | - | KHỚP | 60 s | không có hash — đạt = 0 lỗi console, kết thúc đúng
+spam6 | 1/1 | - | - | KHỚP | 80 s | không có hash — đạt = 0 lỗi console, kết thúc đúng
+spam7 | 1/1 | - | - | KHỚP | 80 s | không có hash — đạt = 0 lỗi console, kết thúc đúng
+h8(flow30) | 5/5 | 352/432/448/890/922 | 352/432/448/890/922 | KHỚP | 0 s
+flow30 | 2/2 | caf21ae2 | caf21ae2 | KHỚP | 294 s | trước STAGE 04 165b9aef = 165b9aef
+h8(flow144) | 5/5 | 352/432/448/890/922 | 352/432/448/890/922 | KHỚP | 0 s
+flow144 | 2/2 | caf21ae2 | caf21ae2 | KHỚP | 294 s | trước STAGE 04 165b9aef = 165b9aef
+TỔNG: 14 bộ, lệch/FAIL 0, lỗi 0, bỏ qua 0, 1384 s

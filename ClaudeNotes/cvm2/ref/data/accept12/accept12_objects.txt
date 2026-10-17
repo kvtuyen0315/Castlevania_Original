@@ -1,0 +1,17 @@
+== MAT 2 - vat tinh hien trong LUONG THAT (dong A) vs Map2Objects.json
+nen: 51/51 trung vi tri (section, x, Y) | lech 0 | khong hien trong luong that 0 []
+khoi pha hien: 6 [('TowerEntranceA_X14_5', 232, 96), ('TowerEntranceA_X14_6', 232, 112), ('TowerEntranceB_X22_5', 360, 96), ('TowerHallB_X39_3', 632, 64), ('TowerHallC_X44_7', 712, 128), ('TowerHallC_X8_8', 136, 144)]
+bi mat (SecretTrigger) hien: 3 [('TowerEntranceA', 228, 112), ('TowerHallA', 304, 48), ('Medusa', 492, 128)]
+  spawn Bat_HC                     TowerHallC (145,57) Bat: sinh trong luong that wt4749
+  spawn Bat_TEA                    TowerEntranceA (48,33) Bat: sinh trong luong that wt1
+  spawn Bat_TEB                    TowerEntranceB (304,33) Bat: sinh trong luong that wt393
+  spawn BoneTower_HC_low           TowerHallC (249,80) BoneTower: sinh trong luong that wt4645
+  spawn BoneTower_HC_up            TowerHallC (313,48) BoneTower: sinh trong luong that wt4581
+  spawn SpearKnight_HA             TowerHallA (211,80) SpearKnight: sinh trong luong that wt1907
+  spawn SpearKnight_HB_low         TowerHallB (494,144) SpearKnight: sinh trong luong that wt2563
+  spawn SpearKnight_HB_up1         TowerHallB (526,80) SpearKnight: sinh trong luong that wt2595
+  spawn SpearKnight_HB_up2         TowerHallB (718,80) SpearKnight: sinh trong luong that wt2797
+  spawn SpearKnight_TEA            TowerEntranceA (142,80) SpearKnight: sinh trong luong that wt1
+  spawn SpearKnight_TEB_door       TowerEntranceB (145,80) SpearKnight: sinh trong luong that wt758
+  spawn SpearKnight_TEB_gap        TowerEntranceB (336,77) SpearKnight: sinh trong luong that wt393
+SpawnPoint enemy: 12/12 sinh dung (x, Y) trong luong that

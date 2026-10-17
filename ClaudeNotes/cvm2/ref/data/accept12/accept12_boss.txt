@@ -1,0 +1,15 @@
+== MAT 5 - Queen Medusa trong LUONG THAT (vet thu dong) vs video Map_2 / Boss_Map_2 (CVM2 09 2k)
+khoa camera: wt6160 cx 0 Simon x 128 (video f6735: cx 0 khi Simon x 128)
+thuc: wt6340 = khoa + 180 tick (video 180: f6735 -> f6825) | vi tri buoc dau (113,113) (video tam dau f6826 (112,113))
+nhac Poison Mind: wt6397 = thuc + 57 tick (video thuc + 46-57; Unity Config 57)
+Unity bay tu do tu luc thuc toi lan khung dau (roi Simon) wt6354 = 14 tick
+  cap (tau, Unity, video): [(2.0, (111, 113), (112, 113)), (4.0, (109, 113), (110, 114)), (6.0, (107, 114), (107, 115)), (10.0, (104, 116), (104, 117)), (14.0, None, (102, 119)), (16.0, None, (100, 120)), (18.0, None, (98, 121)), (20.0, None, (97, 122)), (22.0, None, (95, 122))]
+quy dao sau khi thuc vs video Map_2 f6826-6836 (9 frame): rms THO (khong tinh tien) 1.12 px (lech t +0 tick, 4 diem)
+ran 1 (sinh luc thuc wt6340 (114,118)) vs video Map_2 f6830-6845: rms 1.00 px (lech t +0, 1 diem; Unity ve cao 1 px - viewOffset -1)
+ran sinh luc (tick tu luc thuc): [0, 206, 350] (Unity: luc thuc + moi lan roi cho dung)
+chuoi pha (state, tu wt, toi wt): ['Statue 5480-6339', 'Fly 6340-6353', 'Stun 6354-6363', 'Fly 6364-6378', 'Stun 6379-6388', 'Fly 6389-6403', 'Stun 6404-6413', 'Fly 6414-6428', 'Stun 6429-6438', 'Fly 6439-6442', 'Hover 6443-6453', 'Stun 6454-6463', 'Hover 6464-6478', 'Stun 6479-6488', 'Hover 6489-6503', 'Stun 6504-6513', 'Hover 6514-6528', 'Stun 6529-6538', 'Hover 6539-6545', 'Fly 6546-6576', 'Hover 6577-6578', 'Stun 6579-6588', 'Hover 6589-6603', 'Stun 6604-6613', 'Hover 6614-6628', 'Stun 6629-6638', 'Hover 6639-6653', 'Stun 6654-6663', 'Hover 6664-6678', 'Stun 6679-6688', 'Hover 6689-6689', 'Fly 6690-6703', 'Stun 6704-6713', 'Fly 6714-6728', 'Stun 6729-6738', 'Fly 6739-6753', 'Dying 6754-6905']
+toc do ngang cac doan Fly >= 6 tick: 0.875 0.875 0.875 0.875 0.875 0.875 0.875 0.875 (video 0.80-0.98, Config 0.875)
+doan Hover (tick): [11, 15, 15, 15, 7, 2, 15, 15, 15, 15, 1] (video dung 62-63)
+thanh ENEMY: 16 lan giam, 16 -> 0 (video 16 nhat roi cap 3, moi nhat -1 vach)
+ha boss wt6754 (+3000) -> qua cau hien wt6906 (+152 tick, video +150 boss / +154 Map_2) tai 128,104 (video NES (128,137) = section (128,105))
+qua cau roi: y 104 -> 144, cham san sau 19 tick (video 18-20 tick)

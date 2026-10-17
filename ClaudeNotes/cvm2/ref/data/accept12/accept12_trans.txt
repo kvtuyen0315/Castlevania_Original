@@ -1,0 +1,33 @@
+== MAT 8 - chuyen canh luong that vs video Map_2 (CVM2_MEMORY 2m; tick = frame video x 2.0033)
+  den: frame 10154-10180 (27 khung) CastleMap -> Stage1
+  den: frame 17938-17957 (20 khung) Stage1 -> CastleMap
+  den: frame 18353-18379 (27 khung) CastleMap -> Stage7Stub
+  ban do B1 -> STAGE 04: den (khung)               Unity     27 | video     28 | DAT
+  moc StageFlow: [(10572, 'stair_up', 'TowerEntranceA', '128,31'), (10593, 'ca_from_cb', 'TowerEntranceB', '386,189'), (11302, 'door', 'TowerEntranceB', '26,80'), (11430, 'door_stop', 'TowerEntranceB', '26,80'), (11438, 'door_open', 'TowerEntranceB', '26,80'), (11540, 'door_closed', 'TowerEntranceB', '-48,80'), (11718, 'stage5', 'TowerHallA', '720,80'), (12425, 'stair_up', 'TowerHallA', '64,31'), (12446, 'ca_from_cb', 'TowerHallB', '66,189'), (14073, 'door', 'TowerHallB', '26,112'), (14201, 'door_stop', 'TowerHallB', '26,112'), (14216, 'door_open', 'TowerHallB', '26,112'), (14320, 'door_closed', 'TowerHallB', '-48,112'), (14495, 'stage6', 'TowerHallC', '720,112'), (15699, 'stair_up', 'TowerHallC', '672,31'), (15720, 'ca_from_cb', 'Medusa', '674,189'), (17198, 'crystal', 'Medusa', '113,144'), (17937, 'tally_done', 'Medusa', '113,144')]
+  doi tang -> TowerEntranceB: den (tick)           Unity     21 | video     22 | DAT
+    hien 386,189 cx 256 (video 386,189 cx 256)
+  doi tang -> TowerHallB: den (tick)               Unity     21 | video     22 | DAT
+    hien 66,189 cx 0 (video 66,189 cx 0)
+  doi tang -> Medusa: den (tick)                   Unity     21 | video     20 | DAT
+    hien 674,189 cx 512 (video 674,189 cx 512)
+  cua trai #1: cuon 1 (door -> door_stop)          Unity    128 | video    128 | DAT
+  cua trai #1: door_stop -> canh mo                Unity      8 | video      8 | DAT
+  cua trai #1: door_stop -> cot tro lai            Unity    110 | video    110 | DAT
+  cua trai #1: door_stop -> het cuon 2 (STAGE doi) Unity    288 | video    288 | DAT
+    sau cua: TowerHallA 720,80 cx 512 (video (720,80/112) quay trai cx 512)
+  cua trai #2: cuon 1 (door -> door_stop)          Unity    128 | video    128 | DAT
+  cua trai #2: door_stop -> canh mo                Unity     15 | video     15 | DAT
+  cua trai #2: door_stop -> cot tro lai            Unity    119 | video    119 | DAT
+  cua trai #2: door_stop -> het cuon 2 (STAGE doi) Unity    294 | video    294 | DAT
+    sau cua: TowerHallC 720,112 cx 512 (video (720,80/112) quay trai cx 512)
+  khoa camera -> Medusa thuc (tick)                Unity    180 | video    180 | DAT
+  ha boss -> qua cau (tick; video 150/154)         Unity    152 | video    152 | DAT
+  nhat cau -> TIME bat dau dem (tick)              Unity    224 | video  224.6 | DAT
+  TIME 0000 -> tim dau tien (tick)                 Unity     58 | video   58.1 | DAT
+  nhip tim (tick)                                  Unity      8 | video    8.0 | DAT
+  tim cuoi -> tally xong (tick; video tim cuoi -> den 118.2) Unity    120 | video  118.2 | DAT
+  tally xong -> ban do B2: den (khung)             Unity     20 | video     21 | DAT
+  ban do B2 -> STAGE 07: den (khung)               Unity     27 | video     28 | DAT
+  ban do B2 hien -> bat dau den (khung; video f7596 -> f7792 = 196 frame = 393 tick) Unity    395 | video    393 | DAT
+  STAGE 07: TIME 500, tim 5, ENEMY 16, STAGE 7 (video TIME 0500, tim 05, ENEMY 16)
+  => 24/24 moc trong +-2 tick (hoac khop)

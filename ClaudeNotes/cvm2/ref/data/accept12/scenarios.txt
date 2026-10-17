@@ -1,0 +1,134 @@
+Map2AcceptProbe.Run: 6/6 ĐẠT, lỗi console 0
+PASS pit_teb (215 tick)
+   chết: Fall @152 (168,256) P2
+   hồi sinh: @184 ⇒ TowerEntranceA (64,176) f1 cx 0 ST4 P2 SC0 T400 ♥5 HP16 roi1 None
+PASS pit_hallb (205 tick)
+   chết: Fall @142 (143,256) P2
+   hồi sinh: @174 ⇒ TowerHallA (720,80) f-1 cx 512 ST5 P2 SC0 T400 ♥5 HP16 roi1 None
+PASS crusher_hallc (192 tick)
+   chết: Hazard @129 (496,144) P2
+   hồi sinh: @161 ⇒ TowerHallC (720,112) f-1 cx 512 ST6 P2 SC0 T400 ♥5 HP16 roi1 None
+PASS gameover_st6 (254 tick)
+   chết: Hazard GAMEOVER @129 (496,144) P0
+   hồi sinh:  ⇒ 
+   GAME OVER có, CONTINUE ⇒ TowerHallC (720,112) f-1 cx 512 ST6 P3 SC0 T400 ♥5 HP16 roi1 None
+PASS damage_halla (1500 tick)
+   chết: Damage @1287 (760,80) P2
+   hồi sinh: @1319 ⇒ TowerHallA (720,80) f-1 cx 512 ST5 P2 SC0 T400 ♥5 HP16 roi1 None
+   đòn vào Simon: @211 dmg 2 từ MedusaHead Simon (720,80) | @341 dmg 2 từ MedusaHead Simon (732,80) | @472 dmg 2 từ MedusaHead Simon (744,80) | @609 dmg 2 từ MedusaHead Simon (756,80) | @740 dmg 2 từ MedusaHead Simon (760,80) | @869 dmg 2 từ MedusaHead Simon (760,80) | @999 dmg 2 từ MedusaHead Simon (760,80) | @1129 dmg 2 từ MedusaHead Simon (760,80)
+   HP mất mỗi lần: 2,2,2,2,2,2,2,2, lùi mỗi đòn (px, tới khi hết Hurt): 12,12,12,4,0,0,0,0
+PASS knock_pit_hallb (362 tick)
+   chết: Fall @299 (152,256) P2
+   hồi sinh: @331 ⇒ TowerHallA (720,80) f-1 cx 512 ST5 P2 SC0 T400 ♥5 HP16 roi1 None
+   đòn vào Simon: @117 dmg 2 từ MedusaHead Simon (164,160)
+   HP mất mỗi lần: 2, lùi mỗi đòn (px, tới khi hết Hurt): 12
+
+# vết
+== pit_teb
+0	sẵn sàng TowerEntranceB (196,80) f-1 cx 68 ST4 P3 SC0 T400 ♥5 HP16 roi1 None
+30	TowerEntranceB (168,232) f-1 cx 40 ST4 P3 SC0 T400 ♥5 HP16 roi1 None FallDeath
+60	TowerEntranceB (168,256) f-1 cx 40 ST4 P3 SC0 T400 ♥5 HP16 roi1 None FallDeath
+90	TowerEntranceB (168,256) f-1 cx 40 ST4 P3 SC0 T400 ♥5 HP16 roi1 None FallDeath
+120	TowerEntranceB (168,256) f-1 cx 40 ST4 P3 SC0 T400 ♥5 HP16 roi1 None FallDeath
+150	TowerEntranceB (168,256) f-1 cx 40 ST4 P3 SC0 T400 ♥5 HP16 roi1 None FallDeath
+180	TowerEntranceB (168,256) f-1 cx 40 ST4 P2 SC0 T400 ♥5 HP16 roi1 None FallDeath
+210	TowerEntranceA (39,176) f-1 cx 0 ST4 P2 SC0 T400 ♥5 HP16 roi1 None Walk
+== pit_hallb
+0	sẵn sàng TowerHallB (124,160) f1 cx 0 ST5 P3 SC0 T400 ♥5 HP16 roi1 None
+30	TowerHallB (143,256) f1 cx 15 ST5 P3 SC0 T400 ♥5 HP16 roi1 None FallDeath
+60	TowerHallB (143,256) f1 cx 15 ST5 P3 SC0 T400 ♥5 HP16 roi1 None FallDeath
+90	TowerHallB (143,256) f1 cx 15 ST5 P3 SC0 T400 ♥5 HP16 roi1 None FallDeath
+120	TowerHallB (143,256) f1 cx 15 ST5 P3 SC0 T400 ♥5 HP16 roi1 None FallDeath
+150	TowerHallB (143,256) f1 cx 15 ST5 P2 SC0 T400 ♥5 HP16 roi1 None FallDeath
+180	TowerHallA (725,80) f1 cx 512 ST5 P2 SC0 T400 ♥5 HP16 roi1 None Walk
+== crusher_hallc
+0	sẵn sàng TowerHallC (496,144) f-1 cx 368 ST6 P3 SC0 T400 ♥5 HP16 roi1 None
+30	TowerHallC (496,144) f-1 cx 368 ST6 P3 SC0 T400 ♥5 HP16 roi1 None Dead
+60	TowerHallC (496,144) f-1 cx 368 ST6 P3 SC0 T400 ♥5 HP16 roi1 None Dead
+90	TowerHallC (496,144) f-1 cx 368 ST6 P3 SC0 T400 ♥5 HP16 roi1 None Dead
+120	TowerHallC (496,144) f-1 cx 368 ST6 P3 SC0 T400 ♥5 HP16 roi1 None Dead
+150	TowerHallC (496,144) f-1 cx 368 ST6 P2 SC0 T400 ♥5 HP16 roi1 None Dead
+180	TowerHallC (720,112) f-1 cx 512 ST6 P2 SC0 T400 ♥5 HP16 roi1 None Idle
+== gameover_st6
+0	sẵn sàng TowerHallC (496,144) f-1 cx 368 ST6 P1 SC0 T400 ♥5 HP16 roi1 None
+30	TowerHallC (496,144) f-1 cx 368 ST6 P1 SC0 T400 ♥5 HP16 roi1 None Dead
+60	TowerHallC (496,144) f-1 cx 368 ST6 P1 SC0 T400 ♥5 HP16 roi1 None Dead
+90	TowerHallC (496,144) f-1 cx 368 ST6 P1 SC0 T400 ♥5 HP16 roi1 None Dead
+120	TowerHallC (496,144) f-1 cx 368 ST6 P1 SC0 T400 ♥5 HP16 roi1 None Dead
+161	màn GameOver
+253	màn Stage1
+== damage_halla
+0	sẵn sàng TowerHallA (720,80) f-1 cx 512 ST5 P3 SC0 T400 ♥5 HP16 roi1 None
+30	TowerHallA (720,80) f-1 cx 512 ST5 P3 SC0 T400 ♥5 HP16 roi1 None Idle
+60	TowerHallA (720,80) f-1 cx 512 ST5 P3 SC0 T400 ♥5 HP16 roi1 None Idle
+90	TowerHallA (720,80) f-1 cx 512 ST5 P3 SC0 T399 ♥5 HP16 roi1 None Idle
+120	TowerHallA (720,80) f-1 cx 512 ST5 P3 SC0 T399 ♥5 HP16 roi1 None Idle
+150	TowerHallA (720,80) f-1 cx 512 ST5 P3 SC0 T398 ♥5 HP16 roi1 None Idle
+180	TowerHallA (720,80) f-1 cx 512 ST5 P3 SC0 T398 ♥5 HP16 roi1 None Idle
+210	TowerHallA (720,80) f-1 cx 512 ST5 P3 SC0 T397 ♥5 HP16 roi1 None Idle
+212	HP 16→14 TowerHallA (720,80) f-1 cx 512 ST5 P3 SC0 T397 ♥5 HP14 roi1 None
+240	TowerHallA (732,69) f-1 cx 512 ST5 P3 SC0 T397 ♥5 HP14 roi1 None Hurt
+270	TowerHallA (732,80) f-1 cx 512 ST5 P3 SC0 T396 ♥5 HP14 roi1 None Idle
+300	TowerHallA (732,80) f-1 cx 512 ST5 P3 SC0 T396 ♥5 HP14 roi1 None Idle
+330	TowerHallA (732,80) f-1 cx 512 ST5 P3 SC0 T395 ♥5 HP14 roi1 None Idle
+342	HP 14→12 TowerHallA (732,80) f-1 cx 512 ST5 P3 SC0 T395 ♥5 HP12 roi1 None
+360	TowerHallA (744,65) f-1 cx 512 ST5 P3 SC0 T395 ♥5 HP12 roi1 None Hurt
+390	TowerHallA (744,80) f-1 cx 512 ST5 P3 SC0 T394 ♥5 HP12 roi1 None Idle
+420	TowerHallA (744,80) f-1 cx 512 ST5 P3 SC0 T394 ♥5 HP12 roi1 None Idle
+450	TowerHallA (744,80) f-1 cx 512 ST5 P3 SC0 T393 ♥5 HP12 roi1 None Idle
+473	HP 12→10 TowerHallA (744,80) f-1 cx 512 ST5 P3 SC0 T393 ♥5 HP10 roi1 None
+480	TowerHallA (751,70) f-1 cx 512 ST5 P3 SC0 T393 ♥5 HP10 roi1 None Hurt
+510	TowerHallA (756,80) f-1 cx 512 ST5 P3 SC0 T392 ♥5 HP10 roi1 None Idle
+540	TowerHallA (756,80) f-1 cx 512 ST5 P3 SC0 T392 ♥5 HP10 roi1 None Idle
+570	TowerHallA (756,80) f-1 cx 512 ST5 P3 SC0 T392 ♥5 HP10 roi1 None Idle
+600	TowerHallA (756,80) f-1 cx 512 ST5 P3 SC0 T391 ♥5 HP10 roi1 None Idle
+610	HP 10→8 TowerHallA (756,80) f-1 cx 512 ST5 P3 SC0 T391 ♥5 HP8 roi1 None
+630	TowerHallA (760,64) f-1 cx 512 ST5 P3 SC0 T391 ♥5 HP8 roi1 None Hurt
+660	TowerHallA (760,80) f-1 cx 512 ST5 P3 SC0 T390 ♥5 HP8 roi1 None Idle
+690	TowerHallA (760,80) f-1 cx 512 ST5 P3 SC0 T390 ♥5 HP8 roi1 None Idle
+720	TowerHallA (760,80) f-1 cx 512 ST5 P3 SC0 T389 ♥5 HP8 roi1 None Idle
+741	HP 8→6 TowerHallA (760,80) f-1 cx 512 ST5 P3 SC0 T389 ♥5 HP6 roi1 None
+750	TowerHallA (760,68) f-1 cx 512 ST5 P3 SC0 T389 ♥5 HP6 roi1 None Hurt
+780	TowerHallA (760,80) f-1 cx 512 ST5 P3 SC0 T388 ♥5 HP6 roi1 None Idle
+810	TowerHallA (760,80) f-1 cx 512 ST5 P3 SC0 T388 ♥5 HP6 roi1 None Idle
+840	TowerHallA (760,80) f-1 cx 512 ST5 P3 SC0 T387 ♥5 HP6 roi1 None Idle
+870	HP 6→4 TowerHallA (760,80) f-1 cx 512 ST5 P3 SC0 T387 ♥5 HP4 roi1 None
+870	TowerHallA (760,80) f-1 cx 512 ST5 P3 SC0 T387 ♥5 HP4 roi1 None Hurt
+900	TowerHallA (760,71) f-1 cx 512 ST5 P3 SC0 T386 ♥5 HP4 roi1 None Hurt
+930	TowerHallA (760,80) f-1 cx 512 ST5 P3 SC0 T386 ♥5 HP4 roi1 None Idle
+960	TowerHallA (760,80) f-1 cx 512 ST5 P3 SC0 T385 ♥5 HP4 roi1 None Idle
+990	TowerHallA (760,80) f-1 cx 512 ST5 P3 SC0 T385 ♥5 HP4 roi1 None Idle
+1000	HP 4→2 TowerHallA (760,80) f-1 cx 512 ST5 P3 SC0 T385 ♥5 HP2 roi1 None
+1020	TowerHallA (760,64) f-1 cx 512 ST5 P3 SC0 T385 ♥5 HP2 roi1 None Hurt
+1050	TowerHallA (760,80) f-1 cx 512 ST5 P3 SC0 T384 ♥5 HP2 roi1 None Idle
+1080	TowerHallA (760,80) f-1 cx 512 ST5 P3 SC0 T384 ♥5 HP2 roi1 None Idle
+1110	TowerHallA (760,80) f-1 cx 512 ST5 P3 SC0 T383 ♥5 HP2 roi1 None Idle
+1130	HP 2→0 TowerHallA (760,80) f-1 cx 512 ST5 P3 SC0 T383 ♥5 HP0 roi1 None
+1140	TowerHallA (760,68) f-1 cx 512 ST5 P3 SC0 T383 ♥5 HP0 roi1 None Hurt
+1170	TowerHallA (760,80) f-1 cx 512 ST5 P3 SC0 T382 ♥5 HP0 roi1 None Dead
+1200	TowerHallA (760,80) f-1 cx 512 ST5 P3 SC0 T382 ♥5 HP0 roi1 None Dead
+1230	TowerHallA (760,80) f-1 cx 512 ST5 P3 SC0 T382 ♥5 HP0 roi1 None Dead
+1260	TowerHallA (760,80) f-1 cx 512 ST5 P3 SC0 T382 ♥5 HP0 roi1 None Dead
+1290	TowerHallA (760,80) f-1 cx 512 ST5 P2 SC0 T382 ♥5 HP0 roi1 None Dead
+1320	TowerHallA (720,80) f-1 cx 512 ST5 P2 SC0 T400 ♥5 HP16 roi1 None Idle
+1350	TowerHallA (720,80) f-1 cx 512 ST5 P2 SC0 T400 ♥5 HP16 roi1 None Idle
+1380	TowerHallA (720,80) f-1 cx 512 ST5 P2 SC0 T400 ♥5 HP16 roi1 None Idle
+1410	TowerHallA (720,80) f-1 cx 512 ST5 P2 SC0 T399 ♥5 HP16 roi1 None Idle
+1440	TowerHallA (720,80) f-1 cx 512 ST5 P2 SC0 T399 ♥5 HP16 roi1 None Idle
+1470	TowerHallA (720,80) f-1 cx 512 ST5 P2 SC0 T398 ♥5 HP16 roi1 None Idle
+1500	TowerHallA (720,80) f-1 cx 512 ST5 P2 SC0 T398 ♥5 HP16 roi1 None Idle
+== knock_pit_hallb
+0	sẵn sàng TowerHallB (164,160) f1 cx 36 ST5 P3 SC0 T400 ♥5 HP16 roi1 None
+30	TowerHallB (164,160) f1 cx 36 ST5 P3 SC0 T400 ♥5 HP16 roi1 None Idle
+60	TowerHallB (164,160) f1 cx 36 ST5 P3 SC0 T400 ♥5 HP16 roi1 None Idle
+90	TowerHallB (164,160) f1 cx 36 ST5 P3 SC0 T399 ♥5 HP16 roi1 None Idle
+118	HP 16→14 TowerHallB (164,160) f1 cx 36 ST5 P3 SC0 T399 ♥5 HP14 roi1 None
+120	TowerHallB (162,156) f1 cx 34 ST5 P3 SC0 T399 ♥5 HP14 roi1 None Hurt
+150	TowerHallB (152,154) f1 cx 24 ST5 P3 SC0 T398 ♥5 HP14 roi1 None Hurt
+180	TowerHallB (152,256) f1 cx 24 ST5 P3 SC0 T398 ♥5 HP14 roi1 None FallDeath
+210	TowerHallB (152,256) f1 cx 24 ST5 P3 SC0 T398 ♥5 HP14 roi1 None FallDeath
+240	TowerHallB (152,256) f1 cx 24 ST5 P3 SC0 T398 ♥5 HP14 roi1 None FallDeath
+270	TowerHallB (152,256) f1 cx 24 ST5 P3 SC0 T398 ♥5 HP14 roi1 None FallDeath
+300	TowerHallB (152,256) f1 cx 24 ST5 P2 SC0 T398 ♥5 HP14 roi1 None FallDeath
+330	TowerHallB (152,256) f1 cx 24 ST5 P2 SC0 T398 ♥5 HP14 roi1 None FallDeath
+360	TowerHallA (720,80) f-1 cx 512 ST5 P2 SC0 T400 ♥5 HP16 roi1 None Idle

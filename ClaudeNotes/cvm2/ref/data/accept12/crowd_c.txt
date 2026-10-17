@@ -1,0 +1,1 @@
+CROWD 1500 Step (3 cơ chế Block 2 + enemy + nước thánh ×3): thực thể sống tối đa 19 (vũ khí/đạn tối đa 5), Step TB 0.0576 ms, max 0.428 ms; GC tổng 0 B, Step có cấp phát 0, max 0 B; pool đã tạo 121; GameObject trước 213 / sau dọn 213

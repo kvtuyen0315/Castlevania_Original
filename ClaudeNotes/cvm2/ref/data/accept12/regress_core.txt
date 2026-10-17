@@ -1,0 +1,3 @@
+bộ | đạt/tổng | hash | hash chuẩn | khớp? | thời gian
+core | 21/21 | 76516076 | 76516076 | KHỚP | 92 s
+TỔNG: 1 bộ, lệch/FAIL 0, lỗi 0, bỏ qua 0, 92 s

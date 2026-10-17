@@ -1,0 +1,5 @@
+nen: MAP2_PLACEMENT 51 dong | Map2Objects.json 51 | ConfigDrop (stage 4-6, id nen) 51
+  => nen trung ca 3 nguon (id, x, Y, noi dung): 51/51
+khoi pha: 6/6 trung (md <-> ConfigDrop)
+json: SpawnPoint enemy 12, EdgeSpawner 5, bi mat 3, MechSpawner 3, BossArena 1
+ConfigDrop stage 4-6: 57 dong (nen 51 + khoi 6)

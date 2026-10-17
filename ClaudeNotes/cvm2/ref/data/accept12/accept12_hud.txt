@@ -1,0 +1,13 @@
+== MAT 6 - HUD & luat trong LUONG THAT (vet thu dong)
+vao STAGE 04 wt1: TIME 400, tim 5, P 3, SCORE 6640 (video 0400, tim 05 sau ban do)
+TIME tang (dat lai) trong Block 2: 0 lan [] (video: KHONG dat lai qua STAGE 05/06)
+doi STAGE (wt, cu, moi, TIME truoc, TIME sau): [(1518, 4, 5, 383, 383), (4275, 5, 6, 347, 347)]
+khoang giua 2 lan TIME giam (truoc tally): {64: 88, 67: 1, 72: 1, 116: 1, 486: 1, 514: 1} (video 64 tick/dv; khoang dai = giu TIME o cua / den / dong ho)
+-- diem tung su kien (K/B/P) = do lech SCORE HUD
+  K wt6354 Snake -200288_6340 (114,131) +100 | SCORE sau 6740
+  K wt6579 Snake -200288_6546 (75,144) +100 | SCORE sau 6840
+  K wt6704 Snake -200288_6690 (86,144) +100 | SCORE sau 6940
+  B wt6754 QueenMedusa (46,136) +3000 | SCORE sau 9940
+  K wt6754 QueenMedusa -200274_5480 (46,136) +3000 | SCORE sau 9940
+  P wt6958 MagicCrystal | quả cầu: máu 16→16 ⇒ sự kiện CrystalPicked (tally — routine 12) | SCORE sau 9940
+tally: luc nhat cau SCORE 9940 TIME 306 tim 5 => ky vong 9940 + 306*10 + 5*100 = 13500 | Unity luc tally_done 13500 => KHOP

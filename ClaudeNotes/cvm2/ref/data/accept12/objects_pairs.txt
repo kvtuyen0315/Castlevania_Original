@@ -1,0 +1,116 @@
+chest_rest.png  section TowerHallA frame f2420 cx 218: 1 cặp — chest x400 y82 dx +0 dy +0
+crown_rest.png  section TowerEntranceA frame f560 cx 0: 1 cặp — crown x135 y178 dx +1 dy +0
+p_Medusa_f5926.png  section Medusa frame f5926 cx 512: 4 cặp — candle x720 y89 dx +0 dy +0; candle x528 y89 dx +0 dy +0; candle x592 y89 dx +0 dy +0; candle x656 y89 dx +0 dy +0
+p_Medusa_f6320.png  section Medusa frame f6320 cx 378: 2 cặp — candle x401 y89 dx +0 dy +0; candle x464 y89 dx +0 dy +0
+p_Medusa_f6393.png  section Medusa frame f6393 cx 328: 2 cặp — candle x337 y89 dx +0 dy +0; candle x401 y89 dx +0 dy +0
+p_Medusa_f6587.png  section Medusa frame f6587 cx 180: 2 cặp — candle x209 y97 dx +0 dy +0; candle x273 y89 dx +0 dy +0
+p_TowerEntranceA_f187.png  section TowerEntranceA frame f187 cx 0: 5 cặp — candle x144 y33 dx +0 dy +0; candle x208 y129 dx +0 dy +0; candle x80 y129 dx +0 dy +0; bat x48 y33 dx +0 dy +0; knight x142 y81 dx +0 dy +0
+p_TowerEntranceA_f188.png  section TowerEntranceA frame f188 cx 0: 5 cặp — candle x144 y33 dx +0 dy +0; candle x208 y129 dx +0 dy +0; candle x80 y129 dx +0 dy +0; bat x48 y33 dx +0 dy +0; knight x141 y81 dx +1 dy +0
+p_TowerEntranceB_f1265.png  section TowerEntranceB frame f1265 cx 96: 3 cặp — candle x145 y33 dx +0 dy +0; candle x208 y33 dx +0 dy +0; knight x147 y81 dx -2 dy +0
+p_TowerEntranceB_f1368.png  section TowerEntranceB frame f1368 cx 25: 1 cặp — candle x81 y33 dx +0 dy +0
+p_TowerEntranceB_f867.png  section TowerEntranceB frame f867 cx 256: 6 cặp — candle x272 y33 dx +0 dy +0; candle x400 y33 dx +0 dy +0; candle x336 y33 dx +0 dy +0; candle x464 y33 dx +0 dy +0; bat x304 y33 dx +0 dy +0; knight x336 y82 dx +0 dy -4
+p_TowerEntranceB_f900.png  section TowerEntranceB frame f900 cx 256: 5 cặp — candle x400 y33 dx +0 dy +0; candle x464 y33 dx +0 dy +0; candle x336 y33 dx +0 dy +0; candle x272 y33 dx +0 dy +0; bat x304 y33 dx +0 dy +0
+p_TowerHallA_f1762.png  section TowerHallA frame f1762 cx 512: 4 cặp — candle x528 y33 dx +0 dy +0; candle x720 y33 dx +0 dy +0; candle x656 y33 dx +0 dy +0; candle x592 y33 dx +0 dy +0
+p_TowerHallA_f2094.png  section TowerHallA frame f2094 cx 387: 2 cặp — candle x401 y33 dx +0 dy +0; candle x464 y33 dx +0 dy +0
+p_TowerHallA_f2164.png  section TowerHallA frame f2164 cx 312: 2 cặp — candle x337 y33 dx +0 dy +0; candle x401 y33 dx +0 dy +0
+p_TowerHallA_f2529.png  section TowerHallA frame f2529 cx 114: 3 cặp — candle x145 y65 dx +0 dy +0; candle x209 y33 dx +0 dy +0; candle x273 y65 dx +0 dy +0
+p_TowerHallB_f2802.png  section TowerHallB frame f2802 cx 0: 3 cặp — candle x144 y33 dx +0 dy +0; candle x208 y121 dx +0 dy +0; candle x80 y129 dx +0 dy +0
+p_TowerHallB_f3134.png  section TowerHallB frame f3134 cx 224: 4 cặp — candle x272 y33 dx +0 dy +0; candle x399 y33 dx +0 dy +0; candle x335 y121 dx +0 dy +0; candle x463 y121 dx +0 dy +0
+p_TowerHallB_f3392.png  section TowerHallB frame f3392 cx 491: 4 cặp — candle x527 y33 dx +0 dy +0; candle x591 y33 dx +0 dy +0; candle x655 y129 dx +0 dy +0; candle x719 y33 dx +0 dy +0
+p_TowerHallB_f3991.png  section TowerHallB frame f3991 cx 231: 1 cặp — candle x273 y33 dx -1 dy +0
+p_TowerHallC_f4481.png  section TowerHallC frame f4481 cx 512: 3 cặp — candle x528 y129 dx +0 dy +0; candle x592 y129 dx +0 dy +0; candle x656 y129 dx +0 dy +0
+p_TowerHallC_f4830.png  section TowerHallC frame f4830 cx 310: 3 cặp — candle x337 y129 dx +0 dy +0; candle x401 y129 dx +0 dy +0; candle x464 y129 dx +0 dy +0
+p_TowerHallC_f4941.png  section TowerHallC frame f4941 cx 182: 6 cặp — candle x209 y121 dx +0 dy +0; candle x273 y129 dx +0 dy +0; tower x249 y81 dx +0 dy +0; tower x249 y65 dx +0 dy +0; tower x313 y33 dx +0 dy +0; tower x313 y49 dx +0 dy +0
+p_TowerHallC_f4945.png  section TowerHallC frame f4945 cx 182: 6 cặp — candle x209 y121 dx +0 dy +0; candle x273 y129 dx +0 dy +0; tower x313 y33 dx +0 dy +0; tower x249 y81 dx +0 dy +0; tower x249 y65 dx +0 dy +0; tower x313 y49 dx +0 dy +0
+p_TowerHallC_f4985.png  section TowerHallC frame f4985 cx 115: 7 cặp — candle x145 y121 dx +0 dy +0; candle x209 y121 dx +0 dy +0; bat x145 y57 dx +0 dy +0; tower x313 y33 dx +0 dy +0; tower x249 y81 dx +0 dy +0; tower x249 y65 dx +0 dy +0; tower x313 y49 dx +0 dy +0
+p_TowerHallC_f5112.png  section TowerHallC frame f5112 cx 50: 4 cặp — candle x81 y97 dx +0 dy +0; candle x145 y121 dx +0 dy +0; tower x249 y81 dx +0 dy +0; tower x249 y65 dx +0 dy +0
+TONG 89 cap vat the / 26 anh; |dx| max 2, |dy| max 4; trong 0-1 px: 87
+chest_rest.png chest x 400 y 82 dx +0 dy +0 errV 0.066 errU 0.000
+crown_rest.png crown x 135 y 178 dx +1 dy +0 errV 0.050 errU 0.000
+p_Medusa_f5926.png candle x 720 y 89 dx +0 dy +0 errV 0.033 errU 0.000
+p_Medusa_f5926.png candle x 528 y 89 dx +0 dy +0 errV 0.036 errU 0.000
+p_Medusa_f5926.png candle x 592 y 89 dx +0 dy +0 errV 0.039 errU 0.000
+p_Medusa_f5926.png candle x 656 y 89 dx +0 dy +0 errV 0.041 errU 0.000
+p_Medusa_f6320.png candle x 401 y 89 dx +0 dy +0 errV 0.059 errU 0.000
+p_Medusa_f6320.png candle x 464 y 89 dx +0 dy +0 errV 0.065 errU 0.000
+p_Medusa_f6393.png candle x 337 y 89 dx +0 dy +0 errV 0.034 errU 0.000
+p_Medusa_f6393.png candle x 401 y 89 dx +0 dy +0 errV 0.038 errU 0.000
+p_Medusa_f6587.png candle x 209 y 97 dx +0 dy +0 errV 0.033 errU 0.000
+p_Medusa_f6587.png candle x 273 y 89 dx +0 dy +0 errV 0.037 errU 0.000
+p_TowerEntranceA_f187.png candle x 144 y 33 dx +0 dy +0 errV 0.035 errU 0.000
+p_TowerEntranceA_f187.png candle x 208 y 129 dx +0 dy +0 errV 0.037 errU 0.000
+p_TowerEntranceA_f187.png candle x 80 y 129 dx +0 dy +0 errV 0.040 errU 0.000
+p_TowerEntranceA_f187.png bat x 48 y 33 dx +0 dy +0 errV 0.015 errU 0.000
+p_TowerEntranceA_f187.png knight x 142 y 81 dx +0 dy +0 errV 0.033 errU 0.000
+p_TowerEntranceA_f188.png candle x 144 y 33 dx +0 dy +0 errV 0.035 errU 0.000
+p_TowerEntranceA_f188.png candle x 208 y 129 dx +0 dy +0 errV 0.037 errU 0.000
+p_TowerEntranceA_f188.png candle x 80 y 129 dx +0 dy +0 errV 0.040 errU 0.000
+p_TowerEntranceA_f188.png bat x 48 y 33 dx +0 dy +0 errV 0.015 errU 0.000
+p_TowerEntranceA_f188.png knight x 141 y 81 dx +1 dy +0 errV 0.033 errU 0.000
+p_TowerEntranceB_f1265.png candle x 145 y 33 dx +0 dy +0 errV 0.036 errU 0.000
+p_TowerEntranceB_f1265.png candle x 208 y 33 dx +0 dy +0 errV 0.050 errU 0.000
+p_TowerEntranceB_f1265.png knight x 147 y 81 dx -2 dy +0 errV 0.038 errU 0.000
+p_TowerEntranceB_f1368.png candle x 81 y 33 dx +0 dy +0 errV 0.039 errU 0.000
+p_TowerEntranceB_f867.png candle x 272 y 33 dx +0 dy +0 errV 0.033 errU 0.000
+p_TowerEntranceB_f867.png candle x 400 y 33 dx +0 dy +0 errV 0.038 errU 0.000
+p_TowerEntranceB_f867.png candle x 336 y 33 dx +0 dy +0 errV 0.041 errU 0.000
+p_TowerEntranceB_f867.png candle x 464 y 33 dx +0 dy +0 errV 0.080 errU 0.000
+p_TowerEntranceB_f867.png bat x 304 y 33 dx +0 dy +0 errV 0.015 errU 0.000
+p_TowerEntranceB_f867.png knight x 336 y 82 dx +0 dy -4 errV 0.037 errU 0.000
+p_TowerEntranceB_f900.png candle x 400 y 33 dx +0 dy +0 errV 0.035 errU 0.000
+p_TowerEntranceB_f900.png candle x 464 y 33 dx +0 dy +0 errV 0.043 errU 0.000
+p_TowerEntranceB_f900.png candle x 336 y 33 dx +0 dy +0 errV 0.043 errU 0.000
+p_TowerEntranceB_f900.png candle x 272 y 33 dx +0 dy +0 errV 0.069 errU 0.000
+p_TowerEntranceB_f900.png bat x 304 y 33 dx +0 dy +0 errV 0.016 errU 0.000
+p_TowerHallA_f1762.png candle x 528 y 33 dx +0 dy +0 errV 0.033 errU 0.000
+p_TowerHallA_f1762.png candle x 720 y 33 dx +0 dy +0 errV 0.036 errU 0.000
+p_TowerHallA_f1762.png candle x 656 y 33 dx +0 dy +0 errV 0.045 errU 0.000
+p_TowerHallA_f1762.png candle x 592 y 33 dx +0 dy +0 errV 0.066 errU 0.000
+p_TowerHallA_f2094.png candle x 401 y 33 dx +0 dy +0 errV 0.033 errU 0.000
+p_TowerHallA_f2094.png candle x 464 y 33 dx +0 dy +0 errV 0.045 errU 0.000
+p_TowerHallA_f2164.png candle x 337 y 33 dx +0 dy +0 errV 0.032 errU 0.000
+p_TowerHallA_f2164.png candle x 401 y 33 dx +0 dy +0 errV 0.036 errU 0.000
+p_TowerHallA_f2529.png candle x 145 y 65 dx +0 dy +0 errV 0.035 errU 0.000
+p_TowerHallA_f2529.png candle x 209 y 33 dx +0 dy +0 errV 0.038 errU 0.000
+p_TowerHallA_f2529.png candle x 273 y 65 dx +0 dy +0 errV 0.040 errU 0.000
+p_TowerHallB_f2802.png candle x 144 y 33 dx +0 dy +0 errV 0.035 errU 0.000
+p_TowerHallB_f2802.png candle x 208 y 121 dx +0 dy +0 errV 0.037 errU 0.000
+p_TowerHallB_f2802.png candle x 80 y 129 dx +0 dy +0 errV 0.040 errU 0.000
+p_TowerHallB_f3134.png candle x 272 y 33 dx +0 dy +0 errV 0.036 errU 0.000
+p_TowerHallB_f3134.png candle x 399 y 33 dx +0 dy +0 errV 0.036 errU 0.000
+p_TowerHallB_f3134.png candle x 335 y 121 dx +0 dy +0 errV 0.040 errU 0.000
+p_TowerHallB_f3134.png candle x 463 y 121 dx +0 dy +0 errV 0.041 errU 0.000
+p_TowerHallB_f3392.png candle x 527 y 33 dx +0 dy +0 errV 0.031 errU 0.000
+p_TowerHallB_f3392.png candle x 591 y 33 dx +0 dy +0 errV 0.032 errU 0.000
+p_TowerHallB_f3392.png candle x 655 y 129 dx +0 dy +0 errV 0.043 errU 0.000
+p_TowerHallB_f3392.png candle x 719 y 33 dx +0 dy +0 errV 0.049 errU 0.000
+p_TowerHallB_f3991.png candle x 273 y 33 dx -1 dy +0 errV 0.036 errU 0.000
+p_TowerHallC_f4481.png candle x 528 y 129 dx +0 dy +0 errV 0.042 errU 0.000
+p_TowerHallC_f4481.png candle x 592 y 129 dx +0 dy +0 errV 0.043 errU 0.000
+p_TowerHallC_f4481.png candle x 656 y 129 dx +0 dy +0 errV 0.045 errU 0.000
+p_TowerHallC_f4830.png candle x 337 y 129 dx +0 dy +0 errV 0.036 errU 0.000
+p_TowerHallC_f4830.png candle x 401 y 129 dx +0 dy +0 errV 0.040 errU 0.000
+p_TowerHallC_f4830.png candle x 464 y 129 dx +0 dy +0 errV 0.064 errU 0.000
+p_TowerHallC_f4941.png candle x 209 y 121 dx +0 dy +0 errV 0.037 errU 0.000
+p_TowerHallC_f4941.png candle x 273 y 129 dx +0 dy +0 errV 0.039 errU 0.000
+p_TowerHallC_f4941.png tower x 249 y 81 dx +0 dy +0 errV 0.049 errU 0.000
+p_TowerHallC_f4941.png tower x 249 y 65 dx +0 dy +0 errV 0.050 errU 0.000
+p_TowerHallC_f4941.png tower x 313 y 33 dx +0 dy +0 errV 0.054 errU 0.000
+p_TowerHallC_f4941.png tower x 313 y 49 dx +0 dy +0 errV 0.056 errU 0.000
+p_TowerHallC_f4945.png candle x 209 y 121 dx +0 dy +0 errV 0.040 errU 0.000
+p_TowerHallC_f4945.png candle x 273 y 129 dx +0 dy +0 errV 0.045 errU 0.000
+p_TowerHallC_f4945.png tower x 313 y 33 dx +0 dy +0 errV 0.034 errU 0.000
+p_TowerHallC_f4945.png tower x 249 y 81 dx +0 dy +0 errV 0.036 errU 0.000
+p_TowerHallC_f4945.png tower x 249 y 65 dx +0 dy +0 errV 0.038 errU 0.000
+p_TowerHallC_f4945.png tower x 313 y 49 dx +0 dy +0 errV 0.041 errU 0.000
+p_TowerHallC_f4985.png candle x 145 y 121 dx +0 dy +0 errV 0.038 errU 0.000
+p_TowerHallC_f4985.png candle x 209 y 121 dx +0 dy +0 errV 0.040 errU 0.000
+p_TowerHallC_f4985.png bat x 145 y 57 dx +0 dy +0 errV 0.022 errU 0.000
+p_TowerHallC_f4985.png tower x 313 y 33 dx +0 dy +0 errV 0.034 errU 0.000
+p_TowerHallC_f4985.png tower x 249 y 81 dx +0 dy +0 errV 0.035 errU 0.000
+p_TowerHallC_f4985.png tower x 249 y 65 dx +0 dy +0 errV 0.036 errU 0.000
+p_TowerHallC_f4985.png tower x 313 y 49 dx +0 dy +0 errV 0.041 errU 0.000
+p_TowerHallC_f5112.png candle x 81 y 97 dx +0 dy +0 errV 0.032 errU 0.000
+p_TowerHallC_f5112.png candle x 145 y 121 dx +0 dy +0 errV 0.040 errU 0.000
+p_TowerHallC_f5112.png tower x 249 y 81 dx +0 dy +0 errV 0.033 errU 0.000
+p_TowerHallC_f5112.png tower x 249 y 65 dx +0 dy +0 errV 0.037 errU 0.000

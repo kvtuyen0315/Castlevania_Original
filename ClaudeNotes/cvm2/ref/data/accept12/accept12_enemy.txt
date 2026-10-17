@@ -1,0 +1,61 @@
+== MAT 4 - enemy Block 2 tren MAP THAT (luong that, vet thu dong) vs so do video (CVM2 08 2j / 09 2k)
+-- Medusa Head
+section | tick sinh | so tick | vx (px/tick) | dinh-day | rms vs y0+33.75(1-cos 2pi t/100) | y sinh - chan Simon | x man luc sinh | huong MH | huong Simon
+TowerHallA | 1557 | 128 | 1.250 | 67 | 0.50 | -49 | 8 | +1 | -1
+TowerHallA | 1685 | 110 | 1.250 | 67 | 0.49 | -49 | 8 | +1 | -1
+TowerHallB | 2247 | 140 | -1.250 | 67 | 0.50 | -49 | 248 | -1 | +1
+TowerHallB | 2375 | 109 | -1.250 | 67 | 0.49 | -49 | 248 | -1 | +1
+TowerHallB | 3609 | 109 | 1.250 | 67 | 0.49 | -49 | 8 | +1 | -1
+TowerHallB | 3737 | 116 | 1.250 | 67 | 0.49 | -49 | 8 | +1 | -1
+Medusa | 5703 | 110 | 1.250 | 67 | 0.49 | -49 | 8 | +1 | -1
+Medusa | 5831 | 110 | 1.250 | 67 | 0.49 | -49 | 8 | +1 | -1
+khoang cach 2 lan sinh lien tiep cung section: [128, 128, 1234, 128, 128] (video deu 128: 126.8-129.0)
+so hinh dang quy dao MH Unity (tu luc sinh = dinh song) vs vet video _cache/08/trk_mh_*.csv (canh top_frame mh_spawns.csv; tinh tien + lech t +-3):
+  video mh_a #0 TowerHallA dir +1 (79 diem) vs Unity cung section/huong: rms 1.41 px (lech t +0 tick, 52 diem chung)
+  video mh_a #1 TowerHallA dir +1 (29 diem) vs Unity cung section/huong: rms 1.41 px (lech t -1 tick, 29 diem chung)
+  video mh_a #2 TowerHallA dir +1 (64 diem) vs Unity cung section/huong: rms 1.43 px (lech t +0 tick, 39 diem chung)
+  video mh_a #3 TowerHallA dir +1 (63 diem) vs Unity cung section/huong: rms 1.41 px (lech t +0 tick, 41 diem chung)
+  video mh_a #4 TowerHallA dir +1 (25 diem) vs Unity cung section/huong: rms 0.76 px (lech t +0 tick, 25 diem chung)
+  video mh_b1 #0 TowerHallB dir -1 (78 diem) vs Unity cung section/huong: rms 1.62 px (lech t +0 tick, 44 diem chung)
+  video mh_b1 #1 TowerHallB dir -1 (31 diem) vs Unity cung section/huong: rms 1.42 px (lech t +0 tick, 31 diem chung)
+  video mh_b1 #2 TowerHallB dir -1 (22 diem) vs Unity cung section/huong: rms 0.51 px (lech t +0 tick, 22 diem chung)
+  video mh_b1 #3 TowerHallB dir -1 (50 diem) vs Unity cung section/huong: rms 1.28 px (lech t +0 tick, 44 diem chung)
+  video mh_b1 #4 TowerHallB dir -1 (56 diem) vs Unity cung section/huong: rms 1.53 px (lech t +0 tick, 45 diem chung)
+  video mh_b2 #0 TowerHallB dir +1 (45 diem) vs Unity cung section/huong: rms 1.66 px (lech t +0 tick, 41 diem chung)
+  video mh_b2 #1 TowerHallB dir +1 (21 diem) vs Unity cung section/huong: rms 1.85 px (lech t +0 tick, 21 diem chung)
+  video mh_b2 #2 TowerHallB dir +1 (38 diem) vs Unity cung section/huong: rms 1.66 px (lech t +0 tick, 38 diem chung)
+  video mh_m #0 Medusa dir +1 (33 diem) vs Unity cung section/huong: rms 1.07 px (lech t +0 tick, 33 diem chung)
+  video mh_m #2 Medusa dir +1 (28 diem, bo 3 diem ghep nham) vs Unity cung section/huong: rms 1.25 px (lech t +0 tick, 28 diem chung)
+  video mh_m #3 Medusa dir +1 (63 diem) vs Unity cung section/huong: rms 1.30 px (lech t +0 tick, 45 diem chung)
+  video mh_m #4 Medusa dir +1 (70 diem) vs Unity cung section/huong: rms 1.78 px (lech t +0 tick, 44 diem chung)
+  video mh_m #5 Medusa dir +1 (64 diem) vs Unity cung section/huong: rms 1.39 px (lech t +0 tick, 44 diem chung)
+  video mh_m #6 Medusa dir +1 (55 diem) vs Unity cung section/huong: rms 1.01 px (lech t +0 tick, 50 diem chung)
+  => 19 vet: rms trung vi 1.41, lon nhat 1.85 px
+-- Spear Knight
+TowerEntranceA sinh wt1 (142,80) f-1 | 412 tick | toc do TB khi Walk 0.500 px/tick | 3 lan quay, x: [59, 105, 54]
+TowerEntranceB sinh wt393 (336,77) f+1 | 418 tick | toc do TB khi Walk 0.500 px/tick | 20 lan quay, x: [335, 328, 335, 331, 335, 324, 335, 324, 335, 334, 335, 324, 334, 324]
+TowerEntranceB sinh wt758 (145,80) f+1 | 344 tick | toc do TB khi Walk 0.500 px/tick | 6 lan quay, x: [155, 144, 155, 129, 155, 111]
+TowerHallA sinh wt1907 (211,80) f+1 | 186 tick | toc do TB khi Walk 0.500 px/tick | 3 lan quay, x: [283, 284, 283]
+TowerHallB sinh wt2563 (494,144) f-1 | 586 tick | toc do TB khi Walk 0.500 px/tick | 5 lan quay, x: [456, 542, 484, 536, 488]
+TowerHallB sinh wt2595 (526,80) f-1 | 554 tick | toc do TB khi Walk 0.500 px/tick | 9 lan quay, x: [488, 501, 484, 510, 484, 551, 484, 484, 484]
+TowerHallB sinh wt2797 (718,80) f-1 | 10 tick | toc do TB khi Walk 0.500 px/tick | 0 lan quay, x: []
+-- Bone Tower + cau lua (video: 2 cau cung mieng tren cach 40, 2.0 px/tick, sinh o x thap, cao chan - 15; luot cach 185-314)
+thap (313,48) 240 tick, huong doi 1 lan
+thap (249,80) 515 tick, huong doi 2 lan
+thap (313,48) 264 tick, huong doi 1 lan
+8 cau lua: toc do 2.000 2.000 2.000 2.000 2.000 2.000 2.000 2.000
+sinh (tick, x thap, x cau - x thap, y cau - y thap): [(4622, 313, 0, -15), (4662, 313, 0, -15), (4686, 249, 0, -15), (4726, 249, 0, -15), (4989, 249, 0, -15), (5001, 313, 0, -15), (5029, 249, 0, -15), (5041, 313, 0, -15)]
+thap (313,48) song wt4581-4820: cau o tick (tu luc sinh) [41, 81] | cap cach [40] | luot cach []
+thap (249,80) song wt4645-5159: cau o tick (tu luc sinh) [41, 81, 344, 384] | cap cach [40, 40] | luot cach [303]
+thap (313,48) song wt4960-5223: cau o tick (tu luc sinh) [41, 81] | cap cach [40] | luot cach []
+-- Ghost (video: hien 96 px SAU LUNG Simon, tam = mat san Simon, ngang 0.74-0.75, doc 0.10-0.12)
+sinh wt4758 (352,144) | Simon (256,144) huong -1 => x ghost - x Simon +96, y ghost - chan Simon +0 | vx 40 tick dau 0.750 | |vy| max 0.125 | song 742 tick
+sinh wt5366 (480,48) | Simon (576,48) huong +1 => x ghost - x Simon -96, y ghost - chan Simon +0 | vx 40 tick dau 0.750 | |vy| max 0.125 | song 134 tick
+-- Doi treo (video: treo bat_purple_0; roi cho khi |dx| < 96 va dy < 80; sa 1.5 px/tick, ha 31 px / 42 tick roi bay ngang)
+doi (48,33) 362 tick, state: [(1, 'Perch'), (230, 'Swoop'), (272, 'Glide')] | roi cho wt230: Simon tick truoc |dx| 96 dy 47, cung tick |dx| 95 dy 47 | 42 tick dau: vx 1.500, ha 31 px
+doi (304,33) 317 tick, state: [(393, 'Perch'), (624, 'Swoop'), (666, 'Glide')] | roi cho wt624: Simon tick truoc |dx| 96 dy 47, cung tick |dx| 95 dy 47 | 42 tick dau: vx 1.500, ha 31 px
+doi (145,57) 197 tick, state: [(4749, 'Perch'), (4840, 'Swoop'), (4882, 'Glide')] | roi cho wt4840: Simon tick truoc |dx| 30 dy 82, cung tick |dx| 29 dy 77 | 42 tick dau: vx 1.500, ha 31 px
+-- Ran (video: roi g 0.10-0.135, truon 1.376-1.396 px/tick ve phia Simon)
+ran sinh wt6340 (114,118): roi 14 tick g 0.125 | truon tren san 0 tick nan px/tick
+ran sinh wt6546 (58,118): roi 20 tick g 0.125 | truon tren san 13 tick 1.375 px/tick
+ran sinh wt6690 (86,131): roi 14 tick g 0.125 | truon tren san 0 tick nan px/tick
