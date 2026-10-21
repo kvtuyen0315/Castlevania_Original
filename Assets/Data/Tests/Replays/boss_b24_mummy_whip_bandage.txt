@@ -1,0 +1,7 @@
+# 800 tick, hash e094bfc5
+# CVGP 19 BossB24Probe kịch bản 'mummy_whip_bandage': CVM3 09: Simon (128,176) roi cấp 3 quất đều: băng gạc bay tới bị roi phá ⇒ +100 + lửa (video Boss_Map_3 f505–507, f637–640, f835–837, f900–903)
+-*200 B*1 -*24 B*1 -*24 B*1 -*24 B*1 -*24 B*1 -*24 B*1
+-*24 B*1 -*24 B*1 -*24 B*1 -*24 B*1 -*24 B*1 -*24 B*1
+-*24 B*1 -*24 B*1 -*24 B*1 -*24 B*1 -*24 B*1 -*24 B*1
+-*24 B*1 -*24 B*1 -*24 B*1 -*24 B*1 -*24 B*1 -*24 B*1
+-*24

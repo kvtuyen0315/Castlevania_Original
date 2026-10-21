@@ -1,0 +1,3 @@
+# 530 tick, hash 6fe1fa0d
+# CVGP 19 BossB24Probe kịch bản 'mummy_holy': CVM3 09: Simon (128,176) ném nước thánh tick 130: con đầu đi vào lửa ⇒ đứng yên, khung đứng, suốt lúc chạm + 12 tick (video Map_3 f6101–6149), mỗi đòn −1 vạch, cách nhau ≥ 32 tick (bất tử 32)
+-*129 Sub*1 -*400

@@ -36,6 +36,8 @@ public class ItemPickup : Entity
     [NonSerialized] public int riseLeft;
     /// <summary>CVGP 20: quả cầu cuối (Dracula) — nhặt ⇒ GameRules.OnGameCleared.</summary>
     [NonSerialized] public bool finalCrystal;
+    /// <summary>CVM3 09: số tick đứng yên trước khi rơi (quả cầu Mummy Men — video Map_3 f6830–6847 / Boss_Map_3 f1064–1079); 0 ⇒ rơi ngay.</summary>
+    [NonSerialized] public int holdTicks;
 
     private int gravity, swayAccel, swayMax, swayDir, fallSmall, riseSpeed;
     private AnimSet.Anim anim;
@@ -50,6 +52,7 @@ public class ItemPickup : Entity
         picked = false;
         riseLeft = 0;
         finalCrystal = false;
+        holdTicks = 0;
         vx = vy = 0;
         Facing = -1;
         if (Anim != null)
@@ -130,6 +133,11 @@ public class ItemPickup : Entity
                 }
                 break;
             case eMotion.Fall:
+                if (holdTicks > 0)
+                {
+                    holdTicks--;
+                    break;
+                }
                 if (MoveY(vy, false))
                 {
                     vy = 0;

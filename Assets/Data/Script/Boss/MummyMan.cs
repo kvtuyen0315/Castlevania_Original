@@ -3,26 +3,32 @@ using UnityEngine;
 /// <summary>State Mummy Man (boss Block 3 — 2 thực thể).</summary>
 public enum eMummyState
 {
-    Dormant, // đứng chờ (không va chạm) tới khi Simon lại gần
-    Walk,    // lang thang / kẹp Simon (gồm đứng yên giữa 2 lần quyết định)
-    Throw,   // dừng lại ném băng vải
+    Dormant, // đứng chờ khung 0 quay trái (không va chạm) tới khi camera khoá + wakeDelayTicks
+    Walk,    // đi theo hướng đang chọn (kể cả đi tại chỗ ở mép màn); anim chạy liên tục
+    Throw,   // đứng quay về Simon, nháy đỏ/tím rồi ném 1 băng gạc
 }
 
 /// <summary>
-/// Mummy Men (CVGP 19, theo wiki — GẦN ĐÚNG, không có video Block 3). Wiki Bosses#Mummy Men + Stages 7-9#Stage 9: 2 Mummy "lang thang trong
-/// phòng, thỉnh thoảng ném băng gạc vào Simon, cố KẸP Simon từ hai phía"; Stopwatch vô dụng; Holy Water "hoá đá" chúng tại chỗ; "đánh tới
-/// khi cả hai bị tiêu diệt"; 48/32 đòn (wiki không nói tổng hay mỗi con — ConfigBoss.hitsScope TotalAllEntities ⇒ mỗi con 24/16, CVGP
-/// 04 §4), 3000 đ khi hạ con cuối; Block 3 "boss chậm nhưng khoẻ". Cùng 1 lớp cho 2 con: BossArena sinh con ĐẦU (tím) tại bossPosition,
-/// con đầu sinh con THỨ HAI (đỏ — sheet có 2 bộ màu, gán mỗi con 1 màu là SUY LUẬN) cách partnerDxPx về phía trái. Ước lượng (ConfigActorParam
-/// Boss.MummyMan — ghi §2p):
-///   Dormant  khung đứng; |Simon − con bất kỳ| &lt; wakeDistancePx ⇒ CẢ HAI Activate.
-///   Walk     mỗi decideMin..+span tick quyết định: con đang ở BÊN PHẢI con kia nhắm điểm Simon + keepDxPx, con bên trái nhắm Simon −
-///            keepDxPx (kẹp 2 phía); wanderPct % chọn hướng ngẫu nhiên thay vì nhắm (lang thang); tới đích (≤ standDxPx) ⇒ đứng. Đi
-///            moveSpeed (ConfigBoss) trên sàn (dò sàn/tường như enemy 13 — khối/tường chặn ⇒ đứng tới lần quyết định sau).
-///   Throw    hết hồi ném (đầu throwFirstTicks, sau throwMin..+span) và |dx| ≤ throwRangePx ⇒ đứng quay về Simon throwPoseTicks tick rồi
-///            ném 1 MummyBandage ngang bandageSpeed ở chân − bandageAbovePx (trên đầu Simon NGỒI — wiki "ngồi quất khi chúng áp sát").
-/// Máu: mỗi con CombatHealth riêng (24/16); thanh ENEMY = máu 2 con cộng lại. Con đầu hết máu (con kia còn) ⇒ lửa bossdeath + biến mất (không
-/// điểm); con cuối ⇒ chuỗi chết boss (3000 đ, quả cầu). Khựng khi trúng / chạm nước thánh: BossBase.
+/// Mummy Men (CVGP 19 theo wiki; CVM3 09 đo lại 2 video — Map_3 3:06–3:54 bảng màu chuẩn, Boss_Map_3 0–42.7 s chỉ chuyển động; số đo
+/// CVM3_MEMORY §2i, Tools/cvm3/boss9m_*.py, ClaudeNotes/cvm3/ref/data/boss9m/model.txt). Cùng 1 lớp cho 2 con: BossArena sinh con ĐẦU (phải,
+/// video x 1503) ở bossPosition, con đầu sinh con THỨ HAI cách partnerDxPx về trái (video x 1312). Cả hai TÍM (sprite đỏ = khung nháy lúc ném).
+///   Dormant  đứng khung 0 quay trái, thấy được, không va chạm. Con đầu đếm tick từ khi camera KHOÁ: musicDelayTicks ⇒ nhạc boss;
+///            wakeDelayTicks ⇒ CẢ HAI thức (video: khoá + 120 ở cả 2 video, không theo khoảng cách Simon), quay + đi VỀ PHÍA Simon.
+///   Walk     0.75 px/tick (ConfigBoss.moveSpeed); quyết định mỗi decideTicks tick (lần đầu decideFirstTicks sau khi thức — lưới 16 tick
+///            tính từ lúc khoá; lúc đang ném thì bỏ lượt): Simon QUAY LƯNG về Mummy ⇒ đi TỚI; Simon nhìn về Mummy ⇒ theo |dx|: &lt; nearPx ⇒ đi XA,
+///            ≥ farPx ⇒ đi TỚI, giữa ⇒ giữ hướng (video Map_3 Simon đứng yên quay phải trên khối: quay xa ở |dx| 33–47, quay tới ở 55–68; con
+///            sau lưng Simon f6027 quay TỚI ở |dx| 13; video boss: con kẹt mép phải ~140 tick ở |dx| 48–53 không quay). Mép màn [cx+screenMinX,
+///            cx+screenMaxX] chặn x nhưng vẫn "đi tại chỗ" (video boss: con thứ 2 kẹt mép phải ~140 tick, anim chạy, quay lưng Simon).
+///            Anim walk [0,1,2,1] × animStepTicks chạy liên tục cả lúc đứng ném / đi tại chỗ; dừng khi khựng (lửa nước thánh).
+///   Throw    hết throwTimer (chỉ đếm khi Walk: đầu throwFirstTicks / con 2 throwFirstPartnerTicks, sau mỗi lần ném throwEveryTicks; từ lần
+///            thứ 2 chỉ ném với xác suất throwChancePct, trượt ⇒ chờ thêm throwRetryTicks — video: khoảng ném ≈ bội của ~113 tick): đứng
+///            quay về Simon throwPoseTicks tick, nháy đỏ↔tím mỗi flashTicks tick tới throwReleaseTicks thì ném 1 MummyBandage (x = X Mummy,
+///            tâm Y − bandageAboveHighPx hoặc − bandageAboveLowPx ngẫu nhiên), rồi đi tiếp hướng mặt.
+/// Máu: mỗi con CombatHealth riêng (ConfigBoss TotalAllEntities / 2); thanh ENEMY = máu 2 con cộng lại (video: 16 vạch chung); bất tử sau đòn
+/// (invincibleTicks 32) DÙNG CHUNG cho cả cặp (video: 0 lần −2 vạch cùng lúc dù 2 con cùng đứng trong lửa). Trúng roi
+/// không khựng (hitStunTicks 0); lửa/lọ nước thánh ⇒ đứng yên suốt lúc chạm + holyStunTicks (BossBase). MỖI con hết máu ⇒ +3000 + lửa
+/// bossdeath (video Map_3 3:42.87 / 3:45.70); con cuối ⇒ chuỗi chết boss (quả cầu sau crystalDelayTicks, đứng crystalHoverTicks rồi rơi).
+/// Stopwatch: miễn (ConfigBoss.stopwatchAffects 0 — wiki). Harness: forcedHeights ("H"/"L" theo thứ tự ném), forcedThrowFirst.
 /// </summary>
 public class MummyMan : BossBase
 {
@@ -33,13 +39,23 @@ public class MummyMan : BossBase
     private AnimSet.Anim aPurple, aRed;
     [System.NonSerialized] public MummyMan partner;
     private int partnerSpawnTick;
-    /// <summary>Con thứ hai (đỏ) — do con đầu sinh.</summary>
+    /// <summary>Con thứ hai (trái) — do con đầu sinh.</summary>
     [System.NonSerialized] public bool second;
-    [System.NonSerialized] public int wakeDist, partnerDx, speed, decideMin, decideSpan, keepDx, wanderPct, standDx;
-    [System.NonSerialized] public int throwFirst, throwMin, throwSpan, throwRange, poseTicks, bandageAbove, bandageSpeed, bandageFront;
-    [System.NonSerialized] public int decideTimer, throwTimer, walkDir, targetX;
-    /// <summary>Số băng đã ném / số lần quyết định (harness).</summary>
-    [System.NonSerialized] public int throws, decisions;
+    [System.NonSerialized] public int partnerDx, speed, wakeDelay, musicDelay, decideTicks, decideFirst, nearPx, farPx, animStep;
+    [System.NonSerialized] public int throwFirst, throwFirstPartner, throwEvery, throwChance, throwRetry, poseTicks, releaseTick, flashTicks;
+    [System.NonSerialized] public int aboveHigh, aboveLow, bandageSpeed, waveAmp, wavePeriod, bandageInset, screenMin, screenMax;
+    /// <summary>Trạng thái: tick từ khi camera khoá (con đầu), hướng đi, hồi ném, đồng hồ anim, hồi quyết định, đang nháy đỏ.</summary>
+    [System.NonSerialized] public int lockTicks, walkDir, throwTimer, animTick, decideTimer;
+    [System.NonSerialized] public bool flashRed;
+    /// <summary>Tick thế giới lúc bật nhạc boss (−1 = chưa) — harness.</summary>
+    [System.NonSerialized] public int musicAtTick = -1;
+    /// <summary>Đếm (harness): số băng đã ném, số lần quyết định, số lần đổi hướng.</summary>
+    [System.NonSerialized] public int throws, decisions, turns;
+    /// <summary>Harness (CVM3 09 so video): chuỗi độ cao băng "H"/"L" theo thứ tự ném (hết ⇒ RNG); hồi ném đầu ép (−1 ⇒ Config).</summary>
+    [System.NonSerialized] public string forcedHeights;
+    [System.NonSerialized] public int forcedThrowFirst = -1;
+    /// <summary>Harness (CVM3 09 so quỹ đạo video): tắt quyết định hướng + tự ném — probe ép ForceTurn / ForceThrow theo mốc video.</summary>
+    [System.NonSerialized] public bool harnessPlan;
     private static bool spawningPartner;
 
     public override string DebugState => Fsm != null && Fsm.HasState ? (dying ? "Dying" : Stunned ? "Stun" : Fsm.CurState.ToString()) : "-";
@@ -51,53 +67,53 @@ public class MummyMan : BossBase
 
     class DormantState : MummyState
     {
-        public override void OnEnterState() { owner.Pose(0); }
+        public override void OnEnterState() { owner.flashRed = false; owner.Show(); }
+
+        public override void OnExecuteState()
+        {
+            if (owner.second)
+                return;   // con đầu đếm + đánh thức cả hai
+            var cam = owner.World.CameraCtl;
+            if (cam == null || !cam.Locked)
+                return;
+            owner.lockTicks++;
+            if (owner.lockTicks == owner.musicDelay)
+            {
+                owner.musicAtTick = owner.World.TickCount;
+                owner.StartBossMusic();
+            }
+        }
 
         public override void CheckNextState()
         {
-            if (owner.second)
-                return;   // con đầu đánh thức cả hai
-            var p = owner.World.Player;
-            if (p == null || !p.Alive)
+            if (owner.second || owner.lockTicks < owner.wakeDelay)
                 return;
             var o = owner.PartnerAlive() ? owner.partner : null;
-            if (Mathf.Abs(p.X - owner.X) < owner.wakeDist || (o != null && Mathf.Abs(p.X - o.X) < owner.wakeDist))
-            {
-                owner.Wake();
-                if (o != null)
-                    o.Wake();
-            }
+            owner.Wake();
+            if (o != null)
+                o.Wake();
         }
     }
 
     class WalkState : MummyState
     {
-        public override void OnEnterState() { owner.walkDir = 0; owner.PlayWalk(false); }
-
         public override void OnExecuteState()
         {
-            if (--owner.decideTimer <= 0)
-                owner.Decide();
-            if (owner.walkDir != 0)
-            {
-                owner.Facing = owner.walkDir;
-                bool blocked = owner.StepX(owner.walkDir * owner.speed);
-                bool arrived = owner.targetX != int.MinValue && Mathf.Abs(owner.X - owner.targetX) <= owner.standDx;
-                if (blocked || arrived)
-                    owner.walkDir = 0;
-            }
-            if (owner.walkDir == 0)
-                owner.Facing = owner.FacingToPlayer();
-            owner.PlayWalk(owner.walkDir != 0);
-            owner.Fall();
             owner.throwTimer--;
+            owner.Facing = owner.walkDir;
+            owner.Step();
+            owner.Fall();
+            owner.Show();
         }
 
         public override void CheckNextState()
         {
-            var p = owner.World.Player;
-            if (owner.throwTimer <= 0 && p != null && Mathf.Abs(p.X - owner.X) <= owner.throwRange && owner.Grounded())
+            if (owner.harnessPlan || owner.throwTimer > 0 || !owner.Grounded())
+                return;
+            if (owner.throws == 0 || owner.World.Rng.Next(100) < owner.throwChance)
                 SetState(eMummyState.Throw);
+            else
+                owner.throwTimer = owner.throwRetry;   // bỏ lượt ném này
         }
     }
 
@@ -106,16 +122,25 @@ public class MummyMan : BossBase
         public override void OnEnterState()
         {
             owner.Facing = owner.FacingToPlayer();
-            owner.Pose(0);
+            owner.walkDir = owner.Facing;
+            owner.flashRed = false;
+        }
+
+        public override void OnExecuteState()
+        {
+            int t = StateFrame;
+            owner.flashRed = t < owner.releaseTick && ((t - 1) / owner.flashTicks) % 2 == 0;
+            if (t == owner.releaseTick)
+                owner.ThrowBandage();
+            owner.Show();
         }
 
         public override void CheckNextState()
         {
             if (StateFrame < owner.poseTicks)
                 return;
-            owner.ThrowBandage();
-            owner.throwTimer = owner.Roll(owner.throwMin, owner.throwSpan);
-            owner.decideTimer = 0;
+            owner.throwTimer = owner.throwEvery;
+            owner.flashRed = false;
             SetState(eMummyState.Walk);
         }
     }
@@ -133,7 +158,7 @@ public class MummyMan : BossBase
         }
     }
 
-    /// <summary>Máu mỗi con = tổng wiki / số thực thể (ConfigBoss hitsScope TotalAllEntities, entityCount).</summary>
+    /// <summary>Máu mỗi con = tổng / số thực thể (ConfigBoss hitsScope TotalAllEntities, entityCount).</summary>
     protected override void ResetHealth(GameConfig cfg)
     {
         base.ResetHealth(cfg);
@@ -145,31 +170,42 @@ public class MummyMan : BossBase
 
     protected override void LoadBoss(GameConfig cfg)
     {
-        wakeDist = PInt(cfg, "wakeDistancePx", 128);
-        partnerDx = PInt(cfg, "partnerDxPx", 40);
-        speed = BossMoveSpeed(cfg, 0.375f);
-        decideMin = PInt(cfg, "decideMinTicks", 48);
-        decideSpan = PInt(cfg, "decideSpanTicks", 64);
-        keepDx = PInt(cfg, "keepDxPx", 40);
-        wanderPct = PInt(cfg, "wanderPct", 25);
-        standDx = PInt(cfg, "standDxPx", 4);
+        partnerDx = PInt(cfg, "partnerDxPx", 191);
+        speed = BossMoveSpeed(cfg, 0.75f);
+        wakeDelay = PInt(cfg, "wakeDelayTicks", 120);
+        musicDelay = PInt(cfg, "musicDelayTicks", 60);
+        decideTicks = Mathf.Max(1, PInt(cfg, "decideTicks", 16));
+        decideFirst = Mathf.Max(1, PInt(cfg, "decideFirstTicks", 8));
+        nearPx = PInt(cfg, "nearPx", 46);
+        farPx = PInt(cfg, "farPx", 56);
+        animStep = Mathf.Max(1, PInt(cfg, "animStepTicks", 16));
         throwFirst = PInt(cfg, "throwFirstTicks", 64);
-        throwMin = PInt(cfg, "throwMinTicks", 128);
-        throwSpan = PInt(cfg, "throwSpanTicks", 96);
-        throwRange = PInt(cfg, "throwRangePx", 160);
-        poseTicks = PInt(cfg, "throwPoseTicks", 16);
-        bandageAbove = PInt(cfg, "bandageAbovePx", 28);
-        bandageSpeed = PFixed(cfg, "bandageSpeed", 1f);
-        bandageFront = PInt(cfg, "bandageFrontPx", 8);
-        decideTimer = 0;
-        throwTimer = throwFirst;   // con thứ hai: + throwMin/2 (đặt sau khi biết second) — 2 con không ném cùng tick
-        walkDir = 0;
-        targetX = int.MinValue;
-        throws = decisions = 0;
+        throwFirstPartner = PInt(cfg, "throwFirstPartnerTicks", 120);
+        throwEvery = PInt(cfg, "throwEveryTicks", 66);
+        throwChance = PInt(cfg, "throwChancePct", 50);
+        throwRetry = PInt(cfg, "throwRetryTicks", 114);
+        poseTicks = PInt(cfg, "throwPoseTicks", 48);
+        releaseTick = PInt(cfg, "throwReleaseTicks", 40);
+        flashTicks = Mathf.Max(1, PInt(cfg, "flashTicks", 2));
+        aboveHigh = PInt(cfg, "bandageAboveHighPx", 31);
+        aboveLow = PInt(cfg, "bandageAboveLowPx", 15);
+        bandageSpeed = PFixed(cfg, "bandageSpeed", 1.5f);
+        waveAmp = PInt(cfg, "bandageWaveAmpPx", 24);
+        wavePeriod = Mathf.Max(1, PInt(cfg, "bandageWavePeriodTicks", 102));
+        bandageInset = PInt(cfg, "bandageScreenInsetPx", 8);
+        screenMin = PInt(cfg, "screenMinX", 8);
+        screenMax = PInt(cfg, "screenMaxX", 248);
+        lockTicks = animTick = decideTimer = 0;
+        musicAtTick = -1;
+        walkDir = -1;
+        flashRed = false;
+        throws = decisions = turns = 0;
+        forcedHeights = null;
+        forcedThrowFirst = -1;
+        harnessPlan = false;
         partner = null;
         second = spawningPartner;
-        if (second)
-            throwTimer = throwFirst + throwMin / 2;
+        throwTimer = second ? throwFirstPartner : throwFirst;
         Facing = -1;
         Fsm.SetState(eMummyState.Dormant);
         if (!second)
@@ -191,20 +227,37 @@ public class MummyMan : BossBase
                 partner.partnerSpawnTick = SpawnTick;
                 partnerSpawnTick = partner.SpawnTick;
                 partner.arena = arena;
-                partner.Pose(0);
+                partner.Show();
             }
         }
-        Pose(0);
+        Show();
     }
 
+    /// <summary>Đồng hồ anim + lưới quyết định: đúng 1 lần mỗi tick không khựng sau khi thức (state chạy nối Walk↔Throw cùng tick không
+    /// đếm 2 lần); lượt quyết định rơi vào lúc đang ném bị bỏ.</summary>
     protected override void TickBoss()
     {
+        if (!Fsm.Is(eMummyState.Dormant))
+        {
+            animTick++;
+            if (--decideTimer <= 0)
+            {
+                decideTimer = decideTicks;
+                if (Fsm.Is(eMummyState.Walk))
+                    Decide();
+            }
+        }
         Fsm.Tick();
     }
 
-    protected override void OnStunEnd()
+    /// <summary>Bất tử DÙNG CHUNG 2 con (video Map_3 f6186–6216: cả 2 đứng trong lửa nhưng ENEMY chỉ −1 mỗi ~32 tick; 2 video 0 lần −2 cùng lúc).</summary>
+    public override bool OnHurt(ref HitInfo hit)
     {
-        PlayWalk(Fsm.Is(eMummyState.Walk) && walkDir != 0);
+        if (!base.OnHurt(ref hit))
+            return false;
+        if (PartnerAlive())
+            partner.InvincibleTicks = Mathf.Max(partner.InvincibleTicks, invincibleTicks);
+        return true;
     }
 
     private bool PartnerAlive()
@@ -212,65 +265,81 @@ public class MummyMan : BossBase
         return partner != null && partner.Alive && partner.SpawnTick == partnerSpawnTick && !partner.defeated;
     }
 
+    /// <summary>Thức: kích hoạt va chạm, quay + đi về phía Simon (video: cả 2 con bước đầu tiên về Simon).</summary>
     private void Wake()
     {
         if (!dormant)
             return;
         Activate();
-        decideTimer = 0;
-        if (!second)
-            StartBossMusic();
+        Facing = FacingToPlayer();
+        walkDir = Facing;
+        animTick = 0;
+        decideTimer = decideFirst;
+        if (forcedThrowFirst >= 0)
+            throwTimer = forcedThrowFirst;
         Fsm.SetState(eMummyState.Walk);
     }
 
-    private AnimSet.Anim WalkAnim => second ? aRed : aPurple;
-
-    private void Pose(int frame)
+    /// <summary>Khung hiện tại: walk [0,1,2,1] theo đồng hồ anim, bảng màu đỏ khi đang nháy lúc ném.</summary>
+    private void Show()
     {
-        if (Anim != null && WalkAnim != null)
-            Anim.SetFrame(WalkAnim, frame);
-    }
-
-    /// <summary>Đi ⇒ chạy anim walk (khung 8 tick — ước lượng 05); đứng ⇒ giữ khung 0.</summary>
-    private void PlayWalk(bool moving)
-    {
-        if (Anim == null || WalkAnim == null)
+        var a = flashRed ? aRed : aPurple;
+        if (Anim == null || a == null || a.frames == null || a.frames.Length == 0)
             return;
-        if (moving)
-        {
-            if (!Anim.IsPlaying(WalkAnim) || Anim.Done)
-                Anim.Play(WalkAnim, true);
-        }
-        else if (!Anim.IsPlaying(WalkAnim) || !Anim.Done || Anim.FrameIndex != 0)
-            Anim.SetFrame(WalkAnim, 0);
+        int k = dormant ? 0 : (animTick / animStep) % a.frames.Length;
+        Anim.SetFrame(a, k);
     }
 
-    /// <summary>Quyết định hướng đi (kẹp 2 phía / lang thang).</summary>
+    /// <summary>Harness: đổi hướng đi ngay (đang Walk).</summary>
+    public void ForceTurn(int dir)
+    {
+        if (dir != walkDir)
+        {
+            walkDir = dir;
+            turns++;
+        }
+    }
+
+    /// <summary>Harness: bắt đầu tư thế ném ngay (đang Walk, không khựng).</summary>
+    public void ForceThrow()
+    {
+        if (Fsm.Is(eMummyState.Walk) && !Stunned)
+            Fsm.SetState(eMummyState.Throw);
+    }
+
+    /// <summary>Quyết định hướng: Simon quay lưng ⇒ tới; Simon nhìn về Mummy ⇒ dải |dx| nearPx / farPx.</summary>
     private void Decide()
     {
         decisions++;
-        decideTimer = Roll(decideMin, decideSpan);
+        if (harnessPlan)
+            return;
         var p = World.Player;
-        if (p == null)
-        {
-            walkDir = 0;
+        if (p == null || !p.Alive)
             return;
-        }
-        if (World.Rng.Next(100) < wanderPct)
-        {
-            walkDir = World.Rng.Next(2) == 0 ? -1 : 1;
-            targetX = int.MinValue;
+        int dx = p.X - X;
+        if (dx == 0)
             return;
+        int toward = dx > 0 ? 1 : -1, ad = Mathf.Abs(dx), d = walkDir;
+        bool behind = p.Facing == toward;   // Simon nhìn cùng chiều Mummy→Simon ⇒ Mummy ở sau lưng
+        if (behind || ad >= farPx)
+            d = toward;
+        else if (ad < nearPx)
+            d = -toward;
+        if (d != walkDir)
+        {
+            walkDir = d;
+            turns++;
         }
-        // bên của mình: con đang ở bên PHẢI con kia giữ phía phải Simon (một mình ⇒ phía mình đang đứng so với Simon)
-        int side;
-        if (PartnerAlive() && partner.X != X)
-            side = X > partner.X ? 1 : -1;
-        else
-            side = X >= p.X ? 1 : -1;
-        targetX = p.X + side * keepDx;
-        int d = targetX - X;
-        walkDir = Mathf.Abs(d) <= standDx ? 0 : (d > 0 ? 1 : -1);
+    }
+
+    /// <summary>Đi 1 tick; ra ngoài [cx + screenMin, cx + screenMax] thì đứng tại chỗ (vẫn "đi" — anim chạy).</summary>
+    private void Step()
+    {
+        int cx = World.CameraCtl != null ? World.CameraCtl.X : 0;
+        int nx = Fixed.ToPx(fx + walkDir * speed);
+        if (nx < cx + screenMin || nx > cx + screenMax)
+            return;
+        StepX(walkDir * speed);
     }
 
     private void Fall()
@@ -289,25 +358,31 @@ public class MummyMan : BossBase
     {
         if (bandagePrefab == null)
             return;
+        bool high;
+        if (!string.IsNullOrEmpty(forcedHeights) && throws < forcedHeights.Length)
+            high = forcedHeights[throws] != 'L';
+        else
+            high = World.Rng.Next(2) == 0;
         throws++;
-        var b = World.Spawn(bandagePrefab, X + Facing * bandageFront, Y - bandageAbove, Facing);
+        var b = World.Spawn(bandagePrefab, X, Y - (high ? aboveHigh : aboveLow), Facing) as MummyBandage;
         if (b != null)
-            b.vx = Facing * bandageSpeed;
+            b.Launch(Facing * bandageSpeed, waveAmp, wavePeriod, bandageInset);
     }
 
     /// <summary>Thanh ENEMY = máu còn của cả hai con (hết máu tính 0).</summary>
     protected override int BarValue()
     {
-        int cur = Health.Current, max = Health.Max;
+        int cur = Mathf.Max(0, Health.Current), max = Health.Max;
         if (partner != null)
         {
-            cur += partner.Health.Current;
-            max += partner.Health.Max;
+            if (partner.SpawnTick == partnerSpawnTick)
+                cur += Mathf.Max(0, partner.Health.Current);
+            max += Health.Max;   // 2 con cùng máu tối đa
         }
-        return max > 0 ? (Mathf.Max(0, cur) * GameSession.MAX_HP + max - 1) / max : 0;
+        return max > 0 ? (cur * GameSession.MAX_HP + max - 1) / max : 0;
     }
 
-    /// <summary>Con đầu bị hạ khi con kia còn ⇒ lửa + biến mất (không điểm); con cuối ⇒ chuỗi chết boss.</summary>
+    /// <summary>Con đầu bị hạ khi con kia còn ⇒ +điểm (video: MỖI con +3000) + lửa + biến mất; con cuối ⇒ chuỗi chết boss.</summary>
     protected override void Die()
     {
         if (PartnerAlive())
@@ -315,10 +390,13 @@ public class MummyMan : BossBase
             defeated = true;
             hidden = true;
             stunTicks = 0;
+            if (Score > 0)
+                GameRules.AddScore(Score);
             FxSprite.Spawn(World, "bossdeath_m", X, Y - deathFxUp, deathFxTicks);
             if (CvgpDebug.LogState)
-                CvgpDebug.Log("[Boss] MummyMan " + (second ? "đỏ" : "tím") + " hạ — còn 1 con");
+                CvgpDebug.Log("[Boss] MummyMan " + (second ? "trái" : "phải") + " hạ ⇒ +" + Score + " — còn 1 con");
             partner.RefreshBar();
+            GameSession.Current.NotifyChanged();
             Kill();
             RaiseDefeated();
             return;

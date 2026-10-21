@@ -1,0 +1,4 @@
+# 1876 tick, hash fb941655
+# CVGP 19 BossB24Probe kịch bản 'mummy_room_holy': PHÒNG THẬT: Simon trên khối trái (1302,112) quay phải ném 9 lọ nước thánh đúng mốc video Map_3 (f6074 … f6717 tính từ khoá f5931), không bất tử: Mummy chạm lọ/lửa đứng yên, −1 vạch mỗi đòn (cách ≥ 32 tick), băng gạc bay dưới khối không trúng Simon
+-*286 Sub*1 -*146 Sub*1 -*165 Sub*1 -*163 Sub*1 -*164 Sub*1 -*161 Sub*1
+-*161 Sub*1 -*155 Sub*1 -*166 Sub*1 -*300

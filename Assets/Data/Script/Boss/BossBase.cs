@@ -37,6 +37,9 @@ public abstract class BossBase : EnemyBase
     [NonSerialized] protected bool holyTouch;
 
     protected int hitStunTicks, invincibleTicks, deathFxTicks, deathFxUp, crystalDelay, crystalScreenX, crystalY;
+    /// <summary>CVM3 09: khựng sau khi rời nước thánh (mặc định = hitStunTicks) + quả cầu đứng yên trước khi rơi (mặc định 0) —
+    /// khoá tuỳ chọn Boss.&lt;id&gt;.holyStunTicks / crystalDelayTicks / crystalHoverTicks (Mummy Men đo video; boss khác không có khoá ⇒ y nguyên).</summary>
+    protected int holyStunTicks, crystalHoverTicks;
     /// <summary>ConfigBoss.stopwatchAffects (wiki: Phantom Bat, Queen Medusa).</summary>
     protected bool stopwatchAffects;
     protected AnimSet.Anim aHurt;
@@ -73,6 +76,10 @@ public abstract class BossBase : EnemyBase
         crystalDelay = Mathf.RoundToInt(ItemPickup.Param(cfg, eItemId.MagicCrystal, "spawnDelayTicks", 152));
         crystalScreenX = Mathf.RoundToInt(ItemPickup.Param(cfg, eItemId.MagicCrystal, "spawnScreenX", 128));
         crystalY = Mathf.RoundToInt(ItemPickup.Param(cfg, eItemId.MagicCrystal, "spawnY", 104));
+        holyStunTicks = HasParam(cfg, "holyStunTicks") ? PInt(cfg, "holyStunTicks", hitStunTicks) : hitStunTicks;
+        if (HasParam(cfg, "crystalDelayTicks"))
+            crystalDelay = PInt(cfg, "crystalDelayTicks", crystalDelay);
+        crystalHoverTicks = HasParam(cfg, "crystalHoverTicks") ? PInt(cfg, "crystalHoverTicks", 0) : 0;
         InvincibleOnHit = invincibleTicks;
         if (animSet != null && animSet.Has("hurt"))
             aHurt = animSet.Get("hurt");
@@ -83,6 +90,8 @@ public abstract class BossBase : EnemyBase
     /// <summary>Tham số hành vi (mặc định ConfigActorParam "Boss.&lt;bossId&gt;"; CVGP 18: Phantom Bat bản thường đọc "Enemy.PhantomBatMinor").</summary>
     protected virtual int PInt(GameConfig cfg, string key, int fallback) { return BossParams.Int(cfg, bossId, key, fallback); }
     protected virtual int PFixed(GameConfig cfg, string key, float fallback) { return BossParams.Fixed256(cfg, bossId, key, fallback); }
+    /// <summary>Có khoá tuỳ chọn ConfigActorParam "Boss.&lt;bossId&gt;.key" (không log lỗi khi thiếu — CVM3 09).</summary>
+    protected bool HasParam(GameConfig cfg, string key) { return cfg != null && cfg.actorParams != null && cfg.GetParam(bossId, key) != null; }
     /// <summary>Dùng thanh ENEMY của HUD (CVGP 18: Phantom Bat bản thường là enemy thường ⇒ false).</summary>
     protected virtual bool UsesEnemyBar => true;
     /// <summary>Đổi nhạc sang nhạc boss khi bắt đầu đánh (CVGP 18: bản thường ⇒ false).</summary>
@@ -152,7 +161,7 @@ public abstract class BossBase : EnemyBase
         }
         holyTouch = !dormant && TouchingHolyWater();
         if (holyTouch)
-            stunTicks = Mathf.Max(stunTicks, hitStunTicks);
+            stunTicks = Mathf.Max(stunTicks, holyStunTicks);
         if (stunTicks > 0)
         {
             stunTicks--;
@@ -256,7 +265,10 @@ public abstract class BossBase : EnemyBase
         int cx = World.CameraCtl != null ? World.CameraCtl.X : 0;
         var it = ItemDrops.Spawn(World, eItemId.MagicCrystal, cx + crystalScreenX, crystalY);
         if (it != null)
+        {
+            it.holdTicks = crystalHoverTicks;
             OnCrystalSpawned(it);
+        }
         if (CrystalSpawned != null)
             CrystalSpawned(this, it);
         Kill();

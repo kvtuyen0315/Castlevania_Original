@@ -460,6 +460,15 @@ MonoBehaviour:
       c\u1EA7u thang tr\xE1i \u2014 \xF4 (6,10)"
     source: "wiki:Bosses#Mummy Men + Stages 7-9#Stage 9 (Pot Roast \u1EDF kh\u1ED1i
       th\u1EA5p nh\u1EA5t c\u1EA7u thang tr\xE1i ph\xF2ng boss)"
+  - objectId: MummyMan_X83_9
+    stage: 9
+    container: 103
+    item: 20
+    note: "ph\xF2ng Mummy TH\u1EACT (section MummyMan): kh\u1ED1i th\u1EA5p nh\u1EA5t
+      c\u1EA7u thang tr\xE1i \u2014 \xF4 (83,9) (CVM3 05 Breakable)"
+    source: "video:Boss_Map_3 7.60 s f228 (kh\u1ED1i th\xE0nh \u0111en, th\u1ECBt
+      n\u01B0\u1EDBng r\u01A1i \u2014 Simon \u0103n +6 v\u1EA1ch f302\u2013322);
+      wiki:Stages 7-9#Stage 9 (Pot Roast kh\u1ED1i th\u1EA5p nh\u1EA5t ph\xF2ng boss)"
   - objectId: TEA_C1
     stage: 4
     container: 102

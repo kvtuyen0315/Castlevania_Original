@@ -62,6 +62,7 @@ CryptA_X16_9,2,BreakableBlock,None,"khối trên (ô (16,9)) — vỡ không ra 
 CryptB_X29_6,2,BreakableBlock,None,"khối trên-phải (ô (29,6)) — phá để thả xuống, bí mật = ngồi trên khối thấp (SecretTrigger)",video:Map_1 2:19.05; wiki:Secrets Bonuses Stage 2
 PhantomBat_X43_9,3,BreakableBlock,DoubleShot,"khối PHẢI bệ chân thang phòng boss (ô (43,9))",video:Map_1 3:17.62–3:18.0 (II rơi ra); wiki:Secrets Shot Multiplier Stage 3
 BossMummy_X6_10,9,BreakableBlock,PotRoast,"phòng Mummy thử (Arena, CVGP 19): khối thấp nhất cầu thang trái — ô (6,10)",wiki:Bosses#Mummy Men + Stages 7-9#Stage 9 (Pot Roast ở khối thấp nhất cầu thang trái phòng boss)
+MummyMan_X83_9,9,BreakableBlock,PotRoast,"phòng Mummy THẬT (section MummyMan): khối thấp nhất cầu thang trái — ô (83,9) (CVM3 05 Breakable)","video:Boss_Map_3 7.60 s f228 (khối thành đen, thịt nướng rơi — Simon ăn +6 vạch f302–322); wiki:Stages 7-9#Stage 9 (Pot Roast khối thấp nhất phòng boss)"
 TEA_C1,4,WallCandle,Cross,nến TowerEntranceA x 80 y 128,"video:Map_2 vỡ f215 (0:07.17) → thập tự rơi f225–237 (dải ảnh tea80.png), nhặt f274 0:09.13 (HUD rìu → thập tự); wiki Stage 4 #1 ""Boomerang nến đầu tiên"""
 TEA_C2,4,WallCandle,RedMoneyBag,nến TowerEntranceA x 144 y 32,"video:Map_2 vỡ f715 → túi đỏ f726 (err 0.066), +100 f734 (0:24.47)"
 TEA_C3,4,WallCandle,LargeHeart,nến TowerEntranceA x 208 y 128,"video:Map_2 vỡ f314 → tim lớn f335 (0.062), +5 f341 (0:11.37)"

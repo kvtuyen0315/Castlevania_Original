@@ -1,0 +1,29 @@
+{
+ "note": "CVM3 09 — vật thể phòng boss Map 3 (NGUỒN DUY NHẤT): routine 10 (gen_map3_objects.py / Map3Objects.json + builder) PHẢI chép/đọc mục bossArenas dưới đây vào section MummyMan, không đặt tay lần nữa. Cùng khuôn Tools/cvm2/map2_boss.json (name, prefab, zoneMinX/MaxX, useConfigPosition, bossPosition, screenWalls). candles = số đo vị trí nến trong phòng (routine 10 đặt chính thức + đo nội dung còn thiếu); harness 09 (Map3BossRoom) chỉ dựng nến có content. Toạ độ px section MummyMan (pivot Mummy = CHÂN, nến = đáy ô).",
+ "sections": [
+  {
+   "id": "MummyMan",
+   "bossArenas": [
+    {
+     "name": "BossArena_MummyMen",
+     "prefab": "Assets/Data/Prefabs/Boss/MummyMan.prefab",
+     "zoneMinX": 0,
+     "zoneMaxX": 4096,
+     "useConfigPosition": false,
+     "bossPosition": [1503, 176],
+     "screenWalls": true,
+     "src": "CVM3 09: con ĐẦU (phải) sinh ở (1503, 176), con 2 ở 1503 − partnerDxPx 191 = 1312 — cả hai đứng chờ khung 0 quay trái (video Map_3 f5583–5990 thấy từ cx ~1100, Boss_Map_3 f37–433); sinh ngay khi vào section (đứng yên, không va chạm tới khi thức). Camera khoá cx 1280 khi Simon x ≥ 1408 (CVM3 05 bossLockCx; video Map_3 3:17.70 f5931) ⇒ tường mép màn; nhạc boss khoá + 60, thức khoá + 120 (ConfigActorParam Boss.MummyMan)"
+    }
+   ],
+   "candles": [
+    {"x": 1311, "y": 80, "content": "Dagger", "src": "video:Map_3 f5700–5774 nến (1311, đáy 81) vỡ ⇒ dao găm rơi xuống đỉnh khối (f5785–5835); wiki:Stages 7-9#Stage 9 (Dagger nến phòng boss)"},
+    {"x": 1375, "y": 128, "content": "", "src": "video:Map_3 f5730–5845 nến (1375, đáy 129) vỡ trước khi khoá — nội dung: routine 10 đo"},
+    {"x": 1439, "y": 128, "content": "", "src": "video:Map_3 f5820–5901 nến (1439, đáy 129) vỡ trước khi khoá — nội dung: routine 10 đo"},
+    {"x": 1503, "y": 128, "content": "SmallHeart", "src": "video:Map_3 f5885–6838 nến (1503, đáy 129) — Simon nhảy quất f6838–6841 sau trận ⇒ II rơi f6850, nhặt f6862 (HUD II f6864): tim nhỏ đổi thành Double Shot theo luật ItemDrops.Resolve (vũ khí phụ đã trúng ≥ 10 lần — 9 lọ nước thánh vào 2 Mummy; wiki:Items#Double Shot) — không phải vật Mummy rơi"}
+   ],
+   "blocks": [
+    {"col": 83, "row": 9, "objectId": "MummyMan_X83_9", "content": "PotRoast", "src": "CVM3 05 Breakable (83,9) + ConfigDrop MummyMan_X83_9 (CVM3 09) — video:Boss_Map_3 7.60 s f228; StageWorld.SpawnSectionProps tự sinh khối"}
+   ]
+  }
+ ]
+}

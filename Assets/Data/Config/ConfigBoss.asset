@@ -89,28 +89,42 @@ MonoBehaviour:
     entityCount: 2
     hitsWeak:
       has: 1
-      value: 48
+      value: 16
     hitsStrong:
       has: 1
-      value: 32
+      value: 16
     hitsScope: 1
-    src_hits: "wiki:Bosses#Mummy Men (48/32 kh\xF4ng n\xF3i t\u1ED5ng hay m\u1ED7i
-      con \u2014 ch\u1ECDn T\u1ED4NG 2 con theo suy lu\u1EADn 48 = 2 \xD7 24; \xA74)"
+    src_hits: "\u0111o:cvm3-09 video:Boss_Map_3 12.5\u201340.8 s (f374\u20131223,
+      ch\u1EC9 chuy\u1EC3n \u0111\u1ED9ng \u2014 kh\xE1c b\u1EA3ng m\xE0u): roi c\u1EA5p
+      3 (d\xE0i \u2014 Strong) 16 l\u1EA7n ENEMY \u22121 f452\u20131005 (16 v\u1EA1ch
+      chung 2 con), con 1 ch\u1EBFt sau 9 v\u1EA1ch (f848: 8 \u0111\xF2n + 1 \u0111\xF2n
+      con 2), con 2 sau 7 n\u1EEFa \u21D2 m\u1ED7i con 8 \u0111\xF2n; video:Map_3
+      3:17.7\u20133:50.7 (f5931\u20136920) ch\u1EC9 n\u01B0\u1EDBc th\xE1nh (Weak):
+      16 l\u1EA7n \u22121 v\u1EA1ch qua 9 l\u1ECD \u21D2 l\u1ECD/l\u1EEDa c\u0169ng
+      1 v\u1EA1ch/\u0111\xF2n (nh\u01B0 Medusa CVM2 09); wiki 48/32 sai so video
+      (H1)"
     score:
       has: 1
       value: 3000
-    src_score: 
+    src_score: "video:Map_3 3:42.87 (f6686) + 3:45.70 (f6771): M\u1ED6I con +3000;
+      video:Boss_Map_3 f848 +3100 (= 3000 + 100 b\u0103ng v\u1EE1 c\xF9ng nh\xE1t)
+      / f1005 +3000 \u2014 wiki 3000 kh\xF4ng n\xF3i r\xF5"
     stopwatchAffects: 0
     weakPoint: "to\xE0n th\xE2n"
-    attacks: "Lang thang trong ph\xF2ng; th\u1EC9nh tho\u1EA3ng n\xE9m b\u0103ng
-      g\u1EA1c; k\u1EB9p Simon t\u1EEB hai ph\xEDa"
-    itemsInRoom: "Pot Roast (kh\u1ED1i th\u1EA5p nh\u1EA5t c\u1EA7u thang tr\xE1i)"
+    attacks: "\u0110\u1EE9ng ch\u1EDD t\u1EDBi kho\xE1 + 120 tick; \u0111i 0.75 gi\u1EEF
+      c\u1EF1 ly 46\u201356 px tr\u01B0\u1EDBc m\u1EB7t Simon (sau l\u01B0ng th\xEC
+      \xE1p s\xE1t); m\u1ED7i ~114 tick \u0111\u1EE9ng nh\xE1y \u0111\u1ECF 40 tick
+      r\u1ED3i n\xE9m b\u0103ng g\u1EA1c s\xF3ng (video Map_3 / Boss_Map_3)"
+    itemsInRoom: "Pot Roast (kh\u1ED1i th\u1EA5p nh\u1EA5t c\u1EA7u thang tr\xE1i
+      \u2014 \xF4 (83,9)); n\u1EBFn dao g\u0103m (x 1311); n\u1EBFn ph\u1EA3i (x
+      1503 \u2014 tim nh\u1ECF \u21D2 II khi v\u0169 kh\xED ph\u1EE5 \u0111\xE3 tr\xFAng
+      \u2265 10 l\u1EA7n)"
     moveSpeed:
       has: 1
-      value: 0.375
-    src_moveSpeed: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video)
-      \u2014 routine 19; wiki Block 3 'boss ch\u1EADm nh\u01B0ng kho\u1EBB' \u2014
-      ch\u1EADm h\u01A1n Zombie 0.875 v\xE0 Spear Knight 0.5"
+      value: 0.75
+    src_moveSpeed: "\u0111o:cvm3-09 4 \u0111o\u1EA1n \u0111i s\u1EA1ch (Map_3 f5992\u20136023
+      / f6027\u20136051 / f6047\u20136100, Boss f435\u2013494): h\u1ED3i quy 0.741\u20130.767
+      (TB 0.752) px/tick"
     source: wiki:Bosses#Mummy Men
   - id: 4
     phase: 1

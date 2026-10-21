@@ -1,3 +1,3 @@
 # 900 tick, hash e78a739d
-# CVGP 19 BossB24Probe kịch bản 'mummy_pattern': Mummy Men: Simon (128,176) đứng giữa sàn: 2 con (tím (216,176), đỏ cách 40 về trái) thức cùng tick; đi 0.375 px/tick, kẹp 2 phía (con phải nhắm Simon + 40, con trái Simon − 40), ném băng ngang 1 px/tick ở chân − 28 (đầu 64 + tư thế 16; sau 128–224)
+# CVGP 19 BossB24Probe kịch bản 'mummy_pattern': CVM3 09 (video): phòng thử, Simon (128,176) đứng quay phải; con đầu (216,176) + con 2 cách 191 về trái đứng chờ khung 0 quay trái; camera khoá tick đầu ⇒ nhạc boss khoá + 60, CẢ HAI thức khoá + 120 (bước đầu về Simon); đi 0.75 px/tick, khung [0,1,2,1] × 16; mỗi 16 tick quyết định: Simon quay lưng ⇒ tới, nhìn về ⇒ |dx| < 46 đi xa / ≥ 56 đi tới; ném: con đầu sau 64 tick đi, con 2 sau 120 (sau đó mỗi 66 tick đi, 50 %): đứng 48 tick, nháy đỏ↔tím mỗi 2 tick, tick 40 băng ở X Mummy, tâm chân − 31 / − 15, ±1.5 px/tick, y + 24·sin(2πt/102), mất cách mép màn 8
 R*1 -*899

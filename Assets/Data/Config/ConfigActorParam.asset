@@ -2744,32 +2744,61 @@ MonoBehaviour:
     key: hitStunTicks
     value:
       has: 1
-      value: 10
+      value: 0
     min:
-      has: 0
+      has: 1
       value: 0
     max:
-      has: 0
-      value: 0
+      has: 1
+      value: 2
     unit: tick
-    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
-      routine 19; nh\u01B0 Phantom Bat (\u0111o 14)"
-    note: 
+    source: "\u0111o:cvm3-09 video:Boss_Map_3 12.5\u201340.8 s (f374\u20131223, ch\u1EC9
+      chuy\u1EC3n \u0111\u1ED9ng \u2014 kh\xE1c b\u1EA3ng m\xE0u): ENEMY \u22121
+      l\xFAc Mummy \u0111ang \u0111i f690 (x 1447\u21921449\u21921452) v\xE0 f840
+      (1496\u21921497\u21921500) \u2014 kh\xF4ng \u0111\u1EE9ng l\u1EA1i sau \u0111\xF2n
+      roi (Phantom Bat 10 / Medusa 10 th\xEC c\xF3)"
+    note: "tr\xFAng roi/dao kh\xF4ng kh\u1EF1ng"
   - actor: Boss.MummyMan
     key: invincibleTicks
     value:
       has: 1
-      value: 16
+      value: 32
     min:
-      has: 0
-      value: 0
+      has: 1
+      value: 30
     max:
-      has: 0
-      value: 0
+      has: 1
+      value: 34
     unit: tick
-    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
-      routine 19; nh\u01B0 Phantom Bat (suy lu\u1EADn 14)"
-    note: 
+    source: "\u0111o:cvm3-09 video:Map_3 3:17.7\u20133:50.7 (f5931\u20136920): trong
+      1 l\u1EEDa n\u01B0\u1EDBc th\xE1nh 2\u20133 l\u1EA7n ENEMY \u22121 c\xE1ch
+      30 / 32 / 34 tick (f6183\u21926200\u21926215, f6270\u21926286, f6435\u21926450);
+      video:Boss_Map_3 12.5\u201340.8 s (f374\u20131223, ch\u1EC9 chuy\u1EC3n \u0111\u1ED9ng
+      \u2014 kh\xE1c b\u1EA3ng m\xE0u) 2 nh\xE1t roi li\u1EC1n nh\u1EA5t c\xE1ch
+      34 tick (f823\u2192840)"
+    note: "D\xD9NG CHUNG c\u1EA3 c\u1EB7p (MummyMan.OnHurt): video Map_3 f6186\u20136216
+      c\u1EA3 2 \u0111\u1EE9ng trong l\u1EEDa nh\u01B0ng ch\u1EC9 \u22121 m\u1ED7i
+      ~32 tick, 2 video 0 l\u1EA7n \u22122 c\xF9ng l\xFAc; l\u1EEDa \u0111\xE1nh
+      l\u1EA1i m\u1ED7i 8 tick \u21D2 tr\xFAng m\u1ED7i 32"
+  - actor: Boss.MummyMan
+    key: holyStunTicks
+    value:
+      has: 1
+      value: 12
+    min:
+      has: 1
+      value: 11
+    max:
+      has: 1
+      value: 13
+    unit: tick
+    source: "\u0111o:cvm3-09 video:Map_3 3:17.7\u20133:50.7 (f5931\u20136920): Mummy
+      \u0111\u1EE9ng y\xEAn (khung anim \u0111\u1EE9ng) su\u1ED1t l\xFAc ch\u1EA1m
+      l\u1ECD/l\u1EEDa; \u0111i l\u1EA1i 13 tick sau khi l\u1EEDa l\u1ECD 1 t\u1EAFt
+      (f6101\u20136149, l\u1EEDa f6104.5\u20136142.5) v\xE0 11 tick sau l\u1EEDa
+      l\u1ECD 5 (f6422\u20136468, l\u1EEDa t\u1EDBi f6462.5) \u2014 wiki \"ho\xE1
+      \u0111\xE1\""
+    note: "kh\u1EF1ng th\xEAm sau khi r\u1EDDi n\u01B0\u1EDBc th\xE1nh"
   - actor: Boss.MummyMan
     key: deathFxTicks
     value:
@@ -2782,14 +2811,15 @@ MonoBehaviour:
       has: 0
       value: 0
     unit: tick
-    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
-      routine 19; c\u1EE5m l\u1EEDa bossdeath_m nh\u01B0 Phantom Bat (\u0111o 14)"
+    source: "\u0111o:cvm3-09 video:Map_3 3:17.7\u20133:50.7 (f5931\u20136920) Mummy
+      2 f6770\u20136799: bossdeath_m 0,1,2,0,1,2,0 m\u1ED7i ~9 tick (Tools/cvm3/boss9m_model.py
+      \xA77) = Phantom Bat (\u0111o 14)"
     note: 
   - actor: Boss.MummyMan
     key: deathFxUpPx
     value:
       has: 1
-      value: 20
+      value: 24
     min:
       has: 0
       value: 0
@@ -2797,30 +2827,15 @@ MonoBehaviour:
       has: 0
       value: 0
     unit: px
-    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
-      routine 19; t\xE2m th\xE2n sprite 16\xD748 (\u0111\u1EE5c h\xE0ng 8\u201347)"
-    note: 
-  - actor: Boss.MummyMan
-    key: wakeDistancePx
-    value:
-      has: 1
-      value: 128
-    min:
-      has: 0
-      value: 0
-    max:
-      has: 0
-      value: 0
-    unit: px
-    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
-      routine 19; th\u1EE9c (c\u1EA3 2) khi Simon c\xE1ch con g\u1EA7n nh\u1EA5t
-      < n\u1EEDa m\xE0n"
-    note: 
+    source: "\u0111o:cvm3-09 video:Map_3 3:17.7\u20133:50.7 (f5931\u20136920) f6686
+      / f6770: t\xE2m c\u1EE5m l\u1EEDa bossdeath_m (24\xD732) ysec 153 khi ch\xE2n
+      Mummy ysec 177 \u21D2 t\xE2m = ch\xE2n \u2212 24, x = X Mummy (1360 / 1366)"
+    note: "t\xE2m l\u1EEDa so v\u1EDBi ch\xE2n"
   - actor: Boss.MummyMan
     key: partnerDxPx
     value:
       has: 1
-      value: 40
+      value: 191
     min:
       has: 0
       value: 0
@@ -2828,151 +2843,51 @@ MonoBehaviour:
       has: 0
       value: 0
     unit: px
-    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
-      routine 19; con th\u1EE9 hai sinh c\xE1ch con \u0111\u1EA7u 40 px v\u1EC1 b\xEAn
-      tr\xE1i"
-    note: 
+    source: "\u0111o:cvm3-09 video:Map_3 3:17.7\u20133:50.7 (f5931\u20136920) f5583\u20135990
+      + video:Boss_Map_3 12.5\u201340.8 s (f374\u20131223, ch\u1EC9 chuy\u1EC3n \u0111\u1ED9ng
+      \u2014 kh\xE1c b\u1EA3ng m\xE0u) f37\u2013433: 2 Mummy \u0111\u1EE9ng ch\u1EDD
+      \u1EDF x 1312 (Boss 1311) v\xE0 1503, khung 0 quay tr\xE1i, tr\u01B0\u1EDBc
+      khi kho\xE1"
+    note: "con 2 sinh c\xE1ch con \u0111\u1EA7u v\u1EC1 tr\xE1i"
   - actor: Boss.MummyMan
-    key: decideMinTicks
+    key: musicDelayTicks
     value:
       has: 1
-      value: 48
+      value: 60
     min:
-      has: 0
-      value: 0
+      has: 1
+      value: 50
     max:
-      has: 0
-      value: 0
+      has: 1
+      value: 72
     unit: tick
-    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
-      routine 19; wiki: 'lang thang' \u2014 \u0111\u1ED5i \xFD m\u1ED7i 0.8\u20131.9
-      s"
-    note: 
+    source: "\u0111o:cvm3-02 MAP3_TIMELINE \xA73d/\xA77: Poison Mind thay Wicked
+      Child \u2248 1.2 s sau kho\xE1 (Map_3 198.9 s, cx 1280 f5931) v\xE0 \u2248
+      0.83 s (Boss_Map_3 13.3 s, kho\xE1 f374) \u21D2 TB 60 (\xB10.3 s c\u1EEDa s\u1ED5
+      0.5 s)"
+    note: "sau khi camera KHO\xC1 (tr\u01B0\u1EDBc khi th\u1EE9c)"
   - actor: Boss.MummyMan
-    key: decideSpanTicks
+    key: wakeDelayTicks
     value:
       has: 1
-      value: 64
+      value: 120
     min:
-      has: 0
-      value: 0
+      has: 1
+      value: 119
     max:
-      has: 0
-      value: 0
+      has: 1
+      value: 121
     unit: tick
-    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
-      routine 19; ng\u1EABu nhi\xEAn \u0111\u1EC1u [48, 112]"
-    note: 
+    source: "\u0111o:cvm3-09 video:Map_3 3:17.7\u20133:50.7 (f5931\u20136920) kho\xE1
+      f5931 \u2192 b\u01B0\u1EDBc \u0111\u1EA7u f5992 (119.5\u2013120.9) + video:Boss_Map_3
+      12.5\u201340.8 s (f374\u20131223, ch\u1EC9 chuy\u1EC3n \u0111\u1ED9ng \u2014
+      kh\xE1c b\u1EA3ng m\xE0u) kho\xE1 f374 \u2192 b\u01B0\u1EDBc \u0111\u1EA7u
+      f434/435 (119.5\u2013120.2) \u2014 c\u1EA3 2 con c\xF9ng l\xFAc, Simon \u1EDF
+      x kh\xE1c nhau \u21D2 theo TH\u1EDCI GIAN kh\xF4ng theo kho\u1EA3ng c\xE1ch
+      (thay wakeDistancePx 128 \u01B0\u1EDBc l\u01B0\u1EE3ng CVGP 19)"
+    note: "\u0111\u1EBFm t\u1EEB khi camera kho\xE1"
   - actor: Boss.MummyMan
-    key: keepDxPx
-    value:
-      has: 1
-      value: 40
-    min:
-      has: 0
-      value: 0
-    max:
-      has: 0
-      value: 0
-    unit: px
-    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
-      routine 19; wiki: 'k\u1EB9p Simon t\u1EEB hai ph\xEDa' \u2014 m\u1ED7i con
-      nh\u1EAFm 1 b\xEAn Simon c\xE1ch 40 px"
-    note: 
-  - actor: Boss.MummyMan
-    key: wanderPct
-    value:
-      has: 1
-      value: 25
-    min:
-      has: 0
-      value: 0
-    max:
-      has: 0
-      value: 0
-    unit: '%'
-    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
-      routine 19; wiki: '\u0111i lang thang' \u2014 1/4 l\u1EA7n ch\u1ECDn h\u01B0\u1EDBng
-      ng\u1EABu nhi\xEAn"
-    note: 
-  - actor: Boss.MummyMan
-    key: standDxPx
-    value:
-      has: 1
-      value: 4
-    min:
-      has: 0
-      value: 0
-    max:
-      has: 0
-      value: 0
-    unit: px
-    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
-      routine 19; t\u1EDBi \u0111\xEDch \xB14 px th\xEC \u0111\u1EE9ng"
-    note: 
-  - actor: Boss.MummyMan
-    key: throwFirstTicks
-    value:
-      has: 1
-      value: 64
-    min:
-      has: 0
-      value: 0
-    max:
-      has: 0
-      value: 0
-    unit: tick
-    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
-      routine 19; wiki: 'th\u1EC9nh tho\u1EA3ng n\xE9m b\u0103ng g\u1EA1c' \u2014
-      l\u1EA7n \u0111\u1EA7u sau ~1 s"
-    note: 
-  - actor: Boss.MummyMan
-    key: throwMinTicks
-    value:
-      has: 1
-      value: 128
-    min:
-      has: 0
-      value: 0
-    max:
-      has: 0
-      value: 0
-    unit: tick
-    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
-      routine 19; th\u1EC9nh tho\u1EA3ng: m\u1ED7i con 2.1\u20133.7 s"
-    note: 
-  - actor: Boss.MummyMan
-    key: throwSpanTicks
-    value:
-      has: 1
-      value: 96
-    min:
-      has: 0
-      value: 0
-    max:
-      has: 0
-      value: 0
-    unit: tick
-    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
-      routine 19; ng\u1EABu nhi\xEAn \u0111\u1EC1u [128, 224]"
-    note: 
-  - actor: Boss.MummyMan
-    key: throwRangePx
-    value:
-      has: 1
-      value: 160
-    min:
-      has: 0
-      value: 0
-    max:
-      has: 0
-      value: 0
-    unit: px
-    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
-      routine 19; ch\u1EC9 n\xE9m khi Simon trong 160 px"
-    note: 
-  - actor: Boss.MummyMan
-    key: throwPoseTicks
+    key: decideTicks
     value:
       has: 1
       value: 16
@@ -2983,45 +2898,15 @@ MonoBehaviour:
       has: 0
       value: 0
     unit: tick
-    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
-      routine 19; \u0111\u1EE9ng l\u1EA1i tr\u01B0\u1EDBc khi n\xE9m (nh\u01B0 t\u01B0
-      th\u1EBF n\xE9m Axe Knight 18)"
-    note: 
+    source: "\u0111o:cvm3-09 video:Map_3 3:17.7\u20133:50.7 (f5931\u20136920): l\xFAc
+      Simon \u0111\u1EE9ng y\xEAn quay ph\u1EA3i tr\xEAn kh\u1ED1i (f6023\u20136763)
+      Mummy \u0111\u1ED5i h\u01B0\u1EDBng xa \u1EDF |dx| 33\u201347 v\xE0 t\u1EDBi
+      \u1EDF 55\u201368 \u2014 m\u1ED7i d\u1EA3i r\u1ED9ng \u2248 12 px = 16 tick
+      \xD7 0.75 \u21D2 quy\u1EBFt \u0111\u1ECBnh m\u1ED7i 16 tick (suy lu\u1EADn
+      t\u1EEB \u0111\u1ED9 r\u1ED9ng d\u1EA3i)"
+    note: "nh\u1ECBp quy\u1EBFt \u0111\u1ECBnh h\u01B0\u1EDBng"
   - actor: Boss.MummyMan
-    key: bandageAbovePx
-    value:
-      has: 1
-      value: 28
-    min:
-      has: 0
-      value: 0
-    max:
-      has: 0
-      value: 0
-    unit: px
-    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
-      routine 19; t\xE2m b\u0103ng \u1EDF ch\xE2n \u2212 28 \u21D2 h\u1ED9p b\u0103ng
-      h\xE0ng ch\xE2n\u221231..ch\xE2n\u221223: ch\u1ED3ng h\u1ED9p Simon \u0110\u1EE8NG
-      (\u221230..\u22121), KH\xD4NG ch\u1ED3ng Simon NG\u1ED2I (\u221222..0) \u2014
-      wiki 'ng\u1ED3i qu\u1EA5t khi ch\xFAng \xE1p s\xE1t'"
-    note: 
-  - actor: Boss.MummyMan
-    key: bandageSpeed
-    value:
-      has: 1
-      value: 1
-    min:
-      has: 0
-      value: 0
-    max:
-      has: 0
-      value: 0
-    unit: px/tick
-    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
-      routine 19; b\u0103ng bay ngang ch\u1EADm nh\u01B0 c\u1EA7u l\u1EEDa (1\u20131.5)"
-    note: 
-  - actor: Boss.MummyMan
-    key: bandageFrontPx
+    key: decideFirstTicks
     value:
       has: 1
       value: 8
@@ -3031,10 +2916,375 @@ MonoBehaviour:
     max:
       has: 0
       value: 0
+    unit: tick
+    source: "\u0111o:cvm3-09 video:Map_3 3:17.7\u20133:50.7 (f5931\u20136920) con
+      tr\xE1i quay xa \u1EDF f5996 (th\u1EE9c + 9 tick, |dx| 10) + video:Boss_Map_3
+      12.5\u201340.8 s (f374\u20131223, ch\u1EC9 chuy\u1EC3n \u0111\u1ED9ng \u2014
+      kh\xE1c b\u1EA3ng m\xE0u) con ph\u1EA3i quay xa \u1EDF f446\u2013448 (th\u1EE9c
+      + 24\u201328 = l\u01B0\u1EE3t th\u1EE9 2 khi l\u01B0\u1EE3t 1 \u1EDF th\u1EE9c
+      + 8 c\xF3 |dx| 46) \u21D2 l\u01B0\u1EDBi 16 tick t\xEDnh t\u1EEB l\xFAc kho\xE1
+      (kho\xE1 + 128 = th\u1EE9c + 8)"
+    note: "l\u01B0\u1EE3t quy\u1EBFt \u0111\u1ECBnh \u0111\u1EA7u sau khi th\u1EE9c"
+  - actor: Boss.MummyMan
+    key: nearPx
+    value:
+      has: 1
+      value: 46
+    min:
+      has: 1
+      value: 44
+    max:
+      has: 1
+      value: 48
     unit: px
-    source: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video) \u2014
-      routine 19; b\u0103ng sinh tr\u01B0\u1EDBc th\xE2n n\u1EEDa sprite"
-    note: 
+    source: "\u0111o:cvm3-09 video:Map_3 3:17.7\u20133:50.7 (f5931\u20136920) 10
+      l\u1EA7n quay XA khi \u0111ang t\u1EDBi (con ph\u1EA3i f6235\u20136731): |dx|
+      33\u201347 (TB 39) = (near \u2212 12, near] \u21D2 46"
+    note: "Simon nh\xECn v\u1EC1 Mummy v\xE0 |dx| < near \u21D2 \u0111i xa"
+  - actor: Boss.MummyMan
+    key: farPx
+    value:
+      has: 1
+      value: 56
+    min:
+      has: 1
+      value: 54
+    max:
+      has: 1
+      value: 58
+    unit: px
+    source: "\u0111o:cvm3-09 video:Map_3 3:17.7\u20133:50.7 (f5931\u20136920) 12
+      l\u1EA7n quay T\u1EDAI khi \u0111ang l\xF9i (kh\xF4ng k\u1EC3 l\xFAc n\xE9m):
+      |dx| 55\u201368 (TB 61) = [far, far + 12) \u21D2 56; video:Boss_Map_3 12.5\u201340.8
+      s (f374\u20131223, ch\u1EC9 chuy\u1EC3n \u0111\u1ED9ng \u2014 kh\xE1c b\u1EA3ng
+      m\xE0u) con 2 k\u1EB9t m\xE9p ph\u1EA3i f927\u20131002 \u1EDF |dx| 48\u201353
+      kh\xF4ng quay (gi\u1EEFa near/far)"
+    note: "|dx| \u2265 far \u21D2 \u0111i t\u1EDBi"
+  - actor: Boss.MummyMan
+    key: animStepTicks
+    value:
+      has: 1
+      value: 16
+    min:
+      has: 1
+      value: 15
+    max:
+      has: 1
+      value: 18
+    unit: tick
+    source: "\u0111o:cvm3-09 video:Map_3 3:17.7\u20133:50.7 (f5931\u20136920) f5992\u20136100
+      (con ph\u1EA3i 8 + 8 + 8 frame) + video:Boss_Map_3 12.5\u201340.8 s (f374\u20131223,
+      ch\u1EC9 chuy\u1EC3n \u0111\u1ED9ng \u2014 kh\xE1c b\u1EA3ng m\xE0u) f435\u2013494:
+      khung 0,1,2,1 m\u1ED7i 8 frame = 16 tick, ch\u1EA1y li\xEAn t\u1EE5c (c\u1EA3
+      l\xFAc n\xE9m, \u0111i t\u1EA1i ch\u1ED7)"
+    note: "tick m\u1ED7i khung walk"
+  - actor: Boss.MummyMan
+    key: throwFirstTicks
+    value:
+      has: 1
+      value: 64
+    min:
+      has: 1
+      value: 62
+    max:
+      has: 1
+      value: 66
+    unit: tick
+    source: "\u0111o:cvm3-09 video:Map_3 3:17.7\u20133:50.7 (f5931\u20136920): con
+      ph\u1EA3i d\u1EEBng n\xE9m \u1EDF f6023.5 = th\u1EE9c + 63 tick \u0111i; video:Boss_Map_3
+      12.5\u201340.8 s (f374\u20131223, ch\u1EC9 chuy\u1EC3n \u0111\u1ED9ng \u2014
+      kh\xE1c b\u1EA3ng m\xE0u) con ph\u1EA3i d\u1EEBng f477 = th\u1EE9c + 86 (l\u1EC7ch
+      +22 \u2014 f448\u2013454 \u0111\u1EE9ng 14 tick kh\xF4ng r\xF5 l\xFD do, \xA76)"
+    note: "con \u0111\u1EA7u (ph\u1EA3i): tick \u0111i tr\u01B0\u1EDBc l\u1EA7n n\xE9m
+      \u0111\u1EA7u"
+  - actor: Boss.MummyMan
+    key: throwFirstPartnerTicks
+    value:
+      has: 1
+      value: 120
+    min:
+      has: 1
+      value: 118
+    max:
+      has: 1
+      value: 122
+    unit: tick
+    source: "\u0111o:cvm3-09 video:Map_3 3:17.7\u20133:50.7 (f5931\u20136920) con
+      tr\xE1i d\u1EEBng n\xE9m f6051 (th\u1EE9c + 118) + video:Boss_Map_3 12.5\u201340.8
+      s (f374\u20131223, ch\u1EC9 chuy\u1EC3n \u0111\u1ED9ng \u2014 kh\xE1c b\u1EA3ng
+      m\xE0u) con tr\xE1i f494 (th\u1EE9c + 120) \u2014 l\u1EC7ch n\u1EEDa chu k\u1EF3
+      (56) v\u1EDBi con ph\u1EA3i"
+    note: "con 2 (tr\xE1i)"
+  - actor: Boss.MummyMan
+    key: throwEveryTicks
+    value:
+      has: 1
+      value: 66
+    min:
+      has: 1
+      value: 64
+    max:
+      has: 1
+      value: 68
+    unit: tick
+    source: "\u0111o:cvm3-09 2 l\u1EA7n n\xE9m li\u1EC1n c\xF9ng con kh\xF4ng b\u1ECB
+      kh\u1EF1ng: video:Map_3 3:17.7\u20133:50.7 (f5931\u20136920) con tr\xE1i d\u1EEBng
+      f6051 \u2192 f6108.5 (115 tick) + video:Boss_Map_3 12.5\u201340.8 s (f374\u20131223,
+      ch\u1EC9 chuy\u1EC3n \u0111\u1ED9ng \u2014 kh\xE1c b\u1EA3ng m\xE0u) con tr\xE1i
+      f494 \u2192 f551 (114 tick) \u2014 tr\u1EEB t\u01B0 th\u1EBF 48 \u21D2 66\u201367"
+    note: "tick \u0111i gi\u1EEFa 2 l\u1EA7n n\xE9m (\u0111\u1EBFm khi Walk)"
+  - actor: Boss.MummyMan
+    key: throwChancePct
+    value:
+      has: 1
+      value: 50
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: '%'
+    source: "suy lu\u1EADn: (\u0111o:cvm3-09 kho\u1EA3ng gi\u1EEFa 2 l\u1EA7n n\xE9m
+      c\xF9ng con) Boss_Map_3 con tr\xE1i 114 / 111 / 108 tick r\u1ED3i 226 (\u2248
+      2 \xD7 113) ; con ph\u1EA3i 378 (\u2248 3 \xD7 126); Map_3 con tr\xE1i 115
+      \u2014 sau l\u1EA7n n\xE9m \u0111\u1EA7u kh\xF4ng ph\u1EA3i l\u01B0\u1EE3t
+      n\xE0o c\u0169ng n\xE9m (2 video: 9 + 11 b\u0103ng, \xEDt h\u01A1n ~1/3 so
+      v\u1EDBi n\xE9m m\u1ECDi l\u01B0\u1EE3t) \u21D2 m\u1ED7i l\u01B0\u1EE3t 50
+      % (ph\xE2n b\u1ED1 th\u1EADt ch\u01B0a r\xF5 \u2014 \xA76); l\u1EA7n n\xE9m
+      \u0110\u1EA6U lu\xF4n n\xE9m (4/4 \u0111\xFAng h\u1EB9n)"
+    note: "t\u1EEB l\u1EA7n n\xE9m th\u1EE9 2"
+  - actor: Boss.MummyMan
+    key: throwRetryTicks
+    value:
+      has: 1
+      value: 114
+    min:
+      has: 1
+      value: 111
+    max:
+      has: 1
+      value: 115
+    unit: tick
+    source: "\u0111o:cvm3-09 b\u1ECF l\u01B0\u1EE3t \u21D2 l\u01B0\u1EE3t k\u1EBF
+      sau \u0111\xFAng 1 chu k\u1EF3 \u0111i + n\xE9m (66 + 48 = 114; Boss_Map_3
+      con tr\xE1i 226 \u2248 2 \xD7 113)"
+    note: "ch\u1EDD th\xEAm khi b\u1ECF l\u01B0\u1EE3t"
+  - actor: Boss.MummyMan
+    key: throwPoseTicks
+    value:
+      has: 1
+      value: 48
+    min:
+      has: 1
+      value: 46
+    max:
+      has: 1
+      value: 51
+    unit: tick
+    source: "\u0111o:cvm3-09 5 l\u1EA7n n\xE9m (Map_3 f6023.5\u20136047 / f6051\u20136076.5
+      / f6108.5\u20136133, Boss f477\u2013501 / f494\u2013518): \u0111\u1EE9ng 46\u201351
+      tick (TB 49) r\u1ED3i \u0111i ti\u1EBFp h\u01B0\u1EDBng m\u1EB7t (v\u1EC1 Simon)"
+    note: "\u0111\u1EE9ng n\xE9m"
+  - actor: Boss.MummyMan
+    key: throwReleaseTicks
+    value:
+      has: 1
+      value: 40
+    min:
+      has: 1
+      value: 38
+    max:
+      has: 1
+      value: 43
+    unit: tick
+    source: "\u0111o:cvm3-09 c\xF9ng 5 l\u1EA7n: b\u0103ng sinh 38\u201343 tick sau
+      khi d\u1EEBng (kh\u1EDBp s\xF3ng: f6043.0 / 6072.6 / 6128.3 / ~496.3 / 514.5)
+      \u2014 \u0111\xFAng l\xFAc h\u1EBFt nh\xE1y \u0111\u1ECF"
+    note: "tick n\xE9m trong t\u01B0 th\u1EBF"
+  - actor: Boss.MummyMan
+    key: flashTicks
+    value:
+      has: 1
+      value: 2
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: tick
+    source: "\u0111o:cvm3-09 m\xE0u th\xE2n t\u1EEBng frame 5 l\u1EA7n n\xE9m (boss9m_model.py
+      \xA74): \u0111\u1ECF / t\xEDm xen k\u1EBD g\u1EA7n nh\u01B0 m\u1ED7i frame
+      video (2 tick) su\u1ED1t t\u1EEB l\xFAc d\u1EEBng t\u1EDBi l\xFAc n\xE9m (32\u201336
+      tick) \u21D2 \u0111\u1ED5i m\u1ED7i 2 tick (b\u1EAFt \u0111\u1EA7u \u0111\u1ECF)
+      \u2014 sprite mummy_red_* (CVM3 01: c\xF9ng h\xECnh, b\u1EA3ng m\xE0u \u0111\u1ECF)"
+    note: "nh\u1ECBp nh\xE1y \u0111\u1ECF/t\xEDm l\xFAc n\xE9m"
+  - actor: Boss.MummyMan
+    key: bandageAboveHighPx
+    value:
+      has: 1
+      value: 31
+    min:
+      has: 1
+      value: 30
+    max:
+      has: 1
+      value: 32
+    unit: px
+    source: "\u0111o:cvm3-09 12 b\u0103ng CAO (Map_3 7, Boss 5): t\xE2m s\xF3ng y
+      144.1\u2013146.2 (TB 145.2) khi ch\xE2n Mummy 176 \u2014 sinh \u0111\xFAng
+      \u1EDF t\xE2m, \u0111i xu\u1ED1ng tr\u01B0\u1EDBc"
+    note: "t\xE2m b\u0103ng l\xFAc sinh = ch\xE2n \u2212 gi\xE1 tr\u1ECB (cao)"
+  - actor: Boss.MummyMan
+    key: bandageAboveLowPx
+    value:
+      has: 1
+      value: 15
+    min:
+      has: 1
+      value: 13
+    max:
+      has: 1
+      value: 16
+    unit: px
+    source: "\u0111o:cvm3-09 6 b\u0103ng TH\u1EA4P (Map_3 B2 / B5 / B9 / B10, Boss
+      B2 / B8): t\xE2m 159.9 / 161.3 / 163.0 / 160.9 (TB 161) \u21D2 ch\xE2n \u2212
+      15; t\u1EC9 l\u1EC7 cao/th\u1EA5p 12/6 \u2014 ch\u1ECDn \u0111\u1EC1u 50 %
+      (suy lu\u1EADn; gi\u1EA3 thuy\u1EBFt xen k\u1EBD con tr\xE1i C-T-C \u1EDF 2
+      video \xA76)"
+    note: "th\u1EA5p"
+  - actor: Boss.MummyMan
+    key: bandageSpeed
+    value:
+      has: 1
+      value: 1.5
+    min:
+      has: 1
+      value: 1.43
+    max:
+      has: 1
+      value: 1.55
+    unit: px/tick
+    source: "\u0111o:cvm3-09 17 b\u0103ng h\u1ED3i quy vx 1.43\u20131.55 (b\u0103ng
+      d\xE0i nh\u1EA5t Map_3 B0 44 \u0111i\u1EC3m \u22121.474, Boss B1 28 \u0111i\u1EC3m
+      +1.488) \u2014 v\u1EC1 ph\xEDa Simon"
+    note: "theo h\u01B0\u1EDBng m\u1EB7t l\xFAc n\xE9m"
+  - actor: Boss.MummyMan
+    key: bandageWaveAmpPx
+    value:
+      has: 1
+      value: 24
+    min:
+      has: 1
+      value: 23
+    max:
+      has: 1
+      value: 25
+    unit: px
+    source: "\u0111o:cvm3-09 s\xF3ng chung 17 b\u0103ng y = c + A\xB7sin(2\u03C0
+      t/P): A 24 rms TB 0.645 (23: 0.755, 25: 0.669); Map_3 B0 169 \u2192 121 \u2192
+      169"
+    note: "bi\xEAn s\xF3ng d\u1ECDc"
+  - actor: Boss.MummyMan
+    key: bandageWavePeriodTicks
+    value:
+      has: 1
+      value: 102
+    min:
+      has: 1
+      value: 100
+    max:
+      has: 1
+      value: 103
+    unit: tick
+    source: "\u0111o:cvm3-09 c\xF9ng 17 b\u0103ng: P 100 / 101 / 102 / 103 / 104
+      rms 0.648 / 0.637 / 0.645 / 0.672 / 0.713; B0 \u0111\xE1y f6056 \u2192 \u0111\u1EC9nh
+      f6081.5 = 51 tick (n\u1EEDa chu k\u1EF3)"
+    note: "chu k\u1EF3 s\xF3ng"
+  - actor: Boss.MummyMan
+    key: bandageScreenInsetPx
+    value:
+      has: 1
+      value: 8
+    min:
+      has: 1
+      value: 7
+    max:
+      has: 1
+      value: 9
+    unit: px
+    source: "\u0111o:cvm3-09 b\u0103ng m\u1EA5t \u1EDF x 1288\u20131291 (cx + 8,
+      Map_3 9 b\u0103ng bay tr\xE1i) v\xE0 1526\u20131528 (cx + 248, Boss 4 b\u0103ng
+      bay ph\u1EA3i)"
+    note: "g\u1EE1 khi t\xE2m c\xE1ch m\xE9p m\xE0n < gi\xE1 tr\u1ECB"
+  - actor: Boss.MummyMan
+    key: screenMinX
+    value:
+      has: 1
+      value: 8
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: "px m\xE0n"
+    source: "\u0111o:cvm3-09 video:Map_3 3:17.7\u20133:50.7 (f5931\u20136920) con
+      tr\xE1i f6013\u20136026 \u0111\u1EE9ng \u1EDF x 1288 (= cx + 8) khi \u0111ang
+      \u0111i tr\xE1i"
+    note: "X Mummy \u2265 cx + gi\xE1 tr\u1ECB"
+  - actor: Boss.MummyMan
+    key: screenMaxX
+    value:
+      has: 1
+      value: 248
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: "px m\xE0n"
+    source: "\u0111o:cvm3-09 video:Boss_Map_3 12.5\u201340.8 s (f374\u20131223, ch\u1EC9
+      chuy\u1EC3n \u0111\u1ED9ng \u2014 kh\xE1c b\u1EA3ng m\xE0u) con 2 f933\u20131002
+      k\u1EB9t x 1528 (= cx + 248) quay ph\u1EA3i, khung anim v\u1EABn ch\u1EA1y"
+    note: "X Mummy \u2264 cx + gi\xE1 tr\u1ECB"
+  - actor: Boss.MummyMan
+    key: crystalDelayTicks
+    value:
+      has: 1
+      value: 117
+    min:
+      has: 1
+      value: 116
+    max:
+      has: 1
+      value: 119
+    unit: tick
+    source: "\u0111o:cvm3-09 Mummy 2 ch\u1EBFt (l\u1EEDa + 3000) \u2192 qu\u1EA3
+      c\u1EA7u hi\u1EC7n \u1EDF (cx + 128, 104): video:Map_3 3:17.7\u20133:50.7 (f5931\u20136920)
+      f6770.5 \u2192 f6829.5 (118.2) + video:Boss_Map_3 12.5\u201340.8 s (f374\u20131223,
+      ch\u1EC9 chuy\u1EC3n \u0111\u1ED9ng \u2014 kh\xE1c b\u1EA3ng m\xE0u) f1004.5
+      \u2192 ~f1062.5 (116.2 \xB13)"
+    note: "Mummy Men: c\u1EA7u hi\u1EC7n s\u1EDBm h\u01A1n Phantom Bat / Medusa (152)"
+  - actor: Boss.MummyMan
+    key: crystalHoverTicks
+    value:
+      has: 1
+      value: 34
+    min:
+      has: 1
+      value: 32
+    max:
+      has: 1
+      value: 36
+    unit: tick
+    source: "\u0111o:cvm3-09 qu\u1EA3 c\u1EA7u \u0111\u1EE9ng y\xEAn \u1EDF y 104
+      r\u1ED3i m\u1EDBi r\u01A1i (g 0.25): Map_3 f6829.5 \u2192 ~f6847 (35) + Boss
+      ~f1062.5 \u2192 ~f1079.5 (34) \u21D2 b\u1EAFt \u0111\u1EA7u r\u01A1i \u2248
+      ch\u1EBFt + 151 (\u2248 152 c\u1EE7a Phantom Bat)"
+    note: "\u0111\u1EE9ng tr\u01B0\u1EDBc khi r\u01A1i"
   - actor: Boss.Frankenstein
     key: hitStunTicks
     value:

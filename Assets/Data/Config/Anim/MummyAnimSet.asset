@@ -18,34 +18,45 @@ MonoBehaviour:
     - {fileID: 21300000, guid: e95780a6a08ba2849828d777bd746949, type: 3}
     - {fileID: 21300000, guid: 8108df00ab6726f43a79b9bca1d67130, type: 3}
     - {fileID: 21300000, guid: 3094750ea64b16b4bb67afaf3620deef, type: 3}
-    durations: 080000000800000008000000
+    - {fileID: 21300000, guid: 8108df00ab6726f43a79b9bca1d67130, type: 3}
+    durations: 10000000100000001000000010000000
     loop: 1
-    measured: 0
+    measured: 1
     overlays: []
     overlayOffsets: []
     overlayOnTop: 
-    note: 
+    note: "CVM3 09 \u0111o video:Map_3 f5992\u20136100 + Boss_Map_3 f435\u2013494
+      (Tools/cvm3/boss9m_model.py \xA73): khung 0,1,2,1 l\u1EB7p, m\u1ED7i khung
+      8 frame = 16 tick (= 12 px \u0111i), ch\u1EA1y LI\xCAN T\u1EE4C c\u1EA3 l\xFAc
+      \u0111\u1EE9ng n\xE9m / \u0111i t\u1EA1i ch\u1ED7 \u1EDF m\xE9p m\xE0n, \u0111\u1EE9ng
+      khi kh\u1EF1ng n\u01B0\u1EDBc th\xE1nh; MummyMan \u0111\u1EB7t khung theo \u0111\u1ED3ng
+      h\u1ED3 anim ri\xEAng (animStepTicks)"
   - name: walk_red
     frames:
     - {fileID: 21300000, guid: ef4982edfde9df0408bf8b345a83d7c7, type: 3}
     - {fileID: 21300000, guid: ebd2d00bcbe33474580196141f24a20b, type: 3}
     - {fileID: 21300000, guid: 7d61763a676135646b716376add1773c, type: 3}
-    durations: 080000000800000008000000
+    - {fileID: 21300000, guid: ebd2d00bcbe33474580196141f24a20b, type: 3}
+    durations: 10000000100000001000000010000000
     loop: 1
-    measured: 0
+    measured: 1
     overlays: []
     overlayOffsets: []
     overlayOnTop: 
-    note: 
+    note: "CVM3 09: b\u1EA3ng m\xE0u \u0111\u1ECF = khung NH\xC1Y l\xFAc n\xE9m (video:Map_3
+      f6024\u20136042 / Boss_Map_3 f478\u2013495: \u0111\u1ECF\u2194t\xEDm m\u1ED7i
+      ~2 tick su\u1ED1t ~40 tick tr\u01B0\u1EDBc khi b\u0103ng bay) \u2014 c\xF9ng
+      khung v\u1EDBi walk_purple"
   - name: bandage
     frames:
     - {fileID: 21300000, guid: fb1aa569e9cb4994d8f0ab8009281b50, type: 3}
     - {fileID: 21300000, guid: 1968eac4ecb749845ad0652b2946c9a9, type: 3}
-    durations: 0800000008000000
+    durations: 0900000009000000
     loop: 1
-    measured: 0
+    measured: 1
     overlays: []
     overlayOffsets: []
     overlayOnTop: 
-    note: 
+    note: "CVM3 09 \u0111o video:Map_3 5 b\u0103ng + Boss_Map_3 1 b\u0103ng: \u0111\u1ED5i
+      khung m\u1ED7i 4.33\u20134.75 frame (TB 4.5 = 9 tick)"
   palettes: []

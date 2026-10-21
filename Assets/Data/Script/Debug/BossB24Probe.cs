@@ -17,6 +17,9 @@ using UnityEngine;
 /// CVM2 09: Queen Medusa + rắn ĐO VIDEO (Boss_Map_2 + Map_2 — CVM2_MEMORY §2k) ⇒ hằng VIDEO_*; thêm kịch bản PHÒNG THẬT medusa_room_*
 /// (section Block 2 "Medusa" + BossArena từ Tools/cvm2/map2_boss.json — Map2BossRoom): khoá camera cx 0 khi cuộn trái, đầu tượng tile nền
 /// xoá lúc thức, bay / rắn / va Simon ⇒ nảy / nước thánh / hạ bằng roi cấp 3 ⇒ quả cầu.
+/// CVM3 09: Mummy Men + băng gạc ĐO VIDEO (Map_3 + Boss_Map_3 — CVM3_MEMORY §2i) ⇒ hằng VIDEO_MUMMY_* / VIDEO_BANDAGE_*; thêm kịch bản PHÒNG
+/// THẬT mummy_room_* (section Block 3 "MummyMan" + BossArena từ Tools/cvm3/map3_boss.json — Map3BossRoom): 2 Mummy đứng chờ, khoá cx 1280,
+/// thức khoá + 120, nước thánh làm đứng, hạ bằng roi cấp 3 ⇒ mỗi con +3000 ⇒ quả cầu đứng rồi rơi; nến phải ⇒ II.
 /// </summary>
 public static class BossB24Probe
 {
@@ -32,8 +35,12 @@ public static class BossB24Probe
     public const int VIDEO_MEDUSA_UNITS = 10, VIDEO_MEDUSA_MUSIC = 57, VIDEO_MEDUSA_FLASH = 9, VIDEO_MEDUSA_CLEAR = 8, VIDEO_MEDUSA_RISE = 18;
     public const int VIDEO_SNAKE_V = 352, VIDEO_SNAKE_G = 32, VIDEO_SNAKE_DROP = 5, VIDEO_SNAKE_SCORE = 100, VIDEO_SNAKE_EDGE = 8, EST_SNAKE_ALIVE = 2;
     public const int VIDEO_ROOM_STATUE_X = 112, VIDEO_ROOM_FLOOR = 144, VIDEO_ROOM_LOCK_SIMON_X = 128;
-    public const int EST_MUMMY_V = 96, EST_MUMMY_WAKE = 128, EST_MUMMY_DX = 40, EST_MUMMY_THROW_FIRST = 64, EST_MUMMY_POSE = 16;
-    public const int EST_MUMMY_THROW_MIN = 128, EST_MUMMY_THROW_MAX = 224, EST_BANDAGE_V = 256, EST_BANDAGE_ABOVE = 28;
+    // CVM3 09 — Mummy Men + băng gạc ĐO VIDEO (chép ĐỘC LẬP Config; nguồn CVM3_MEMORY §2i, ClaudeNotes/cvm3/ref/data/boss9m/model.txt)
+    public const int VIDEO_MUMMY_W = 16, VIDEO_MUMMY_SCORE = 3000, VIDEO_MUMMY_V = 192, VIDEO_MUMMY_DX = 191, VIDEO_MUMMY_WAKE = 120, VIDEO_MUMMY_MUSIC = 60;
+    public const int VIDEO_MUMMY_NEAR = 46, VIDEO_MUMMY_ANIM = 16, VIDEO_MUMMY_THROW_FIRST = 64, VIDEO_MUMMY_THROW_FIRST2 = 120, VIDEO_MUMMY_POSE = 48;
+    public const int VIDEO_MUMMY_RELEASE = 40, VIDEO_MUMMY_FLASH = 2, VIDEO_MUMMY_INVINC = 32, VIDEO_MUMMY_HOLY_STUN = 12, VIDEO_MUMMY_CRYSTAL = 117, VIDEO_MUMMY_HOVER = 34;
+    public const int VIDEO_BANDAGE_V = 384, VIDEO_BANDAGE_HIGH = 31, VIDEO_BANDAGE_LOW = 15, VIDEO_BANDAGE_AMP = 24, VIDEO_BANDAGE_T = 102, VIDEO_BANDAGE_INSET = 8;
+    public const int VIDEO_ROOM_MUMMY_R = 1503, VIDEO_ROOM_MUMMY_L = 1312, VIDEO_ROOM_LOCK_CX = 1280, VIDEO_ROOM_LOCK_SIMON_X3 = 1408;
     public const int EST_FRANK_V = 64, EST_FRANK_WAKE = 16, EST_FRANK_ZONE_MIN = 128, EST_FRANK_ZONE_MAX = 216, EST_IGOR_START = 96;
     public const int EST_IGOR_RIDE = 40, EST_IGOR_SHORT_VX = 320, EST_IGOR_LONG_VX = 384, EST_IGOR_FIRE_EVERY = 2, EST_IGOR_BALL_V = 384;
     public const int EST_IGOR_STUN = 120, STOPWATCH_TICKS = 186;   // Stopwatch video:Map_2 (đo:cvm3-03 — CVM3_MEMORY §2d; wiki 5 s = 300 sai)
@@ -59,11 +66,16 @@ public static class BossB24Probe
         new Scn("medusa_room_touch", "-*480", "PHÒNG THẬT: Simon (61,144) quay phải, KHÔNG bất tử: Medusa thức, bay trái chạm Simon ⇒ −2 vạch, Medusa quay ngang ngay + nảy (sóng lên trước) như video Boss_Map_2 f196–f292"),
         new Scn("medusa_room_holy", "-*205 Sub -*240", "PHÒNG THẬT: Simon (61,144) quay phải cầm nước thánh, ném ở tick 206 khi Medusa bay tới: lọ trúng 1 lần (−1 vạch), Medusa đứng yên lúc chạm lọ/lửa và giữ khung tím (video Boss_Map_2 f135–196)"),
         new Scn("medusa_room_kill_l3", "", "AUTOPILOT PHÒNG THẬT roi cấp 3 (Strong): 16 nhát (video Map_2 3:48.30–3:55.77), +3000, lửa ở tâm đầu, quả cầu sau 152 ở (128,104) rơi xuống sàn y 144, nhặt ⇒ tally", true),
-        new Scn("mummy_pattern", "R*1 -*899", "Mummy Men: Simon (128,176) đứng giữa sàn: 2 con (tím (216,176), đỏ cách 40 về trái) thức cùng tick; đi 0.375 px/tick, kẹp 2 phía (con phải nhắm Simon + 40, con trái Simon − 40), ném băng ngang 1 px/tick ở chân − 28 (đầu 64 + tư thế 16; sau 128–224)"),
-        new Scn("mummy_duck", "D*700", "Stage 9: Simon NGỒI ở (80,176) sau khối Pot Roast (6,10): băng vải bay qua đầu (0 lần trúng — wiki 'ngồi quất')"),
-        new Scn("mummy_stand", "-*700", "Stage 9: Simon ĐỨNG ở (80,176): băng vải trúng ⇒ −3 vạch (EnemyAttack)"),
+        new Scn("mummy_pattern", "R*1 -*899", "CVM3 09 (video): phòng thử, Simon (128,176) đứng quay phải; con đầu (216,176) + con 2 cách 191 về trái đứng chờ khung 0 quay trái; camera khoá tick đầu ⇒ nhạc boss khoá + 60, CẢ HAI thức khoá + 120 (bước đầu về Simon); đi 0.75 px/tick, khung [0,1,2,1] × 16; mỗi 16 tick quyết định: Simon quay lưng ⇒ tới, nhìn về ⇒ |dx| < 46 đi xa / ≥ 56 đi tới; ném: con đầu sau 64 tick đi, con 2 sau 120 (sau đó mỗi 66 tick đi, 50 %): đứng 48 tick, nháy đỏ↔tím mỗi 2 tick, tick 40 băng ở X Mummy, tâm chân − 31 / − 15, ±1.5 px/tick, y + 24·sin(2πt/102), mất cách mép màn 8"),
+        new Scn("mummy_whip_bandage", "-*200 B -*24 B -*24 B -*24 B -*24 B -*24 B -*24 B -*24 B -*24 B -*24 B -*24 B -*24 B -*24 B -*24 B -*24 B -*24 B -*24 B -*24 B -*24 B -*24 B -*24 B -*24 B -*24 B -*24 B -*24", "CVM3 09: Simon (128,176) roi cấp 3 quất đều: băng gạc bay tới bị roi phá ⇒ +100 + lửa (video Boss_Map_3 f505–507, f637–640, f835–837, f900–903)"),
+        new Scn("mummy_stand", "-*700", "Stage 9: Simon ĐỨNG ở (80,176) không bất tử: băng gạc trúng ⇒ −3 vạch (EnemyAttack; video Boss_Map_3 f542 / f702 / f798)"),
+        new Scn("mummy_holy", "-*129 Sub -*400", "CVM3 09: Simon (128,176) ném nước thánh tick 130: con đầu đi vào lửa ⇒ đứng yên, khung đứng, suốt lúc chạm + 12 tick (video Map_3 f6101–6149), mỗi đòn −1 vạch, cách nhau ≥ 32 tick (bất tử 32)"),
         new Scn("mummy_stopwatch", "-*100 Sub -*320", "Stopwatch tick 101: Mummy Men + băng KHÔNG bị giữ (wiki 'Stopwatch vô dụng')"),
-        new Scn("mummy_kill_l1", "", "AUTOPILOT roi da: 2 con mỗi con 24 đòn (tổng 48 — wiki), con đầu chết không điểm, thanh ENEMY = máu 2 con; con cuối +3000, quả cầu, nhặt ⇒ tally", true),
+        new Scn("mummy_kill_l1", "", "AUTOPILOT roi da: mỗi con 8 đòn (video: 16 vạch chung 2 con), MỖI con hạ +3000 + lửa (video Map_3 3:42.87 / 3:45.70); con cuối ⇒ quả cầu sau 117 ở (cx + 128, 104), đứng 34 tick rồi rơi, nhặt ⇒ tally", true),
+        new Scn("mummy_room_wake", "R*150 -*450", "PHÒNG THẬT (section MummyMan, BossArena map3_boss.json): Simon (1260,96) đi PHẢI xuống bậc khối — 2 Mummy đứng chờ (1312 / 1503, khung 0, không va chạm); camera khoá cx 1280 lúc Simon x 1408 (video Map_3 3:17.70), tường mép màn; nhạc khoá + 60, thức khoá + 120, ném đầu + 64 / + 120; khối Pot Roast (83,9)"),
+        new Scn("mummy_room_holy", "-*286 Sub -*146 Sub -*165 Sub -*163 Sub -*164 Sub -*161 Sub -*161 Sub -*155 Sub -*166 Sub -*300", "PHÒNG THẬT: Simon trên khối trái (1302,112) quay phải ném 9 lọ nước thánh đúng mốc video Map_3 (f6074 … f6717 tính từ khoá f5931), không bất tử: Mummy chạm lọ/lửa đứng yên, −1 vạch mỗi đòn (cách ≥ 32 tick), băng gạc bay dưới khối không trúng Simon"),
+        new Scn("mummy_room_kill_l3", "", "AUTOPILOT PHÒNG THẬT roi cấp 3: mỗi con 8 nhát (video Boss_Map_3 16 vạch), mỗi con +3000, quả cầu (1408,104) sau 117, đứng 34 rồi rơi xuống sàn y 176, nhặt ⇒ tally", true),
+        new Scn("mummy_room_ii", "-*2 A A*3 B -*50 R*40 -*20", "PHÒNG THẬT: vũ khí phụ đã trúng 10 lần (roi cấp 3), Simon (1478,176) nhảy quất nến phải (1503,128) ⇒ tim nhỏ đổi thành Double Shot (ItemDrops.Resolve — video Map_3 f6838–6864), nhặt ⇒ Shot ×2"),
         new Scn("frank_pattern", "-*960", "Frankenstein (176,176) + Igor trên vai (Y − 40); Simon (16,144) trên bục góc trái: Monster thức tick 16, đi 0.25 px/tick trong nửa phải [128, 216]; Igor nhảy khỏi vai sau 96, nhảy tiến (vx 1.25, vy0 −3) / nhảy cao gần góc (vx 1.5, vy0 −5) qua lại 2 phía, cầu lửa ở đỉnh mỗi cú thứ 2 nhắm Simon 1.5 px/tick"),
         new Scn("frank_igor_freeze", "D*4 D+B D*23 -*170", "Arena: Igor đứng (124,176), Simon (100,176) NGỒI quất roi da: Igor đứng hình 120 tick, không mất máu, không chết, 0 điểm (wiki: bất tử, quất ⇒ đóng băng)"),
         new Scn("frank_touch", "-*600", "Stage 12, Simon không bất tử trên bục trái: cầu lửa Igor / chạm Igor/Monster ⇒ −3 vạch/lần"),
@@ -128,6 +140,10 @@ public static class BossB24Probe
     private static int musicRel = -1, statueHeadBefore = -1, statueHeadAfter = -1, statueBodyBefore = -1, statueBodyAfter = -1, wallMin = int.MinValue, wallMax = int.MaxValue;
     private static readonly List<int> medusaHitRels = new List<int>();
     private static int crystalX = -1, crystalY = -1;
+    // CVM3 09: phòng thật Map 3 + mốc riêng Mummy (lửa nước thánh cuối, II, khối Pot Roast, quả cầu đứng)
+    private static bool realRoom3;
+    private static int fireLastRel = -1, doubleShotSeen, doubleShotRel = -1, potRoastContent = -1;
+    private static readonly List<int> crystalYs = new List<int>();
 
     public static SimonController Simon => world != null ? world.Player as SimonController : null;
 
@@ -221,6 +237,11 @@ public static class BossB24Probe
             Cvm2TerrainProbe.Cleanup();   // CVM2 09: gỡ section Block 2 dựng lúc chạy (bộ chạy sau thấy StageWorld như cũ)
             realRoom = false;
         }
+        if (realRoom3)
+        {
+            Cvm3TerrainProbe.Cleanup();   // CVM3 09: gỡ section Block 3
+            realRoom3 = false;
+        }
         Go("Arena", 48, 176, 1);
         world.ResetRng();
         GameSession.Current.ResetForNewGame();
@@ -273,6 +294,33 @@ public static class BossB24Probe
         if (host != null)
             temp.Add(host);
         world.ResetRng();
+    }
+
+    /// <summary>CVM3 09: phòng boss thật Map 3 (section MummyMan + BossArena map3_boss.json), 2 Mummy sinh ngay (đứng chờ); candles ⇒ nến có content.</summary>
+    static void RealRoom3(int x, int y, int facing, bool candles)
+    {
+        GameObject host;
+        realRoom3 = true;
+        arena = Map3BossRoom.Enter(world, x, y, facing, true, candles, out host);
+        if (host != null)
+            temp.Add(host);
+        world.ResetRng();
+        potRoastContent = -1;
+        foreach (eEntityGroup g in Enum.GetValues(typeof(eEntityGroup)))
+            foreach (var e in world.GroupList(g))
+            {
+                var b = e as BreakableBlock;
+                if (b != null && b.Alive && b.col == 83 && b.row == 9)
+                    potRoastContent = (int)b.content;
+            }
+    }
+
+    static bool AnyHolyFire()
+    {
+        foreach (var e in world.GroupList(eEntityGroup.PlayerWeapon))
+            if (e.Alive && e is HolyFire)
+                return true;
+        return false;
     }
 
     static QueenMedusa Med()
@@ -404,6 +452,9 @@ public static class BossB24Probe
         wallMax = int.MaxValue;
         medusaHitRels.Clear();
         crystalX = crystalY = -1;
+        fireLastRel = doubleShotRel = -1;
+        doubleShotSeen = 0;
+        crystalYs.Clear();
         CvgpDebug.CheatInvincible = true;
         world.FreezeEnemies(0);
         world.ResetRng();
@@ -613,79 +664,78 @@ public static class BossB24Probe
                 };
                 break;
 
-            // ======================================================= Mummy Men
+            // ======================================================= Mummy Men (CVM3 09 — đo video Map_3 + Boss_Map_3, CVM3_MEMORY §2i)
             case "mummy_pattern":
                 Room(BossRoomSetup.MUMMY);
                 PlaceSimon(128, 176, 1);
-                Photo(2, 60, 82, 120, 300, 500, 700, 880);
+                Photo(2, 60, 119, 125, 183, 186, 222, 240, 300, 500, 700, 880);
                 finish = () =>
                 {
-                    var ms = Tracks("MummyMan");
-                    Expect("số Mummy", 2, ms.Count);
-                    if (ms.Count < 2) return;
-                    int w0 = FirstK(ms[0], k => ms[0].states[k] != "Dormant"), w1 = FirstK(ms[1], k => ms[1].states[k] != "Dormant");
-                    Expect("2 con thức cùng tick", w0, w1);
-                    Expect("con 2 sinh cách con đầu 40 px về trái", -EST_MUMMY_DX, Fixed.ToPx(ms[1].fpath[0].x) - Fixed.ToPx(ms[0].fpath[0].x));
-                    int badV = 0, bothSides = 0, after = 0;
-                    foreach (var t in ms)
-                        for (int k = 1; k < t.fpath.Count; k++)
-                        {
-                            int d = Math.Abs(t.fpath[k].x - t.fpath[k - 1].x);
-                            if (d != 0 && d != EST_MUMMY_V) badV++;
-                        }
-                    for (int rel = 200; rel < recs.Count; rel++)
-                    {
-                        int x0 = PosAt(ms[0], rel).x, x1 = PosAt(ms[1], rel).x, sx = recs[rel].sx;
-                        after++;
-                        if ((x0 - sx) * (x1 - sx) < 0) bothSides++;
-                    }
-                    Expect("đi 0.375 px/tick (tick sai)", 0, badV);
-                    ExpectRange("kẹp 2 phía: % tick có 1 con mỗi bên Simon (sau tick 200)", 50, 100, after > 0 ? bothSides * 100 / after : 0);
+                    Track tr, tl;
+                    if (!MummyPair(out tr, out tl)) return;
+                    Expect("con 2 sinh cách con đầu 191 px về trái", -VIDEO_MUMMY_DX, Fixed.ToPx(tl.fpath[0].x) - Fixed.ToPx(tr.fpath[0].x));
+                    int wR = FirstK(tr, k => tr.states[k] != "Dormant"), wL = FirstK(tl, k => tl.states[k] != "Dormant");
+                    Expect("thức (tick — camera khoá từ trước tick 0, đếm từ tick 1 ⇒ 120)", VIDEO_MUMMY_WAKE, tr.spawnRel + wR);
+                    Expect("2 con thức cùng tick", tr.spawnRel + wR, tl.spawnRel + wL);
+                    var mR = tr.e as MummyMan;
+                    Expect("nhạc boss: khoá + 60 (tick)", VIDEO_MUMMY_MUSIC, mR != null && mR.musicAtTick >= 0 ? mR.musicAtTick - startTick - 1 : -1);
+                    DormantChecks(tr, wR);
+                    DormantChecks(tl, wL);
+                    MummyWalkChecks(tr, wR, "con đầu");
+                    MummyWalkChecks(tl, wL, "con 2");
+                    ThrowChecks(tr, wR, VIDEO_MUMMY_THROW_FIRST, "con đầu");
+                    ThrowChecks(tl, wL, VIDEO_MUMMY_THROW_FIRST2, "con 2");
                     var bs = ShotTracks("MummyBandage");
-                    ExpectRange("số băng ném", 4, 99, bs.Count);
-                    // đếm cả tick bắt đầu: thức rel 0 ⇒ tư thế ném ở tick thứ 64 (rel 63), băng ở tick tư thế thứ 16 (rel 78)
-                    if (bs.Count > 0) Expect("băng đầu (tick: đầu 64 + tư thế 16, tính cả tick đầu)", w0 + EST_MUMMY_THROW_FIRST + EST_MUMMY_POSE - 2, bs[0].spawnRel);
-                    int badB = 0;
-                    foreach (var b in bs)
-                    {
-                        if (Fixed.ToPx(b.fpath[0].y) != 176 - EST_BANDAGE_ABOVE) badB++;
-                        for (int k = 1; k < b.fpath.Count; k++)
-                            if (Math.Abs(b.fpath[k].x - b.fpath[k - 1].x) != EST_BANDAGE_V || b.fpath[k].y != b.fpath[0].y) badB++;
-                    }
-                    Expect("băng bay ngang 1 px/tick ở chân − 28 (tick sai)", 0, badB);
-                    var sb = new StringBuilder("băng ở tick: ");
-                    foreach (var b in bs) sb.Append(b.spawnRel).Append(' ');
-                    measures.Add("thức rel " + w0 + "; kẹp " + bothSides + "/" + after + " tick; " + sb);
+                    ExpectRange("số băng ném", 3, 99, bs.Count);
+                    BandageChecks(bs, 176);
+                    // con đầu ở TRƯỚC mặt Simon (Simon quay phải): giữ cự ly — không vào gần hơn near − 12 (lưới quyết định 16 tick × 0.75)
+                    int close = 0;
+                    for (int k = wR; k < tr.fpath.Count; k++)
+                        if (tr.states[k] == "Walk" && Math.Abs(Fixed.ToPx(tr.fpath[k].x) - recs[tr.spawnRel + k].sx) < VIDEO_MUMMY_NEAR - 13) close++;
+                    Expect("con đầu trước mặt Simon không vào gần hơn 33 px (tick)", 0, close);
+                    int dxL0 = Math.Abs(Fixed.ToPx(tl.fpath[wL].x) - recs[tl.spawnRel + wL].sx);
+                    int dxL1 = wL + 100 < tl.fpath.Count ? Math.Abs(Fixed.ToPx(tl.fpath[wL + 100].x) - recs[tl.spawnRel + wL + 100].sx) : 9999;
+                    ExpectRange("con 2 sau lưng Simon tiến lại gần (|dx| sau 100 tick nhỏ hơn lúc thức)", 0, dxL0 - 1, dxL1);
+                    measures.Add("thức rel " + (tr.spawnRel + wR) + "; con đầu đổi hướng " + (mR != null ? mR.turns : -1) + " lần, ném " + (mR != null ? mR.throws : -1)
+                                 + "; con 2 ném " + (tl.e is MummyMan ? ((MummyMan)tl.e).throws : -1) + "; băng " + bs.Count);
                 };
                 break;
-            case "mummy_duck":
-            case "mummy_stand":
+            case "mummy_whip_bandage":
+                Room(BossRoomSetup.MUMMY);
+                PlaceSimon(128, 176, 1);
+                ses.whipLevel = 3;
+                Photo(220, 240, 300);
+                finish = () =>
                 {
-                    bool duck = scenario == "mummy_duck";
-                    Room(BossRoomSetup.MUMMY);
-                    CvgpDebug.CheatInvincible = false;
-                    PlaceSimon(80, 176, 1);
-                    Photo(150, 260);
-                    finish = () =>
-                    {
-                        int bandHits = 0, passed = 0;
-                        foreach (var h in playerHits) if (h.StartsWith("EnemyAttack:MummyBandage")) bandHits++;
-                        foreach (var b in ShotTracks("MummyBandage"))
-                            foreach (var p in b.fpath) if (Fixed.ToPx(p.x) < 80) { passed++; break; }
-                        if (duck)
-                        {
-                            ExpectRange("băng bay qua chỗ Simon ngồi (số băng)", 2, 99, passed);
-                            Expect("băng trúng Simon NGỒI", 0, bandHits);
-                            Expect("máu Simon", GameSession.MAX_HP, Last.hp);
-                        }
-                        else
-                        {
-                            ExpectRange("băng trúng Simon ĐỨNG", 1, 99, bandHits);
-                            DamageChecks(WIKI_DMG_ST9, 1);
-                        }
-                        measures.Add("băng qua Simon " + passed + ", trúng " + bandHits + "; " + string.Join(" ", playerHits));
-                    };
-                }
+                    ExpectRange("băng gạc bị roi phá (video Boss_Map_3 f505–507, f637–640)", 1, 99, brokenShots);
+                    int deaths = 0;
+                    foreach (var t in Tracks("MummyMan")) if (t.defeated) deaths++;
+                    Expect("+100 mỗi băng phá (+3000 mỗi Mummy hạ)", brokenShots * WIKI_PROJ_SCORE + deaths * VIDEO_MUMMY_SCORE, Last.score);
+                    measures.Add("phá " + brokenShots + " băng, Mummy hạ " + deaths + ", điểm " + Last.score);
+                };
+                break;
+            case "mummy_stand":
+                Room(BossRoomSetup.MUMMY);
+                CvgpDebug.CheatInvincible = false;
+                PlaceSimon(80, 176, 1);
+                Photo(260, 330);
+                finish = () =>
+                {
+                    int bandHits = 0;
+                    foreach (var h in playerHits) if (h.StartsWith("EnemyAttack:MummyBandage")) bandHits++;
+                    ExpectRange("băng gạc trúng Simon ĐỨNG", 1, 99, bandHits);
+                    DamageChecks(WIKI_DMG_ST9, 1);
+                    measures.Add("băng trúng " + bandHits + "; " + string.Join(" ", playerHits));
+                };
+                break;
+            case "mummy_holy":
+                Room(BossRoomSetup.MUMMY);
+                PlaceSimon(128, 176, 1);
+                ses.subWeapon = eSubWeapon.HolyWater;
+                ses.hearts = 10;
+                Photo(150, 180, 200, 240, 270);
+                onTick = rel => { if (AnyHolyFire()) fireLastRel = rel; };
+                finish = () => HolyChecks(true);
                 break;
             case "mummy_stopwatch":
                 Room(BossRoomSetup.MUMMY);
@@ -713,7 +763,92 @@ public static class BossB24Probe
                 Room(BossRoomSetup.MUMMY);
                 AddRules();
                 Photo(100, 600, 1200);
-                finish = () => KillChecks("MummyMan", WIKI_MUMMY_W, WIKI_SCORE_MUMMY, 2);
+                finish = () => MummyKillChecks();
+                break;
+
+            // ----------------------------------------------- CVM3 09: phòng boss THẬT (section MummyMan + BossArena map3_boss.json)
+            case "mummy_room_wake":
+                RealRoom3(1260, 96, 1, false);
+                Photo(2, 60, 140, 149, 210, 269, 300, 333, 380, 420, 500);
+                finish = () =>
+                {
+                    Track tr, tl;
+                    if (!MummyPair(out tr, out tl)) return;
+                    Expect("con đầu chờ ở x 1503 (video)", VIDEO_ROOM_MUMMY_R, Fixed.ToPx(tr.fpath[0].x));
+                    Expect("con 2 chờ ở x 1312 (video)", VIDEO_ROOM_MUMMY_L, Fixed.ToPx(tl.fpath[0].x));
+                    int lockRel = FirstRel(0, r => r.locked);
+                    Expect("camera khoá ở cx 1280 (phòng boss phải)", VIDEO_ROOM_LOCK_CX, lockRel >= 0 ? recs[lockRel].cx : -1);
+                    Expect("khoá lúc Simon x 1408 (video Map_3 f5931)", VIDEO_ROOM_LOCK_SIMON_X3, lockRel >= 0 ? recs[lockRel].sx : -1);
+                    Expect("không khoá trước khi tới cx 1280 (tick khoá mà cx ≠ 1280)", 0, CountRel(r => r.locked && r.cx != VIDEO_ROOM_LOCK_CX));
+                    Expect("tường mép màn trái (WallMinX)", VIDEO_ROOM_LOCK_CX, wallMin);
+                    Expect("tường mép màn phải (WallMaxX)", VIDEO_ROOM_LOCK_CX + 256, wallMax);
+                    int wR = FirstK(tr, k => tr.states[k] != "Dormant"), wL = FirstK(tl, k => tl.states[k] != "Dormant");
+                    Expect("thức = khoá + 120 (tick — video 2 lần 119.5–120.9)", VIDEO_MUMMY_WAKE, tr.spawnRel + wR - lockRel);
+                    Expect("2 con thức cùng tick", tr.spawnRel + wR, tl.spawnRel + wL);
+                    var mR = tr.e as MummyMan;
+                    Expect("nhạc boss = khoá + 60 (tick)", VIDEO_MUMMY_MUSIC, mR != null && mR.musicAtTick >= 0 ? mR.musicAtTick - startTick - 1 - lockRel : -1);
+                    DormantChecks(tr, wR);
+                    DormantChecks(tl, wL);
+                    ThrowChecks(tr, wR, VIDEO_MUMMY_THROW_FIRST, "con đầu");
+                    ThrowChecks(tl, wL, VIDEO_MUMMY_THROW_FIRST2, "con 2");
+                    BandageChecks(ShotTracks("MummyBandage"), 176);
+                    Expect("khối Pot Roast (83,9) còn nguyên (ConfigDrop MummyMan_X83_9)", (int)eItemId.PotRoast, potRoastContent);
+                    measures.Add("khoá rel " + lockRel + " (Simon x " + (lockRel >= 0 ? recs[lockRel].sx : -1) + "), thức rel " + (tr.spawnRel + wR)
+                                 + ", nhạc rel " + (mR != null ? mR.musicAtTick - startTick - 1 : -1) + ", tường [" + wallMin + ", " + wallMax + ")");
+                };
+                break;
+            case "mummy_room_holy":
+                RealRoom3(1302, 112, 1, false);
+                if (world.CameraCtl != null) world.CameraCtl.Lock(VIDEO_ROOM_LOCK_CX);   // video: Simon đã qua mốc khoá rồi lùi lên khối trái
+                CvgpDebug.CheatInvincible = false;
+                ses.subWeapon = eSubWeapon.HolyWater;
+                ses.hearts = 55;
+                Photo(300, 340, 470, 620, 900, 1200, 1500);
+                onTick = rel => { if (AnyHolyFire()) fireLastRel = rel; };
+                finish = () =>
+                {
+                    HolyChecks(false);
+                    Expect("Simon trên khối trái không trúng đòn (video Map_3 0 lần)", GameSession.MAX_HP, Last.hp);
+                    measures.Add("ENEMY theo thời gian: " + string.Join(",", bars) + "; con đầu hạ rel " + firstDefeatRel + ", con cuối rel " + defeatRel
+                                 + " (video Map_3: 9 lọ ⇒ 16 vạch, Mummy 1 chết rel ≈ 1510, Mummy 2 ≈ 1683)");
+                };
+                break;
+            case "mummy_room_kill_l3":
+                RealRoom3(1409, 176, -1, false);
+                ses.whipLevel = 3;
+                AddRules();
+                Photo(300, 700, 1100);
+                finish = () =>
+                {
+                    MummyKillChecks();
+                    Expect("quả cầu ở x 1408 (cx 1280 + 128 — video)", VIDEO_ROOM_LOCK_CX + 128, crystalX);
+                    int up = 0, maxY = 0;
+                    for (int i = 1; i < crystalYs.Count; i++) { if (crystalYs[i] < crystalYs[i - 1]) up++; maxY = Math.Max(maxY, crystalYs[i]); }
+                    Expect("quả cầu chỉ rơi xuống (lần đi lên)", 0, up);
+                    ExpectRange("quả cầu rơi tới ≤ sàn phòng y 176 (video chạm sàn f6859) trước khi nhặt", 105, 176, maxY);
+                };
+                break;
+            case "mummy_room_ii":
+                RealRoom3(1478, 176, 1, true);
+                ses.whipLevel = 3;
+                ses.subWeapon = eSubWeapon.HolyWater;
+                ses.subWeaponHits = 10;
+                ses.hearts = 46;
+                Photo(10, 20, 30, 45, 70);
+                finish = () =>
+                {
+                    Expect("nến phải (1503, 128) vỡ ⇒ II (tim nhỏ đổi Double Shot — vũ khí phụ đã trúng ≥ 10 lần; video Map_3 f6841–6864)", 1, doubleShotSeen);
+                    Expect("nhặt II ⇒ Shot ×2", 2, GameSession.Current.shotMultiplier);
+                    measures.Add("II hiện rel " + doubleShotRel + ", hệ số " + GameSession.Current.shotMultiplier);
+                };
+                onTick = rel =>
+                {
+                    foreach (var e in world.GroupList(eEntityGroup.Item))
+                    {
+                        var it = e as ItemPickup;
+                        if (it != null && it.Alive && it.id == eItemId.DoubleShot && doubleShotSeen == 0) { doubleShotSeen = 1; doubleShotRel = rel; }
+                    }
+                };
                 break;
 
             // ======================================================= Frankenstein & Igor
@@ -905,7 +1040,8 @@ public static class BossB24Probe
             if (st.bottom.y != s.Y || st.top.y > crystal.Y + 8)
                 continue;
             int dx = st.bottom.x - s.X;
-            return Math.Abs(dx) > 4 ? Dir(dx) : up;
+            // CVM3 09: chân thang phòng Mummy thử (244) ngoài mép màn khoá cx + 239 (CVM3 04) ⇒ đứng sát mép (lệch 5) rồi giữ ↑
+            return Math.Abs(dx) > 5 ? Dir(dx) : up;
         }
         return Dir(crystal.X - s.X);
     }
@@ -983,6 +1119,8 @@ public static class BossB24Probe
         }
         var f = h.victim as BoneTowerFireball;
         if (f != null && f.broken) brokenShots++;
+        var bd = h.victim as MummyBandage;   // CVM3 09: băng gạc Mummy phá được (+100)
+        if (bd != null && bd.broken) brokenShots++;
     }
 
     private static void OnDefeated(EnemyBase e)
@@ -1071,6 +1209,13 @@ public static class BossB24Probe
         if (shots.TryGetValue(rel, out shot))
             ScreenCapture.CaptureScreenshot(shot);
         WatchMedusa(rel);
+        if (crystal != null && crystal.Alive)
+            crystalYs.Add(crystal.Y);
+        if (realRoom3 && w.Tiles != null && w.Tiles.WallMinX != int.MinValue && wallMin == int.MinValue)
+        {
+            wallMin = w.Tiles.WallMinX;   // CVM3 09: WatchMedusa chỉ ghi khi có Medusa
+            wallMax = w.Tiles.WallMaxX;
+        }
         if (onTick != null)
             onTick(rel);
         // ảnh theo sự kiện (kịch bản hạ boss): con đầu bị hạ, lửa chết, quả cầu rơi, sau khi nhặt
@@ -1298,7 +1443,7 @@ public static class BossB24Probe
     }
 
     /// <summary>Hạ boss bằng roi da (autopilot): đúng số đòn yếu wiki, thanh ENEMY giảm theo đòn, điểm, lửa, quả cầu 152, nhặt ⇒ tally.</summary>
-    static void KillChecks(string kind, int hitsWeak, int score, int entities)
+    static void KillChecks(string kind, int hitsWeak, int score, int entities, int crystalDelay = 152)
     {
         var ts = Tracks(kind);
         Expect("số thực thể boss", entities, ts.Count);
@@ -1317,12 +1462,197 @@ public static class BossB24Probe
         int dec = 0;
         for (int i = 1; i < bars.Count; i++) if (bars[i] > bars[i - 1]) dec++;
         Expect("thanh ENEMY chỉ giảm (lần tăng)", 0, dec);
-        ExpectRange("quả cầu sau khi hạ (tick — 152)", 151, 153, crystalRel - defeatRel);
+        ExpectRange("quả cầu sau khi hạ (tick — " + crystalDelay + ")", crystalDelay - 1, crystalDelay + 1, crystalRel - defeatRel);
         ExpectRange("Simon nhặt quả cầu", crystalRel + 1, 99999, pickRel);
         Expect("máu Simon đầy sau khi nhặt", GameSession.MAX_HP, pickRel >= 0 && pickRel < recs.Count ? recs[pickRel].hp : -1);
         Expect("tally đã bắt đầu (StageRules)", 1, rules != null && rules.Tally.Active ? 1 : 0);
         measures.Add(kind + ": " + hits + " đòn roi da, hạ ở tick " + defeatRel + " (" + (defeatRel / 60.0).ToString("0.0") + " s), cầu " + crystalRel
                      + ", nhặt " + pickRel + "; vạch ENEMY: " + string.Join(",", bars));
+    }
+
+    // ---------------------------------------------------------------- CVM3 09: chấm Mummy Men / băng gạc theo số đo video
+
+    /// <summary>Vết 2 Mummy: tr = con đầu (phải), tl = con 2 (trái).</summary>
+    static bool MummyPair(out Track tr, out Track tl)
+    {
+        tr = tl = null;
+        foreach (var t in Tracks("MummyMan"))
+        {
+            var m = t.e as MummyMan;
+            if (m != null && m.second) { if (tl == null) tl = t; }
+            else if (tr == null) tr = t;
+        }
+        Expect("số Mummy (con đầu + con 2)", 2, (tr != null ? 1 : 0) + (tl != null ? 1 : 0));
+        return tr != null && tl != null;
+    }
+
+    static int AnimIdx(Track t, int k)
+    {
+        var a = t.anims[k];
+        int c = a.LastIndexOf(':');
+        return c >= 0 ? int.Parse(a.Substring(c + 1)) : -1;
+    }
+
+    /// <summary>Trước khi thức: đứng yên, khung walk_purple 0, không nhận/gây đòn.</summary>
+    static void DormantChecks(Track t, int wake)
+    {
+        int bad = 0;
+        for (int k = 0; k < wake && k < t.fpath.Count; k++)
+            if (t.fpath[k] != t.fpath[0] || t.anims[k] != "walk_purple:0" || t.active[k]) bad++;
+        Expect("đứng chờ: yên, khung tím 0, không va chạm (tick sai)", 0, bad);
+    }
+
+    /// <summary>Sau khi thức: đi 0.75 px/tick; khung [0,1,2,1] mỗi 16 tick chạy liên tục (cả lúc ném).</summary>
+    static void MummyWalkChecks(Track t, int wake, string who)
+    {
+        int badV = 0, moves = 0, partial = 0;
+        for (int k = wake + 1; k < t.fpath.Count; k++)
+        {
+            int d = Math.Abs(t.fpath[k].x - t.fpath[k - 1].x);
+            if (d > VIDEO_MUMMY_V) badV++;
+            else if (d != 0 && d != VIDEO_MUMMY_V) partial++;   // chạm ô đặc ngang chân (phòng thử: khối (6,10) trên sàn) ⇒ bước ngắn
+            if (d != 0) moves++;
+        }
+        Expect(who + " đi 0.75 px/tick (tick nhanh hơn)", 0, badV);
+        ExpectRange(who + " bước ngắn (chạm tường) ≤ 3 lần", 0, 3, partial);
+        ExpectRange(who + " có đi (tick)", 30, 99999, moves);
+        var runs = new List<int[]>();   // (khung, độ dài)
+        for (int k = wake; k < t.fpath.Count; k++)
+        {
+            if (t.states[k] == "Stun") break;
+            int i = AnimIdx(t, k);
+            if (runs.Count > 0 && runs[runs.Count - 1][0] == i) runs[runs.Count - 1][1]++;
+            else runs.Add(new[] { i, 1 });
+        }
+        int badLen = 0, badSeq = 0;
+        for (int r = 1; r < runs.Count; r++)
+        {
+            if (r < runs.Count - 1 && runs[r][1] != VIDEO_MUMMY_ANIM) badLen++;
+            if (runs[r][0] != (runs[r - 1][0] + 1) % 4) badSeq++;
+        }
+        Expect(who + " khung walk mỗi 16 tick (đoạn sai)", 0, badLen);
+        Expect(who + " thứ tự khung 0→1→2→1(3)→0 (lần sai)", 0, badSeq);
+    }
+
+    /// <summary>Lần ném đầu: sau first tick đi, đứng 48 (47 tick Throw), nháy đỏ/tím mỗi 2 tick tới tick 40 ⇒ băng ở X Mummy.</summary>
+    static void ThrowChecks(Track t, int wake, int first, string who)
+    {
+        int k0 = FirstK(t, k => k > wake && t.states[k] == "Throw");
+        Expect(who + " lần ném đầu sau " + first + " tick đi (tick)", first - 1, k0 - wake);
+        if (k0 < 0) return;
+        int len = 0, moved = 0, badFlash = 0;
+        for (int k = k0; k < t.fpath.Count && t.states[k] == "Throw"; k++)
+        {
+            len++;
+            if (t.fpath[k].x != t.fpath[k0].x) moved++;
+            int j = k - k0 + 1;
+            bool red = t.anims[k].StartsWith("walk_red");
+            bool want = j < VIDEO_MUMMY_RELEASE && ((j - 1) / VIDEO_MUMMY_FLASH) % 2 == 0;
+            if (red != want) badFlash++;
+        }
+        Expect(who + " đứng ném (tick Throw — 48 − 1)", VIDEO_MUMMY_POSE - 1, len);
+        Expect(who + " không di chuyển lúc ném (tick)", 0, moved);
+        Expect(who + " nháy đỏ↔tím mỗi 2 tick tới lúc ném (tick sai)", 0, badFlash);
+        int rel = t.spawnRel + k0 + VIDEO_MUMMY_RELEASE - 1, found = 0;
+        foreach (var b in ShotTracks("MummyBandage"))
+            if (b.spawnRel == rel) found++;
+        Expect(who + " băng sinh ở tick 40 của tư thế (băng)", 1, found);
+    }
+
+    /// <summary>Băng: ±1.5 px/tick đều; y = y0 + 24·sin(2πt/102) (đi xuống trước); y0 = chân − 31 / − 15; mất cách mép màn 8.</summary>
+    static void BandageChecks(List<Track> bs, int floorY)
+    {
+        var wave = new int[VIDEO_BANDAGE_T];
+        for (int i = 0; i < VIDEO_BANDAGE_T; i++)
+            wave[i] = (int)Math.Round(Fixed.FromPx(VIDEO_BANDAGE_AMP) * Math.Sin(2.0 * Math.PI * i / VIDEO_BANDAGE_T));
+        int badV = 0, badY = 0, badY0 = 0, badEnd = 0, high = 0, low = 0;
+        foreach (var b in bs)
+        {
+            if (b.fpath.Count < 2) continue;
+            int best = int.MaxValue, age0 = 0;
+            for (int a = 0; a <= 1; a++)
+            {
+                int bad = 0;
+                for (int k = 1; k < b.fpath.Count; k++)
+                    if (b.fpath[k].y - b.fpath[0].y != wave[(a + k) % VIDEO_BANDAGE_T] - wave[a % VIDEO_BANDAGE_T]) bad++;
+                if (bad < best) { best = bad; age0 = a; }
+            }
+            badY += best;
+            for (int k = 1; k < b.fpath.Count; k++)
+                if (Math.Abs(b.fpath[k].x - b.fpath[k - 1].x) != VIDEO_BANDAGE_V) badV++;
+            int y0 = b.fpath[0].y - wave[age0];
+            if (y0 == Fixed.FromPx(floorY - VIDEO_BANDAGE_HIGH)) high++;
+            else if (y0 == Fixed.FromPx(floorY - VIDEO_BANDAGE_LOW)) low++;
+            else badY0++;
+            var be = b.e as MummyBandage;
+            if (b.endRel >= 0 && be != null && !be.broken && b.spawnRel + b.fpath.Count - 1 < recs.Count)
+            {
+                int last = b.spawnRel + b.fpath.Count - 1, cx = recs[last].cx;
+                int x = Fixed.ToPx(b.fpath[b.fpath.Count - 1].x), dir = b.fpath[1].x > b.fpath[0].x ? 1 : -1;
+                bool hitSimon = Math.Abs(x - recs[last].sx) <= 16;   // trúng Simon (kể cả lúc bất tử) ⇒ gỡ trước mép màn
+                if (!hitSimon && (dir < 0 ? x - 2 >= cx + VIDEO_BANDAGE_INSET : x + 2 < cx + NesCoord.SCREEN_W - VIDEO_BANDAGE_INSET))   // tick sau (±1.5) vẫn trong khung ⇒ sai
+                {
+                    badEnd++;
+                    measures.Add("băng sinh rel " + b.spawnRel + " mất ở x " + x + " (cx " + cx + ", hướng " + dir + ", Simon " + recs[last].sx + "," + recs[last].sy + ", y " + Fixed.ToPx(b.fpath[b.fpath.Count - 1].y) + ")");
+                }
+            }
+        }
+        Expect("băng bay ngang 1.5 px/tick (tick sai)", 0, badV);
+        Expect("băng sóng dọc 24·sin(2πt/102) (tick sai)", 0, badY);
+        Expect("băng sinh ở tâm chân − 31 (cao) / − 15 (thấp) (băng sai)", 0, badY0);
+        Expect("băng mất cách mép màn 8 px (băng sai)", 0, badEnd);
+        measures.Add("băng: " + bs.Count + " (cao " + high + ", thấp " + low + ")");
+    }
+
+    /// <summary>Nước thánh: Mummy đứng yên (khung đứng) lúc khựng, −1 vạch mỗi đòn, cách ≥ 32 tick; (phòng thử) hết khựng 12 tick sau lửa cuối.</summary>
+    static void HolyChecks(bool tail)
+    {
+        int stun = 0, stunMoved = 0, stunAnim = 0, badGap = 0, hits = 0, stunEnd = -1;
+        foreach (var t in Tracks("MummyMan"))
+        {
+            int lastHit = -9999;
+            for (int k = 1; k < t.fpath.Count; k++)
+            {
+                if (t.states[k] == "Stun")
+                {
+                    stun++;
+                    if (t.states[k - 1] == "Stun" && t.fpath[k] != t.fpath[k - 1]) stunMoved++;
+                    if (t.states[k - 1] == "Stun" && t.anims[k] != t.anims[k - 1]) stunAnim++;
+                    if (k + 1 >= t.fpath.Count || t.states[k + 1] != "Stun") stunEnd = Math.Max(stunEnd, t.spawnRel + k);
+                }
+                if (t.hp[k] < t.hp[k - 1])
+                {
+                    hits++;
+                    if (k - lastHit < VIDEO_MUMMY_INVINC) badGap++;
+                    lastHit = k;
+                }
+            }
+        }
+        ExpectRange("Mummy khựng vì nước thánh (tick)", 1, 99999, stun);
+        Expect("không di chuyển lúc khựng (tick)", 0, stunMoved);
+        Expect("khung đứng yên lúc khựng (tick)", 0, stunAnim);
+        ExpectRange("Mummy trúng nước thánh (đòn)", 1, 999, hits);
+        Expect("2 đòn liền cùng con cách ≥ 32 tick (lần sai)", 0, badGap);
+        int bad = 0;
+        for (int i = 1; i < bars.Count; i++) if (bars[i] != bars[i - 1] - 1) bad++;
+        Expect("mỗi lần ENEMY đổi đúng −1 vạch (video: lọ / lửa 1 vạch)", 0, bad);
+        if (tail)   // video Map_3: Mummy đi lại 13 / 11 tick sau khi lửa tắt (f6142.5 → 6149, f6462.5 → 6468)
+            ExpectRange("Mummy đi lại sau khi lửa tắt (tick — video 11 / 13)", VIDEO_MUMMY_HOLY_STUN - 1, VIDEO_MUMMY_HOLY_STUN + 1, stunEnd + 1 - fireLastRel);
+        measures.Add("nước thánh: " + hits + " đòn, khựng " + stun + " tick-con, lửa cuối rel " + fireLastRel + ", hết khựng rel " + stunEnd + "; vạch: " + string.Join(",", bars));
+    }
+
+    /// <summary>Hạ 2 Mummy: mỗi con 8 đòn, MỖI con +3000 (con đầu lúc chết), quả cầu sau 117 đứng 34 tick rồi rơi.</summary>
+    static void MummyKillChecks()
+    {
+        KillChecks("MummyMan", VIDEO_MUMMY_W, 2 * VIDEO_MUMMY_SCORE, 2, VIDEO_MUMMY_CRYSTAL);
+        int jump = firstDefeatRel > 0 && firstDefeatRel < recs.Count ? recs[firstDefeatRel].score - recs[firstDefeatRel - 1].score : -1;
+        ExpectRange("con hạ đầu tiên +3000 ngay (video Map_3 3:42.87; +100 nếu cùng nhát phá băng)", VIDEO_MUMMY_SCORE, VIDEO_MUMMY_SCORE + WIKI_PROJ_SCORE, jump);
+        ExpectRange("2 con chết ở 2 tick khác nhau (bất tử dùng chung — video cách 85 frame / 157 frame)", 1, 99999, defeatRel - firstDefeatRel);
+        int hold = 0;
+        foreach (var y in crystalYs) { if (y == crystalYs[0]) hold++; else break; }
+        // đứng 34 tick rồi rơi g 0.25 từ 0 ⇒ dời 1 px đầu ở tick rơi thứ 4 (video: dời 1 px đầu 35 / 37 tick sau khi hiện)
+        Expect("quả cầu: tick tới lần dời 1 px đầu (đứng 34 + 4)", VIDEO_MUMMY_HOVER + 4, hold);
+        measures.Add("con đầu hạ rel " + firstDefeatRel + " (+" + jump + "), con cuối rel " + defeatRel + ", cầu đứng " + hold + " tick");
     }
 
     // ---------------------------------------------------------------- CVM2 09: chấm Queen Medusa / rắn theo số đo video

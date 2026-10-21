@@ -82,7 +82,7 @@ Không có "khoá" tức thời: camera bám Simon rồi **kẹp ở cx = 1280**
 | ENEMY bar bắt đầu giảm | f6126 (3:24.20) = 16→15 | giảm đều tới 0 ở f6771; **1 vạch chung cho 2 Mummy** |
 | Mummy 1 chết | **f6686 (3:42.87) +3000** (ENEMY 3→2 ở f6678) | cháy đỏ (tia) |
 | Mummy 2 chết | **f6771 (3:45.70) +3000** (ENEMY 1→0) | +3000 **mỗi con** (wiki chung — theo video, H1) |
-| Quả cầu hiện (cao giữa phòng x ≈ 127) | **f≈6846 ±6 (3:48.2)** ≈ **150 tick** sau Mummy 2 (boss video ≈ 120 tick: hiện f≈1062–1069, 35.4–35.6 s) | rơi ~24 frame (≈ 48 tick) tới sàn y ≈ 208 (f6876); cùng lúc vật **II** rơi bên phải (icon HUD II từ f6864) |
+| Quả cầu hiện (cao giữa phòng x ≈ 127) | **f≈6846 ±6 (3:48.2)** ≈ **150 tick** sau Mummy 2 (boss video ≈ 120 tick: hiện f≈1062–1069, 35.4–35.6 s) | rơi ~24 frame (≈ 48 tick) tới sàn y ≈ 208 (f6876); cùng lúc vật **II** rơi bên phải (icon HUD II từ f6864). **(CVM3 09) đo lại:** quả cầu HIỆN ở (1408, 104) f6829.5 = **117 tick** sau Mummy 2 (Boss ~f1062.5: 116), **đứng yên ~34 tick** rồi rơi (bắt đầu ≈ chết + 151) chạm sàn f6859; **II** = nến phải (1503) bị Simon nhảy quất f6838–6841 (tim nhỏ ⇒ Double Shot vì vũ khí phụ đã trúng ≥ 10 lần — luật `ItemDrops.Resolve`), không phải vật Mummy rơi |
 | Nhặt quả cầu | **f6920 (3:50.67)** (ảnh đếm pixel cầu biến mất f6919→6920); TIME đứng 0306 từ f6907; HUD icon II nhấp nháy f6864–6920 rồi giữ; **nhạc Stage Clear (bài 12) bắt đầu t0 ≈ 230.4–230.7 s** (khớp pickup ±0.1 s) | |
 | Chờ trước đếm | f6920 → f7033 (TIME 0304) = **226 tick** (Map_2 224, Map_1 260) | |
 | Đếm TIME | f7033 → f7186 (TIME 0000): **306 tick cho 304 đơn vị = 1.01 tick/đơn vị** (TIME −2 mỗi frame video; SCORE +20/frame = **+10 điểm/đơn vị**: 065970 → 069030 = +3060) | |
@@ -151,7 +151,7 @@ Nhận xét luật rơi vật (cho 08 — planner, xem đính chính trên): sau
 | 197.70 | MummyMan | cx đạt 1280 (§3d) |
 | 204–225 | phòng Mummy | Simon trên khối trái ném nước thánh; ENEMY 16→0; tim 55→46 |
 | 222.87 / 225.70 | | Mummy 1 / 2 chết +3000 ×2 |
-Ghi chú: Simon trong phòng Mummy ở **bậc/khối bên TRÁI** (wx 1302–1319, Y 144–160) khi Mummy chết; Mummy hồng/đỏ khi trúng (xem boss).
+Ghi chú: Simon trong phòng Mummy ở **bậc/khối bên TRÁI** (wx 1302–1319, Y 144–160) khi Mummy chết; Mummy hồng/đỏ khi trúng (xem boss). **(CVM3 09) đính chính:** đỏ↔tím = **tư thế NÉM băng gạc** (nháy ~2 tick suốt ~40 tick từ lúc dừng tới lúc băng bay — 5/5 lần, cả khi chưa có lọ nào), KHÔNG phải trúng đòn / trong lửa; trong lửa nước thánh Mummy chỉ ĐỨNG YÊN (khung đứng) — `CVM3_MEMORY §2i`.
 ## §5. Video boss (`Boss_Map_3_Behaviour.mp4`) — theo frame (HUD `boss3_hud.csv`, Simon `boss3_simon.csv`: khớp 605/1282 frame)
 | Frame (giây) | Sự kiện |
 |---|---|
@@ -161,7 +161,7 @@ Ghi chú: Simon trong phòng Mummy ở **bậc/khối bên TRÁI** (wx 1302–13
 | f196 (6.53) | **+100 = nhặt túi đỏ** (ảnh `cvm3_02_boss_plus100.png`: túi sàn f192, chữ "100" f196) |
 | f405 (13.5) | tim 07→08 |
 | f452–1005 | **ENEMY 16→0 (16 vạch dùng chung)**: giảm ở f452, 507, 575, 640, 664, 690, 774, 823, 840, 851, 874, 903, 931, 956, 982, 1005 |
-| f507, f640, f729, f837, f903 | **+100** trùng lúc Mummy nháy đỏ/hồng khi trúng roi/dao (ảnh `…boss_plus100.png`); 3/5 trùng ENEMY −1 — **chưa phân biệt được "đòn trúng Mummy +100" vs "phá băng gạc +100"** ⇒ câu hỏi cho routine 09 (Map_3 dùng nước thánh: 0 lần +100 khi trúng) |
+| f507, f640, f729, f837, f903 | **+100** trùng lúc Mummy nháy đỏ/hồng khi trúng roi/dao (ảnh `…boss_plus100.png`); 3/5 trùng ENEMY −1 — **chưa phân biệt được "đòn trúng Mummy +100" vs "phá băng gạc +100"** ⇒ câu hỏi cho routine 09 (Map_3 dùng nước thánh: 0 lần +100 khi trúng). **(CVM3 09) xác định: = roi phá BĂNG GẠC** (4/5 vết băng kết thúc đúng frame đó f506 / 638 / 835 / 900 + lửa nhỏ tại chỗ băng — ảnh `ref/nes/cvm3_09_video_roi_pha_bang.png`; f729: băng không bám được vết, có 1 phát hiện f726 x 1472); ENEMY −1 không kèm điểm ở 11/16 lần ⇒ đòn trúng Mummy 0 điểm |
 | f542–549, f702–706, f798–802 | **Simon trúng đòn ×3 (−3 vạch mỗi lần: 10→7, 7→4, 4→1)** — `map3_hits.csv`, §6 |
 | f848 (28.27) | Mummy 1 chết: **+3100 (= +100 đòn cuối + 3000)** |
 | f1005 (33.50) | Mummy 2 chết **+3000** (SCORE 020600 → 023600) |

@@ -1,0 +1,7 @@
+# 1082 tick, hash a235f789
+# CVGP 19 BossB24Probe kịch bản 'mummy_room_kill_l3': AUTOPILOT PHÒNG THẬT roi cấp 3: mỗi con 8 nhát (video Boss_Map_3 16 vạch), mỗi con +3000, quả cầu (1408,104) sau 117, đứng 34 rồi rơi xuống sàn y 176, nhặt ⇒ tally — ghi bằng autopilot (CVGP 19), hash chạy ghi d09235d9
+-*121 R*22 B*1 -*22 R*19 B*1 -*22 B*1 -*22 B*1 -*22 R*43
+B*1 -*22 B*1 -*22 B*1 -*22 R*1 B*1 -*22 B*1 -*22 L*1
+B*1 -*22 R*1 B*1 -*22 B*1 -*22 B*1 -*22 L*1 B*1 -*22
+L*46 B*1 -*22 B*1 -*22 B*1 -*22 L*10 B*1 -*22 L*13 B*1
+-*22 B*1 -*22 L*54 B*1 -*22 B*1 -*22 B*1 -*130 R*38 -*75

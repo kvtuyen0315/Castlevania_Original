@@ -1,0 +1,19 @@
+# CVM3 09 — Tools/cvm3/boss9m_compare.py ClaudeNotes/cvm3/_cache/09/unity3
+## m3_open (f0 5931)
+  Mummy phải (R) thức → đi trái → ném B0 → đi      136 điểm  rms x 1.14 px  (lệch TB -0.65, max |3|)
+  Mummy trái (L) thức → quay → mép → tới → ném B1 → B2 174 điểm  rms x 3.86 px  (lệch TB -2.07, max |12|)
+  băng video B0  (thấy f6045)  ↔ Unity băng sinh rel 224 (video ≈ 228): 43 điểm rms x 1.84 y 0.89 (gộp 2.05 px)
+  băng video B1  (thấy f6073)  ↔ Unity băng sinh rel 279 (video ≈ 284): 10 điểm rms x 8.00 y 3.41 (gộp 8.69 px)
+  băng video B2  (thấy f6129)  ↔ Unity băng sinh rel 395 (video ≈ 397):  9 điểm rms x 6.29 y 1.33 (gộp 6.43 px)
+## b3_open (f0 374)
+  Mummy trái (L) thức → đi phải → ném B1 (phải)    106 điểm  rms x 1.36 px  (lệch TB +0.76, max |4|)
+  Mummy phải (R) thức → đi trái → quay → ném B0     86 điểm  rms x 1.98 px  (lệch TB +0.09, max |5|)
+  băng video B0  (thấy f497)  ↔ Unity băng sinh rel 245 (video ≈ 246):  6 điểm rms x 2.74 y 1.91 (gộp 3.34 px)
+  băng video B1  (thấy f516)  ↔ Unity băng sinh rel 279 (video ≈ 284): 15 điểm rms x 5.14 y 3.25 (gộp 6.08 px)
+## m3_death (f0 6680)
+  lửa chết Unity rel 12 tâm (1360, 152)  — video f6686 tâm (1360, 153)
+  lửa chết Unity rel 182 tâm (1366, 152)  — video f6770 tâm (1366, 153)
+  quả cầu Unity hiện rel 298 (1408, 104) — video f6829.5 ⇒ rel 299.5 (1408, 104)
+  bắt đầu rơi Unity rel 336 — video ≈ f6847 ⇒ rel 334.6; chạm sàn Unity rel 357 — video f6859 ⇒ rel 358.6
+  quả cầu 70 điểm: rms x 0.00 y 1.86 (gộp 1.86 px)
+## tổng: 10 vết, rms trung vị 2.69 px, lớn nhất 8.69 px

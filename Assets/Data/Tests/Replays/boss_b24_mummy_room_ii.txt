@@ -1,0 +1,3 @@
+# 117 tick, hash e92376af
+# CVGP 19 BossB24Probe kịch bản 'mummy_room_ii': PHÒNG THẬT: vũ khí phụ đã trúng 10 lần (roi cấp 3), Simon (1478,176) nhảy quất nến phải (1503,128) ⇒ tim nhỏ đổi thành Double Shot (ItemDrops.Resolve — video Map_3 f6838–6864), nhặt ⇒ Shot ×2
+-*2 A*4 B*1 -*50 R*40 -*20

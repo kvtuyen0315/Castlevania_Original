@@ -34,10 +34,12 @@ public static class RegressionRunner
         // CVM3 03 (đồng hồ theo video Map_2): attack cũ eee2cdfb, enemy f288b0ce, boss 31e6d711, b23 5eb00c5b, b46 58a8edf9, b24 9b218696, b56 6cb8a1ad, rules 03fafb24
         // CVM3 07 (Skeleton + Fleaman đo video Map_3 — CVM3_MEMORY §2g/§4): b23 cũ 46dcc544 (+ skel_pit_jump), b46 a4cfdcaf (Fleaman do Eagle thả: g 0.125), gallery ab874ae4
         // CVM3 08 (Raven đo video Map_3 — CVM3_MEMORY §2h/§4): b23 cũ 2b237b6a (raven_dive/touch/kill + rosary_b23 + MỚI raven_glide_up), gallery 83b26a03 (E04 Raven ×3)
+        // CVM3 09 (Mummy Men đo 2 video + phòng boss thật — CVM3_MEMORY §2i/§4): b24 cũ 4066b4db (mummy_pattern/stand/stopwatch/kill_l1 đổi, mummy_duck bỏ,
+        // MỚI mummy_whip_bandage/holy/room_wake/room_holy/room_kill_l3/room_ii; 16 kịch bản Medusa + Frankenstein y nguyên), gallery ddfe647a (B3 MummyMen ×3)
         { "long", "b2cc1424" }, { "simon", "5c1c46ce" }, { "attack", "62c14a1f" }, { "item", "c8db5123" },
         { "enemy", "20aa5652" }, { "boss", "4d7bd652" }, { "b23", "810f0d8b" }, { "b46", "461c6b8b" },
-        { "b24", "4066b4db" }, { "b56", "9b9b7440" }, { "rules", "72c7e7bf" }, { "core", "76516076" },
-        { "gallery", "ddfe647a" } /* CVM3 08; CVM3 07 83b26a03; CVM3 04 ab874ae4; CVM2 11 ffd5b71e (nhảy không va trần — PhantomBat_attack; CVM2 09 25b99169) */,
+        { "b24", "4f503db5" }, { "b56", "9b9b7440" }, { "rules", "72c7e7bf" }, { "core", "76516076" },
+        { "gallery", "5791addd" } /* CVM3 09; CVM3 08 ddfe647a; CVM3 07 83b26a03; CVM3 04 ab874ae4; CVM2 11 ffd5b71e (nhảy không va trần — PhantomBat_attack; CVM2 09 25b99169) */,
         // CVM2 11: luồng thật Title → STAGE 07 (map1_route + map2_route; cũ Title → STAGE 04 e0b2d54c — phần Map 1 = PRE4 dưới)
         { "flow", "4532ace7" }, { "flow30", "4532ace7" }, { "flow144", "4532ace7" }, { "map2", "4532ace7" },
         { "holy", "95e3ba78" },   // CVM2 04 (HolyPierceProbe — bộ mới) → CVM2 09 (52c59864 → b1033a3f) → CVM3 04 (lọ theo video Map_3)
