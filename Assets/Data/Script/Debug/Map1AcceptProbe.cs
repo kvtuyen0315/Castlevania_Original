@@ -43,6 +43,9 @@ public static class Map1AcceptProbe
     /// <summary>CVM2 11: hash ngay trước tick màn STAGE 04 bật (= Map1RouteProbe.PreStage4Hash) + tick đó.</summary>
     public static uint PreStage4Hash { get; private set; }
     public static int Stage4Tick => stage4Tick;
+    /// <summary>CVM3 11: hash ngay trước tick màn STAGE 07 bật (= Map2RouteProbe.PreStage7Hash = RegressionRunner.PRE7) + tick đó.</summary>
+    public static uint PreStage7Hash { get; private set; }
+    public static int Stage7Tick => stage7Tick;
 
     // ---- trạng thái chung
     private static Action<int> gmHandler;
@@ -50,6 +53,9 @@ public static class Map1AcceptProbe
     private static int f0 = -1, replayFrame = -1, stage4Tick = -1, bossWakeTick = -1, stage7Tick = -1;
     private static List<int> route2;     // CVM2 11: map2_route (null ⇒ luồng cũ dừng ở STAGE 04)
     private static bool route2Started;
+    private static List<int> route3;     // CVM3 11: map3_route (null ⇒ dừng ở STAGE 07 + 60 như CVM2 11)
+    private static bool route3Started;
+    private static int stage10Tick = -1;
     private static eGameScreen lastScreen;
     private static string lastSection = "";
     private static bool prevInvincible, prevLogFlow;
@@ -132,7 +138,10 @@ public static class Map1AcceptProbe
         f0 = replayFrame = stage4Tick = bossWakeTick = stage7Tick = -1;
         route2 = null;
         route2Started = false;
-        PreStage4Hash = 0;
+        route3 = null;
+        route3Started = false;
+        stage10Tick = -1;
+        PreStage4Hash = PreStage7Hash = 0;
         lastSection = "";
         frameSum = frameMax = 0;
         frameCount = 0;
@@ -184,6 +193,7 @@ public static class Map1AcceptProbe
         Fps = fps;
         route = NesReplay.Decode(File.ReadAllText(Map1RouteProbe.REPLAY));
         route2 = File.Exists(Map2RouteProbe.REPLAY) ? NesReplay.Decode(File.ReadAllText(Map2RouteProbe.REPLAY)) : null;
+        route3 = route2 != null && File.Exists(Map3RouteProbe.REPLAY) ? NesReplay.Decode(File.ReadAllText(Map3RouteProbe.REPLAY)) : null;
         shotDir = dir;
         if (dir != null)
             Directory.CreateDirectory(dir);
@@ -204,7 +214,8 @@ public static class Map1AcceptProbe
         }
         Running = true;
         Mark("GoTo(Title,0) abs " + f0 + " = L0");
-        return "flow bắt đầu @" + fps + " fps, route " + route.Count + " tick" + (route2 != null ? " + map2 " + route2.Count + " tick" : "");
+        return "flow bắt đầu @" + fps + " fps, route " + route.Count + " tick" + (route2 != null ? " + map2 " + route2.Count + " tick" : "")
+               + (route3 != null ? " + map3 " + route3.Count + " tick" : "");
     }
 
     private static int Lof(int frame) => f0 >= 0 ? frame - f0 : -1;
@@ -252,6 +263,19 @@ public static class Map1AcceptProbe
                 Mark("phát map2_route ở L" + L + " (" + route2.Count + " tick)");
             }
         }
+        // CVM3 11: tick màn đen cuối trước STAGE 07 (bản đồ B2 → StageScreen stage 7) ⇒ phát map3_route (như Map3RouteProbe); bất tử theo đoạn
+        if (route3 != null && route2Started && !route3Started)
+        {
+            var gm = GameManager.I;
+            if (gm.IsTransitioning && PendingNext() == eGameScreen.Stage1 && BlackLeft() == 1 && GameSession.Current.stage == 7)
+            {
+                NesPad.I.PlayReplay(route3);
+                route3Started = true;
+                Mark("phát map3_route ở L" + L + " (" + route3.Count + " tick)");
+            }
+        }
+        if (route3 != null)
+            Map3RouteProbe.ApplyCheat(route3Started);
         int k = frame - replayFrame;   // tick k của lộ trình đã xong
         if (k < 1)
             return;
@@ -262,13 +286,18 @@ public static class Map1AcceptProbe
             Finish(null);
             return;
         }
-        if (route2 != null && stage7Tick >= 0 && Tick - stage7Tick >= Map2RouteProbe.TAIL_TICKS)
+        if (route2 != null && route3 == null && stage7Tick >= 0 && Tick - stage7Tick >= Map2RouteProbe.TAIL_TICKS)
         {
             Finish(null);
             return;
         }
-        if (Tick > route.Count + (route2 != null ? route2.Count : 0) + 200)
-            Finish(route2 != null ? "hết lộ trình mà chưa tới STAGE 07" : "hết lộ trình mà chưa tới STAGE 04");
+        if (route3 != null && stage10Tick >= 0 && Tick - stage10Tick >= Map3RouteProbe.TAIL_TICKS)
+        {
+            Finish(null);
+            return;
+        }
+        if (Tick > route.Count + (route2 != null ? route2.Count : 0) + (route3 != null ? route3.Count : 0) + 200)
+            Finish(route3 != null ? "hết lộ trình mà chưa tới STAGE 10" : route2 != null ? "hết lộ trình mà chưa tới STAGE 07" : "hết lộ trình mà chưa tới STAGE 04");
     }
 
     private static eGameScreen PendingNext()
@@ -296,8 +325,13 @@ public static class Map1AcceptProbe
                 stage4Tick = Tick;
                 PreStage4Hash = Hash;
             }
-            if (gm.State == eGameScreen.Stage7Stub && stage7Tick < 0)
+            if (Map1RouteProbe.IsStage7Screen(gm.State) && stage7Tick < 0)
+            {
                 stage7Tick = Tick;
+                PreStage7Hash = Hash;   // CVM3 11: mốc PRE7 (Map 1 + 2 không đổi khi nối Map 3)
+            }
+            if (gm.State == eGameScreen.Stage10Stub && stage10Tick < 0)
+                stage10Tick = Tick;
         }
         if (InStage)
         {
@@ -826,7 +860,8 @@ public static class Map1AcceptProbe
         sb.Append(Mode).Append(Running ? " ĐANG CHẠY" : Finished ? " xong" : "").Append(" @").Append(Fps).Append(" fps — tick ").Append(Tick)
           .Append(", hash ").Append(Hash.ToString("x8")).Append(Error.Length > 0 ? ", LỖI: " + Error : "").Append('\n');
         sb.Append("trước STAGE 04: tick ").Append(stage4Tick).Append(" hash ").Append(PreStage4Hash.ToString("x8")).Append(" (chuẩn 8464 / " + RegressionRunner.PRE4 + " — CVM3 04)")
-          .Append(" | STAGE 07 ở tick ").Append(stage7Tick).Append('\n');
+          .Append(" | STAGE 07 ở tick ").Append(stage7Tick).Append(", trước STAGE 07 hash ").Append(PreStage7Hash.ToString("x8"))
+          .Append(" (PRE7 ").Append(RegressionRunner.PRE7).Append(") | STAGE 10 ở tick ").Append(stage10Tick).Append('\n');
         sb.Append("checkpoints: ");
         foreach (var c in Checkpoints)
             sb.Append(c.ToString("x8")).Append(' ');

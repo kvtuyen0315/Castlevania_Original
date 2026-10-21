@@ -16,6 +16,9 @@ using UnityEngine;
 ///   • CVM2 11 — Map 2 (Block 2, Map2FlowTiming đo video Map_2): cửa TRÁI (Connection.dir −1): Simon trên đất X ≤ triggerSimonX ⇒ cuộn
 ///     camera ÂM 128 + 128 px (section đích ghép liền trái), cánh cửa lật ngang ở x cột − 16, Simon tự đi TRÁI tới entry.x của section đích,
 ///     mốc từng cửa đo riêng; đổi tầng đen 21 tick, hiện ở Y 189; tally chờ 224 / nghỉ 58; tally → bản đồ đen 21. Block 1 giữ nguyên số Map 1.
+///   • CVM3 11 — Map 3 (Block 3, Map3FlowTiming đo video Map_3): cửa PHẢI như Map 1 nhưng mốc + vị trí cánh cửa đo riêng TỪNG cửa, Simon tự đi tới
+///     entry.x của section đích; đổi tầng thang LÊN-TRÁI cắt mép trên đen 23, hiện Y 189; pha TIME khi vào section theo hằng Block 3 (đầu stage 60,
+///     sau thang 59, sau cửa 58 — Map 1/2 giữ luật 64); tally chờ 226 / nghỉ 54; tally → bản đồ đen 20.
 ///   • Nhạc (CVM2 03 — tương quan âm thanh video, CVM2_MEMORY §2d): ConfigStage.music từ đầu stage + hồi sinh (Map_1: Vampire Killer
 ///     0:02.22, chạy liền qua cổng/cửa/Stage 02/03 — KHÔNG phát lại), Stage Clear lúc nhặt quả cầu (Map_1 3:33.06), Death khi mất mạng
 ///     (suy luận — không video); nhạc boss do BossBase (ConfigBlock.bossMusic).
@@ -270,7 +273,23 @@ public class StageFlow : MonoBehaviour
         walkFromX = simon.X;
         doorX = c.trigger.x;
         doorDir = c.Dir;
-        if (doorDir > 0)
+        if (doorDir > 0 && Map3FlowTiming.AppliesTo(world.Stage))
+        {
+            // CVM3 11 — cửa phải Block 3: mốc + vị trí cánh cửa đo riêng từng cửa (video Map_3), đỉnh cánh = đỉnh cột + 1; Simon tự đi tới
+            // entry.x của section đích (toạ độ nguồn — video 742 → 816, 740 → 816 sheet)
+            var dt = Map3FlowTiming.Door(c.id);
+            doorY = c.trigger.y + 1;
+            doorOpenX = doorX + dt.openDx;
+            doorLeafX = doorOpenX + Map1FlowTiming.DOOR_LEAF_DX;
+            walkToX = c.entry.x + c.targetOrigin.x;
+            tLeaf = dt.leaf;
+            tOpen = dt.open;
+            tWalk = dt.walk;
+            tClosing = dt.closing;
+            tClosed = dt.closed;
+            tScroll2 = dt.scroll2;
+        }
+        else if (doorDir > 0)
         {
             // Map 1 (CVGP 15): cửa phải — giữ nguyên số
             doorY = Map1FlowTiming.DOOR_SPRITE_Y;
@@ -382,7 +401,8 @@ public class StageFlow : MonoBehaviour
         simon.InputLocked = false;
         GameRules.EnterStage(c.targetStage, false);
         world.Stage = c.targetStage;
-        ArriveSection(target, simon.X - c.targetOrigin.x, simon.Y - c.targetOrigin.y, "stage" + c.targetStage, doorDir);
+        ArriveSection(target, simon.X - c.targetOrigin.x, simon.Y - c.targetOrigin.y, "stage" + c.targetStage, doorDir,
+                      Map3FlowTiming.AppliesTo(c.targetStage) ? Map3FlowTiming.TIME_FIRST_DOOR : -1);
         if (doorDir < 0)
             SpawnMechNow();
     }
@@ -423,10 +443,12 @@ public class StageFlow : MonoBehaviour
         target = FindSection(c.target);
         stairDir = dir;
         // CVM2 11: Block 2 lên hiện ở Y 189, đen 21 (video Map_2 ×3); xuống chưa có video ⇒ số Map 1
-        bool b2 = Map2FlowTiming.AppliesTo(world.Stage);
-        stairArriveY = dir > 0 ? (b2 ? Map2FlowTiming.STAIR_UP_ARRIVE_Y : Map1FlowTiming.STAIR_UP_ARRIVE_Y) : Map1FlowTiming.STAIR_DOWN_ARRIVE_Y;
+        // CVM3 11: Block 3 lên (thang ↖ cắt đỉnh) hiện ở Y 189, đen 23 (video Map_3 ×2); xuống chưa có video ⇒ số Map 1
+        bool b2 = Map2FlowTiming.AppliesTo(world.Stage), b3 = Map3FlowTiming.AppliesTo(world.Stage);
+        stairArriveY = dir > 0 ? (b3 ? Map3FlowTiming.STAIR_UP_ARRIVE_Y : b2 ? Map2FlowTiming.STAIR_UP_ARRIVE_Y : Map1FlowTiming.STAIR_UP_ARRIVE_Y)
+                               : Map1FlowTiming.STAIR_DOWN_ARRIVE_Y;
         Hold(true);
-        StartBlack(b2 ? Map2FlowTiming.STAIR_BLACK_TICKS : Map1FlowTiming.STAIR_BLACK_TICKS, ePending.StairArrive);
+        StartBlack(b3 ? Map3FlowTiming.STAIR_BLACK_TICKS : b2 ? Map2FlowTiming.STAIR_BLACK_TICKS : Map1FlowTiming.STAIR_BLACK_TICKS, ePending.StairArrive);
         Mark(dir > 0 ? "stair_up" : "stair_down");
     }
 
@@ -452,22 +474,24 @@ public class StageFlow : MonoBehaviour
         }
         if (!placed)
             Debug.LogError("[Flow] không thấy thang đích " + c.targetStair + " trong " + target.name);
-        AfterArrive(stairDir > 0 ? "ca_from_cb" : "cb_from_ca");
+        AfterArrive(stairDir > 0 ? "ca_from_cb" : "cb_from_ca", Map3FlowTiming.AppliesTo(world.Stage) ? Map3FlowTiming.TIME_FIRST_STAIR : -1);
     }
 
     // ---------------------------------------------------------------- chung
 
-    private void ArriveSection(LevelSection s, int x, int y, string mark, int facing = 1)
+    private void ArriveSection(LevelSection s, int x, int y, string mark, int facing = 1, int firstTimeUnit = -1)
     {
         var simon = Simon;
         if (s == null || simon == null)
             return;
         world.Warp(s, x, y);
         simon.Teleport(x, y, facing);   // CVM2 11: qua cửa trái ⇒ quay trái (video Hall A f1761 / Hall C f4479 idle_0 quay trái)
-        AfterArrive(mark);
+        AfterArrive(mark, firstTimeUnit);
     }
 
-    private void AfterArrive(string mark)
+    /// <summary>firstTimeUnit ≥ 0 (CVM3 11 — Block 3) ⇒ TIME giảm lần đầu đúng số tick đó sau khung hình section mới hiện; −1 ⇒ luật cũ
+    /// (pha về 0, đơn vị đầu sau TimeUnitTicks — Map 1/2).</summary>
+    private void AfterArrive(string mark, int firstTimeUnit = -1)
     {
         var cam = Cam;
         if (cam != null)
@@ -480,7 +504,12 @@ public class StageFlow : MonoBehaviour
         world.SpawnersPaused = false;
         Hold(false);
         if (rules != null)
-            rules.ResetClockPhase();
+        {
+            if (firstTimeUnit >= 0)
+                rules.ResetClockPhase(firstTimeUnit);
+            else
+                rules.ResetClockPhase();
+        }
         world.RefreshSpawnPoints();   // nến/chậu của section mới thấy ngay khung hình đầu (video f600, f2756, f4441, f5126)
         conn = null;
         target = null;
@@ -518,7 +547,8 @@ public class StageFlow : MonoBehaviour
     {
         Mark("tally_done");
         if (GameManager.I != null)
-            GameManager.I.GoTo(eGameScreen.CastleMap, Map2FlowTiming.AppliesTo(world.Stage) ? Map2FlowTiming.MAP_BLACK_TICKS : Map1FlowTiming.MAP_BLACK_TICKS);
+            GameManager.I.GoTo(eGameScreen.CastleMap, Map3FlowTiming.AppliesTo(world.Stage) ? Map3FlowTiming.MAP_BLACK_TICKS
+                                                    : Map2FlowTiming.AppliesTo(world.Stage) ? Map2FlowTiming.MAP_BLACK_TICKS : Map1FlowTiming.MAP_BLACK_TICKS);
     }
 
     private void OnRespawned(StageRules r)

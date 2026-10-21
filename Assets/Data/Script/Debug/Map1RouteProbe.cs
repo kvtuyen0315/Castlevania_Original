@@ -390,6 +390,12 @@ public static class Map1RouteProbe
         return s == eGameScreen.Stage4Stub || (s == eGameScreen.Stage1 && GameSession.Current.stage == 4);
     }
 
+    /// <summary>CVM3 11: màn của STAGE 07 — Stage7Stub (luồng Map 2 cũ) hoặc StageScreen chơi stage 7 (Map 3 thật).</summary>
+    public static bool IsStage7Screen(eGameScreen s)
+    {
+        return s == eGameScreen.Stage7Stub || (s == eGameScreen.Stage1 && GameSession.Current.stage == 7);
+    }
+
     private static bool TakeShots()
     {
         if (shots == null || shotDir == null)

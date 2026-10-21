@@ -71,6 +71,8 @@ public class StageRules : MonoBehaviour
     private Camera blackCam;
     private int playerWait, enemyWait;
     private int shotBlinkLeft, prevShot;
+    private int postTickFrame = -1;   // CVM3 11: NesClock.Frame của PostTick gần nhất (ResetClockPhase(n) biết đã qua lượt đếm của tick này chưa —
+                                      // không dùng TickCount: thế giới đứng khi đen nên TickCount không tăng)
     // số liệu (đọc lúc bật)
     private int timeUnit = 64, dmgTicks = 8, healTicks = 8, respawnBlack = 32, gameOverBlack = 32, blinkTicks = 120, blinkHalf = 4;
 
@@ -106,6 +108,7 @@ public class StageRules : MonoBehaviour
         s.shotIconVisible = true;
         prevShot = s.shotMultiplier;
         clockPhase = 0;
+        postTickFrame = -1;
         holds = eClockHold.None;
         paused = false;
         blackLeft = 0;
@@ -165,6 +168,14 @@ public class StageRules : MonoBehaviour
     public void ResetClockPhase()
     {
         clockPhase = 0;
+    }
+
+    /// <summary>CVM3 11 (Block 3 — Map3FlowTiming.TIME_FIRST_*): TIME giảm lần đầu đúng <paramref name="ticksToFirstUnit"/> tick sau tick
+    /// gọi hàm (= khung hình section/stage mới hiện), dù gọi trước hay sau lượt đếm của tick này (PreTick đổi tầng / PostTick cửa / OnEnter).</summary>
+    public void ResetClockPhase(int ticksToFirstUnit)
+    {
+        bool counted = postTickFrame == NesClock.Frame;
+        clockPhase = Mathf.Clamp(timeUnit - ticksToFirstUnit - (counted ? 0 : 1), 0, timeUnit - 1);
     }
 
     /// <summary>Bật/tắt pause (Start — cũng gọi được từ harness). Trả false nếu đang không được pause.</summary>
@@ -238,6 +249,8 @@ public class StageRules : MonoBehaviour
         }
         world.ResetRng();
         clockPhase = 0;
+        if (Map3FlowTiming.AppliesTo(s.stage))
+            ResetClockPhase(Map3FlowTiming.TIME_FIRST_STAGE);   // CVM3 11: Block 3 đầu stage 60 (video STAGE 07; hồi sinh — suy luận cùng số)
         holds = eClockHold.None;
         tally.Reset();
         playerWait = enemyWait = 0;
@@ -291,6 +304,7 @@ public class StageRules : MonoBehaviour
 
     private void PostTick(StageWorld w)
     {
+        postTickFrame = NesClock.Frame;
         if (w.Paused)
             return;
         var s = GameSession.Current;
@@ -452,11 +466,13 @@ public class StageRules : MonoBehaviour
         SetClockHold(eClockHold.StageClear, true);
         if (simon != null)
             simon.InputLocked = true;
-        // CVM2 11: Block 2 chờ/nghỉ đo video Map_2 (Map2FlowTiming.TALLY_*); block khác giữ Config (video Map_1)
-        bool b2 = Map2FlowTiming.AppliesTo(world.Stage);
-        tally.Start(GameConfig.Current, b2 ? Map2FlowTiming.TALLY_WAIT_TICKS : -1, b2 ? Map2FlowTiming.TALLY_GAP_TICKS : -1);
+        // CVM2 11: Block 2 chờ/nghỉ đo video Map_2 (Map2FlowTiming.TALLY_*); CVM3 11: Block 3 đo video Map_3 (Map3FlowTiming.TALLY_*);
+        // block khác giữ Config (video Map_1)
+        bool b2 = Map2FlowTiming.AppliesTo(world.Stage), b3 = Map3FlowTiming.AppliesTo(world.Stage);
+        int wait = b3 ? Map3FlowTiming.TALLY_WAIT_TICKS : b2 ? Map2FlowTiming.TALLY_WAIT_TICKS : -1;
+        tally.Start(GameConfig.Current, wait, b3 ? Map3FlowTiming.TALLY_GAP_TICKS : b2 ? Map2FlowTiming.TALLY_GAP_TICKS : -1);
         Log("nhặt quả cầu ⇒ TIME đứng " + GameSession.Current.time.ToString("0000") + ", tally sau "
-            + (b2 ? Map2FlowTiming.TALLY_WAIT_TICKS : GameConfig.Current.rules.GetInt(eRuleParam.StageClearToTallyTicks, 260)) + " tick");
+            + (wait >= 0 ? wait : GameConfig.Current.rules.GetInt(eRuleParam.StageClearToTallyTicks, 260)) + " tick");
     }
 
     private static void Log(string msg)

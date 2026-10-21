@@ -36,6 +36,8 @@ public static class Map2RouteProbe
     public static uint PreStage4Hash { get; private set; }
     public static int Stage4Tick { get; private set; } = -1;
     public static int Stage7Tick { get; private set; } = -1;
+    /// <summary>CVM3 11: hash ngay TRƯỚC tick màn STAGE 07 bật (Stage7Stub cũ / StageScreen stage 7) — mốc PRE7 (Map 1 + 2 không đổi).</summary>
+    public static uint PreStage7Hash { get; private set; }
     public static int ShotsTaken { get; private set; }
     public static int TicksPerUpdate = 40;
     /// <summary>Vết autopilot mỗi N tick; TraceStep ≠ null ⇒ thêm MỌI tick của bước có tên chứa chuỗi này (chỉnh lộ trình).</summary>
@@ -131,7 +133,7 @@ public static class Map2RouteProbe
         l.Add(new Shot("map2_r100", () => mapEnterFrame >= 0 && GameManager.I.State == eGameScreen.CastleMap && NesClock.Frame - mapEnterFrame == 100));
         l.Add(new Shot("map2_r211", () => mapEnterFrame >= 0 && GameManager.I.State == eGameScreen.CastleMap && NesClock.Frame - mapEnterFrame == 211));
         l.Add(new Shot("map2_r300", () => mapEnterFrame >= 0 && GameManager.I.State == eGameScreen.CastleMap && NesClock.Frame - mapEnterFrame == 300));
-        l.Add(new Shot("st07_r006", () => stage7Frame >= 0 && GameManager.I.State == eGameScreen.Stage7Stub && NesClock.Frame - stage7Frame == 6));
+        l.Add(new Shot("st07_r006", () => stage7Frame >= 0 && Map1RouteProbe.IsStage7Screen(GameManager.I.State) && NesClock.Frame - stage7Frame == 6));
         return l;
     }
 
@@ -187,7 +189,7 @@ public static class Map2RouteProbe
         Finished = false;
         Tick = 0;
         Hash = 2166136261u;
-        PreStage4Hash = 0;
+        PreStage4Hash = PreStage7Hash = 0;
         Stage4Tick = Stage7Tick = -1;
         ShotsTaken = 0;
         Marks.Clear();
@@ -385,9 +387,10 @@ public static class Map2RouteProbe
             }
             if (gm.State == eGameScreen.CastleMap && InMap2)
                 mapEnterFrame = NesClock.Frame;
-            if (gm.State == eGameScreen.Stage7Stub)
+            if (Map1RouteProbe.IsStage7Screen(gm.State) && Stage7Tick < 0)
             {
                 Stage7Tick = Tick;
+                PreStage7Hash = Hash;
                 stage7Frame = NesClock.Frame;
             }
         }
@@ -542,7 +545,7 @@ public static class Map2RouteProbe
         sb.Append(Mode).Append(Running ? " ĐANG CHẠY" : Finished ? " xong" : "").Append(" — tick ").Append(Tick).Append(", hash ").Append(Hash.ToString("x8"))
           .Append(", ảnh ").Append(ShotsTaken).Append(Error.Length > 0 ? ", LỖI: " + Error : "").Append('\n');
         sb.Append("trước STAGE 04: tick ").Append(Stage4Tick).Append(" hash ").Append(PreStage4Hash.ToString("x8")).Append(" (chuẩn Map 1: 8449 / 165b9aef)\n");
-        sb.Append("STAGE 07 ở tick ").Append(Stage7Tick).Append('\n');
+        sb.Append("STAGE 07 ở tick ").Append(Stage7Tick).Append(", trước STAGE 07 hash ").Append(PreStage7Hash.ToString("x8")).Append(" (PRE7)\n");
         sb.Append("checkpoints: ");
         foreach (var c in Checkpoints)
             sb.Append(c.ToString("x8")).Append(' ');

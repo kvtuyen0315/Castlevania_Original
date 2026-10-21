@@ -15,10 +15,14 @@ using UnityEngine.SceneManagement;
 ///     EdgeSpawner/WaterSpawner (vùng sinh), kho báu bí mật (SpawnPoint SecretTrigger + SecretTriggerSpec), BossArena. Lớp vật thể là prefab
 ///     RIÊNG (không lồng vào prefab section của 06 — scene Arena dùng chung prefab section, thêm vật vào đó sẽ đổi kết quả bộ kiểm 07–14).
 ///     Nội dung so EditorJsonUtility với prefab cũ ⇒ không khác thì không ghi (chạy lại = 0 ghi).
-///   • CVGP/Build Map1 Screens (= CVM2/Build Map2 Screens): dựng Assets/Data/Prefabs/Screens/{StageScreen, CastleMapScreen, Stage7Stub}.prefab
-///     (giữ GUID + fileID gốc) và lắp vào Main.unity/ScreenRoot thay instance Stage1Stub (Stage1Stub.prefab + script giữ lại cho builder CVTI —
-///     không còn trong scene). CVM2 11: StageScreen chứa thêm 6 section Block 2 + lớp vật thể (CVM2/Build Map2 Objects), điểm đầu Stage 04–06;
-///     Stage4Stub bỏ (STAGE 04 thật = StageScreen) — builder gỡ instance cũ khỏi Main.unity; Stage7Stub cuối luồng.
+///   • CVGP/Build Map1 Screens (= CVM2/Build Map2 Screens = CVM3/Build Map3 Screens): dựng Assets/Data/Prefabs/Screens/{StageScreen,
+///     CastleMapScreen, Stage10Stub}.prefab và lắp vào Main.unity/ScreenRoot thay instance Stage1Stub (Stage1Stub.prefab + script giữ lại cho builder
+///     CVTI — không còn trong scene). CVM2 11: StageScreen chứa thêm 6 section Block 2 + lớp vật thể (CVM2/Build Map2 Objects), điểm đầu Stage 04–06;
+///     Stage4Stub bỏ (STAGE 04 thật = StageScreen) — builder gỡ instance cũ khỏi Main.unity. CVM3 11: + 5 section Block 3 + lớp vật thể (CVM3/Build
+///     Map3 Objects), điểm đầu Stage 07–09; Stage7Stub bỏ (STAGE 07 thật) — gỡ instance cũ; Stage10Stub cuối luồng.
+///     CVM3 11 (gộp cvm2-fix-03): IDEMPOTENT Ở MỨC BYTE — dựng xong lưu thử ra &lt;tên&gt;__tmp.prefab, nạp lại cả bản tạm lẫn bản thật rồi so chữ ký
+///     nội dung (mọi GameObject + mọi thuộc tính hiện của component; tham chiếu = guid/fileID asset hoặc đường dẫn trong cây) — giống ⇒ KHÔNG ghi
+///     (trước đây SaveAsPrefabAsset luôn sinh fileID mới cho prefab lồng ⇒ git bẩn mỗi lần chạy — CVM2 12).
 /// </summary>
 public static class CvgpMap1Builder
 {
@@ -29,7 +33,8 @@ public static class CvgpMap1Builder
     const string STAGE_SCREEN = SCREEN_DIR + "StageScreen.prefab";
     const string CASTLEMAP_SCREEN = SCREEN_DIR + "CastleMapScreen.prefab";
     const string STAGE4_SCREEN = SCREEN_DIR + "Stage4Stub.prefab";   // CVM2 11: đã xoá — chỉ để gỡ instance cũ khỏi Main.unity
-    const string STAGE7_SCREEN = SCREEN_DIR + "Stage7Stub.prefab";
+    const string STAGE7_SCREEN = SCREEN_DIR + "Stage7Stub.prefab";   // CVM3 11: đã xoá — chỉ để gỡ instance cũ khỏi Main.unity
+    const string STAGE10_SCREEN = SCREEN_DIR + "Stage10Stub.prefab";
     const string STAGE1_STUB = SCREEN_DIR + "Stage1Stub.prefab";
     const string MAIN_SCENE = "Assets/Scenes/Main.unity";
     const string HUD_PREFAB = "Assets/Data/Prefabs/UI/HUD.prefab";
@@ -38,6 +43,9 @@ public static class CvgpMap1Builder
     /// <summary>CVM2 11 — section Block 2 (CVM2/Build Map2 Tilemaps + Objects) thêm vào StageScreen sau Block 1 (đang tắt).</summary>
     const string SECTION_DIR_B2 = "Assets/Data/Prefabs/Level/Block2/";
     static readonly string[] SECTIONS_B2 = { "TowerEntranceA", "TowerEntranceB", "TowerHallA", "TowerHallB", "TowerHallC", "Medusa" };
+    /// <summary>CVM3 11 — section Block 3 (CVM3/Build Map3 Tilemaps + Objects) thêm vào StageScreen sau Block 2 (đang tắt).</summary>
+    const string SECTION_DIR_B3 = "Assets/Data/Prefabs/Level/Block3/";
+    static readonly string[] SECTIONS_B3 = { "WalkwayEntranceA", "WalkwayEntranceB", "WalkwayA", "WalkwayB", "MummyMan" };
 
     // ------------------------------------------------------------------ bảng JSON (JsonUtility)
     // CVM2 10: thêm trường tuỳ chọn cho Map 2 (Point.param, Edge.zoneMinY/zoneMaxY/maxSpawns, Secret.riseSpeed, Section.mechSpawners,
@@ -73,9 +81,16 @@ public static class CvgpMap1Builder
         Debug.Log(BuildScreens());
     }
 
-    /// <summary>CVM2 11 — cùng builder (StageScreen chứa cả Block 1 + Block 2, bản đồ lâu đài, Stage7Stub).</summary>
+    /// <summary>CVM2 11 — cùng builder (StageScreen chứa cả Block 1 + Block 2 + Block 3, bản đồ lâu đài, Stage10Stub).</summary>
     [MenuItem("CVM2/Build Map2 Screens")]
     static void BuildScreensMap2Menu()
+    {
+        Debug.Log(BuildScreens());
+    }
+
+    /// <summary>CVM3 11 — cùng builder (StageScreen chứa Block 1 + 2 + 3, bản đồ lâu đài B1/B2/B3, Stage10Stub); chạy lại ⇒ "không đổi" 3/3.</summary>
+    [MenuItem("CVM3/Build Map3 Screens")]
+    static void BuildScreensMap3Menu()
     {
         Debug.Log(BuildScreens());
     }
@@ -302,12 +317,17 @@ public static class CvgpMap1Builder
             if (AssetDatabase.LoadAssetAtPath<GameObject>(OBJ_DIR_MAP2 + "/" + id + "_Objects.prefab") == null
                 || AssetDatabase.LoadAssetAtPath<GameObject>(SECTION_DIR_B2 + id + ".prefab") == null)
                 return "[Map1] thiếu Block 2 " + id + " — chạy CVM2/Build Map2 Tilemaps + CVM2/Build Map2 Objects trước";
-        BuildStageScreen();
-        BuildCastleMap();
-        BuildStage7();
+        foreach (var id in SECTIONS_B3)
+            if (AssetDatabase.LoadAssetAtPath<GameObject>(OBJ_DIR_MAP3 + "/" + id + "_Objects.prefab") == null
+                || AssetDatabase.LoadAssetAtPath<GameObject>(SECTION_DIR_B3 + id + ".prefab") == null)
+                return "[Map1] thiếu Block 3 " + id + " — chạy CVM3/Build Map3 Tilemaps + CVM3/Build Map3 Objects trước";
+        var saved = new List<string>();
+        BuildStageScreen(saved);
+        BuildCastleMap(saved);
+        BuildStage10(saved);
         var msg = InstallInMain();
         AssetDatabase.SaveAssets();
-        return "[Map1] Build Map1 Screens: StageScreen (Block 1 + 2), CastleMapScreen, Stage7Stub — " + msg;
+        return "[Map1] Build Screens: StageScreen (Block 1 + 2 + 3), CastleMapScreen, Stage10Stub — " + string.Join(", ", saved.ToArray()) + " — " + msg;
     }
 
     static GameObject OpenOrNew(string path, string name)
@@ -322,14 +342,137 @@ public static class CvgpMap1Builder
         return new GameObject(name);
     }
 
-    static void Save(GameObject root, string path)
+    /// <summary>
+    /// CVM3 11: lưu CHỈ KHI nội dung khác — lưu thử ra &lt;path&gt;__tmp.prefab, nạp lại 2 bản từ đĩa (cùng chuẩn hoá của Unity) rồi so
+    /// ContentSignature; giống ⇒ bỏ (file thật giữ nguyên byte, fileID cũ), khác ⇒ ghi đè file thật. Bản tạm luôn bị xoá.
+    /// </summary>
+    static void Save(GameObject root, string path, List<string> log)
     {
+        string name = Path.GetFileNameWithoutExtension(path);
         bool existed = AssetDatabase.LoadAssetAtPath<GameObject>(path) != null;
-        PrefabUtility.SaveAsPrefabAsset(root, path);
-        if (existed)
-            PrefabUtility.UnloadPrefabContents(root);
-        else
+        if (!existed)
+        {
+            PrefabUtility.SaveAsPrefabAsset(root, path);
             UnityEngine.Object.DestroyImmediate(root);
+            log.Add(name + " tạo mới");
+            return;
+        }
+        string tmp = path.Substring(0, path.Length - ".prefab".Length) + "__tmp.prefab";
+        PrefabUtility.SaveAsPrefabAsset(root, tmp);
+        string sigNew = SignatureOfAsset(tmp), sigOld = SignatureOfAsset(path);
+        if (sigNew == sigOld)
+            log.Add(name + " không đổi");
+        else
+        {
+            PrefabUtility.SaveAsPrefabAsset(root, path);
+            log.Add(name + " ghi");
+        }
+        PrefabUtility.UnloadPrefabContents(root);
+        AssetDatabase.DeleteAsset(tmp);
+    }
+
+    static string SignatureOfAsset(string path)
+    {
+        var r = PrefabUtility.LoadPrefabContents(path);
+        try
+        {
+            return ContentSignature(r);
+        }
+        finally
+        {
+            PrefabUtility.UnloadPrefabContents(r);
+        }
+    }
+
+    /// <summary>CVM3 11: chữ ký nội dung cây prefab — mọi GameObject (đường dẫn tên#thứ tự, active, layer, tag, transform) + mọi thuộc tính
+    /// HIỆN của mọi component (SerializedProperty.NextVisible); tham chiếu ⇒ "asset:guid#fileID" hoặc "tree:đường dẫn/kiểu#chỉ số".</summary>
+    public static string ContentSignature(GameObject root)
+    {
+        var sb = new StringBuilder();
+        SigNode(sb, root.transform, root.transform);
+        return sb.ToString();
+    }
+
+    static string TreePath(Transform root, Transform t)
+    {
+        var parts = new List<string>();
+        for (var c = t; c != null && c != root; c = c.parent)
+            parts.Insert(0, c.name + "#" + c.GetSiblingIndex());
+        return "/" + string.Join("/", parts.ToArray());
+    }
+
+    static string RefDesc(Transform root, UnityEngine.Object o)
+    {
+        if (o == null)
+            return "null";
+        string guid;
+        long lid;
+        if (AssetDatabase.Contains(o) && AssetDatabase.TryGetGUIDAndLocalFileIdentifier(o, out guid, out lid))
+            return "asset:" + guid + "#" + lid;
+        var go = o as GameObject;
+        var comp = o as Component;
+        if (go == null && comp != null)
+            go = comp.gameObject;
+        if (go == null)
+            return "obj:" + o.GetType().Name + ":" + o.name;
+        string p = "tree:" + TreePath(root, go.transform);
+        if (comp == null)
+            return p;
+        var same = go.GetComponents(comp.GetType());
+        return p + "/" + comp.GetType().Name + "#" + Array.IndexOf(same, comp);
+    }
+
+    static void SigNode(StringBuilder sb, Transform root, Transform t)
+    {
+        var go = t.gameObject;
+        sb.Append(TreePath(root, t)).Append(" a").Append(go.activeSelf ? 1 : 0).Append(" l").Append(go.layer).Append(" t").Append(go.tag)
+          .Append(" p").Append(t.localPosition.ToString("F5")).Append(" r").Append(t.localRotation.ToString("F5")).Append(" s").Append(t.localScale.ToString("F5"))
+          .Append('\n');
+        foreach (var c in go.GetComponents<Component>())
+        {
+            if (c == null)
+            {
+                sb.Append("  (component thiếu script)\n");
+                continue;
+            }
+            if (c is Transform)
+                continue;
+            sb.Append("  ").Append(c.GetType().Name).Append('\n');
+            var so = new SerializedObject(c);
+            var it = so.GetIterator();
+            bool enter = true;
+            while (it.NextVisible(enter))
+            {
+                enter = true;
+                sb.Append("    ").Append(it.propertyPath).Append('=');
+                switch (it.propertyType)
+                {
+                    case SerializedPropertyType.ObjectReference: sb.Append(RefDesc(root, it.objectReferenceValue)); break;
+                    case SerializedPropertyType.Integer: sb.Append(it.longValue); break;
+                    case SerializedPropertyType.Boolean: sb.Append(it.boolValue); break;
+                    case SerializedPropertyType.Float: sb.Append(it.doubleValue.ToString("R")); break;
+                    case SerializedPropertyType.String: sb.Append(it.stringValue); break;
+                    case SerializedPropertyType.Enum: sb.Append(it.intValue); break;
+                    case SerializedPropertyType.Color: sb.Append(it.colorValue.ToString("F5")); break;
+                    case SerializedPropertyType.Vector2: sb.Append(it.vector2Value.ToString("F5")); break;
+                    case SerializedPropertyType.Vector3: sb.Append(it.vector3Value.ToString("F5")); break;
+                    case SerializedPropertyType.Vector4: sb.Append(it.vector4Value.ToString("F5")); break;
+                    case SerializedPropertyType.Vector2Int: sb.Append(it.vector2IntValue); break;
+                    case SerializedPropertyType.Vector3Int: sb.Append(it.vector3IntValue); break;
+                    case SerializedPropertyType.Rect: sb.Append(it.rectValue.ToString("F5")); break;
+                    case SerializedPropertyType.RectInt: sb.Append(it.rectIntValue.ToString()); break;
+                    case SerializedPropertyType.Bounds: sb.Append(it.boundsValue.ToString("F5")); break;
+                    case SerializedPropertyType.LayerMask: sb.Append(it.intValue); break;
+                    case SerializedPropertyType.ArraySize: sb.Append(it.intValue); break;
+                    case SerializedPropertyType.Character: sb.Append(it.intValue); break;
+                    case SerializedPropertyType.Quaternion: sb.Append(it.quaternionValue.ToString("F5")); break;
+                    default: sb.Append(it.propertyType); break;
+                }
+                sb.Append('\n');
+            }
+        }
+        for (int i = 0; i < t.childCount; i++)
+            SigNode(sb, root, t.GetChild(i));
     }
 
     static T GetOrAdd<T>(GameObject go) where T : Component
@@ -346,7 +489,7 @@ public static class CvgpMap1Builder
         return hud;
     }
 
-    static void BuildStageScreen()
+    static void BuildStageScreen(List<string> log)
     {
         var root = OpenOrNew(STAGE_SCREEN, "StageScreen");
         root.transform.localPosition = Vector3.zero;
@@ -376,6 +519,15 @@ public static class CvgpMap1Builder
             var s = (GameObject)PrefabUtility.InstantiatePrefab(AssetDatabase.LoadAssetAtPath<GameObject>(SECTION_DIR_B2 + id + ".prefab"), worldGo.transform);
             s.name = id;
             var objs = (GameObject)PrefabUtility.InstantiatePrefab(AssetDatabase.LoadAssetAtPath<GameObject>(OBJ_DIR_MAP2 + "/" + id + "_Objects.prefab"), s.transform);
+            objs.name = id + "_Objects";
+            s.SetActive(false);
+            secs[id] = s.GetComponent<LevelSection>();
+        }
+        foreach (var id in SECTIONS_B3)   // CVM3 11
+        {
+            var s = (GameObject)PrefabUtility.InstantiatePrefab(AssetDatabase.LoadAssetAtPath<GameObject>(SECTION_DIR_B3 + id + ".prefab"), worldGo.transform);
+            s.name = id;
+            var objs = (GameObject)PrefabUtility.InstantiatePrefab(AssetDatabase.LoadAssetAtPath<GameObject>(OBJ_DIR_MAP3 + "/" + id + "_Objects.prefab"), s.transform);
             objs.name = id + "_Objects";
             s.SetActive(false);
             secs[id] = s.GetComponent<LevelSection>();
@@ -412,7 +564,7 @@ public static class CvgpMap1Builder
         var rso = new SerializedObject(rules);
         rso.FindProperty("world").objectReferenceValue = world;
         var st = rso.FindProperty("stageStarts");
-        st.arraySize = 6;
+        st.arraySize = 9;
         SetStart(st.GetArrayElementAtIndex(0), 1, secs["CastleEntrance"], true, Vector2Int.zero);
         SetStart(st.GetArrayElementAtIndex(1), 2, secs["CryptA"], false, new Vector2Int(Map1FlowTiming.STAGE_ENTRY_X, Map1FlowTiming.STAGE_ENTRY_Y));
         SetStart(st.GetArrayElementAtIndex(2), 3, secs["PhantomBat"], false, new Vector2Int(Map1FlowTiming.STAGE_ENTRY_X, Map1FlowTiming.STAGE_ENTRY_Y));
@@ -420,6 +572,10 @@ public static class CvgpMap1Builder
         SetStart(st.GetArrayElementAtIndex(3), 4, secs["TowerEntranceA"], true, Vector2Int.zero);
         SetStart(st.GetArrayElementAtIndex(4), 5, secs["TowerHallA"], true, Vector2Int.zero);
         SetStart(st.GetArrayElementAtIndex(5), 6, secs["TowerHallC"], true, Vector2Int.zero);
+        // CVM3 11 — Block 3: simonStart + simonStartDir của section (CVM3 05 đo video: WEA (720,160) TRÁI; WalkwayA (48,128) / MummyMan (48,96) phải)
+        SetStart(st.GetArrayElementAtIndex(6), 7, secs["WalkwayEntranceA"], true, Vector2Int.zero);
+        SetStart(st.GetArrayElementAtIndex(7), 8, secs["WalkwayA"], true, Vector2Int.zero);
+        SetStart(st.GetArrayElementAtIndex(8), 9, secs["MummyMan"], true, Vector2Int.zero);
         rso.ApplyModifiedPropertiesWithoutUndo();
 
         var fso = new SerializedObject(flow);
@@ -439,7 +595,7 @@ public static class CvgpMap1Builder
         sso.FindProperty("rules").objectReferenceValue = rules;
         sso.FindProperty("flow").objectReferenceValue = flow;
         sso.ApplyModifiedPropertiesWithoutUndo();
-        Save(root, STAGE_SCREEN);
+        Save(root, STAGE_SCREEN, log);
     }
 
     static void SetStart(SerializedProperty p, int stage, LevelSection sec, bool useSectionStart, Vector2Int pos)
@@ -450,7 +606,7 @@ public static class CvgpMap1Builder
         p.FindPropertyRelative("position").vector2IntValue = pos;
     }
 
-    static void BuildCastleMap()
+    static void BuildCastleMap(List<string> log)
     {
         var root = OpenOrNew(CASTLEMAP_SCREEN, "CastleMapScreen");
         root.transform.localPosition = Vector3.zero;
@@ -471,16 +627,16 @@ public static class CvgpMap1Builder
         SetArray(so.FindProperty("batFrames"), LoadSprite(A + "castlemap_bat_0.png"), LoadSprite(A + "castlemap_bat_1.png"));
         SetArray(so.FindProperty("simonWalk"), LoadSprite(S + "walk_0.png"), LoadSprite(S + "walk_1.png"), LoadSprite(S + "walk_2.png"));
         so.ApplyModifiedPropertiesWithoutUndo();
-        Save(root, CASTLEMAP_SCREEN);
+        Save(root, CASTLEMAP_SCREEN, log);
     }
 
-    static void BuildStage7()
+    static void BuildStage10(List<string> log)
     {
-        var root = OpenOrNew(STAGE7_SCREEN, "Stage7Stub");
+        var root = OpenOrNew(STAGE10_SCREEN, "Stage10Stub");
         root.transform.localPosition = Vector3.zero;
-        GetOrAdd<Stage7Stub>(root);
+        GetOrAdd<Stage10Stub>(root);
         AddHud(root.transform);
-        Save(root, STAGE7_SCREEN);
+        Save(root, STAGE10_SCREEN, log);
     }
 
     static SpriteRenderer MakeRenderer(Transform parent, string name, Sprite sprite, string layer, int order, int x, int y)
@@ -510,7 +666,8 @@ public static class CvgpMap1Builder
         return s;
     }
 
-    /// <summary>Main.unity/ScreenRoot: bỏ instance Stage1Stub (+ Stage4Stub — CVM2 11), thêm StageScreen (cùng chỗ), CastleMapScreen, Stage7Stub — tắt sẵn.</summary>
+    /// <summary>Main.unity/ScreenRoot: bỏ instance Stage1Stub (+ Stage4Stub — CVM2 11, + Stage7Stub — CVM3 11), thêm StageScreen (cùng chỗ),
+    /// CastleMapScreen, Stage10Stub — tắt sẵn.</summary>
     static string InstallInMain()
     {
         var scene = SceneManager.GetActiveScene();
@@ -542,10 +699,15 @@ public static class CvgpMap1Builder
                 UnityEngine.Object.DestroyImmediate(c);   // CVM2 11: STAGE 04 thật = StageScreen
                 changes.Add("bỏ Stage4Stub");
             }
+            else if (c.name == "Stage7Stub" || PrefabUtility.GetPrefabAssetPathOfNearestInstanceRoot(c) == STAGE7_SCREEN)
+            {
+                UnityEngine.Object.DestroyImmediate(c);   // CVM3 11: STAGE 07 thật = StageScreen
+                changes.Add("bỏ Stage7Stub");
+            }
         }
         Ensure(screenRoot.transform, STAGE_SCREEN, index, changes);
         Ensure(screenRoot.transform, CASTLEMAP_SCREEN, -1, changes);
-        Ensure(screenRoot.transform, STAGE7_SCREEN, -1, changes);
+        Ensure(screenRoot.transform, STAGE10_SCREEN, -1, changes);
         if (changes.Count == 0)
             return "Main.unity không đổi";
         EditorSceneManager.MarkSceneDirty(scene);

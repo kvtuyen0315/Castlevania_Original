@@ -8,7 +8,10 @@ using UnityEngine;
 ///   MapStep mỗi 16 tick) ⇒ đen 27 tick ⇒ màn kế. Không nhạc (video chỉ có tiếng bước).
 ///   Theo block vừa xong (GameSession.block trước StartNextBlock): Block 1 ⇒ dơi (84,115), chấm (148,141), màn kế = StageScreen (STAGE 04 thật
 ///   — CVM2 11 thay Stage4Stub); Block 2 ⇒ dơi (164,99), chấm (76,111) (Map2FlowTiming — trượt/Simon/nhịp đo trùng Block 1 ±2), màn kế =
-///   Stage7Stub (STAGE 07 — chờ cụm Map 3). Stage kế &gt; StageScreen.LAST_PLAYABLE_STAGE ⇒ Stage7Stub.
+///   StageScreen (STAGE 07 thật — CVM3 11 thay Stage7Stub); Block 3 (CVM3 11 — video Map_3 4:08.8–4:11.6, chỉ 2.4 s đầu) ⇒ bản đồ trượt như
+///   B1/B2 (đo 1.51 px/tick) nhưng KHÔNG dừng ở x 0 (f7547 dx −2) ⇒ dừng ở Map3FlowTiming.MAP_STOP_X −128 (mép phải bản đồ — SUY LUẬN), dơi ở
+///   ô Block 4, chấm ở ô Block 3 (SUY LUẬN theo khuôn B1/B2), Simon/nhịp/đen như B1/B2 (suy luận), màn kế = Stage10Stub (chờ cụm Map 4).
+///   Stage kế &gt; StageScreen.LAST_PLAYABLE_STAGE ⇒ Stage10Stub.
 ///   Vị trí tính lại từ localFrame mỗi tick (như IntroScreen) ⇒ tất định, vào lại là chạy lại từ đầu.
 /// </summary>
 public class CastleMapScreen : GameScreen
@@ -24,7 +27,7 @@ public class CastleMapScreen : GameScreen
     [Tooltip("walk_0, walk_1, walk_2 (Character/Simon — quay trái, lật khi vẽ)")]
     [SerializeField] private Sprite[] simonWalk = new Sprite[0];
 
-    private int stopFrame;
+    private int stopFrame, stopX;
     private bool left;
     private int doneBlock;
     private eGameScreen next;
@@ -33,7 +36,7 @@ public class CastleMapScreen : GameScreen
 
     /// <summary>Tick (localFrame) bản đồ dừng ở x 0.</summary>
     public int StopFrame => stopFrame;
-    /// <summary>CVM2 11: block vừa xong (1 = sau Phantom Bat, 2 = sau Queen Medusa).</summary>
+    /// <summary>CVM2 11: block vừa xong (1 = sau Phantom Bat, 2 = sau Queen Medusa, 3 = sau Mummy Men — CVM3 11).</summary>
     public int DoneBlock => doneBlock;
     public eGameScreen Next => next;
 
@@ -41,18 +44,21 @@ public class CastleMapScreen : GameScreen
     {
         doneBlock = GameSession.Current.block;
         GameRules.StartNextBlock();
-        next = GameSession.Current.stage <= StageScreen.LAST_PLAYABLE_STAGE ? eGameScreen.Stage1 : eGameScreen.Stage7Stub;
-        bool b2 = doneBlock == Map2FlowTiming.BLOCK;
+        next = GameSession.Current.stage <= StageScreen.LAST_PLAYABLE_STAGE ? eGameScreen.Stage1 : eGameScreen.Stage10Stub;
+        bool b2 = doneBlock == Map2FlowTiming.BLOCK, b3 = doneBlock == Map3FlowTiming.BLOCK;
         if (bat != null)
-            bat.transform.localPosition = b2 ? NesCoord.ToWorld(Map2FlowTiming.MAP_BAT_X, Map2FlowTiming.MAP_BAT_Y)
+            bat.transform.localPosition = b3 ? NesCoord.ToWorld(Map3FlowTiming.MAP_BAT_X, Map3FlowTiming.MAP_BAT_Y)
+                                        : b2 ? NesCoord.ToWorld(Map2FlowTiming.MAP_BAT_X, Map2FlowTiming.MAP_BAT_Y)
                                              : NesCoord.ToWorld(Map1FlowTiming.MAP_BAT_X, Map1FlowTiming.MAP_BAT_Y);
         if (marker != null)
-            marker.transform.localPosition = b2 ? NesCoord.ToWorld(Map2FlowTiming.MAP_MARKER_X, Map2FlowTiming.MAP_MARKER_Y)
+            marker.transform.localPosition = b3 ? NesCoord.ToWorld(Map3FlowTiming.MAP_MARKER_X, Map3FlowTiming.MAP_MARKER_Y)
+                                           : b2 ? NesCoord.ToWorld(Map2FlowTiming.MAP_MARKER_X, Map2FlowTiming.MAP_MARKER_Y)
                                                 : NesCoord.ToWorld(Map1FlowTiming.MAP_MARKER_X, Map1FlowTiming.MAP_MARKER_Y);
         if (AudioManager.I != null)
             AudioManager.I.StopMusic();
-        // bản đồ chạm x 0 ở tick đầu tiên có 256·256 ≤ 384·t
-        stopFrame = (NesCoord.SCREEN_W * Fixed.ONE + Map1FlowTiming.MAP_SLIDE_SPEED_FIXED - 1) / Map1FlowTiming.MAP_SLIDE_SPEED_FIXED;
+        // bản đồ chạm x dừng (B1/B2: 0; B3: −128) ở tick đầu tiên có (256 − x dừng)·256 ≤ 384·t
+        stopX = b3 ? Map3FlowTiming.MAP_STOP_X : 0;
+        stopFrame = ((NesCoord.SCREEN_W - stopX) * Fixed.ONE + Map1FlowTiming.MAP_SLIDE_SPEED_FIXED - 1) / Map1FlowTiming.MAP_SLIDE_SPEED_FIXED;
         left = false;
         CvtiDebug.Log("CastleMap: hết block " + doneBlock + ", bản đồ trượt vào (dừng sau " + stopFrame + " tick) ⇒ " + next);
         ShowFrame(0);
@@ -82,7 +88,7 @@ public class CastleMapScreen : GameScreen
 
     void ShowFrame(int f)
     {
-        int dx = Mathf.Max(0, NesCoord.SCREEN_W - Fixed.ToPx(f * Map1FlowTiming.MAP_SLIDE_SPEED_FIXED));
+        int dx = Mathf.Max(stopX, NesCoord.SCREEN_W - Fixed.ToPx(f * Map1FlowTiming.MAP_SLIDE_SPEED_FIXED));
         if (map != null)
             map.transform.localPosition = NesCoord.ToWorld(dx, Map1FlowTiming.MAP_Y);
         int t = f - stopFrame;

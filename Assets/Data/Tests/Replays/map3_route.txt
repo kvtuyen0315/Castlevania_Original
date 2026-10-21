@@ -1,0 +1,19 @@
+# 8663 tick, hash be3954cf
+# CVM3 11 map3_route: lộ trình Map 3 từ tick màn STAGE 07 bật (sau map1_route + map2_route — Map3RouteProbe phát 2 lộ trình trước) tới STAGE 10 stub — ghi bằng autopilot Map3RouteProbe.Pilot; BẤT TỬ chỉ ở WEB / WalkwayA / WalkwayB / MummyMan (Map3RouteProbe.InvincibleSections), WEA không bất tử — phát lại: Map3RouteProbe.Replay
+-*1 L*55 -*1 L*272 B*1 -*22 L*74 R+B*1 -*22 L*38 R+B*1 -*22
+B*1 -*22 L*48 R+B*1 -*22 L*95 L+A*1 L*43 B*1 -*22 L*2 -*34
+L*56 L+A*1 L*28 R*7 R+A*1 R*102 U*327 R*39 -*26 R*141 R+A*1 R*68
+U*64 R*35 R+A*1 R*63 R+A*1 R*65 D*128 R*20 R+A*1 R*35 L*6 R+A*1
+R*56 -*415 R*153 B*1 -*22 R*1 B*1 -*22 L+B*1 -*22 R*58 B*1
+-*22 R*1 B*1 -*22 L+B*1 -*22 R*58 B*1 -*22 R*1 B*1 -*22
+L+B*1 -*22 R*58 B*1 -*22 R*1 B*1 -*22 L+B*1 -*22 R*58 B*1
+-*22 R*1 B*1 -*22 L+B*1 -*22 R*58 B*1 -*22 R*1 B*1 -*22
+L+B*1 -*22 R*58 B*1 -*22 R*1 B*1 -*22 L+B*1 -*22 R*4 B*1
+-*22 R*15 U*327 R*342 R+A*1 R*127 R+A*1 R*151 R+A*1 R*35 L*6 R+A*1
+R*51 -*417 R*714 R+A*1 R*63 R+A*1 R*63 R+A*1 R*395 -*1 R*31 -*1
+R*15 -*1 R*15 -*3 R*55 -*120 R*29 B*1 -*22 R*4 B*1 -*22
+R*6 B*1 -*22 R*2 B*1 -*22 R*2 B*1 -*22 L*5 B*1 -*24
+R+B*1 -*24 L+B*1 -*24 R+B*1 -*24 B*1 -*24 L+B*1 -*24 B*1 -*24
+R+B*1 -*24 B*1 -*24 L+B*1 -*24 R+B*1 -*24 L+B*1 -*24 R+B*1 -*24
+B*1 -*22 R*2 B*1 -*24 L+B*1 -*24 B*1 -*24 B*1 -*130 L*40
+-*1441
