@@ -45,9 +45,10 @@ public static class CvgpMap1Builder
     // Map1Objects.json không có ⇒ giá trị 0 = hành vi/serialize cũ (prefab Block 1 dựng lại "không đổi").
     [Serializable] class Candle { public string id, kind, content, src; public int x, y; }
     [Serializable] class Point { public string name, prefab, src; public int x, y, facing, param; public bool respawn; }
-    [Serializable] class Edge { public string name, prefab, side, releaseOnBlock, src; public int[] rows; public bool playerRelativeY; public int zoneMinX, zoneMaxX, zoneMinY, zoneMaxY, maxSpawns; }
+    // CVM3 10: thêm khoá tuỳ chọn Map 3 (Edge.extraAboveFeetPx, Secret.risePx/keepOffscreen/lifetimeFromRest/beforeBossLock) — Map 1/2 không có ⇒ 0/false = như cũ.
+    [Serializable] class Edge { public string name, prefab, side, releaseOnBlock, src; public int[] rows; public bool playerRelativeY; public int zoneMinX, zoneMaxX, zoneMinY, zoneMaxY, maxSpawns, extraAboveFeetPx; }
     [Serializable] class Water { public string name, prefab, src; public int surfaceY, zoneMinX, zoneMaxX; }
-    [Serializable] class Secret { public string name, condition, item, src; public int x, y, holdTicks; public int[] area, spawnAt; public bool rise; public float riseSpeed; }
+    [Serializable] class Secret { public string name, condition, item, src; public int x, y, holdTicks, risePx; public int[] area, spawnAt; public bool rise, keepOffscreen, lifetimeFromRest, beforeBossLock; public float riseSpeed; }
     [Serializable] class Arena { public string name, prefab, src; public int zoneMinX, zoneMaxX; public bool useConfigPosition, screenWalls; public int[] bossPosition; }
     [Serializable] class Mech { public string name, platformPrefab, crusherPrefab, src; }
     [Serializable] class Section { public string id; public Candle[] candles; public Point[] spawnPoints; public Edge[] edgeSpawners; public Water[] waterSpawners; public Secret[] secrets; public Arena[] bossArenas; public Mech[] mechSpawners; public int objectWindowInsetPx; }
@@ -56,6 +57,9 @@ public static class CvgpMap1Builder
     /// <summary>CVM2 10 — bảng + thư mục lớp vật thể Map 2 (Block 2) — menu CVM2/Build Map2 Objects (Cvm2LevelMenu).</summary>
     public const string TABLE_MAP2 = "Assets/Data/Config/Level/Block2/Map2Objects.json";
     public const string OBJ_DIR_MAP2 = "Assets/Data/Prefabs/Level/Block2/Objects";
+    /// <summary>CVM3 10 — bảng + thư mục lớp vật thể Map 3 (Block 3) — menu CVM3/Build Map3 Objects (Cvm3LevelMenu).</summary>
+    public const string TABLE_MAP3 = "Assets/Data/Config/Level/Block3/Map3Objects.json";
+    public const string OBJ_DIR_MAP3 = "Assets/Data/Prefabs/Level/Block3/Objects";
 
     [MenuItem("CVGP/Build Map1 Objects")]
     static void BuildObjectsMenu()
@@ -167,6 +171,7 @@ public static class CvgpMap1Builder
                     sp.zoneMaxY = e.zoneMaxY;
                 }
                 sp.maxSpawns = e.maxSpawns;
+                sp.extraAboveFeetPx = e.extraAboveFeetPx;   // CVM3 10: Ghost WEA chân − 31
                 n++;
             }
         if (s.waterSpawners != null)
@@ -199,6 +204,10 @@ public static class CvgpMap1Builder
                 spec.spawnAt = new Vector2Int(q.spawnAt[0], q.spawnAt[1]);
                 spec.rise = q.rise;
                 spec.riseSpeed = q.riseSpeed;
+                spec.risePx = q.risePx;                 // CVM3 10
+                spec.keepOffscreen = q.keepOffscreen;
+                spec.lifetimeFromRest = q.lifetimeFromRest;
+                spec.beforeBossLock = q.beforeBossLock;
                 n++;
             }
         if (s.bossArenas != null)

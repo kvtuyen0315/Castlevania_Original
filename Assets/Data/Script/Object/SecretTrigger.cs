@@ -10,6 +10,9 @@ public enum eSecretCondition
     Crouch,
     /// <summary>Simon đứng yên (Idle) trong vùng ≥ holdTicks — Stage 5/6/14 "đứng yên vài giây" (Block 2+, thời lượng chờ đo).</summary>
     StandStill,
+    /// <summary>CVM3 10: Simon giữ ← (trạng thái Walk, quay trái — kể cả bị tường chặn) trong vùng ≥ holdTicks — Stage 9 "đứng trên khối
+    /// nằm trên khối thịt nướng, đi sang trái vài giây" (wiki Secrets; đẩy vào tường (81,7)).</summary>
+    WalkLeft,
 }
 
 /// <summary>
@@ -30,6 +33,14 @@ public class SecretTrigger : Entity
     public bool rise = true;
     [Tooltip("CVM2 10: tốc độ trồi px/tick (0 = ConfigRule.SecretRiseSpeed).")]
     public float riseSpeed;
+    [Tooltip("CVM3 10: quãng trồi px (0 = ConfigRule.SecretRisePx).")]
+    public int risePx;
+    [Tooltip("CVM3 10: item không bị gỡ khi ra khỏi màn.")]
+    public bool keepOffscreen;
+    [Tooltip("CVM3 10: tuổi thọ item tính từ lúc trồi xong.")]
+    public bool lifetimeFromRest;
+    [Tooltip("CVM3 10: chỉ xét khi camera chưa khoá boss.")]
+    public bool beforeBossLock;
 
     [NonSerialized] public int held;
     [NonSerialized] public bool fired;
@@ -50,6 +61,10 @@ public class SecretTrigger : Entity
             spawnAt = spec.spawnAt;
             rise = spec.rise;
             riseSpeed = spec.riseSpeed;
+            risePx = spec.risePx;
+            keepOffscreen = spec.keepOffscreen;
+            lifetimeFromRest = spec.lifetimeFromRest;
+            beforeBossLock = spec.beforeBossLock;
         }
         held = 0;
         fired = false;
@@ -65,11 +80,14 @@ public class SecretTrigger : Entity
         if (p == null || !p.Alive || p.IsDying || p.Fsm.Is(eSimonState.AutoWalk))
             return;
         bool inArea = area.Contains(new Vector2Int(p.X, p.Y));
+        if (beforeBossLock && World.CameraCtl != null && World.CameraCtl.Locked)
+            inArea = false;
         bool ok;
         switch (condition)
         {
             case eSecretCondition.Crouch: ok = inArea && p.Fsm.Is(eSimonState.Crouch); break;
             case eSecretCondition.StandStill: ok = inArea && p.Fsm.Is(eSimonState.Idle); break;
+            case eSecretCondition.WalkLeft: ok = inArea && p.Fsm.Is(eSimonState.Walk) && p.Facing < 0; break;
             default: ok = inArea; break;
         }
         held = ok ? held + 1 : 0;
@@ -81,6 +99,14 @@ public class SecretTrigger : Entity
         spawnedItem = ItemDrops.Spawn(World, item, spawnAt.x, spawnAt.y, rise);
         if (spawnedItem != null && rise && riseSpeed > 0f)
             spawnedItem.OverrideRiseSpeed(Fixed.FromFloat(riseSpeed));
+        if (spawnedItem != null)   // CVM3 10: tuỳ chọn Block 3 (mặc định tắt ⇒ Block 1/2 như cũ)
+        {
+            if (rise && risePx > 0)
+                spawnedItem.OverrideRisePx(risePx);
+            if (keepOffscreen)
+                spawnedItem.KeepOffscreen();
+            spawnedItem.lifetimeFromRest = lifetimeFromRest;
+        }
         Kill();
     }
 

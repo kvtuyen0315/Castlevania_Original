@@ -239,4 +239,6 @@ public enum eRuleParam
     ShotIconBlinkHalfTicks,
     LivesCap,
     ScoreCap,
+    // CVM3 10 — item rơi dò sàn ở cột tâm X từ block này trở đi (video Map_3 rìu/túi/tim lớn rơi xuyên khe; block nhỏ hơn giữ thân 16 px)
+    ItemFootCenterFromBlock,
 }

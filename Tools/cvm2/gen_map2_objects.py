@@ -235,9 +235,11 @@ def main():
     with io.open(OUT_JSON, 'w', encoding='utf-8', newline='\n') as f:
         json.dump(doc, f, ensure_ascii=False, indent=1)
         f.write('\n')
-    # ConfigDrop: bỏ dòng stage 4–6 cũ, ghi lại ở cuối
+    # ConfigDrop: bỏ dòng stage 4–6 cũ, ghi lại ĐÚNG CHỖ dòng Block 2 đầu tiên (chưa có ⇒ cuối file). CVM3 10: dòng Block 3 (stage 7–9,
+    # Tools/cvm3/gen_map3_objects.py) nằm SAU Block 2 ⇒ chạy lại script này không đổi thứ tự (đầu ra Block 2 byte y hệt như trước)
     rows = list(csv.reader(io.open(DROP_CSV, encoding='utf-8')))
     head, keep = rows[0], [r for r in rows[1:] if not (4 <= int(r[1]) <= 6)]
+    at = next((i for i, r in enumerate(rows[1:]) if 4 <= int(r[1]) <= 6), len(keep))
     out = []
     for k in order:
         for c in S[k]['candles']:
@@ -248,8 +250,9 @@ def main():
     with io.open(DROP_CSV, 'w', encoding='utf-8', newline='') as f:
         w = csv.writer(f, lineterminator='\n')
         w.writerow(head)
-        w.writerows(keep)
+        w.writerows(keep[:at])
         w.writerows(out)
+        w.writerows(keep[at:])
     n = sum(len(S[k]['candles']) for k in order)
     print('ghi', OUT_JSON, n, 'nen;', DROP_CSV, len(keep) + len(out), 'dong (Block 2:', len(out), ')')
 

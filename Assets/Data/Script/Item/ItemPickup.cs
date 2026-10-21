@@ -38,6 +38,14 @@ public class ItemPickup : Entity
     [NonSerialized] public bool finalCrystal;
     /// <summary>CVM3 09: số tick đứng yên trước khi rơi (quả cầu Mummy Men — video Map_3 f6830–6847 / Boss_Map_3 f1064–1079); 0 ⇒ rơi ngay.</summary>
     [NonSerialized] public int holdTicks;
+    /// <summary>CVM3 10: tuổi thọ (lifetime) tính từ lúc TRỒI XONG (túi bí mật Block 3 — video Map_3 St7 nhặt ≈ 197 tick sau khi sinh); false ⇒ từ lúc sinh như cũ.</summary>
+    [NonSerialized] public bool lifetimeFromRest;
+    /// <summary>CVM3 10: số tick đã trồi (trừ khỏi tuổi khi lifetimeFromRest).</summary>
+    [NonSerialized] public int riseTicks;
+
+    private bool prefabDespawn, prefabDespawnRead;
+    /// <summary>CVM3 10: dò sàn tại cột tâm X (ConfigRule.ItemFootCenterFromBlock — video Map_3 rìu x 607 rơi xuyên khe cạnh ô đặc x 608).</summary>
+    private bool footCenter;
 
     private int gravity, swayAccel, swayMax, swayDir, fallSmall, riseSpeed;
     private AnimSet.Anim anim;
@@ -53,6 +61,16 @@ public class ItemPickup : Entity
         riseLeft = 0;
         finalCrystal = false;
         holdTicks = 0;
+        lifetimeFromRest = false;
+        riseTicks = 0;
+        footCenter = false;
+        // CVM3 10: KeepOffscreen tắt cờ gỡ-ngoài-màn của 1 item — pool dùng lại object ⇒ trả về giá trị prefab
+        if (!prefabDespawnRead)
+        {
+            prefabDespawn = despawnOffscreen;
+            prefabDespawnRead = true;
+        }
+        despawnOffscreen = prefabDespawn;
         vx = vy = 0;
         Facing = -1;
         if (Anim != null)
@@ -64,6 +82,34 @@ public class ItemPickup : Entity
     {
         if (fixed256 > 0)
             riseSpeed = fixed256;
+    }
+
+    /// <summary>CVM3 10: quãng trồi riêng của 1 bí mật (px, gọi ngay sau Setup) — Block 3 đo video Map_3 14; ≤ 0 ⇒ giữ ConfigRule.SecretRisePx.</summary>
+    public void OverrideRisePx(int px)
+    {
+        if (motion != eMotion.Rise || px <= 0)
+            return;
+        int want = Fixed.FromPx(px);
+        fy -= riseLeft - want;
+        riseLeft = want;
+        SyncView();
+    }
+
+    /// <summary>CVM3 10: Block 3+ dò sàn (đứng + đáp) ở cột tâm X — mặc định (Block 1/2) cả bề rộng hộp body như cũ.</summary>
+    public override void FootSpan(out int x0, out int x1)
+    {
+        if (!footCenter)
+        {
+            base.FootSpan(out x0, out x1);
+            return;
+        }
+        x0 = x1 = X;
+    }
+
+    /// <summary>CVM3 10: item không bị gỡ khi ra khỏi khung camera (túi bí mật St8 "có thể hiện ngoài màn") — vẫn hết hạn theo tuổi thọ.</summary>
+    public void KeepOffscreen()
+    {
+        despawnOffscreen = false;
     }
 
     /// <summary>Đặt loại item + chuyển động (gọi ngay sau World.Spawn). rise = trồi từ sau sàn (bí mật).</summary>
@@ -83,6 +129,10 @@ public class ItemPickup : Entity
             swayAccel = Fixed.FromFloat(Param(cfg, eItemId.SmallHeart, "swayAccel", 0.046875f));
         }
         body = itemId == eItemId.SmallHeart ? BOX_SMALL_HEART : BOX16;
+        // CVM3 10: block ≥ ItemFootCenterFromBlock (3) ⇒ item rơi thường dò sàn ở cột tâm; thiếu khoá ⇒ cả thân như cũ (Block 1/2 y nguyên)
+        int fromBlock = cfg != null ? cfg.rules.GetInt(eRuleParam.ItemFootCenterFromBlock, 0) : 0;
+        var blk = cfg != null && fromBlock > 0 ? cfg.GetBlockOfStage(World.Stage) : null;
+        footCenter = itemId != eItemId.SmallHeart && blk != null && blk.block >= fromBlock;
         vx = vy = 0;
         if (rise)
         {
@@ -125,6 +175,7 @@ public class ItemPickup : Entity
         {
             case eMotion.Rise:
                 {
+                    riseTicks++;
                     int d = Mathf.Min(riseSpeed, riseLeft);
                     fy -= d;
                     riseLeft -= d;
@@ -159,7 +210,7 @@ public class ItemPickup : Entity
             Kill(eKillReason.Offscreen);
         if (Alive && TryPickup())
             return;
-        if (Alive && lifetime > 0 && age >= lifetime)
+        if (Alive && lifetime > 0 && (lifetimeFromRest ? age - riseTicks : age) >= lifetime)
             Kill();
         base.OnTick();
     }

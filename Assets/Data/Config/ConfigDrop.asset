@@ -865,3 +865,277 @@ MonoBehaviour:
       r\u01A1i xu\u1ED1ng s\xE0n, nh\u1EB7t f5148 khi c\u1EA7m \u0111\u1ED3ng h\u1ED3
       \u21D2 +700 (2:51.60; hc_iii_zoom.png); wiki Stage 6 #3 Shot Multiplier kh\u1ED1i
       ch\xE2n c\u1EA7u thang"
+  - objectId: WEA_C01
+    stage: 7
+    container: 102
+    item: 1
+    note: "n\u1EBFn WalkwayEntranceA x 97 y 144"
+    source: "video:Map_3 v\u1EE1 f1013 (0:33.77) \u2192 tim nh\u1ECF f1026 (err 0.063),
+      +1 f1032"
+  - objectId: WEA_C02
+    stage: 7
+    container: 102
+    item: 2
+    note: "n\u1EBFn WalkwayEntranceA x 161 y 80"
+    source: "video:Map_3 v\u1EE1 f1104 (0:36.80) \u2192 tim l\u1EDBn f1116 (0.075),
+      +5 f1120; wiki \u1EA3nh b\u1EA3n \u0111\u1ED3 St7: icon tim l\u1EDBn g\xF3c
+      tr\xE1i t\u1EA7ng d\u01B0\u1EDBi"
+  - objectId: WEA_C03
+    stage: 7
+    container: 102
+    item: 1
+    note: "n\u1EBFn WalkwayEntranceA x 225 y 160"
+    source: "video:Map_3 v\u1EE1 f943 \u2192 tim nh\u1ECF f953 (0.059), +1 f960"
+  - objectId: WEA_C04
+    stage: 7
+    container: 102
+    item: 1
+    note: "n\u1EBFn WalkwayEntranceA x 289 y 160"
+    source: "video:Map_3 v\u1EE1 f726 \u2192 tim nh\u1ECF f742 (0.064), +1 f745"
+  - objectId: WEA_C05
+    stage: 7
+    container: 102
+    item: 1
+    note: "n\u1EBFn WalkwayEntranceA x 353 y 160"
+    source: "video:Map_3 v\u1EE1 f673 \u2192 tim nh\u1ECF f690 (0.057), +1 f697"
+  - objectId: WEA_C06
+    stage: 7
+    container: 102
+    item: 3
+    note: "n\u1EBFn WalkwayEntranceA x 417 y 160"
+    source: "video:Map_3 v\u1EE1 f593 \u2192 t\xFAi \u0111\u1ECF f606 (0.062), +100
+      f619"
+  - objectId: WEA_C07
+    stage: 7
+    container: 102
+    item: 1
+    note: "n\u1EBFn WalkwayEntranceA x 480 y 160"
+    source: "video:Map_3 v\u1EE1 f509 (0:16.97) \u2192 tim nh\u1ECF f525 (0.047),
+      +1 f566 (tim L\u1EDAN +5 f555 l\xE0 v\u1EADt Fleaman h\u1EA1 f546 r\u01A1i
+      \u2014 d\u1EA3i \u1EA3nh wea_480.png)"
+  - objectId: WEA_C08
+    stage: 7
+    container: 102
+    item: 13
+    note: "n\u1EBFn WalkwayEntranceA x 544 y 160"
+    source: "video:Map_3 v\u1EE1 f399 (0:13.30) \u2192 n\u01B0\u1EDBc th\xE1nh f412
+      (0.093) n\u1EB1m s\xE0n, nh\u1EB7t f491 0:16.37 (HUD \u0111\u1ED3ng h\u1ED3
+      \u2192 n\u01B0\u1EDBc th\xE1nh); wiki Stage 7 #1 \"Holy Water trong m\u1ED9t
+      trong c\xE1c n\u1EBFn \u0111\u1EA7u\" (icon \u1EA3nh b\u1EA3n \u0111\u1ED3
+      \u2248 x 670 \u2014 H1: theo video)"
+  - objectId: WEA_C09
+    stage: 7
+    container: 102
+    item: 1
+    note: "n\u1EBFn WalkwayEntranceA x 608 y 160"
+    source: "video:Map_3 v\u1EE1 f356 \u2192 tim nh\u1ECF f373 (0.057), +1 f377"
+  - objectId: WEA_C10
+    stage: 7
+    container: 102
+    item: 3
+    note: "n\u1EBFn WalkwayEntranceA x 672 y 160"
+    source: "video:Map_3 v\u1EE1 f305 \u2192 t\xFAi \u0111\u1ECF f331 (0.060), +100
+      f333"
+  - objectId: WEA_C11
+    stage: 7
+    container: 102
+    item: 5
+    note: "n\u1EBFn WalkwayEntranceA x 736 y 144"
+    source: "video:Map_3 v\u1EE1 f248 (0:08.27) \u2192 t\xFAi tr\u1EAFng f278 (0.081),
+      +700 f279 (0:09.30)"
+  - objectId: WEB_C01
+    stage: 7
+    container: 102
+    item: 2
+    note: "n\u1EBFn WalkwayEntranceB x 160 y 80"
+    source: "video:Map_3 v\u1EE1 f1303 \u2192 tim l\u1EDBn f1334 (0.058) r\u01A1i
+      xu\u1ED1ng s\xE0n y 160, +5 f1358; wiki \u1EA3nh b\u1EA3n \u0111\u1ED3 St7:
+      icon tim l\u1EDBn g\xF3c tr\xE1i t\u1EA7ng tr\xEAn"
+  - objectId: WEB_C02
+    stage: 7
+    container: 102
+    item: 3
+    note: "n\u1EBFn WalkwayEntranceB x 224 y 144"
+    source: "video:Map_3 v\u1EE1 f1381 \u2192 t\xFAi \u0111\u1ECF f1424 (0.061),
+      +100 f1458"
+  - objectId: WEB_C03
+    stage: 7
+    container: 102
+    item: 3
+    note: "n\u1EBFn WalkwayEntranceB x 288 y 144"
+    source: "video:Map_3 v\u1EE1 f1532 \u2192 t\xFAi \u0111\u1ECF f1555 (0.060),
+      +100 f1563"
+  - objectId: WEB_C04
+    stage: 7
+    container: 102
+    item: 1
+    note: "n\u1EBFn WalkwayEntranceB x 351 y 144"
+    source: "video:Map_3 v\u1EE1 f1584 \u2192 tim nh\u1ECF f1596 (0.063), +1 f1613"
+  - objectId: WEB_C05
+    stage: 7
+    container: 102
+    item: 1
+    note: "n\u1EBFn WalkwayEntranceB x 423 y 112"
+    source: "video:Map_3 v\u1EE1 f1825 \u2192 tim nh\u1ECF f1836 (0.066), +1 f1842"
+  - objectId: WEB_C06
+    stage: 7
+    container: 102
+    item: 3
+    note: "n\u1EBFn WalkwayEntranceB x 479 y 160"
+    source: "video:Map_3 v\u1EE1 f1879 \u2192 t\xFAi \u0111\u1ECF f1895 (0.056),
+      +100 f1897"
+  - objectId: WEB_C07
+    stage: 7
+    container: 102
+    item: 1
+    note: "n\u1EBFn WalkwayEntranceB x 543 y 160"
+    source: "video:Map_3 v\u1EE1 f1925 \u2192 tim nh\u1ECF f1936 (0.061), +1 f1960"
+  - objectId: WEB_C08
+    stage: 7
+    container: 102
+    item: 12
+    note: "n\u1EBFn WalkwayEntranceB x 607 y 144"
+    source: "video:Map_3 v\u1EE1 f2282 (1:16.07) \u2192 R\xCCU f2292\u20132301 (0.060)
+      r\u01A1i qua khe x 592\u2013623 xu\u1ED1ng \u0111\xE1y section, m\u1EA5t f2308
+      \u2014 kh\xF4ng nh\u1EB7t (d\u1EA3i \u1EA3nh web607_axe.png); wiki Stage 7
+      #3 \"Axe \u1EDF n\u1EBFn th\u1EA5p nh\u1EA5t (r\u01A1i m\u1EA5t n\u1EBFu kh\xF4ng
+      nh\u1EB7t ngay)\" + icon r\xECu \u1EA3nh b\u1EA3n \u0111\u1ED3"
+  - objectId: WEB_C09
+    stage: 7
+    container: 102
+    item: 3
+    note: "n\u1EBFn WalkwayEntranceB x 671 y 144"
+    source: "video:Map_3 v\u1EE1 f2325 \u2192 t\xFAi \u0111\u1ECF f2357 (0.059),
+      +100 f2358"
+  - objectId: WEB_C10
+    stage: 7
+    container: 102
+    item: 4
+    note: "n\u1EBFn WalkwayEntranceB x 735 y 96"
+    source: "video:Map_3 v\u1EE1 f2421 (1:20.70) \u2192 v\u1EADt tr\xF9ng th\xE2n
+      Simon (\u0111\u1EE9ng s\xE1t c\u1ED9t c\u1EEDa) nh\u1EB7t ngay: +400 f2433
+      + ch\u1EEF \"400\" (d\u1EA3i \u1EA3nh web735.png) = t\xFAi t\xEDm (ConfigItem
+      400; CVM3 08 \"nh\u1EB7t T\xDAI T\xCDM \u1EDF c\u1EEDa\")"
+  - objectId: WA_C1
+    stage: 8
+    container: 102
+    item: 2
+    note: "n\u1EBFn WalkwayA x 32 y 80"
+    source: "video:Map_3 v\u1EE1 f2677 \u2192 tim l\u1EDBn f2688 (0.061), +5 f2696;
+      wiki \u1EA3nh b\u1EA3n \u0111\u1ED3 St8: icon tim l\u1EDBn"
+  - objectId: WA_C2
+    stage: 8
+    container: 102
+    item: 1
+    note: "n\u1EBFn WalkwayA x 104 y 112"
+    source: "video:Map_3 v\u1EE1 f2724 \u2192 tim nh\u1ECF f2738 (0.055), +1 f2754"
+  - objectId: WA_C3
+    stage: 8
+    container: 102
+    item: 14
+    note: "n\u1EBFn WalkwayA x 551 y 48"
+    source: "wiki:Stages 7-9#Stage 8 (1) \"Boomerang trong n\u1EBFn D\u01AF\u1EDAI
+      c\u1EA7u thang l\xEAn t\u1EA7ng tr\xEAn\" + icon th\u1EADp t\u1EF1/boomerang
+      \u1EA3nh b\u1EA3n \u0111\u1ED3 wiki x \u2248 548 (eItemId Cross = Boomerang,
+      nh\u01B0 TEA_C1 Block 2) \u2014 CH\u1EC8 WIKI: video KH\xD4NG ph\xE1 (Simon
+      leo thang \u2197 ngay d\u01B0\u1EDBi n\u1EBFn r\u1ED3i \u0111\u1ED5i t\u1EA7ng
+      f3263)"
+  - objectId: WA_C4
+    stage: 8
+    container: 102
+    item: 3
+    note: "n\u1EBFn WalkwayA x 615 y 112"
+    source: "video:Map_3 v\u1EE1 f2998 \u2192 t\xFAi \u0111\u1ECF f3019 (0.069),
+      +100 f3024"
+  - objectId: WA_C5
+    stage: 8
+    container: 102
+    item: 1
+    note: "n\u1EBFn WalkwayA x 679 y 112"
+    source: "video:Map_3 v\u1EE1 f3068 \u2192 tim nh\u1ECF f3082 (0.060), +1 f3089"
+  - objectId: WB_C1
+    stage: 8
+    container: 102
+    item: 1
+    note: "n\u1EBFn WalkwayB x 216 y 112"
+    source: "video:Map_3 v\u1EE1 f3360 \u2192 tim nh\u1ECF f3378 (0.056), +1 f3395"
+  - objectId: WB_C2
+    stage: 8
+    container: 102
+    item: 15
+    note: "n\u1EBFn WalkwayB x 272 y 80"
+    source: "video:Map_3 v\u1EE1 f3560 (1:58.67) \u2192 \u0111\u1ED3ng h\u1ED3 f3570
+      (0.082) \u2014 kh\xF4ng nh\u1EB7t (HUD gi\u1EEF n\u01B0\u1EDBc th\xE1nh); wiki
+      Stage 8 #2 \"Stop Watch trong n\u1EBFn b\xEAn ph\u1EA3i c\u1EA7u thang\" +
+      icon \u1EA3nh b\u1EA3n \u0111\u1ED3"
+  - objectId: WB_C3
+    stage: 8
+    container: 102
+    item: 2
+    note: "n\u1EBFn WalkwayB x 399 y 80"
+    source: "video:Map_3 v\u1EE1 f3670 \u2192 tim l\u1EDBn f3680 (0.058), +5 f3710"
+  - objectId: WB_C4
+    stage: 8
+    container: 102
+    item: 1
+    note: "n\u1EBFn WalkwayB x 783 y 80"
+    source: "video:Map_3 v\u1EE1 f4145 \u2192 tim nh\u1ECF f4187 (0.051), +1 f4220"
+  - objectId: WB_C5
+    stage: 8
+    container: 102
+    item: 1
+    note: "n\u1EBFn WalkwayB x 847 y 80"
+    source: "video:Map_3 v\u1EE1 f4298 \u2192 tim nh\u1ECF f4310 (0.045), +1 f4335"
+  - objectId: MM_C1
+    stage: 9
+    container: 102
+    item: 1
+    note: "n\u1EBFn MummyMan x 32 y 80"
+    source: "video:Map_3 v\u1EE1 f4586 \u2192 tim nh\u1ECF f4601 (0.049), +1 f4606"
+  - objectId: MM_C2
+    stage: 9
+    container: 102
+    item: 1
+    note: "n\u1EBFn MummyMan x 1247 y 80"
+    source: "video:Map_3 v\u1EE1 f5607 \u2192 tim nh\u1ECF f5637 (0.043), +1 f5684"
+  - objectId: MM_C3
+    stage: 9
+    container: 102
+    item: 11
+    note: "n\u1EBFn MummyMan x 1311 y 80"
+    source: "video:Map_3 v\u1EE1 f5775 (3:12.50) \u2192 dao g\u0103m r\u01A1i xu\u1ED1ng
+      \u0111\u1EC9nh kh\u1ED1i f5785\u20135835, kh\xF4ng nh\u1EB7t (CVM3 09); wiki
+      Stage 9 \"Dagger trong n\u1EBFn ph\xF2ng boss\""
+  - objectId: MM_C4
+    stage: 9
+    container: 102
+    item: 1
+    note: "n\u1EBFn MummyMan x 1375 y 128"
+    source: "video:Map_3 v\u1EE1 f5846 (tr\u01B0\u1EDBc kho\xE1) \u2192 tim nh\u1ECF
+      f5867 (0.049), +1 f5880"
+  - objectId: MM_C5
+    stage: 9
+    container: 102
+    item: 1
+    note: "n\u1EBFn MummyMan x 1439 y 128"
+    source: "video:Map_3 v\u1EE1 f5902 (tr\u01B0\u1EDBc kho\xE1) \u2192 tim nh\u1ECF
+      f5921 (0.048), +1 f5940"
+  - objectId: MM_C6
+    stage: 9
+    container: 102
+    item: 1
+    note: "n\u1EBFn MummyMan x 1503 y 128"
+    source: "video:Map_3 v\u1EE1 f6839 (sau tr\u1EADn) \u2192 II f6857 (0.069), HUD
+      II f6864: tim nh\u1ECF \u0111\u1ED5i Double Shot theo lu\u1EADt ItemDrops.Resolve
+      (v\u0169 kh\xED ph\u1EE5 tr\xFAng \u2265 10 l\u1EA7n \u2014 CVM3 09)"
+  - objectId: WalkwayEntranceA_X18_8
+    stage: 7
+    container: 103
+    item: 20
+    note: "kh\u1ED1i TR\xC1I b\u1ED9 kh\u1ED1i nh\xF4 th\u1EE9 2 (\u0111i t\u1EEB
+      x 720) (\xF4 (18,8))"
+    source: "video:Map_3 0:26.5\u20130:26.8 roi v\u1EE1 (CVM3 05: \xF4 th\xE0nh \u0111en
+      f799) \u2192 th\u1ECBt n\u01B0\u1EDBng r\u01A1i kh\u1ECFi kh\u1ED1i f795\u2013803
+      (kh\u1EDBp m\u1EABu roast x 296) xu\u1ED1ng s\xE0n y 176, kh\xF4ng nh\u1EB7t
+      (Simon \u0111\u1EA7y m\xE1u); wiki Stage 7 #1 / Secrets \"kh\u1ED1i tr\xE1i
+      c\u1EE7a b\u1ED9 kh\u1ED1i nh\xF4 th\u1EE9 2 ch\u1EE9a Pot Roast\""

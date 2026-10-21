@@ -671,3 +671,27 @@ MonoBehaviour:
     unit: "\u0111i\u1EC3m"
     source: "suy lu\u1EADn: HUD SCORE-dddddd 6 ch\u1EEF s\u1ED1"
     note: 
+  - key: ItemFootCenterFromBlock
+    value:
+      has: 1
+      value: 3
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: block
+    source: "\u0111o:cvm3-10 video:Map_3 n\u1EBFn WEB x 607 (f2282): r\xECu r\u01A1i
+      TH\u1EB2NG x 607 t\u1EEB y 145 xu\u1ED1ng qu\xE1 y 192 (f2292\u20132303) d\xF9
+      \xF4 (38,10) x 608\u2013623 \u0111\u1EB7c ngay c\u1EA1nh \u2014 th\xE2n 16
+      px (x 599\u2013614) s\u1EBD \u0111\u1EE1 \u1EDF y 160; tim l\u1EDBn n\u1EBFn
+      WEB x 160 (f1334) v\xE0 t\xFAi \u0111\u1ECF n\u1EBFn WEB x 671 (f2357) c\u0169ng
+      r\u01A1i t\u1EDBi y 160 (th\xE2n 16 px \u0111\u1EE1 \u1EDF y 96 / 145) \u21D2
+      NES d\xF2 s\xE0n item t\u1EA1i c\u1ED9t t\xE2m X"
+    note: "item R\u01A0I TH\u01AF\u1EDCNG d\xF2 s\xE0n \u1EDF c\u1ED9t t\xE2m X (tim
+      nh\u1ECF \u0111ung \u0111\u01B0a gi\u1EEF h\u1ED9p 8 px \u2014 ch\u01B0a c\xF3
+      m\u1EABu) khi block c\u1EE7a stage \u2265 gi\xE1 tr\u1ECB n\xE0y; block nh\u1ECF
+      h\u01A1n gi\u1EEF c\u1EA3 th\xE2n (Block 1/2 y nguy\xEAn \u2014 H12/H14; video
+      Map_1 CryptB n\u1EBFn x 288 f3917 \u0111\u1ED3ng h\u1ED3 c\u0169ng r\u01A1i
+      xuy\xEAn khe \u21D2 \u0111\u1EC1 xu\u1EA5t cvm3-fix h\u1EA1 v\u1EC1 1)"

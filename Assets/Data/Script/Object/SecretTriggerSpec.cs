@@ -16,4 +16,12 @@ public class SecretTriggerSpec : MonoBehaviour
     public bool rise = true;
     [Tooltip("CVM2 10: tốc độ trồi (px/tick); 0 = ConfigRule.SecretRiseSpeed (Block 1). Block 2 đo video Map_2 0.25 (vương miện, rương).")]
     public float riseSpeed;
+    [Tooltip("CVM3 10: quãng trồi (px); 0 = ConfigRule.SecretRisePx (16). Block 3 đo video Map_3 14 (túi St7/St8: hàng đầu hiện ~6 tick sau khi ngồi).")]
+    public int risePx;
+    [Tooltip("CVM3 10: item KHÔNG bị gỡ khi ra khỏi màn (wiki St8 'có thể hiện ngoài màn — quay lại sau 1–2 s'); vẫn hết hạn theo tuổi thọ.")]
+    public bool keepOffscreen;
+    [Tooltip("CVM3 10: tuổi thọ item (ConfigItem lifetimeTicks) tính từ lúc TRỒI XONG (video Map_3 St7 nhặt ≈ 197 tick sau khi sinh > 188).")]
+    public bool lifetimeFromRest;
+    [Tooltip("CVM3 10: chỉ xét khi camera CHƯA khoá boss (wiki St9 'before the screen gets locked').")]
+    public bool beforeBossLock;
 }

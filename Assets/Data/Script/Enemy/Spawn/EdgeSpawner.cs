@@ -30,6 +30,8 @@ public class EdgeSpawner : EnemySpawner
     public string releaseOnBlock = "";
     [Tooltip("CVM2 10: tối đa số con trong 1 lần nạp section (0 = không giới hạn) — Ghost Hall C: video 1 con/vùng, không sinh lại.")]
     public int maxSpawns;
+    [Tooltip("CVM3 10: cộng thêm vào spawnAboveFeetPx (Config) cho RIÊNG bộ sinh này (playerRelativeY) — Ghost WEA video:Map_3 f416 tâm = chân − 31 (Map_2 = chân); 0 = như cũ.")]
+    public int extraAboveFeetPx;
     /// <summary>Harness (CVM2 08 — so video): ≥ 0 ⇒ thay độ trễ con đầu (Roll firstDelay) bằng số tick này. Mặc định −1 = Config.</summary>
     [System.NonSerialized] public int forceFirstDelay = -1;
 
@@ -83,7 +85,7 @@ public class EdgeSpawner : EnemySpawner
         firstSpan = EnemyParams.IntOpt(cfg, id, "firstDelaySpanTicks", 0);
         maxAlive = Mathf.Max(1, EnemyParams.Int(cfg, id, "maxAlive", 3));
         inset = EnemyParams.Int(cfg, id, "spawnInsetPx", 8);
-        aboveFeet = playerRelativeY ? EnemyParams.Int(cfg, id, "spawnAboveFeetPx", 14) : 0;
+        aboveFeet = playerRelativeY ? EnemyParams.Int(cfg, id, "spawnAboveFeetPx", 14) + extraAboveFeetPx : 0;
         edgeMargin = side == eSpawnSide.FrontOfPlayer ? EnemyParams.Int(cfg, id, "edgeScreenMarginPx", 64) : 0;
     }
 

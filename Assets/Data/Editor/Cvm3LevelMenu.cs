@@ -16,4 +16,20 @@ public static class Cvm3LevelMenu
     {
         Debug.Log(CvgpLevelBuilder.BuildMap3());
     }
+
+    /// <summary>
+    /// CVM3 10 — lớp vật thể Block 3: Assets/Data/Config/Level/Block3/Map3Objects.json (sinh bởi python -P -E Tools/cvm3/gen_map3_objects.py —
+    /// bảng ClaudeNotes/cvm3/MAP3_PLACEMENT.md đo video Map_3) ⇒ Assets/Data/Prefabs/Level/Block3/Objects/&lt;Section&gt;_Objects.prefab (nến, enemy,
+    /// bộ sinh, bí mật ngồi ⇒ túi tiền, phòng Mummy). Dùng chung phần dựng của CVGP/Build Map1 Objects + CVM2/Build Map2 Objects; giống ⇒ không ghi.
+    /// </summary>
+    [MenuItem("CVM3/Build Map3 Objects")]
+    public static void BuildMap3ObjectsMenu()
+    {
+        Debug.Log(BuildMap3Objects());
+    }
+
+    public static string BuildMap3Objects()
+    {
+        return CvgpMap1Builder.BuildObjectsFrom(CvgpMap1Builder.TABLE_MAP3, CvgpMap1Builder.OBJ_DIR_MAP3, "Map3");
+    }
 }
