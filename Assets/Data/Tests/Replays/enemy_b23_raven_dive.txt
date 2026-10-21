@@ -1,3 +1,3 @@
-# 420 tick, hash 2d7a1e95
-# CVGP 17 EnemyB23Probe kịch bản 'raven_dive': Raven đậu (260,112); Simon đi phải từ 120: cất cánh khi |dx| < 96, lên 16, khựng 24, lao thẳng 2 px/tick tới tâm thân Simon, khựng 12, lao tiếp
-R*60 -*360
+# 480 tick, hash c4d87c45
+# CVGP 17 EnemyB23Probe kịch bản 'raven_dive': Raven đậu (300,100); Simon đi phải từ 140: cất cánh đúng 60 tick sau khi sinh (không theo khoảng cách) ⇒ lướt vx 0.75 về Simon, vy0 1.25/1.75/2.0 về TÂM THÂN Simon giảm 9/256 mỗi tick ⇒ treo 25 ⇒ cao hơn tâm ⇒ lao ngang v0 0.125 + 1/32 mỗi tick ⇒ vượt Simon ⇒ phanh 0.1875 ⇒ treo 14 ⇒ lao lại ⇒ vượt lần 2 bay luôn (video Map_3)
+R*60 -*420

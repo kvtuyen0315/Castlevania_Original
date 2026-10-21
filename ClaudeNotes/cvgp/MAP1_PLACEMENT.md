@@ -34,7 +34,7 @@ SpawnPoint prefab `Candle`/`Torch` (`dataKey` = id ⇒ `CandleProp.objectId` ⇒
 | EH_C01 | nến | 32 | 160 | PurpleMoneyBag | 6 lần f606–631 (x 32-32) | video:Map_1 vỡ f631 → túi tím, +400 f655 (0:21.83); wiki §6.1 nến #1 |
 | EH_C02 | nến | 96 | 128 | SmallHeart | 27 lần f606–724 (x 96-96) | video:Map_1 vỡ f724 → tim nhỏ đung đưa, tim 15→16 f762 — wiki ghi Stopwatch (H1: theo video); wiki §6.1 nến #2 |
 | EH_C03 | nến | 160 | 160 | SmallHeart | 30 lần f606–761 (x 160-160) | video:Map_1 vỡ f761 → tim nhỏ, 16→17 f788; wiki §6.1 nến #3 |
-| EH_C04 | nến | 224 | 128 | RedMoneyBag | 45 lần f606–821 (x 224-226) | video:Map_1 vỡ f821 → túi đỏ, +100 f847; wiki §6.1 nến #4 |
+| EH_C04 | nến | 224 | 128 | RedMoneyBag | 45 lần f606–821 (x 224-226) | video:Map_1 vỡ f821 → túi đỏ, +100 f847 (CVM3 08: túi còn trên sàn tới f883, nhặt **f885** (chữ 100); +100 f847 là Zombie bị roi hạ); wiki §6.1 nến #4 |
 | EH_C05 | nến | 288 | 160 | SmallHeart | 23 lần f809–930 (x 288-292) | video:Map_1 vỡ f930 → nhặt ngay, tim 18→19 f950; wiki §6.1 nến #5 |
 | EH_C06 | nến | 352 | 128 | RedMoneyBag | 9 lần f901–963 (x 352-354) | video:Map_1 vỡ f979 → túi đỏ, +100 f1001; wiki §6.1 nến #6 |
 | EH_C07 | nến | 416 | 160 | SmallHeart | 11 lần f960–1008 (x 415-417) | video:Map_1 vỡ f1008 → tim 19→20 f1071; wiki §6.1 nến #7 |
@@ -147,6 +147,7 @@ SpawnPoint prefab `Candle`/`Torch` (`dataKey` = id ⇒ `CandleProp.objectId` ⇒
 | EH nến #13 / #14 (800 / 864) | #14 Holy Water | #13 nước thánh (f1698, 0:57.3), #14 tim lớn (+5 f1676) | video |
 | EH nến #23 / #24 (1440 / 1504) | #23 Rosary | #24 rosary (1:23.5), #23 tim nhỏ | video |
 | EH rosary 1:15.03 | — | Zombie chết rơi rosary (f2238, dải ảnh `rosary1.png`) — không phải nến | không mô phỏng (luật rơi của enemy chưa có — §5 #27) |
+| (CVM3 08) enemy rơi vật Map_1 | — | xem lại MỌI lần hạ (dải ảnh lửa chết `ClaudeNotes/cvm3/_cache/08/drops/z1_*`): **7 lần** — Zombie f762 ⇒ tim nhỏ (+1 f800), Zombie f865 ⇒ đồng hồ, Zombie f1032 ⇒ túi đỏ (+100 f1042), Zombie f2222 ⇒ rosary, dơi f2992 ⇒ tim nhỏ (+1 f3010), Fish Man f3549 ⇒ tim lớn (+5 f3597), dơi f4491 ⇒ tim nhỏ (+1 f4509) | vẫn không mô phỏng — không luật tất định nào giải thích (`CVM3_MEMORY §2h`, §5 #11) |
 | Stage 2 tầng dưới | toạ độ ảnh wiki | = wiki − (16, 160) | video |
 | PB bình tàng hình | "giữa cầu thang", ứng viên #3/#4 | #4 (x 224) | video |
 | Khối II phòng boss | khối chân thang | khối PHẢI (43,9) (11) | — |

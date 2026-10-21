@@ -1,0 +1,50 @@
+== rv_web0 (video f1338–1492 = 308 tick)
+  video #0 Raven n116 t 4–305 ↔ Unity #0 (rel 4–309, lệch +1 tick): rms x 1.53 y 2.14 tổng 2.63 px, max 7, TB lệch (-0.33, +1.85)
+  Unity: #0 Raven rel 4–309 xuất hiện (280,41) đổi state 63:Glide 112:Hover 137:Dash 195:Brake 205:Hover 219:Dash quay 195 266
+== rv_web1 (video f1572–1732 = 320 tick)
+  video #1 Raven n39 t 4–100 ↔ Unity #0 (rel 4–321, lệch -1 tick): rms x 0.87 y 1.89 tổng 2.08 px, max 4, TB lệch (-0.45, +1.16) | căn mốc -3 tick: rms 1.09
+  video #2 Raven n39 t 124–216 ↔ Unity #1 (rel 124–321, lệch -1 tick): rms x 0.51 y 0.49 tổng 0.71 px, max 2, TB lệch (+0.11, +0.13)
+  video #3 Raven n64 t 164–313 ↔ Unity #2 (rel 164–321, lệch -1 tick): rms x 0.63 y 1.20 tổng 1.35 px, max 4, TB lệch (-0.21, -0.67) | căn mốc -2 tick: rms 1.19
+  Unity: #0 Raven rel 4–321 xuất hiện (423,89) đổi state 63:Glide 119:Hover 144:Glide 200:Hover 225:Glide 281:Hover 306:Dash quay 138 228 | #1 Raven rel 124–321 xuất hiện (487,57) đổi state 183:Glide 218:Hover 243:Dash 286:Brake 293:Hover 307:Dash quay 286 | #2 Raven rel 164–321 xuất hiện (527,169) đổi state 223:Glide 258:Hover 283:Glide
+== rv_wb0 (video f3592–3644 = 104 tick)
+  video #4 Raven n41 t 4–100 ↔ Unity #0 (rel 4–104, lệch -1 tick): rms x 0.27 y 1.00 tổng 1.04 px, max 4, TB lệch (-0.03, +0.50) | căn mốc -2 tick: rms 0.88
+  Unity: #0 Raven rel 4–104 xuất hiện (383,57) đổi state 63:Glide
+== rv_wb1 (video f3863–3957 = 188 tick)
+  video #5 Raven n42 t 4–102 ↔ Unity #0 (rel 4–188, lệch -1 tick): rms x 1.39 y 2.10 tổng 2.52 px, max 5, TB lệch (-0.85, -1.34) | căn mốc -3 tick: rms 1.06
+  video #6 Raven n50 t 70–184 ↔ Unity #1 (rel 70–188, lệch -1 tick): rms x 0.52 y 0.99 tổng 1.12 px, max 2, TB lệch (+0.10, -0.41)
+  Unity: #0 Raven rel 4–188 xuất hiện (599,121) đổi state 63:Glide 112:Hover 137:Dash 143:Brake 144:Hover 158:Dash quay 143 183 | #1 Raven rel 70–188 xuất hiện (663,121) đổi state 129:Glide 185:Hover
+== rv_mm (video f5084–5122 = 76 tick)
+  video #11 Raven n28 t 4–74 ↔ Unity #0 (rel 4–76, lệch -1 tick): rms x 0.98 y 0.84 tổng 1.29 px, max 3, TB lệch (-0.44, +0.26) | căn mốc -3 tick: rms 0.75
+  Unity: #0 Raven rel 4–76 xuất hiện (747,41) đổi state 63:Glide
+== gh_wea (video f414–437 = 46 tick)
+  video #0 Ghost n15 t 4–38 ↔ Unity #0 (rel 4–76, lệch +0 tick): rms x 0.73 y 0.63 tổng 0.97 px, max 2, TB lệch (-0.40, -0.40)
+  Unity: #0 Ghost rel 4–76 xuất hiện (670,145)
+== mh_wa (video f2788–3060 = 544 tick)
+  video #0 MedusaHead n44 t 10–120 ↔ Unity #0 (rel 6–124, lệch -1 tick): rms x 1.77 y 1.51 tổng 2.33 px, max 5, TB lệch (+1.18, -0.50)
+  video #1 MedusaHead n47 t 134–238 ↔ Unity #1 (rel 134–242, lệch -1 tick): rms x 1.11 y 1.21 tổng 1.64 px, max 3, TB lệch (-0.50, -0.67)
+  video #2 MedusaHead n45 t 286–391 ↔ Unity #2 (rel 285–392, lệch -1 tick): rms x 1.37 y 1.37 tổng 1.94 px, max 3, TB lệch (-0.82, -0.40)
+  video #3 MedusaHead n47 t 413–535 ↔ Unity #3 (rel 412–544, lệch -1 tick): rms x 1.22 y 1.60 tổng 2.01 px, max 5, TB lệch (-0.94, -0.81)
+  video #4 MedusaHead n3 t 541–545: KHÔNG có thực thể Unity trùng thời gian
+  Unity: #0 MedusaHead rel 6–124 xuất hiện (304,79) | #1 MedusaHead rel 134–242 xuất hiện (408,79) | #2 MedusaHead rel 285–392 xuất hiện (558,80) | #3 MedusaHead rel 412–544 xuất hiện (681,79) | #4 MedusaHead rel 540–545 xuất hiện (757,79)
+== mh_mm (video f5368–5590 = 444 tick)
+  video #7 MedusaHead n45 t 6–116 ↔ Unity #0 (rel 6–117, lệch -1 tick): rms x 1.31 y 1.41 tổng 1.92 px, max 3, TB lệch (-0.77, -0.43)
+  video #8 MedusaHead n30 t 136–212 ↔ Unity #1 (rel 134–326, lệch +0 tick): rms x 1.21 y 1.60 tổng 2.01 px, max 5, TB lệch (-0.53, -0.70)
+  video #9 MedusaHead n55 t 264–409 ↔ Unity #2 (rel 262–412, lệch -1 tick): rms x 1.10 y 1.58 tổng 1.93 px, max 5, TB lệch (+0.31, -0.96)
+  video #10 MedusaHead n17 t 391–429 ↔ Unity #3 (rel 389–445, lệch -1 tick): rms x 1.08 y 1.43 tổng 1.80 px, max 3, TB lệch (-0.82, +1.12) | căn mốc -2 tick: rms 1.28
+  Unity: #0 MedusaHead rel 6–117 xuất hiện (1134,47) | #1 MedusaHead rel 134–326 xuất hiện (1237,47) | #2 MedusaHead rel 262–412 xuất hiện (1239,47) | #3 MedusaHead rel 389–445 xuất hiện (1272,48)
+== bt_mm (video f5392–5512 = 240 tick)
+  video #4 BoneTowerFireball n8 t 60–74 ↔ Unity #1 (rel 54–155, lệch +0 tick): rms x 1.00 y 0.00 tổng 1.00 px, max 1, TB lệch (-0.75, +0.00)
+  video #5 BoneTowerFireball n4 t 96–104: KHÔNG có thực thể Unity trùng thời gian
+  video #6 BoneTowerFireball n8 t 182–198 ↔ Unity #3 (rel 179–240, lệch +0 tick): rms x 1.41 y 0.00 tổng 1.41 px, max 4, TB lệch (+0.50, +0.00)
+  video #7 BoneTowerFireball n7 t 222–234 ↔ Unity #4 (rel 219–240, lệch +1 tick): rms x 1.51 y 0.00 tổng 1.51 px, max 2, TB lệch (-0.57, +0.00)
+  Unity: #0 BoneTower rel 4–240 xuất hiện (1180,96) đổi state 42:Warn 54:Fire 94:Idle 167:Warn 179:Fire 219:Idle | #1 BoneTowerFireball rel 54–155 xuất hiện (1180,81) | #2 BoneTowerFireball rel 94–195 xuất hiện (1180,81) | #3 BoneTowerFireball rel 179–240 xuất hiện (1180,81) | #4 BoneTowerFireball rel 219–240 xuất hiện (1180,81)
+== TỔNG (trung bình rms theo số điểm)
+  rv_web0: 1 vết, 116 điểm, rms 2.63 px (vết xấu nhất 2.63)
+  rv_web1: 3 vết, 139 điểm, rms 1.38 px (vết xấu nhất 2.08)
+  rv_wb0: 1 vết, 40 điểm, rms 1.04 px (vết xấu nhất 1.04)
+  rv_wb1: 2 vết, 90 điểm, rms 1.75 px (vết xấu nhất 2.52)
+  rv_mm: 1 vết, 27 điểm, rms 1.29 px (vết xấu nhất 1.29)
+  gh_wea: 1 vết, 15 điểm, rms 0.97 px (vết xấu nhất 0.97)
+  mh_wa: 4 vết, 182 điểm, rms 1.98 px (vết xấu nhất 2.33)
+  mh_mm: 4 vết, 146 điểm, rms 1.93 px (vết xấu nhất 2.01)
+  bt_mm: 3 vết, 23 điểm, rms 1.30 px (vết xấu nhất 1.51)

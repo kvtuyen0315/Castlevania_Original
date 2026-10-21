@@ -123,13 +123,16 @@ MonoBehaviour:
     dropRule: "kh\xF4ng n\xEAu ri\xEAng"
     moveSpeed:
       has: 1
-      value: 2
-    src_moveSpeed: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video)
-      \u2014 routine 17; wiki Enemies#Ravens b\u1ED5 nh\xE0o nhanh \u2014 t\u1ED1c
-      \u0111\u1ED9 lao (\u2248 b\xE1o ch\u1EA1y 2.0 \u0111o 13)"
-    behaviorShort: "\u0110\u1EADu ch\u1EDD; c\u1EA5t c\xE1nh khi Simon l\u1EA1i g\u1EA7n;
-      kh\u1EF1ng m\u1ED9t ch\xFAt r\u1ED3i b\u1ED5 nh\xE0o; tr\u01B0\u1EE3t th\xEC
-      quay l\u1EA1i \u0111\xE1nh t\u1EEB sau"
+      value: 0.75
+    src_moveSpeed: "\u0111o:cvm3-08 video:Map_3 9 ch\u1EB7ng l\u01B0\u1EDBt (f1370\u20131394,
+      f1604\u20131622, f1664\u20131680, f1683\u20131701, f1713\u20131728, f3624\u20133642,
+      f3896\u20133914, f3928\u20133955, f5117\u20135121): vx \u0111\u1EC1u 0.716\u20130.792
+      (TB 0.746) su\u1ED1t ch\u1EB7ng l\u01B0\u1EDBt, kh\xF4ng gia t\u1ED1c \u21D2
+      vx l\u01B0\u1EDBt (code d\xF9ng l\xE0m glideVx)"
+    behaviorShort: "\u0110\u1EADu 60 tick sau khi hi\u1EC7n r\u1ED3i l\u01B0\u1EDBt
+      ch\xE9o v\u1EC1 ph\xEDa Simon (vy gi\u1EA3m d\u1EA7n), treo, lao ngang t\u0103ng
+      t\u1ED1c; v\u01B0\u1EE3t qua th\xEC phanh quay l\u1EA1i 1 l\u1EA7n r\u1ED3i
+      bay \u0111i (video Map_3)"
     source: wiki:Enemies#Ravens
   - id: 5
     nameEn: Eagle

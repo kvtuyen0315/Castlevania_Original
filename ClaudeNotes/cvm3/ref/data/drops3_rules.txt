@@ -1,0 +1,18 @@
+Mẫu: 79 lần hạ có xem được (13 rơi, 66 không), + 11 cầu lửa (2 rơi); 1 lần không xem được (Map_1 f3222)
+Theo loại (hạ / rơi): BatHanging 0/2, BlackLeopard 0/2, BoneTower 2/7, FishMan 1/7, Fleaman 0/3, Ghost 0/3, MedusaHead 2/8, Raven 1/11, Skeleton 1/6, Snake 0/1, SpearKnight 0/5, VampireBat 2/5, Zombie 4/19
+Vật rơi: LargeHeart ×2, RedMoneyBag ×1, Rosary ×2, SmallHeart ×7, Stopwatch ×1
+Luật "rơi ⇔ đại lượng mod N" (mẫu = lần hạ có xem được, n con cùng frame tính 1 dòng):
+  thứ tự hạ cộng dồn (idx_video)     1 residue: tốt nhất 68/79 (N 21 r 2) | tập residue 100 %: không có N ≤ 40
+  thứ tự hạ trong stage              1 residue: tốt nhất 67/79 (N 16 r 0) | tập residue 100 %: không có N ≤ 40
+  thứ tự hạ cùng loại                1 residue: tốt nhất 67/79 (N 14 r 0) | tập residue 100 %: không có N ≤ 40
+  thứ tự cả enemy + cầu lửa (idx_all) 1 residue: tốt nhất 78/90 (N 21 r 2) | tập residue 100 %: không có N ≤ 40
+  tim lúc hạ                         1 residue: tốt nhất 68/79 (N 23 r 11) | tập residue 100 %: không có N ≤ 40
+  TIME lúc hạ                        1 residue: tốt nhất 69/79 (N 15 r 4) | tập residue 100 %: không có N ≤ 40
+  SCORE/100 lúc hạ                   1 residue: tốt nhất 69/79 (N 15 r 9) | tập residue 100 %: không có N ≤ 40
+  SCORE/100 + điểm enemy             1 residue: tốt nhất 69/79 (N 15 r 10) | tập residue 100 %: không có N ≤ 40
+  frame video (≈ tick/2)             1 residue: tốt nhất 69/79 (N 14 r 11) | tập residue 100 %: không có N ≤ 40
+Luật khác:
+  "theo loại enemy" (luôn/không bao giờ): SAI — loại có cả rơi lẫn không: Zombie, VampireBat, FishMan, MedusaHead, BoneTower, Skeleton, Raven
+  "theo vũ khí hạ": roi 13/71, dao 0/1, rìu 0/1, thập tự 0/4, nước thánh 0/2 — roi có cả rơi lẫn không ⇒ không đủ
+  "theo vũ khí phụ đang cầm": dagger 7/33, axeII 0/1, cross 1/10, watch 2/8, holy 3/27
+  khoảng cách (số lần hạ) giữa 2 lần rơi liên tiếp: [3, 2, 7, 4, 3, 7, 14, 9, 2, 10, 1, 12] — có khoảng 1 (2 lần hạ liền đều rơi: Map_3 f1732 Raven → f3073 Skeleton) và khoảng tới 14 ⇒ không phải "mỗi N lần hạ"

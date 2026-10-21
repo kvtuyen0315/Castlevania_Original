@@ -11,8 +11,8 @@ using UnityEngine;
 ///   EnemyB23Probe.RunSuite(EnemyB23Probe.ScenarioNames()) ⇒ chạy (input ĐỌC TỪ FILE), ghi từng tick, TỰ CHẤM ⇒ SuiteReport()
 ///   EnemyB23Probe.ShotDir = thư mục ⇒ kịch bản chụp Game view ở các tick cố định (≥ 4 ảnh/enemy)
 /// Kỳ vọng = hằng WIKI_* (số đòn, điểm, sát thương theo stage) + VIDEO_* (CVM2 08: số ĐO video Map_2 — Spear Knight, Medusa Head, Bone
-/// Tower, Ghost, dơi treo; CVM3 07: video Map_3 — Skeleton, xương, Fleaman) + EST_* (giá trị ƯỚC LƯỢNG routine 17 còn lại — Raven + phần
-/// video không thấy), chép độc lập Config — đổi
+/// Tower, Ghost, dơi treo; CVM3 07: video Map_3 — Skeleton, xương, Fleaman; CVM3 08: Raven) + EST_* (giá trị ƯỚC LƯỢNG routine 17 còn lại —
+/// phần video không thấy), chép độc lập Config — đổi
 /// Config mà quên đổi đây thì bộ kiểm báo. Geometry Arena giữ nguyên (sàn y 176 x 0–415, tường thấp 416–431 đỉnh
 /// y 144, hố 480–511) — đủ cho bục/khoảng trống, không đụng bộ kiểm 07–16.
 /// </summary>
@@ -37,7 +37,10 @@ public static class EnemyB23Probe
     public const int VIDEO_TOWER_BALL_VX = 512, VIDEO_TOWER_ABOVE = 15;
     public const int VIDEO_GHOST_VX = 192, VIDEO_GHOST_VY = 32, VIDEO_GHOST_STUN = 16;
     public const int VIDEO_BAT_PERCH = 96, VIDEO_BAT_PERCH_DY = 80, VIDEO_BAT_VX = 384, VIDEO_BAT_DROP = 31, VIDEO_BAT_SWOOP = 42;
-    public const int EST_RAVEN_TRIGGER = 96, EST_RAVEN_RISE = 16, EST_RAVEN_HOVER1 = 24, EST_RAVEN_HOVER = 12, EST_RAVEN_SPEED = 512;
+    // CVM3 08 — Raven đo video Map_3 (CVM3_MEMORY §2h); fixed 1/256
+    public const int VIDEO_RAVEN_PERCH = 60, VIDEO_RAVEN_VX = 192, VIDEO_RAVEN_DECEL = 9, VIDEO_RAVEN_HOVER = 25, VIDEO_RAVEN_TURN_HOVER = 14, VIDEO_RAVEN_ABOVE = 16;
+    public const int VIDEO_RAVEN_DASH_V0 = 32, VIDEO_RAVEN_DASH_ACC = 8, VIDEO_RAVEN_DASH_MAX = 768, VIDEO_RAVEN_BRAKE = 48;
+    public static readonly int[] VIDEO_RAVEN_VY0 = { 320, 448, 512 };
     // CVM3 07 — số đo video Map_3 (CVM3_MEMORY §2g); fixed 1/256
     public const int VIDEO_SKEL_VX = 368, VIDEO_SKEL_LEG = 16, VIDEO_SKEL_PAUSE = 4, VIDEO_SKEL_THROW_TICKS = 18, VIDEO_SKEL_KEEP = 72, VIDEO_SKEL_THROW_AT = 4, VIDEO_SKEL_FRAME = 17;
     public const int VIDEO_SKEL_JUMP_VY = -640, VIDEO_SKEL_JUMP_VX = 320, VIDEO_SKEL_G = 32;
@@ -79,9 +82,10 @@ public static class EnemyB23Probe
         new Scn("ghost_kill_l1", WHIP10 + " -*30", "roi da hạ Ghost: đúng 3 đòn, +300"),
         new Scn("ghost_kill_l2", WHIP10 + " -*30", "roi xích: đúng 2 đòn"),
         new Scn("ghost_touch", "-*200", "Stage 7: Ghost chạm Simon: −3 vạch"),
-        new Scn("raven_dive", "R*60 -*360", "Raven đậu (260,112); Simon đi phải từ 120: cất cánh khi |dx| < 96, lên 16, khựng 24, lao thẳng 2 px/tick tới tâm thân Simon, khựng 12, lao tiếp"),
-        new Scn("raven_touch", "-*160", "Stage 7: Raven bổ nhào trúng Simon: −3 vạch"),
-        new Scn("raven_kill", "-*36 " + WHIP5 + " -*40", "roi da hạ Raven đang lao: 1 đòn, +200"),
+        new Scn("raven_dive", "R*60 -*420", "Raven đậu (300,100); Simon đi phải từ 140: cất cánh đúng 60 tick sau khi sinh (không theo khoảng cách) ⇒ lướt vx 0.75 về Simon, vy0 1.25/1.75/2.0 về TÂM THÂN Simon giảm 9/256 mỗi tick ⇒ treo 25 ⇒ cao hơn tâm ⇒ lao ngang v0 0.125 + 1/32 mỗi tick ⇒ vượt Simon ⇒ phanh 0.1875 ⇒ treo 14 ⇒ lao lại ⇒ vượt lần 2 bay luôn (video Map_3)"),
+        new Scn("raven_glide_up", "-*260", "CVM3 08: Raven đậu (300,176) thấp hơn tâm thân Simon (200,176): chặng lướt đầu đi LÊN-trái (video Map_3 #5/#6 y 121 với chân Simon 128 ⇒ lên); treo xong vẫn thấp hơn tâm ⇒ lướt tiếp (video #3)"),
+        new Scn("raven_touch", "-*300", "Stage 7: Raven lao ngang trúng Simon: −3 vạch"),
+        new Scn("raven_kill", "-*36 " + WHIP5 + " -*40", "roi da hạ Raven đang ĐẬU ngang tầm roi (236,156): 1 đòn, +200 (video: 11/11 lần hạ +200)"),
         new Scn("skel_idle", "-*900", "Skeleton (300,176), Simon (200,176) đứng: lượt đi 20 tick = đi 16 (1.4375 px/tick tới nếu |dx| ≥ 72, lùi nếu gần hơn) + đứng 4; lượt ném 18 tick (25 %, 1 xương ở tick 4) — xương 0.75 px/tick, vy0 −3.5 / −4.5, sinh Y − 13; không nhảy trên sàn phẳng; khung đi 17 tick liên tục (video Map_3)"),
         new Scn("skel_pit_jump", "-*120", "CVM3 07: Skeleton (530,176) đi trái về Simon (440,176): tới mép sàn x 512 ⇒ nhảy (vy0 −2.5, g 0.125, vx 1.25 — đỉnh 23 px, 40 tick) qua hố 480–511, đáp x 462 (video Map_3 WEB 0:50.9 / MummyMan 2:53.0)"),
         new Scn("skel_bone_hit", "-*300", "Stage 7: xương trúng Simon: −3 vạch/đòn"),
@@ -678,35 +682,61 @@ public static class EnemyB23Probe
                 break;
             case "raven_dive":
                 {
-                    Go("Arena", 120, 176, 1);
-                    Put(raven, 260, 112, -1);
-                    Photo(30, 56, 80, 96, 120, 160);
+                    Go("Arena", 140, 176, 1);
+                    Put(raven, 300, 100, -1);   // trong màn lúc cất cánh (cx 72) và đủ xa Simon ⇒ cú lao đầu nhanh ⇒ phanh 10–11 tick (mô phỏng Tools/cvm3/enemy8b_raven_model.py)
+                    Photo(30, 64, 90, 120, 160, 200, 240);
                     finish = () =>
                     {
                         var t = First(eEnemyId.Raven);
                         if (t == null) return;
-                        int kR = t.states.IndexOf("Rise"), kH = t.states.IndexOf("Hover"), kD = t.states.IndexOf("Dive");
-                        int simX = kR >= 0 ? recs[t.spawnRel + kR].sx : -1;
-                        Expect("cất cánh khi |Simon − Raven| < 96: Simon X lúc cất cánh = 260 − 95", 260 - (EST_RAVEN_TRIGGER - 1), simX);
-                        Expect("đậu yên trước khi cất cánh (tick đổi vị trí)", 0, CountWhere(t, k => k < kR && t.path[k] != t.path[0]));
-                        Expect("lên 16 px thẳng đứng", EST_RAVEN_RISE, kH >= 0 ? t.path[kR].y - t.path[kH].y + 1 : -1);
-                        Expect("khựng lần đầu (tick)", EST_RAVEN_HOVER1, kD - kH);
-                        int badS = 0, n = 0;
-                        for (int k = kD + 1; k < t.fpath.Count && t.states[k] == "Dive"; k++, n++)
+                        var rv = t.e as Raven;
+                        Expect("cất cánh ở ageTicks 60 (video 58–62 tick sau khi hiện)", VIDEO_RAVEN_PERCH, rv != null ? rv.takeoffAge : -1);
+                        int kG = t.states.IndexOf("Glide");
+                        Expect("đậu yên trước khi cất cánh (tick đổi vị trí)", 0, CountWhere(t, k => kG >= 0 && k < kG && t.path[k] != t.path[0]));
+                        RavenGlideChecks(t);
+                        Expect("treo sau chặng lướt đầu (tick)", VIDEO_RAVEN_HOVER, RunLen(t, "Hover", 0));
+                        int badA = 0, badB = 0, nA = 0, nB = 0;
+                        for (int k = 1; k < t.fpath.Count; k++)
                         {
-                            double v = Math.Sqrt(Math.Pow(t.fpath[k].x - t.fpath[k - 1].x, 2) + Math.Pow(t.fpath[k].y - t.fpath[k - 1].y, 2));
-                            if (v < EST_RAVEN_SPEED - 8 || v > EST_RAVEN_SPEED + 2) badS++;
+                            int d = Math.Abs(t.fpath[k].x - t.fpath[k - 1].x), d0 = k >= 2 ? Math.Abs(t.fpath[k - 1].x - t.fpath[k - 2].x) : -1;
+                            if (t.states[k] == "Dash" && k >= 2 && t.states[k - 1] == "Dash") { nA++; if (d != Math.Min(d0 + VIDEO_RAVEN_DASH_ACC, VIDEO_RAVEN_DASH_MAX)) badA++; }
+                            // tick đầu Brake chạy nối Dash cùng tick (StateMachine) ⇒ chỉ kiểm từ tick Brake thứ 2
+                            if (t.states[k] == "Brake" && k >= 2 && t.states[k - 1] == "Brake" && t.states[k - 2] == "Brake") { nB++; if (d != Math.Max(0, d0 - VIDEO_RAVEN_BRAKE)) badB++; }
+                            if (t.states[k] == "Dash" && t.fpath[k].y != t.fpath[k - 1].y) badA++;
                         }
-                        Expect("lao thẳng 2 px/tick (|v| sai / " + n + ")", 0, badS);
-                        int dives = t.e is Raven ? ((Raven)t.e).dives : 0;
-                        ExpectRange("lao lại sau khi trượt (số cú lao)", 2, 99, dives);
-                        int kH2 = -1;
-                        for (int k = kD + 1; k < t.states.Count; k++) if (t.states[k] == "Hover") { kH2 = k; break; }
-                        int kD2 = kH2 >= 0 ? t.states.IndexOf("Dive", kH2) : -1;
-                        Expect("khựng giữa 2 cú lao (tick) — 'quay đầu rất nhanh'", EST_RAVEN_HOVER, kD2 - kH2);
-                        int maxY = 0; foreach (var v in t.path) maxY = Math.Max(maxY, v.y);
-                        ExpectRange("không lao xuyên sàn: tâm ≤ chân Simon − 8 (+ 1 tick lao 2 px)", 0, 176 - 8 + 2, maxY);
-                        measures.Add("cất cánh tick " + kR + ", khựng " + kH + ", lao " + kD + ", lao 2 " + kD2 + "; số cú lao " + dives);
+                        Expect("lao ngang: |vx| +1/32 mỗi tick, y giữ (tick sai / " + nA + ")", 0, badA);
+                        Expect("phanh: |vx| −0.1875 mỗi tick (tick sai / " + nB + ")", 0, badB);
+                        ExpectRange("phanh kéo dài (tick Brake liền nhau, bỏ tick đầu)", 4, 40, nB);
+                        ExpectRange("có lao ngang", 1, 99, rv != null ? rv.dashes : 0);
+                        Expect("số lần phanh quay đầu (video 1 — lần vượt thứ 2 bay luôn)", 1, Runs(t, "Brake"));
+                        Expect("treo sau phanh (tick)", VIDEO_RAVEN_TURN_HOVER, RunLen(t, "Hover", Runs(t, "Hover") - 1));
+                        Expect("hướng mặt luôn về Simon (tick sai, bỏ tick trùng x)", 0, CountWhere(t, k => recs[t.spawnRel + k].sx != t.path[k].x && t.facing[k] != (recs[t.spawnRel + k].sx > t.path[k].x ? 1 : -1)));
+                        ExpectRange("bay ra khỏi màn sau cú lao thứ 2 (gỡ Offscreen)", 1, 1, t.endRel >= 0 && t.reason == eKillReason.Offscreen ? 1 : 0);
+                        Expect("khung bay raven_1→2→3→2 mỗi 9 tick (anim fly)", "fly", t.anims.Count > kG + 1 && kG >= 0 ? t.anims[kG + 1] : "");
+                        measures.Add("cất cánh age " + (rv != null ? rv.takeoffAge : -1) + ", lướt " + (rv != null ? rv.glides : 0) + ", lao " + (rv != null ? rv.dashes : 0)
+                                     + ", treo " + RunLen(t, "Hover", 0) + "/" + RunLen(t, "Hover", Runs(t, "Hover") - 1) + ", gỡ rel " + t.endRel);
+                    };
+                }
+                break;
+            case "raven_glide_up":
+                {
+                    Go("Arena", 200, 176, 1);
+                    Put(raven, 300, 176, -1);
+                    Photo(70, 110, 160);
+                    finish = () =>
+                    {
+                        var t = First(eEnemyId.Raven);
+                        if (t == null) return;
+                        int kG = t.states.IndexOf("Glide");
+                        Expect("chặng lướt đầu đi LÊN (vy0 < 0 — Raven thấp hơn tâm thân Simon)", 1, kG >= 1 && t.fpath[kG].y < t.fpath[kG - 1].y ? 1 : 0);
+                        Expect("chặng lướt đầu đi về phía Simon (trái)", 1, kG >= 1 && t.fpath[kG].x < t.fpath[kG - 1].x ? 1 : 0);
+                        RavenGlideChecks(t);
+                        var rv = t.e as Raven;
+                        int kH = t.states.IndexOf("Hover"), kNext = -1;
+                        for (int k = kH; k >= 0 && k < t.states.Count; k++) if (t.states[k] != "Hover") { kNext = k; break; }
+                        bool below = kH >= 0 && t.path[kH].y >= 176 - VIDEO_RAVEN_ABOVE;
+                        Expect("treo xong: thấp hơn tâm ⇒ lướt tiếp / cao hơn ⇒ lao ngang", below ? "Glide" : "Dash", kNext >= 0 ? t.states[kNext] : "");
+                        measures.Add("lướt " + (rv != null ? rv.glides : 0) + " (y sau chặng 1: " + (kH >= 0 ? t.path[kH].y : -1) + "), state sau treo " + (kNext >= 0 ? t.states[kNext] : "-"));
                     };
                 }
                 break;
@@ -715,14 +745,19 @@ public static class EnemyB23Probe
                     CvgpDebug.CheatInvincible = false;
                     world.Stage = 7;
                     Go("Arena", 200, 176, 1);
-                    Put(raven, 270, 140, -1);
-                    finish = () => Expect("Raven bổ nhào trúng Simon: −3 vạch (Stage 7)", GameSession.MAX_HP - WIKI_DMG_B3, Last.hp);
+                    Put(raven, 250, 128, -1);
+                    finish = () =>
+                    {
+                        int lost = GameSession.MAX_HP - Last.hp;
+                        ExpectRange("Raven lao trúng Simon (số lần, 300 tick — Raven quay lại được 1 lần)", 1, 3, lost / WIKI_DMG_B3);
+                        Expect("mỗi đòn −3 vạch (Stage 7): phần dư", 0, lost % WIKI_DMG_B3);
+                    };
                 }
                 break;
             case "raven_kill":
                 {
                     Go("Arena", 200, 176, 1);
-                    Put(raven, 280, 150, -1);
+                    Put(raven, 236, 156, -1);
                     Photo(40, 56);
                     finish = () => KillChecks(eEnemyId.Raven, 1, WIKI_SCORE_RAVEN, false);
                 }
@@ -1388,6 +1423,54 @@ public static class EnemyB23Probe
                 l.Add(b);
         l.Sort((a, b) => a.spawnRel.CompareTo(b.spawnRel));
         return l;
+    }
+
+    /// <summary>CVM3 08: mỗi tick Glide dời ngang đúng ±0.75; tick Glide đầu |Δy| ∈ {1.25, 1.75, 2.0}; tick Glide liền nhau |Δy| giảm đúng 9/256.</summary>
+    static void RavenGlideChecks(Track t)
+    {
+        int badX = 0, badD = 0, badV = 0, n = 0;
+        for (int k = 1; k < t.fpath.Count; k++)
+        {
+            if (t.states[k] != "Glide") continue;
+            n++;
+            int dx = Math.Abs(t.fpath[k].x - t.fpath[k - 1].x), dy = Math.Abs(t.fpath[k].y - t.fpath[k - 1].y);
+            if (dx != VIDEO_RAVEN_VX) badX++;
+            if (t.states[k - 1] != "Glide")
+            {
+                if (Array.IndexOf(VIDEO_RAVEN_VY0, dy) < 0) badV++;
+            }
+            else if (k >= 2 && Math.Abs(t.fpath[k - 1].y - t.fpath[k - 2].y) - dy != VIDEO_RAVEN_DECEL) badD++;
+        }
+        Expect("lướt: ngang đúng 0.75 px/tick (tick sai / " + n + ")", 0, badX);
+        Expect("lướt: vy0 thuộc {1.25, 1.75, 2.0} (chặng sai)", 0, badV);
+        Expect("lướt: |vy| giảm đúng 9/256 mỗi tick (tick sai)", 0, badD);
+    }
+
+    /// <summary>Số đoạn liền mạch của state.</summary>
+    static int Runs(Track t, string st)
+    {
+        int n = 0;
+        for (int k = 0; k < t.states.Count; k++)
+            if (t.states[k] == st && (k == 0 || t.states[k - 1] != st)) n++;
+        return n;
+    }
+
+    /// <summary>Độ dài (tick) đoạn liền mạch thứ i của state (−1 nếu không có).</summary>
+    static int RunLen(Track t, string st, int i)
+    {
+        int r = -1;
+        for (int k = 0; k < t.states.Count; k++)
+            if (t.states[k] == st && (k == 0 || t.states[k - 1] != st))
+            {
+                r++;
+                if (r == i)
+                {
+                    int len = 0;
+                    while (k + len < t.states.Count && t.states[k + len] == st) len++;
+                    return len;
+                }
+            }
+        return -1;
     }
 
     static int CountWhere(Track t, Func<int, bool> f)

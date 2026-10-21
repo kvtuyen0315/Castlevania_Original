@@ -1,0 +1,93 @@
+# CVM3 08 — enemy rơi vật, 3 video liền 1 playthrough (Tools/cvm3/drops8b_rules.py). idx_video = thứ tự hạ cộng dồn từ đầu Map_1 (n con cùng frame tính n); idx_all = cả cầu lửa bị phá; hearts/TIME/SCORE = HUD frame k−1
+video	mss	frame	stage	kind	n	enemy	weapon	drop	idx_video	idx_stage	idx_type	idx_all	hearts	sub	mult	time	score	note
+Map_1	0:23.00	690	1	kill	2	Zombie	roi	-	2	2	2	2	15	dagger		285	400	z1_a: 2 lửa, không vật
+Map_1	0:23.60	708	1	kill	1	Zombie	roi	-	3	3	3	3	15	dagger		284	600	z1_a; tim k+30 = nến
+Map_1	0:25.40	762	1	kill	1	Zombie	roi	SmallHeart	4	4	4	4	16	dagger		282	700	z1_f: cùng nhát roi vỡ nến EH_C03 ⇒ 2 tim nhỏ k+10 (1 ở lửa Zombie) — tim +1 f788 (nến) + f800 (Zombie, CVGP không gán nguồn)
+Map_1	0:28.23	847	1	kill	1	Zombie	roi	-	5	5	5	5	18	dagger		280	800	z1_a: túi đỏ EH_C04 trên sàn từ trước, nhặt f885 (CVGP ghi +100 f847 = nhầm Zombie)
+Map_1	0:28.83	865	1	kill	2	Zombie	roi	Stopwatch	7	7	7	7	18	dagger		279	900	z1_a/m1_f: 2 lửa, 1 con rơi ĐỒNG HỒ k+10 (CVGP 13: f864 ⇒ f874)
+Map_1	0:33.73	1012	1	kill	1	Zombie	roi	-	8	8	8	8	19	dagger		275	1400	z1_g; tim k+12 = nến EH_C07 cùng nhát
+Map_1	0:34.40	1032	1	kill	1	Zombie	roi	RedMoneyBag	9	9	9	9	19	dagger		274	1500	z1_g: túi đỏ ở lửa k+8, Simon nhặt ngay +100 f1042 (CVGP không gán nguồn)
+Map_1	0:35.03	1051	1	kill	1	Zombie	roi	-	10	10	10	10	19	dagger		273	1700	z1_b
+Map_1	0:43.17	1295	1	kill	1	BlackLeopard	roi	-	11	11	1	11	23	dagger		266	1800	z1_b
+Map_1	0:54.90	1647	1	kill	1	BlackLeopard	roi	-	12	12	2	12	24	dagger		255	2700	z1_b: tim lớn k+12 = nến EH_C14 (vỡ f1641)
+Map_1	1:09.70	2091	1	kill	1	Zombie	roi	-	13	13	11	13	32	dagger		241	3600	z1_b; tim sàn = nến EH_C19
+Map_1	1:10.23	2107	1	kill	1	Zombie	roi	-	14	14	12	14	32	dagger		240	3700	z1_b
+Map_1	1:10.73	2122	1	kill	1	Zombie	roi	-	15	15	13	15	32	dagger		240	3800	z1_b
+Map_1	1:14.07	2222	1	kill	1	Zombie	roi	Rosary	16	16	14	16	34	dagger		237	3900	z1_b: ROSARY ở lửa k+10 (CVGP 15 rosary1.png)
+Map_1	1:14.90	2247	1	kill	1	Zombie	roi	-	17	17	15	17	35	dagger		236	4000	z1_b
+Map_1	1:17.03	2311	1	kill	1	Zombie	roi	-	18	18	16	18	35	dagger		234	4100	z1_c; tim nhặt cùng frame = nến EH_C22
+Map_1	1:33.53	2806	2	kill	1	VampireBat	dao	-	19	1	1	19	36	dagger		225	4200	z1_c/z1_f
+Map_1	1:39.73	2992	2	kill	1	VampireBat	roi	SmallHeart	20	2	2	20	42	dagger		219	4400	z1_f: tim nhỏ ở lửa k+8, nhặt f3010 (CVGP không gán nguồn); túi đỏ cạnh = nến CA_C4
+Map_1	1:42.53	3076	2	kill	1	VampireBat	roi	-	21	3	3	21	43	dagger		216	4700	z1_c
+Map_1	1:47.40	3222	2	kill	1	VampireBat	dao	?	22	4	4	22	42	dagger		212	5600	z1_c: k+12.. màn đen đổi tầng + lớp phủ YouTube — không xem được
+Map_1	1:58.30	3549	2	kill	1	FishMan	roi	LargeHeart	23	5	1	23	42	dagger		209	5900	z1_c: tim LỚN ở lửa k+10 (nến CB_C1 phía trên vẫn nguyên), +5 f3597 (CVGP không gán nguồn)
+Map_1	1:59.20	3576	2	kill	1	FishMan	roi	-	24	6	2	24	42	dagger		208	6200	z1_c
+Map_1	2:01.07	3632	2	kill	1	FishMan	roi	-	25	7	3	25	47	dagger		206	6500	z1_d
+Map_1	2:07.57	3827	2	kill	1	FishMan	roi	-	26	8	4	26	47	dagger		200	7600	z1_d
+Map_1	2:12.47	3974	2	kill	1	FishMan	roi	-	27	9	5	27	47	dagger		195	8600	z1_d: tim k+10 ở độ cao nến CB_C6 (cùng nhát roi)
+Map_1	2:18.00	4140	2	kill	1	FishMan	roi	-	28	10	6	28	49	dagger		190	8900	z1_d
+Map_1	2:22.73	4282	2	kill	1	FishMan	roi	-	29	11	7	29	54	dagger		186	9200	z1_d; túi nháy bên trái = bí mật CB
+Map_1	2:29.70	4491	2	kill	1	VampireBat	roi	SmallHeart	30	12	5	30	54	dagger		180	10500	z1_d: tim nhỏ ở lửa k+10, +1 f4509 (CVGP không gán nguồn); túi đỏ = nến CA_C6
+Map_1	2:35.80	4674	2	kill	1	VampireBat	roi	-	31	13	6	31	55	dagger		174	10800	z1_d
+Map_1	2:56.40	5292	3	kill	1	Zombie	roi	-	32	1	17	32	61	dagger		161	11200	z1_e
+Map_1	3:03.07	5492	3	kill	2	Zombie	roi	-	34	3	19	34	66	dagger		155	11300	z1_e: 2 con
+Map_1	3:03.63	5509	3	kill	1	Zombie	roi	-	35	4	20	35	66	dagger		155	11500	z1_e
+Map_1	3:08.10	5643	3	kill	1	Zombie	roi	-	36	5	21	36	67	dagger		150	11600	z1_e
+Map_1	3:09.53	5686	3	kill	2	Zombie	roi	-	38	7	23	38	67	dagger		149	11700	z1_e: 2 con; rìu sàn = nến PB_C06
+Map_2	0:08.37	251	4	kill	1	SpearKnight	rìu	-	39	1	1	39	3	axe	II	398	23370	z2_a
+Map_2	0:25.93	778	4	kill	1	BatHanging	thập tự	-	40	2	1	40	7	cross		382	25870	z2_a
+Map_2	0:34.67	1040	4	kill	1	BatHanging	thập tự	-	41	3	2	41	6	cross		375	26070	z2_a; tim k+30 = nến cùng lượt thập tự
+Map_2	0:44.37	1331	4	kill	1	SpearKnight	roi	-	42	4	2	42	9	cross		366	26370	z2_a
+Map_2	1:02.40	1872	5	kill	1	MedusaHead	thập tự	-	43	1	1	43	9	cross		356	27570	z2_a
+Map_2	1:08.53	2056	5	kill	1	MedusaHead	roi	SmallHeart	44	2	2	44	11	cross		350	27870	z2_a (CVM2 10 ha528.png)
+Map_2	1:37.80	2934	5	kill	1	MedusaHead	roi	-	45	3	3	45	24	cross		323	30370	z2_a
+Map_2	1:39.43	2983	5	kill	1	MedusaHead	thập tự	-	46	4	4	46	24	cross		322	30670	z2_a; túi đỏ k+30 = nến thập tự phá lúc quay về
+Map_2	1:47.83	3235	5	kill	1	SpearKnight	roi	-	47	5	3	47	25	cross		314	30970	z2_a
+Map_2	1:56.90	3507	5	kill	1	SpearKnight	roi	-	48	6	4	48	25	cross		305	32170	z2_b
+Map_2	2:00.50	3615	5	kill	1	SpearKnight	roi	-	49	7	5	49	25	cross		302	32570	z2_b
+Map_2	2:19.60	4188	5	kill	1	MedusaHead	roi	-	50	8	5	50	26	watch		284	33170	z2_b; tim nhỏ đang rơi từ nến trên
+Map_2	2:47.40	5022	6	kill	1	Ghost	roi	-	51	1	1	51	25	watch		266	34070	z2_b
+Map_2	3:03.37	5501	6	kill	1	BoneTower	roi	-	52	2	1	52	32	watch		251	35070	z2_b
+Map_2	3:08.43	5653	6	kill	1	BoneTower	roi	Rosary	53	3	2	53	32	watch		247	35470	z2_b (CVM2 10 hc_rosary.png)
+Map_2	3:15.50	5865	6	kill	1	Ghost	roi	-	54	4	2	54	32	watch		240	35870	z2_b
+Map_2	3:27.57	6227	6	kill	1	MedusaHead	roi	SmallHeart	55	5	6	55	35	watch		230	36170	z2_b (CVM2 10 md_heart.png)
+Map_2	3:48.20	6846	6	kill	1	Snake	roi	-	56	6	1	56	40	watch		211	36470	z2_b: rắn của Medusa, trong lúc đồng hồ
+Map_3	0:15.10	453	7	kill	1	Ghost	roi	-	57	1	3	57	6	watch		493	45470	z3_a
+Map_3	0:18.17	545	7	kill	1	Fleaman	roi	-	58	2	1	58	6	holy		490	45770	z3_a; tim trái = nến (CVM3 07)
+Map_3	0:22.50	675	7	kill	1	Fleaman	roi	-	59	3	2	59	12	holy		486	46370	z3_a; tim = nến cùng nhát
+Map_3	0:30.60	918	7	kill	1	Fleaman	roi	-	60	4	3	60	14	holy		478	46870	z3_a
+Map_3	0:35.93	1078	7	kill	1	Skeleton	roi	-	61	5	1	61	16	holy		473	47370	z3_a
+Map_3	0:51.77	1553	7	kill	1	Skeleton	roi	-	62	6	2	62	26	holy		459	47770	z3_a; túi đỏ có từ trước
+Map_3	0:54.20	1626	7	kill	1	Raven	roi	-	63	7	1	63	27	holy		457	48170	z3_a
+Map_3	0:56.07	1682	7	kill	1	Raven	roi	-	64	8	2	64	27	holy		455	48370	z3_a
+Map_3	0:57.73	1732	7	kill	1	Raven	roi	SmallHeart	65	9	3	65	27	holy		454	48570	z3_a: tim nhỏ đung đưa ở lửa k+10
+Map_3	1:42.43	3073	8	kill	1	Skeleton	roi	SmallHeart	66	1	3	66	35	holy		419	50470	z3_b/m3_f: tim ở lửa k+10, tim +1 f3089
+Map_3	1:42.70	3081	8	kill	1	Skeleton	nước thánh	-	67	2	4	67	35	holy		419	50770	m3_f: chết trong lửa nước thánh, CHỮ 1000 tại chỗ (+1100)
+Map_3	2:01.47	3644	8	kill	1	Raven	roi	-	68	3	4	68	38	holy		402	52870	z3_b
+Map_3	2:04.27	3728	8	shot	1	BoneTowerFireball	roi	SmallHeart				69	43	holy		399	53070	z3_d/z3_e
+Map_3	2:04.87	3746	8	shot	1	BoneTowerFireball	roi	-				70	43	holy		399	53170	z3_d/z3_e
+Map_3	2:07.90	3837	8	kill	1	BoneTower	roi	-	69	4	3	71	43	holy		396	53270	z3_b; tim cạnh tháp = cầu lửa f3728
+Map_3	2:10.57	3917	8	kill	1	Raven	roi	-	70	5	5	72	43	holy		393	53670	z3_b
+Map_3	2:11.90	3957	8	kill	1	Raven	roi	-	71	6	6	73	43	holy		392	53870	z3_b
+Map_3	2:14.27	4028	8	shot	1	BoneTowerFireball	roi	-				74	43	holy		390	54070	z3_d/z3_e
+Map_3	2:14.73	4042	8	shot	1	BoneTowerFireball	roi	-				75	43	holy		389	54170	z3_d/z3_e
+Map_3	2:16.53	4096	8	kill	1	BoneTower	roi	-	72	7	4	76	43	holy		388	54270	z3_b
+Map_3	2:36.67	4700	9	kill	1	Raven	roi	-	73	1	7	77	46	holy		376	54670	z3_b
+Map_3	2:38.17	4745	9	kill	1	Raven	roi	-	74	2	8	78	46	holy		374	54870	z3_b
+Map_3	2:39.27	4778	9	shot	1	BoneTowerFireball	roi	-				79	46	holy		373	55070	z3_d/z3_e
+Map_3	2:39.70	4791	9	shot	1	BoneTowerFireball	roi	-				80	46	holy		373	55170	z3_d/z3_e
+Map_3	2:41.80	4854	9	kill	1	BoneTower	roi	-	75	3	5	81	46	holy		371	55270	z3_c
+Map_3	2:43.47	4904	9	kill	1	Raven	roi	-	76	4	9	82	46	holy		369	55670	z3_c
+Map_3	2:44.43	4933	9	kill	1	Raven	roi	-	77	5	10	83	46	holy		368	55870	z3_c
+Map_3	2:46.47	4994	9	shot	1	BoneTowerFireball	roi	-				84	46	holy		366	56070	z3_d/z3_e
+Map_3	2:46.97	5009	9	shot	1	BoneTowerFireball	roi	SmallHeart				85	46	holy		366	56170	z3_d/z3_e
+Map_3	2:49.23	5077	9	kill	1	BoneTower	roi	LargeHeart	78	6	6	86	46	holy		364	56270	z3_c: tim LỚN ở lửa k+10 (tim nhỏ cạnh = cầu lửa f5009)
+Map_3	2:50.77	5123	9	kill	1	Raven	roi	-	79	7	11	87	52	holy		362	56670	z3_c
+Map_3	2:51.70	5151	9	kill	1	Skeleton	roi	-	80	8	5	88	52	holy		361	56870	z3_c
+Map_3	2:54.10	5223	9	kill	1	Skeleton	nước thánh	-	81	9	6	89	51	holy		359	57270	m3_f: chết trong lửa nước thánh, CHỮ 1000 tại chỗ (+1300 sau +100 f5221)
+Map_3	3:01.07	5432	9	shot	1	BoneTowerFireball	roi	-				90	52	holy		353	58570	z3_d/z3_e
+Map_3	3:01.57	5447	9	shot	1	BoneTowerFireball	roi	-				91	52	holy		352	58670	z3_d/z3_e
+Map_3	3:02.50	5475	9	kill	1	MedusaHead	roi	-	82	10	7	92	52	holy		351	58770	z3_c
+Map_3	3:03.17	5495	9	shot	1	BoneTowerFireball	roi	-				93	52	holy		351	59070	z3_d/z3_e
+Map_3	3:03.70	5511	9	kill	1	BoneTower	roi	-	83	11	7	94	52	holy		350	59170	z3_c: +500 = tháp 400 + cầu lửa 100 cùng nhát
+Map_3	3:10.10	5703	9	kill	1	MedusaHead	roi	-	84	12	8	95	53	holy		344	59670	z3_c

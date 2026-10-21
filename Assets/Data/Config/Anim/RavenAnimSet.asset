@@ -18,25 +18,26 @@ MonoBehaviour:
     - {fileID: 21300000, guid: 447ad99c1623da44484cac60947d9b67, type: 3}
     durations: 08000000
     loop: 1
-    measured: 0
+    measured: 1
     overlays: []
     overlayOffsets: []
     overlayOnTop: 
-    note: "routine 17: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video Block 2\u20133)
-      \u2014 nh\u1ECBp 8 tick/khung gi\u1EEF m\u1EB7c \u0111\u1ECBnh; Raven \u0111\u1EADu
-      (raven_0 c\xE1nh kh\xE9p)"
+    note: "CVM3 08: video Map_3 12 con \u0111\u1EADu \u2014 raven_0 \u0111\u1EE9ng
+      y\xEAn su\u1ED1t l\xFAc \u0111\u1EADu (kh\xF4ng \u0111\u1ED5i khung; 8 tick
+      ch\u1EC9 l\xE0 quy \u01B0\u1EDBc m\u1ED9t khung)"
   - name: fly
     frames:
     - {fileID: 21300000, guid: 6db3e9da57f4d4c4bb5e551b961f72de, type: 3}
     - {fileID: 21300000, guid: a33d7ce8cd719b349ac101ec756e4388, type: 3}
     - {fileID: 21300000, guid: c030a11f26d05834082cfa2f2b81a3f0, type: 3}
-    durations: 080000000800000008000000
+    - {fileID: 21300000, guid: a33d7ce8cd719b349ac101ec756e4388, type: 3}
+    durations: 09000000090000000900000009000000
     loop: 1
-    measured: 0
+    measured: 1
     overlays: []
     overlayOffsets: []
     overlayOnTop: 
-    note: "routine 17: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video Block 2\u20133)
-      \u2014 nh\u1ECBp 8 tick/khung gi\u1EEF m\u1EB7c \u0111\u1ECBnh; Raven bay/l\u01B0\u1EE3n/b\u1ED5
-      nh\xE0o (raven_1..3)"
+    note: "CVM3 08: video Map_3 Raven #0 f1370\u20131487 \u2014 v\u1ED7 c\xE1nh raven_1\u21922\u21923\u21922
+      (qua l\u1EA1i), 26 l\u1EA7n \u0111\u1ED5i khung TB 4.5 frame = 9 tick; b\u1EAFt
+      \u0111\u1EA7u raven_1 ngay tick c\u1EA5t c\xE1nh, ch\u1EA1y li\u1EC1n khi l\u01B0\u1EDBt/treo/lao"
   palettes: []

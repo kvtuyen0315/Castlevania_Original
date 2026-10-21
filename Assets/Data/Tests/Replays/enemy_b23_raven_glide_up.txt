@@ -1,0 +1,3 @@
+# 260 tick, hash c13a6915
+# CVGP 17 EnemyB23Probe kịch bản 'raven_glide_up': CVM3 08: Raven đậu (300,176) thấp hơn tâm thân Simon (200,176): chặng lướt đầu đi LÊN-trái (video Map_3 #5/#6 y 121 với chân Simon 128 ⇒ lên); treo xong vẫn thấp hơn tâm ⇒ lướt tiếp (video #3)
+-*260
