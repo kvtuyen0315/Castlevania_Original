@@ -17,14 +17,15 @@ MonoBehaviour:
     frames:
     - {fileID: 21300000, guid: dda0f73b28f004048ba38c44f78d79bf, type: 3}
     - {fileID: 21300000, guid: b6cb31613f849884b90551e7dcf66d34, type: 3}
-    durations: 0800000008000000
+    durations: 0900000009000000
     loop: 1
-    measured: 0
+    measured: 1
     overlays: []
     overlayOffsets: []
     overlayOnTop: 
-    note: "routine 17: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video Block 2\u20133)
-      \u2014 nh\u1ECBp 8 tick/khung gi\u1EEF m\u1EB7c \u0111\u1ECBnh; Fleaman: code
-      \u0111\u1EB7t khung t\u0129nh \u2014 fleaman_0 tr\xEAn \u0111\u1EA5t, fleaman_1
-      khi \u0111ang nh\u1EA3y (suy lu\u1EADn theo h\xECnh)"
+    note: "CVM3 07 \u0111o video:Map_3 0:16.4\u20130:30.6 WEA 3 con: ng\u1ED3i ch\u1EDD
+      \u0111\u1ED5i khung 0\u21941 m\u1ED7i 4.4\u20134.5 frame \u2248 9 tick (17
+      l\u1EA7n \u0111\u1ED5i); fleaman_0 l\xFAc ng\u1ED3i th\u1EA5p/tr\xEAn \u0111\u1EA5t,
+      fleaman_1 su\u1ED1t c\xFA nh\u1EA3y (3/3) \u2014 code: Wait ph\xE1t anim, Ground/Hop
+      \u0111\u1EB7t khung t\u0129nh"
   palettes: []

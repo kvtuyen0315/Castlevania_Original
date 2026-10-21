@@ -1,3 +1,3 @@
-# 120 tick, hash d9ab7825
-# CVGP 17 EnemyB23Probe kịch bản 'flea_touch': Stage 7: Fleaman nhảy vào Simon: −3 vạch
--*120
+# 240 tick, hash 8261a685
+# CVGP 17 EnemyB23Probe kịch bản 'flea_touch': Stage 7: Fleaman nhảy vào Simon: −3 vạch (CVM3 07: chờ 62–136 + ngồi thấp 13 tick rồi mới nhảy ⇒ 240 tick)
+-*240

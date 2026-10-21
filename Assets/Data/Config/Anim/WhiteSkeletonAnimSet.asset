@@ -17,26 +17,30 @@ MonoBehaviour:
     frames:
     - {fileID: 21300000, guid: fd08765d99b7af14db5ad78a9cc9779d, type: 3}
     - {fileID: 21300000, guid: 36a35877ffb093d4497cac2b2cc3d01d, type: 3}
-    durations: 0800000008000000
+    durations: 1100000011000000
     loop: 1
-    measured: 0
+    measured: 1
     overlays: []
     overlayOffsets: []
     overlayOnTop: 
-    note: "routine 17: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video Block 2\u20133)
-      \u2014 nh\u1ECBp 8 tick/khung gi\u1EEF m\u1EB7c \u0111\u1ECBnh; Skeleton \u0111i/l\xF9i/nh\u1EA3y"
+    note: "CVM3 07 \u0111o video:Map_3 6 Skeleton (WEA/WEB/WalkwayA/MummyMan): 31
+      l\u1EA7n \u0111\u1ED5i khung, TB 8.52 frame = 17.1 tick; ch\u1EA1y LI\xCAN
+      T\u1EE4C c\u1EA3 l\xFAc \u0111\u1EE9ng, n\xE9m, nh\u1EA3y (kh\xF4ng \u0111\u1EB7t
+      l\u1EA1i khi \u0111\u1ED5i vi\u1EC7c)"
   - name: bone
     frames:
     - {fileID: 21300000, guid: 3b19d0a51338aeb4facef1511bffe506, type: 3}
-    - {fileID: 21300000, guid: d756f1c28380c5c4893cc3a6b5bbde9d, type: 3}
     - {fileID: 21300000, guid: e69e0ecdc4b8541439ea31cb3ecd1a62, type: 3}
-    durations: 080000000800000008000000
+    - {fileID: 21300000, guid: d756f1c28380c5c4893cc3a6b5bbde9d, type: 3}
+    durations: 090000000900000009000000
     loop: 1
-    measured: 0
+    measured: 1
     overlays: []
     overlayOffsets: []
     overlayOnTop: 
-    note: "routine 17: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video Block 2\u20133)
-      \u2014 nh\u1ECBp 8 tick/khung gi\u1EEF m\u1EB7c \u0111\u1ECBnh; x\u01B0\u01A1ng
-      xoay khi bay; bone_1/2 l\xE0 l\u1EADt g\u01B0\u01A1ng c\u1EE7a nhau"
+    note: "CVM3 07 \u0111o video:Map_3 3 x\u01B0\u01A1ng d\xE0i (f1523\u20131558,
+      f2156\u20132193, f3055\u20133080): d\u1ECDc \u2192 bone_2 \u2192 bone_1 \u2192
+      d\u1ECDc (bay tr\xE1i, kh\xF4ng l\u1EADt; bay ph\u1EA3i l\u1EADt \u21D2 th\u1EE9
+      t\u1EF1 g\u01B0\u01A1ng), m\u1ED7i khung \u2248 4.4\u20134.7 frame = 9 tick;
+      bone_1/2 l\xE0 l\u1EADt g\u01B0\u01A1ng c\u1EE7a nhau"
   palettes: []

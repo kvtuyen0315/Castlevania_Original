@@ -32,10 +32,11 @@ public static class RegressionRunner
         // item 7ca5bf56, enemy 0a731b36, boss c9813c11, b23 50a6b4bf, b46 6c8e9a74, b24 397842ee, b56 c140225d, rules 00144e42, gallery ffd5b71e,
         // holy b1033a3f, mech 6409b5fe; flow* / map2 caf21ae2 (map1_route + map2_route GHI LẠI bằng autopilot — CVM3_MEMORY §4)
         // CVM3 03 (đồng hồ theo video Map_2): attack cũ eee2cdfb, enemy f288b0ce, boss 31e6d711, b23 5eb00c5b, b46 58a8edf9, b24 9b218696, b56 6cb8a1ad, rules 03fafb24
+        // CVM3 07 (Skeleton + Fleaman đo video Map_3 — CVM3_MEMORY §2g/§4): b23 cũ 46dcc544 (+ skel_pit_jump), b46 a4cfdcaf (Fleaman do Eagle thả: g 0.125), gallery ab874ae4
         { "long", "b2cc1424" }, { "simon", "5c1c46ce" }, { "attack", "62c14a1f" }, { "item", "c8db5123" },
-        { "enemy", "20aa5652" }, { "boss", "4d7bd652" }, { "b23", "46dcc544" }, { "b46", "a4cfdcaf" },
+        { "enemy", "20aa5652" }, { "boss", "4d7bd652" }, { "b23", "2b237b6a" }, { "b46", "461c6b8b" },
         { "b24", "4066b4db" }, { "b56", "9b9b7440" }, { "rules", "72c7e7bf" }, { "core", "76516076" },
-        { "gallery", "ab874ae4" } /* CVM3 04; CVM2 11 ffd5b71e (nhảy không va trần — PhantomBat_attack; CVM2 09 25b99169) */,
+        { "gallery", "83b26a03" } /* CVM3 07; CVM3 04 ab874ae4; CVM2 11 ffd5b71e (nhảy không va trần — PhantomBat_attack; CVM2 09 25b99169) */,
         // CVM2 11: luồng thật Title → STAGE 07 (map1_route + map2_route; cũ Title → STAGE 04 e0b2d54c — phần Map 1 = PRE4 dưới)
         { "flow", "4532ace7" }, { "flow30", "4532ace7" }, { "flow144", "4532ace7" }, { "map2", "4532ace7" },
         { "holy", "95e3ba78" },   // CVM2 04 (HolyPierceProbe — bộ mới) → CVM2 09 (52c59864 → b1033a3f) → CVM3 04 (lọ theo video Map_3)

@@ -1,0 +1,3 @@
+# 120 tick, hash d9ab7825
+# CVGP 17 EnemyB23Probe kịch bản 'skel_pit_jump': CVM3 07: Skeleton (530,176) đi trái về Simon (440,176): tới mép sàn x 512 ⇒ nhảy (vy0 −2.5, g 0.125, vx 1.25 — đỉnh 23 px, 40 tick) qua hố 480–511, đáp x 462 (video Map_3 WEB 0:50.9 / MummyMan 2:53.0)
+-*120

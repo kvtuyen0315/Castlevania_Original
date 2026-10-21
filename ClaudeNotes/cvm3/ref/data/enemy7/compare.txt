@@ -1,0 +1,43 @@
+== sk_wea (video f1004–1077 = 146 tick)
+  video #0 Skeleton n60 t 4–144 ↔ Unity #0 (rel 4–146, lệch -1 tick): rms x 2.09 y 0.37 tổng 2.12 px, max 5, TB lệch (+0.08, -0.03)
+  video #1 SkeletonBone n4 t 136–144: KHÔNG có thực thể Unity trùng thời gian
+  Unity: #0 Skeleton rel 4–146 xuất hiện (33,129) đổi state 8:ActR 23:Act 28:ActR 33:Jump 59:Act 63:ActR 78:Act 83:ActR quay 61 | #1 SkeletonBone rel 127–146 xuất hiện (119,83)
+== sk_web1 (video f1516–1553 = 74 tick)
+  video #0 Skeleton n28 t 2–68 ↔ Unity #0 (rel 0–74, lệch -1 tick): rms x 2.05 y 0.87 tổng 2.23 px, max 4, TB lệch (+1.79, -0.11)
+  video #0 SkeletonBone n23 t 14–72 ↔ Unity #1 (rel 8–74, lệch +0 tick): rms x 0.72 y 2.00 tổng 2.13 px, max 5, TB lệch (-0.17, -0.87)
+  Unity: #0 Skeleton rel 0–74 xuất hiện (352,161) đổi state 4:ActT 22:Jump 61:Act 65:ActS | #1 SkeletonBone rel 8–74 xuất hiện (352,147)
+== sk_web2 (video f2122–2222 = 200 tick)
+  video #0 Skeleton n80 t 2–198 ↔ Unity #0 (rel 3–200, lệch +1 tick): rms x 1.88 y 1.04 tổng 2.15 px, max 5, TB lệch (+0.60, +0.03) | căn mốc +2 tick: rms 1.49
+  video #0 SkeletonBone n24 t 56–112 ↔ Unity #1 (rel 51–120, lệch +1 tick): rms x 0.89 y 2.24 tổng 2.41 px, max 5, TB lệch (+0.46, +0.25) | căn mốc +2 tick: rms 2.15
+  video #1 SkeletonBone n34 t 68–142 ↔ Unity #2 (rel 69–151, lệch +1 tick): rms x 1.11 y 7.44 tổng 7.52 px, max 14, TB lệch (+1.00, -1.59) | căn mốc +3 tick: rms 2.06
+  video #2 SkeletonBone n25 t 126–186 ↔ Unity #3 (rel 127–196, lệch +1 tick): rms x 2.06 y 7.21 tổng 7.49 px, max 16, TB lệch (+1.92, -0.88) | căn mốc +4 tick: rms 1.79
+  Unity: #0 Skeleton rel 3–200 xuất hiện (671,161) đổi state 7:ActL 22:Act 27:ActL 42:Act 47:ActT 83:ActR 98:Act 103:ActL quay 198 | #1 SkeletonBone rel 51–120 xuất hiện (625,147) | #2 SkeletonBone rel 69–151 xuất hiện (625,147) | #3 SkeletonBone rel 127–196 xuất hiện (625,147)
+== sk_wa (video f2984–3072 = 176 tick)
+  video #0 Skeleton n14 t 4–40 ↔ Unity #0 (rel 3–176, lệch +0 tick): rms x 1.46 y 1.13 tổng 1.85 px, max 4, TB lệch (+0.71, -0.29)
+  video #1 Skeleton n42 t 64–170 ↔ Unity #0 (rel 3–176, lệch -1 tick): rms x 1.38 y 0.65 tổng 1.53 px, max 4, TB lệch (+0.19, -0.05)
+  video #2 SkeletonBone n13 t 142–174 ↔ Unity #1 (rel 137–176, lệch -1 tick): rms x 0.48 y 0.92 tổng 1.04 px, max 2, TB lệch (-0.08, -0.08)
+  Unity: #0 Skeleton rel 3–176 xuất hiện (671,65) đổi state 7:ActL 22:Act 27:ActL 32:Jump 89:Act 93:ActL 108:Act 113:ActL quay 68 | #1 SkeletonBone rel 137–176 xuất hiện (522,115)
+== sk_mm (video f5120–5222 = 204 tick)
+  video #0 Skeleton n24 t 2–56 ↔ Unity #0 (rel 3–204, lệch +1 tick): rms x 1.21 y 0.87 tổng 1.49 px, max 4, TB lệch (+0.54, -0.25)
+  video #1 Skeleton n29 t 128–202 ↔ Unity #2 (rel 128–204, lệch -1 tick): rms x 1.00 y 0.93 tổng 1.36 px, max 3, TB lệch (+0.79, +0.29)
+  video #0 SkeletonBone n7 t 14–28 ↔ Unity #1 (rel 11–103, lệch +1 tick): rms x 1.13 y 2.39 tổng 2.65 px, max 5, TB lệch (-1.00, +1.71)
+  video #1 SkeletonBone n14 t 62–96 ↔ Unity #1 (rel 11–103, lệch +1 tick): rms x 0.65 y 9.43 tổng 9.45 px, max 15, TB lệch (-0.42, -8.25) [loại 2 điểm ghép nhầm > 16 px] | căn mốc +3 tick: rms 3.92
+  Unity: #0 Skeleton rel 3–204 xuất hiện (815,97) đổi state 7:ActT 25:ActL 35:Jump 74:Act 78:ActS 138:ActL 153:Act 158:ActL quay 120 | #1 SkeletonBone rel 11–103 xuất hiện (815,83) | #2 Skeleton rel 128–204 xuất hiện (879,97) đổi state 132:ActL 142:Jump 181:Act 185:ActS
+== fl_wea0 (video f480–546 = 132 tick)
+  video #0 Fleaman n43 t 22–126 ↔ Unity #0 (rel 0–132, lệch +0 tick): rms x 1.78 y 1.02 tổng 2.06 px, max 5, TB lệch (+0.77, -0.30)
+  Unity: #0 Fleaman rel 0–132 xuất hiện (433,129) đổi state 76:Ground 89:HopS 125:Ground
+== fl_wea1 (video f600–676 = 152 tick)
+  video #1 Fleaman n38 t 42–146 ↔ Unity #0 (rel 0–152, lệch -1 tick): rms x 0.87 y 1.15 tổng 1.44 px, max 5, TB lệch (+0.03, -0.37)
+  Unity: #0 Fleaman rel 0–152 xuất hiện (305,129) đổi state 95:Ground 108:HopS 144:Ground
+== fl_wea2 (video f805–918 = 226 tick)
+  video #2 Fleaman n52 t 40–222 ↔ Unity #0 (rel 0–226, lệch +0 tick): rms x 1.62 y 1.35 tổng 2.11 px, max 6, TB lệch (+0.63, -0.10)
+  Unity: #0 Fleaman rel 0–226 xuất hiện (177,97) đổi state 168:Ground 181:HopS 225:Ground
+== TỔNG (trung bình rms theo số điểm)
+  sk_wea: 1 vết, 59 điểm, rms 2.12 px (vết xấu nhất 2.12)
+  sk_web1: 2 vết, 51 điểm, rms 2.18 px (vết xấu nhất 2.23)
+  sk_web2: 4 vết, 163 điểm, rms 4.13 px (vết xấu nhất 7.52)
+  sk_wa: 3 vết, 69 điểm, rms 1.50 px (vết xấu nhất 1.85)
+  sk_mm: 4 vết, 71 điểm, rms 2.90 px (vết xấu nhất 9.45)
+  fl_wea0: 1 vết, 43 điểm, rms 2.06 px (vết xấu nhất 2.06)
+  fl_wea1: 1 vết, 38 điểm, rms 1.44 px (vết xấu nhất 1.44)
+  fl_wea2: 1 vết, 52 điểm, rms 2.11 px (vết xấu nhất 2.11)

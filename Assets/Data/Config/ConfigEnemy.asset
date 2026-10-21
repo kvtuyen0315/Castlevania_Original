@@ -240,10 +240,12 @@ MonoBehaviour:
     dropRule: "kh\xF4ng n\xEAu ri\xEAng"
     moveSpeed:
       has: 1
-      value: 1
-    src_moveSpeed: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video)
-      \u2014 routine 17; wiki Enemies#Skeletons \"nhanh\" \u21D2 nhanh h\u01A1n Zombie
-      0.875 \u2014 ch\u1ECDn 1.0"
+      value: 1.4375
+    src_moveSpeed: "\u0111o:cvm3-07 video:Map_3 0:34.5\u20130:35.5 WEA f1036\u20131065
+      + 1:10.8\u20131:13.0 WEB f2123\u20132195 + 1:39.6\u20131:42.3 WalkwayA f2987\u20133069:
+      11 ch\u1EB7ng 22\u201323 px, h\u1ED3i quy 1.38\u20131.42 px/tick (TB 1.416),
+      \u0111\u1ED3ng h\u1ED3 Simon (1 px/tick) f2125\u20132131 / f2174\u20132178
+      cho 1.42\u20131.44 \u21D2 23 px / 16 tick"
     behaviorShort: "Nhanh v\xE0 nh\u1EA3y nhi\u1EC1u; n\xE9m x\u01B0\u01A1ng theo
       v\xF2ng cung v\u1EDBi c\xE1c qu\u1EF9 \u0111\u1EA1o kh\xE1c nhau"
     source: wiki:Enemies#Skeletons
@@ -391,10 +393,10 @@ MonoBehaviour:
     dropRule: "kh\xF4ng n\xEAu ri\xEAng"
     moveSpeed:
       has: 1
-      value: 1
-    src_moveSpeed: "suy lu\u1EADn: \u01B0\u1EDBc l\u01B0\u1EE3ng (kh\xF4ng video)
-      \u2014 routine 17; t\u1ED1c \u0111\u1ED9 ngang nh\u1EA3y ng\u1EAFn (nh\u1EA3y
-      v\u1ECDt 2.0 \u1EDF ConfigActorParam)"
+      value: 2.25
+    src_moveSpeed: "\u0111o:cvm3-07 video:Map_3 0:16.4\u20130:30.6 WEA (3 con: b\u1EE5c
+      (433,128) f491\u2013543, (305,128) f621\u2013673, (177,96) f825\u2013916):
+      vx c\xFA nh\u1EA3y 2.25 px/tick (= Enemy.Fleaman.shortVx; code d\xF9ng ConfigActorParam)"
     behaviorShort: "Nh\u1EA3y nh\u01B0 ng\u1EABu nhi\xEAn: th\u01B0\u1EDDng 2 b\u01B0\u1EDBc
       nh\u1EA3y ng\u1EAFn r\u1ED3i 1 c\xFA nh\u1EA3y v\u1ECDt; Stage 11/17 do Eagle
       th\u1EA3"

@@ -145,8 +145,8 @@ Nhận xét luật rơi vật (cho 08): sau mỗi lần hạ thường thấy +1
 | 109.2–118.8 | WalkwayB cx −112…+84 | túi bí mật St08 (+1000 @115.93 — **mút trái cầu**) §2a |
 | 121–136 | WalkwayB | Raven +200 (2:01.47), Bone Tower +400 (2:07.90, 2:16.53), Raven +200 ×2 (2:10.57, 2:11.90) |
 | 151.5 | MummyMan | STAGE 09; Raven +200 (2:36.67, 2:38.17), +400 (2:41.80) |
-| 163–173 | MummyMan cx ~300–600 | Raven/Bone Tower +200/+400, Skeleton nhảy qua khe cầu hỏng (+300 @2:51.70) |
-| 182–190 | MummyMan cx ~990–1120 | Skeleton +300 (3:02.50), Fleaman +500 (3:03.70), +300 (3:10.10) |
+| 163–173 | MummyMan cx ~300–600 | Raven/Bone Tower +200/+400, Skeleton nhảy qua khe cầu hỏng (+300 @2:51.70) — (CVM3 07) 2 Skeleton: S5 (815,96) ném xương cao rồi nhảy khe 768–799 (bị hạ giữa không trung f5151), S6 (879,96) nhảy khe 832–863 đáp bục 800–831 (f5190–5212) |
+| 182–190 | MummyMan cx ~990–1120 | +300 (3:02.50), +500 (3:03.70), +300 (3:10.10) — **(CVM3 07) không phải Skeleton/Fleaman**: MummyMan không có Fleaman (dò cả bảng màu đỏ lẫn xanh St9: 0 phát hiện) cũng không có Skeleton ở f5400–5720; +300 f5475 = **Medusa Head** (xanh-kem, bị roi hạ f5472–5476), +500 f5511 trùng lúc **Bone Tower** biến mất (f5508 → f5512) — routine 08 xác minh điểm Bone Tower (400 wiki) |
 | 197.70 | MummyMan | cx đạt 1280 (§3d) |
 | 204–225 | phòng Mummy | Simon trên khối trái ném nước thánh; ENEMY 16→0; tim 55→46 |
 | 222.87 / 225.70 | | Mummy 1 / 2 chết +3000 ×2 |

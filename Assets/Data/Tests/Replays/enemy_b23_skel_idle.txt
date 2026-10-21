@@ -1,3 +1,3 @@
 # 900 tick, hash a6f38b15
-# CVGP 17 EnemyB23Probe kịch bản 'skel_idle': Skeleton (300,176), Simon (200,176) đứng: giữ khoảng 48–96, nhảy, ném loạt 2–3 xương vòng cung khác nhau cách 10 tick
+# CVGP 17 EnemyB23Probe kịch bản 'skel_idle': Skeleton (300,176), Simon (200,176) đứng: lượt đi 20 tick = đi 16 (1.4375 px/tick tới nếu |dx| ≥ 72, lùi nếu gần hơn) + đứng 4; lượt ném 18 tick (25 %, 1 xương ở tick 4) — xương 0.75 px/tick, vy0 −3.5 / −4.5, sinh Y − 13; không nhảy trên sàn phẳng; khung đi 17 tick liên tục (video Map_3)
 -*900

@@ -303,33 +303,32 @@ Enemy.Raven,diveOvershootPx,32,,,px,suy luận: ước lượng (không video) �
 Enemy.Raven,maxDiveTicks,96,,,tick,suy luận: ước lượng (không video) — routine 17; chặn cú lao dài,
 Enemy.Raven,targetAboveFeetPx,16,,,px,suy luận: ước lượng (không video) — routine 17; nhắm tâm thân Simon lúc bắt đầu lao,
 Enemy.Raven,diveFloorAboveFeetPx,8,,,px,"suy luận: ước lượng (không video) — routine 17; cú lao xuống dừng khi tâm Raven (sprite 16) chạm chân Simon − 8 ⇒ đáy sprite ngang mặt sàn, không lao xuyên sàn (ảnh Arena routine 17 raven_dive r160)",
-Enemy.Skeleton,keepMinPx,48,,,px,"suy luận: ước lượng (không video) — routine 17; wiki Stages 13-15 ""chọn khoảng cách thuận lợi để tấn công"", ""đẩy chúng đi"" ⇒ lùi khi Simon gần hơn",
-Enemy.Skeleton,keepMaxPx,96,,,px,suy luận: ước lượng (không video) — routine 17; tiến khi Simon xa hơn,
-Enemy.Skeleton,decideTicks,24,,,tick,suy luận: ước lượng (không video) — routine 17; đổi ý mỗi 24 tick (trong dải: ngẫu nhiên tới/lui),
-Enemy.Skeleton,jumpChancePct,20,,,%,"suy luận: ước lượng (không video) — routine 17; wiki ""nhảy nhiều""",mỗi lần đổi ý; đụng tường ⇒ nhảy luôn
-Enemy.Skeleton,jumpVy0,-3.25,,,px/tick,suy luận: ước lượng (không video) — routine 17; đỉnh 42 px ⇒ lên được bục 32 px,âm = lên
-Enemy.Skeleton,jumpVx,1.0,,,px/tick,suy luận: ước lượng (không video) — routine 17; như tốc độ đi,
-Enemy.Skeleton,gravity,0.125,,,px/tick²,suy luận: ước lượng (không video) — routine 17; như enemy Block 1 (đo 13),
-Enemy.Skeleton,firstThrowTicks,48,,,tick,suy luận: ước lượng (không video) — routine 17; ném sớm sau khi hiện,
-Enemy.Skeleton,throwMinTicks,80,,,tick,suy luận: ước lượng (không video) — routine 17; nghỉ giữa 2 loạt,"ngẫu nhiên đều [80, 144]"
-Enemy.Skeleton,throwSpanTicks,64,,,tick,suy luận: ước lượng (không video) — routine 17; cùng lý do,
-Enemy.Skeleton,burstMin,2,,,xương,"suy luận: ước lượng (không video) — routine 17; wiki ""hay 2–3 xương cùng lúc""",2 + Roll(0..burstSpan)
-Enemy.Skeleton,burstSpan,1,,,xương,suy luận: ước lượng (không video) — routine 17; cùng lý do,
-Enemy.Skeleton,burstGapTicks,10,,,tick,suy luận: ước lượng (không video) — routine 17; xương trong loạt cách nhau,
-Enemy.Skeleton,boneVx,1.0,,,px/tick,"suy luận: ước lượng (không video) — routine 17; wiki ""vòng cung theo các đường khác nhau"" ⇒ xương k: vx = boneVx + k·boneVxStep",
-Enemy.Skeleton,boneVxStep,0.375,,,px/tick,suy luận: ước lượng (không video) — routine 17; cùng lý do,
-Enemy.Skeleton,boneVy0,-3.5,,,px/tick,suy luận: ước lượng (không video) — routine 17; xương k: vy0 = boneVy0 − k·boneVyStep,âm = lên
-Enemy.Skeleton,boneVyStep,0.5,,,px/tick,suy luận: ước lượng (không video) — routine 17; cùng lý do,
-Enemy.Skeleton,boneGravity,0.125,,,px/tick²,suy luận: ước lượng (không video) — routine 17; như enemy Block 1,
-Enemy.Skeleton,boneHandAbovePx,24,,,px,suy luận: ước lượng (không video) — routine 17; tay giơ cao trên sprite 32 px,
-Enemy.Fleaman,triggerDistancePx,112,,,px,"suy luận: ước lượng (không video) — routine 17; wiki Stage 13 ""chờ sẵn"" ⇒ bắt đầu nhảy khi Simon tới gần",|Simon.X − X| <
-Enemy.Fleaman,shortVx,1.0,,,px/tick,"suy luận: ước lượng (không video) — routine 17; wiki ""2 bước nhảy ngắn rồi 1 cú nhảy vọt""",
-Enemy.Fleaman,shortVy0,-2.0,,,px/tick,"suy luận: ước lượng (không video) — routine 17; nhảy ngắn: đỉnh 8 px, 16 tick",âm = lên
-Enemy.Fleaman,longVx,2.0,,,px/tick,"suy luận: ước lượng (không video) — routine 17; nhảy vọt qua đầu Simon (wiki ""chạy chui dưới cú nhảy cao"")",
-Enemy.Fleaman,longVy0,-4.5,,,px/tick,"suy luận: ước lượng (không video) — routine 17; nhảy vọt: đỉnh 40 px, 36 tick",âm = lên
-Enemy.Fleaman,gravity,0.25,,,px/tick²,"suy luận: ước lượng (không video) — routine 17; nhảy nhanh, dứt khoát (bằng g rìu/item đo 09/11)",
-Enemy.Fleaman,longEvery,3,,,lần,suy luận: ước lượng (không video) — routine 17; cú thứ 3 của mỗi chu kỳ là nhảy vọt,
-Enemy.Fleaman,pauseMinTicks,4,,,tick,"suy luận: ước lượng (không video) — routine 17; wiki ""nhìn như ngẫu nhiên"" ⇒ nghỉ ngẫu nhiên giữa 2 cú","ngẫu nhiên đều [4, 16]"
+Enemy.Skeleton,legTicks,16,14,18,tick,"đo:cvm3-07 video:Map_3 0:34.5–0:35.5 WEA f1036–1065 + 1:10.8–1:13.0 WEB f2123–2195 + 1:39.6–1:42.3 WalkwayA f2987–3069: 11 chặng đi đều 22–23 px, mỗi chặng 14–18 tick (đồng hồ frame) ⇒ 16 tick × 1.4375 = 23 px",lượt đi = legTicks đi + pauseTicks đứng
+Enemy.Skeleton,pauseTicks,4,2,6,tick,"đo:cvm3-07 cùng cửa sổ: đứng 3 frame (4.6–5 tick) giữa 2 chặng liền nhau (f2133–2135, f2170–2172, f1045–1047, f1055–1057, f2995–2997, f3039–3041) và sau khi đáp (f1034–1036, f3029–3031)",cuối lượt đi + lúc mới vào (sinh / đáp)
+Enemy.Skeleton,keepPx,72,70,76,px,"đo:cvm3-07 video:Map_3 24 lượt có Simon: |dx| < 32 ⇒ lùi 3/3; 33–70 ⇒ lùi 4 / ném 3; 76–84 ⇒ tiến 5 / ném 1; ≥ 96 ⇒ tiến 7 / ném 3 (lùi ở 70 f3041, tiến ở 76 f2190) ⇒ ngưỡng giữa 70 và 76","|Simon − X| < keepPx ⇒ lùi, không thì tiến (khi không ném)"
+Enemy.Skeleton,throwChancePct,25,20,40,%,"đo:cvm3-07 video:Map_3: 7 lượt ném / 24 lượt quan sát (29 %) — 6 con (WEA, WEB ×2, WalkwayA, MummyMan ×2); chọn 1/4 (suy luận phân bố)",mỗi lượt: Roll(0..99) < pct ⇒ đứng ném 1 xương
+Enemy.Skeleton,throwTicks,18,16,20,tick,"đo:cvm3-07 video:Map_3: đứng giữa 2 chặng khi ném 1 xương 20 / 21.4 / 23 tick (WEA f1065–1075.5, WEB f2180–2190.7, WalkwayA f3049–3060.5), 2 xương liền 40 tick (WEB f2142–2162) = pauseTicks 4 + 18 × số xương; xương thứ 2 sinh 26 tick sau khi đứng (4 + 18 + 4)","lượt ném: đứng yên, KHÔNG có pauseTicks riêng"
+Enemy.Skeleton,throwAtTick,4,2,6,tick,"đo:cvm3-07 video:Map_3: xương sinh 6.8–8 tick sau khi đứng lại (f1068.4, f2146.0, f2183.8, f3052.9 — ngoại suy x xương về X Skeleton) = pauseTicks 4 + 3–4; xương thứ 2 liền f2155.0 = +26",tick trong lượt ném
+Enemy.Skeleton,jumpVy0,-2.5,-2.625,-2.375,px/tick,"đo:cvm3-07 video:Map_3 4 cú nhảy ở mép (WEB 0:50.9 f1527 / 1:13.2 f2196; MummyMan 2:51.2 f5137 / 2:53.0 f5191): đỉnh 23.6–24.1 px, 40–43 tick trên sàn phẳng; khớp lưới (vy0, g, giữ đỉnh) ⇒ −2.5 / 0.125 / 0 rms 1.22 px (tốt nhất −2.625 / 0.1328 rms 1.12)",âm = lên; vy += g rồi dời (đỉnh 23.75 px sau 20 tick)
+Enemy.Skeleton,jumpVx,1.25,1.20,1.30,px/tick,đo:cvm3-07 cùng 4 cú + WEA 0:34.0 f1020 / WalkwayA 1:40.0 f3000: hồi quy 1.20–1.30 (TB 1.244); 50–53 px trên 40 tick,theo chiều đang đi; trên không KHÔNG chặn tường
+Enemy.Skeleton,gravity,0.125,0.10,0.135,px/tick²,đo:cvm3-07 cùng 4 cú (xem jumpVy0),
+Enemy.Skeleton,boneVx,0.75,0.725,0.778,px/tick,"đo:cvm3-07 video:Map_3 7 xương (WEA 0:35.7 f1072; WEB 0:50.8 f1523, 1:11.6 f2150 / f2156, 1:12.8 f2185; WalkwayA 1:41.8 f3055; MummyMan 2:51.0 f5127–5168): hồi quy 0.725–0.778 (rms 0.35–0.66 px), mọi xương cùng tốc — về phía Simon",theo hướng mặt
+Enemy.Skeleton,boneVy0,-3.5,-3.6,-3.3,px/tick,đo:cvm3-07 cùng 7 xương: 2 ĐỘ CAO — đỉnh 61.5–62.6 px trên pivot vẽ Skeleton (4 xương) và 90.8–93.0 (3 xương); g 0.125 + sinh ở Y − 13 ⇒ vy0 −3.5 / −4.5 (đỉnh 61.25 / 92.75),xương thấp; âm = lên
+Enemy.Skeleton,boneVyStep,1.0,,,px/tick,đo:cvm3-07 cùng 7 xương: xương cao vy0 −4.5 = −3.5 − 1,vy0 = boneVy0 − k·step
+Enemy.Skeleton,boneKindSpan,1,,,loại,"đo:cvm3-07 cùng 7 xương: chỉ 2 độ cao (4 thấp / 3 cao, không theo khoảng cách — f2146 thấp và f2155 cao cùng |dx| 51) ⇒ k ngẫu nhiên 0..1; wiki ""các đường khác nhau""",
+Enemy.Skeleton,boneGravity,0.125,0.1216,0.1283,px/tick²,đo:cvm3-07 cùng 7 xương: khớp bậc 2 tự do g 0.1216–0.1283 ở 5 vết dài (rms 0.47–1.37 px),
+Enemy.Skeleton,boneHandAbovePx,13,10,18,px,"đo:cvm3-07 cùng 7 xương: ngoại suy x xương về X Skeleton cho tâm lúc sinh 10.5–18.8 px trên pivot vẽ (TB 15.0 = Y − 14); đỉnh 2 loại cố định ⇒ chọn 13 (đỉnh 61.25 / 92.75 ↔ video 62.0 / 92.0, sai ±0.75 px)","tâm xương lúc sinh = (X, Y − 13)"
+Enemy.Fleaman,triggerDistancePx,128,,,px,"đo:cvm3-07 video:Map_3 0:16.4–0:30.6 WEA (3 con: bục (433,128) f491–543, (305,128) f621–673, (177,96) f825–916): cả 3 bật sau khi |Simon − Fleaman| < 128 (Simon tới từ phải); bật ở |dx| 100 / 100 / 120 khi Simon đứng; không bật ngay khi |dx| 95 (f838) ⇒ không phải ngưỡng tức thì 112",|Simon.X − X| < ⇒ bắt đầu đếm
+Enemy.Fleaman,triggerDelayMinTicks,62,,,tick,đo:cvm3-07 cùng 3 con: từ tick đầu |dx| < 128 (vết Simon video từng tick — ref/data/enemy7/puppet_fl_wea*.csv) tới lúc ngồi thấp = 61.9 / 62.4 / 135.7 tick (±2) — 2 mẫu đúng 62,"đếm = Roll(min, min + span)"
+Enemy.Fleaman,triggerDelaySpanTicks,74,,,tick,đo:cvm3-07 cùng 3 con: 136 − 62 (suy luận phân bố đều — 3 mẫu; có thể là kiểm định kỳ ~74 tick — §4),
+Enemy.Fleaman,crouchTicks,13,12,14,tick,"đo:cvm3-07 cùng 3 con: đang đổi khung 0↔1 mỗi 9 tick thì giữ fleaman_0 12.4 / 12.8 / 14.2 tick rồi bật (f518→524.4, f647→654.1, f889→895.2)",trước cú đầu
+Enemy.Fleaman,shortVx,2.25,2.125,2.375,px/tick,"đo:cvm3-07 cùng 3 con: cú đầu từ bục xuống sàn 81 / 81 / 94 px; khớp lưới (vx, vy0, g) ⇒ 2.25 / −1.0 / 0.125 rms 2.22 px (kế 2.375 / −1 / 0.1406 rms 2.39)",về phía Simon lúc bật
+Enemy.Fleaman,shortVy0,-1.0,-1.25,-0.75,px/tick,đo:cvm3-07 cùng 3 con: lên 4 px rồi rơi (đỉnh 3.5 px với g 0.125),âm = lên
+Enemy.Fleaman,longVx,2.25,,,px/tick,suy luận: cùng vx đo của cú ngắn (cvm3-07) — video Map_3 không có cú vọt (cả 3 con bị hạ ngay khi đáp cú đầu); CVGP 17 ước lượng 2.0,
+Enemy.Fleaman,longVy0,-3.25,,,px/tick,suy luận: giữ đỉnh ≈ 40 px của ước lượng CVGP 17 với g đo 0.125 (cvm3-07) — video Map_3 không có cú vọt,"âm = lên; đỉnh 40.6 px, 52 tick"
+Enemy.Fleaman,gravity,0.125,0.109,0.141,px/tick²,đo:cvm3-07 cùng 3 con (xem shortVx) — rơi 48 / 48 / 80 px không thấy trần tốc,
+Enemy.Fleaman,longEvery,3,,,lần,"wiki:Enemies#Fleamen ""hai bước nhảy ngắn rồi một cú nhảy vọt"" — video Map_3 chỉ thấy cú đầu (ngắn, khớp)",cú thứ 3 của mỗi chu kỳ là nhảy vọt
+Enemy.Fleaman,pauseMinTicks,4,,,tick,suy luận: ước lượng (không video) — routine 17; video Map_3 không có cú thứ 2 (bị hạ ngay khi đáp),"ngẫu nhiên đều [4, 16]"
 Enemy.Fleaman,pauseSpanTicks,12,,,tick,suy luận: ước lượng (không video) — routine 17; cùng lý do,
 Enemy.Bat,perchTriggerDyPx,80,78,83,px,"đo:cvm2-08 video:Map_2 Hall C: Simon đứng dưới dơi (dy 87, |dx| 94) rel 130–134 KHÔNG kích hoạt; nhảy lên dy 83 → 78 (rel 135–136) ⇒ dơi rời chỗ rel ~137 (f5043); TEA: Simon nhảy tới dy 107 (|dx| 16, f207) / TEB dy 140 KHÔNG ⇒ ngưỡng (78, 83] — chọn 80",|dx| < perchTriggerPx VÀ Simon.Y − dơi.Y < ngưỡng
 Enemy.Bat,swoopVx,1.5,1.48,1.52,px/tick,đo:cvm2-08 video:Map_2 Hall C f5043–5101: ngang 1.50 px/tick cả lúc sà lẫn lúc bay ngang (KHÔNG phải 1.125 của dơi đỏ),
