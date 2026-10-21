@@ -149,8 +149,12 @@ MonoBehaviour:
     returns: 0
     freezeTicks:
       has: 1
-      value: 300
-    src_freezeTicks: "wiki:Items#Stopwatch (5 gi\xE2y \xD7 60)"
+      value: 186
+    src_freezeTicks: "\u0111o:cvm3-03 video:Map_2 2:41.0 + 3:47.9\u20133:54.4 (4
+      l\u1EA7n d\xF9ng, CVM3_MEMORY \xA72d): Medusa \u0111\u1EE9ng t\u1EEB l\u1EA7n
+      d\xF9ng f6928 t\u1EDBi f7021 = 186 tick (kho\u1EA3ng 181\u2013192); TIME 0270
+      gi\u1EA3m l\u1EA1i \u0111\xFAng m\u1ED1c f4923 \u21D2 < 186\u2013190 tick sau
+      b\u1EA5m f4829 \u2014 h\u1EB1ng 186 \xB13 (wiki 5 gi\xE2y = 300 sai, H1)"
     speedX:
       has: 0
       value: 0

@@ -1,0 +1,20 @@
+== Map_2 frames 7705 subs ['axe', 'cross', 'occ', 'watch'] TIME changes 210
+  use f4829 (161.0 s, tick 9673.9) sub=watch hearts 30->25 TIME 0270 ST 06
+     TIME before: ['f4763 273->272', 'f4796 272->271', 'f4827 271->270']
+     TIME after : ['f4923 270->269', 'f4955 269->268', 'f4989 268->267']
+     gap last->next TIME change = 96 f = 192.3 tick (normal 64); throw-after-lastTIME = 4.0 tick
+  use f6837 (227.9 s, tick 13696.5) sub=watch hearts 45->40 TIME 0211 ST 06
+     TIME before: ['f6753 214->213', 'f6786 213->212', 'f6816 212->211']
+     TIME after : ['f7137 211->210', 'f7281 210->200', 'f7284 200->194']
+     gap last->next TIME change = 321 f = 643.1 tick (normal 64); throw-after-lastTIME = 42.1 tick
+  use f6928 (230.9 s, tick 13878.8) sub=watch hearts 40->35 TIME 0211 ST 06
+     TIME before: ['f6753 214->213', 'f6786 213->212', 'f6816 212->211']
+     TIME after : ['f7137 211->210', 'f7281 210->200', 'f7284 200->194']
+     gap last->next TIME change = 321 f = 643.1 tick (normal 64); throw-after-lastTIME = 224.4 tick
+  use f7031 (234.4 s, tick 14085.2) sub=watch hearts 35->30 TIME 0211 ST 06
+     TIME before: ['f6753 214->213', 'f6786 213->212', 'f6816 212->211']
+     TIME after : ['f7137 211->210', 'f7281 210->200', 'f7284 200->194']
+     gap last->next TIME change = 321 f = 643.1 tick (normal 64); throw-after-lastTIME = 430.7 tick
+== Boss_Map_2 frames 699 subs ['n117', 'n118', 'n119', 'n120', 'n121'] TIME changes 19
+== Map_3 frames 7501 subs ['holy', 'watch'] TIME changes 223
+== Boss_Map_3 frames 1267 subs ['dagger', 'occ'] TIME changes 38

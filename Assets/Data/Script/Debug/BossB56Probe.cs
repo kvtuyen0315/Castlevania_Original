@@ -32,7 +32,7 @@ public static class BossB56Probe
     public const int EST_D1_TRANSFORM = 96, EST_HEAD_VY = -384, EST_HEAD_VX = 128, EST_D2_EMERGE = 48, EST_D2_CROUCH = 12, EST_D2_LAND = 12;
     public const int EST_D2_HIGH_RISE = 58, EST_D2_LOW_RISE = 17, EST_D2_HIGH_VX = 512, EST_D2_LOW_VX = 384, EST_D2_MOUTH_UP = 39, EST_D2_MOUTH_DX = 8;
     public const int EST_D2_MINX = 32, EST_D2_MAXX = 224, EST_HIT_STUN = 10;
-    public const int STOPWATCH_TICKS = 300, PILOT_MAX_TICKS = 9000;
+    public const int STOPWATCH_TICKS = 186, PILOT_MAX_TICKS = 9000;   // Stopwatch video:Map_2 (đo:cvm3-03 — CVM3_MEMORY §2d; wiki 5 s = 300 sai)
     public static readonly RectInt D1_HEAD = new RectInt(-6, -58, 8, 14), D1_BODY = new RectInt(-12, -58, 24, 58);
 
     private struct Scn
@@ -47,7 +47,7 @@ public static class BossB56Probe
         new Scn("death_pattern", "-*1100", "Death: hiện giữa-trên (128,48) 32 tick không va chạm ⇒ bay 0.5 px/tick vào góc trên-phải (216,88) ⇒ dừng 96–160 gọi lưỡi hái (tick 16, rồi mỗi 32, ≤ 3 sống) ⇒ 75 % sang góc khác; lưỡi hái đứng 60 tick rồi đuổi Simon, mỗi trục ±1/64 px/tick², trần 0.5 → 1.5"),
         new Scn("death_touch", "-*900", "Stage 15, Simon không bất tử đứng góc dưới-trái: lưỡi hái / thân Death chạm ⇒ −4 vạch/lần (wiki: mọi đòn boss = mức stage)"),
         new Scn("death_scythe_whip", "-*4 B -*30", "Arena: lưỡi hái đứng trước mặt Simon 28 px ngang tầm roi ⇒ roi da 1 đòn phá, +100 (đạn phá được — suy luận 17)"),
-        new Scn("death_stopwatch", "-*100 Sub -*420", "Stopwatch tick 101: Death + lưỡi hái KHÔNG bị giữ (wiki: chỉ Phantom Bat + Medusa)"),
+        new Scn("death_stopwatch", "-*100 Sub -*150 Sub -*269", "Stopwatch tick 101 + dùng lại tick 252 (CVM3 03: 186 tick/lần — giữ tới 438 như cửa sổ quan sát cũ): Death + lưỡi hái KHÔNG bị giữ (wiki: chỉ Phantom Bat + Medusa)"),
         new Scn("death_kill_axe", "", "AUTOPILOT rìu (wiki khuyên Axe): 16 đòn MẠNH (wiki 24/16), +7000, lưỡi hái VẪN CÒN sau khi Death chết (wiki), quả cầu sau 152, nhặt ⇒ lưỡi hái biến mất + tally", true),
         new Scn("drac1_pattern", "-*1000", "Dracula dạng 1, Simon (128,176) đứng giữa sàn: ẩn 60 ⇒ hiện dần 32 (không va chạm) ⇒ đứng 24 ⇒ mở áo, tick 8 bắn 3 cầu lửa (giữa nhắm Simon, ±14°, 1.5 px/tick) ⇒ áo mở 40 ⇒ khép 16 ⇒ biến mất 24 ⇒ ẩn 48–96 ⇒ dịch chuyển (50 % đúng x Simon), đứng trên mặt sàn dưới cột"),
         new Scn("drac1_head_body", "-*91 B -*32 A -*1 B -*80", "Dracula hiện ép ở x 158 (Simon (128,176) quay phải): roi da ĐỨNG trúng THÂN (tick 92) ⇒ KHÔNG mất máu; NHẢY quất (A 124, B 126) trúng ĐẦU ⇒ −1 đòn yếu (wiki: chỉ đầu bị thương)"),
@@ -390,14 +390,16 @@ public static class BossB56Probe
                     var d = First("GrimReaper");
                     if (d == null || f0 < 0) return;
                     int dm = 0, sm = 0;
-                    for (int rel = f0 + 1; rel < f0 + STOPWATCH_TICKS && rel < recs.Count; rel++)
+                    int f1 = FirstRel(f0, r => !r.frozenE);   // CVM3 03: hết đóng băng thật (2 lần dùng)
+                    if (f1 < 0) f1 = recs.Count;
+                    for (int rel = f0 + 1; rel < f1 && rel < recs.Count; rel++)
                         if (PosAt(d, rel) != PosAt(d, rel - 1)) dm++;
                     foreach (var t in Tracks("DeathScythe"))
-                        for (int rel = Math.Max(f0 + 1, t.spawnRel + 1); rel < f0 + STOPWATCH_TICKS && rel < recs.Count; rel++)
+                        for (int rel = Math.Max(f0 + 1, t.spawnRel + 1); rel < f1 && rel < recs.Count; rel++)
                             if (PosAt(t, rel) != PosAt(t, rel - 1) && PosAt(t, rel).x > -9999) sm++;
                     ExpectRange("Death vẫn bay khi Stopwatch (tick di chuyển)", 50, 9999, dm);
                     ExpectRange("lưỡi hái vẫn đuổi khi Stopwatch (tick-con di chuyển)", 10, 99999, sm);
-                    measures.Add("Stopwatch tick " + f0 + ": Death di chuyển " + dm + " tick, lưỡi hái " + sm + " tick-con");
+                    measures.Add("Stopwatch tick " + f0 + "–" + f1 + ": Death di chuyển " + dm + " tick, lưỡi hái " + sm + " tick-con");
                 };
                 break;
             case "death_kill_axe":

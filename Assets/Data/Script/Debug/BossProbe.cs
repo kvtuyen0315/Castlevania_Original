@@ -37,7 +37,7 @@ public static class BossProbe
     public const int VIDEO_DEATH_FX = 62, VIDEO_CRYSTAL_MIN = 150, VIDEO_CRYSTAL_MAX = 154;
     public const int VIDEO_CRYSTAL_X = 640, VIDEO_CRYSTAL_Y = 104;     // màn (128, 136) pivot
     public const int WIKI_SCORE = 3000, WIKI_HITS_WEAK = 12, WIKI_HITS_STRONG = 8, WIKI_DAMAGE_ST3 = 2;
-    public const int WIKI_STOPWATCH = 300;
+    public const int VIDEO_STOPWATCH = 186;   // video:Map_2 (đo:cvm3-03 — CVM3_MEMORY §2d; wiki 5 s = 300 sai)
 
     private struct Scn
     {
@@ -55,7 +55,7 @@ public static class BossProbe
         new Scn("weak_kill", "B -*23 B -*23 B -*23 B -*23 B -*23 B -*23 B -*23 B -*23 B -*23 B -*23 B -*23 B -*23 -*20", "roi cấp 1 (yếu) × 12 (wiki): vạch 15,14,12,11,10,8,7,6,4,3,2,0"),
         new Scn("stun", "B -*60", "roi trúng dơi đang bay ngang ⇒ đứng yên 10 tick (khung hurt) rồi bay tiếp; bất tử 16 tick"),
         new Scn("holy_hold", "-*200", "lửa nước thánh dưới dơi đang lơ lửng ⇒ dơi đứng yên suốt lúc lửa cháy (80 tick) + khựng, mất máu mỗi 16 tick (bất tử)"),
-        new Scn("stopwatch", "-*420", "Stopwatch (wiki: có tác dụng với Phantom Bat): dơi đứng yên đúng 300 tick rồi bay tiếp"),
+        new Scn("stopwatch", "-*420", "Stopwatch (wiki: có tác dụng với Phantom Bat): dơi đứng yên đúng 186 tick (video Map_2) rồi bay tiếp"),
         new Scn("rosary", "-*60", "Rosary không diệt boss (wiki Items#Rosary)"),
         new Scn("walls", "L*220", "camera khoá cx 512 ⇒ tường vô hình mép màn: Simon đi trái dừng ở x 520 (cx + 8)"),
         new Scn("death_video", "-*240", "như Map_1 f6305: dơi lơ lửng (723,121), Simon (655,176) — hạ ở tick 10 ⇒ chụp lửa chết + quả cầu (so video)"),
@@ -434,12 +434,12 @@ public static class BossProbe
                     Room(740, 176, -1);
                     arena.SpawnBoss(world);
                     Awake(600, 92, ePhantomBatState.Swoop);
-                    onTick = rel => { if (rel == 20) world.FreezeEnemies(WIKI_STOPWATCH); };
+                    onTick = rel => { if (rel == 20) world.FreezeEnemies(VIDEO_STOPWATCH); };
                     finish = () =>
                     {
-                        int still = CountRel(21, 21 + WIKI_STOPWATCH, r => r.bx == recs[21].bx && r.by == recs[21].by ? 1 : 0);
-                        Expect("đứng yên đủ 300 tick Stopwatch", WIKI_STOPWATCH, still);
-                        Expect("bay tiếp sau Stopwatch", 1, recs[21 + WIKI_STOPWATCH + 3].bx != recs[21].bx || recs[21 + WIKI_STOPWATCH + 3].by != recs[21].by ? 1 : 0);
+                        int still = CountRel(21, 21 + VIDEO_STOPWATCH, r => r.bx == recs[21].bx && r.by == recs[21].by ? 1 : 0);
+                        Expect("đứng yên đủ 186 tick Stopwatch (video)", VIDEO_STOPWATCH, still);
+                        Expect("bay tiếp sau Stopwatch", 1, recs[21 + VIDEO_STOPWATCH + 3].bx != recs[21].bx || recs[21 + VIDEO_STOPWATCH + 3].by != recs[21].by ? 1 : 0);
                     };
                 }
                 break;

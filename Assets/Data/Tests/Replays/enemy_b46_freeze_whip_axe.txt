@@ -1,4 +1,5 @@
-# 313 tick, hash 612f697f
-# CVGP 18 EnemyB46Probe kịch bản 'freeze_whip_axe': Stopwatch + roi da: Axe Knight đứng yên vẫn ăn đủ 10 đòn (bộ đếm bất tử chạy khi đóng băng)
+# 337 tick, hash 745a21df
+# CVGP 18 EnemyB46Probe kịch bản 'freeze_whip_axe': Stopwatch + roi da: Axe Knight đứng yên vẫn ăn đủ 10 đòn (bộ đếm bất tử chạy khi đóng băng); CVM3 03: đồng hồ 186 tick < 10 roi ⇒ dùng lại đồng hồ giữa chừng (kéo dài — video Map_2 f6928)
 -*2 Sub*1 -*30 B*1 -*23 B*1 -*23 B*1 -*23 B*1 -*23 B*1
--*23 B*1 -*23 B*1 -*23 B*1 -*23 B*1 -*23 B*1 -*63
+-*23 Sub*1 -*23 B*1 -*23 B*1 -*23 B*1 -*23 B*1 -*23 B*1
+-*63

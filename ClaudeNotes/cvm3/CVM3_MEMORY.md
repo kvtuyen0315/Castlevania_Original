@@ -25,7 +25,7 @@ Video kèm: `C:\Users\kvtuy\Videos\Screen Recordings\Castlevania_Original\Map_3.
 | 00 | cvm3-00-ha-tang-so-ghi-nho-va-baseline | **XONG** | (commit "CVM3 00") | 21/10/2026 | sổ này + commit đồ planner + kiểm mẫu số (§7) + baseline 3 phiên Play: **mọi hash = Bảng hash chuẩn CVM2 12** (Arena `full` 14/14, core, Main 14 bộ), H8 5/5 ×3 fps |
 | 01 | cvm3-01-nhap-sheet-level3-va-kiem-ke | **XONG** | (commit "CVM3 01") | 21/10/2026 | sheet Level 3 chép nguyên byte (sha256 khớp) + SOURCES; kiểm kê chạy lại y hệt planner (JSON + ảnh trùng byte, 125 tile 8×8 / 83 metatile); đối chiếu Tilesets (§3b); sprite Block 3 đủ 32 ô, verify 0 lỗi; không đổi runtime ⇒ hash chuẩn giữ nguyên |
 | 02 | cvm3-02-hieu-chuan-video-timeline-va-su-kien | **XONG** (Simon phủ 87 % < 90 % — §6) | (commit "CVM3 02") | 21/10/2026 | hiệu chuẩn tinh 15+8 frame (ZNCC 0.973 / grad 0.943), HUD + camera (cx −112 WalkwayB) + Simon từng frame, chuyển cảnh theo tick, 161 sự kiện, **Map_3 0 lần trúng đòn / boss 3 lần −3 vạch**, âm thanh; `ref/MAP3_TIMELINE.md` viết lại + `ref/data/*`; không đổi runtime ⇒ hash chuẩn giữ nguyên |
-| 03 | cvm3-03-dong-ho-stopwatch-theo-video | chưa chạy | | | |
+| 03 | cvm3-03-dong-ho-stopwatch-theo-video | **XONG** | (commit "CVM3 03") | 21/10/2026 | đo 4 lần dùng đồng hồ Map_2 (Map_3/Boss_Map_3 0 lần) ⇒ mô hình **đóng băng hằng 186 tick từ TICK BẤM + roi vẫn vung + dùng lại khi còn hiệu lực (tính lại) + TIME bỏ mốc rơi trong lúc băng + bẫy nối lại ở mốc lưới** (§2d); Config 300 → 186 (`đo:cvm3-03`); probe mới `rules stopwatch_time/chain`, `mech crusher_resume_video` (bẫy +192 = video); hash đổi 9 bộ (chỉ kịch bản đồng hồ — §4); luồng thật `caf21ae2`/PRE4/H8 y nguyên; nhạc-dừng KHÔNG dựng |
 | 04 | cvm3-04-simon-knockback-nuoc-thanh-mep-roi | chưa chạy | | | |
 | 05 | cvm3-05-tilemap-va-luoi-va-cham-block3 | chưa chạy | | | |
 | 06 | cvm3-06-quet-hoi-quy-giua-cum | chưa chạy | | | |
@@ -50,6 +50,22 @@ Video kèm: `C:\Users\kvtuy\Videos\Screen Recordings\Castlevania_Original\Map_3.
 - **Chuyển cảnh**: bản đồ B2 trượt −1.503 px/tick dừng f81, Simon nhỏ +1.004 px/tick, **đen 26 tick**, STAGE 07 TIME 0500 f207; thang lên-trái đen **22 / 24 tick**; cửa phải: cuộn 128 px ×2 ở **~1.0 px/tick** (≈ 124–126 tick mỗi lần) + dừng **~158–162 tick**, STAGE +1 cuối cuộn 2, tổng **408 / 414 tick**, TIME đứng ~522 / 508 tick; cx kẹp 1280 (Simon wx ≥ 1408); Mummy +3000 **mỗi con**, ENEMY 16 vạch dùng chung; quả cầu ≈ 150 tick sau Mummy 2 (boss ≈ 120), nhặt → chờ **226 tick** → TIME **1.01 tick/đv** (+10 điểm/đv) → nghỉ 54 → tim **7.78 tick/tim** → 122 → đen 22 → STAGE 10 f7464.
 - **WalkwayB cx min −112** (camera bám Simon, không kẹp trái); cột trái = trời thuần, mặt cầu bắt đầu x = 0, vách đá thò tới x ≈ −32. Icon vũ khí cuối = **II** (planner ghi III sai).
 - Nhạc: Wicked Child t0 6.862 s (= lúc hiện STAGE 07), lặp 45.27 s; Poison Mind ≈ 198.9 s (~75 tick sau khoá); Stage Clear = nhặt cầu; tally/bản đồ B3 im 4:06.9 →.
+
+### 2d. Đồng hồ (Stopwatch) — routine 03 (21/10; `Tools/cvm3/stopwatch3.py` ⇒ `ref/data/stopwatch3_uses.txt`; tick = frame × 2.0033, Map_2 23.7 khung mới/s ⇒ mốc ±2–3 tick)
+Map_3 + Boss_Map_3: **0 lần dùng** (Map_3 cầm đồng hồ tới 0:16 rồi đổi nước thánh, tim không −5). Map_1/Boss_Map_1/Boss_Map_2: không dùng. ⇒ 4 mẫu, đều ở Map_2:
+
+| # | Bấm (tim −5) | Simon lúc bấm | Đóng băng bắt đầu | Chạy lại (đo) | TIME |
+|---|---|---|---|---|---|
+| 1 | f4829 (2:41.0) STAGE 06 Hall C, 4.0 tick sau mốc TIME f4827 (271→270) | khung chuẩn bị ROI (roi sau lưng f4829–31, duỗi trái f4835) | cùng frame (bẫy đứng từ f4829) | bẫy 1 k1→k0 + bẫy 2 k0→k1 **f4923** (cùng frame TIME 270→269; Bone Tower đứng f4829–4922) | 0270 giữ **192.3 tick** (= 3 mốc, bỏ 2) |
+| 2 | f6837 (3:47.9) trận Medusa, 42.1 tick sau mốc f6816 (212→211) | chuẩn bị roi f6837–42, duỗi f6843 | Medusa (bay 0.875) đứng tại (78,139) TỪ f6837 | — (lần 3 bấm khi còn đứng) | |
+| 3 | f6928 (3:50.9) = 176–184 tick sau #2 (f6926–27 lặp khung) | roi ra f6929 | Medusa vẫn đứng | Medusa chạy lại **f7021** ⇒ **186.3 tick** sau bấm (khoảng 181–192 tính cả khung lặp + ≤ 1.1 tick tới px đầu) | |
+| 4 | f7031 (3:54.4), 20 tick sau khi Medusa chạy lại | (Simon không đo được) | Medusa đứng từ f7030/31 | Medusa chết f7069 trong lúc băng | 0211 giữ **643.1 tick** f6816→f7137 (bỏ 9 mốc 64…576, giảm lại ở mốc 640 ±3) |
+
+**Mô hình chọn** (giải thích cả 4 mẫu): (a) đồng hồ có hiệu lực NGAY tick bấm (cùng tick trừ tim) và Simon **vẫn vung roi** (3/3 mẫu thấy roi); (b) đóng băng **hằng D = 186 tick** (Medusa trực tiếp 186.3; ràng buộc #1: kết thúc trước mốc TIME f4923 ⇒ D < 186.3–190.3 ⇒ chọn 186, sai số ±3); (c) **dùng lại khi còn hiệu lực được** (−5 tim, tính lại D từ lần bấm mới — #3 bấm 176–184 tick sau #2 khi Medusa vẫn đứng); (d) nhịp TIME (64 tick) **vẫn chạy** trong lúc băng, mốc rơi vào lúc băng **bị bỏ** (không trừ, không dồn) ⇒ TIME giảm lại ở mốc kế tiếp sau khi hết băng — #1: 192 (video 192.3), chuỗi #2–4: 640 (video 643.1); (e) bẫy ép: lưới 16 tick vẫn chạy, mốc lưới rơi vào lúc băng bị bỏ ⇒ nấc kế ở mốc lưới đầu tiên sau băng — Unity +192 = video (f4923).
+**Loại bỏ**: "hết băng ở mốc TIME thứ 3" (Medusa chạy lại f7021 lệch mốc 26.7 tick; chuỗi #2–4 sẽ cho TIME giảm 3 lần); "nhịp TIME dừng hẳn khi băng" (#1 ⇒ TIME giảm ở 250, chuỗi ⇒ 619 ≠ 643); "D = 183–184 + không dùng lại được" (cần #3 rơi đúng mép 184–184.3 của khoảng 176–184 — kém hợp lý hơn); "3 đv = 192" (Medusa 186.3 + #1 cần < 190).
+**Nhạc dừng 2.40 s** khi dùng đồng hồ: 1 mẫu dương (#1 Stalker đứng), #2 dùng 0.24 s TRƯỚC khi Poison Mind bắt đầu và PM vẫn đúng giờ, #3/#4 PM không đứng (±0.4 s) ⇒ "chỉ dừng nhạc stage" khớp cả 4 nhưng chỉ 1 mẫu dương ⇒ **KHÔNG dựng** (giữ câu hỏi `CVM2 §5 #7`; Map_3 không có mẫu mới).
+Unity sau sửa (probe): rules `stopwatch_time` băng 5–190, TIME giảm ở +192 ✓; `stopwatch_chain` bấm 42/224/431 ⇒ băng liền 43–617, TIME giảm ở +640 ✓ (video 643.1 ±3); mech `crusher_resume_video` bấm 4 tick sau mốc lưới ⇒ 3 bẫy đổi nấc lại CÙNG tick ở mốc +192 (video +192.3) ✓; Medusa/Phantom Bat giữ 186 (b24 `medusa_stopwatch`, boss `stopwatch`); Mummy Men + băng gạc KHÔNG bị giữ (b24 `mummy_stopwatch` — wiki "vô dụng", đã có từ CVGP 19).
+Ảnh (đã xem): `ref/nes/cvm3_03_use1_whip.png` (#1 roi + bẫy), `cvm3_03_medusa_freeze_start.png` (#2), `cvm3_03_medusa_resume.png` (f7016–7033), `cvm3_03_unity_crusher_resume.png` (Unity rel 28 / 214 / 216); thêm `_cache/shots/03/`.
 
 ### 2b. Mốc chính (planner; `ref/MAP3_TIMELINE.md §3`) — đã trích lại ở routine 00 (ảnh `_cache/shots/00/sheet.png`)
 | Mốc | Sự kiện | Kiểm 00 |
@@ -96,23 +112,23 @@ Video kèm: `C:\Users\kvtuy\Videos\Screen Recordings\Castlevania_Original\Map_3.
 ## §4 Quyết định kỹ thuật + Bảng hash chuẩn
 
 ### Bảng hash chuẩn (H11 — baseline = Bảng hash chuẩn sau CVM2 12; routine 00 đo lại 21/10/2026, code = HEAD `d1bf216`)
-Hash đổi chỉ khi routine CỐ Ý đổi hành vi: thêm 1 dòng vào "Lịch sử đổi hash" (cũ → mới, lý do, routine) **và** sửa `RegressionRunner.EXPECTED`. Cờ `EXPECTED` hiện tại (đọc, không sửa): y hệt bảng dưới (long…rules, core, gallery, flow/flow30/flow144/map2, holy, mech, h8 `352/432/448/890/922`) + `PRE4 = 165b9aef`.
+*(Sau CVM3 03: các dòng ghi "→ **CVM3 03**" là hash mới — cũ ở "Lịch sử đổi hash".)* Hash đổi chỉ khi routine CỐ Ý đổi hành vi: thêm 1 dòng vào "Lịch sử đổi hash" (cũ → mới, lý do, routine) **và** sửa `RegressionRunner.EXPECTED`. Cờ `EXPECTED` hiện tại (đọc, không sửa): y hệt bảng dưới (long…rules, core, gallery, flow/flow30/flow144/map2, holy, mech, h8 `352/432/448/890/922`) + `PRE4 = 165b9aef`.
 
 | Bộ | Lệnh | Scene | Hash chuẩn (đo 21/10) | Đạt/tổng | Thời gian | Routine đặt | Ngày |
 |---|---|---|---|---|---|---|---|
 | long | `RegressionRunner.Start("long", fps, dir)` | Arena (Simon) | `5963c4ba` | 1/1 | 21 s | CVGP 11/21 → CVM2 00 | 21/10 |
 | simon | `…Start("simon",…)` | Arena (Simon) | `b2954cbe` | 20/20 | 38 s | CVGP 08/21 → CVM2 00 | 21/10 |
-| attack | `…Start("attack",…)` | Arena (Simon) | `eee2cdfb` | 21/21 | 26 s | CVGP 09/21 → CVM2 00 | 21/10 |
+| attack | `…Start("attack",…)` | Arena (Simon) | `b880de83` | 21/21 | 26 s | CVGP 09/21 → CVM2 00 → **CVM3 03** | 21/10 |
 | item | `…Start("item",…)` | Arena (Simon) | `7ca5bf56` | 14/14 | 33 s | CVGP 11/21 → CVM2 00 | 21/10 |
-| enemy | `…Start("enemy",…)` | Arena (Simon) | `f288b0ce` | 20/20 | 104 s | CVGP 13/21 → CVM2 00 | 21/10 |
-| boss | `…Start("boss",…)` | Arena (Simon) | `31e6d711` | 12/12 | 109 s | CVGP 14/21 → CVM2 00 | 21/10 |
-| b23 | `…Start("b23",…)` | Arena (Simon) | `5eb00c5b` | 35/35 | 182 s | CVGP 17/21 → CVM2 08 | 21/10 |
-| b46 | `…Start("b46",…)` | Arena (Simon) | `58a8edf9` | 26/26 | 135 s | CVGP 18/21 → CVM2 00 | 21/10 |
-| b24 | `…Start("b24",…)` | Arena (Simon) | `9b218696` | 21/21 | 249 s | CVGP 19/21 → CVM2 09 | 21/10 |
-| b56 | `…Start("b56",…)` | Arena (Simon) | `6cb8a1ad` | 14/14 | 221 s | CVGP 20/21 → CVM2 00 | 21/10 |
+| enemy | `…Start("enemy",…)` | Arena (Simon) | `0a731b36` | 20/20 | 104 s | CVGP 13/21 → CVM2 00 → **CVM3 03** | 21/10 |
+| boss | `…Start("boss",…)` | Arena (Simon) | `c9813c11` | 12/12 | 109 s | CVGP 14/21 → CVM2 00 → **CVM3 03** | 21/10 |
+| b23 | `…Start("b23",…)` | Arena (Simon) | `50a6b4bf` | 35/35 | 182 s | CVGP 17/21 → CVM2 08 → **CVM3 03** | 21/10 |
+| b46 | `…Start("b46",…)` | Arena (Simon) | `6c8e9a74` | 26/26 | 135 s | CVGP 18/21 → CVM2 00 → **CVM3 03** | 21/10 |
+| b24 | `…Start("b24",…)` | Arena (Simon) | `397842ee` | 21/21 | 249 s | CVGP 19/21 → CVM2 09 → **CVM3 03** | 21/10 |
+| b56 | `…Start("b56",…)` | Arena (Simon) | `c140225d` | 14/14 | 221 s | CVGP 20/21 → CVM2 00 → **CVM3 03** | 21/10 |
 | holy | `…Start("holy",…)` | Arena (Simon) | `b1033a3f` | 5/5 | 13 s | CVM2 04 → CVM2 09 | 21/10 |
-| mech | `…Start("mech",…)` | Arena (Simon) | `91215ebd` | 14/14 | 54 s | CVM2 06 | 21/10 |
-| rules | `…Start("rules",…)` | Arena (Simon) | `03fafb24` | 68/68 | 0 s | CVGP 12/21 → CVM2 00 | 21/10 |
+| mech | `…Start("mech",…)` | Arena (Simon) | `6409b5fe` | 15/15 | 59 s | CVM2 06 → **CVM3 03** (+`crusher_resume_video`) | 21/10 |
+| rules | `…Start("rules",…)` | Arena (Simon) | `00144e42` | 78/78 | 0 s | CVGP 12/21 → CVM2 00 → **CVM3 03** (+`stopwatch_time`, `stopwatch_chain`) | 21/10 |
 | gallery | `…Start("gallery",…)` (240 fps, không chụp; nằm trong `full`) | Arena (Simon) | `ffd5b71e` | 75/75 | 486 s | CVGP 21 → CVM2 11 | 21/10 |
 | core | `…Start("core",…)` | Arena, `CVGP.ArenaUseDummy` = true | `76516076` | 21/21 | 92 s | CVGP 07/21 → CVM2 00 | 21/10 |
 | flow (Title → STAGE 07 + trước STAGE 04 = `165b9aef`) | `…Start("flow",…)` | Main | `caf21ae2` | 2/2 | 294 s | CVM2 11 | 21/10 |
@@ -126,6 +142,19 @@ Thời gian đo 21/10 (@60 fps, harness cùng máy): Arena `full` **1672 s ≈ 2
 
 **Lịch sử đổi hash:** kế thừa toàn bộ `CVM2_MEMORY §4 "Lịch sử đổi hash"`; cụm CVM3 ghi tiếp dưới đây (cũ → mới, lý do, routine).
 - (00, 21/10) **không hash nào đổi** — baseline. Mọi hash của bảng KHỚP.
+- (01, 02) không đổi runtime ⇒ không hash nào đổi.
+- (03, 21/10) **Đồng hồ theo video** (300 → 186 tick, hiệu lực ngay tick bấm + roi vẫn vung, dùng lại khi còn hiệu lực, TIME bỏ mốc trong lúc băng, bẫy nối lại ở mốc lưới — §2d). So từng kịch bản với baseline `_cache/00/arena`: **chỉ kịch bản dùng đồng hồ đổi hash**, mọi kịch bản khác y hệt:
+  - attack `eee2cdfb` → `b880de83` (`stopwatch`: kỳ vọng 300 → 186; lần 2 khi còn hiệu lực nay DÙNG ĐƯỢC ⇒ băng 41 + 186 = 227, tim 10, roi vẫn vung)
+  - enemy `f288b0ce` → `0a731b36` (`freeze` Zombie: 186)
+  - boss `31e6d711` → `c9813c11` (`stopwatch` Phantom Bat: 186)
+  - b23 `5eb00c5b` → `50a6b4bf` (`freeze_b23`, `freeze_whip`)
+  - b46 `58a8edf9` → `6c8e9a74` (`freeze_b46` kỳ vọng 299–301 → 185–187; `freeze_whip_axe` 10 roi > 186 tick ⇒ dùng lại đồng hồ giữa chừng; `dragon_kill_l1/l2` dùng đồng hồ — vẫn 8 đòn ĐẠT)
+  - b24 `9b218696` → `397842ee` (`medusa_stopwatch`, `mummy_stopwatch`, `frank_stopwatch` — đồng hồ bắt đầu ngay tick bấm 201/101/131)
+  - b56 `6cb8a1ad` → `c140225d` (`death_stopwatch` dùng 2 lần 101 + 252 để giữ cửa sổ quan sát lưỡi hái như cũ; `drac2_stopwatch`)
+  - mech `91215ebd` → `6409b5fe` (`crusher_stopwatch` bấm rel 2 → 14 vì đồng hồ nay có hiệu lực ngay — bẫy 3 vẫn đứng khung 6 & giết; + kịch bản mới `crusher_resume_video`)
+  - rules `03fafb24` → `00144e42` (+2 kịch bản `stopwatch_time`, `stopwatch_chain`; 68 → 78 kiểm)
+  - **Y nguyên**: long, simon, item, holy, gallery, core; Main: flow/flow30/flow144/map2 `caf21ae2`, PRE4 `165b9aef`, H8 5/5 ×3, spam1–7 0 lỗi — lộ trình `map1_route`/`map2_route` không bấm vũ khí phụ (không có `Sub`/`U+B`) ⇒ không tick nào khác.
+  - Replay đổi: `enemy_b46_freeze_whip_axe.txt`, `boss_b56_death_stopwatch.txt` (kịch bản); 6 file khác chỉ đổi dòng mô tả `#` (300 → 186).
 
 ### Bộ chạy hồi quy (kế thừa `CVM2_MEMORY §4 "Bộ chạy hồi quy"`)
 Chỉ Editor, đang Play, `runInBackground = true`. Gọi bằng `execute_code` (codedom): `RegressionRunner.Start("<bộ>", 60, "D:/Unity/Castlevania_Original-main/ClaudeNotes/cvm3/_cache/<NN>/<tên phiên>")`; kết quả ở `<dir>/suites/{SUMMARY.txt,progress.txt,ALL.done,<bộ>.txt}`; chờ bằng vòng lặp bash `[ -f <dir>/suites/ALL.done ]`. **3 phiên Play**:
@@ -133,6 +162,11 @@ Chỉ Editor, đang Play, `runInBackground = true`. Gọi bằng `execute_code` 
 2. Arena với EditorPrefs `CVGP.ArenaUseDummy` = true (đặt TRƯỚC khi Play, scene Arena mở): `Start("core", 60, …)` ≈ 1.5 phút.
 3. Main.unity: `Start("main,flow30,flow144", 60, …)` ≈ 23 phút.
 Đọc `SUMMARY.txt` + `ALL.done` — `OK (bỏ qua n)` ≠ đạt. Mỗi phiên: đặt `EditorSettings.enterPlayModeOptionsEnabled = true` + `DisableDomainReload`, AppActivate cửa sổ Unity + `runInBackground = true` sau khi vào Play. Cuối phiên: `ArenaUseDummy` = false, tắt EnterPlayModeOptions, ghi lại `ProjectSettings/EditorSettings.asset` từ HEAD (CRLF).
+
+### Quyết định routine 03 (đồng hồ)
+- **(03) Mô hình đồng hồ** = §2d (a)–(e). Code: `SimonController.StartAttack` (đồng hồ: trừ tim + `SpawnSubWeapon()` NGAY, `atkThrow = false` ⇒ đòn là roi), `CanThrow` (đồng hồ không giới hạn số — dùng lại được), `Stopwatch.OnLaunch` (gỡ đồng hồ cũ), `StageWorld.FreezeEnemies` (đang băng ⇒ chỉ kéo dài `to`, không đặt lại `from` — tránh hở 1 tick lúc dùng lại: nhóm Enemy chạy sau Player trong cùng tick), `StageRules.PostTick` (mốc TIME rơi vào `IsEnemyFrozen` ⇒ bỏ), `Crusher.OnTick` (pha lưới `ph` chạy cả lúc băng; đang chờ mốc mà `u mod 16 ≠ ph` ⇒ nhảy tới trong cùng ô hoặc giữ; đang hạ ⇒ chạy tiếp — suy luận, video không có mẫu băng lúc đang hạ). Không băng ⇒ `ph ≡ u mod 16` ⇒ y hệt cũ (mọi kịch bản bẫy khác giữ hash).
+- **(03) Lưới bẫy ↔ nhịp TIME trong Unity vẫn là 2 bộ đếm riêng** (bẫy: từ lúc sinh + startTick; TIME: `ResetClockPhase` khi section hiện) — trên luồng thật chúng có trùng pha không là việc của routine căn pha (cvm2-fix-03 / `CVM2 §5 #16`); routine 03 chỉ bảo đảm "nấc kế ở mốc lưới của chính bẫy" (= video khi hai lưới trùng).
+- **(03) Nhạc dừng khi dùng đồng hồ: KHÔNG dựng** (1 mẫu dương — §2d).
 
 ### Việc gộp + hash DỰ KIẾN đổi (lập ở routine 00 — dự đoán, routine thực hiện xác nhận)
 | Routine | Đổi | Hash dự kiến đổi |
@@ -158,8 +192,11 @@ Chỉ Editor, đang Play, `runInBackground = true`. Gọi bằng `execute_code` 
 - (02 CVM3) **Hit #3 boss** Simon bị Mummy che f806–834 (không đo knockback); +100 trong trận boss (5 lần) chưa phân biệt được "đòn trúng Mummy" hay "phá băng gạc" — routine 09 xác nhận bằng ảnh phóng to (khung f503/507, 636/640, 725/729, 833/837, 899/903).
 - (02 CVM3) Nhạc Poison Mind chuyển ≈ 1.2 s sau khóa: ±0.3 s (cửa sổ 1 s) — routine 09/11 nếu cần chính xác hơn dùng `music3.py pos`.
 - (02 CVM3) Loại enemy ở bảng hạ (§4 timeline) suy theo giá trị điểm wiki (ảnh xác nhận ~12/29) — 07/08 xác minh từng loại khi dựng.
-- (CVM2 ACCEPT12) Đồng hồ 300 vs video 186–196 tick → routine 03; knockback 12 vs 31–32 px → routine 04; enemy rơi vật → routine 08.
-- (CVM2 03) **Đồng hồ dừng nhạc 2.40 s** (Map_2 2:40.97, 1 lần đo) — chưa dựng; Stage 8 có nến đồng hồ ⇒ routine 03 kiểm bằng Map_3 (`CVM2 §5 #7`).
+- (CVM2 ACCEPT12) ~~Đồng hồ 300 vs video 186–196 tick → routine 03~~ **(03) xong** — 186 tick theo video (§2d); knockback 12 vs 31–32 px → routine 04; enemy rơi vật → routine 08.
+- (CVM2 03) **Đồng hồ dừng nhạc 2.40 s** (Map_2 2:40.97, 1 lần đo) — chưa dựng. **(03)** Map_3/Boss_Map_3 không dùng đồng hồ lần nào ⇒ không thêm mẫu; mô hình "chỉ dừng nhạc stage" khớp 4/4 nhưng 1 mẫu dương ⇒ vẫn chưa dựng (`CVM2 §5 #7` mở).
+- (03) Đồng hồ băng lúc bẫy ép ĐANG HẠ (nhịp 4 tick riêng) — video không có mẫu; Unity chạy tiếp nhịp hạ rồi mới khớp lưới (suy luận).
+- (03) Unity: lưới bẫy và nhịp TIME là 2 bộ đếm riêng; video cho thấy trùng nhau ⇒ routine căn pha section (cvm2-fix-03 / §5 #16 CVM2) nên đặt `startTick` bẫy theo pha TIME để "bẫy + TIME chạy lại cùng tick" đúng trên luồng thật Hall C.
+- (03) Đòn roi khi dùng đồng hồ dùng chung nhánh roi của `SimonAttackState` (đứng/ngồi/thang/trên không như roi thường) — chỉ kiểm tư thế đứng trong probe.
 - (CVM2 03) Wicked Child lặp tụt âm (§5 #1).
 - (CVM2 03) Prefab màn hình còn trường YAML cũ `music`/`stageMusic`/… `{fileID: 0}` — tự mất khi prefab lưu lại.
 - (CVM2 05) `StageFlow` cửa trái / `autoBossLock` theo phía / `simonStartDir` đã xử lý ở CVM2 11 — Block 3 có **cửa PHẢI #1/#2** và **thang lên-trái**, khoá phòng Mummy cx 1280 (routine 05/09/11).
@@ -185,6 +222,17 @@ Chỉ Editor, đang Play, `runInBackground = true`. Gọi bằng `execute_code` 
 - Sprite: 32 ô có đủ, verify 0 lỗi; Mummy đỏ = nháy bảng màu dùng `mummy_red_*` (§3b).
 - **Câu hỏi §5 mới**: không.
 - **Nghiệm thu routine 01**: [x] sheet nguyên byte + SOURCES · [x] kiểm kê y hệt + bảng Tilesets + ảnh · [x] bảng sprite §3b, verify 0 lỗi · [x] không đổi runtime ⇒ hash chuẩn y nguyên (không chạy lại bộ; chưa đo lại — chỉ suy ra do không đụng Assets).
+
+### Routine 03 — 21/10/2026 — Đồng hồ (Stopwatch) theo video (= cvm2-fix-01)
+- **Bước 0**: `main`; nhiễu nền giữ nguyên; cổng 00 = XONG. MCP `Castlevania_Original-main@5669a9bbfcade130` (1 instance), `dataPath` đúng.
+- **Đo** (`Tools/cvm3/stopwatch3.py` + `stopwatch3_sheet.py` — lưới khung video quanh từng lần dùng): 4 lần dùng Map_2, 0 lần Map_3/Boss_Map_3 ⇒ §2d (bảng + mô hình + giả thuyết loại bỏ). Phát hiện ngoài dự kiến: đồng hồ có hiệu lực ngay tick bấm và Simon vung roi (Unity cũ: tư thế ném, sinh ở khung duỗi ~13 tick sau); dùng lại khi còn hiệu lực được.
+- **Sửa**: Config `ConfigSubWeapon.Stopwatch.freezeTicks` 300 → **186** (`đo:cvm3-03 video:Map_2 …`) + `CVGP/Import Config`; code §4 "Quyết định routine 03"; probe kỳ vọng `WIKI_STOPWATCH 300` → `VIDEO_STOPWATCH 186` (Attack/Enemy/EnemyB23/B46/Boss/B24/B56); kịch bản mới rules `stopwatch_time`, `stopwatch_chain`, mech `crusher_resume_video`; `SaveReplays` (2 replay đổi kịch bản, 6 chỉ đổi mô tả); `RegressionRunner.EXPECTED` 9 hash mới. `CHARACTER_STATS.md` xuất lại (Stopwatch 186; kèm dòng Block 3 TIME 500 từ CSV CVM2 11 chưa xuất trước đó).
+- **Lần chạy đầu lộ lỗi thật** (đã sửa): dùng lại đồng hồ làm hở 1 tick băng (bia chạy 1 tick — `FreezeEnemies` đặt lại `from`); `crusher_stopwatch` hỏng vì băng sớm 12 tick (bẫy 3 ở khung 3) ⇒ dời bấm rel 2 → 14; b46 `freeze_whip_axe` / b56 `death_stopwatch` hỏng vì 186 < chuỗi roi/cửa sổ quan sát ⇒ dùng lại đồng hồ giữa chừng (đúng mô hình mới).
+- **Hồi quy 3 phiên** (`_cache/03/{arena,arena3,core,main,confirm,confirm144}`): Arena `full` 14 bộ — 9 đổi hash có chủ đích (chỉ kịch bản đồng hồ, so từng kịch bản), long/simon/item/holy/gallery KHỚP; b46/b56 chạy lại sau sửa kịch bản 26/26, 14/14; core `76516076` KHỚP; Main 14 bộ KHỚP (`caf21ae2` ×4, PRE4, H8 5/5 ×3, spam1–7 0 lỗi); xác nhận `EXPECTED` mới: long/attack/mech/rules KHỚP @60, mech/attack KHỚP @144 (tất định).
+- **Lưu ý quy trình**: lỡ ghi `.cs` 1 lần khi đang Play (sửa RulesProbe/Map2MechProbe/StageWorld giữa 2 lần chạy nhanh) — đã thoát Play ngay, biên dịch lại, mọi kết quả ghi ở đây đều chạy SAU lần biên dịch đó.
+- **Dọn**: thoát Play, `ArenaUseDummy` = false, EnterPlayModeOptions về như HEAD, `EditorSettings.asset` = HEAD (CRLF), scene Main không dirty.
+- **Câu hỏi §5 mới**: không (nhạc-dừng vẫn là `CVM2 §5 #7`).
+- **Nghiệm thu routine 03**: [x] bảng 4 lần dùng + mô hình + sai số §2d; Config nguồn video · [x] probe ĐẠT kỳ vọng mới (rules 78/78, attack 21/21, mech 15/15, b23 35/35, b46 26/26, b24 21/21, b56 14/14, enemy 20/20, boss 12/12); bẫy so video: Unity +192 = video +192.3, Medusa chạy lại 186 tick sau bấm (video 186.3) · [x] mỗi hash đổi 1 dòng lý do (§4), hash không liên quan y nguyên, H8 5/5 ×3, CHARACTER_STATS cập nhật. **Xấp xỉ**: D = 186 ±3 (4 mẫu, 1 đo trực tiếp); băng lúc bẫy đang hạ = suy luận; nhạc dừng chưa dựng.
 
 ### Routine 02 — 21/10/2026 — Hiệu chuẩn tinh 2 video, HUD/camera/Simon từng frame, chuyển cảnh, sự kiện, trúng đòn, âm thanh
 - **Bước 0**: `main`; nhiễu nền giữ nguyên; cổng 00/01 = XONG. Không đụng Unity (python + ffmpeg + file; không ghi `.cs`/asset; MCP không cần) ⇒ **không đổi runtime, mọi hash giữ Bảng hash chuẩn (không chạy lại bộ)**.

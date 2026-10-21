@@ -47,7 +47,7 @@ public static class EnemyProbe
     public const int VIDEO_DEATH_FX_TICKS = 20;       // lửa 8/9/3
     public const int WIKI_SCORE_GHOUL = 100, WIKI_SCORE_PANTHER = 200, WIKI_SCORE_BAT = 200, WIKI_SCORE_FISH = 300;
     public const int WIKI_DAMAGE_ST1 = 2;
-    public const int WIKI_STOPWATCH = 300;
+    public const int VIDEO_STOPWATCH = 186;   // video:Map_2 (đo:cvm3-03 — CVM3_MEMORY §2d; wiki 5 s = 300 sai)
 
     private struct Scn
     {
@@ -74,7 +74,7 @@ public static class EnemyProbe
         new Scn("kill_fish_dagger", "-*2 Sub -*50", "dao hạ Fish Man đứng trên sàn: +300, vũ khí phụ đếm trúng"),
         new Scn("touch", "-*60", "Zombie đi vào Simon (không bất tử): −2 vạch (Stage 1), Simon văng (Hurt)"),
         new Scn("fireball", "-*200", "Fish Man trên sàn bắn cầu lửa (quy ước 96 tick) trúng Simon: −2 vạch"),
-        new Scn("freeze", "-*30 Sub -*420", "Stopwatch: Zombie + bộ sinh dừng 300 tick rồi chạy tiếp"),
+        new Scn("freeze", "-*30 Sub -*420", "Stopwatch: Zombie + bộ sinh dừng 186 tick rồi chạy tiếp"),
         new Scn("rosary", "-*200", "Rosary (StageWorld.RosaryClear) tick 120: mọi Zombie trên màn biến mất, 0 điểm"),
         new Scn("pot_roast", "-*40", "CA: tường Pot Roast (16,10) vỡ ⇒ thả ngay 1 dơi (wiki Secrets) + thịt nướng"),
     };
@@ -694,7 +694,7 @@ public static class EnemyProbe
                             if (f0 < 0 && recs[i].frozenE) f0 = i;
                             if (f0 >= 0 && f1 < 0 && !recs[i].frozenE) f1 = i;
                         }
-                        Expect("Stopwatch đóng băng enemy (tick) — wiki 5 s", WIKI_STOPWATCH, f1 - f0);
+                        Expect("Stopwatch đóng băng enemy (tick) — video Map_2", VIDEO_STOPWATCH, f1 - f0);
                         int moved = 0, spawned = 0;
                         foreach (var t in Tracks(eEnemyId.Ghoul))
                         {

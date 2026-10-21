@@ -1,3 +1,3 @@
-# 521 tick, hash 12fd7cff
-# CVGP 20 BossB56Probe kịch bản 'death_stopwatch': Stopwatch tick 101: Death + lưỡi hái KHÔNG bị giữ (wiki: chỉ Phantom Bat + Medusa)
--*100 Sub*1 -*420
+# 521 tick, hash cd5f95ff
+# CVGP 20 BossB56Probe kịch bản 'death_stopwatch': Stopwatch tick 101 + dùng lại tick 252 (CVM3 03: 186 tick/lần — giữ tới 438 như cửa sổ quan sát cũ): Death + lưỡi hái KHÔNG bị giữ (wiki: chỉ Phantom Bat + Medusa)
+-*100 Sub*1 -*150 Sub*1 -*269

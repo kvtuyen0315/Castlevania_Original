@@ -25,6 +25,10 @@ public static class RulesProbe
     public const int VIDEO_SHOT_HALF = 4;
     public const int VIDEO_SCORE_BEFORE = 14900, VIDEO_SCORE_AFTER = 23370, VIDEO_TIME_LEFT = 127, VIDEO_HEARTS_LEFT = 72;
     public const int WIKI_1UP_1 = 30000, WIKI_1UP_2 = 80000, WIKI_1UP_EVERY = 50000;
+    // CVM3 03 — đồng hồ (video Map_2, CVM3_MEMORY §2d): đóng băng 186 tick từ tick bấm; mốc TIME rơi vào lúc băng bị bỏ
+    public const int VIDEO_STOPWATCH = 186;
+    public const int VIDEO_SW1_DEC = 192;           // bấm 4 tick sau mốc f4827 ⇒ TIME giảm lại f4923 (+192.3)
+    public const int VIDEO_SW2_DEC = 640;           // bấm +42/+224/+431 sau mốc f6816 ⇒ TIME giảm lại f7137 (+643.1 ±3; lưới 64)
     public const int SIMON_DEATH_TICKS = 124;       // ConfigSimon.DeathTicks (routine 08 — quy ước) — chỉ để in mốc
 
     public static readonly List<string> Report = new List<string>();
@@ -41,7 +45,7 @@ public static class RulesProbe
 
     public static string ScenarioNames()
     {
-        return "clock600,freeze_whip,hold,pause,timeup,damage,water,pit,gameover,oneup,tally,bars,shotblink,tally";
+        return "clock600,freeze_whip,stopwatch_time,stopwatch_chain,hold,pause,timeup,damage,water,pit,gameover,oneup,tally,bars,shotblink,tally";
     }
 
     // ---------------------------------------------------------------- hạ tầng
@@ -231,6 +235,8 @@ public static class RulesProbe
         {
             case "clock600": Clock600(); break;
             case "freeze_whip": FreezeWhip(); break;
+            case "stopwatch_time": StopwatchTime(new[] { 4 }, 260, VIDEO_SW1_DEC, 2, "video Map_2 2:41.0 (f4829, TIME 0270 giữ 192.3 tick)"); break;
+            case "stopwatch_chain": StopwatchTime(new[] { 42, 224, 431 }, 700, VIDEO_SW2_DEC, 9, "video Map_2 3:47.9/3:50.9/3:54.4 (TIME 0211 giữ 643.1 tick)"); break;
             case "hold": Hold(); break;
             case "pause": Pause(); break;
             case "timeup": TimeUp(); break;
@@ -284,6 +290,57 @@ public static class RulesProbe
         int start = S.time;
         var dec = DecrementTicks(100);
         Expect(start - S.time == 1 && dec.Count == 1 && dec[0] == 54, "đóng băng nhặt roi 46 tick: TIME vẫn chạy (giảm ở tick 64 từ đầu stage) — video 0:06.5");
+    }
+
+    /// <summary>CVM3 03: tới mốc giảm TIME rồi bấm đồng hồ ở các tick rel (sau mốc) ⇒ đóng băng 186 tick từ lần bấm cuối khi còn hiệu lực,
+    /// TIME giảm lại ở mốc lưới 64 đầu tiên sau khi hết băng (bỏ <paramref name="skipped"/> mốc).</summary>
+    static void StopwatchTime(int[] presses, int span, int expectDec, int skipped, string video)
+    {
+        int prev = S.time, guard = 0;
+        while (S.time == prev && guard++ < 200)
+            StepTicks(1);
+        int w = world.TickCount;
+        S.subWeapon = eSubWeapon.Stopwatch;
+        S.hearts = 40;
+        S.NotifyChanged();
+        var decs = new List<int>();
+        int fs = -1, fe = -1, pi = 0, holes = 0;
+        prev = S.time;
+        for (int rel = 1; rel <= span; rel++)
+        {
+            if (pi < presses.Length && presses[pi] == rel)
+            {
+                NesPad.I.InjectPress(eNesButton.SubWeapon);
+                pi++;
+            }
+            StepTicks(1);
+            int t = world.TickCount - w;
+            if (S.time != prev)
+            {
+                decs.Add(t);
+                prev = S.time;
+            }
+            if (world.IsEnemyFrozen)
+            {
+                if (fs < 0) fs = t;
+                fe = t;
+            }
+            else
+                for (int k = 0; k < pi; k++)
+                    if (t > presses[k] && t <= presses[k] + VIDEO_STOPWATCH)
+                    {
+                        holes++;   // phải đang đóng băng (≤ 186 tick sau 1 lần bấm) mà không
+                        break;
+                    }
+        }
+        int last = presses[presses.Length - 1];
+        Ev("đồng hồ bấm " + string.Join("/", presses) + ": băng " + fs + "–" + fe + ", TIME giảm ở " + string.Join(",", decs) + ", tim " + S.hearts);
+        Expect(fs == presses[0] + 1 && fe == last + VIDEO_STOPWATCH, "đóng băng từ tick bấm +1 tới lần bấm cuối + " + VIDEO_STOPWATCH + " (" + fs + "–" + fe + ")");
+        Expect(decs.Count > 0 && decs[0] == expectDec, "TIME giảm lại đúng mốc lưới +" + expectDec + " sau mốc trước (bỏ " + skipped + " mốc) — " + video
+            + " — Unity +" + (decs.Count > 0 ? decs[0] : -1));
+        Expect(holes == 0, "đóng băng liền mạch qua các lần dùng lại (tick hở " + holes + ")");
+        Expect(S.hearts == 40 - 5 * presses.Length, "mỗi lần dùng −5 tim (cả khi còn hiệu lực): " + S.hearts);
+        Expect(!world.IsEnemyFrozen, "hết đóng băng cuối kịch bản");
     }
 
     static void Hold()

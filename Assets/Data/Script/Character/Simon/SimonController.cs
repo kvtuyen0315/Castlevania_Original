@@ -787,7 +787,10 @@ public class SimonController : Entity
             return false;
         if (session.hearts < subCost[(int)w])
             return false;
-        return ActiveShots(w == eSubWeapon.Stopwatch) < ShotCap(w);
+        // CVM3 03: đồng hồ dùng lại được khi còn hiệu lực (−5 tim, tính lại từ đầu — video Map_2 f6928: 176–184 tick sau lần trước, Medusa vẫn đứng)
+        if (w == eSubWeapon.Stopwatch)
+            return true;
+        return ActiveShots(false) < ShotCap(w);
     }
 
     /// <summary>
@@ -833,6 +836,14 @@ public class SimonController : Entity
             session.hearts -= subCost[(int)atkSub];
             session.NotifyChanged();
             throwCount++;
+            // CVM3 03: đồng hồ có hiệu lực NGAY tick bấm (cùng tick trừ tim) và Simon vẫn VUNG ROI (video Map_2 f4829/f6837/f6928:
+            // tim −5 cùng frame khung chuẩn bị roi, roi duỗi 6 frame sau; Medusa đứng từ f6837) ⇒ sinh đồng hồ ở đây, đòn = roi
+            if (atkSub == eSubWeapon.Stopwatch)
+            {
+                atkSpawned = true;
+                atkThrow = false;
+                SpawnSubWeapon();
+            }
         }
         else
             whipCount++;

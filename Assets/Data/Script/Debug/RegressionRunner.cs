@@ -27,14 +27,16 @@ public static class RegressionRunner
     /// <summary>BẢNG HASH CHUẨN (baseline = CVGP 21 / CVM2 00). h8 = 5 mốc L (Start, đen, Intro, đen, Stage).</summary>
     public static readonly Dictionary<string, string> EXPECTED = new Dictionary<string, string>
     {
-        { "long", "5963c4ba" }, { "simon", "b2954cbe" }, { "attack", "eee2cdfb" }, { "item", "7ca5bf56" },
-        { "enemy", "f288b0ce" }, { "boss", "31e6d711" }, { "b23", "5eb00c5b" } /* CVM2 08 (đo video Map_2; cũ 171be0c1) */, { "b46", "58a8edf9" },
-        { "b24", "9b218696" } /* CVM2 09 (Medusa + rắn đo video, phòng thật; cũ 7adfbc54) */, { "b56", "6cb8a1ad" }, { "rules", "03fafb24" }, { "core", "76516076" },
+        // CVM3 03 (đồng hồ theo video Map_2: 186 tick từ tick bấm + roi vẫn vung, dùng lại khi còn hiệu lực, TIME bỏ mốc, bẫy nối lưới — chỉ
+        // kịch bản đồng hồ đổi): attack cũ eee2cdfb, enemy f288b0ce, boss 31e6d711, b23 5eb00c5b, b46 58a8edf9, b24 9b218696, b56 6cb8a1ad, rules 03fafb24
+        { "long", "5963c4ba" }, { "simon", "b2954cbe" }, { "attack", "b880de83" }, { "item", "7ca5bf56" },
+        { "enemy", "0a731b36" }, { "boss", "c9813c11" }, { "b23", "50a6b4bf" }, { "b46", "6c8e9a74" },
+        { "b24", "397842ee" }, { "b56", "c140225d" }, { "rules", "00144e42" }, { "core", "76516076" },
         { "gallery", "ffd5b71e" } /* CVM2 11 (nhảy không va trần — PhantomBat_attack; CVM2 09 25b99169) */,
         // CVM2 11: luồng thật Title → STAGE 07 (map1_route + map2_route; cũ Title → STAGE 04 e0b2d54c — phần Map 1 = PRE4 dưới)
         { "flow", "caf21ae2" }, { "flow30", "caf21ae2" }, { "flow144", "caf21ae2" }, { "map2", "caf21ae2" },
         { "holy", "b1033a3f" },   // CVM2 04 (HolyPierceProbe — bộ mới) → CVM2 09 (Medusa thức 180 tick sau khoá; cũ 52c59864)
-        { "mech", "91215ebd" },   // CVM2 06 (Map2MechProbe — bộ mới: bệ di động, bẫy ép gai, hố)
+        { "mech", "6409b5fe" },   // CVM2 06 (Map2MechProbe — bệ, bẫy ép gai, hố) → CVM3 03 (crusher_stopwatch + crusher_resume_video; cũ 91215ebd)
         { "h8", "352/432/448/890/922" },
     };
 

@@ -24,7 +24,7 @@ public static class AttackProbe
     public const int VIDEO_DAGGER_SPEED = 4;          // px/tick (1:33.0, 1:47.1)
     public const int VIDEO_DAGGER_SPAWN_H = 23;       // pivot dao = Y − 23 (góc trên sprite Y − 31: f2797, f3214)
     public const int VIDEO_SPAWN_TICK = 3;            // vũ khí sinh 2.5–5 tick sau khi khung duỗi bắt đầu
-    public const int WIKI_STOPWATCH_TICKS = 300;      // wiki Items#Stopwatch 5 s
+    public const int VIDEO_STOPWATCH_TICKS = 186;     // video:Map_2 (đo:cvm3-03 — CVM3_MEMORY §2d; wiki 5 s = 300 sai)
     public const int VIDEO_FIRE_TICKS = 80;           // video Boss ≈ 40 frame
     /// <summary>Góc trên-trái mảnh roi duỗi so với pivot thân, quay TRÁI (sheet — CVGP_MEMORY §3 roi tách lớp): [lên thang?][cấp].</summary>
     static readonly Vector2Int[] SHEET_EXT_OFF = { new Vector2Int(0, 0), new Vector2Int(-36, -33), new Vector2Int(-36, -32), new Vector2Int(-52, -32) };
@@ -55,7 +55,7 @@ public static class AttackProbe
         new Scn("axe", "-*2 Sub -*70", "rìu quay phải"),
         new Scn("holy", "-*2 Sub -*130", "nước thánh quay phải; bia đứng chỗ lửa"),
         new Scn("cross", "-*2 Sub -*120", "thập tự quay phải; bia ở x +40 (trúng lượt đi + lượt về), bắt lại khi về"),
-        new Scn("stopwatch", "-*2 Sub -*40 Sub -*300", "đồng hồ (5 tim): bia đóng băng 300 tick; dùng lần 2 khi đang hiệu lực ⇒ vung roi"),
+        new Scn("stopwatch", "-*2 Sub -*40 Sub -*300", "đồng hồ (5 tim): bia đóng băng 186 tick (video) + roi vẫn vung; dùng lần 2 (sau 41 tick) khi đang hiệu lực ⇒ −5 tim nữa, đóng băng tính lại (video Map_2 f6928)"),
         new Scn("limit1", "-*2 Sub -*22 Sub -*30", "Shot I: dao 2 khi dao 1 còn bay ⇒ vung roi"),
         new Scn("limit2", "-*2 Sub -*22 Sub -*22 Sub -*30", "Shot II: 2 dao, dao 3 ⇒ roi"),
         new Scn("limit3", "-*2 Sub -*22 Sub -*22 Sub -*22 Sub -*30", "Shot III: 3 dao, dao 4 ⇒ roi"),
@@ -575,11 +575,16 @@ public static class AttackProbe
             if (recs[i].ticksA == recs[i - 1].ticksA)
                 frozen++;
         }
-        Expect("bia đóng băng đúng 300 tick (wiki 5 s)", WIKI_STOPWATCH_TICKS, frozen);
-        Expect("dùng lần 2 khi đồng hồ còn hiệu lực ⇒ không dùng (roi)", 1, s.throwCount);
-        Expect("lần 2 thành roi", 1, s.whipCount);
-        Expect("tim chỉ trừ 1 lần", 15, recs[last].hearts);
-        measures.Add("đồng hồ: bia dừng " + frozen + " tick / " + span + " tick theo dõi");
+        int second = -1;
+        for (int i = spawn + 1; i < recs.Count && second < 0; i++)
+            if (recs[i].hearts == 10)
+                second = i;
+        // CVM3 03: dùng lại khi còn hiệu lực ⇒ đóng băng tính lại từ lần 2 (video Map_2 f6928 → Medusa chạy lại f7021)
+        Expect("bia đóng băng = (lần 2 − lần 1) + 186 tick (video Map_2)", second - spawn + VIDEO_STOPWATCH_TICKS, frozen);
+        Expect("dùng lần 2 khi đồng hồ còn hiệu lực ⇒ dùng được (video f6928)", 2, s.throwCount);
+        Expect("đồng hồ = roi vẫn vung (không đếm roi riêng)", 0, s.whipCount);
+        Expect("tim trừ 2 lần", 10, recs[last].hearts);
+        measures.Add("đồng hồ: lần 2 sau " + (second - spawn) + " tick, bia dừng " + frozen + " tick / " + span + " tick theo dõi");
     }
 
     static void LimitChecks(int m)

@@ -68,8 +68,8 @@ public static class EnemyB46Probe
         new Scn("pbat_kill_l1", "-*1 " + WHIP5 + " -*40", "roi da hạ Phantom Bat thường (khựng 32 mỗi đòn giữ chân): 3 đòn, +200 (ước lượng), không quả cầu, ENEMY không đổi"),
         new Scn("pbat_kill_l2", "-*1 " + WHIP5 + " -*40", "roi xích: 2 đòn"),
         new Scn("pbat_touch", "-*200", "Stage 16: Phantom Bat thường bổ nhào trúng Simon: −4 vạch"),
-        new Scn("freeze_b46", "-*60 Sub -*400", "Stopwatch: Eagle + Fleaman, Bone Dragon, Red Skeleton, Axe Knight, Phantom Bat thường + đạn dừng 300 tick rồi chạy tiếp"),
-        new Scn("freeze_whip_axe", "-*2 Sub -*30 " + WHIP10 + " -*40", "Stopwatch + roi da: Axe Knight đứng yên vẫn ăn đủ 10 đòn (bộ đếm bất tử chạy khi đóng băng)"),
+        new Scn("freeze_b46", "-*60 Sub -*400", "Stopwatch: Eagle + Fleaman, Bone Dragon, Red Skeleton, Axe Knight, Phantom Bat thường + đạn dừng 186 tick rồi chạy tiếp"),
+        new Scn("freeze_whip_axe", "-*2 Sub -*30 " + WHIP5 + " Sub -*23 " + WHIP5 + " -*40", "Stopwatch + roi da: Axe Knight đứng yên vẫn ăn đủ 10 đòn (bộ đếm bất tử chạy khi đóng băng); CVM3 03: đồng hồ 186 tick < 10 roi ⇒ dùng lại đồng hồ giữa chừng (kéo dài — video Map_2 f6928)"),
         new Scn("rosary_b46", "-*200", "Rosary (RosaryClear) tick 150: mọi enemy + đạn Block 4–6 trên màn biến mất (Phantom Bat thường không phải boss), 0 điểm"),
     };
 
@@ -820,7 +820,7 @@ public static class EnemyB46Probe
                             if (f0 < 0 && recs[i].frozenE) f0 = i;
                             if (f0 >= 0 && f1 < 0 && !recs[i].frozenE) f1 = i;
                         }
-                        ExpectRange("Stopwatch giữ (tick)", 299, 301, f1 - f0);
+                        ExpectRange("Stopwatch giữ (tick) — video Map_2 186 (CVM3 03)", 185, 187, f1 - f0);
                         int moved = 0, spawned = 0, shotMoved = 0, movedAfter = 0;
                         foreach (var t in tracks)
                         {

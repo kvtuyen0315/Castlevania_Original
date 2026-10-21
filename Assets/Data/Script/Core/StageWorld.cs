@@ -439,7 +439,9 @@ public class StageWorld : MonoBehaviour
 
     public void FreezeEnemies(int ticks)
     {
-        enemyFreezeFrom = TickCount + 1;
+        // CVM3 03: dùng lại đồng hồ khi đang đóng băng ⇒ chỉ kéo dài, không hở tick đang chạy
+        if (!IsEnemyFrozen)
+            enemyFreezeFrom = TickCount + 1;
         enemyFreezeTo = TickCount + ticks;
     }
 

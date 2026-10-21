@@ -24,7 +24,7 @@ public static class EnemyB23Probe
     public const int WIKI_SCORE_RAVEN = 200, WIKI_SCORE_SKEL = 300, WIKI_SCORE_FLEA = 500, WIKI_PROJ_SCORE = 100;
     public const int WIKI_KNIGHT_W = 3, WIKI_KNIGHT_S = 2, WIKI_TOWER_W = 8, WIKI_TOWER_S = 6, WIKI_GHOST_W = 3, WIKI_GHOST_S = 2;
     public const int WIKI_DMG_B2 = 2, WIKI_DMG_B3 = 3;     // wiki Gameplay#Damage: Stage 4–6 = 2, 7–9 = 3
-    public const int WIKI_STOPWATCH = 300;
+    public const int VIDEO_STOPWATCH = 186;   // video:Map_2 (đo:cvm3-03 — CVM3_MEMORY §2d; wiki 5 s = 300 sai)
     // CVM2 08 — số đo video Map_2 (CVM2_MEMORY §2j)
     public const int VIDEO_KNIGHT_VX = 128;                // 0.5 px/tick (1 px / 2 tick)
     public const int VIDEO_KNIGHT_LEG_MAX = 192;           // quay ngẫu nhiên đều [16, 192]
@@ -84,7 +84,7 @@ public static class EnemyB23Probe
         new Scn("flea_kill", "-*2 " + WHIP5 + " -*20", "roi da hạ Fleaman: 1 đòn, +500"),
         new Scn("bat_black", "R*100 -*200", "Dơi treo (300,100) — chân Simon thấp hơn 76 < 80; Simon đi phải từ 150: |dx| < 96 ⇒ sà 31 px theo 1/4 sin trong 42 tick, ngang 1.5 px/tick, rồi bay ngang thẳng (video Map_2 Hall C)"),
         new Scn("bat_black_high", "-*200", "CVM2 08: dơi treo (210,88) — chân Simon (200,176) thấp hơn 88 ≥ 80 ⇒ KHÔNG rời chỗ dù |dx| 10 (video Map_2 Hall C đứng dy 87 chưa rời; TEA dy 107 không)"),
-        new Scn("freeze_b23", "-*60 Sub -*400", "Stopwatch: mọi enemy Block 2–3 + đạn + bộ sinh Medusa Head dừng 300 tick rồi chạy tiếp"),
+        new Scn("freeze_b23", "-*60 Sub -*400", "Stopwatch: mọi enemy Block 2–3 + đạn + bộ sinh Medusa Head dừng 186 tick rồi chạy tiếp"),
         new Scn("freeze_whip", "-*2 Sub -*10 " + WHIP5 + " -*40", "Stopwatch + roi da: Spear Knight đứng yên vẫn ăn đủ 3 đòn (bộ đếm bất tử chạy khi đóng băng — wiki)"),
         new Scn("rosary_b23", "-*200", "Rosary (RosaryClear) tick 150: mọi enemy + đạn Block 2–3 trên màn biến mất, 0 điểm"),
     };
@@ -939,7 +939,7 @@ public static class EnemyB23Probe
                             if (f0 < 0 && recs[i].frozenE) f0 = i;
                             if (f0 >= 0 && f1 < 0 && !recs[i].frozenE) f1 = i;
                         }
-                        Expect("Stopwatch đóng băng (tick) — wiki 5 s", WIKI_STOPWATCH, f1 - f0);
+                        Expect("Stopwatch đóng băng (tick) — video Map_2", VIDEO_STOPWATCH, f1 - f0);
                         int moved = 0, spawned = 0, shotMoved = 0, shotSpawned = 0, movedAfter = 0;
                         foreach (var t in tracks)
                         {

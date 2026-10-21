@@ -10,6 +10,9 @@ using UnityEngine;
 /// u = tick trong chu kỳ (0 = bắt đầu hạ, ở mốc lưới); 3 bẫy cùng lưới 16 tick (đổi nấc CÙNG frame; video: lưới trùng nhịp giảm TIME).
 /// Đồng hồ (Stopwatch) đóng băng chu kỳ (wiki Stages 4–6 + video 2:40.97: 3 bẫy đứng yên f4829–4922) nhưng gai VẪN chết người (wiki: dùng
 /// đồng hồ khi gai ở trên rồi chạy qua ⇒ gai treo vẫn là chướng ngại). Không nhận đòn (ô nền — roi đi xuyên).
+/// CVM3 03 — nối lại sau đồng hồ: lưới 16 tick vẫn chạy trong lúc đóng băng (ph), mốc lưới rơi vào lúc băng bị bỏ ⇒ đang chờ mốc
+/// (u ≥ DownStep·maxFrame) thì chỉnh u trong CÙNG ô lưới cho u ≡ ph (nhảy tới hoặc giữ) ⇒ nấc kế tiếp đúng mốc lưới (video Map_2 f4923:
+/// bẫy 1 k1→k0, bẫy 2 k0→k1 cùng frame TIME 270→269, 192 tick sau mốc f4827). Đang hạ (nhịp riêng 4 tick) ⇒ chạy tiếp (suy luận).
 /// Chạm khối gai đáy (32 × BlockHeight px dưới cùng; dây xích không giết — suy luận) ⇒ Simon chết ngay (wiki Gameplay: "hitting spikes will
 /// instantly kill you"; video Map_2 Simon không chạm lần nào) — bỏ qua bất tử nháy/tàng hình như nước/hố, cheat Invincible miễn.
 /// </summary>
@@ -25,6 +28,7 @@ public class Crusher : Entity
     [SerializeField] private int width = 32;
 
     private int maxFrame = 7, downStep = 4, grid = 16, b1 = 32, cycle = 128, u;
+    private int ph;   // pha lưới 0..grid−1 (chạy cả lúc Stopwatch — CVM3 03)
 
     public string MarkerId { get; private set; }
     /// <summary>Khung đang hiện 0..maxFrame (= số nấc đã hạ).</summary>
@@ -48,6 +52,7 @@ public class Crusher : Entity
         Kills = 0;
         Frame = 0;
         u = 0;
+        ph = 0;
     }
 
     /// <summary>Đặt bẫy (sau Spawn): treo tại (centerX, top), maxFrame nấc, nhịp hạ/lưới (tick), u lúc sinh (tick trong chu kỳ).</summary>
@@ -60,6 +65,7 @@ public class Crusher : Entity
         b1 = grid * (downStep * maxFrame / grid + 1);
         cycle = b1 + grid * (maxFrame - 1);
         u = ((startTick % cycle) + cycle) % cycle;
+        ph = u % grid;
         Frame = FrameAt(u);
         SetPositionPx(centerX, top);
     }
@@ -78,9 +84,22 @@ public class Crusher : Entity
     {
         if (!World.IsEnemyFrozen)
         {
-            u = (u + 1) % cycle;
+            int r = u % grid;
+            bool hold = false;
+            if (r != ph && u >= downStep * maxFrame)
+            {
+                if (ph > r)
+                    u += ph - r;          // tới pha lưới trong cùng ô (khung không đổi trong ô chờ)
+                else
+                    hold = true;          // giữ u tới khi pha lưới đuổi kịp
+            }
+            if (!hold)
+                u = (u + 1) % cycle;
+            ph = (ph + 1) % grid;
             Frame = FrameAt(u);
         }
+        else
+            ph = (ph + 1) % grid;
         var s = World.Player as SimonController;
         if (s == null || !s.Alive || s.IsDying || !s.Hurt.active || CvgpDebug.CheatInvincible)
             return;

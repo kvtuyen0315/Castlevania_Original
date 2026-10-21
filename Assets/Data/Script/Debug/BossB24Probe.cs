@@ -36,7 +36,7 @@ public static class BossB24Probe
     public const int EST_MUMMY_THROW_MIN = 128, EST_MUMMY_THROW_MAX = 224, EST_BANDAGE_V = 256, EST_BANDAGE_ABOVE = 28;
     public const int EST_FRANK_V = 64, EST_FRANK_WAKE = 16, EST_FRANK_ZONE_MIN = 128, EST_FRANK_ZONE_MAX = 216, EST_IGOR_START = 96;
     public const int EST_IGOR_RIDE = 40, EST_IGOR_SHORT_VX = 320, EST_IGOR_LONG_VX = 384, EST_IGOR_FIRE_EVERY = 2, EST_IGOR_BALL_V = 384;
-    public const int EST_IGOR_STUN = 120, STOPWATCH_TICKS = 300;
+    public const int EST_IGOR_STUN = 120, STOPWATCH_TICKS = 186;   // Stopwatch video:Map_2 (đo:cvm3-03 — CVM3_MEMORY §2d; wiki 5 s = 300 sai)
     public const int PILOT_MAX_TICKS = 7200;
 
     private struct Scn
@@ -52,7 +52,7 @@ public static class BossB24Probe
         new Scn("medusa_touch", "-*420", "Stage 6, Simon không bất tử đứng yên (64,176): Medusa chạm ⇒ −2 vạch/lần (wiki) + Medusa QUAY ngang ngay tick sau và nảy lên cao hơn đầu đoạn (video Boss_Map_2 f196)"),
         new Scn("medusa_snake_kill", "D*20 D+B D*40", "Arena: rắn (150,168) rơi rồi trườn 1.375 về Simon (100,176) ⇒ roi da NGỒI 1 đòn là chết (wiki), +100 (video Map_2 3:48.20)"),
         new Scn("medusa_snake_whip3", "-*20 B -*40", "Arena: rắn (150,168) trườn về Simon (100,176) ⇒ roi cấp 3 ĐỨNG hạ rắn (video Map_2 f6843–6849: roi ngang hàng NES 156–159 trúng rắn bò) 1 đòn, +100"),
-        new Scn("medusa_stopwatch", "-*200 Sub -*500", "Stopwatch ở tick 201 (đang bay; wiki: boss CUỐI Stopwatch còn tác dụng): Medusa + rắn đứng yên 300 tick rồi chạy tiếp; nhạc boss vẫn đúng thức + 57 (video Map_2: đồng hồ không giữ nhạc)"),
+        new Scn("medusa_stopwatch", "-*200 Sub -*500", "Stopwatch ở tick 201 (đang bay; wiki: boss CUỐI Stopwatch còn tác dụng): Medusa + rắn đứng yên 186 tick rồi chạy tiếp; nhạc boss vẫn đúng thức + 57 (video Map_2: đồng hồ không giữ nhạc)"),
         new Scn("medusa_rosary", "-*360", "Rosary (RosaryClear) tick 330 (rắn 2 vừa thả lúc rời chỗ dừng 1): rắn bị gỡ, Medusa (boss) còn, 0 điểm"),
         new Scn("medusa_kill_l1", "", "AUTOPILOT roi da (cấp 1): quay về Medusa, quất khi đoán trúng; 16 đòn (video: mọi đòn −1 vạch — CVM2 09), +3000, lửa, quả cầu sau 152, nhặt ⇒ tally", true),
         new Scn("medusa_room_wake", "L*139 -*600", "PHÒNG THẬT (section Medusa, BossArena map2_boss.json): Simon (200,144) đi TRÁI tới x 61 — camera khoá cx 0 lúc Simon x 128 (video Map_2 3:44.50), tường mép màn; 180 tick sau: xoá tile đầu tượng (marker statueHead), thân tượng giữ, đầu hiện (114,113), thả rắn; bay về Simon, dừng, rắn trườn trên sàn y 144 rồi ra mép trái; nhạc thức + 57"),

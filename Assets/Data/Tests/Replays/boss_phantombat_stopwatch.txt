@@ -1,3 +1,3 @@
 # 420 tick, hash 6ea5d195
-# CVGP 14 BossProbe kịch bản 'stopwatch': Stopwatch (wiki: có tác dụng với Phantom Bat): dơi đứng yên đúng 300 tick rồi bay tiếp
+# CVGP 14 BossProbe kịch bản 'stopwatch': Stopwatch (wiki: có tác dụng với Phantom Bat): dơi đứng yên đúng 186 tick (video Map_2) rồi bay tiếp
 -*420

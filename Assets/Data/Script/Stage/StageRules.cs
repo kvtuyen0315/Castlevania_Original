@@ -18,7 +18,8 @@ public enum eClockHold
 /// Không tự đăng ký NesClock (H7): nghe StageWorld.TickBegan (đầu tick, cả khi pause) và TickEnded (cuối tick).
 ///   • Đồng hồ: TIME −1 mỗi TimeUnitTicks (64 — đo 165 đv) tick thế giới; pha đặt lại khi stage/section bắt đầu (ResetClockPhase —
 ///     video: đơn vị đầu giảm 60–64 tick sau mỗi lần vào section); đứng khi pause, có eClockHold, Simon đang chết, tally. KHÔNG đứng khi
-///     nhặt roi (đóng băng thế giới — video 0:06.5). TIME 0 ⇒ Simon.KillByTimeout.
+///     nhặt roi (đóng băng thế giới — video 0:06.5). Stopwatch (CVM3 03): nhịp vẫn chạy, mốc rơi vào lúc đóng băng bị bỏ (TIME không giảm).
+///     TIME 0 ⇒ Simon.KillByTimeout.
 ///   • Pause: Start (NesPad) ⇒ StageWorld.Paused + tạm dừng nhạc; không pause khi đang đen / tally / chết / kịch bản / GameManager chuyển cảnh.
 ///   • Chết (Simon.Died): GameRules.LoseLife ⇒ còn mạng: đen RespawnBlackTicks rồi RestartStage (đầu stage — wiki: không checkpoint);
 ///     hết mạng: GameRules.EnterGameOver (GameManager ⇒ màn GAME OVER); scene thử không có GameManager ⇒ đen rồi tự Continue.
@@ -305,7 +306,11 @@ public class StageRules : MonoBehaviour
         // đồng hồ
         if (s.time > 0 && holds == eClockHold.None && !tally.Active && !tally.IsDone && simon != null && !simon.IsDying)
         {
-            if (++clockPhase >= timeUnit)
+            // CVM3 03: Stopwatch ⇒ nhịp TIME vẫn chạy nhưng mốc rơi vào lúc đóng băng bị BỎ (video Map_2: TIME 0270 giữ 192 tick,
+            // 0211 giữ 643 tick qua 2 lần đồng hồ, giảm lại đúng mốc lưới 64 tick)
+            if (++clockPhase >= timeUnit && world.IsEnemyFrozen)
+                clockPhase = 0;
+            else if (clockPhase >= timeUnit)
             {
                 clockPhase = 0;
                 s.time--;

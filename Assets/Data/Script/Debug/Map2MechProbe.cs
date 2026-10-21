@@ -91,9 +91,12 @@ public static class Map2MechProbe
             new Scn { name = "crusher_pass", section = "TowerHallC", x = 470, y = 144, facing = -1, rle = "-*160 L*135 -*10",
                 note = "Hall C: đứng chỗ an toàn giữa bẫy 2 và 3 (x 462–477), chờ 160 tick rồi đi trái liên tục dưới bẫy 2 + 1 tới x 335 ⇒ không chết (cửa sổ an toàn W 154–167 / 250–263 tính từ luật đo video; video 2:36–2:41 Simon chờ rồi qua, không trúng)",
                 shots = new[] { 170, 190, 215, 240 }, check = CheckCrusherPass },
-            new Scn { name = "crusher_stopwatch", section = "TowerHallC", x = 470, y = 144, facing = 1, rle = "-*2 Sub -*36 R*20 -*140",
-                note = "Hall C: ném đồng hồ khi bẫy 3 đang hạ ⇒ 3 bẫy đứng yên (wiki + video 2:40.97 f4829–4922) nhưng gai VẪN giết: Simon đi phải vào bẫy 3 đang treo thấp ⇒ chết Hazard",
+            new Scn { name = "crusher_stopwatch", section = "TowerHallC", x = 470, y = 144, facing = 1, rle = "-*14 Sub -*36 R*20 -*140",
+                note = "Hall C: ném đồng hồ khi bẫy 3 đang hạ (CVM3 03: đồng hồ có hiệu lực ngay tick bấm ⇒ bấm rel 14 thay 2) ⇒ 3 bẫy đứng yên (wiki + video 2:40.97 f4829–4922) nhưng gai VẪN giết: Simon đi phải vào bẫy 3 đang treo thấp ⇒ chết Hazard",
                 shots = new[] { 30, 45 }, check = CheckStopwatch },
+            new Scn { name = "crusher_resume_video", section = "TowerHallC", x = 300, y = 144, facing = 1, rle = "-*28 Sub -*240",
+                note = "CVM3 03 — dựng lại video Map_2 f4827–4923: đồng hồ bấm 4 tick sau mốc lưới bẫy ⇒ 3 bẫy đứng 186 tick rồi đổi nấc CÙNG tick ở mốc lưới +192 (video: TIME 0270 giữ 192.3 tick, bẫy 1 k1→k0 + bẫy 2 k0→k1 f4923)",
+                shots = new[] { 28, 214, 216 }, check = CheckCrusherResume },
             new Scn { name = "pit_respawn", section = "TowerHallA", x = 304, y = 120, facing = -1, rle = "-*420",
                 note = "Hall A + StageRules (đầu STAGE 05 = Hall A (720,80)): thả giữa hố cột 18–19 ⇒ rơi ra đáy ⇒ FallDeath Pit ⇒ LifeLost Fall ⇒ đen ⇒ hồi sinh đầu stage, P −1",
                 check = CheckPitRespawn },
@@ -319,6 +322,7 @@ public static class Map2MechProbe
                 s.home = new Vector2Int(560, 144);  // autoRespawn Arena hồi sinh ngoài tầm bẫy (không bị giết lần 2)
                 break;
             case "crusher_stopwatch":
+            case "crusher_resume_video":
                 ses.subWeapon = eSubWeapon.Stopwatch;
                 ses.hearts = 20;
                 ses.NotifyChanged();
@@ -796,6 +800,36 @@ public static class Map2MechProbe
         Expect("gai đóng băng VẪN giết khi đi vào: chết Hazard", 1, deaths >= 1 && deathKind == eTileCollision.Hazard ? 1 : 0);
         Expect("chết trong lúc bẫy đang đóng băng", 1, dyingRel > f0 && (f1 < 0 || dyingRel < f1) ? 1 : 0);
         measures.Add("đóng băng từ rel " + f0 + (f1 > 0 ? " tới " + f1 + " (" + (f1 - f0) + " tick)" : " tới hết bản ghi") + ", bẫy 3 khung " + k3 + ", chết rel " + dyingRel);
+    }
+
+    /// <summary>CVM3 03: mốc lưới bẫy g0 (u ≡ 0 mod lưới) ngay trước lần bấm; bẫy đổi khung lần đầu sau đồng hồ phải ở g0 + 192 (video f4923), cả 3 cùng tick.</summary>
+    static void CheckCrusherResume()
+    {
+        const int VIDEO_RESUME = 192, VIDEO_PRESS = 4, STOPWATCH = 186;
+        int press = -1;
+        for (int i = 1; i < recs.Count && press < 0; i++)
+            if (recs[i].cu[0] == recs[i - 1].cu[0])
+                press = i - 1;   // rel cuối còn chạy (tick bấm — đóng băng từ tick sau)
+        int g0 = -1;
+        for (int i = press; i >= 0 && g0 < 0; i--)
+            if (recs[i].cu[0] % 16 == 0)
+                g0 = i;
+        var first = new int[crushers.Count];
+        for (int c = 0; c < crushers.Count; c++)
+        {
+            first[c] = -1;
+            for (int i = press + 2; i < recs.Count && first[c] < 0; i++)
+                if (recs[i].cf[c] != recs[i - 1].cf[c])
+                    first[c] = i;
+        }
+        Expect("bấm 4 tick sau mốc lưới (như video f4827 → f4829)", VIDEO_PRESS, press - g0);
+        bool same = true;
+        for (int c = 1; c < crushers.Count; c++) same &= first[c] == first[0];
+        Expect("3 bẫy đổi nấc lại CÙNG tick", 1, same ? 1 : 0);
+        ExpectRange("đổi nấc lại ở mốc lưới +192 sau mốc trước (video 192.3 ±2)", VIDEO_RESUME - 2, VIDEO_RESUME + 2, first[0] - g0);
+        Expect("đổi nấc lại đúng mốc lưới (u ≡ 0 mod 16)", 0, first[0] >= 0 ? recs[first[0]].cu[0] % 16 : -1);
+        ExpectRange("không đổi nấc trong lúc đóng băng (186 tick)", press + STOPWATCH + 1, 99999, first[0]);
+        measures.Add("mốc lưới rel " + g0 + ", bấm rel " + press + ", đổi nấc lại rel " + string.Join("/", first) + " (= mốc + " + (first[0] - g0) + "; video +192.3)");
     }
 
     static void CheckPitRespawn()
