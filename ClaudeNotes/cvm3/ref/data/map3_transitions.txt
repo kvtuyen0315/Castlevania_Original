@@ -1,0 +1,41 @@
+== 1. Bản đồ B2 -> đen -> STAGE 07 (frame video @30 fps; tick = 2 x frame, sai số +-2 tick)
+map trượt VÀO từ phải sang trái (mép trái bản đồ x=231 ở f4 -> x≈6 ở f80): -3.007 px/frame video = -1.503 px/tick (dư tối đa 2.4 px); dừng ≈ f81 (0:02.70)
+Simon nhỏ hiện f82 (0:02.73) tại x≈17, đi phải 2.008 px/frame = 1.004 px/tick (dư tối đa 2.3 px); x(f182)=219
+đen: f194-f206 (13 frame = 26 tick, 0:06.47-0:06.87), f1187-f1197 (11 frame = 22 tick, 0:39.57-0:39.90), f3263-f3274 (12 frame = 24 tick, 1:48.77-1:49.13), f7453-f7463 (11 frame = 22 tick, 4:08.43-4:08.77)
+
+== 2. TIME / STAGE
+STAGE None -> 07 tại f0 (0:00.00) TIME 0000
+STAGE 07 -> 08 tại f2645 (1:28.17) TIME 0432
+STAGE 08 -> 09 tại f4546 (2:31.53) TIME 0380
+STAGE 09 -> 10 tại f7464 (4:08.80) TIME 0000
+TIME đứng yên > 80 frame video (>160 tick; bình thường 1 đơn vị TIME / ~64 tick ≈ 32 frame): TIME 0000 f0-f193 (0:00.00-0:06.43, 386 tick); TIME 0432 f2412-f2673 (1:20.40-1:29.10, 522 tick); TIME 0380 f4326-f4572 (2:24.20-2:32.40, 492 tick); TIME 0306 f6907-f7032 (3:50.23-3:54.40, 250 tick); TIME 0000 f7186-f7452 (3:59.53-4:08.40, 532 tick); TIME 0000 f7464-f7547 (4:08.80-4:11.57, 166 tick)
+
+== 3. Cửa PHẢI (vùng ghép cxw 512..768; cuộn tới 768 = cx 0 của vùng sau)
+-- WEB>WA: f2440-f2644 (1:21.33-1:28.13) = 205 frame = 410 tick; cxw 516 -> 766
+   cuộn f2442-f2502 (1:21.40-1:23.40, 120 tick) cxw 516 -> 640: 1.985 px/frame = 0.993 px/tick (dư 1.4)
+   đứng f2504-f2557 (1:23.47-1:25.23, 106 tick) cxw=640
+   cuộn f2582-f2644 (1:26.07-1:28.13, 124 tick) cxw 640 -> 766: 2.028 px/frame = 1.014 px/tick (dư 1.8)
+   Simon tìm thấy 129/205 frame; mẫu: f2440:wx742,Y160,idle_0 f2449:wx742,Y160,idle_0 f2458:wx742,Y160,idle_0 f2467:wx742,Y160,idle_0 f2476:wx742,Y160,idle_0 f2485:wx742,Y160,idle_0 f2494:wx742,Y160,idle_0 f2503:wx742,Y160,idle_0 f2512:wx742,Y160,idle_0 f2597:wx816,Y160,idle_0 f2606:wx816,Y160,idle_0 f2615:wx816,Y160,idle_0 f2624:wx816,Y160,idle_0 f2633:wx816,Y160,idle_0 f2642:wx816,Y160,idle_0
+-- WB>MM: f4338-f4544 (2:24.60-2:31.47) = 207 frame = 414 tick; cxw 516 -> 767
+   cuộn f4339-f4378 (2:24.63-2:25.93, 78 tick) cxw 516 -> 596: 2.005 px/frame = 1.002 px/tick (dư 1.4)
+   cuộn f4381-f4401 (2:26.03-2:26.70, 40 tick) cxw 596 -> 640: 2.003 px/frame = 1.001 px/tick (dư 1.1)
+   đứng f4402-f4457 (2:26.73-2:28.57, 110 tick) cxw=640
+   cuộn f4483-f4544 (2:29.43-2:31.47, 122 tick) cxw 640 -> 767: 2.019 px/frame = 1.010 px/tick (dư 2.7)
+   Simon tìm thấy 102/207 frame; mẫu: f4338:wx740,Y128,idle_0 f4345:wx740,Y128,idle_0 f4352:wx740,Y128,idle_0 f4359:wx740,Y128,idle_0 f4366:wx740,Y128,idle_0 f4373:wx740,Y128,idle_0 f4380:wx740,Y128,idle_0 f4387:wx740,Y128,idle_0 f4394:wx740,Y128,idle_0 f4401:wx740,Y128,idle_0 f4408:wx740,Y128,idle_0 f4415:wx743,Y128,walk_2 f4422:wx756,Y128,idle_0 f4453:wx813,Y123,walk_1 f4531:wx813,Y123,walk_1
+
+== 4. Khoá camera phòng Mummy (cx -> 1280)
+cx đạt 1280 lần đầu f5931 (3:17.70); cx trước đó: f5820:1191 f5830:1212 f5840:1219 f5850:1219 f5860:1232 f5870:1253 f5880:1253 f5890:1263 f5900:1263 f5910:1263 f5920:1263 f5930:1279
+tốc độ cx ~ 0.396 px/frame = 0.198 px/tick (70 frame cuối; dư 10.5)
+Simon quanh khoá: f5871:wx1381,Y208,idle_0 f5877:wx1381,Y208,idle_0 f5883:wx1381,Y208,idle_0 f5889:wx1391,Y208,idle_0 f5895:wx1390,Y197,death_ f5901:wx1391,Y172,use_st f5907:wx1391,Y179,jumpdu f5913:wx1391,Y208,idle_0 f5919:wx1391,Y208,idle_0 f5925:wx1397,Y208,idle_0 f5931:wx1409,Y208,walk_2 f5937:wx1420,Y208,idle_0 f5943:wx1429,Y208,idle_0 f5949:wx1420,Y208,walk_2 f5955:wx1407,Y208,idle_0 f5961:wx1395,Y208,walk_2 f5967:wx1383,Y208,walk_1
+
+== 5. Đổi tầng bằng thang lên-trái (frame đen)
+-- đen f1187-f1197 (0:39.57-0:39.90, 22 tick): trước f1179:cx0,px106,Y70,stairs_up f1180:cx0,px105,Y69,stairs_up f1181:cx0,px104,Y68,stairs_up f1182:cx0,px104,Y68,stairs_up f1183:cx0,px103,Y69,walk_1 f1184:cx0,px102,Y68,walk_1 f1185:cx0,px100,Y66,walk_1 f1186:cx0,px100,Y66,walk_1 | sau f1198:cx0,px96,Y221,walk_1 f1199:cx0,px95,Y220,walk_1 f1200:cx0,px94,Y219,walk_1 f1201:cx0,px93,Y218,walk_1 f1202:cx0,px92,Y215,stairs_up f1203:cx0,px91,Y214,stairs_up f1204:cx0,px90,Y213,stairs_up f1205:cx0,px89,Y212,stairs_up f1206:cx0,px88,Y213,walk_1 f1207:cx0,px87,Y212,walk_1
+   camera: f1184:Walkwa/0 f1187:-/-1 f1190:-/-1 f1193:-/-1 f1196:-/-1 f1199:Walkwa/0
+-- đen f3263-f3274 (1:48.77-1:49.13, 24 tick): trước f3255:cx490,px128,Y71,stairs_up f3256:cx489,px128,Y70,stairs_up f3257:cx488,px128,Y69,stairs_up f3258:cx487,px128,Y68,stairs_up f3259:cx486,px128,Y69,walk_1 f3260:cx484,px128,Y67,walk_1 f3261:cx483,px128,Y66,walk_1 f3262:cx482,px128,Y63,stairs_up | sau 
+   camera: f3260:Walkwa/484 f3263:-/-1 f3266:-/-1 f3269:-/-1 f3272:-/-1 f3275:Walkwa/-33
+
+== 6. Tally Block 3
+Mummy1 chết (+3000): f6686 ; Mummy2 chết (+3000): f6771
+TIME 0304 (đầu đếm TIME) f7033 (3:54.43); TIME 0000 f7186 (3:59.53): 153 frame = 306 tick cho 304 đơn vị => 1.01 tick/đơn vị
+tim 46 -> 45 f7213 (4:00.43), tim 00 f7392 (4:06.40): 179 frame = 358 tick cho 46 tim => 7.78 tick/tim
+chờ sau TIME 0000 -> tim đầu: 54 tick ; sau tim cuối -> đen f7453: 122 tick ; đen 22 tick

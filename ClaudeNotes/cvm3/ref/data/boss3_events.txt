@@ -1,0 +1,52 @@
+# boss3_events.txt (CVM3 02) - sự kiện HUD Boss_Map_3 (f = frame @30 fps; hud_events3.py). pbar/pempty = vạch PLAYER đầy/rỗng (giảm = trúng đòn −3; tăng = hồi), ebar = vạch ENEMY (16 dùng chung 2 Mummy). Diễn giải: MAP3_TIMELINE §5/§6
+f    0 0:00.00 TIME 0000 | start
+f   34 0:01.13 TIME 0240 | score:009840->016900 stage:07->09 hearts:05->07 pbar:16->4 pempty:0->7 ebar:0->16 eempty:16->0 mult:x2->
+f   90 0:03.00 TIME 0238 | sub:occ->dagger
+f  196 0:06.53 TIME 0235 | score:016900->017000
+f  302 0:10.07 TIME 0232 | pbar:4->5 pempty:7->6
+f  306 0:10.20 TIME 0231 | pbar:5->6 pempty:6->5
+f  310 0:10.33 TIME 0231 | pbar:6->7 pempty:5->4
+f  314 0:10.47 TIME 0231 | pbar:7->8 pempty:4->3
+f  318 0:10.60 TIME 0231 | pbar:8->9 pempty:3->2
+f  322 0:10.73 TIME 0231 | pbar:9->10
+f  405 0:13.50 TIME 0228 | hearts:07->08
+f  452 0:15.07 TIME 0227 | ebar:16->15 eempty:0->1
+f  507 0:16.90 TIME 0225 | score:017000->017100 ebar:15->14 eempty:1->2
+f  542 0:18.07 TIME 0224 | pbar:10->9
+f  545 0:18.17 TIME 0224 | pbar:9->8 pempty:2->3
+f  549 0:18.30 TIME 0224 | pbar:8->7 pempty:3->4
+f  575 0:19.17 TIME 0223 | ebar:14->13 eempty:2->3
+f  640 0:21.33 TIME 0221 | score:017100->017200 ebar:13->12 eempty:3->4
+f  664 0:22.13 TIME 0220 | ebar:12->11 eempty:4->5
+f  690 0:23.00 TIME 0219 | ebar:11->10
+f  702 0:23.40 TIME 0219 | pbar:7->5 pempty:4->6
+f  706 0:23.53 TIME 0219 | pbar:5->4 pempty:6->7
+f  712 0:23.73 TIME 0219 | eempty:5->6
+f  729 0:24.30 TIME 0218 | score:017200->017300
+f  774 0:25.80 TIME 0217 | ebar:10->9 eempty:6->7
+f  798 0:26.60 TIME 0216 | pbar:4->2 pempty:7->9
+f  802 0:26.73 TIME 0216 | pbar:2->1 pempty:9->10
+f  823 0:27.43 TIME 0215 | ebar:9->8 eempty:7->8
+f  837 0:27.90 TIME 0215 | score:017300->017400
+f  840 0:28.00 TIME 0215 | ebar:8->7 eempty:8->9
+f  848 0:28.27 TIME 0215 | score:017400->020500
+f  851 0:28.37 TIME 0214 | ebar:7->6 eempty:9->10
+f  874 0:29.13 TIME 0214 | ebar:6->5 eempty:10->11
+f  903 0:30.10 TIME 0213 | score:020500->020600 ebar:5->4 eempty:11->12
+f  931 0:31.03 TIME 0212 | ebar:4->3 eempty:12->13
+f  956 0:31.87 TIME 0211 | ebar:3->2 eempty:13->14
+f  982 0:32.73 TIME 0210 | ebar:2->1 eempty:14->15
+f 1005 0:33.50 TIME 0210 | score:020600->023600 ebar:1->0 eempty:15->16
+f 1223 0:40.77 TIME 0203 | pbar:1->2 pempty:10->9
+f 1228 0:40.93 TIME 0203 | pbar:2->3 pempty:9->8
+f 1232 0:41.07 TIME 0203 | pbar:3->4 pempty:8->7
+f 1236 0:41.20 TIME 0203 | pbar:4->5 pempty:7->6
+f 1243 0:41.43 TIME 0203 | pbar:5->7 pempty:6->4
+f 1248 0:41.60 TIME 0203 | pbar:7->8 pempty:4->3
+f 1252 0:41.73 TIME 0203 | pbar:8->9 pempty:3->2
+f 1256 0:41.87 TIME 0203 | pbar:9->10
+f 1260 0:42.00 TIME 0203 | pbar:10->11 pempty:2->1
+f 1264 0:42.13 TIME 0203 | pbar:11->12 pempty:1->0
+f 1267 0:42.23 TIME 0203 | pbar:12->13
+f 1271 0:42.37 TIME 0203 | pbar:13->14
+f 1276 0:42.53 TIME 0203 | pbar:14->15

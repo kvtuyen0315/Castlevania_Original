@@ -24,7 +24,7 @@ Video kèm: `C:\Users\kvtuy\Videos\Screen Recordings\Castlevania_Original\Map_3.
 |---|---|---|---|---|---|
 | 00 | cvm3-00-ha-tang-so-ghi-nho-va-baseline | **XONG** | (commit "CVM3 00") | 21/10/2026 | sổ này + commit đồ planner + kiểm mẫu số (§7) + baseline 3 phiên Play: **mọi hash = Bảng hash chuẩn CVM2 12** (Arena `full` 14/14, core, Main 14 bộ), H8 5/5 ×3 fps |
 | 01 | cvm3-01-nhap-sheet-level3-va-kiem-ke | **XONG** | (commit "CVM3 01") | 21/10/2026 | sheet Level 3 chép nguyên byte (sha256 khớp) + SOURCES; kiểm kê chạy lại y hệt planner (JSON + ảnh trùng byte, 125 tile 8×8 / 83 metatile); đối chiếu Tilesets (§3b); sprite Block 3 đủ 32 ô, verify 0 lỗi; không đổi runtime ⇒ hash chuẩn giữ nguyên |
-| 02 | cvm3-02-hieu-chuan-video-timeline-va-su-kien | chưa chạy | | | |
+| 02 | cvm3-02-hieu-chuan-video-timeline-va-su-kien | **XONG** (Simon phủ 87 % < 90 % — §6) | (commit "CVM3 02") | 21/10/2026 | hiệu chuẩn tinh 15+8 frame (ZNCC 0.973 / grad 0.943), HUD + camera (cx −112 WalkwayB) + Simon từng frame, chuyển cảnh theo tick, 161 sự kiện, **Map_3 0 lần trúng đòn / boss 3 lần −3 vạch**, âm thanh; `ref/MAP3_TIMELINE.md` viết lại + `ref/data/*`; không đổi runtime ⇒ hash chuẩn giữ nguyên |
 | 03 | cvm3-03-dong-ho-stopwatch-theo-video | chưa chạy | | | |
 | 04 | cvm3-04-simon-knockback-nuoc-thanh-mep-roi | chưa chạy | | | |
 | 05 | cvm3-05-tilemap-va-luoi-va-cham-block3 | chưa chạy | | | |
@@ -38,13 +38,18 @@ Video kèm: `C:\Users\kvtuy\Videos\Screen Recordings\Castlevania_Original\Map_3.
 
 ## §2 Số đo
 
-### 2a. Hiệu chuẩn video → lưới NES (planner 17/10 — `CVM3_PLAN §3a`; routine 02 đo kỹ)
-| | Map_3 (1488×760) | Boss_Map_3 (1370×772) |
+### 2a. Hiệu chuẩn video → lưới NES (routine 02, 21/10 — `ref/MAP3_TIMELINE §1`; `Tools/cvm3/nes3.py` CALIB)
+| | Map_3 (1488×760, 7548 f) | Boss_Map_3 (1370×772, 1282 f) |
 |---|---|---|
-| `x_NES = (x_v − ox)/sx − ½`, `y_NES = (y_v − oy)/sy − ½` | **sx 3.859, sy 3.310, ox 240.93, oy −21.92** (ZNCC 0.977 / 0.894 TB 5 frame) | **sx 3.845, sy 3.363, ox 195.76, oy −21.77** (ZNCC gradient 0.94) |
-| Tỉ lệ pixel | 7/6 | 8/7 |
+| `x_NES = (x_v − ox)/sx − ½`, `y_NES = (y_v − oy)/sy − ½` | **sx 3.862, sy 3.310, ox 240.044, oy −21.92** (15 frame, **ZNCC TB 0.9728**; sai số sx ±0.003, ox ±0.3 px video) | **sx 3.845, sy 3.372, ox 195.76, oy −22.392** (8 frame, **ZNCC gradient TB 0.9431**) |
+| Khung game mới/s | **22.7** (24 % lặp) ⇒ mốc ±2 tick | **19.6** |
+(Planner 17/10: sx 3.859 / ox 240.93, boss sy 3.363 / oy −21.77 — lệch < 1 px NES.) Watermark: Map_3 nút nhỏ góc trên-phải; boss chữ mờ giữa HUD (y 16–30) + ko-fi dưới-trái (y 214–222) — không ảnh hưởng đọc số.
 
-Kiểm lại routine 00 (21/10): `calib_map3.py map3 12:WalkwayEntranceA:512 92:WalkwayA:0 140:WalkwayB:512` ⇒ sx 3.860 / sy 3.310 / ox 240.40 / oy −21.92, ZNCC 0.9786 — lệch planner sx 0.001, sy 0, ox 0.53 px video (≈ 0.14 px NES), oy 0 ⇒ đạt (≤ 0.005 / ≤ 1 px).
+### 2c. Số đo Map 3 chính (routine 02; chi tiết `ClaudeNotes/cvm3/ref/MAP3_TIMELINE.md` + `ref/data/`)
+- **Trúng đòn**: Map_3 **0 lần** (PLAYER 16/16, P-04 suốt). Boss_Map_3 **3 lần, mỗi lần −3 vạch** (10→7→4→1; 1 vạch/≈ 7–8 tick); knockback #1 **+26 px ngược hướng mặt, đỉnh −13 giữ ~18 tick, ≈ 32 tick**; #2/#3 sát tường phải (x 239): **không di chuyển ngang nhưng vẫn nhảy −12, ≈ 30 tick**. Hồi: thịt nướng +6 vạch, quả cầu ~7.6 tick/vạch. (`ref/data/map3_hits.csv`.)
+- **Chuyển cảnh**: bản đồ B2 trượt −1.503 px/tick dừng f81, Simon nhỏ +1.004 px/tick, **đen 26 tick**, STAGE 07 TIME 0500 f207; thang lên-trái đen **22 / 24 tick**; cửa phải: cuộn 128 px ×2 ở **~1.0 px/tick** (≈ 124–126 tick mỗi lần) + dừng **~158–162 tick**, STAGE +1 cuối cuộn 2, tổng **408 / 414 tick**, TIME đứng ~522 / 508 tick; cx kẹp 1280 (Simon wx ≥ 1408); Mummy +3000 **mỗi con**, ENEMY 16 vạch dùng chung; quả cầu ≈ 150 tick sau Mummy 2 (boss ≈ 120), nhặt → chờ **226 tick** → TIME **1.01 tick/đv** (+10 điểm/đv) → nghỉ 54 → tim **7.78 tick/tim** → 122 → đen 22 → STAGE 10 f7464.
+- **WalkwayB cx min −112** (camera bám Simon, không kẹp trái); cột trái = trời thuần, mặt cầu bắt đầu x = 0, vách đá thò tới x ≈ −32. Icon vũ khí cuối = **II** (planner ghi III sai).
+- Nhạc: Wicked Child t0 6.862 s (= lúc hiện STAGE 07), lặp 45.27 s; Poison Mind ≈ 198.9 s (~75 tick sau khoá); Stage Clear = nhặt cầu; tally/bản đồ B3 im 4:06.9 →.
 
 ### 2b. Mốc chính (planner; `ref/MAP3_TIMELINE.md §3`) — đã trích lại ở routine 00 (ảnh `_cache/shots/00/sheet.png`)
 | Mốc | Sự kiện | Kiểm 00 |
@@ -146,8 +151,13 @@ Chỉ Editor, đang Play, `runInBackground = true`. Gọi bằng `execute_code` 
 5. Mummy Men: video cho **mỗi con +3000** (wiki không nói rõ) — routine 09 theo video (H1).
 6. Người dùng viết "map 2" — planner hiểu là **Map 3**. Sai thì dừng cụm.
 7. Kết thúc game (credits/ending/Second Quest) — vẫn chờ.
+8. (02 CVM3, mới) **Sát thương Block 3 = 3 vạch/đòn** (đo Boss_Map_3; Block 1–2 = 2): dùng chung cho Skeleton/Raven/… hay chỉ băng gạc Mummy? Map_3 không có đòn nào để đo ⇒ routine 04/07/08 theo wiki (sát thương theo stage), ghi §4 — nếu người dùng có clip Skeleton/Fleaman trúng Simon thì đối chiếu.
 
 ## §6 Nợ & việc ngoài phạm vi (chép mục còn mở liên quan Block 3 từ `CVM2_MEMORY §6`)
+- (02 CVM3) **Simon từng frame Map_3 phủ 81.4 % khớp / 87.0 % sau nội suy (< 90 %)**; hố lớn f341–496 (nền lệch LUT), cửa #1, sau đổi tầng WalkwayB f3275–3320; boss 47 %. Đủ cho bảng sự kiện/trúng đòn (khớp 100 % hit #1/#2; #3 bị Mummy che) — nếu routine sau cần quỹ đạo Simon dày hơn: chạy lại `simon3.py` với LUT riêng đoạn WEA hoặc đo tay bằng `strip3.py`.
+- (02 CVM3) **Hit #3 boss** Simon bị Mummy che f806–834 (không đo knockback); +100 trong trận boss (5 lần) chưa phân biệt được "đòn trúng Mummy" hay "phá băng gạc" — routine 09 xác nhận bằng ảnh phóng to (khung f503/507, 636/640, 725/729, 833/837, 899/903).
+- (02 CVM3) Nhạc Poison Mind chuyển ≈ 1.2 s sau khóa: ±0.3 s (cửa sổ 1 s) — routine 09/11 nếu cần chính xác hơn dùng `music3.py pos`.
+- (02 CVM3) Loại enemy ở bảng hạ (§4 timeline) suy theo giá trị điểm wiki (ảnh xác nhận ~12/29) — 07/08 xác minh từng loại khi dựng.
 - (CVM2 ACCEPT12) Đồng hồ 300 vs video 186–196 tick → routine 03; knockback 12 vs 31–32 px → routine 04; enemy rơi vật → routine 08.
 - (CVM2 03) **Đồng hồ dừng nhạc 2.40 s** (Map_2 2:40.97, 1 lần đo) — chưa dựng; Stage 8 có nến đồng hồ ⇒ routine 03 kiểm bằng Map_3 (`CVM2 §5 #7`).
 - (CVM2 03) Wicked Child lặp tụt âm (§5 #1).
@@ -175,3 +185,11 @@ Chỉ Editor, đang Play, `runInBackground = true`. Gọi bằng `execute_code` 
 - Sprite: 32 ô có đủ, verify 0 lỗi; Mummy đỏ = nháy bảng màu dùng `mummy_red_*` (§3b).
 - **Câu hỏi §5 mới**: không.
 - **Nghiệm thu routine 01**: [x] sheet nguyên byte + SOURCES · [x] kiểm kê y hệt + bảng Tilesets + ảnh · [x] bảng sprite §3b, verify 0 lỗi · [x] không đổi runtime ⇒ hash chuẩn y nguyên (không chạy lại bộ; chưa đo lại — chỉ suy ra do không đụng Assets).
+
+### Routine 02 — 21/10/2026 — Hiệu chuẩn tinh 2 video, HUD/camera/Simon từng frame, chuyển cảnh, sự kiện, trúng đòn, âm thanh
+- **Bước 0**: `main`; nhiễu nền giữ nguyên; cổng 00/01 = XONG. Không đụng Unity (python + ffmpeg + file; không ghi `.cs`/asset; MCP không cần) ⇒ **không đổi runtime, mọi hash giữ Bảng hash chuẩn (không chạy lại bộ)**.
+- **Công cụ mới** `Tools/cvm3/*3.py` (copy từ `Tools/cvm2` + sửa: vùng ghép cửa phải `WEB>WA`/`WB>MM`, đệm trời cx âm WalkwayB, LUT theo video, icon vũ khí nước thánh/đồng hồ/dao găm) + `strip3.py`, `trans3.py`, `events3.py`, `music3.py`.
+- **Kết quả**: §2a + §2c (số liệu chính); `ref/MAP3_TIMELINE.md` viết lại §1–§8 (189 dòng); `ref/data/` (HUD/camera/Simon CSV 7548 + 1282 dòng, 161 sự kiện, hits, transitions, audio, calib, dup); 15 ảnh mới `ref/nes/cvm3_02_*.png` (đã xem) + lưới 40 ảnh planner (đã xem, đổi tên 2).
+- **Đính chính planner**: Map_3 0 lần trúng đòn; vật = II; khung/s 22.7 & 19.6; ENEMY 16 vạch chung; túi St08 ở mút trái cầu; không có nhạc Wicked Child "sớm" ở STAGE 07 (0 tick).
+- **Câu hỏi §5 mới**: #8 (sát thương Block 3 = 3 vạch dùng chung?).
+- **Nghiệm thu routine 02**: [x] hiệu chuẩn Map_3 15 frame ZNCC 0.973 (≥ 0.93) + boss 8 frame grad 0.943; hàng nhìn thấy + watermark ghi rõ · [x] HUD từng frame + 161 sự kiện, **20 frame kiểm mắt 0 sai**, bảng trúng đòn đủ 2 video · [~] Simon/camera từng frame: camera 100 % game, cx âm đo được (−112); **Simon 81.4 % khớp / 87.0 % nội suy — chưa đạt 90 %** (độ phủ ghi rõ) · [x] chuyển cảnh có tick + sai số · [x] `MAP3_TIMELINE` viết lại + `CVM3_MEMORY §2`, ảnh mốc đã xem.

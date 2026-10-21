@@ -1,121 +1,188 @@
 # Chỉ mục timeline + hiệu chuẩn video tham chiếu — Castlevania NES Map 3 (Block 3: Stage 07–09)
 
-> **Bản PLANNER (thô, 17/10/2026)** — routine `cvm3-02` đo lại tới từng frame/tick và VIẾT LẠI file này (khuôn `ClaudeNotes/cvm2/ref/MAP2_TIMELINE.md`).
-> Số ở đây đọc bằng mắt trên lưới NES mỗi 0.25–2 s + phân đoạn tự động 5 fps ⇒ **sai số mốc ±0.2–0.5 s**, toạ độ ±4 px. Đừng dựng game từ số planner.
-> Công cụ planner (chạy được): `ClaudeNotes/cvm3/_cache/tools/` (bản lưu `ref/tools/`): `nes3.py` (hiệu chuẩn + đọc frame + lấy mẫu lưới NES),
-> `calib_map3.py`, `calib_boss3.py` (gradient — video boss khác bảng màu), `locate_map3.py` (section + cx mỗi frame), `nes_sheets3.py` (lưới ảnh có nhãn giây),
-> `save_refs3.py` (40 ảnh mốc), `inv_level3_tiles.py` (kiểm kê sheet). Chạy từ `ClaudeNotes/cvm3/_cache/`: `python -P -E tools/<script>.py …`.
+> **Bản ĐO (routine `cvm3-02`, 21/10/2026)** — viết lại từ bản planner 17/10: hiệu chuẩn tinh, HUD/camera/Simon từng frame (30 fps gốc), chuyển cảnh theo tick, sự kiện, trúng đòn, âm thanh.
+> Quy ước: `f` = frame video @30 fps ⇒ **tick NES ≈ 2·f** (60 Hz), nhưng video chỉ có **~22.7 khung mới/s** (Map_3) / **19.6** (boss) ⇒ mốc đơn lẻ **±2 tick**, thời lượng ≥ 60 tick lấy bằng hồi quy/đồng hồ TIME (1 đơn vị TIME = 64 tick).
+> Dữ liệu từng frame (commit): `ref/data/` — `map3_hud.csv`, `map3_camera.csv`, `map3_simon.csv`, `boss3_*.csv`, `map3_events.txt`, `map3_hits.csv`, `map3_transitions.txt`, `*_audio_cues.txt`, `*_music_seg.txt`, `calib_*.txt`, `dup_*.txt`. Công cụ: `Tools/cvm3/*3.py` (cách chạy §8). Cache nặng (không commit): `_cache/02/work/` (`map3_nes.npy`, blob, LUT…), ảnh `_cache/shots/02/`.
+> **Đính chính planner (đo được):** (1) **PLAYER không giảm lần nào trong Map_3** (16/16, P-04 ở 7501/7501 frame hud_ok); (2) vật nhặt sau Mummy là **II (nhân đôi)** — không phải III; (3) video Map_3 ≈ 22.7 khung/s (planner 18), boss ≈ 19.6 (planner 21.7); (4) Mummy: ENEMY bar **dùng chung 16 vạch cho cả 2 con**; (5) túi +1000 St08 nhặt ở **mút trái cầu (x ≈ 13)**.
 
-## §1. Hai video
+## §1. Hai video + hiệu chuẩn tinh
 
 | | `Map_3.mp4` | `Boss_Map_3_Behaviour.mp4` |
 |---|---|---|
 | Đường dẫn | `C:\Users\kvtuy\Videos\Screen Recordings\Castlevania_Original\Map_3.mp4` | `…\Boss_Map_3_Behaviour.mp4` |
-| Thời lượng / khung | **4:11.61**, **1488×760**, 30 fps, AAC 48 kHz stereo | **42.73 s**, **1370×772**, 30 fps, AAC 48 kHz |
-| Nội dung | **Tiếp ĐÚNG playthrough Map_2** (SCORE 044670, P-04, tim 05, **đồng hồ**): đuôi bản đồ lâu đài B2 → STAGE 07 → 08 → 09 → Mummy Men → tally → bản đồ lâu đài B3 (HUD **STAGE 10**) → hết giữa lúc bản đồ trượt vào | Playthrough KHÁC (SCORE 016900, **P-01**, tim 07, **dao găm**), **bảng màu khác** (gạch hồng-cam), watermark "OVERTIME GAMER"/"by AND_…" giữa HUD + "Support me on ko-fi…" góc dưới-trái (NES y ≈ 214–222, x ≈ 0–90) + 2 dải mờ hai bên. 0.0 s = 1 khung bản đồ lâu đài (cắt ghép, HUD STAGE 07 SCORE 009840 — bỏ qua) |
-| Khung game thật/giây (planner, 10 s mẫu) | **≈ 18** (≈ 40 % khung lặp) ⇒ mốc đơn ±3 tick | **≈ 21.7** |
-| Tỉ lệ pixel | **7/6** (như Map_1/Map_2) | **8/7** (như video boss Map 1/2) |
+| Thời lượng / khung | **4:11.61** = 7548 frame, **1488×760**, 30 fps, AAC 48 kHz | **42.73 s** = 1282 frame, **1370×772**, 30 fps |
+| Nội dung | Tiếp đúng Map_2: bản đồ B2 → STAGE 07 → 08 → 09 → Mummy Men → tally → bản đồ B3 (STAGE 10) | Playthrough khác (SCORE 016900, P-01, tim 07, **dao găm**), **bảng màu khác**, watermark (§1b) |
+| Khung game mới/s | **22.7** (24.4 % khung lặp; chuỗi lặp 1:4384, 2:1157, 3:102, 4:44…; theo 10 s: 9.8–25.0, thấp ở đoạn tally vì khung đứng) | **19.6** (34.6 % lặp; 17.4 ở 10 s đầu) |
+| Tỉ lệ pixel | 7/6 | 8/7 |
 
-### §1a. Hiệu chuẩn planner (`x_v = ox + sx·(x_NES + ½)`, `y_v = oy + sy·(y_NES + ½)`, quy ước lấy mẫu như `cvm2 nes2.py`)
+### §1a. Hiệu chuẩn tinh (`x_v = ox + sx·(x_NES + ½)`, `y_v = oy + sy·(y_NES + ½)`; chỉ số pixel video = round)
 | Video | sx | sy | ox | oy | Cách đo | Điểm |
 |---|---|---|---|---|---|---|
-| Map_3 | **3.859** | **3.310** | **240.93** | **−21.92** | ZNCC xám, 5 frame (12 s WEA cx 512, 56 s WEB cx 296, 92 s WalkwayA cx 0, 140 s WalkwayB cx 512, 176 s MummyMan cx 711) — 1 frame (12 s) cho 0.977 | TB 0.894 (cx planner có thể lệch ±1) |
-| Boss_Map_3 | **3.845** | **3.363** | **195.76** | **−21.77** | ZNCC **gradient** (bảng màu khác), 5 frame 14/20/26/32/38 s, phòng boss **MummyMan cx 1280** (nửa trên khung, tránh Simon/Mummy) | 0.942–0.944 mỗi frame |
-Dòng r của vùng sheet ↔ **NES y = 32 + r** (như Level 1/2 — 5/5 section khớp). Routine 02: tinh lại ≥ 8 frame (mỗi section ≥ 1, cx tinh ±2), kiểm bằng glyph HUD, ghi hàng NES nhìn thấy + vùng watermark.
+| Map_3 | **3.862** | **3.310** | **240.044** | **−21.92** | `Tools/cvm3/calib_fine3.py` — **15 frame** (WEA ×3 cx 512/205/0, WEB ×3 cx 44/296/512, WalkwayA ×2 cx 0/55, WalkwayB ×3 cx 6/112/512, MummyMan ×4 cx 0/636/1062/1280), cx tinh ±2 mỗi frame, vòng mịn ±0.001 / ±0.1 px | **ZNCC TB 0.9728** (14/15 frame ≥ 0.94; mọi frame đã loại bị che nhiều bởi sprite) |
+| Boss_Map_3 | **3.845** | **3.372** | **195.76** | **−22.392** | `calib_boss3.py` — **8 frame** (t = 14/16/20/24/26/30/32/38 s), ZNCC trên độ lớn **gradient** (bảng màu khác), vùng nửa trên phòng Mummy cx 1280 (NES y 48–128) | **ZNCC gradient TB 0.9431** (0.9419–0.9449) |
+Sai số (từ độ nhạy ΔZNCC < 0.001): Map_3 sx ±0.003, sy ±0.006, ox ±0.3, oy ±0.3 video-px (≈ ±0.1 px NES); boss sx ±0.003, sy ±0.003, ox ±0.2, oy ±0.2. So planner: Map_3 sx +0.003, ox −0.9, oy 0; boss sy +0.009, oy −0.62 (tất cả < 1 px NES). `CALIB` đã cập nhật trong `Tools/cvm3/nes3.py` (+ bản `_cache/tools`, `ref/tools`). Dòng sheet r ↔ **NES y = 32 + r**.
+**Hàng NES nhìn thấy:** y 0–239 đều nằm trong khung (không cắt) ở Map_3; HUD y 8–47, playfield y 48–223. Lưới trích xuất = NES y 8…231.
+### §1b. Watermark
+- **Map_3**: biểu tượng "Download this video" nhỏ **góc trên-phải ngoài/sát mép khung NES** (x ≳ 245, y ≈ 8–24 — xem HUD crop: ô xám cạnh "STAGE 07"). Không che chữ số HUD (đọc 7501/7501 frame hud_ok, 2 frame có '?' ở P).
+- **Boss_Map_3**: chữ mờ **"OVERTIME GAMER"/"by AND_…" giữa HUD (NES y ≈ 16–30, x ≈ 80–180)** — đọc số vẫn được (0 '?'), vạch PLAYER/ENEMY ổn; "Support me on ko-fi" **góc dưới-trái (NES y ≈ 214–222, x ≈ 0–90)** nằm sát hàng sàn — các script boss chỉ dùng y 48–213; 2 dải mờ hai bên ngoài khung. 0.0–1.1 s = fade-in từ khung bản đồ (HUD STAGE 07 SCORE 009840 — bỏ qua); HUD ổn từ f34 (1.13 s).
 
-## §2. Vùng sheet Level 3 (`ClaudeNotes/cvm3/inventory/level3_walkway.json`, ảnh `level3_walkway_annot.png`)
-Sheet `NES - Castlevania - Stages - Level 3_ Crumbling Tower.png` **3596×618 RGBA**, 96 910 B, sha256 `c8bfc7ef3da18110c4f226276e7ae82e6611d2c4f3246517f5578bd476c44eee`. Nền khoá xanh (0,128,0); nhãn chữ trắng trên mỗi vùng; logo credit [3371,585,224,32].
-| Section (tên = nhãn sheet) | Stage | rect [x,y,w,h] | Màn | tile 8×8 / 16×16 duy nhất | Đi trong video |
-|---|---|---|---|---|---|
-| `WalkwayEntranceA` | 07 | [1, 425, 768, 192] | 3 | 68 / 50 | vào cx 512 (cửa trang trí mép PHẢI), đi **TRÁI** tới cx 0, thang lên-trái góc trên-trái |
-| `WalkwayEntranceB` | 07 | [1, 218, 768, 192] | 3 | 47 / 43 | vào cx 0 (chân thang trái-dưới), đi **PHẢI** tới cx 512, **CỬA PHẢI** cuối stage |
-| `WalkwayA` | 08 | [774, 218, 768, 192] | 3 | 60 / 44 | vào cx 0, đi **PHẢI**; cầu + lan can + tượng; thang lên-trái ở phần phải (cx ~484–512) |
-| `WalkwayB` | 08 | [1286, 11, 768, 192] | 3 | 60 / 43 | vào sau đen ở **cx ≈ −43** (!), lùi tới **cx −109**, rồi đi PHẢI tới cx 512, **CỬA PHẢI** |
-| `MummyMan` | 09 | [2059, 11, **1536**, 192] | **6** | 100 / 59 | vào cx 0, đi **PHẢI**; cầu dài có **đoạn hỏng (hố)**, tháp vỡ; **phòng Mummy = 256 px cuối, khoá cx 1280** |
-Tổng **125 tile 8×8 / 83 metatile 16×16** (Level 1: 118/164, Level 2: 82/69). Không có ô lạ (teal/khoá) trong vùng — khác Level 2.
-**Phát hiện cho routine 05:** ở `WalkwayB` camera đi tới **cx −109** (planner: ZNCC 0.94–0.96 khi đệm trái bằng màu trời (36,24,140)) ⇒ section NES rộng hơn vùng sheet ≥ 109 px về bên trái (toàn trời xanh đậm + có thể đầu cầu) — sheet cắt mất. Ảnh wiki Stage 8 (nửa tỉ lệ) cũng vẽ trời ở trái tầng trên. Đo kỹ: cx nhỏ nhất, nội dung cột trái ở cx nhỏ nhất (trời thuần? đầu cầu?), Simon đứng ở đâu khi nhặt túi tiền (≈ 1:55).
+## §2. Vùng sheet Level 3 + camera từng frame
+Vùng sheet: như planner (`inventory/level3_walkway.json`; WEA/WEB/WalkwayA/WalkwayB rộng 768, **MummyMan 1536**; 125 tile 8×8 / 83 metatile). Chi tiết dữ liệu `map3_camera.csv` (cột `frame,t,kind,section,cx,score,cxw`; `section` = `WEB>WA`, `WB>MM` khi camera đang cuộn qua cửa PHẢI — vùng ghép, `cxw` = tọa độ ghép 512…768).
 
-## §3. Phân đoạn tự động (`_cache/work/map3_locate_5.csv`, 5 fps, ZNCC xám mọi cx bước 4 rồi tinh ±3; `other` = điểm < 0.6)
-| Giây video | Nhãn | cx | Ghi chú planner |
+| Frame (giây) | kind/vùng | cx | Ghi chú |
 |---|---|---|---|
-| 0.00–6.20 | bản đồ lâu đài **B2** | — | 0.0–0.4 nút ▶ YouTube đè; 0.4–2.4 bản đồ trượt vào từ phải; 2.8–6.0 Simon nhỏ đi từ x ≈ 30 tới ≈ 235 dưới đáy; tim nhấp nháy ở tháp phải; HUD STAGE 07 TIME 0000 SCORE 044670 P-04 tim 05 — **mẫu thứ 2 của bản đồ B2 (CVM2 11 đã dựng từ cuối Map_2)** |
-| 6.40–6.80 | đen | — | |
-| **7.00**–39.40 | `WalkwayEntranceA` | 512 → 0 | **STAGE 07** hiện ≈ 6.8 s, **TIME 0500**, Simon x màn ≈ 205 (x section ≈ 717) cạnh cửa đỏ trang trí mép phải |
-| 39.60–39.80 | đen (đổi tầng) | — | Simon leo thang lên-trái ở WEA cx 0 (36–39.2) |
-| **40.00**–81.20 | `WalkwayEntranceB` | 0 → 512 | Simon hiện ở chân thang trái-dưới (x màn ≈ 110, y ≈ 200), leo tiếp |
-| 81.40–88.00 | `other` = **CỬA PHẢI #1** | — | 81.5–83 cuộn 1; 83.5–84.5 cửa mở, Simon đi qua; 85–88 cuộn 2; **STAGE 08 đổi ≈ 88.0** (cuối cuộn 2 như Map_2); TIME 0432 đứng suốt cửa |
-| **88.20**–108.60 | `WalkwayA` | 0 → 512 | |
-| 108.80–109.00 | đen (đổi tầng) | — | Simon leo thang lên-trái ở WalkwayA phần phải (106–108.5) |
-| 109.20–117.80 | `WalkwayB` (planner gắn `other` vì cx < 0) | **−43 → −91 → −2 → +6 → −109 → +5** | Simon lên thang trái-dưới, đi trái, ngồi (≈ 113.5) ⇒ **túi tiền bí mật** hiện bên trái (114.5), nhặt **+1000** (116.0) |
-| 118.00–144.40 | `WalkwayB` | 0 → 512 | Bone Tower trên cầu lan can (124–134) |
-| 144.60–150.20 | `other` = **CỬA PHẢI #2** | — | **STAGE 09 đổi ≈ 151.0–151.5**; TIME 0380 đứng suốt cửa |
-| **150.40**–248.20 | `MummyMan` | 0 → **1280** | cầu dài, Skeleton nhảy qua đoạn hỏng (170–172), tháp vỡ (176–180), Mummy đứng chờ thấy từ ≈ 186 (cx ≈ 1100), **khoá cx 1280 ≈ 198.0**; trận 198–226; quả cầu 228; tally 234–247.4 |
-| 248.40–249.00 | đen | — | HUD **STAGE 10**, tim 05 |
-| 249.20–251.61 | bản đồ lâu đài **B3** trượt vào | — | video hết giữa lúc trượt (không có Simon nhỏ đi) |
-
-## §4. Timeline sự kiện Map_3 (planner — đọc mắt lưới NES mỗi 2 s `_cache/work/sheet_map3_all_00..05.png` + 0.25–1 s quanh chuyển cảnh)
-| Giây | Section | Sự kiện (thô — routine 02 đo lại theo tick + HUD từng frame) |
+| f0–193 (0.00–6.43) | `other` = bản đồ B2 | — | §3a |
+| f194–206 (6.47–6.87) | đen | — | **26 tick** (13 f) |
+| **f207**–1186 (6.90–39.53) | `WalkwayEntranceA` | 512 → 0 | STAGE 07 TIME 0500 hiện f207 |
+| f1187–1197 (39.57–39.90) | đen | — | thang lên-trái WEA→WEB: **22 tick** |
+| **f1198**–2439 (39.93–81.30) | `WalkwayEntranceB` | 0 → 512 | |
+| f2440–2644 (81.33–88.13) | `WEB>WA` (cửa phải #1) | cxw 516 → 766 | §3d |
+| **f2645**–3262 (88.17–108.73) | `WalkwayA` | 0 → 512 | STAGE 08 từ f2645 |
+| f3263–3274 (108.77–109.13) | đen | — | thang lên-trái WA→WB: **24 tick** |
+| **f3275**–4337 (109.17–144.57) | `WalkwayB` | **−112** … 512 | cx đầu −33 |
+| f4338–4544 (144.60–151.47) | `WB>MM` (cửa phải #2) | cxw 516 → 767 | |
+| **f4545**–7451 (151.50–248.37) | `MummyMan` | 0 → **1280** | STAGE 09 từ f4546 |
+| f7452–7463 (248.40–248.77) | đen | — | 22 tick |
+| f7464–7547 (248.80–251.57) | `other` = bản đồ B3 | — | trượt vào; hết video |
+ZNCC camera: TB 0.97 (min 0.74 ở đoạn WalkwayB đầu/đệm trời; ≥ 0.93 hầu hết). Không section nào vượt mép sheet: cx ∈ [0, 512] cho WEA/WEB/WalkwayA; WalkwayB [**−112**, 512]; MummyMan [0, 1280].
+### §2a. WalkwayB cx ÂM (cho routine 05) — ảnh `ref/nes/cvm3_02_walkwayB_cx_am_cot_trai.png`, `…_vao_va_cx_am.png` (đã xem)
+- Camera **bám Simon không kẹp trái**: cx = x_Simon − 128 → nhỏ nhất **−112** (f3483, 116.10 s; Simon đứng mút trái cầu x ≈ 14–16 sau khi nhặt túi). Vào section ở **cx −33** (f3275), đi trái tới −94 (f3336), quay về −63, về +6 (f3408–3425), lại trái tới −112 (f3483), về +5 (f3545), rồi đi phải (cx +84 ở f3624…).
+- **Nội dung cột trái (x −112…−1 thế giới): trời xanh thuần (36,24,140)** — không đầu cầu, không vật. **Mặt cầu (gạch cam 16×16) bắt đầu đúng x = 0** (cạnh trái 2 khối cam ở màn x = 112 khi cx −112); **vách đá gập ghềnh phía dưới thò ra tới x ≈ −32…0** (hàng y ≈ 160–208, bị sheet cắt — vài tile đá rêu/mép răng cưa); trời xanh hoàn toàn trái x < −32. ⇒ routine 05 nới `WalkwayB` ≥ 112 cột trời ở trái (+ 4 cột đá mép), chép tile trời/đá CÓ SẴN ở sheet.
+- **Bí mật túi tiền St08**: Simon **không ngồi** — đi tới mút trái cầu; **+1000 tại f3478 (1:55.93)** khi Simon ở x ≈ 14 (cx −112, mép trái cầu x = 0 ngay dưới chân); chữ "1000" hiện sát phải Simon (ảnh `walkwayB_cx_am_cot_trai`). Quanh đó Raven/chuỗi +100 (xem §4).
+## §3. Chuyển cảnh theo tick (`ref/data/map3_transitions.txt` — `Tools/cvm3/trans3.py`)
+### §3a. Bản đồ lâu đài B2 → đen → STAGE 07 (mẫu thứ 2 của bản đồ B2; ảnh `cvm3_02_map3_ban_do_b2_f0_208.png`)
+- Bản đồ cam **trượt vào từ PHẢI sang TRÁI**: mép trái x = 231 (f4) → **≈ 6 (dừng f81 = 2.70 s)**, tốc độ **−1.503 px/tick** (3.007 px/frame video; dư ≤ 2.4 px) — đã chạy từ trước f0 (video cắt giữa chừng). 0.0–0.9 s có nút ▶ YouTube đè giữa khung (không thuộc game).
+- Simon nhỏ hiện **f82 (2.73 s)** x ≈ 17 (đáy bản đồ, y ≈ 195–215), đi phải **+1.004 px/tick** (dư ≤ 2.3 px; x(f182) ≈ 219 → ≈ 235 lúc dừng). Tim nhấp nháy ở tháp phải; chấm tím nhỏ ở lâu đài từ f117. HUD khi bản đồ: SCORE 044670, TIME 0000, STAGE 07, P-04, tim 05.
+- Đen **f194–f206 = 26 tick** (6.47–6.87 s); **STAGE 07 + TIME 0500 hiện f207 (6.90 s)**, ENEMY 16 vạch ngay f207; **Simon khởi đầu WEA cx 512: x màn 208 (wx 720), mặt sàn Y 192, `idle`** (planner 717). Nhạc: im 0–2.95 s, nhạc bản đồ ~3.0–6.5 s, im 6.50–6.85 s, **Wicked Child bắt đầu t0 = 6.862 s** (= f206/f207 ±0.05 s) — **0 tick trước khi hiện** (CVM2 nghi ~24 tick: video này không có).
+### §3b. Đổi tầng thang LÊN-TRÁI (WEA→WEB; WA→WB) — `trans3.py` mục 5
+| | WEA → WEB | WalkwayA → WalkwayB |
 |---|---|---|
-| 6.8 | WEA cx 512 | STAGE 07 TIME 0500, SCORE 044670, tim 05, vũ khí **đồng hồ**, P-04, roi cấp 3 (?) |
-| 8–12 | WEA | +700 (045370 @10 — túi tiền?), +100 (045470), tim 05→06 |
-| 14.0 | WEA | **lọ nước thánh rơi trên sàn** (x màn ≈ 110) + **enemy hồng nhạt** bay gần Simon (Ghost? — wiki St7 có Ghost) |
-| 16.0 | WEA | vũ khí đổi **nước thánh** (giữ tới hết video), +300 |
-| 18–28 | WEA cx ~400→170 | Raven (20.0, 28.0 — đậu ở bậc trái), tim lớn/nhỏ, cột lưới xanh cao (cx ~170 — trang trí), +100/+500 |
-| 26–36 | WEA cx 0 | **Skeleton góc dưới-trái** (wiki ②) + trên thang (34.0), xương bay (36.0), tim 16→21 (+5 tim lớn ≈ 37.2) |
-| 36–39.2 | WEA cx 0 | leo thang lên-trái → đen 39.5 |
-| 40–52 | WEB | leo thang trái-dưới lên; Raven (46–52), Skeleton trắng (50.0), +100/+400 (48170 @52) |
-| 54–66 | WEB cx ~100–300 | Raven, tim; **66.0 túi tiền trắng ở bục cao bên trái** (wiki ③: ngồi ở mép phải bục thấp nhất) ⇒ **+1000** (049870 @68) |
-| 70–74 | WEB cx ~400 | **Skeleton ném xương** (70–72) |
-| 78–81 | WEB cx 512 | +100, +400 (050370) — Simon quất gì đó ngay trước cửa |
-| 81.4–88.0 | cửa #1 | xem §3 |
-| 88–100 | WalkwayA cx 0–300 | tim, **Medusa Head** (94–104, tầng dưới — wiki ①), Skeleton (100) |
-| 102–108.5 | WalkwayA phải | leo thang lên-trái (Medusa Head quanh thang) |
-| 109–117.8 | WalkwayB cx < 0 | bí mật túi tiền St08 (wiki ②: ngồi ngay trên 2 khối không với tới, bên phải thang) |
-| 118–136 | WalkwayB cx 0–400 | **Bone Tower** ×≥2 trên cầu lan can (124–134; tháp tím-trắng), Raven (130), tim |
-| 138–150 | WalkwayB cx 512 → cửa #2 | |
-| 151.5–166 | MummyMan cx 0–400 | tượng trên cầu; Bone Tower (158–168), Raven (162 — sà từ trên) |
-| 170–178 | MummyMan cx ~500–700 | **cầu hỏng — Simon nhảy qua các bục**, **Skeleton nhảy qua đoạn hỏng** (wiki ②), tim |
-| 176–184 | MummyMan cx ~700–1000 | **tháp vỡ** (bóng đen nhọn), Bone Tower (180–182), Raven |
-| 186–196 | MummyMan cx ~1000–1253 | bậc cam xuống phòng; **2 Mummy đứng chờ ở sàn phòng** trước khi khoá; Simon xuống bậc |
-| ≈ 198.0 | MummyMan **cx 1280** | **khoá camera**; Simon nhảy lên các khối trái (cầu thang khối) đứng khối cao nhất |
-| 198–226 | phòng Mummy | Simon đứng khối trái cao **ném nước thánh** xuống; Mummy đỏ khi trúng lửa ("hoá đá" wiki); Mummy ném **băng gạc**; ENEMY giảm dần; tim 55→46 |
-| ≈ 223 | | **Mummy 1 chết +3000** (059970 → 062970) |
-| ≈ 226 | | **Mummy 2 chết +3000** (→ 065970) — **mỗi con +3000** (wiki 3000 chung — kiểm) |
-| ≈ 228 | | **quả cầu đỏ** rơi giữa phòng + **vật III (shot multiplier) rơi** ở bên phải — HUD có III từ ≈ 229–230 |
-| ≈ 229.5–233.5 | | TIME đứng 0306 (nhặt cầu → chờ tally) |
-| 234–247.4 | | **tally**: TIME ×10 (306 → 0 ⇒ 069030 @239.6), tim ×100 (46 → 0 ⇒ **073630**) |
-| 248.6 | | đen, HUD **STAGE 10** tim 05 → 249.2 bản đồ B3 trượt vào → hết video 251.6 |
-Simon **không mất mạng** trong Map_3 (P-04 suốt); có trúng đòn (thanh PLAYER giảm vài lần — routine 02 liệt kê theo tick: mẫu knockback Block 3 cho routine 04).
-
-## §5. Video boss (`Boss_Map_3_Behaviour.mp4`) — planner, mỗi 1 s (`_cache/work/sheet_boss3_all_00..01.png`)
-| Giây | Sự kiện |
+| Đen | f1187–1197 (**22 tick**), 39.57–39.90 s | f3263–3274 (**24 tick**), 108.77–109.13 s |
+| Trước | Simon leo thang tới đỉnh: cx 0, x màn 106→100, Y mặt sàn 70→66 (`stairs_up` → `walk` lên sàn tầng trên), camera đã cx 0 | cx 490→482, **Simon cố định giữa màn x 128**, Y 71→63, `stairs_up` |
+| Sau | `WalkwayEntranceB` **cx 0**, Simon hiện ở **chân thang trái-dưới** x màn 96→87, Y mặt sàn **221→212**, đi `walk_1` rồi `stairs_up` lên-trái | `WalkwayB` **cx −33**, Simon ở giữa màn (x thế giới ≈ 95) chân thang dưới (Y ≈ 195), leo lên-trái; camera sau đó cx −34…−94 |
+| Phép dời | section WEA (x 100–106 + 0, y 66–70) → WEB (x 87–96, y 212–221): Simon dời **≈ −10 px ngang, **+150 px dọc** (xuống đáy màn)** | (x ≈ 482+128 = 610, Y 63) → (x ≈ 95, Y ≈ 195): **−515 ngang** (camera nhảy cx 482 → −33), **+130 dọc** |
+| HUD | TIME/SCORE không đổi, STAGE không đổi | như trái |
+Không có hồi `invincible`/nhấp nháy quanh đen (HUD PLAYER 16). **Chưa đo Simon từng frame ngay sau đen WalkwayB** (khe f3275–3320 Simon không khớp mẫu — bị che bởi thang/đá, §6).
+### §3c. Cửa PHẢI #1 (WEB→WalkwayA, STAGE 07→08) & #2 (WalkwayB→MummyMan, STAGE 08→09)
+| Pha | Cửa #1 (WEB cx 512) | Cửa #2 (WalkwayB cx 512) |
+|---|---|---|
+| TIME đứng | **TIME 0432 từ f2412 → f2673 (1:20.40–1:29.10, 522 tick)**, tiếp 0431 f2680 | TIME 0380 f4326 → f4579 (2:24.20–2:32.40, ~508 tick), tiếp 0379 f4580 |
+| Cuộn 1 | f2441–2502 (**≈ 122 tick**), cxw 516 → 640 (+124 px), **0.993 px/tick** | f4339–4401 (**≈ 126 tick**), cxw 516 → 640, **1.00 px/tick** |
+| Dừng | f2503–2581 (**≈ 158 tick**) cxw = 640 (cánh cửa mở → Simon tự đi **+74 px** (x ghép 742 → 816 nằm trong vùng không khớp) → cửa đóng) | f4402–4482 (**≈ 162 tick**) cxw = 640 (Simon x ghép 740 → 813) |
+| Cuộn 2 | f2582–2644 (**≈ 126 tick**), cxw 640 → 766, **1.014 px/tick** | f4483–4544 (**≈ 124 tick**), cxw 640 → 767, **1.010 px/tick** |
+| STAGE +1 | **f2645** (cuối cuộn 2 +1 frame) — 1:28.17 | **f4546** (cuối cuộn 2 +2 frame) — 2:31.53 |
+| Tổng cuộn-bắt-đầu → STAGE | **≈ 408 tick** (f2441→f2645) | **≈ 414 tick** (f4339→f4546) |
+| Điểm vào stage sau | WalkwayA cx 0; **Simon x 48, mặt sàn Y 160**, `idle` quay phải, tự đi tiếp (f2645: x 48 → f2663: 74) | MummyMan cx 0; **Simon x ≈ 60, Y 128** (f4570, `walk`; trước đó trong cửa x ghép 813, Y 123) |
+Mỗi lần cuộn dài **128 px** (512 → 640 → 768), 1 px/tick, dừng ở giữa (cửa mở/đóng). So `Map1FlowTiming`/`Map2FlowTiming`: routine 11 đối chiếu. **Hai cửa lệch nhau 6 tick** (408 vs 414), TIME đứng 522 vs 508 (cùng cỡ CVM2 §5 #15). Ảnh: `ref/nes/m3_1m22…cua_phai_1_cuon`, `m3_1m24…mo`, `m3_2m26…cua_phai_2_mo`.
+### §3d. Khoá camera phòng Mummy
+Không có "khoá" tức thời: camera bám Simon rồi **kẹp ở cx = 1280** (Simon wx ≥ 1408). cx đạt 1280 lần đầu **f5931 (3:17.70)**; trước đó cx 1191 (f5820) → 1263 (f5890–5920 đứng — Simon wx 1391) → 1279 (f5930). Sau khoá Simon đi lùi tới wx 1383 (< 1408) mà cx **không giảm** ⇒ khóa trái thật (cx min 1280). Tốc độ cuộn ≈ 0.2 px/tick (bám Simon). Mummy đứng yên ở sàn phòng từ f≈5600 (cx ~1100), 2 con thấy ở sàn phòng trước khóa; **Wicked Child → Poison Mind (bài 10) đổi ở ≈ 198.9 s ±0.3 (f≈5967, ≈ 75 tick sau cx 1280)**; boss video: khóa f374 (12.47 s) → Poison Mind ≈ 13.3 s (~50 tick sau).
+### §3e. Mummy chết → quả cầu → nhặt → tally → STAGE 10 → bản đồ B3 (ảnh `cvm3_02_map3_mummy2_chet_qua_cau_nhat.png` đã xem)
+| Mốc | Frame / giây | Ghi chú |
+|---|---|---|
+| ENEMY bar bắt đầu giảm | f6126 (3:24.20) = 16→15 | giảm đều tới 0 ở f6771; **1 vạch chung cho 2 Mummy** |
+| Mummy 1 chết | **f6686 (3:42.87) +3000** (ENEMY 3→2 ở f6678) | cháy đỏ (tia) |
+| Mummy 2 chết | **f6771 (3:45.70) +3000** (ENEMY 1→0) | +3000 **mỗi con** (wiki chung — theo video, H1) |
+| Quả cầu hiện (cao giữa phòng x ≈ 127) | **f≈6846 ±6 (3:48.2)** ≈ **150 tick** sau Mummy 2 (boss video ≈ 120 tick: hiện f≈1062–1069, 35.4–35.6 s) | rơi ~24 frame (≈ 48 tick) tới sàn y ≈ 208 (f6876); cùng lúc vật **II** rơi bên phải (icon HUD II từ f6864) |
+| Nhặt quả cầu | **f6920 (3:50.67)** (ảnh đếm pixel cầu biến mất f6919→6920); TIME đứng 0306 từ f6907; HUD icon II nhấp nháy f6864–6920 rồi giữ; **nhạc Stage Clear (bài 12) bắt đầu t0 ≈ 230.4–230.7 s** (khớp pickup ±0.1 s) | |
+| Chờ trước đếm | f6920 → f7033 (TIME 0304) = **226 tick** (Map_2 224, Map_1 260) | |
+| Đếm TIME | f7033 → f7186 (TIME 0000): **306 tick cho 304 đơn vị = 1.01 tick/đơn vị** (TIME −2 mỗi frame video; SCORE +20/frame = **+10 điểm/đơn vị**: 065970 → 069030 = +3060) | |
+| Nghỉ | f7186 → f7213: **54 tick** (im 3:59.75–4:00.45) | |
+| Đếm tim | f7213 (46→45) → f7392 (→00): **358 tick cho 46 tim = 7.78 tick/tim**, mỗi tim +100 (069030 → 073630) | |
+| Sau tim cuối → đen | f7392 → f7453: **122 tick**; nhạc im từ 4:06.9 | |
+| Đen | f7453–7463: **22 tick** | |
+| HUD STAGE 10 | **f7464 (4:08.80)** STAGE 09→10, tim 00→05, TIME 0000 | |
+| Bản đồ B3 trượt | f7464–7547 (**≈ 84 frame ≈ 168 tick**, 4:08.8–4:11.57) tới hết video (chưa dừng, chưa có Simon nhỏ) | |
+## §4. Sự kiện Map_3 (≥ 160 dòng ở `ref/data/map3_events.txt` — HUD từng frame + vùng/cx + Simon wx; nghĩa suy theo GIÁ TRỊ SCORE theo wiki + ảnh đã xem)
+Giá trị đã xác nhận bằng ảnh (`cvm3_02_su_kien_diem_0_55s.png`, `cvm3_02_tui_tien_st07.png`): **+100 = nhặt túi đỏ** (túi nằm sàn, thường rơi từ enemy vừa hạ/nến); **+700 = túi trắng** (f279, 9.30 s, WEA cx 512, Simon wx 729); **+300** Skeleton (f1078 trên thang, f1553) / pink "Ghost" (f453, 15.10 s); **+500 Fleaman** (f545, f675, f918 — Fleaman đỏ sẫm; **mỗi lần hạ Fleaman rơi túi đỏ** (f541 thấy túi tại chỗ chết)); **+200 Raven** (f1626 54.20 s); **+1000 túi bí mật**: St07 f2054 (1:08.47) — túi hiện ở bục cao trái WEB **trước f1980 (66.0 s)**, Simon leo thang rồi nhặt; St08 f3478 (1:55.93) §2a; +3000 Mummy ×2. Hiện không có đồng hồ/bí mật/nến khác trong video mang điểm khác.
+**Vũ khí phụ**: đồng hồ (HUD `watch`) từ đầu → **nước thánh f491 (16.37 s)** (nhặt ở WEA cx 424, lọ thấy ở sàn f420) → giữ tới hết. Icon **II** (nhân đôi) chỉ từ f6864. Tim: 05 đầu video → 06 f377 → +5 (tim lớn) f555 (18.50 s) → … 55 ở khóa → dùng nước thánh −1/lần (3:22–3:44: 55 → 46) → 46 vào tally. **Không có lần nào PLAYER giảm; P-04 suốt; không rơi hố.**
+**Hạ enemy (29 lần: điểm 200–500 + Mummy 3000) + túi nhặt kế tiếp ≤ 15 s** (bảng này cho routine 08; Y = mặt sàn Simon):
+| t | f | vùng/cx | Simon wx,Y | TIME | điểm | túi/vật kế tiếp |
+|---|---|---|---|---|---|---|
+| 0:15.10 | f453 | WalkwayEntranceA/465 | - | 0493 | +300 | +100 @0:20.63 (+5.5 s) |
+| 0:18.17 | f545 | WalkwayEntranceA/405 | wx533,Y208 | 0490 | +500 | +100 @0:20.63 (+2.5 s) |
+| 0:22.50 | f675 | WalkwayEntranceA/277 | wx405,Y208 | 0486 | +500 | - |
+| 0:30.60 | f918 | WalkwayEntranceA/169 | wx297,Y208 | 0478 | +500 | - |
+| 0:35.93 | f1078 | WalkwayEntranceA/0 | wx94,Y128 | 0473 | +300 | +100 @0:48.60 (+12.7 s) |
+| 0:51.77 | f1553 | WalkwayEntranceB/134 | wx263,Y192 | 0459 | +300 | +100 @0:52.10 (+0.3 s) |
+| 0:54.20 | f1626 | WalkwayEntranceB/234 | wx366,Y192 | 0457 | +200 | +100 @1:03.23 (+9.0 s) |
+| 0:56.07 | f1682 | WalkwayEntranceB/296 | wx424,Y124 | 0455 | +200 | +100 @1:03.23 (+7.2 s) |
+| 0:57.73 | f1732 | WalkwayEntranceB/296 | - | 0454 | +200 | +100 @1:03.23 (+5.5 s) |
+| 1:21.10 | f2433 | WalkwayEntranceB/512 | wx735,Y144 | 0432 | +400 | - |
+| 1:42.43 | f3073 | WalkwayA/512 | wx648,Y160 | 0419 | +300 | +1000 @1:55.93 (+13.5 s) |
+| 2:01.47 | f3644 | WalkwayB/84 | wx212,Y160 | 0402 | +200 | +100 @2:04.27 (+2.8 s) |
+| 2:07.90 | f3837 | WalkwayB/185 | wx313,Y160 | 0396 | +400 | +100 @2:14.27 (+6.4 s) |
+| 2:10.57 | f3917 | WalkwayB/303 | wx431,Y127 | 0393 | +200 | +100 @2:14.27 (+3.7 s) |
+| 2:11.90 | f3957 | WalkwayB/331 | wx459,Y126 | 0392 | +200 | +100 @2:14.27 (+2.4 s) |
+| 2:16.53 | f4096 | WalkwayB/439 | wx567,Y160 | 0388 | +400 | - |
+| 2:36.67 | f4700 | MummyMan/87 | wx215,Y92 | 0376 | +200 | +100 @2:39.27 (+2.6 s) |
+| 2:38.17 | f4745 | MummyMan/178 | wx306,Y93 | 0374 | +200 | +100 @2:39.27 (+1.1 s) |
+| 2:41.80 | f4854 | MummyMan/228 | - | 0371 | +400 | +100 @2:46.47 (+4.7 s) |
+| 2:43.47 | f4904 | MummyMan/315 | wx443,Y93 | 0369 | +200 | +100 @2:46.47 (+3.0 s) |
+| 2:44.43 | f4933 | MummyMan/373 | wx501,Y96 | 0368 | +200 | +100 @2:46.47 (+2.0 s) |
+| 2:49.23 | f5077 | MummyMan/487 | wx615,Y128 | 0364 | +400 | +100 @3:01.07 (+11.8 s) |
+| 2:50.77 | f5123 | MummyMan/572 | wx700,Y92 | 0362 | +200 | +100 @3:01.07 (+10.3 s) |
+| 2:51.70 | f5151 | MummyMan/609 | wx737,Y128 | 0361 | +300 | +100 @3:01.07 (+9.4 s) |
+| 3:02.50 | f5475 | MummyMan/993 | wx1121,Y128 | 0351 | +300 | +100 @3:03.17 (+0.7 s) |
+| 3:03.70 | f5511 | MummyMan/993 | wx1121,Y128 | 0350 | +500 | - |
+| 3:10.10 | f5703 | MummyMan/1118 | - | 0344 | +300 | - |
+| 3:42.87 | f6686 | MummyMan/1280 | wx1302,Y144 | 0313 | +3000 | - |
+| 3:45.70 | f6771 | MummyMan/1280 | wx1319,Y160 | 0311 | +3000 | +100 @4:00.43 (+14.7 s) |
+Nhận xét luật rơi vật (cho 08): sau mỗi lần hạ thường thấy +100 (túi đỏ nhặt) 0.3–15 s sau; không phải 100 % (6/29 không có +100 trong 15 s — Simon bỏ qua / rơi hố ngoài màn). **Ghi chú:** loại enemy theo điểm (wiki): +200 = Raven, +300 = Skeleton/Ghost/Medusa Head, +400 = Bone Tower, +500 = Fleaman; hình ảnh xác nhận ở các điểm đã nêu; phần còn lại là suy theo giá trị (planner mô tả: Medusa Head 94–104 s WalkwayA nhưng không thấy +300 tương ứng — **Simon không hạ Medusa Head nào** hoặc bỏ qua; Bone Tower ×≥2 WalkwayB 124–134 s ⇒ +400 ×3: f3837, f4096, f4854 (St09 2:41.8)).
+**Sự kiện theo section (tóm tắt, thời điểm đo):**
+| Giây | Section | Sự kiện |
+|---|---|---|
+| 6.90 | WEA cx 512 | STAGE 07 TIME 0500; 9.30 túi trắng +700; 11.10 túi đỏ +100 |
+| 14.0–15.1 | WEA | lọ nước thánh ở sàn (x màn ≈ 25); "enemy hồng" = **Ghost** (bay) hạ +300 (15.10) |
+| 16.37 | WEA | nhặt nước thánh (HUD đổi) |
+| 18.17, 22.50, 30.60 | WEA cx 405/277/169 | **Fleaman ×3 +500** (Simon wx 533/405/297) |
+| 35.93 | WEA cx 0 | Skeleton +300 (trên thang trái) |
+| 36–39.5 | WEA | leo thang lên-trái; đen 39.57–39.90 |
+| 51.77–57.73 | WEB | Skeleton +300 (51.77), Raven +200 ×3 (54.20, 56.07, 57.73) |
+| 66.0–68.47 | WEB cx ~100–300 | túi bí mật St07 hiện (trước 66.0), nhặt +1000 (68.47) |
+| 81.10 | WEB cx 512 | +400 (Bone Tower?) trước cửa; cửa #1 §3c |
+| 88.17 | WalkwayA cx 0 | STAGE 08 (TIME 0432) |
+| 100.8–103 | WalkwayA | +100/+300/+1000(cộng dồn 1100 @1:42.70) — lọ/đồng hồ trên thang |
+| 109.2–118.8 | WalkwayB cx −112…+84 | túi bí mật St08 (+1000 @115.93 — **mút trái cầu**) §2a |
+| 121–136 | WalkwayB | Raven +200 (2:01.47), Bone Tower +400 (2:07.90, 2:16.53), Raven +200 ×2 (2:10.57, 2:11.90) |
+| 151.5 | MummyMan | STAGE 09; Raven +200 (2:36.67, 2:38.17), +400 (2:41.80) |
+| 163–173 | MummyMan cx ~300–600 | Raven/Bone Tower +200/+400, Skeleton nhảy qua khe cầu hỏng (+300 @2:51.70) |
+| 182–190 | MummyMan cx ~990–1120 | Skeleton +300 (3:02.50), Fleaman +500 (3:03.70), +300 (3:10.10) |
+| 197.70 | MummyMan | cx đạt 1280 (§3d) |
+| 204–225 | phòng Mummy | Simon trên khối trái ném nước thánh; ENEMY 16→0; tim 55→46 |
+| 222.87 / 225.70 | | Mummy 1 / 2 chết +3000 ×2 |
+Ghi chú: Simon trong phòng Mummy ở **bậc/khối bên TRÁI** (wx 1302–1319, Y 144–160) khi Mummy chết; Mummy hồng/đỏ khi trúng (xem boss).
+## §5. Video boss (`Boss_Map_3_Behaviour.mp4`) — theo frame (HUD `boss3_hud.csv`, Simon `boss3_simon.csv`: khớp 605/1282 frame)
+| Frame (giây) | Sự kiện |
 |---|---|
-| 0.0 | 1 khung bản đồ lâu đài (cắt ghép — bỏ) |
-| 1.0–6.0 | STAGE 09 TIME 0240, Simon ở bục cam phía trên, xuống bậc vào phòng; 1 Mummy tím đứng sàn; camera đang cuộn (cx ≈ 1200 → 1280) |
-| 6.0–8.0 | Simon **phá khối thấp nhất cầu thang trái ⇒ thịt nướng** (wiki ③) |
-| ≈ 11–12 | camera khoá cx 1280; 2 Mummy hai phía Simon (wiki: kẹp hai bên) |
-| 12–33 | Simon (dao găm + roi) đánh; **Mummy ném băng gạc** (nhiều lần, bay ngang thấp — 14, 17, 18, 19, 23, 27, 32); **Simon trúng đòn nhiều lần** (PLAYER giảm — mẫu knockback/sát thương 3 vạch); SCORE +100 vài lần trong trận (17000→17300 — trúng gì được +100? kiểm) |
-| ≈ 28 | Mummy 1 chết (017300 → 020500 = +3200?) |
-| ≈ 33 | Mummy 2 chết (020600 → **023600** = +3000) |
-| 35–36 | **quả cầu** hiện trên cao giữa phòng (≈ x 128) rồi rơi xuống sàn |
-| 36–42 | Simon đi tới cầu; TIME đứng 0203 từ ≈ 40 (nhặt?) — video hết 42.7 |
-
-## §6. Chuyển cảnh (planner — routine 02 đo theo tick, khuôn `MAP2_TIMELINE §7`)
-| Mốc | Planner (giây video) | Cần đo |
-|---|---|---|
-| Bản đồ B2 → đen → STAGE 07 | bản đồ tới 6.2, đen 6.4–6.8, St07 6.8 | so với Unity CVM2 11 (đen 27 tick, Simon (x,y) trên bản đồ, dơi (164,99), chấm (76,111)) — **mẫu thứ 2** |
-| Đổi tầng WEA → WEB (thang lên-trái cắt mép trên) | 39.2 → đen 39.5–39.8 → 40.0 | đen N tick, Y rời/hiện, x Simon trước/sau ⇒ phép dời WEA→WEB; cx đích |
-| Cửa PHẢI #1 (WEB → WalkwayA, STAGE 07→08) | 81.4–88.0 | cuộn 1 (px/tick, độ dài), cánh cửa door_0/door_1, Simon tự đi, đóng, cuộn 2, STAGE +1 lúc nào — so `Map1FlowTiming` (cửa phải Map 1) |
-| Đổi tầng WalkwayA → WalkwayB (thang lên-trái) | 108.5 → đen 108.8–109.0 → 109.2 (cx ≈ −43) | như trên + camera đích ÂM |
-| Cửa PHẢI #2 (WalkwayB → MummyMan, STAGE 08→09) | 144.6–151.5 | như cửa #1 (Map_2: 2 cửa lệch nhau 7–9 tick — §5 #15 CVM2) |
-| Khoá camera phòng Mummy | ≈ 198.0 cx 1280 | Simon ở x nào; Mummy thức lúc nào (đứng yên trước khoá?) |
-| Mummy chết → quả cầu → nhặt → tally | 223 / 226 / 228 / ≈ 229.5 / 234 | khoảng chờ tally (Map_2 224 tick, Map_1 260 — §5 #17 CVM2) |
-| Tally → đen → STAGE 10 → bản đồ B3 | 247.4 / 248.6 / 249.2 | đen N tick, HUD STAGE 10 lúc nào, bản đồ trượt (tốc độ) |
-TIME: STAGE 07 = **0500**; **không đặt lại** qua STAGE 08 (0432 → 0432) và 09 (0380 → 0380) — như Block 1/2.
-
-## §7. Ảnh tham chiếu (`ref/nes/*_nes.png` = lưới NES 256×240 hiệu chuẩn planner; full frame gốc `_cache/video/ref/` — không commit)
-40 ảnh: Map_3 33 (`m3_<m>m<ss_s>s_<mô tả>`) + boss 7 (`b3_<ss_s>s_<mô tả>`), danh sách trong `ref/tools/save_refs3.py`. Mô tả là của planner — routine 02 kiểm, đổi tên nếu sai.
-Lưới ảnh nhanh (không commit): `_cache/work/sheet_map3_{all,start,stair1,door1,stair2,door2,boss,end}_*.png`, `sheet_boss3_all_*.png`; sheet Level 3 cắt đôi `_cache/level3_left.png` / `level3_right.png`; bản đồ wiki ghép `_cache/stages789_x2.png`, `_cache/screens789.png`.
-
-## §8. Việc routine 02 phải làm với file này
-Viết lại §1–§7 theo số đo từng frame (khuôn MAP2_TIMELINE của CVM2 02): hiệu chuẩn tinh; HUD từng frame (SCORE/TIME/STAGE/tim/P/PLAYER/ENEMY/vũ khí/II-III); camera + section từng frame (**kể cả cx âm ở WalkwayB**); Simon từng frame; bảng sự kiện ≥ 60 dòng; **mọi lần Simon trúng đòn ở cả 2 video** (tick, nguồn, vạch mất, quỹ đạo lùi — cho routine 04); mọi chuyển cảnh theo tick; âm thanh (Wicked Child bắt đầu/lặp, Poison Mind, Stage Clear); mẫu bản đồ B2 thứ 2 + bản đồ B3 trượt.
+| f0–33 (0–1.1) | khung bản đồ + fade-in; HUD ổn từ f34: **STAGE 09 TIME 0240 SCORE 016900 PLAYER 4/16 (đã trúng từ trước; hồi tới 10 ở f302–322), ENEMY 16, tim 07, dao găm** |
+| f34–372 | camera cx 1163 → 1206 → 1243 → 1214 → 1275: camera **không khoá** tới f374 (12.47 s) rồi **kẹp cx 1280** (Simon wx ≥ 1408); Simon phá khối thấp nhất bậc thang trái ⇒ thịt nướng; ăn → **PLAYER 4→10 (+6 vạch) f302–322** (1 vạch/4 frame ≈ 8 tick) |
+| f90 (3.0) | icon vũ khí hiện dao găm (trước đó `occ` do dao bay) |
+| f196 (6.53) | **+100 = nhặt túi đỏ** (ảnh `cvm3_02_boss_plus100.png`: túi sàn f192, chữ "100" f196) |
+| f405 (13.5) | tim 07→08 |
+| f452–1005 | **ENEMY 16→0 (16 vạch dùng chung)**: giảm ở f452, 507, 575, 640, 664, 690, 774, 823, 840, 851, 874, 903, 931, 956, 982, 1005 |
+| f507, f640, f729, f837, f903 | **+100** trùng lúc Mummy nháy đỏ/hồng khi trúng roi/dao (ảnh `…boss_plus100.png`); 3/5 trùng ENEMY −1 — **chưa phân biệt được "đòn trúng Mummy +100" vs "phá băng gạc +100"** ⇒ câu hỏi cho routine 09 (Map_3 dùng nước thánh: 0 lần +100 khi trúng) |
+| f542–549, f702–706, f798–802 | **Simon trúng đòn ×3 (−3 vạch mỗi lần: 10→7, 7→4, 4→1)** — `map3_hits.csv`, §6 |
+| f848 (28.27) | Mummy 1 chết: **+3100 (= +100 đòn cuối + 3000)** |
+| f1005 (33.50) | Mummy 2 chết **+3000** (SCORE 020600 → 023600) |
+| f1062–1069 (35.4–35.6) | quả cầu hiện (x ≈ 128, y ≈ 100) rơi tới sàn f1093; ≈ 114–128 tick sau Mummy 2 (Map_3: ≈ 150 tick) |
+| **f1223 (40.77)** | nhặt quả cầu: TIME đứng **0203**; **PLAYER hồi 1→15 trong f1223–1276** (~3.8 frame/vạch ≈ 7.6 tick/vạch; video hết lúc 15/16) |
+## §6. Simon trúng đòn (`ref/data/map3_hits.csv`) — bằng chứng cho routine 04
+- **Map_3: 0 lần** (PLAYER 16/16 suốt 7501 frame HUD hợp lệ; P-04 không đổi; khớp `hurt_0`/`death_0` trong `map3_simon.csv` đều err ≥ 0.18 = khớp sai, `conf=lo`). Map_2: 0 lần (CVM2 02); Map_1: mẫu boss CVGP 08.
+- **Boss_Map_3: 3 lần, mỗi lần −3 vạch (10→7, 7→4, 4→1)** — **không phải 2** như Block 1–2 (wiki: sát thương theo stage ⇒ Block 3 = **3**). Vạch trừ **1 vạch / ≈ 3.5 frame (≈ 7–8 tick)**.
+  | # | HUD | nguồn | knockback (Simon `hurt_0`) |
+  |---|---|---|---|
+  | 1 | f542 (18.07 s) | băng gạc Mummy trái, Simon quay **trái** (roi giăng trái f536) | x 202 → 228 (**+26 px** về PHẢI = ngược hướng mặt), 2 px/frame = 1 px/tick; Y sàn 207 → **đỉnh 194 (−13)** giữ f545–f553 (**≈ 18 tick dạng phẳng**), 195/197/202 rồi chạm sàn ≈ f558; **≈ 32 tick** từ f542; không rơi hố (sàn phòng liền) |
+  | 2 | f702 (23.40 s) | băng gạc (sao nổ f690), Simon **ngồi sát tường phải** | **x đứng yên 239 (tường phải chặn)** suốt f700–713; Y 206 → **đỉnh 194 (−12)** giữ f702–f708 (~14 tick), đáp ≈ f715 (`use_stand` f730); ≈ 30 tick |
+  | 3 | f798 (26.60 s) | băng gạc (sao f790), ngồi sát tường phải | Simon bị Mummy che f806–834 (không đo được), hiện lại f838; ≈ 30–40 tick |
+- So Boss_Map_2 (CVM2 09 §2k) & CVGP 08: **cùng dạng** (lùi NGƯỢC hướng mặt, đỉnh −13/−14 giữ ~16–18 tick, ~32–36 tick, **bị tường chặn thì đứng yên nhưng vẫn nhảy lên**); quãng ngang không tường **26 px (Boss_Map_3 #1) vs 32 (Boss_Map_2 #3)** — hai mẫu không cùng giá trị (đo ±2 px, dup frame): 04 lấy khoảng 26–32 px/ ≈ 30–36 tick, KHÔNG phải 12 px.
+- **Hồi máu** (ghi cho 03/04): thịt nướng **+6 vạch**, quả cầu hồi tới đầy ở ~7.6 tick/vạch; **không có bất tử nháy đo được** (Simon bị che/không phủ).
+- Ảnh dải khung (đã xem): `ref/nes/cvm3_02_boss_hit1_dai_khung.png`, `…hit2…`, `…hit3…`, `…hit1_zoom.png`, `…hit2_zoom.png`.
+## §7. Âm thanh (`ref/data/map3_audio_cues.txt`, `*_music_seg.txt` — `Tools/cvm3/music3.py ident/seg`, xcorr với 16 MP3 của CVM2)
+- **Wicked Child (bài 05) bắt đầu t0 = 6.862 s** = f206/f207 (STAGE 07 hiện) ±0.05 s; **lặp mỗi 45.27 s** (đổi offset t0: 6.86 → 52.13 @74.9 s → 97.40 @120.3 s → 142.66 @165.3 s; mỗi lần +45.27) — không phát lại ở cửa/đổi tầng/STAGE (offset không đổi qua các mốc đó).
+- **Poison Mind (bài 10)** thay Wicked Child ≈ **198.9 s** (±0.3; ≈ 1.2 s sau cx 1280); chu kỳ lặp **7.45 s**. Boss video: ≈ 13.3 s.
+- **Stage Clear (bài 12)** t0 ≈ 230.4–230.7 s = nhặt cầu f6920 (230.67 s) ±0.1 s. Nhạc ngừng ở 3:59.75–4:00.45 (0.7 s giữa đếm TIME và tim) và im hẳn từ 4:06.9 tới hết (bản đồ B3 không nhạc ở video này).
+- Nhạc bản đồ lâu đài B2 ~3.0–6.5 s (bài 09 lần đầu t0 = −3.4 s ⇒ nhận dạng yếu, ncc 0.50). Im 0–2.95 s.
+## §8. Công cụ & cách chạy (từ gốc repo, `python -P -E`)
+`Tools/cvm3/`: `nes3.py` (hiệu chuẩn, `padded_section`) · `calib_fine3.py <video> <t:section:cx> …` · `calib_boss3.py <t1> …` · `extract_nes3.py <map3|boss3>` (→ `_cache/02/work/<video>_nes.npy`) · `dup_frames3.py` · `camera_track3.py` · `hud_read3.py` / `hud_events3.py` / `hud_check3.py` · `fg3.py`, `objects3.py <video>`, `simon3.py map3`, `simon_boss3.py` · `strip3.py <video> <out.png> <a-b:step|f1,f2…> [x0,y0,x1,y1] [scale] [cols]` (dải ảnh có nhãn) · `trans3.py` (chuyển cảnh) · `events3.py` (bảng sự kiện + CSV commit) · `audio_cues3.py <wav> <out>` · `music3.py ident|seg <Map_3|Boss_Map_3_Behaviour>`. Thứ tự: extract → dup → camera → hud → objects → simon → events/trans.
+**Độ phủ Simon (`map3_simon.csv`, 7222 frame gameplay):** khớp mẫu **81.4 %** (tin cậy cao err ≤ 0.12: 76.2 %); **87.0 %** sau nội suy (khoảng hở ≤ 10 frame + đứng yên giữa hai vị trí y hệt) — **chưa đạt 90 %**; hố lớn còn lại: f341–496 (11.4–16.5 s, dù Simon đi bình thường — nền bị lệch LUT, nợ), f2520–2585 (cửa #1), f3150–3212, f3275–3320 (ngay sau đổi tầng WalkwayB), f4536–4565, f5603–5724 (3 cầu hỏng/thang tháp). Boss: **605/1282 (47 %)**. HUD: 0 sai trên 20 frame kiểm mắt (`ref/nes/cvm3_02_hud_kiem_mat_20_frame.png`, đã xem 20/20 khớp SCORE/TIME/STAGE/tim/ENEMY/vũ khí).
+**Ảnh tham chiếu (§7 planner, 40 ảnh `ref/nes/m3_*`, `b3_*`):** đã xem lưới tất cả 40; chỉ đổi tên 2: `…0m06_8s_stage07_bat_dau_wea_cx512` → `…den_fade_in_truoc_stage07` (6.8 s còn đen; STAGE 07 hiện 6.90 s), `…3m48_0s_qua_cau_va_vat_iii` → `…vat_ii` (icon là **II**; ảnh `cvm3_02_icon_II_khong_phai_III.png`). Ảnh thêm `ref/nes/cvm3_02_*.png`.

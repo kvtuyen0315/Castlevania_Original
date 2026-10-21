@@ -1,0 +1,25 @@
+iter 0 ZNCC TB 0.9727 {'sx': np.float64(3.859), 'sy': np.float64(3.31), 'ox': np.float64(239.928), 'oy': np.float64(-21.92)} sx/sy 1.1659
+iter 1 ZNCC TB 0.9728 {'sx': np.float64(3.859), 'sy': np.float64(3.31), 'ox': np.float64(240.528), 'oy': np.float64(-21.92)} sx/sy 1.1659
+iter 2 ZNCC TB 0.9728 {'sx': np.float64(3.862), 'sy': np.float64(3.31), 'ox': np.float64(240.044), 'oy': np.float64(-21.92)} sx/sy 1.1668
+--- per frame (cx tinh) ---
+t=  12.00 WalkwayEntranceA cx  512 (guess  512) ZNCC 0.9771
+t=  24.00 WalkwayEntranceA cx  205 (guess  204) ZNCC 0.9772
+t=  36.00 WalkwayEntranceA cx    0 (guess    0) ZNCC 0.9770
+t=  45.00 WalkwayEntranceB cx   44 (guess   44) ZNCC 0.9725
+t=  57.00 WalkwayEntranceB cx  296 (guess  296) ZNCC 0.9762
+t=  78.00 WalkwayEntranceB cx  512 (guess  512) ZNCC 0.9775
+t=  90.00 WalkwayA        cx    0 (guess    0) ZNCC 0.9787
+t=  93.00 WalkwayA        cx   55 (guess   57) ZNCC 0.9770
+t= 114.00 WalkwayB        cx    6 (guess    6) ZNCC 0.9803
+t= 123.00 WalkwayB        cx  112 (guess  114) ZNCC 0.9833
+t= 141.00 WalkwayB        cx  512 (guess  512) ZNCC 0.9722
+t= 153.00 MummyMan        cx    0 (guess    0) ZNCC 0.9732
+t= 174.00 MummyMan        cx  636 (guess  636) ZNCC 0.9434
+t= 186.00 MummyMan        cx 1062 (guess 1064) ZNCC 0.9611
+t= 228.00 MummyMan        cx 1280 (guess 1280) ZNCC 0.9660
+--- sensitivity (delta ZNCC TB vs optimum) ---
+sx -0.006:-0.0002 -0.003:-0.0000 +0.003:-0.0002 +0.006:-0.0047
+sy -0.006:-0.0009 -0.003:-0.0002 +0.003:-0.0007 +0.006:-0.0022
+cxv -0.600:-0.0002 -0.300:-0.0001 +0.300:-0.0002 +0.600:-0.0022
+cyv -0.600:-0.0109 -0.300:-0.0029 +0.300:-0.0005 +0.600:-0.0010
+final {'sx': 3.862, 'sy': 3.31, 'ox': 240.044, 'oy': -21.92} ZNCC TB 0.9728

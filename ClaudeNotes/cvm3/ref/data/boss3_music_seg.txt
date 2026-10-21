@@ -1,0 +1,10 @@
+   0.00-   3.99  bai 05  songpos  63.38- 67.35  t0-songpos(=goc bai)  -63.367 (sd 0.007)  ncc tb 0.790  n 9
+   4.49-   9.48  bai 05  songpos  22.59- 27.58  t0-songpos(=goc bai)  -18.092 (sd 0.004)  ncc tb 0.781  n 11
+   9.98-   9.98  bai 05  songpos  68.01- 68.01  t0-songpos(=goc bai)  -58.026 (sd 0.000)  ncc tb 0.803  n 1
+  10.48-  10.98  bai 05  songpos  23.25- 23.75  t0-songpos(=goc bai)  -12.762 (sd 0.000)  ncc tb 0.842  n 2
+  11.48-  12.98  bai 05  songpos  29.57- 31.07  t0-songpos(=goc bai)  -18.088 (sd 0.000)  ncc tb 0.677  n 4
+  13.48-  16.48  bai 10  songpos  13.34- 16.32  t0-songpos(=goc bai)    0.155 (sd 0.006)  ncc tb 0.750  n 7
+  16.97-  23.96  bai 10  songpos   9.36- 16.34  t0-songpos(=goc bai)    7.617 (sd 0.004)  ncc tb 0.838  n 15
+  24.46-  31.45  bai 10  songpos   9.38- 16.37  t0-songpos(=goc bai)   15.085 (sd 0.004)  ncc tb 0.805  n 15
+  31.95-  38.44  bai 10  songpos   9.40- 15.90  t0-songpos(=goc bai)   22.543 (sd 0.007)  ncc tb 0.860  n 14
+  38.94-  39.44  bai 10  songpos  13.60- 14.10  t0-songpos(=goc bai)   25.337 (sd 0.000)  ncc tb 0.560  n 2
