@@ -34,7 +34,7 @@ Video kèm: `C:\Users\kvtuy\Videos\Screen Recordings\Castlevania_Original\Map_3.
 | 09 | cvm3-09-mummy-men-va-phong-boss-that | **XONG** | (commit "CVM3 09") | 22/10/2026 | đo **2 Mummy từng frame / 17 băng / quả cầu / lửa chết** ở 2 video (§2i) ⇒ đứng chờ (1312 / 1503) tới **khoá + 120** (nhạc + 60), đi **0.75** khung [0,1,2,1] × 16, hướng: Simon quay lưng ⇒ áp sát / nhìn về ⇒ giữ cự ly **46–56** (quyết định mỗi 16 tick), ném: **đứng 48 nháy đỏ↔tím** (đỏ = tư thế ném, KHÔNG phải trúng lửa) ⇒ tick 40 băng **±1.5 + 24·sin(2πt/102)** cao/thấp, quất vỡ **+100**; **8 đòn/con** mọi vũ khí, **bất tử 32 dùng chung**, nước thánh đứng + 12; **MỖI con +3000**; quả cầu **+117 đứng 34** rồi rơi; **II = nến phải** (luật 10 lần trúng có sẵn); phòng thật `Tools/cvm3/map3_boss.json` + `Map3BossRoom` (khoá cx 1280 lúc Simon x 1408, Pot Roast (83,9)); b24 26/26, `Map3BossProbe` 10 vết rms trung vị 2.7 px + 24 cặp ảnh; hash đổi **b24 `4f503db5` / gallery `5791addd`** (chỉ kịch bản Mummy), còn lại + luồng + H8 y nguyên |
 | 10 | cvm3-10-dat-vat-the-nen-bi-mat-va-spawn | **XONG** | (commit "CVM3 10") | 22/10/2026 | `MAP3_PLACEMENT.md` + `Map3Objects.json` (`Tools/cvm3/gen_map3_objects.py`) + menu `CVM3/Build Map3 Objects` (70 vật / 5 section, "ghi 0"; Block 1 69 + Block 2 75 "ghi 0", md5 y hệt): **37 nến** (36 nội dung video + 1 wiki), 2 khối thịt nướng, **bí mật St7/St8 ngồi ⇒ túi** (đo video: trồi 0.25 quãng 14, hàng đầu +6 tick, tuổi từ lúc nghỉ, ngoài màn vẫn còn) + St9 chỉ wiki (`WalkLeft`), 26 SpawnPoint + Ghost/Medusa Head ×2 + BossArena; **rìu WEB rơi hố** nhờ luật item dò sàn cột tâm Block 3 (`ConfigRule.ItemFootCenterFromBlock` 3); probe **98/98**, **94 cặp ảnh 0–1 px**; mọi hash bảng chuẩn y nguyên (3 phiên), H8 5/5 ×3 |
 | 11 | cvm3-11-luong-stage-7-9-va-stage10 | **XONG** | (commit "CVM3 11") | 22/10/2026 | luồng thật Title → Map 1 → Map 2 → **Stage 07–09 thật** → bản đồ B3 → **`Stage10Stub`** (§2k): thang ↖ ×2 (đen 23, Y 189), cửa PHẢI ×2 đo từng cửa (414 / 417 tick vs video 414.5 / 416.6), pha TIME Block 3 (60 / 82 sau đầu đen / 58 = video), tally 226/54, đen 20, bản đồ B3 trượt 1.5 qua x 0 → −128 (dừng + dơi/chấm SUY LUẬN — §5 #16), nhạc Wicked Child liền 07→09; **PRE7 `8fcc6b6e`** (đo trên code cũ) khớp mọi lần chạy; lộ trình `map3_route` + luồng thật **`7068416c`** ×3 fps; builder màn hình idempotent byte; 36 cặp ảnh đã xem; hồi sinh/Continue Block 3 đúng; Arena 14/14 + core y nguyên; H8 5/5 ×3 |
-| 12 | cvm3-12-nghiem-thu-map3-so-voi-video | chưa chạy | | | |
+| 12 | cvm3-12-nghiem-thu-map3-so-voi-video | **XONG — nghiệm thu: CHƯA ĐẠT** (8/11 mặt ĐẠT) | (commit "CVM3 12") | 22/10/2026 | `ClaudeNotes/cvm3/ACCEPT12.md`: 11 mặt có số liệu + ảnh đã xem; ĐẠT: địa hình (26/26 ảnh 0 px StageScreen thật), vật thể (37/37 nến, 26/26 điểm sinh, 94 cặp ≤ 1 px), Simon + 2 sửa gộp (11/11 kịch bản map thật), nhạc (mốc; còn tụt âm điểm lặp §5 #1), chuyển cảnh (18/18 ±2), luồng (`7068416c` ×3 fps), hồi quy Map 1+2 (0), chất lượng; **CHƯA ĐẠT**: enemy (Bone Tower phát đầu sớm 7–10 tick; chưa rơi vật), Mummy (trận nước thánh hạ ở 982/1144 vs video 1510/1683), HUD (luật "1000" — Unity thuần 071730 vs 073630); **không hash nào đổi**; đề xuất `cvm3-fix-01..05` + cụm CVM4 |
 
 ## §2 Số đo
 
@@ -452,6 +452,17 @@ Theo loại (hạ / rơi): Zombie 19/4, dơi Vampire 5/2, Fish Man 7/1, báo 2/0
 | Ảnh ref (commit) | `ref/nes/cvm3_11_pairs_{bando_b2_st07,thang_web_cua1,cua1_mo,cua2_mo,phong_mummy,tally_bando_b3}.png`, `cvm3_11_hoi_sinh_continue.png`, `cvm3_11_unity_montage.png` | đã xem |
 | Bộ đệm (KHÔNG commit) | `ClaudeNotes/cvm3/_cache/11/` (`pre7/` báo cáo code cũ, `door1/2.txt`, `cmap_b3.txt`, `route/` báo cáo + vết replay, `main/ arena/ core/` hồi quy, `work/`), ảnh `_cache/shots/11/` (`unity/` 38 ảnh, `pairs_0..8.png`, `respawn/`) | |
 
+### 3k. Routine 12 (22/10/2026) — nghiệm thu Map 3 (chỉ đo — không đổi runtime)
+| Thứ | Đường dẫn | Ghi chú |
+|---|---|---|
+| Báo cáo | **`ClaudeNotes/cvm3/ACCEPT12.md`** | 11 mặt + kết luận + routine sửa đề xuất + cách chạy lại (§13) + cụm CVM4 |
+| Harness (chỉ Editor) | `Assets/Data/Script/Debug/Map3AcceptProbe.cs` — `Run(ScenarioNames(), out)` 11 kịch bản map thật Block 3 (`ShotDir` chụp đúng tick), `Ledger(sổ, out)` sổ điểm Map_3 (op `known` = luật chưa dựng) | không thuộc bộ hồi quy |
+| Vết thụ động Map 3 | `Map2AcceptProbe.MinStage` (mặc định 4; đặt 7 ⇒ chỉ ghi Map 3) + `StartTelemetry` chạy kèm `Map1AcceptProbe.StartFlow` | trả `MinStage = 4` sau khi dùng |
+| Công cụ | `Tools/cvm3/accept12.py` (objects · enemy · boss · hud · music · trans · all; `terrain <dir> [dir_cặp]`), `accept12_ledger.py` (sổ từ map3_events + drops3 + map3_hud), `accept12_montage.py` | chạy từ gốc repo `python -P -E`; đọc vết bằng lớp `Tele` của `Tools/cvm2/accept12.py` (importlib) |
+| Số liệu gọn (commit) | `ClaudeNotes/cvm3/ref/data/accept12/` (scenarios, ledger + kết quả, accept12_*, terrain/pairs, objects probe + pairs, crowd, regress_*, flow60_report, Map 2 ledger/kịch bản) | |
+| Ảnh ref (commit) | `ref/nes/cvm3_12_{kich_ban_map_that,pairs_phong_mummy,pairs_tally_bando_b3,pairs_bando_b2_st07,terrain_walkwayb_video,objects_walkwayb}.png` | đã xem |
+| Bộ đệm (KHÔNG commit) | `ClaudeNotes/cvm3/_cache/12/` (`flow60/` vết + nhạc, `main/ arena/ core/` hồi quy, `enemy_unity/ boss_unity/ cmp/`, md5, `work/`), ảnh `_cache/shots/12/` (`flow60 route route_pairs terrain1 terrain2 terrain3 terrain3_pairs objects scenarios`) | |
+
 ## §4 Quyết định kỹ thuật + Bảng hash chuẩn
 
 ### Bảng hash chuẩn (H11 — baseline = Bảng hash chuẩn sau CVM2 12; routine 00 đo lại 21/10/2026, code = HEAD `d1bf216`)
@@ -545,6 +556,8 @@ Thời gian đo 21/10 (@60 fps, harness cùng máy): Arena `full` **1672 s ≈ 2
   - **map3** (mới) `7068416c` (= luồng thật); spam8..10 (mới) 0 lỗi console.
   - **Giữ**: Arena `full` 14/14 KHỚP (long, simon, attack, item, enemy, boss, b23, b46, **b24 `4f503db5`** (phòng Mummy Arena stage 9 không chạm tally Block 3 trong cửa sổ kịch bản), b56, holy, mech, rules, gallery), core `76516076` 21/21, H8 5/5 ×3, spam1–7 0 lỗi.
   - Mã ghi lộ trình: lần ghi đầu `99ff1965` (pha TIME sau thang còn lệch 1 tick — đếm theo `TickCount` khi thế giới đứng lúc đen) ⇒ sửa `ResetClockPhase(n)` theo `NesClock.Frame` ⇒ ghi lại (input không đổi vì autopilot không phụ thuộc TIME) ⇒ `7068416c` (Record = Replay = flow ×3).
+- (12, 22/10) **Nghiệm thu — không đổi runtime ⇒ không hash nào đổi**: đo lại 3 phiên: Arena `full` 14/14 KHỚP, core `76516076` 21/21, Main `main,flow30,flow144` 18 bộ lệch 0
+  (flow/flow30/flow144/map3 `7068416c`, map2 `4ec56f7a`, PRE4 `59cafbaa`, PRE7 `8fcc6b6e`, H8 5/5 ×3, spam1–10 0 lỗi) + luồng có vết thụ động `7068416c`.
 ### Bộ chạy hồi quy (kế thừa `CVM2_MEMORY §4 "Bộ chạy hồi quy"`)
 Chỉ Editor, đang Play, `runInBackground = true`. Gọi bằng `execute_code` (codedom): `RegressionRunner.Start("<bộ>", 60, "D:/Unity/Castlevania_Original-main/ClaudeNotes/cvm3/_cache/<NN>/<tên phiên>")`; kết quả ở `<dir>/suites/{SUMMARY.txt,progress.txt,ALL.done,<bộ>.txt}`; chờ bằng vòng lặp bash `[ -f <dir>/suites/ALL.done ]`. **3 phiên Play**:
 1. Arena, Player = Simon (`CVGP.ArenaUseDummy` = false): `Start("full", 60, …)` ≈ 28 phút.
@@ -630,6 +643,14 @@ Chỉ Editor, đang Play, `runInBackground = true`. Gọi bằng `execute_code` 
 - **(11) Lộ trình Map 3 BẤT TỬ theo đoạn** (`Map3RouteProbe.InvincibleSections`): WEB, WalkwayA, WalkwayB, MummyMan bật — WEA tắt (Simon trúng 1 đòn −3 vạch thật ở WEA). WalkwayA ban đầu để TẮT nhưng autopilot (quất phản xạ) chết ở x 508 (Medusa Head + Skeleton, HP 13 → 0) ⇒ bật. Cờ đặt trước bước thế giới mỗi tick ở CẢ `Map3RouteProbe` lẫn `Map1AcceptProbe.StartFlow` (`ApplyCheat`) ⇒ cùng hash. Lộ trình không rơi hố (nhảy khe từ mép đo lưới, cầu hỏng 3 khe).
 - **(11) Mẫu thứ 2 bản đồ B2 → St07** (video Map_3 0:00–0:06.9) khớp hằng CVM2 11 trong ±1 (đen 26 vs 27, trượt 1.503 vs 1.5, Simon 1.004 vs 1) + 3 cặp ảnh ⇒ KHÔNG đổi hằng Block 2 (H14).
 
+### Quyết định routine 12 (nghiệm thu — chỉ đo)
+- **(12) Kết luận CHƯA ĐẠT** vì 3 mặt cốt lõi lệch video có bằng chứng (ACCEPT12 §0): Bone Tower phát đầu sớm 7–10 tick + chưa rơi vật (mặt 4), trận Mummy nước thánh ngắn ~35 % (mặt 5),
+  luật điểm "1000" chưa dựng (mặt 6). Không sửa ở routine 12 (mỗi việc > 10 dòng / đổi dữ liệu dùng chung) ⇒ đề xuất `cvm3-fix-01..05` (ACCEPT12 §12).
+- **(12) Quy ước tick đồng hồ trong harness**: input tính ở tuổi a được xử lý ở bước tạo tuổi a+1 (= tick bấm, tim −5 cùng tick); `FreezeEnemies(186)` băng từ TickCount+1 ⇒ enemy đứng
+  tick bấm+1 … bấm+186 (= CVM3 03 "băng 5–190 khi bấm tick 4"). Lần chấm đầu kỳ vọng sai 1 tick (lỗi bộ chấm, không phải game) — đã sửa kỳ vọng.
+- **(12) Kịch bản bất tử có chủ đích**: `stopwatch_wa` (trúng đòn chặn ném), `holy_mm`, `secret_*` (Raven #3 đậu sát chỗ ngồi St7) — chỉ đo cơ chế, ghi rõ trong báo cáo; mọi kịch bản sát thương/hố không bất tử.
+- **(12) File ref compare.txt 07/08/09 KHÔNG ghi lại**: chạy lại probe so video cho mọi dòng rms y hệt; chỉ khác nhãn tick đổi state ±1 ở dòng mô tả (nhãn DebugState sửa sau khi ghi ref).
+
 ### Việc gộp + hash DỰ KIẾN đổi (lập ở routine 00 — dự đoán, routine thực hiện xác nhận)
 | Routine | Đổi | Hash dự kiến đổi |
 |---|---|---|
@@ -658,6 +679,10 @@ Chỉ Editor, đang Play, `runInBackground = true`. Gọi bằng `execute_code` 
 14. (10 CVM3, mới) **Bí mật St9 (phòng Mummy, trước khi khoá)** — chỉ có wiki ("đứng trên khối nằm trên khối gà tây, đi sang trái vài giây ⇒ túi tiền hiện nhưng thường không với tới"): Unity đặt điều kiện giữ ← 120 tick trên khối (82,8) và túi hiện ở **(1264, 97)** trên gờ trái-trên sau tường — **vị trí + thời lượng là SUY LUẬN**. Người dùng biết chỗ túi hiện / có clip thì gửi để sửa (`Tools/cvm3/gen_map3_objects.py` `Secret_St9Bag`).
 15. (10 CVM3, mới) **Túi tiền bí mật biến mất sau bao lâu nếu không nhặt?** Video luôn nhặt kịp (St7 134 tick sau khi nghỉ; Map_1 CB 176) ⇒ Unity Block 3 dùng tuổi thọ item 188 tính TỪ LÚC TRỒI XONG (suy luận). Có clip để túi tự biến mất (St7 "chạy tới nhặt trước khi nó biến mất") thì gửi để đo.
 16. (11 CVM3, mới) **Bản đồ lâu đài sau Block 3 (trước STAGE 10)**: video Map_3 hết ở 4:11.6 khi bản đồ vẫn trượt — và bản đồ đã trượt QUÁ x 0 (dx −2 ở khung cuối, khác B1/B2 dừng ở 0). Unity SUY LUẬN: trượt tới khi mép phải bản đồ khớp mép phải màn (dx −128), dơi ở ô đỏ (285,133) (= Block 4), chấm cạnh ô Block 3, Simon nhỏ đi 16 → 240 như B1/B2, đen 27 ⇒ STAGE 10. Người dùng có video đoạn này (đầu `Map_4.mp4` hoặc cuối Map_3 dài hơn) thì gửi để đo điểm dừng, ô dơi/chấm, Simon; và **giờ giới hạn Block 4** (ConfigBlock[4] trống — Stage10Stub giữ TIME 0000).
+
+17. (12 CVM3, mới) **Nghiệm thu Map 3 = CHƯA ĐẠT** (`ClaudeNotes/cvm3/ACCEPT12.md`): duyệt routine sửa đề xuất `cvm3-fix-01-bone-tower-sinh-ve-va-nhip`, `cvm3-fix-02-mummy-tran-nuoc-thanh`,
+    `cvm3-fix-03-luat-diem-va-roi-vat` (cần trả lời #11 + #12 trước), `cvm3-fix-04-item-do-san-cot-tam-block12`, `cvm3-fix-05-wicked-child-lap` (cần #1); **nghe thử nhạc Block 3** (Wicked Child tụt âm mỗi
+    vòng ở điểm lặp — #1), bấm thử gamepad (#3); cụm sau CVM4 cần sheet Level 4 + `Map_4.mp4` (nên bắt đầu từ cuối tally Block 3 để đo bản đồ B3 — #16) + `Boss_Map_4_Behaviour.mp4` (#4).
 
 ## §6 Nợ & việc ngoài phạm vi (chép mục còn mở liên quan Block 3 từ `CVM2_MEMORY §6`)
 - (02 CVM3) **Simon từng frame Map_3 phủ 81.4 % khớp / 87.0 % sau nội suy (< 90 %)**; hố lớn f341–496 (nền lệch LUT), cửa #1, sau đổi tầng WalkwayB f3275–3320; boss 47 %. Đủ cho bảng sự kiện/trúng đòn (khớp 100 % hit #1/#2; #3 bị Mummy che) — nếu routine sau cần quỹ đạo Simon dày hơn: chạy lại `simon3.py` với LUT riêng đoạn WEA hoặc đo tay bằng `strip3.py`.
@@ -721,6 +746,11 @@ Chỉ Editor, đang Play, `runInBackground = true`. Gọi bằng `execute_code` 
 - (11 CVM3) **Lộ trình Map 3 bất tử 4/5 section** (WEB, WalkwayA, WalkwayB, MummyMan — chỉ WEA chịu đòn thật): autopilot không né Medusa Head/Raven/xương; trúng đòn ở cầu có thể hất xuống hố (CVM3 04) — `Map2AcceptProbe`-kiểu kịch bản không bất tử cho Block 3 (rơi khe cầu hỏng, knockback xuống hố) là việc của routine 12.
 - (11 CVM3) Đường đi autopilot khác video (bỏ nến/bí mật/túi tiền; điểm 26 230 vs 73 630, tim 6 vs 46) — mốc chuyển cảnh không phụ thuộc; cặp ảnh khác ở HUD/nến là do lộ trình.
 - (11 CVM3) Thang xuống (WEB → WEA, WalkwayB → WalkwayA) không có video ⇒ số Map 1 (đen 18, hiện Y 35).
+- (12 CVM3) **Xác nhận trên luồng thật**: Bone Tower phát đầu **41 tick sau khi sinh = hiện** (5/5 tháp) vs video 48–51 sau khi hiện (§6 08/10) ⇒ `cvm3-fix-01`; lượt 2 ở +234/235 (video tháp đang bị quất 124.6 / ~178).
+- (12 CVM3) **Trận Mummy nước thánh** (b24 `mummy_room_holy`, 9 lọ đúng mốc video): hạ ở rel 982 / 1144 vs video 1510 / 1683 (§6 09 — đã so ở routine 12) ⇒ `cvm3-fix-02`.
+- (12 CVM3) Sổ điểm Map_3: **+100 f5221 chưa rõ nguồn** (cùng lúc lửa nước thánh hạ Skeleton S5 — có thể xương bị lửa phá; Unity xương không có hộp nhận đòn, §6 07) — gộp vào câu hỏi §5 #12.
+- (12 CVM3) Lộ trình autopilot Map 3 nhặt quả cầu khi cầu còn đang rơi (nhảy) — không ảnh hưởng mốc tally (đo từ lúc nhặt); video nhặt sau khi cầu chạm sàn.
+- (12 CVM3) Khi chạy luồng thật thời gian thực, Editor mất focus ⇒ ~13–20 tick/s; giữ focus bằng vòng `AppActivate` mỗi 3 s suốt lúc chờ (đã dùng cho mọi phiên routine 12).
 
 ## §7 Nhật ký nghiệm thu
 
@@ -867,3 +897,23 @@ Chỉ Editor, đang Play, `runInBackground = true`. Gọi bằng `execute_code` 
 - **Cuối phiên**: thoát Play; `CheatInvincible` = false (cả EditorPrefs), `CVGP.ArenaUseDummy` = false, `CvtiDebug.LogFlow` = false, fps −1 / vSync 1; EnterPlayModeOptions trả như cũ (tắt; DisableDomainReload | DisableSceneReload) + `EditorSettings.asset` = HEAD (CRLF); Main.unity mở không dirty; Arena.unity không đổi.
 - **Câu hỏi §5 mới**: #16 (bản đồ B3 sau x 0 + giờ Block 4).
 - **Nghiệm thu routine 11**: [x] chơi được Title → Map 1 → Map 2 → Map 3 → STAGE 10 stub (replay luồng thật ×3 fps + autopilot; tay: cheat `CVM3/Start Stage 7|8|9`), hồi sinh / Continue đầu stage Block 3 đúng · [x] mọi chuyển cảnh Block 3 có số đo video ↔ Unity ±2 tick (bảng §2k) + 36 cặp ảnh đã xem; builder màn hình idempotent byte · [x] hash lộ trình Map 3 + luồng thật `7068416c` tất định 30/60/144, ghi bảng chuẩn; PRE7 `8fcc6b6e` khớp (Map 1 + 2 không đổi); H8 5/5 ×3. **Xấp xỉ/còn lại**: bản đồ B3 sau dx 0 (dừng −128, dơi/chấm, Simon nhỏ, đen 27) là SUY LUẬN (video hết); `Stage10Stub` giữ TIME 0000 (Block 4 chưa có giờ); lộ trình bất tử 4/5 section (chỉ WEA chịu đòn thật); thang xuống Block 3 dùng số Map 1 (không video); mốc cửa lấy giữa khoảng frame lặp (door_1 cửa #2 (+3.2, +11.2]).
+
+### Routine 12 — 22/10/2026 — Nghiệm thu Map 3 so với video (milestone) + hồi quy Map 1 + Map 2 — **CHƯA ĐẠT** (chi tiết `ClaudeNotes/cvm3/ACCEPT12.md`)
+- **Bước 0**: `main`; nhiễu nền giữ nguyên (`.codex/`, `Assets/TuyenAframework.meta`, `.slnx`, `Tools/cvgp|cvm2|cvm3/__pycache__/`, `UserSettings/`, submodule ` m`); cổng 11 = XONG (commit `9619c03`).
+  MCP `Castlevania_Original-main@5669a9bbfcade130` (2 instance — 1 `zuma-classic-ios` khác), `dataPath` đúng. Play an toàn (`DisableDomainReload`) 6 phiên, không crash; không ghi `.cs` khi đang Play.
+- **Công cụ** (chỉ đo): `Map3AcceptProbe.cs` (11 kịch bản map thật + sổ điểm Map_3 + chụp ảnh đúng tick), `Map2AcceptProbe.MinStage` (vết thụ động Map 3), `Tools/cvm3/accept12.py`,
+  `accept12_ledger.py`, `accept12_montage.py`. Lần chấm đầu `stopwatch_wa` FAIL do kỳ vọng bộ chấm lệch 1 tick (§4 (12)) ⇒ sửa bộ chấm (thoát Play trước khi ghi) ⇒ 11/11.
+- **Kết quả 11 mặt** (ACCEPT12 §0): 1 địa hình **ĐẠT** (26/26 ảnh StageScreen thật 0 px, 24 cặp video 1.84–3.93 %) · 2 vật thể **ĐẠT** (37/37 nến 3 nguồn + luồng thật, 26/26 SpawnPoint,
+  probe 98/98, 94/94 cặp ≤ 1 px, bí mật St7/St8 theo số đo) · 3 Simon **ĐẠT** (11/11 kịch bản: mép rơi 102/774, knockback hất xuống khe ×2, 6 đòn × 3 vạch, đồng hồ 186, lọ 0 px, GAME OVER/CONTINUE) ·
+  4 enemy **CHƯA ĐẠT** (mọi tham số trên map thật = video; Bone Tower phát đầu sớm 7–10 tick; chưa rơi vật) · 5 Mummy **CHƯA ĐẠT** (luồng thật khớp từng pha; trận nước thánh 982/1144 vs 1510/1683) ·
+  6 HUD **CHƯA ĐẠT** (sổ điểm 100/100 + 3 dòng luật chưa dựng ⇒ Unity thuần 071730 vs 073630) · 7 nhạc **ĐẠT** (mốc; tụt âm điểm lặp §5 #1) · 8 chuyển cảnh **ĐẠT** (18/18 ±2, 36 cặp) ·
+  9 luồng **ĐẠT** (`7068416c` ×3 fps + vết, PRE4/PRE7, H8 + 12 ảnh 0 px, GameObject ổn định, spam8–10 0 lỗi) · 10 hồi quy **ĐẠT** (Arena 14/14, core, Main 18 bộ, địa hình Map 1/2 0 px,
+  Map2AcceptProbe 6/6, sổ Map_2 86/86; đồng hồ + knockback CVM2 nay khớp, rơi vật vẫn chưa) · 11 chất lượng **ĐẠT** (crowd 0.0455 ms / 0 B GC / không rò; builder 18 lần "ghi 0", md5 1 523 file; SOURCES 28/28).
+- **Ảnh đã xem**: `_cache/shots/12/route_pairs/pairs_0,7,8.png`, `terrain3_pairs/pairs_3.png`, `objects/pairs_5.png`, `scenarios_montage.png` (16 ảnh kịch bản) — bản lưu `ref/nes/cvm3_12_*.png`.
+- **Hồi quy H11 (3 phiên)**: Main `main,flow30,flow144` @60 (2 036 s) 18 bộ lệch 0; Arena-Simon `full` @60 (1 727 s) 14/14 KHỚP; Arena-Dummy `core` `76516076` 21/21 — cả ba `ALL.done` = OK (bỏ qua 0).
+  `_cache/12/{main,arena,core}/suites/SUMMARY.txt`.
+- **Cuối phiên**: thoát Play; `CheatInvincible` = false (cả EditorPrefs), `CVGP.ArenaUseDummy` = false, `CvtiDebug.LogFlow` = false, fps −1 / vSync 1, `Map2AcceptProbe.MinStage` = 4,
+  `Map3AcceptProbe.ShotDir` = null; EnterPlayModeOptions trả như cũ (tắt; DisableDomainReload | DisableSceneReload) + `EditorSettings.asset` = HEAD (CRLF); Main.unity mở không dirty; Arena.unity không đổi.
+- **Câu hỏi §5 mới**: #17 (duyệt routine sửa + nghe thử nhạc). **Nợ §6 mới**: 5 dòng "(12 CVM3)".
+- **Nghiệm thu routine 12**: [x] 11 mặt có số liệu + ảnh đã xem (đường dẫn), `ACCEPT12.md` đầy đủ + cách chạy lại (§13) · [x] kết luận chung trung thực **CHƯA ĐẠT** + routine sửa đề xuất
+  (`cvm3-fix-01..05`, model · effort) + cụm CVM4 (điều kiện) · [x] không thay đổi gameplay (chỉ harness Editor + 1 tham số vết `MinStage`); hồi quy Map 1 + 2 = 0.

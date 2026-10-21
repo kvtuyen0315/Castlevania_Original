@@ -1,0 +1,87 @@
+Ledger: 86/86 sự kiện khớp HUD video, 1UP 1 lần, SCORE cuối 44670
+OK  	f0	start 3	SCORE 023370 ♥5 P3 Axe×2 T400 ST4	TIME 400
+OK  	f207	use Axe	SCORE 023370 ♥4 P3 Axe×2 T400 ST4	−1 tim (ConfigSubWeapon.Axe.heartCost)
+OK  	f239	use Axe	SCORE 023370 ♥3 P3 Axe×2 T400 ST4	−1 tim (ConfigSubWeapon.Axe.heartCost)
+OK  	f251	kill SpearKnight	SCORE 023770 ♥3 P3 Axe×2 T400 ST4	+400 (ConfigEnemy.SpearKnight)
+OK  	f274	item Cross	SCORE 023770 ♥3 P3 Cross×1 T400 ST4	Cross: vũ khí phụ Axe→Cross, shot 2→1
+OK  	f341	item LargeHeart	SCORE 023770 ♥8 P3 Cross×1 T400 ST4	LargeHeart: tim 3→8
+OK  	f593	item Crown	SCORE 025770 ♥8 P3 Cross×1 T400 ST4	Crown: điểm 23770→25770
+OK  	f734	item RedMoneyBag	SCORE 025870 ♥8 P3 Cross×1 T400 ST4	RedMoneyBag: điểm 25770→25870
+OK  	f748	use Cross	SCORE 025870 ♥7 P3 Cross×1 T400 ST4	−1 tim (ConfigSubWeapon.Cross.heartCost)
+OK  	f778	kill Bat	SCORE 026070 ♥7 P3 Cross×1 T400 ST4	+200 (ConfigEnemy.Bat)
+OK  	f1002	use Cross	SCORE 026070 ♥6 P3 Cross×1 T400 ST4	−1 tim (ConfigSubWeapon.Cross.heartCost)
+OK  	f1040	kill Bat	SCORE 026270 ♥6 P3 Cross×1 T400 ST4	+200 (ConfigEnemy.Bat)
+OK  	f1082	item RedMoneyBag	SCORE 026370 ♥6 P3 Cross×1 T400 ST4	RedMoneyBag: điểm 26270→26370
+OK  	f1125	item SmallHeart	SCORE 026370 ♥7 P3 Cross×1 T400 ST4	SmallHeart: tim 6→7
+OK  	f1236	item SmallHeart	SCORE 026370 ♥8 P3 Cross×1 T400 ST4	SmallHeart: tim 7→8
+OK  	f1311	item SmallHeart	SCORE 026370 ♥9 P3 Cross×1 T400 ST4	SmallHeart: tim 8→9
+OK  	f1331	kill SpearKnight	SCORE 026770 ♥9 P3 Cross×1 T400 ST4	+400 (ConfigEnemy.SpearKnight)
+OK  	f1375	item WhiteMoneyBag	SCORE 027470 ♥9 P3 Cross×1 T400 ST4	WhiteMoneyBag: điểm 26770→27470
+OK  	f1506	item RedMoneyBag	SCORE 027570 ♥9 P3 Cross×1 T400 ST4	RedMoneyBag: điểm 27470→27570
+OK  	f1762	stage 5	SCORE 027570 ♥9 P3 Cross×1 T400 ST5	EnterStage(5) TIME 400
+OK  	f1816	use Cross	SCORE 027570 ♥8 P3 Cross×1 T400 ST5	−1 tim (ConfigSubWeapon.Cross.heartCost)
+OK  	f1845	item SmallHeart	SCORE 027570 ♥9 P3 Cross×1 T400 ST5	SmallHeart: tim 8→9
+OK  	f1872	kill MedusaHead	SCORE 027870 ♥9 P3 Cross×1 T400 ST5	+300 (ConfigEnemy.MedusaHead)
+OK  	f1930	item SmallHeart	SCORE 027870 ♥10 P3 Cross×1 T400 ST5	SmallHeart: tim 9→10
+OK  	f2012	item SmallHeart	SCORE 027870 ♥11 P3 Cross×1 T400 ST5	SmallHeart: tim 10→11
+OK  	f2056	kill MedusaHead	SCORE 028170 ♥11 P3 Cross×1 T400 ST5	+300 (ConfigEnemy.MedusaHead)
+OK  	f2073	item SmallHeart	SCORE 028170 ♥12 P3 Cross×1 T400 ST5	SmallHeart: tim 11→12
+OK  	f2082	item RedMoneyBag	SCORE 028270 ♥12 P3 Cross×1 T400 ST5	RedMoneyBag: điểm 28170→28270
+OK  	f2237	item SmallHeart	SCORE 028270 ♥13 P3 Cross×1 T400 ST5	SmallHeart: tim 12→13
+OK  	f2283	item RedMoneyBag	SCORE 028370 ♥13 P3 Cross×1 T400 ST5	RedMoneyBag: điểm 28270→28370
+OK  	f2441	item TreasureChest	SCORE 030370 ♥13 P4 Cross×1 T400 ST5	TreasureChest: điểm 28370→30370
+OK  	f2564	item LargeHeart	SCORE 030370 ♥18 P4 Cross×1 T400 ST5	LargeHeart: tim 13→18
+OK  	f2629	item SmallHeart	SCORE 030370 ♥19 P4 Cross×1 T400 ST5	SmallHeart: tim 18→19
+OK  	f2673	item LargeHeart	SCORE 030370 ♥24 P4 Cross×1 T400 ST5	LargeHeart: tim 19→24
+OK  	f2741	item SmallHeart	SCORE 030370 ♥25 P4 Cross×1 T400 ST5	SmallHeart: tim 24→25
+OK  	f2892	use Cross	SCORE 030370 ♥24 P4 Cross×1 T400 ST5	−1 tim (ConfigSubWeapon.Cross.heartCost)
+OK  	f2934	kill MedusaHead	SCORE 030670 ♥24 P4 Cross×1 T400 ST5	+300 (ConfigEnemy.MedusaHead)
+OK  	f2983	kill MedusaHead	SCORE 030970 ♥24 P4 Cross×1 T400 ST5	+300 (ConfigEnemy.MedusaHead)
+OK  	f3171	item SmallHeart	SCORE 030970 ♥25 P4 Cross×1 T400 ST5	SmallHeart: tim 24→25
+OK  	f3235	kill SpearKnight	SCORE 031370 ♥25 P4 Cross×1 T400 ST5	+400 (ConfigEnemy.SpearKnight)
+OK  	f3303	item RedMoneyBag	SCORE 031470 ♥25 P4 Cross×1 T400 ST5	RedMoneyBag: điểm 31370→31470
+OK  	f3420	item WhiteMoneyBag	SCORE 032170 ♥25 P4 Cross×1 T400 ST5	WhiteMoneyBag: điểm 31470→32170
+OK  	f3507	kill SpearKnight	SCORE 032570 ♥25 P4 Cross×1 T400 ST5	+400 (ConfigEnemy.SpearKnight)
+OK  	f3615	kill SpearKnight	SCORE 032970 ♥25 P4 Cross×1 T400 ST5	+400 (ConfigEnemy.SpearKnight)
+OK  	f3728	item RedMoneyBag	SCORE 033070 ♥25 P4 Cross×1 T400 ST5	RedMoneyBag: điểm 32970→33070
+OK  	f3777	use Cross	SCORE 033070 ♥24 P4 Cross×1 T400 ST5	−1 tim (ConfigSubWeapon.Cross.heartCost)
+OK  	f3830	item RedMoneyBag	SCORE 033170 ♥24 P4 Cross×1 T400 ST5	RedMoneyBag: điểm 33070→33170
+OK  	f3877	item Stopwatch	SCORE 033170 ♥24 P4 Stopwatch×1 T400 ST5	Stopwatch: vũ khí phụ Cross→Stopwatch, shot 1→1
+OK  	f3972	item SmallHeart	SCORE 033170 ♥25 P4 Stopwatch×1 T400 ST5	SmallHeart: tim 24→25
+OK  	f4095	item SmallHeart	SCORE 033170 ♥26 P4 Stopwatch×1 T400 ST5	SmallHeart: tim 25→26
+OK  	f4188	kill MedusaHead	SCORE 033470 ♥26 P4 Stopwatch×1 T400 ST5	+300 (ConfigEnemy.MedusaHead)
+OK  	f4208	item SmallHeart	SCORE 033470 ♥27 P4 Stopwatch×1 T400 ST5	SmallHeart: tim 26→27
+OK  	f4480	stage 6	SCORE 033470 ♥27 P4 Stopwatch×1 T400 ST6	EnterStage(6) TIME 400
+OK  	f4590	item SmallHeart	SCORE 033470 ♥28 P4 Stopwatch×1 T400 ST6	SmallHeart: tim 27→28
+OK  	f4652	item SmallHeart	SCORE 033470 ♥29 P4 Stopwatch×1 T400 ST6	SmallHeart: tim 28→29
+OK  	f4723	item SmallHeart	SCORE 033470 ♥30 P4 Stopwatch×1 T400 ST6	SmallHeart: tim 29→30
+OK  	f4829	use Stopwatch	SCORE 033470 ♥25 P4 Stopwatch×1 T400 ST6	−5 tim (ConfigSubWeapon.Stopwatch.heartCost)
+OK  	f4853	item PurpleMoneyBag	SCORE 033870 ♥25 P4 Stopwatch×1 T400 ST6	PurpleMoneyBag: điểm 33470→33870
+OK  	f4922	item RedMoneyBag	SCORE 033970 ♥25 P4 Stopwatch×1 T400 ST6	RedMoneyBag: điểm 33870→33970
+OK  	f4965	item RedMoneyBag	SCORE 034070 ♥25 P4 Stopwatch×1 T400 ST6	RedMoneyBag: điểm 33970→34070
+OK  	f5022	kill Ghost	SCORE 034370 ♥25 P4 Stopwatch×1 T400 ST6	+300 (ConfigEnemy.Ghost)
+OK  	f5083	item SmallHeart	SCORE 034370 ♥26 P4 Stopwatch×1 T400 ST6	SmallHeart: tim 25→26
+OK  	f5148	item DoubleShot	SCORE 035070 ♥26 P4 Stopwatch×1 T400 ST6	DoubleShot: multiplier khi cầm Stopwatch ⇒ điểm 34370→35070
+OK  	f5269	item SmallHeart	SCORE 035070 ♥27 P4 Stopwatch×1 T400 ST6	SmallHeart: tim 26→27
+OK  	f5349	item LargeHeart	SCORE 035070 ♥32 P4 Stopwatch×1 T400 ST6	LargeHeart: tim 27→32
+OK  	f5501	kill BoneTower	SCORE 035470 ♥32 P4 Stopwatch×1 T400 ST6	+400 (ConfigEnemy.BoneTower)
+OK  	f5653	kill BoneTower	SCORE 035870 ♥32 P4 Stopwatch×1 T400 ST6	+400 (ConfigEnemy.BoneTower)
+OK  	f5865	kill Ghost	SCORE 036170 ♥32 P4 Stopwatch×1 T400 ST6	+300 (ConfigEnemy.Ghost)
+OK  	f6062	item SmallHeart	SCORE 036170 ♥33 P4 Stopwatch×1 T400 ST6	SmallHeart: tim 32→33
+OK  	f6134	item SmallHeart	SCORE 036170 ♥34 P4 Stopwatch×1 T400 ST6	SmallHeart: tim 33→34
+OK  	f6194	item SmallHeart	SCORE 036170 ♥35 P4 Stopwatch×1 T400 ST6	SmallHeart: tim 34→35
+OK  	f6227	kill MedusaHead	SCORE 036470 ♥35 P4 Stopwatch×1 T400 ST6	+300 (ConfigEnemy.MedusaHead)
+OK  	f6242	item SmallHeart	SCORE 036470 ♥36 P4 Stopwatch×1 T400 ST6	SmallHeart: tim 35→36
+OK  	f6389	item SmallHeart	SCORE 036470 ♥37 P4 Stopwatch×1 T400 ST6	SmallHeart: tim 36→37
+OK  	f6526	item SmallHeart	SCORE 036470 ♥38 P4 Stopwatch×1 T400 ST6	SmallHeart: tim 37→38
+OK  	f6565	item SmallHeart	SCORE 036470 ♥39 P4 Stopwatch×1 T400 ST6	SmallHeart: tim 38→39
+OK  	f6629	item SmallHeart	SCORE 036470 ♥40 P4 Stopwatch×1 T400 ST6	SmallHeart: tim 39→40
+OK  	f6690	item LargeHeart	SCORE 036470 ♥45 P4 Stopwatch×1 T400 ST6	LargeHeart: tim 40→45
+OK  	f6837	use Stopwatch	SCORE 036470 ♥40 P4 Stopwatch×1 T400 ST6	−5 tim (ConfigSubWeapon.Stopwatch.heartCost)
+OK  	f6846	kill Snake	SCORE 036570 ♥40 P4 Stopwatch×1 T400 ST6	+100 (ConfigEnemy.Snake)
+OK  	f6928	use Stopwatch	SCORE 036570 ♥35 P4 Stopwatch×1 T400 ST6	−5 tim (ConfigSubWeapon.Stopwatch.heartCost)
+OK  	f7031	use Stopwatch	SCORE 036570 ♥30 P4 Stopwatch×1 T400 ST6	−5 tim (ConfigSubWeapon.Stopwatch.heartCost)
+OK  	f7069	boss QueenMedusa	SCORE 039570 ♥30 P4 Stopwatch×1 T400 ST6	+3000 (ConfigBoss.QueenMedusa)
+OK  	f7146	time 210	SCORE 039570 ♥30 P4 Stopwatch×1 T210 ST6	TIME = 210 (HUD video lúc nhặt cầu)
+OK  	f7550	tally 	SCORE 044670 ♥0 P4 Stopwatch×1 T0 ST6	tally Block 2: TIME 210 đv (+2100), tim 30 (+3000), cộng 5100; pha: TIME bắt đầu tick 225, hết 434, tim 492→724, xong 844
+OK  	f7596	nextblock 	SCORE 044670 ♥5 P4 Stopwatch×1 T0 ST7	StartNextBlock ⇒ STAGE 7 tim 5

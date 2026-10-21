@@ -1,0 +1,34 @@
+== MAT 2 - vat the Block 3: 3 nguon + LUONG THAT (dong A/E) vs Map3Objects.json
+nen: 37/37 trung 3 nguon (id, x, Y, noi dung); PLACEMENT 37 dong, ConfigDrop Block 3 39 dong (gom khoi)
+khoi pha ConfigDrop: ['MummyMan_X83_9=PotRoast', 'WalkwayEntranceA_X18_8=PotRoast']
+luong that: nen 37/37 hien dung (section, x, Y) | lech 0 | khong hien 0 []
+khoi pha hien: [('WalkwayEntranceA', 'WalkwayEntranceA_X18_8', 296, 144), ('MummyMan', 'MummyMan_X83_9', 1336, 160)] | vo trong luong: []
+bi mat (SecretTrigger) hien: 3 [('WalkwayEntranceB', 536, 176), ('WalkwayB', 256, 128), ('MummyMan', 1320, 128)]
+  spawn Skeleton_WEA                 WalkwayEntranceA (33,128) Skeleton: sinh trong luong that wt686 (33,128)
+  spawn Fleaman_WEA_3                WalkwayEntranceA (177,96) Fleaman: sinh trong luong that wt471 (177,96)
+  spawn Fleaman_WEA_2                WalkwayEntranceA (305,128) Fleaman: sinh trong luong that wt296 (305,128)
+  spawn Fleaman_WEA_1                WalkwayEntranceA (433,128) Fleaman: sinh trong luong that wt168 (433,128)
+  spawn Raven_WEB_1                  WalkwayEntranceB (280,41) Raven: sinh trong luong that wt1336 (280,41)
+  spawn Skeleton_WEB_1               WalkwayEntranceB (352,160) Skeleton: sinh trong luong that wt1427 (352,160)
+  spawn Raven_WEB_2                  WalkwayEntranceB (423,89) Raven: sinh trong luong that wt1498 (423,89)
+  spawn Raven_WEB_3                  WalkwayEntranceB (487,57) Raven: sinh trong luong that wt1562 (487,57)
+  spawn Raven_WEB_4                  WalkwayEntranceB (527,169) Raven: sinh trong luong that wt1627 (527,169)
+  spawn Skeleton_WEB_2               WalkwayEntranceB (671,160) Skeleton: sinh trong luong that wt1778 (671,160)
+  spawn Skeleton_WA                  WalkwayA (671,64) Skeleton: sinh trong luong that wt3386 (671,64)
+  spawn Raven_WB_1                   WalkwayB (383,57) Raven: sinh trong luong that wt3922 (383,57)
+  spawn BoneTower_WB_1               WalkwayB (479,128) BoneTower: sinh trong luong that wt4018 (479,128)
+  spawn Raven_WB_2                   WalkwayB (599,121) Raven: sinh trong luong that wt4138 (599,121)
+  spawn Raven_WB_3                   WalkwayB (663,121) Raven: sinh trong luong that wt4202 (663,121)
+  spawn BoneTower_WB_2               WalkwayB (735,128) BoneTower: sinh trong luong that wt4274 (735,128)
+  spawn Raven_MM_1                   MummyMan (268,41) Raven: sinh trong luong that wt5040 (268,41)
+  spawn Raven_MM_2                   MummyMan (363,41) Raven: sinh trong luong that wt5135 (363,41)
+  spawn BoneTower_MM_1               MummyMan (415,96) BoneTower: sinh trong luong that wt5187 (415,96)
+  spawn Raven_MM_3                   MummyMan (495,33) Raven: sinh trong luong that wt5267 (495,33)
+  spawn Raven_MM_4                   MummyMan (559,33) Raven: sinh trong luong that wt5331 (559,33)
+  spawn BoneTower_MM_2               MummyMan (671,96) BoneTower: sinh trong luong that wt5443 (671,96)
+  spawn Raven_MM_5                   MummyMan (747,41) Raven: sinh trong luong that wt5519 (747,41)
+  spawn Skeleton_MM_1                MummyMan (815,96) Skeleton: sinh trong luong that wt5587 (815,96)
+  spawn Skeleton_MM_2                MummyMan (879,96) Skeleton: sinh trong luong that wt5651 (879,96)
+  spawn BoneTower_MM_3               MummyMan (1183,96) BoneTower: sinh trong luong that wt5955 (1183,96)
+SpawnPoint enemy: 26/26 sinh dung (x, Y +-1) trong luong that
+sinh tu bo sinh (N): 13 lan - defaultdict(<class 'int'>, {'MedusaHead': 11, 'Ghost': 1})

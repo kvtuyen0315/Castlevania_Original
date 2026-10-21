@@ -1,0 +1,57 @@
+== MAT 4 - enemy Block 3 tren MAP THAT (luong that, vet thu dong) vs so do video (CVM3 07 2g / 08 2h)
+-- Raven (video: dau 60 tick sau khi hien (58-62), luot vx 0.75 (0.716-0.792), vy0 1.25/1.75/2.0 giam 9/256, treo 25 (24-26), lao ngang +1/32, phanh -> treo 14)
+Raven WalkwayEntranceB (280,41) hien wt1336 (cx 33) | dau 60 tick | luot vx 0.750 | treo [25, 14] | chuoi Pe60 Gl35 Ho25 Da63 Br11 Ho14 Da115
+Raven WalkwayEntranceB (423,89) hien wt1498 (cx 176) | dau 60 tick | luot vx 0.750 | treo [25, 14] | chuoi Pe60 Gl35 Ho25 Da49 Br8 Ho14 Da129
+Raven WalkwayEntranceB (487,57) hien wt1562 (cx 240) | dau 60 tick | luot vx 0.750 0.750 | treo [25, 25, 14] | chuoi Pe60 Gl49 Ho25 Gl49 Ho25 Da82 Br14 Ho14 Da77
+Raven WalkwayEntranceB (527,169) hien wt1627 (cx 280) | dau 60 tick | luot vx 0.750 0.750 | treo [25, 25, 14] | chuoi Pe60 Gl56 Ho25 Gl35 Ho25 Da84 Br14 Ho14 Da88
+Raven WalkwayB (383,57) hien wt3922 (cx 136) | dau 60 tick | luot vx 0.750 | treo [25, 14] | chuoi Pe60 Gl35 Ho25 Da77 Br13 Ho14 Da129
+Raven WalkwayB (599,121) hien wt4138 (cx 352) | dau 60 tick | luot vx 0.750 | treo [25, 14] | chuoi Pe60 Gl56 Ho25 Da97 Br15 Ho14 Da86
+Raven WalkwayB (663,121) hien wt4202 (cx 416) | dau 60 tick | luot vx 0.750 | treo [25, 14] | chuoi Pe60 Gl35 Ho25 Da77 Br13 Ho14 Da80
+Raven MummyMan (268,41) hien wt5040 (cx 21) | dau 60 tick | luot vx 0.750 | treo [25, 14] | chuoi Pe60 Gl35 Ho25 Da77 Br13 Ho14 Da129
+Raven MummyMan (363,41) hien wt5135 (cx 116) | dau 60 tick | luot vx 0.750 0.750 | treo [25, 25, 14] | chuoi Pe60 Gl56 Ho25 Gl35 Ho25 Da114 Br15 Ho14 Da126
+Raven MummyMan (495,33) hien wt5267 (cx 248) | dau 60 tick | luot vx 0.750 | treo [25, 14] | chuoi Pe60 Gl49 Ho25 Da91 Br15 Ho14 Da127
+Raven MummyMan (559,33) hien wt5331 (cx 312) | dau 60 tick | luot vx 0.750 0.750 | treo [25, 25, 14] | chuoi Pe60 Gl56 Ho25 Gl49 Ho25 Da116 Br15 Ho14 Da126
+Raven MummyMan (747,41) hien wt5519 (cx 500) | dau 60 tick | luot vx 0.750 0.750 | treo [25, 25, 14] | chuoi Pe60 Gl49 Ho25 Gl35 Ho25 Da108 Br15 Ho14 Da126
+-- Skeleton (video: chang 22-23 px, 1.43-1.44 px/tick, nghi 4.6-5, chu ky luot 20-21; nem dung 18-23 tick, 1 xuong vx 0.725-0.778, 2 do cao dinh 61.5-62.6 / 90.8-93.0 tren pivot ve; nhay chi o mep vy0 -2.5 g 0.125 vx 1.17-1.35)
+Skeleton WalkwayEntranceA (33,128) wt686-786 | chang (tick, px, px/tick): ['16/21.6/1.438', '16/21.6/1.438'] | nghi [5, 4, 4] | nem [36] | nhay (tick, vx, g, dinh) [(20, 1.25, 0.125, -24)]
+Skeleton WalkwayEntranceA (33,128) wt1019-1127 | chang (tick, px, px/tick): ['16/21.6/1.438', '5/5.8/1.438'] | nghi [5, 4, 4] | nem [] | nhay (tick, vx, g, dinh) [(26, 1.25, 0.125, -24), (49, 1.25, 0.125, -24)]
+Skeleton WalkwayEntranceB (352,160) wt1427-1720 | chang (tick, px, px/tick): ['12/15.8/1.438', '10/12.9/1.438', '16/21.6/1.438', '6/7.2/1.438', '5/5.8/1.438', '4/4.3/1.438'] | nghi [5, 4, 4, 4, 4, 4] | nem [] | nhay (tick, vx, g, dinh) [(39, 1.25, 0.125, -24), (39, 1.25, 0.125, -24), (25, 1.25, 0.125, -24)]
+Skeleton WalkwayEntranceB (671,160) wt1778-1929 | chang (tick, px, px/tick): ['16/21.6/1.438', '16/21.6/1.438', '16/21.6/1.438', '16/21.6/1.438'] | nghi [5, 4, 4, 4, 4] | nem [18] | nhay (tick, vx, g, dinh) [(49, 1.25, 0.125, -24)]
+Skeleton WalkwayA (671,64) wt3386-3476 | chang (tick, px, px/tick): ['16/21.6/1.438', '5/5.8/1.438'] | nghi [5, 4, 4] | nem [] | nhay (tick, vx, g, dinh) [(57, 1.25, 0.125, -24)]
+Skeleton MummyMan (815,96) wt5587-5715 | chang (tick, px, px/tick): ['10/12.9/1.438', '16/21.6/1.438', '16/21.6/1.438'] | nghi [5, 4, 4, 4] | nem [18, 13] | nhay (tick, vx, g, dinh) [(39, 1.25, 0.125, -24)]
+Skeleton MummyMan (879,96) wt5651-5779 | chang (tick, px, px/tick): ['10/12.9/1.438', '10/12.9/1.438'] | nghi [5, 4] | nem [18, 18] | nhay (tick, vx, g, dinh) [(39, 1.25, 0.125, -24), (25, 1.25, 0.125, -24)]
+  xuong sinh wt695 (33,115) Skeleton Y 128 => sinh Y - 13 | vx 0.750 | g 0.1250 | dinh 92 px tren Skeleton Y
+  xuong sinh wt713 (33,115) Skeleton Y 128 => sinh Y - 13 | vx 0.750 | g 0.1250 | dinh 61 px tren Skeleton Y
+  xuong sinh wt1787 (671,147) Skeleton Y 160 => sinh Y - 13 | vx 0.750 | g 0.1250 | dinh 92 px tren Skeleton Y
+  xuong sinh wt5660 (879,83) Skeleton Y 96 => sinh Y - 13 | vx 0.750 | g 0.1250 | dinh 92 px tren Skeleton Y
+  xuong sinh wt5669 (727,83) Skeleton Y 96 => sinh Y - 13 | vx 0.750 | g 0.1250 | dinh 92 px tren Skeleton Y
+  xuong sinh wt5707 (704,83) Skeleton Y 96 => sinh Y - 13 | vx 0.750 | g 0.1250 | dinh 92 px tren Skeleton Y
+  xuong sinh wt5731 (814,83) Skeleton Y 96 => sinh Y - 13 | vx 0.750 | g 0.1250 | dinh 92 px tren Skeleton Y
+-- Fleaman (video: cho khung 0<->1 x 9; vao tam |dx| < 128 => dem 62/62/136; ngoi thap 12.4-14.2; cu ngan vx 2.25 vy0 -1 g 0.125)
+Fleaman WalkwayEntranceA (433,128) wt168 | vao tam wt168 => roi Wait sau 127 tick | Ground [13] | cu nhay [('HopS', 35, 2.25, 0.125)] | chet wt342
+Fleaman WalkwayEntranceA (305,128) wt296 | vao tam wt296 => roi Wait sau 96 tick | Ground [13, 10, 8, 4] | cu nhay [('HopS', 36, 2.25, 0.125), ('HopS', 15, 2.25, 0.125), ('HopL', 51, 0.384, 0.125)] | chet wt528
+Fleaman WalkwayEntranceA (177,96) wt471 | vao tam wt471 => roi Wait sau 64 tick | Ground [13, 11] | cu nhay [('HopS', 44, 2.25, 0.125)] | chet wt602
+-- Medusa Head (video: vx 1.217-1.272, song P 100 A 33.75 (1-cos), dinh = chan - 48.2..-48.8 o mep TRUOC mat, nhip 126.9-128.8 (8/12); vung WalkwayA tu Simon x 125-170, MummyMan 959-998 .. 1245-1272)
+section | tick sinh | so tick | vx | dinh-day | rms vs song | y sinh - chan | x man sinh | Simon x | huong MH | huong Simon
+WalkwayA | 2585 | 140 | -1.250 | 67 | 0.50 | -49 | 248 | 165 | -1 | +1
+WalkwayA | 2713 | 140 | -1.250 | 67 | 0.50 | -49 | 248 | 224 | -1 | +1
+WalkwayA | 2841 | 140 | -1.250 | 67 | 0.50 | -49 | 248 | 283 | -1 | +1
+WalkwayA | 2969 | 140 | -1.250 | 67 | 0.50 | -49 | 248 | 342 | -1 | +1
+WalkwayA | 3097 | 140 | -1.250 | 67 | 0.50 | -49 | 248 | 401 | -1 | +1
+WalkwayA | 3225 | 140 | -1.250 | 67 | 0.50 | -49 | 248 | 460 | -1 | +1
+WalkwayA | 3353 | 151 | -1.250 | 67 | 0.50 | -49 | 248 | 519 | -1 | +1
+WalkwayA | 3481 | 137 | -1.250 | 67 | 0.50 | -49 | 248 | 560 | -1 | +1
+WalkwayA | 3609 | 98 | -1.250 | 67 | 0.57 | -49 | 248 | 629 | -1 | +1
+MummyMan | 5910 | 109 | -1.250 | 67 | 0.49 | -49 | 248 | 1019 | -1 | +1
+MummyMan | 6038 | 109 | -1.250 | 67 | 0.49 | -49 | 248 | 1147 | -1 | +1
+khoang 2 lan sinh lien tiep cung section: [('WalkwayA', 128), ('WalkwayA', 128), ('WalkwayA', 128), ('WalkwayA', 128), ('WalkwayA', 128), ('WalkwayA', 128), ('WalkwayA', 128), ('WalkwayA', 128), ('MummyMan', 128)]
+-- Bone Tower (video: cau lua 1.85-2.32 (TB 2.0), y = chan - 15 (5/5), sinh o x thap, cap cach 39-40; phat dau 48-51 tick sau khi thap HIEN; Unity 40 sau khi sinh)
+12 cau lua: toc do 2.000 2.000 2.000 2.000 2.000 2.000 2.000 2.000 2.000 2.000 2.000 2.000
+thap WalkwayB (479,128) song wt4018-4257: cau (tick tu luc sinh, dx, dy) [(41, 0, -15), (81, 0, -15)]
+thap WalkwayB (735,128) song wt4274-4521: cau (tick tu luc sinh, dx, dy) [(41, 0, -15), (81, 0, -15)]
+thap MummyMan (415,96) song wt5187-5426: cau (tick tu luc sinh, dx, dy) [(41, 0, -15), (81, 0, -15)]
+thap MummyMan (671,96) song wt5443-5682: cau (tick tu luc sinh, dx, dy) [(41, 0, -15), (81, 0, -15), (235, 0, -15)]
+thap MummyMan (1183,96) song wt5955-6194: cau (tick tu luc sinh, dx, dy) [(41, 0, -15), (81, 0, -15), (234, 0, -15)]
+-- Ghost (video Map_3 WEA f416: hien 96 px SAU LUNG, tam = chan Simon - 31, ngang 0.76, doc 0.12)
+Ghost WalkwayEntranceA sinh wt145 (672,145) | Simon (576,176) huong -1 => x - Simon +96, y - chan -31 | vx 40 tick dau 0.750 | song 1005 tick
+-- Ha enemy trong luong that: 6 lan; vat roi tai cho enemy: Unity khong co luat (CVM3 08 KHONG dung - §5 #11)

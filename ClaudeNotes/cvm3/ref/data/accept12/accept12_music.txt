@@ -1,0 +1,15 @@
+== MAT 7 - nhac luong that (AudioManager.MusicEvent) vs video Map_3 (CVM3_MEMORY 2c/2k)
+  frame 25759 wt -1 - | stop StageClear
+  frame 26181 wt 0 WalkwayEntranceA | play WickedChild
+  frame 30268 wt 4044 WalkwayB | loop WickedChild
+  frame 32583 wt 6359 MummyMan | play PoisonMind
+  frame 33415 wt 7191 MummyMan | play StageClear
+  frame 33721 wt 7497 MummyMan | end StageClear
+  frame 34276 wt -1 - | stop StageClear
+  frame 34783 wt -1 - | play WalkingOnTheEdge
+so lan play trong Map 3: 4 (play WickedChild, play PoisonMind, play StageClear, play WalkingOnTheEdge) - video: Wicked Child 1 lan (KHONG phat lai o thang/cua/STAGE), Poison Mind, Stage Clear
+Wicked Child: frame 26181, khung STAGE 07 dau tien 26181 => +0 tick (video t0 6.862 s = luc hien STAGE 07)
+Wicked Child lap o frame [30268], khoang [] (video vong 45.27 s = 2716 tick o 60 fps)
+Poison Mind: khoa + 60 tick (video ~ +1.2 s = ~72 +-18; Config 60)
+Stage Clear: frame 33415, nhat cau frame 33415 => +0 (video cung luc)
+dung/het nhac: [(25759, 'stop StageClear'), (33721, 'end StageClear'), (34276, 'stop StageClear')] (video: tally + ban do B3 im)

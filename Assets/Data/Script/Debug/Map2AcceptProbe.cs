@@ -94,8 +94,9 @@ public static class Map2AcceptProbe
         return r;
     }
 
-    /// <summary>Phần Map 2 = stage ≥ 4 (bản đồ lâu đài sau Block 1 đã là stage 4 — đầu video Map_2).</summary>
-    private static bool Active => GameSession.Current != null && GameSession.Current.stage >= 4;
+    /// <summary>Phần Map 2 = stage ≥ 4 (bản đồ lâu đài sau Block 1 đã là stage 4 — đầu video Map_2). CVM3 12: đặt 7 ⇒ chỉ ghi phần Map 3.</summary>
+    public static int MinStage = 4;
+    private static bool Active => GameSession.Current != null && GameSession.Current.stage >= MinStage;
 
     private static void Line(string s)
     {

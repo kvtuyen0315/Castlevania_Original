@@ -1,0 +1,20 @@
+bộ | đạt/tổng | hash | hash chuẩn | khớp? | thời gian
+h8(flow) | 5/5 | 352/432/448/890/922 | 352/432/448/890/922 | KHỚP | 0 s
+flow | 3/3 | 7068416c | 7068416c | KHỚP | 437 s | trước STAGE 04 59cafbaa = 59cafbaa; trước STAGE 07 8fcc6b6e = 8fcc6b6e
+map2 | 3/3 | 4ec56f7a | 4ec56f7a | KHỚP | 1 s | trước STAGE 04 59cafbaa = 59cafbaa; trước STAGE 07 8fcc6b6e = 8fcc6b6e
+map3 | 3/3 | 7068416c | 7068416c | KHỚP | 2 s | trước STAGE 04 59cafbaa = 59cafbaa; trước STAGE 07 8fcc6b6e = 8fcc6b6e
+spam1 | 1/1 | - | - | KHỚP | 60 s | không có hash — đạt = 0 lỗi console, kết thúc đúng
+spam2 | 1/1 | - | - | KHỚP | 60 s | không có hash — đạt = 0 lỗi console, kết thúc đúng
+spam3 | 1/1 | - | - | KHỚP | 80 s | không có hash — đạt = 0 lỗi console, kết thúc đúng
+spam4 | 1/1 | - | - | KHỚP | 80 s | không có hash — đạt = 0 lỗi console, kết thúc đúng
+spam5 | 1/1 | - | - | KHỚP | 60 s | không có hash — đạt = 0 lỗi console, kết thúc đúng
+spam6 | 1/1 | - | - | KHỚP | 80 s | không có hash — đạt = 0 lỗi console, kết thúc đúng
+spam7 | 1/1 | - | - | KHỚP | 80 s | không có hash — đạt = 0 lỗi console, kết thúc đúng
+spam8 | 1/1 | - | - | KHỚP | 60 s | không có hash — đạt = 0 lỗi console, kết thúc đúng
+spam9 | 1/1 | - | - | KHỚP | 80 s | không có hash — đạt = 0 lỗi console, kết thúc đúng
+spam10 | 1/1 | - | - | KHỚP | 80 s | không có hash — đạt = 0 lỗi console, kết thúc đúng
+h8(flow30) | 5/5 | 352/432/448/890/922 | 352/432/448/890/922 | KHỚP | 0 s
+flow30 | 3/3 | 7068416c | 7068416c | KHỚP | 437 s | trước STAGE 04 59cafbaa = 59cafbaa; trước STAGE 07 8fcc6b6e = 8fcc6b6e
+h8(flow144) | 5/5 | 352/432/448/890/922 | 352/432/448/890/922 | KHỚP | 0 s
+flow144 | 3/3 | 7068416c | 7068416c | KHỚP | 437 s | trước STAGE 04 59cafbaa = 59cafbaa; trước STAGE 07 8fcc6b6e = 8fcc6b6e
+TỔNG: 18 bộ, lệch/FAIL 0, lỗi 0, bỏ qua 0, 2036 s

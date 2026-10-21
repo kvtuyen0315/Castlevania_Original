@@ -1,0 +1,30 @@
+== MAT 8 - chuyen canh luong that vs video Map_3 (CVM3_MEMORY 2k; tick = frame video x 2.0033, moc don +-2)
+  den: frame 26154-26180 (27 khung) CastleMap -> Stage1
+  den: frame 34257-34275 (19 khung) Stage1 -> CastleMap
+  den: frame 34756-34782 (27 khung) CastleMap -> Stage10Stub
+  ban do B2 -> STAGE 07: den (khung)                         Unity     27 | video     26 | DAT
+  moc StageFlow: [(27307, 'stair_up', 'WalkwayEntranceA', '99,31', 0), (27330, 'ca_from_cb', 'WalkwayEntranceB', '97,189', 0), (28256, 'door', 'WalkwayEntranceB', '743,128', 512), (28384, 'door_stop', 'WalkwayEntranceB', '743,128', 640), (28390, 'door_open', 'WalkwayEntranceB', '743,128', 640), (28491, 'door_closed', 'WalkwayEntranceB', '816,128', 640), (28670, 'stage8', 'WalkwayA', '48,128', 0), (29886, 'stair_up', 'WalkwayA', '611,31', 483), (29909, 'ca_from_cb', 'WalkwayB', '209,189', 81), (30746, 'door', 'WalkwayB', '852,96', 624), (30874, 'door_stop', 'WalkwayB', '852,96', 752), (30881, 'door_open', 'WalkwayB', '852,96', 752), (30984, 'door_closed', 'WalkwayB', '928,96', 752), (31163, 'stage9', 'MummyMan', '48,96', 0), (33415, 'crystal', 'MummyMan', '1408,176', 1280), (34256, 'tally_done', 'MummyMan', '1408,176', 1280)]
+  thang len-trai -> WalkwayEntranceB: den (tick)             Unity     23 | video     22 | DAT
+    hien 97,189 cx 0 (video 96,189 cx 0)
+  thang len-trai -> WalkwayB: den (tick)                     Unity     23 | video     24 | DAT
+    hien 209,189 cx 81 (video 207,191 cx 79)
+  cua PHAI #1 (WEB -> WalkwayA): cuon 1 (door -> door_stop)  Unity    128 | video    128 | DAT
+  cua PHAI #1 (WEB -> WalkwayA): door_stop -> canh door_1 (video (+4.1,+8.1]) Unity      6 | video    6.1 | DAT
+  cua PHAI #1 (WEB -> WalkwayA): door_stop -> cot cua tro lai (video (+104.3,+110.3]) Unity    107 | video  107.3 | DAT
+  cua PHAI #1 (WEB -> WalkwayA): bat dau cuon -> STAGE moi   Unity    414 | video  414.5 | DAT
+    sau cua: WalkwayA 48,128 cx 0 (video (48,128) quay phai cx 0)
+  cua PHAI #2 (WalkwayB -> MummyMan): cuon 1 (door -> door_stop) Unity    128 | video    128 | DAT
+  cua PHAI #2 (WalkwayB -> MummyMan): door_stop -> canh door_1 (video (+3.2,+11.2]) Unity      7 | video    7.2 | DAT
+  cua PHAI #2 (WalkwayB -> MummyMan): door_stop -> cot cua tro lai (video (+107.3,+113.3]) Unity    110 | video  110.3 | DAT
+  cua PHAI #2 (WalkwayB -> MummyMan): bat dau cuon -> STAGE moi Unity    417 | video  416.6 | DAT
+    sau cua: MummyMan 48,96 cx 0 (video (48,96) quay phai cx 0)
+  khoa phong Mummy -> thuc (tick)                            Unity    120 | video    120 | DAT
+  Mummy cuoi bi ha -> qua cau (tick)                         Unity    117 | video    117 | DAT
+  nhat cau -> TIME bat dau dem (tick)                        Unity    226 | video  226.4 | DAT
+  TIME dem 1 tick/dv: so tick TIME 402 -> 0                  Unity    402 | video    402 | DAT
+  TIME 0000 -> tim dau tien (tick)                           Unity     54 | video   54.1 | DAT
+  nhip tim (tick, TB)                                        Unity    8.0 | video   7.97 | DAT
+  tally xong -> ban do B3: den (khung)                       Unity     19 | video   20.4 | DAT
+  ban do B3: hien frame 34276 -> den 34756 (480 tick; video het 4:11.6 khi ban do con truot - SUY LUAN §5 #16) -> Stage10Stub (den 27 khung)
+  STAGE 10: TIME 0, tim 5, STAGE 10, SCORE 26230 (video ban do B3: STAGE 10 tim 05 TIME 0000)
+  => 18/18 moc trong +-2 tick (hoac khop)

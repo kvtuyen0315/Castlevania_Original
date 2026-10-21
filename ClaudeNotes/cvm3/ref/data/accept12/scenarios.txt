@@ -1,0 +1,242 @@
+Map3AcceptProbe.Run: 11/11 ĐẠT, lỗi console 0
+PASS pit_web (215 tick)
+   sẵn sàng: WalkwayEntranceB (80,160) f1 cx 0 ST7 P3 SC0 T500 ♥5 HP16 roi1 None
+   chết: Fall @152 (109,256) P2
+   hồi sinh: @184 ⇒ WalkwayEntranceA (720,160) f-1 cx 512 ST7 P2 SC0 T500 ♥5 HP16 roi1 None
+   bắt đầu rơi: tuổi 22 x 102 y 168
+PASS pit_bridge_st9 (215 tick)
+   sẵn sàng: MummyMan (760,96) f1 cx 632 ST9 P3 SC0 T500 ♥5 HP16 roi1 None
+   chết: Fall @152 (789,256) P2
+   hồi sinh: @184 ⇒ MummyMan (48,96) f1 cx 0 ST9 P2 SC0 T500 ♥5 HP16 roi1 None
+   bắt đầu rơi: tuổi 14 x 774 y 104
+PASS knock_bridge_st9 (238 tick)
+   sẵn sàng: MummyMan (816,96) f1 cx 688 ST9 P3 SC0 T500 ♥5 HP16 roi1 None
+   chết: Fall @175 (766,256) P2
+   hồi sinh: @207 ⇒ MummyMan (48,96) f1 cx 0 ST9 P2 SC0 T500 ♥5 HP16 roi1 None
+   bắt đầu rơi: tuổi 52 x 766 y 224
+   đòn vào Simon: @1 dmg 3 từ Skeleton (815,96) Simon (816,96) f1
+   HP mất mỗi lần: 3 (tuổi 2), lùi mỗi đòn (px, tới khi hết Hurt): 49
+PASS knock_pit_wb (295 tick)
+   sẵn sàng: WalkwayB (680,128) f1 cx 552 ST8 P3 SC0 T500 ♥5 HP16 roi1 None
+   chết: Fall @232 (634,256) P2
+   hồi sinh: @264 ⇒ WalkwayA (48,128) f1 cx 0 ST8 P2 SC0 T500 ♥5 HP16 roi1 None
+   bắt đầu rơi: tuổi 109 x 634 y 224
+   đòn vào Simon: @62 dmg 3 từ Raven (665,115) Simon (680,128) f1
+   HP mất mỗi lần: 3 (tuổi 63), lùi mỗi đòn (px, tới khi hết Hurt): 45
+PASS damage_wa (1345 tick)
+   sẵn sàng: WalkwayA (48,128) f1 cx 0 ST8 P3 SC0 T500 ♥5 HP16 roi1 None
+   chết: Damage @1282 (196,128) P2
+   hồi sinh: @1314 ⇒ WalkwayA (48,128) f1 cx 0 ST8 P2 SC0 T500 ♥5 HP16 roi1 None
+   đòn vào Simon: @485 dmg 3 từ MedusaHead (415,94) Simon (400,128) f1 | @613 dmg 3 từ MedusaHead (381,94) Simon (366,128) f1 | @741 dmg 3 từ MedusaHead (347,94) Simon (332,128) f1 | @869 dmg 3 từ MedusaHead (313,94) Simon (298,128) f1 | @997 dmg 3 từ MedusaHead (279,94) Simon (264,128) f1 | @1125 dmg 3 từ MedusaHead (245,94) Simon (230,128) f1
+   HP mất mỗi lần: 3,3,3,3,3,1 (tuổi 486,614,742,870,998,1126), lùi mỗi đòn (px, tới khi hết Hurt): 33,33,33,33,33,33
+PASS stopwatch_wa (773 tick, bất tử)
+   sẵn sàng: WalkwayA (48,128) f1 cx 0 ST8 P3 SC0 T500 ♥20 HP16 roi1 Stopwatch
+   đồng hồ: bấm tuổi 352, tim 20 → 15, TIME đổi ở tuổi 59,123,187,251,315,571,635,699,763
+PASS holy_mm (220 tick, bất tử)
+   sẵn sàng: MummyMan (1302,112) f1 cx 1174 ST9 P3 SC0 T500 ♥20 HP16 roi1 HolyWater
+   lọ: ném tuổi 22 X0 1302 Y0 112, n cuối 48, lửa tuổi 71 (1375,176)
+   vết lọ (n x y): 0 1302 93 | 1 1303 91 | 2 1305 90 | 3 1306 89 | 4 1308 88 | 5 1309 87 | 6 1311 86 | 7 1312 86 | 8 1314 85 | 9 1315 85 | 10 1317 85 | 11 1318 85 | 12 1320 85 | 13 1321 85 | 14 1323 85 | 15 1324 85 | 16 1326 86 | 17 1327 87 | 18 1329 88 | 19 1330 88 | 20 1332 90 | 21 1333 91 | 22 1335 92 | 23 1336 94 | 24 1338 95 | 25 1339 97 | 26 1341 99 | 27 1342 101 | 28 1344 103 | 29 1345 105 | 30 1347 107 | 31 1348 110 | 32 1350 113 | 33 1351 115 | 34 1353 118 | 35 1354 121 | 36 1356 124 | 37 1357 128 | 38 1359 131 | 39 1360 135 | 40 1362 138 | 41 1363 142 | 42 1365 146 | 43 1366 150 | 44 1368 154 | 45 1369 158 | 46 1371 163 | 47 1372 167 | 48 1374 172
+PASS gameover_st9 (277 tick)
+   sẵn sàng: MummyMan (760,96) f1 cx 632 ST9 P1 SC0 T500 ♥5 HP16 roi1 None
+   chết: Fall GAMEOVER @152 (789,256) P0
+   hồi sinh:  ⇒ 
+   bắt đầu rơi: tuổi 14 x 774 y 104
+   GAME OVER có, CONTINUE ⇒ MummyMan (48,96) f1 cx 0 ST9 P3 SC0 T500 ♥5 HP16 roi1 None
+PASS secret_st7 (249 tick, bất tử)
+   sẵn sàng: WalkwayEntranceB (537,176) f1 cx 409 ST7 P3 SC0 T500 ♥5 HP16 roi1 None
+   túi: ngồi tuổi 1 ⇒ túi hiện tuổi 5 (+4) ở (424,143) ⇒ nghỉ tuổi 61 (+60) Y 129 ⇒ mất tuổi 249 (188 sau khi nghỉ); ngoài màn 0 tick
+PASS secret_st8 (123 tick, bất tử)
+   sẵn sàng: WalkwayB (246,128) f1 cx 118 ST8 P3 SC0 T500 ♥5 HP16 roi1 None
+   túi: ngồi tuổi 1 ⇒ túi hiện tuổi 5 (+4) ở (128,143) ⇒ nghỉ tuổi 61 (+60) Y 129 ⇒ nhặt tuổi 123 (62 sau khi nghỉ); ngoài màn 0 tick
+PASS secret_st8_off (249 tick, bất tử)
+   sẵn sàng: WalkwayB (246,128) f1 cx 118 ST8 P3 SC0 T500 ♥5 HP16 roi1 None
+   túi: ngồi tuổi 1 ⇒ túi hiện tuổi 5 (+4) ở (128,143) ⇒ nghỉ tuổi 61 (+60) Y 129 ⇒ mất tuổi 249 (188 sau khi nghỉ); ngoài màn 226 tick
+
+# vết
+== pit_web
+0	sẵn sàng WalkwayEntranceB (80,160) f1 cx 0 ST7 P3 SC0 T500 ♥5 HP16 roi1 None
+22	bắt đầu rơi WalkwayEntranceB (102,168) f1 cx 0 ST7 P3 SC0 T500 ♥5 HP16 roi1 None
+22	ảnh pit_web_roi_a22.png WalkwayEntranceB (102,168) f1 cx 0 ST7 P3 SC0 T500 ♥5 HP16 roi1 None
+30	WalkwayEntranceB (109,232) f1 cx 0 ST7 P3 SC0 T500 ♥5 HP16 roi1 None FallDeath
+60	WalkwayEntranceB (109,256) f1 cx 0 ST7 P3 SC0 T500 ♥5 HP16 roi1 None FallDeath
+90	WalkwayEntranceB (109,256) f1 cx 0 ST7 P3 SC0 T500 ♥5 HP16 roi1 None FallDeath
+120	WalkwayEntranceB (109,256) f1 cx 0 ST7 P3 SC0 T500 ♥5 HP16 roi1 None FallDeath
+150	WalkwayEntranceB (109,256) f1 cx 0 ST7 P3 SC0 T500 ♥5 HP16 roi1 None FallDeath
+180	WalkwayEntranceB (109,256) f1 cx 0 ST7 P2 SC0 T500 ♥5 HP16 roi1 None FallDeath
+210	WalkwayEntranceA (745,160) f1 cx 512 ST7 P2 SC0 T500 ♥5 HP16 roi1 None Walk
+== pit_bridge_st9
+0	sẵn sàng MummyMan (760,96) f1 cx 632 ST9 P3 SC0 T500 ♥5 HP16 roi1 None
+14	bắt đầu rơi MummyMan (774,104) f1 cx 646 ST9 P3 SC0 T500 ♥5 HP16 roi1 None
+14	ảnh pit_bridge_st9_roi_a14.png MummyMan (774,104) f1 cx 646 ST9 P3 SC0 T500 ♥5 HP16 roi1 None
+30	MummyMan (789,232) f1 cx 661 ST9 P3 SC0 T500 ♥5 HP16 roi1 None FallDeath
+60	MummyMan (789,256) f1 cx 661 ST9 P3 SC0 T500 ♥5 HP16 roi1 None FallDeath
+90	MummyMan (789,256) f1 cx 661 ST9 P3 SC0 T500 ♥5 HP16 roi1 None FallDeath
+120	MummyMan (789,256) f1 cx 661 ST9 P3 SC0 T500 ♥5 HP16 roi1 None FallDeath
+150	MummyMan (789,256) f1 cx 661 ST9 P3 SC0 T500 ♥5 HP16 roi1 None FallDeath
+180	MummyMan (789,256) f1 cx 661 ST9 P2 SC0 T500 ♥5 HP16 roi1 None FallDeath
+210	MummyMan (73,96) f1 cx 0 ST9 P2 SC0 T500 ♥5 HP16 roi1 None Walk
+== knock_bridge_st9
+0	sẵn sàng MummyMan (816,96) f1 cx 688 ST9 P3 SC0 T500 ♥5 HP16 roi1 None
+2	HP 16→13 MummyMan (816,96) f1 cx 688 ST9 P3 SC0 T500 ♥5 HP13 roi1 None
+14	ảnh knock_bridge_st9_don1_a14.png MummyMan (804,82) f1 cx 676 ST9 P3 SC0 T500 ♥5 HP13 roi1 None
+30	MummyMan (788,85) f1 cx 660 ST9 P3 SC0 T500 ♥5 HP13 roi1 None Hurt
+52	bắt đầu rơi MummyMan (766,224) f1 cx 638 ST9 P3 SC0 T500 ♥5 HP13 roi1 None
+52	ảnh knock_bridge_st9_roi_a52.png MummyMan (766,224) f1 cx 638 ST9 P3 SC0 T500 ♥5 HP13 roi1 None
+60	MummyMan (766,256) f1 cx 638 ST9 P3 SC0 T500 ♥5 HP13 roi1 None FallDeath
+90	MummyMan (766,256) f1 cx 638 ST9 P3 SC0 T500 ♥5 HP13 roi1 None FallDeath
+120	MummyMan (766,256) f1 cx 638 ST9 P3 SC0 T500 ♥5 HP13 roi1 None FallDeath
+150	MummyMan (766,256) f1 cx 638 ST9 P3 SC0 T500 ♥5 HP13 roi1 None FallDeath
+180	MummyMan (766,256) f1 cx 638 ST9 P2 SC0 T500 ♥5 HP13 roi1 None FallDeath
+210	MummyMan (48,96) f1 cx 0 ST9 P2 SC0 T500 ♥5 HP16 roi1 None Idle
+== knock_pit_wb
+0	sẵn sàng WalkwayB (680,128) f1 cx 552 ST8 P3 SC0 T500 ♥5 HP16 roi1 None
+30	WalkwayB (680,128) f1 cx 552 ST8 P3 SC0 T500 ♥5 HP16 roi1 None Idle
+60	WalkwayB (680,128) f1 cx 552 ST8 P3 SC0 T499 ♥5 HP16 roi1 None Idle
+63	HP 16→13 WalkwayB (680,128) f1 cx 552 ST8 P3 SC0 T499 ♥5 HP13 roi1 None
+75	ảnh knock_pit_wb_don1_a75.png WalkwayB (668,114) f1 cx 540 ST8 P3 SC0 T499 ♥5 HP13 roi1 None
+90	WalkwayB (653,116) f1 cx 525 ST8 P3 SC0 T499 ♥5 HP13 roi1 None Hurt
+109	bắt đầu rơi WalkwayB (634,224) f1 cx 506 ST8 P3 SC0 T499 ♥5 HP13 roi1 None
+109	ảnh knock_pit_wb_roi_a109.png WalkwayB (634,224) f1 cx 506 ST8 P3 SC0 T499 ♥5 HP13 roi1 None
+120	WalkwayB (634,256) f1 cx 506 ST8 P3 SC0 T499 ♥5 HP13 roi1 None FallDeath
+150	WalkwayB (634,256) f1 cx 506 ST8 P3 SC0 T499 ♥5 HP13 roi1 None FallDeath
+180	WalkwayB (634,256) f1 cx 506 ST8 P3 SC0 T499 ♥5 HP13 roi1 None FallDeath
+210	WalkwayB (634,256) f1 cx 506 ST8 P3 SC0 T499 ♥5 HP13 roi1 None FallDeath
+240	WalkwayB (634,256) f1 cx 506 ST8 P2 SC0 T499 ♥5 HP13 roi1 None FallDeath
+270	WalkwayA (48,128) f1 cx 0 ST8 P2 SC0 T500 ♥5 HP16 roi1 None Idle
+== damage_wa
+0	sẵn sàng WalkwayA (48,128) f1 cx 0 ST8 P3 SC0 T500 ♥5 HP16 roi1 None
+30	WalkwayA (78,128) f1 cx 0 ST8 P3 SC0 T500 ♥5 HP16 roi1 None Walk
+60	WalkwayA (108,128) f1 cx 0 ST8 P3 SC0 T499 ♥5 HP16 roi1 None Walk
+90	WalkwayA (138,128) f1 cx 10 ST8 P3 SC0 T499 ♥5 HP16 roi1 None Walk
+120	WalkwayA (168,128) f1 cx 40 ST8 P3 SC0 T499 ♥5 HP16 roi1 None Walk
+150	WalkwayA (198,128) f1 cx 70 ST8 P3 SC0 T498 ♥5 HP16 roi1 None Walk
+180	WalkwayA (228,128) f1 cx 100 ST8 P3 SC0 T498 ♥5 HP16 roi1 None Walk
+210	WalkwayA (258,128) f1 cx 130 ST8 P3 SC0 T497 ♥5 HP16 roi1 None Walk
+240	WalkwayA (288,128) f1 cx 160 ST8 P3 SC0 T497 ♥5 HP16 roi1 None Walk
+270	WalkwayA (318,128) f1 cx 190 ST8 P3 SC0 T496 ♥5 HP16 roi1 None Walk
+300	WalkwayA (348,128) f1 cx 220 ST8 P3 SC0 T496 ♥5 HP16 roi1 None Walk
+330	WalkwayA (378,128) f1 cx 250 ST8 P3 SC0 T495 ♥5 HP16 roi1 None Walk
+360	WalkwayA (400,128) f1 cx 272 ST8 P3 SC0 T495 ♥5 HP16 roi1 None Idle
+390	WalkwayA (400,128) f1 cx 272 ST8 P3 SC0 T494 ♥5 HP16 roi1 None Idle
+420	WalkwayA (400,128) f1 cx 272 ST8 P3 SC0 T494 ♥5 HP16 roi1 None Idle
+450	WalkwayA (400,128) f1 cx 272 ST8 P3 SC0 T493 ♥5 HP16 roi1 None Idle
+480	WalkwayA (400,128) f1 cx 272 ST8 P3 SC0 T493 ♥5 HP16 roi1 None Idle
+486	HP 16→13 WalkwayA (400,128) f1 cx 272 ST8 P3 SC0 T493 ♥5 HP13 roi1 None
+498	ảnh damage_wa_don1_a498.png WalkwayA (388,114) f1 cx 260 ST8 P3 SC0 T493 ♥5 HP13 roi1 None
+510	WalkwayA (376,114) f1 cx 248 ST8 P3 SC0 T492 ♥5 HP13 roi1 None Hurt
+540	WalkwayA (366,128) f1 cx 238 ST8 P3 SC0 T492 ♥5 HP13 roi1 None Idle
+570	WalkwayA (366,128) f1 cx 238 ST8 P3 SC0 T492 ♥5 HP13 roi1 None Idle
+600	WalkwayA (366,128) f1 cx 238 ST8 P3 SC0 T491 ♥5 HP13 roi1 None Idle
+614	HP 13→10 WalkwayA (366,128) f1 cx 238 ST8 P3 SC0 T491 ♥5 HP10 roi1 None
+630	WalkwayA (350,114) f1 cx 222 ST8 P3 SC0 T491 ♥5 HP10 roi1 None Hurt
+660	WalkwayA (332,128) f1 cx 204 ST8 P3 SC0 T490 ♥5 HP10 roi1 None Idle
+690	WalkwayA (332,128) f1 cx 204 ST8 P3 SC0 T490 ♥5 HP10 roi1 None Idle
+720	WalkwayA (332,128) f1 cx 204 ST8 P3 SC0 T489 ♥5 HP10 roi1 None Idle
+742	HP 10→7 WalkwayA (332,128) f1 cx 204 ST8 P3 SC0 T489 ♥5 HP7 roi1 None
+750	WalkwayA (324,115) f1 cx 196 ST8 P3 SC0 T489 ♥5 HP7 roi1 None Hurt
+780	WalkwayA (298,128) f1 cx 170 ST8 P3 SC0 T488 ♥5 HP7 roi1 None Idle
+810	WalkwayA (298,128) f1 cx 170 ST8 P3 SC0 T488 ♥5 HP7 roi1 None Idle
+840	WalkwayA (298,128) f1 cx 170 ST8 P3 SC0 T487 ♥5 HP7 roi1 None Idle
+870	HP 7→4 WalkwayA (298,128) f1 cx 170 ST8 P3 SC0 T487 ♥5 HP4 roi1 None
+870	WalkwayA (298,128) f1 cx 170 ST8 P3 SC0 T487 ♥5 HP4 roi1 None Hurt
+900	WalkwayA (268,119) f1 cx 140 ST8 P3 SC0 T486 ♥5 HP4 roi1 None Hurt
+930	WalkwayA (264,128) f1 cx 136 ST8 P3 SC0 T486 ♥5 HP4 roi1 None Idle
+960	WalkwayA (264,128) f1 cx 136 ST8 P3 SC0 T485 ♥5 HP4 roi1 None Idle
+990	WalkwayA (264,128) f1 cx 136 ST8 P3 SC0 T485 ♥5 HP4 roi1 None Idle
+998	HP 4→1 WalkwayA (264,128) f1 cx 136 ST8 P3 SC0 T485 ♥5 HP1 roi1 None
+1020	WalkwayA (242,114) f1 cx 114 ST8 P3 SC0 T484 ♥5 HP1 roi1 None Hurt
+1050	WalkwayA (230,128) f1 cx 102 ST8 P3 SC0 T484 ♥5 HP1 roi1 None Idle
+1080	WalkwayA (230,128) f1 cx 102 ST8 P3 SC0 T484 ♥5 HP1 roi1 None Idle
+1110	WalkwayA (230,128) f1 cx 102 ST8 P3 SC0 T483 ♥5 HP1 roi1 None Idle
+1126	HP 1→0 WalkwayA (230,128) f1 cx 102 ST8 P3 SC0 T483 ♥5 HP0 roi1 None
+1138	ảnh damage_wa_don6_a1138.png WalkwayA (218,114) f1 cx 90 ST8 P3 SC0 T483 ♥5 HP0 roi1 None
+1140	WalkwayA (216,114) f1 cx 88 ST8 P3 SC0 T483 ♥5 HP0 roi1 None Hurt
+1170	WalkwayA (196,128) f1 cx 68 ST8 P3 SC0 T482 ♥5 HP0 roi1 None Dead
+1200	WalkwayA (196,128) f1 cx 68 ST8 P3 SC0 T482 ♥5 HP0 roi1 None Dead
+1230	WalkwayA (196,128) f1 cx 68 ST8 P3 SC0 T482 ♥5 HP0 roi1 None Dead
+1260	WalkwayA (196,128) f1 cx 68 ST8 P3 SC0 T482 ♥5 HP0 roi1 None Dead
+1290	WalkwayA (196,128) f1 cx 68 ST8 P2 SC0 T482 ♥5 HP0 roi1 None Dead
+1320	WalkwayA (48,128) f1 cx 0 ST8 P2 SC0 T500 ♥5 HP16 roi1 None Idle
+== stopwatch_wa
+0	sẵn sàng WalkwayA (48,128) f1 cx 0 ST8 P3 SC0 T500 ♥20 HP16 roi1 Stopwatch (bất tử)
+30	WalkwayA (78,128) f1 cx 0 ST8 P3 SC0 T500 ♥20 HP16 roi1 Stopwatch Walk
+60	WalkwayA (108,128) f1 cx 0 ST8 P3 SC0 T499 ♥20 HP16 roi1 Stopwatch Walk
+90	WalkwayA (138,128) f1 cx 10 ST8 P3 SC0 T499 ♥20 HP16 roi1 Stopwatch Walk
+120	WalkwayA (168,128) f1 cx 40 ST8 P3 SC0 T499 ♥20 HP16 roi1 Stopwatch Walk
+150	WalkwayA (198,128) f1 cx 70 ST8 P3 SC0 T498 ♥20 HP16 roi1 Stopwatch Walk
+180	WalkwayA (228,128) f1 cx 100 ST8 P3 SC0 T498 ♥20 HP16 roi1 Stopwatch Walk
+210	WalkwayA (258,128) f1 cx 130 ST8 P3 SC0 T497 ♥20 HP16 roi1 Stopwatch Walk
+240	WalkwayA (288,128) f1 cx 160 ST8 P3 SC0 T497 ♥20 HP16 roi1 Stopwatch Walk
+270	WalkwayA (318,128) f1 cx 190 ST8 P3 SC0 T496 ♥20 HP16 roi1 Stopwatch Walk
+300	WalkwayA (348,128) f1 cx 220 ST8 P3 SC0 T496 ♥20 HP16 roi1 Stopwatch Walk
+330	WalkwayA (378,128) f1 cx 250 ST8 P3 SC0 T495 ♥20 HP16 roi1 Stopwatch Walk
+360	WalkwayA (400,128) f1 cx 272 ST8 P3 SC0 T495 ♥15 HP16 roi1 Stopwatch Attack
+390	WalkwayA (400,128) f1 cx 272 ST8 P3 SC0 T495 ♥15 HP16 roi1 Stopwatch Idle
+420	WalkwayA (400,128) f1 cx 272 ST8 P3 SC0 T495 ♥15 HP16 roi1 Stopwatch Idle
+442	ảnh stopwatch_wa_dongho90_a442.png WalkwayA (400,128) f1 cx 272 ST8 P3 SC0 T495 ♥15 HP16 roi1 Stopwatch
+450	WalkwayA (400,128) f1 cx 272 ST8 P3 SC0 T495 ♥15 HP16 roi1 Stopwatch Idle
+480	WalkwayA (400,128) f1 cx 272 ST8 P3 SC0 T495 ♥15 HP16 roi1 Stopwatch Idle
+510	WalkwayA (400,128) f1 cx 272 ST8 P3 SC0 T495 ♥15 HP16 roi1 Stopwatch Idle
+540	WalkwayA (400,128) f1 cx 272 ST8 P3 SC0 T495 ♥15 HP16 roi1 Stopwatch Idle
+570	WalkwayA (400,128) f1 cx 272 ST8 P3 SC0 T495 ♥15 HP16 roi1 Stopwatch Idle
+600	WalkwayA (400,128) f1 cx 272 ST8 P3 SC0 T494 ♥15 HP16 roi1 Stopwatch Idle
+630	WalkwayA (400,128) f1 cx 272 ST8 P3 SC0 T494 ♥15 HP16 roi1 Stopwatch Idle
+660	WalkwayA (400,128) f1 cx 272 ST8 P3 SC0 T493 ♥15 HP16 roi1 Stopwatch Idle
+690	WalkwayA (400,128) f1 cx 272 ST8 P3 SC0 T493 ♥15 HP16 roi1 Stopwatch Idle
+720	WalkwayA (400,128) f1 cx 272 ST8 P3 SC0 T492 ♥15 HP16 roi1 Stopwatch Idle
+750	WalkwayA (400,128) f1 cx 272 ST8 P3 SC0 T492 ♥15 HP16 roi1 Stopwatch Idle
+đồng hồ: Medusa Head đứng yên từ tuổi 353 tới 539 (vị trí giữ 186 tick sau tick đầu; tick bấm = tuổi 353)
+TIME đổi ở tuổi: 59,123,187,251,315,571,635,699,763
+== holy_mm
+0	sẵn sàng MummyMan (1302,112) f1 cx 1174 ST9 P3 SC0 T500 ♥20 HP16 roi1 HolyWater (bất tử)
+30	MummyMan (1302,112) f1 cx 1174 ST9 P3 SC0 T500 ♥19 HP16 roi1 HolyWater Idle
+46	ảnh holy_mm_lo24_a46.png MummyMan (1302,112) f1 cx 1174 ST9 P3 SC0 T500 ♥19 HP16 roi1 HolyWater
+60	MummyMan (1302,112) f1 cx 1174 ST9 P3 SC0 T499 ♥19 HP16 roi1 HolyWater Idle
+73	ảnh holy_mm_lua_a73.png MummyMan (1302,112) f1 cx 1174 ST9 P3 SC0 T499 ♥19 HP16 roi1 HolyWater
+90	MummyMan (1302,112) f1 cx 1174 ST9 P3 SC0 T499 ♥19 HP16 roi1 HolyWater Idle
+120	MummyMan (1302,112) f1 cx 1174 ST9 P3 SC0 T499 ♥19 HP16 roi1 HolyWater Idle
+150	MummyMan (1302,112) f1 cx 1174 ST9 P3 SC0 T498 ♥19 HP16 roi1 HolyWater Idle
+180	MummyMan (1302,112) f1 cx 1174 ST9 P3 SC0 T498 ♥19 HP16 roi1 HolyWater Idle
+210	MummyMan (1302,112) f1 cx 1174 ST9 P3 SC0 T497 ♥19 HP16 roi1 HolyWater Idle
+lọ: 49 điểm, lệch mô hình 0; n cuối 48; lửa tuổi 71 ở (1375,176), X0 1302 Y0 112
+== gameover_st9
+0	sẵn sàng MummyMan (760,96) f1 cx 632 ST9 P1 SC0 T500 ♥5 HP16 roi1 None
+14	bắt đầu rơi MummyMan (774,104) f1 cx 646 ST9 P1 SC0 T500 ♥5 HP16 roi1 None
+14	ảnh gameover_st9_roi_a14.png MummyMan (774,104) f1 cx 646 ST9 P1 SC0 T500 ♥5 HP16 roi1 None
+30	MummyMan (789,232) f1 cx 661 ST9 P1 SC0 T500 ♥5 HP16 roi1 None FallDeath
+60	MummyMan (789,256) f1 cx 661 ST9 P1 SC0 T500 ♥5 HP16 roi1 None FallDeath
+90	MummyMan (789,256) f1 cx 661 ST9 P1 SC0 T500 ♥5 HP16 roi1 None FallDeath
+120	MummyMan (789,256) f1 cx 661 ST9 P1 SC0 T500 ♥5 HP16 roi1 None FallDeath
+150	MummyMan (789,256) f1 cx 661 ST9 P1 SC0 T500 ♥5 HP16 roi1 None FallDeath
+184	màn GameOver
+276	màn Stage1
+== secret_st7
+0	sẵn sàng WalkwayEntranceB (537,176) f1 cx 409 ST7 P3 SC0 T500 ♥5 HP16 roi1 None (bất tử)
+30	WalkwayEntranceB (537,176) f1 cx 409 ST7 P3 SC0 T500 ♥5 HP16 roi1 None Crouch
+60	WalkwayEntranceB (537,176) f1 cx 409 ST7 P3 SC0 T499 ♥5 HP16 roi1 None Idle
+63	ảnh secret_st7_tui_a63.png WalkwayEntranceB (537,176) f1 cx 409 ST7 P3 SC0 T499 ♥5 HP16 roi1 None
+90	WalkwayEntranceB (537,176) f1 cx 409 ST7 P3 SC0 T499 ♥5 HP16 roi1 None Idle
+120	WalkwayEntranceB (537,176) f1 cx 409 ST7 P3 SC0 T499 ♥5 HP16 roi1 None Idle
+150	WalkwayEntranceB (537,176) f1 cx 409 ST7 P3 SC0 T498 ♥5 HP16 roi1 None Idle
+180	WalkwayEntranceB (537,176) f1 cx 409 ST7 P3 SC0 T498 ♥5 HP16 roi1 None Idle
+210	WalkwayEntranceB (537,176) f1 cx 409 ST7 P3 SC0 T497 ♥5 HP16 roi1 None Idle
+240	WalkwayEntranceB (537,176) f1 cx 409 ST7 P3 SC0 T497 ♥5 HP16 roi1 None Idle
+== secret_st8
+0	sẵn sàng WalkwayB (246,128) f1 cx 118 ST8 P3 SC0 T500 ♥5 HP16 roi1 None (bất tử)
+30	WalkwayB (236,128) f-1 cx 108 ST8 P3 SC0 T500 ♥5 HP16 roi1 None Walk
+60	WalkwayB (206,128) f-1 cx 78 ST8 P3 SC0 T499 ♥5 HP16 roi1 None Walk
+63	ảnh secret_st8_tui_a63.png WalkwayB (203,128) f-1 cx 75 ST8 P3 SC0 T499 ♥5 HP16 roi1 None
+90	WalkwayB (176,128) f-1 cx 48 ST8 P3 SC0 T499 ♥5 HP16 roi1 None Walk
+120	WalkwayB (146,128) f-1 cx 18 ST8 P3 SC0 T499 ♥5 HP16 roi1 None Walk
+== secret_st8_off
+0	sẵn sàng WalkwayB (246,128) f1 cx 118 ST8 P3 SC0 T500 ♥5 HP16 roi1 None (bất tử)
+30	WalkwayB (256,128) f1 cx 128 ST8 P3 SC0 T500 ♥5 HP16 roi1 None Walk
+60	WalkwayB (286,128) f1 cx 158 ST8 P3 SC0 T499 ♥5 HP16 roi1 None Walk
+63	ảnh secret_st8_off_tui_a63.png WalkwayB (289,128) f1 cx 161 ST8 P3 SC0 T499 ♥5 HP16 roi1 None
+83	ảnh secret_st8_off_tui_ngoai_man_a83.png WalkwayB (309,128) f1 cx 181 ST8 P3 SC0 T499 ♥5 HP16 roi1 None
+90	WalkwayB (316,128) f1 cx 188 ST8 P3 SC0 T499 ♥5 HP16 roi1 None Walk
+120	WalkwayB (346,128) f1 cx 218 ST8 P3 SC0 T499 ♥5 HP16 roi1 None Walk
+150	WalkwayB (346,128) f1 cx 218 ST8 P3 SC0 T498 ♥5 HP16 roi1 None Idle
+180	WalkwayB (346,128) f1 cx 218 ST8 P3 SC0 T498 ♥5 HP16 roi1 None Idle
+210	WalkwayB (346,128) f1 cx 218 ST8 P3 SC0 T497 ♥5 HP16 roi1 None Idle
+240	WalkwayB (346,128) f1 cx 218 ST8 P3 SC0 T497 ♥5 HP16 roi1 None Idle

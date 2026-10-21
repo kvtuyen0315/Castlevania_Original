@@ -1,0 +1,141 @@
+bag7_rest.png  section WalkwayEntranceB frame f1990 cx video 380 (Unity 380): 2 cặp — bag x424 y130 dx +0 dy +0; candle x607 y145 dx +0 dy +0
+bag8_rest.png  section WalkwayB frame f3445 cx video -35 (Unity 77): 2 cặp — bag x128 y130 dx +0 dy +0; candle x272 y81 dx +0 dy +0
+p_MummyMan_f4546.png  section MummyMan frame f4546 cx video 0 (Unity 0): 1 cặp — candle x32 y81 dx +0 dy +0
+p_MummyMan_f4676.png  section MummyMan frame f4676 cx video 39 (Unity 39): 1 cặp — raven x268 y41 dx +0 dy +0
+p_MummyMan_f4723.png  section MummyMan frame f4723 cx video 135 (Unity 135): 1 cặp — raven x363 y41 dx +0 dy +0
+p_MummyMan_f4760.png  section MummyMan frame f4760 cx video 206 (Unity 206): 2 cặp — tower x415 y97 dx +0 dy +0; tower x415 y81 dx +0 dy +0
+p_MummyMan_f4880.png  section MummyMan frame f4880 cx video 267 (Unity 267): 1 cặp — raven x495 y33 dx +0 dy +0
+p_MummyMan_f4912.png  section MummyMan frame f4912 cx video 331 (Unity 331): 1 cặp — raven x559 y33 dx +0 dy +0
+p_MummyMan_f4975.png  section MummyMan frame f4975 cx video 458 (Unity 458): 2 cặp — tower x671 y97 dx +0 dy +0; tower x671 y81 dx +0 dy +0
+p_MummyMan_f5094.png  section MummyMan frame f5094 cx video 515 (Unity 515): 1 cặp — raven x747 y41 dx +0 dy +0
+p_MummyMan_f5121.png  section MummyMan frame f5121 cx video 568 (Unity 568): 1 cặp — skeleton x815 y97 dx +0 dy +0
+p_MummyMan_f5184.png  section MummyMan frame f5184 cx video 632 (Unity 632): 1 cặp — skeleton x879 y97 dx +0 dy +0
+p_MummyMan_f5400.png  section MummyMan frame f5400 cx video 947 (Unity 947): 2 cặp — tower x1183 y81 dx +0 dy +0; tower x1183 y97 dx +0 dy +0
+p_MummyMan_f5597.png  section MummyMan frame f5597 cx video 1092 (Unity 1092): 2 cặp — candle x1247 y81 dx +0 dy +0; candle x1311 y81 dx +0 dy +0
+p_MummyMan_f5835.png  section MummyMan frame f5835 cx video 1219 (Unity 1219): 2 cặp — candle x1375 y129 dx +0 dy +0; candle x1439 y129 dx +0 dy +0
+p_MummyMan_f5889.png  section MummyMan frame f5889 cx video 1263 (Unity 1263): 2 cặp — candle x1503 y129 dx +0 dy +0; candle x1439 y129 dx +0 dy +0
+p_MummyMan_f5900.png  section MummyMan frame f5900 cx video 1263 (Unity 1263): 2 cặp — candle x1503 y129 dx +0 dy +0; candle x1439 y129 dx +0 dy +0
+p_WalkwayA_f2647.png  section WalkwayA frame f2647 cx video 0 (Unity 0): 2 cặp — candle x32 y81 dx +0 dy +0; candle x104 y113 dx +0 dy +0
+p_WalkwayA_f2986.png  section WalkwayA frame f2986 cx video 424 (Unity 424): 3 cặp — candle x551 y49 dx +0 dy +0; candle x615 y113 dx +0 dy +0; skeleton x671 y65 dx +0 dy +0
+p_WalkwayA_f2992.png  section WalkwayA frame f2992 cx video 436 (Unity 436): 3 cặp — candle x551 y49 dx +0 dy +0; candle x679 y113 dx +0 dy +0; candle x615 y113 dx +0 dy +0
+p_WalkwayB_f3354.png  section WalkwayB frame f3354 cx video -63 (Unity 49): 2 cặp — candle x216 y113 dx +0 dy +0; candle x272 y81 dx +0 dy +0
+p_WalkwayB_f3602.png  section WalkwayB frame f3602 cx video 40 (Unity 152): 2 cặp — candle x399 y81 dx +0 dy +0; raven x383 y57 dx +0 dy +0
+p_WalkwayB_f3626.png  section WalkwayB frame f3626 cx video 84 (Unity 196): 1 cặp — candle x399 y81 dx +0 dy +0
+p_WalkwayB_f3700.png  section WalkwayB frame f3700 cx video 132 (Unity 244): 2 cặp — tower x479 y129 dx +0 dy +0; tower x479 y113 dx +0 dy +0
+p_WalkwayB_f3873.png  section WalkwayB frame f3873 cx video 255 (Unity 367): 1 cặp — raven x599 y121 dx +0 dy +0
+p_WalkwayB_f3906.png  section WalkwayB frame f3906 cx video 303 (Unity 415): 0 cặp — 
+p_WalkwayB_f3995.png  section WalkwayB frame f3995 cx video 385 (Unity 497): 2 cặp — tower x735 y129 dx +0 dy +0; tower x735 y113 dx +0 dy +0
+p_WalkwayB_f4136.png  section WalkwayB frame f4136 cx video 500 (Unity 612): 2 cặp — candle x783 y81 dx +0 dy +0; candle x847 y81 dx +0 dy +0
+p_WalkwayEntranceA_f1006.png  section WalkwayEntranceA frame f1006 cx video 23 (Unity 23): 3 cặp — candle x161 y81 dx +0 dy +0; candle x97 y145 dx +0 dy +0; skeleton x33 y129 dx +0 dy +0
+p_WalkwayEntranceA_f211.png  section WalkwayEntranceA frame f211 cx video 512 (Unity 512): 4 cặp — candle x608 y161 dx +0 dy +0; candle x736 y145 dx +0 dy +0; candle x544 y161 dx +0 dy +0; candle x672 y161 dx +0 dy +0
+p_WalkwayEntranceA_f491.png  section WalkwayEntranceA frame f491 cx video 424 (Unity 424): 2 cặp — candle x480 y161 dx +0 dy +0; fleaman x433 y129 dx +0 dy +0
+p_WalkwayEntranceA_f501.png  section WalkwayEntranceA frame f501 cx video 405 (Unity 405): 3 cặp — candle x480 y161 dx +0 dy +0; candle x417 y161 dx +0 dy +0; fleaman x433 y129 dx +0 dy +0
+p_WalkwayEntranceA_f621.png  section WalkwayEntranceA frame f621 cx video 295 (Unity 295): 2 cặp — candle x353 y161 dx +0 dy +0; fleaman x305 y129 dx +0 dy +0
+p_WalkwayEntranceA_f631.png  section WalkwayEntranceA frame f631 cx video 277 (Unity 277): 3 cặp — candle x353 y161 dx +0 dy +0; candle x289 y161 dx +0 dy +0; fleaman x305 y129 dx +0 dy +0
+p_WalkwayEntranceA_f825.png  section WalkwayEntranceA frame f825 cx video 168 (Unity 168): 2 cặp — candle x225 y161 dx +0 dy +0; fleaman x177 y97 dx +0 dy +0
+p_WalkwayEntranceA_f840.png  section WalkwayEntranceA frame f840 cx video 144 (Unity 144): 3 cặp — candle x225 y161 dx +0 dy +0; candle x161 y81 dx +0 dy +0; fleaman x177 y97 dx +0 dy +0
+p_WalkwayEntranceB_f1199.png  section WalkwayEntranceB frame f1199 cx video 0 (Unity 0): 2 cặp — candle x224 y145 dx +0 dy +0; candle x160 y81 dx +0 dy +0
+p_WalkwayEntranceB_f1348.png  section WalkwayEntranceB frame f1348 cx video 44 (Unity 44): 3 cặp — candle x224 y145 dx +0 dy +0; candle x288 y145 dx +0 dy +0; raven x280 y41 dx +0 dy +0
+p_WalkwayEntranceB_f1380.png  section WalkwayEntranceB frame f1380 cx video 52 (Unity 52): 2 cặp — candle x288 y145 dx +0 dy +0; candle x223 y145 dx +1 dy +0
+p_WalkwayEntranceB_f1517.png  section WalkwayEntranceB frame f1517 cx video 105 (Unity 105): 2 cặp — candle x288 y145 dx +0 dy +0; skeleton x351 y161 dx +1 dy +0
+p_WalkwayEntranceB_f1582.png  section WalkwayEntranceB frame f1582 cx video 181 (Unity 181): 2 cặp — candle x423 y113 dx +0 dy +0; raven x423 y89 dx +0 dy +0
+p_WalkwayEntranceB_f1642.png  section WalkwayEntranceB frame f1642 cx video 256 (Unity 256): 3 cặp — candle x423 y113 dx +0 dy +0; candle x479 y161 dx +0 dy +0; raven x487 y57 dx +0 dy +0
+p_WalkwayEntranceB_f1662.png  section WalkwayEntranceB frame f1662 cx video 296 (Unity 296): 4 cặp — candle x479 y161 dx +0 dy +0; candle x543 y161 dx +0 dy +0; raven x527 y169 dx +0 dy +0; raven x487 y57 dx +0 dy +0
+p_WalkwayEntranceB_f1663.png  section WalkwayEntranceB frame f1663 cx video 296 (Unity 296): 5 cặp — candle x479 y161 dx +0 dy +0; candle x423 y113 dx +0 dy +0; candle x543 y161 dx +0 dy +0; raven x527 y169 dx +0 dy +0; raven x487 y57 dx +0 dy +0
+p_WalkwayEntranceB_f2123.png  section WalkwayEntranceB frame f2123 cx video 425 (Unity 425): 1 cặp — candle x607 y145 dx +0 dy +0
+p_WalkwayEntranceB_f2271.png  section WalkwayEntranceB frame f2271 cx video 506 (Unity 506): 2 cặp — candle x735 y97 dx +0 dy +0; candle x607 y145 dx +0 dy +0
+TONG 94 cap vat the / 46 anh; |dx| max 1, |dy| max 0; trong 0-1 px: 94
+bag7_rest.png bag x 424 y 130 dx +0 dy +0 errV 0.041 errU 0.000
+bag7_rest.png candle x 607 y 145 dx +0 dy +0 errV 0.036 errU 0.000
+bag8_rest.png bag x 128 y 130 dx +0 dy +0 errV 0.058 errU 0.000
+bag8_rest.png candle x 272 y 81 dx +0 dy +0 errV 0.040 errU 0.000
+p_MummyMan_f4546.png candle x 32 y 81 dx +0 dy +0 errV 0.041 errU 0.000
+p_MummyMan_f4676.png raven x 268 y 41 dx +0 dy +0 errV 0.037 errU 0.000
+p_MummyMan_f4723.png raven x 363 y 41 dx +0 dy +0 errV 0.038 errU 0.000
+p_MummyMan_f4760.png tower x 415 y 97 dx +0 dy +0 errV 0.044 errU 0.000
+p_MummyMan_f4760.png tower x 415 y 81 dx +0 dy +0 errV 0.044 errU 0.000
+p_MummyMan_f4880.png raven x 495 y 33 dx +0 dy +0 errV 0.038 errU 0.000
+p_MummyMan_f4912.png raven x 559 y 33 dx +0 dy +0 errV 0.039 errU 0.000
+p_MummyMan_f4975.png tower x 671 y 97 dx +0 dy +0 errV 0.050 errU 0.000
+p_MummyMan_f4975.png tower x 671 y 81 dx +0 dy +0 errV 0.052 errU 0.000
+p_MummyMan_f5094.png raven x 747 y 41 dx +0 dy +0 errV 0.033 errU 0.000
+p_MummyMan_f5121.png skeleton x 815 y 97 dx +0 dy +0 errV 0.060 errU 0.000
+p_MummyMan_f5184.png skeleton x 879 y 97 dx +0 dy +0 errV 0.062 errU 0.000
+p_MummyMan_f5400.png tower x 1183 y 81 dx +0 dy +0 errV 0.036 errU 0.000
+p_MummyMan_f5400.png tower x 1183 y 97 dx +0 dy +0 errV 0.038 errU 0.000
+p_MummyMan_f5597.png candle x 1247 y 81 dx +0 dy +0 errV 0.029 errU 0.000
+p_MummyMan_f5597.png candle x 1311 y 81 dx +0 dy +0 errV 0.042 errU 0.000
+p_MummyMan_f5835.png candle x 1375 y 129 dx +0 dy +0 errV 0.031 errU 0.000
+p_MummyMan_f5835.png candle x 1439 y 129 dx +0 dy +0 errV 0.044 errU 0.000
+p_MummyMan_f5889.png candle x 1503 y 129 dx +0 dy +0 errV 0.026 errU 0.000
+p_MummyMan_f5889.png candle x 1439 y 129 dx +0 dy +0 errV 0.045 errU 0.000
+p_MummyMan_f5900.png candle x 1503 y 129 dx +0 dy +0 errV 0.025 errU 0.000
+p_MummyMan_f5900.png candle x 1439 y 129 dx +0 dy +0 errV 0.045 errU 0.000
+p_WalkwayA_f2647.png candle x 32 y 81 dx +0 dy +0 errV 0.040 errU 0.000
+p_WalkwayA_f2647.png candle x 104 y 113 dx +0 dy +0 errV 0.041 errU 0.000
+p_WalkwayA_f2986.png candle x 551 y 49 dx +0 dy +0 errV 0.026 errU 0.000
+p_WalkwayA_f2986.png candle x 615 y 113 dx +0 dy +0 errV 0.049 errU 0.000
+p_WalkwayA_f2986.png skeleton x 671 y 65 dx +0 dy +0 errV 0.058 errU 0.000
+p_WalkwayA_f2992.png candle x 551 y 49 dx +0 dy +0 errV 0.035 errU 0.000
+p_WalkwayA_f2992.png candle x 679 y 113 dx +0 dy +0 errV 0.044 errU 0.000
+p_WalkwayA_f2992.png candle x 615 y 113 dx +0 dy +0 errV 0.055 errU 0.000
+p_WalkwayB_f3354.png candle x 216 y 113 dx +0 dy +0 errV 0.039 errU 0.000
+p_WalkwayB_f3354.png candle x 272 y 81 dx +0 dy +0 errV 0.049 errU 0.000
+p_WalkwayB_f3602.png candle x 399 y 81 dx +0 dy +0 errV 0.076 errU 0.000
+p_WalkwayB_f3602.png raven x 383 y 57 dx +0 dy +0 errV 0.036 errU 0.000
+p_WalkwayB_f3626.png candle x 399 y 81 dx +0 dy +0 errV 0.045 errU 0.000
+p_WalkwayB_f3700.png tower x 479 y 129 dx +0 dy +0 errV 0.042 errU 0.000
+p_WalkwayB_f3700.png tower x 479 y 113 dx +0 dy +0 errV 0.053 errU 0.000
+p_WalkwayB_f3873.png raven x 599 y 121 dx +0 dy +0 errV 0.033 errU 0.000
+p_WalkwayB_f3995.png tower x 735 y 129 dx +0 dy +0 errV 0.038 errU 0.000
+p_WalkwayB_f3995.png tower x 735 y 113 dx +0 dy +0 errV 0.044 errU 0.000
+p_WalkwayB_f4136.png candle x 783 y 81 dx +0 dy +0 errV 0.055 errU 0.000
+p_WalkwayB_f4136.png candle x 847 y 81 dx +0 dy +0 errV 0.055 errU 0.000
+p_WalkwayEntranceA_f1006.png candle x 161 y 81 dx +0 dy +0 errV 0.038 errU 0.000
+p_WalkwayEntranceA_f1006.png candle x 97 y 145 dx +0 dy +0 errV 0.054 errU 0.000
+p_WalkwayEntranceA_f1006.png skeleton x 33 y 129 dx +0 dy +0 errV 0.061 errU 0.000
+p_WalkwayEntranceA_f211.png candle x 608 y 161 dx +0 dy +0 errV 0.028 errU 0.000
+p_WalkwayEntranceA_f211.png candle x 736 y 145 dx +0 dy +0 errV 0.028 errU 0.000
+p_WalkwayEntranceA_f211.png candle x 544 y 161 dx +0 dy +0 errV 0.037 errU 0.000
+p_WalkwayEntranceA_f211.png candle x 672 y 161 dx +0 dy +0 errV 0.044 errU 0.000
+p_WalkwayEntranceA_f491.png candle x 480 y 161 dx +0 dy +0 errV 0.046 errU 0.000
+p_WalkwayEntranceA_f491.png fleaman x 433 y 129 dx +0 dy +0 errV 0.045 errU 0.000
+p_WalkwayEntranceA_f501.png candle x 480 y 161 dx +0 dy +0 errV 0.043 errU 0.000
+p_WalkwayEntranceA_f501.png candle x 417 y 161 dx +0 dy +0 errV 0.047 errU 0.000
+p_WalkwayEntranceA_f501.png fleaman x 433 y 129 dx +0 dy +0 errV 0.041 errU 0.000
+p_WalkwayEntranceA_f621.png candle x 353 y 161 dx +0 dy +0 errV 0.043 errU 0.000
+p_WalkwayEntranceA_f621.png fleaman x 305 y 129 dx +0 dy +0 errV 0.042 errU 0.000
+p_WalkwayEntranceA_f631.png candle x 353 y 161 dx +0 dy +0 errV 0.036 errU 0.000
+p_WalkwayEntranceA_f631.png candle x 289 y 161 dx +0 dy +0 errV 0.038 errU 0.000
+p_WalkwayEntranceA_f631.png fleaman x 305 y 129 dx +0 dy +0 errV 0.032 errU 0.000
+p_WalkwayEntranceA_f825.png candle x 225 y 161 dx +0 dy +0 errV 0.045 errU 0.000
+p_WalkwayEntranceA_f825.png fleaman x 177 y 97 dx +0 dy +0 errV 0.038 errU 0.000
+p_WalkwayEntranceA_f840.png candle x 225 y 161 dx +0 dy +0 errV 0.032 errU 0.000
+p_WalkwayEntranceA_f840.png candle x 161 y 81 dx +0 dy +0 errV 0.038 errU 0.000
+p_WalkwayEntranceA_f840.png fleaman x 177 y 97 dx +0 dy +0 errV 0.032 errU 0.000
+p_WalkwayEntranceB_f1199.png candle x 224 y 145 dx +0 dy +0 errV 0.031 errU 0.000
+p_WalkwayEntranceB_f1199.png candle x 160 y 81 dx +0 dy +0 errV 0.040 errU 0.000
+p_WalkwayEntranceB_f1348.png candle x 224 y 145 dx +0 dy +0 errV 0.046 errU 0.000
+p_WalkwayEntranceB_f1348.png candle x 288 y 145 dx +0 dy +0 errV 0.048 errU 0.000
+p_WalkwayEntranceB_f1348.png raven x 280 y 41 dx +0 dy +0 errV 0.036 errU 0.000
+p_WalkwayEntranceB_f1380.png candle x 288 y 145 dx +0 dy +0 errV 0.041 errU 0.000
+p_WalkwayEntranceB_f1380.png candle x 223 y 145 dx +1 dy +0 errV 0.050 errU 0.000
+p_WalkwayEntranceB_f1517.png candle x 288 y 145 dx +0 dy +0 errV 0.034 errU 0.000
+p_WalkwayEntranceB_f1517.png skeleton x 351 y 161 dx +1 dy +0 errV 0.075 errU 0.000
+p_WalkwayEntranceB_f1582.png candle x 423 y 113 dx +0 dy +0 errV 0.047 errU 0.000
+p_WalkwayEntranceB_f1582.png raven x 423 y 89 dx +0 dy +0 errV 0.044 errU 0.000
+p_WalkwayEntranceB_f1642.png candle x 423 y 113 dx +0 dy +0 errV 0.037 errU 0.000
+p_WalkwayEntranceB_f1642.png candle x 479 y 161 dx +0 dy +0 errV 0.041 errU 0.000
+p_WalkwayEntranceB_f1642.png raven x 487 y 57 dx +0 dy +0 errV 0.043 errU 0.000
+p_WalkwayEntranceB_f1662.png candle x 479 y 161 dx +0 dy +0 errV 0.037 errU 0.000
+p_WalkwayEntranceB_f1662.png candle x 543 y 161 dx +0 dy +0 errV 0.059 errU 0.000
+p_WalkwayEntranceB_f1662.png raven x 527 y 169 dx +0 dy +0 errV 0.037 errU 0.000
+p_WalkwayEntranceB_f1662.png raven x 487 y 57 dx +0 dy +0 errV 0.041 errU 0.000
+p_WalkwayEntranceB_f1663.png candle x 479 y 161 dx +0 dy +0 errV 0.037 errU 0.000
+p_WalkwayEntranceB_f1663.png candle x 423 y 113 dx +0 dy +0 errV 0.049 errU 0.000
+p_WalkwayEntranceB_f1663.png candle x 543 y 161 dx +0 dy +0 errV 0.059 errU 0.000
+p_WalkwayEntranceB_f1663.png raven x 527 y 169 dx +0 dy +0 errV 0.037 errU 0.000
+p_WalkwayEntranceB_f1663.png raven x 487 y 57 dx +0 dy +0 errV 0.041 errU 0.000
+p_WalkwayEntranceB_f2123.png candle x 607 y 145 dx +0 dy +0 errV 0.033 errU 0.000
+p_WalkwayEntranceB_f2271.png candle x 735 y 97 dx +0 dy +0 errV 0.037 errU 0.000
+p_WalkwayEntranceB_f2271.png candle x 607 y 145 dx +0 dy +0 errV 0.043 errU 0.000

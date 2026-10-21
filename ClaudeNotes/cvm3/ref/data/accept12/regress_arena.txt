@@ -1,0 +1,16 @@
+bộ | đạt/tổng | hash | hash chuẩn | khớp? | thời gian
+long | 1/1 | b2cc1424 | b2cc1424 | KHỚP | 21 s
+simon | 20/20 | 5c1c46ce | 5c1c46ce | KHỚP | 38 s
+attack | 21/21 | 62c14a1f | 62c14a1f | KHỚP | 26 s
+item | 14/14 | c8db5123 | c8db5123 | KHỚP | 33 s
+enemy | 20/20 | 20aa5652 | 20aa5652 | KHỚP | 104 s
+boss | 12/12 | 4d7bd652 | 4d7bd652 | KHỚP | 109 s
+b23 | 37/37 | 810f0d8b | 810f0d8b | KHỚP | 193 s
+b46 | 26/26 | 461c6b8b | 461c6b8b | KHỚP | 136 s
+b24 | 26/26 | 4f503db5 | 4f503db5 | KHỚP | 293 s
+b56 | 14/14 | 9b9b7440 | 9b9b7440 | KHỚP | 221 s
+holy | 5/5 | 95e3ba78 | 95e3ba78 | KHỚP | 13 s
+mech | 15/15 | d2b0212f | d2b0212f | KHỚP | 59 s
+rules | 78/78 | 72c7e7bf | 72c7e7bf | KHỚP | 0 s
+gallery | 75/75 | 5791addd | 5791addd | KHỚP | 480 s
+TỔNG: 14 bộ, lệch/FAIL 0, lỗi 0, bỏ qua 0, 1727 s

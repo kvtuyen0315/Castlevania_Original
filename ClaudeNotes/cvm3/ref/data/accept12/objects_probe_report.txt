@@ -1,0 +1,146 @@
+# Map3ObjectsProbe candles,blocks,secrets,spawns,zones,boss — đã thêm 5 section Block 3 (tổng 16); Objects gắn 5
+PASS nến WEA_C01 khung: x màn 7 ⇒ chưa sinh, x màn 8 ⇒ sinh
+PASS nến WalkwayEntranceA WEA_C01 (97,144) id WEA_C01 ⇒ SmallHeart sau 20 tick
+PASS nến WalkwayEntranceA WEA_C02 (161,80) id WEA_C02 ⇒ LargeHeart sau 20 tick
+PASS nến WalkwayEntranceA WEA_C03 (225,160) id WEA_C03 ⇒ SmallHeart sau 20 tick
+PASS nến WalkwayEntranceA WEA_C04 (289,160) id WEA_C04 ⇒ SmallHeart sau 20 tick
+PASS nến WalkwayEntranceA WEA_C05 (353,160) id WEA_C05 ⇒ SmallHeart sau 20 tick
+PASS nến WalkwayEntranceA WEA_C06 (417,160) id WEA_C06 ⇒ RedMoneyBag sau 20 tick
+PASS nến WalkwayEntranceA WEA_C07 (480,160) id WEA_C07 ⇒ SmallHeart sau 20 tick
+PASS nến WalkwayEntranceA WEA_C08 (544,160) id WEA_C08 ⇒ HolyWater sau 20 tick
+PASS nến WalkwayEntranceA WEA_C09 (608,160) id WEA_C09 ⇒ SmallHeart sau 20 tick
+PASS nến WalkwayEntranceA WEA_C10 (672,160) id WEA_C10 ⇒ RedMoneyBag sau 20 tick
+PASS nến WalkwayEntranceA WEA_C11 (736,144) id WEA_C11 ⇒ WhiteMoneyBag sau 20 tick
+PASS nến WalkwayEntranceB WEB_C01 (160,80) id WEB_C01 ⇒ LargeHeart sau 20 tick
+PASS WEB_C01 LargeHeart rơi tới (160,160) sau 26 tick (video Y 160 — dò sàn cột tâm; cả thân 16 px sẽ đỡ sớm hơn)
+PASS nến WalkwayEntranceB WEB_C02 (224,144) id WEB_C02 ⇒ RedMoneyBag sau 20 tick
+PASS nến WalkwayEntranceB WEB_C03 (288,144) id WEB_C03 ⇒ RedMoneyBag sau 20 tick
+PASS nến WalkwayEntranceB WEB_C04 (351,144) id WEB_C04 ⇒ SmallHeart sau 20 tick
+PASS nến WalkwayEntranceB WEB_C05 (423,112) id WEB_C05 ⇒ SmallHeart sau 20 tick
+PASS nến WalkwayEntranceB WEB_C06 (479,160) id WEB_C06 ⇒ RedMoneyBag sau 20 tick
+PASS nến WalkwayEntranceB WEB_C07 (543,160) id WEB_C07 ⇒ SmallHeart sau 20 tick
+PASS nến WalkwayEntranceB WEB_C08 (607,144) id WEB_C08 ⇒ Axe sau 20 tick
+PASS WEB_C08 rìu rơi xuống hố ⇒ mất (Offscreen) sau 24 tick, Y cuối 207 (đáy section 192; video f2292–2308 ≈ 32 tick)
+PASS nến WalkwayEntranceB WEB_C09 (671,144) id WEB_C09 ⇒ RedMoneyBag sau 20 tick
+PASS WEB_C09 RedMoneyBag rơi tới (671,160) sau 13 tick (video Y 160 — dò sàn cột tâm; cả thân 16 px sẽ đỡ sớm hơn)
+PASS nến WalkwayEntranceB WEB_C10 (735,96) id WEB_C10 ⇒ PurpleMoneyBag sau 20 tick
+PASS nến WalkwayA WA_C1 (32,80) id WA_C1 ⇒ LargeHeart sau 20 tick
+PASS nến WalkwayA WA_C2 (104,112) id WA_C2 ⇒ SmallHeart sau 20 tick
+PASS nến WalkwayA WA_C3 (551,48) id WA_C3 ⇒ Cross sau 20 tick
+PASS nến WalkwayA WA_C4 (615,112) id WA_C4 ⇒ RedMoneyBag sau 20 tick
+PASS nến WalkwayA WA_C5 (679,112) id WA_C5 ⇒ SmallHeart sau 20 tick
+PASS nến WalkwayB WB_C1 (216,112) id WB_C1 ⇒ SmallHeart sau 20 tick
+PASS nến WalkwayB WB_C2 (272,80) id WB_C2 ⇒ Stopwatch sau 20 tick
+PASS nến WB_C3 khung: x màn 7 ⇒ chưa sinh, x màn 8 ⇒ sinh
+PASS nến WalkwayB WB_C3 (399,80) id WB_C3 ⇒ LargeHeart sau 20 tick
+PASS nến WalkwayB WB_C4 (783,80) id WB_C4 ⇒ SmallHeart sau 20 tick
+PASS nến WalkwayB WB_C5 (847,80) id WB_C5 ⇒ SmallHeart sau 20 tick
+PASS nến MummyMan MM_C1 (32,80) id MM_C1 ⇒ SmallHeart sau 20 tick
+PASS nến MM_C2 khung: x màn 7 ⇒ chưa sinh, x màn 8 ⇒ sinh
+PASS nến MummyMan MM_C2 (1247,80) id MM_C2 ⇒ SmallHeart sau 20 tick
+PASS nến MummyMan MM_C3 (1311,80) id MM_C3 ⇒ Dagger sau 20 tick
+PASS nến MummyMan MM_C4 (1375,128) id MM_C4 ⇒ SmallHeart sau 20 tick
+PASS nến MummyMan MM_C5 (1439,128) id MM_C5 ⇒ SmallHeart sau 20 tick
+PASS nến MummyMan MM_C6 (1503,128) id MM_C6 ⇒ SmallHeart sau 20 tick
+PASS khối WalkwayEntranceA_X18_8 ⇒ PotRoast
+PASS thịt nướng WalkwayEntranceA_X18_8 nghỉ ở (296,176) sau 17 tick (video f803: x 296 đáy đo 177 ⇒ Y 176)
+PASS khối MummyMan_X83_9 ⇒ PotRoast
+PASS thịt nướng MummyMan_X83_9 nghỉ ở (1336,176) sau 13 tick
+PASS St7 ngồi x 537 ⇒ túi FlashingMoneyBag (424,129) (video (424, 129))
+PASS St7 nhịp: ngồi tick 1, kích hoạt +3, hàng đầu hiện +4 (video 6 ±2), nghỉ +59 (video 59 ±2)
+SHOT bag7_rest section WalkwayEntranceB cx 380
+PASS St7 túi không nhặt ⇒ biến mất ở tuổi 244 (trồi 56 + nghỉ 188; tuổi thọ 188 từ lúc nghỉ; video còn ở ≥ 197 tick sau khi sinh)
+PASS St7 nhặt túi ⇒ +1000 (video +1000 f2054)
+PASS St7 ngồi x 549 ⇒ túi còn ở x màn 3 (ngoài khung hiện 8 — wiki 'chạy tới nhặt')
+PASS St7 ngồi x 520 (ngoài vùng 528–549) 90 tick ⇒ không có túi
+PASS St7 đứng yên x 537 150 tick (không ngồi) ⇒ không có túi
+PASS St8 ngồi x 246 ⇒ túi FlashingMoneyBag (128,129) (video (128, 129) = sheet 16)
+PASS St8 nhịp: ngồi tick 1, kích hoạt +3, hàng đầu hiện +4 (video ≈ 6), nghỉ +59 (video f3410.5 → f3440 ≈ 59)
+SHOT bag8_rest section WalkwayB cx 77
+PASS St8 ngồi x 271 ⇒ túi ở x màn -15 (ngoài màn) vẫn còn; đi trái 128 tick nhặt ⇒ +1000 (wiki 'có thể hiện ngoài màn — đi lùi lại')
+PASS St8 ngồi x 300 (ngoài 2 khối) 90 tick ⇒ không có túi
+PASS St9 đi trái trên khối (82,8) ⇒ túi sau 120 tick, Simon kẹt tường x 1320 (wiki 'vài giây' — 120 suy luận)
+PASS St9 túi nghỉ ở (1264,97) (SUY LUẬN (1264, 97) — wiki không nói chỗ)
+PASS St9 sau khi khoá camera (cx 1280, khoá True) đi trái 160 tick ⇒ không có túi (wiki 'before the screen gets locked')
+PASS St9 đứng yên trên khối 160 tick ⇒ không có túi
+PASS WalkwayEntranceA Fleaman_WEA_1 ⇒ Fleaman (433,128) hướng 1 Wait (điểm (433, 128))
+PASS WalkwayEntranceA Fleaman_WEA_2 ⇒ Fleaman (305,128) hướng 1 Wait (điểm (305, 128))
+PASS WalkwayEntranceA Fleaman_WEA_3 ⇒ Fleaman (177,96) hướng 1 Wait (điểm (177, 96))
+PASS WalkwayEntranceA Skeleton_WEA ⇒ Skeleton (33,128) hướng 1 (điểm (33, 128))
+PASS WalkwayEntranceB Raven_WEB_1 ⇒ Raven (280,41) hướng -1 Perch (điểm (280, 41))
+PASS WalkwayEntranceB Skeleton_WEB_1 ⇒ Skeleton (352,160) hướng -1 (điểm (352, 160))
+PASS WalkwayEntranceB Raven_WEB_2 ⇒ Raven (423,89) hướng -1 Perch (điểm (423, 89))
+PASS WalkwayEntranceB Raven_WEB_3 ⇒ Raven (487,57) hướng -1 Perch (điểm (487, 57))
+PASS WalkwayEntranceB Raven_WEB_4 ⇒ Raven (527,169) hướng -1 Perch (điểm (527, 169))
+PASS WalkwayEntranceB Skeleton_WEB_2 ⇒ Skeleton (671,160) hướng -1 (điểm (671, 160))
+PASS WalkwayA Skeleton_WA ⇒ Skeleton (671,64) hướng -1 (điểm (671, 64))
+PASS WalkwayB Raven_WB_1 ⇒ Raven (383,57) hướng -1 Perch (điểm (383, 57))
+PASS WalkwayB BoneTower_WB_1 ⇒ BoneTower (479,128) hướng -1 (điểm (479, 128))
+PASS WalkwayB Raven_WB_2 ⇒ Raven (599,121) hướng -1 Perch (điểm (599, 121))
+PASS WalkwayB Raven_WB_3 ⇒ Raven (663,121) hướng -1 Perch (điểm (663, 121))
+PASS WalkwayB BoneTower_WB_2 ⇒ BoneTower (735,128) hướng -1 (điểm (735, 128))
+PASS MummyMan Raven_MM_1 ⇒ Raven (268,41) hướng -1 Perch (điểm (268, 41))
+PASS MummyMan Raven_MM_2 ⇒ Raven (363,41) hướng -1 Perch (điểm (363, 41))
+PASS MummyMan BoneTower_MM_1 ⇒ BoneTower (415,96) hướng -1 (điểm (415, 96))
+PASS MummyMan Raven_MM_3 ⇒ Raven (495,33) hướng -1 Perch (điểm (495, 33))
+PASS MummyMan Raven_MM_4 ⇒ Raven (559,33) hướng -1 Perch (điểm (559, 33))
+PASS MummyMan BoneTower_MM_2 ⇒ BoneTower (671,96) hướng -1 (điểm (671, 96))
+PASS MummyMan Raven_MM_5 ⇒ Raven (747,41) hướng -1 Perch (điểm (747, 41))
+PASS MummyMan Skeleton_MM_1 ⇒ Skeleton (815,96) hướng -1 (điểm (815, 96))
+PASS MummyMan Skeleton_MM_2 ⇒ Skeleton (879,96) hướng -1 (điểm (879, 96))
+PASS MummyMan BoneTower_MM_3 ⇒ BoneTower (1183,96) hướng -1 (điểm (1183, 96))
+PASS WalkwayEntranceA Ghost_WEA Simon (575,176) ⇒ sinh 1 sau 1 tick (kỳ vọng có; vùng x [0, 576])
+PASS Ghost WEA hiện ở (671,145) — Simon (575,176) (video (671,145) với Simon 575: +96, chân − 31)
+PASS Ghost WEA: hạ rồi 240 tick không sinh lại (SpawnCount 1)
+PASS WalkwayEntranceA Ghost_WEA Simon (650,176) ⇒ sinh 0 sau 120 tick (kỳ vọng không; vùng x [0, 576])
+PASS WalkwayA MedusaHead_WA Simon (300,128) ⇒ sinh 1 sau 51 tick (kỳ vọng có; vùng x [144, 4096])
+PASS WalkwayA MedusaHead_WA Simon (100,128) ⇒ sinh 0 sau 200 tick (kỳ vọng không; vùng x [144, 4096])
+PASS MummyMan MedusaHead_MM Simon (1100,96) ⇒ sinh 1 sau 51 tick (kỳ vọng có; vùng x [976, 1259])
+PASS MummyMan MedusaHead_MM Simon (940,96) ⇒ sinh 0 sau 200 tick (kỳ vọng không; vùng x [976, 1259])
+PASS MummyMan MedusaHead_MM Simon (1270,96) ⇒ sinh 0 sau 200 tick (kỳ vọng không; vùng x [976, 1259])
+PASS BossArena MummyMen ⇒ 2 Mummy (1312,176) (1503,176) (video 1312 / 1503 chờ)
+SHOT p_WalkwayEntranceA_f211 section WalkwayEntranceA cx 512
+SHOT p_WalkwayEntranceA_f501 section WalkwayEntranceA cx 405
+SHOT p_WalkwayEntranceA_f631 section WalkwayEntranceA cx 277
+SHOT p_WalkwayEntranceA_f840 section WalkwayEntranceA cx 144
+SHOT p_WalkwayEntranceB_f1663 section WalkwayEntranceB cx 296
+SHOT p_WalkwayEntranceB_f2271 section WalkwayEntranceB cx 506
+SHOT p_WalkwayEntranceB_f1199 section WalkwayEntranceB cx 0
+SHOT p_WalkwayEntranceB_f1380 section WalkwayEntranceB cx 52
+SHOT p_WalkwayA_f2992 section WalkwayA cx 436
+SHOT p_WalkwayA_f2647 section WalkwayA cx 0
+SHOT p_WalkwayB_f3354 section WalkwayB cx 49
+SHOT p_WalkwayB_f4136 section WalkwayB cx 612
+SHOT p_WalkwayB_f3626 section WalkwayB cx 196
+SHOT p_MummyMan_f5597 section MummyMan cx 1092
+SHOT p_MummyMan_f5835 section MummyMan cx 1219
+SHOT p_MummyMan_f5889 section MummyMan cx 1263
+SHOT p_MummyMan_f4546 section MummyMan cx 0
+SHOT p_WalkwayEntranceA_f491 section WalkwayEntranceA cx 424
+SHOT p_WalkwayEntranceA_f621 section WalkwayEntranceA cx 295
+SHOT p_WalkwayEntranceA_f825 section WalkwayEntranceA cx 168
+SHOT p_WalkwayEntranceA_f1006 section WalkwayEntranceA cx 23
+SHOT p_WalkwayEntranceB_f1348 section WalkwayEntranceB cx 44
+SHOT p_WalkwayEntranceB_f1517 section WalkwayEntranceB cx 105
+SHOT p_WalkwayEntranceB_f1582 section WalkwayEntranceB cx 181
+SHOT p_WalkwayEntranceB_f1642 section WalkwayEntranceB cx 256
+SHOT p_WalkwayEntranceB_f1662 section WalkwayEntranceB cx 296
+SHOT p_WalkwayEntranceB_f2123 section WalkwayEntranceB cx 425
+SHOT p_WalkwayA_f2986 section WalkwayA cx 424
+SHOT p_WalkwayB_f3602 section WalkwayB cx 152
+SHOT p_WalkwayB_f3700 section WalkwayB cx 244
+SHOT p_WalkwayB_f3873 section WalkwayB cx 367
+SHOT p_WalkwayB_f3906 section WalkwayB cx 415
+SHOT p_WalkwayB_f3995 section WalkwayB cx 497
+SHOT p_MummyMan_f4676 section MummyMan cx 39
+SHOT p_MummyMan_f4723 section MummyMan cx 135
+SHOT p_MummyMan_f4760 section MummyMan cx 206
+SHOT p_MummyMan_f4880 section MummyMan cx 267
+SHOT p_MummyMan_f4912 section MummyMan cx 331
+SHOT p_MummyMan_f4975 section MummyMan cx 458
+SHOT p_MummyMan_f5094 section MummyMan cx 515
+SHOT p_MummyMan_f5121 section MummyMan cx 568
+SHOT p_MummyMan_f5184 section MummyMan cx 632
+SHOT p_MummyMan_f5400 section MummyMan cx 947
+SHOT p_MummyMan_f5900 section MummyMan cx 1263
+== TỔNG 98 đạt / 0 trượt

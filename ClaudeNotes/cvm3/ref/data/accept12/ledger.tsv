@@ -1,0 +1,104 @@
+# frame	op	arg	score	hearts	lives	sub	mult	ghi chu (HUD video SAU su kien) - Tools/cvm3/accept12_ledger.py
+f207	start	3	44670	5	4	Stopwatch	1	
+f279	item	WhiteMoneyBag	45370	5	4	Stopwatch	1	
+f333	item	RedMoneyBag	45470	5	4	Stopwatch	1	
+f377	item	SmallHeart	45470	6	4	Stopwatch	1	
+f453	kill	Ghost	45770	6	4	Stopwatch	1	
+f491	item	HolyWater	45770	6	4	HolyWater	1	
+f545	kill	Fleaman	46270	6	4	HolyWater	1	
+f555	item	LargeHeart	46270	11	4	HolyWater	1	
+f566	item	SmallHeart	46270	12	4	HolyWater	1	
+f619	item	RedMoneyBag	46370	12	4	HolyWater	1	
+f675	kill	Fleaman	46870	12	4	HolyWater	1	
+f697	item	SmallHeart	46870	13	4	HolyWater	1	
+f745	item	SmallHeart	46870	14	4	HolyWater	1	
+f918	kill	Fleaman	47370	14	4	HolyWater	1	
+f960	item	SmallHeart	47370	15	4	HolyWater	1	
+f1032	item	SmallHeart	47370	16	4	HolyWater	1	
+f1078	kill	Skeleton	47670	16	4	HolyWater	1	
+f1120	item	LargeHeart	47670	21	4	HolyWater	1	
+f1358	item	LargeHeart	47670	26	4	HolyWater	1	
+f1458	item	RedMoneyBag	47770	26	4	HolyWater	1	
+f1553	kill	Skeleton	48070	26	4	HolyWater	1	
+f1563	item	RedMoneyBag	48170	26	4	HolyWater	1	
+f1613	item	SmallHeart	48170	27	4	HolyWater	1	
+f1626	kill	Raven	48370	27	4	HolyWater	1	
+f1682	kill	Raven	48570	27	4	HolyWater	1	
+f1732	kill	Raven	48770	27	4	HolyWater	1	
+f1782	item	SmallHeart	48770	28	4	HolyWater	1	
+f1842	item	SmallHeart	48770	29	4	HolyWater	1	
+f1897	item	RedMoneyBag	48870	29	4	HolyWater	1	
+f1960	item	SmallHeart	48870	30	4	HolyWater	1	
+f2054	item	FlashingMoneyBag	49870	30	4	HolyWater	1	
+f2358	item	RedMoneyBag	49970	30	4	HolyWater	1	
+f2433	item	PurpleMoneyBag	50370	30	4	HolyWater	1	
+f2645	stage	8	50370	30	4	HolyWater	1	
+f2696	item	LargeHeart	50370	35	4	HolyWater	1	
+f2754	item	SmallHeart	50370	36	4	HolyWater	1	
+f3024	item	RedMoneyBag	50470	36	4	HolyWater	1	
+f3031	use	HolyWater	50470	35	4	HolyWater	1	
+f3073	kill	Skeleton	50770	35	4	HolyWater	1	
+f3081	kill	Skeleton	-1	35	4	HolyWater	1	
+f3081	known	800	51870	35	4	HolyWater	1	Skeleton chet trong lua nuoc thanh => chu "1000" (CVM3 §5 #12)
+f3089	item	SmallHeart	51870	36	4	HolyWater	1	
+f3169	item	SmallHeart	51870	37	4	HolyWater	1	
+f3395	item	SmallHeart	51870	38	4	HolyWater	1	
+f3478	item	FlashingMoneyBag	52870	38	4	HolyWater	1	
+f3644	kill	Raven	53070	38	4	HolyWater	1	
+f3710	item	LargeHeart	53070	43	4	HolyWater	1	
+f3728	shot		53170	43	4	HolyWater	1	
+f3746	shot		53270	43	4	HolyWater	1	
+f3837	kill	BoneTower	53670	43	4	HolyWater	1	
+f3917	kill	Raven	53870	43	4	HolyWater	1	
+f3957	kill	Raven	54070	43	4	HolyWater	1	
+f4028	shot		54170	43	4	HolyWater	1	
+f4042	shot		54270	43	4	HolyWater	1	
+f4096	kill	BoneTower	54670	43	4	HolyWater	1	
+f4220	item	SmallHeart	54670	44	4	HolyWater	1	
+f4335	item	SmallHeart	54670	45	4	HolyWater	1	
+f4546	stage	9	54670	45	4	HolyWater	1	
+f4606	item	SmallHeart	54670	46	4	HolyWater	1	
+f4700	kill	Raven	54870	46	4	HolyWater	1	
+f4745	kill	Raven	55070	46	4	HolyWater	1	
+f4778	shot		55170	46	4	HolyWater	1	
+f4791	shot		55270	46	4	HolyWater	1	
+f4854	kill	BoneTower	55670	46	4	HolyWater	1	
+f4904	kill	Raven	55870	46	4	HolyWater	1	
+f4933	kill	Raven	56070	46	4	HolyWater	1	
+f4994	shot		56170	46	4	HolyWater	1	
+f5009	shot		56270	46	4	HolyWater	1	
+f5077	kill	BoneTower	56670	46	4	HolyWater	1	
+f5099	item	SmallHeart	56670	47	4	HolyWater	1	
+f5105	item	LargeHeart	56670	52	4	HolyWater	1	
+f5123	kill	Raven	56870	52	4	HolyWater	1	
+f5151	kill	Skeleton	57170	52	4	HolyWater	1	
+f5198	use	HolyWater	57170	51	4	HolyWater	1	
+f5221	known	100	57270	51	4	HolyWater	1	+100 f5221 chua ro nguon (luc lua nuoc thanh: co the xuong bi lua pha - Unity xuong khong pha duoc, CVM3 §6 07)
+f5223	kill	Skeleton	-1	51	4	HolyWater	1	
+f5223	known	1000	58570	51	4	HolyWater	1	Skeleton chet trong lua nuoc thanh => chu "1000" (CVM3 §5 #12)
+f5266	item	SmallHeart	58570	52	4	HolyWater	1	
+f5432	shot		58670	52	4	HolyWater	1	
+f5447	shot		58770	52	4	HolyWater	1	
+f5475	kill	MedusaHead	59070	52	4	HolyWater	1	
+f5495	shot		59170	52	4	HolyWater	1	
+f5511	kill	BoneTower	-1	52	4	HolyWater	1	
+f5511	shot		59670	52	4	HolyWater	1	
+f5684	item	SmallHeart	59670	53	4	HolyWater	1	
+f5703	kill	MedusaHead	59970	53	4	HolyWater	1	
+f5880	item	SmallHeart	59970	54	4	HolyWater	1	
+f5940	item	SmallHeart	59970	55	4	HolyWater	1	
+f6074	use	HolyWater	59970	54	4	HolyWater	1	
+f6147	use	HolyWater	59970	53	4	HolyWater	1	
+f6230	use	HolyWater	59970	52	4	HolyWater	1	
+f6312	use	HolyWater	59970	51	4	HolyWater	1	
+f6394	use	HolyWater	59970	50	4	HolyWater	1	
+f6475	use	HolyWater	59970	49	4	HolyWater	1	
+f6556	use	HolyWater	59970	48	4	HolyWater	1	
+f6634	use	HolyWater	59970	47	4	HolyWater	1	
+f6686	boss	MummyMan	62970	47	4	HolyWater	1	
+f6717	use	HolyWater	62970	46	4	HolyWater	1	
+f6771	boss	MummyMan	65970	46	4	HolyWater	1	
+f6903	item	DoubleShot	65970	46	4	HolyWater	2	
+f6920	time	306	65970	46	4	HolyWater	2	
+f7393	tally		73630	0	4	HolyWater	2	
+f7464	nextblock		73630	5	4	HolyWater	2	

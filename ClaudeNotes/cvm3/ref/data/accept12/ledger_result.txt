@@ -1,0 +1,104 @@
+Ledger Map_3: 100/100 sự kiện khớp HUD video qua code game, 3 dòng luật CHƯA DỰNG (+1900 ⇒ Unity thuần thiếu 1900), lệch 0, 1UP 0 lần, SCORE cuối 73630
+OK  	f207	start 3	SCORE 044670 ♥5 P4 Stopwatch×1 T500 ST7	TIME 500 (ConfigBlock Block 3)
+OK  	f279	item WhiteMoneyBag	SCORE 045370 ♥5 P4 Stopwatch×1 T500 ST7	WhiteMoneyBag: điểm 44670→45370
+OK  	f333	item RedMoneyBag	SCORE 045470 ♥5 P4 Stopwatch×1 T500 ST7	RedMoneyBag: điểm 45370→45470
+OK  	f377	item SmallHeart	SCORE 045470 ♥6 P4 Stopwatch×1 T500 ST7	SmallHeart: tim 5→6
+OK  	f453	kill Ghost	SCORE 045770 ♥6 P4 Stopwatch×1 T500 ST7	+300 (ConfigEnemy.Ghost)
+OK  	f491	item HolyWater	SCORE 045770 ♥6 P4 HolyWater×1 T500 ST7	HolyWater: vũ khí phụ Stopwatch→HolyWater, shot 1→1
+OK  	f545	kill Fleaman	SCORE 046270 ♥6 P4 HolyWater×1 T500 ST7	+500 (ConfigEnemy.Fleaman)
+OK  	f555	item LargeHeart	SCORE 046270 ♥11 P4 HolyWater×1 T500 ST7	LargeHeart: tim 6→11
+OK  	f566	item SmallHeart	SCORE 046270 ♥12 P4 HolyWater×1 T500 ST7	SmallHeart: tim 11→12
+OK  	f619	item RedMoneyBag	SCORE 046370 ♥12 P4 HolyWater×1 T500 ST7	RedMoneyBag: điểm 46270→46370
+OK  	f675	kill Fleaman	SCORE 046870 ♥12 P4 HolyWater×1 T500 ST7	+500 (ConfigEnemy.Fleaman)
+OK  	f697	item SmallHeart	SCORE 046870 ♥13 P4 HolyWater×1 T500 ST7	SmallHeart: tim 12→13
+OK  	f745	item SmallHeart	SCORE 046870 ♥14 P4 HolyWater×1 T500 ST7	SmallHeart: tim 13→14
+OK  	f918	kill Fleaman	SCORE 047370 ♥14 P4 HolyWater×1 T500 ST7	+500 (ConfigEnemy.Fleaman)
+OK  	f960	item SmallHeart	SCORE 047370 ♥15 P4 HolyWater×1 T500 ST7	SmallHeart: tim 14→15
+OK  	f1032	item SmallHeart	SCORE 047370 ♥16 P4 HolyWater×1 T500 ST7	SmallHeart: tim 15→16
+OK  	f1078	kill Skeleton	SCORE 047670 ♥16 P4 HolyWater×1 T500 ST7	+300 (ConfigEnemy.Skeleton)
+OK  	f1120	item LargeHeart	SCORE 047670 ♥21 P4 HolyWater×1 T500 ST7	LargeHeart: tim 16→21
+OK  	f1358	item LargeHeart	SCORE 047670 ♥26 P4 HolyWater×1 T500 ST7	LargeHeart: tim 21→26
+OK  	f1458	item RedMoneyBag	SCORE 047770 ♥26 P4 HolyWater×1 T500 ST7	RedMoneyBag: điểm 47670→47770
+OK  	f1553	kill Skeleton	SCORE 048070 ♥26 P4 HolyWater×1 T500 ST7	+300 (ConfigEnemy.Skeleton)
+OK  	f1563	item RedMoneyBag	SCORE 048170 ♥26 P4 HolyWater×1 T500 ST7	RedMoneyBag: điểm 48070→48170
+OK  	f1613	item SmallHeart	SCORE 048170 ♥27 P4 HolyWater×1 T500 ST7	SmallHeart: tim 26→27
+OK  	f1626	kill Raven	SCORE 048370 ♥27 P4 HolyWater×1 T500 ST7	+200 (ConfigEnemy.Raven)
+OK  	f1682	kill Raven	SCORE 048570 ♥27 P4 HolyWater×1 T500 ST7	+200 (ConfigEnemy.Raven)
+OK  	f1732	kill Raven	SCORE 048770 ♥27 P4 HolyWater×1 T500 ST7	+200 (ConfigEnemy.Raven)
+OK  	f1782	item SmallHeart	SCORE 048770 ♥28 P4 HolyWater×1 T500 ST7	SmallHeart: tim 27→28
+OK  	f1842	item SmallHeart	SCORE 048770 ♥29 P4 HolyWater×1 T500 ST7	SmallHeart: tim 28→29
+OK  	f1897	item RedMoneyBag	SCORE 048870 ♥29 P4 HolyWater×1 T500 ST7	RedMoneyBag: điểm 48770→48870
+OK  	f1960	item SmallHeart	SCORE 048870 ♥30 P4 HolyWater×1 T500 ST7	SmallHeart: tim 29→30
+OK  	f2054	item FlashingMoneyBag	SCORE 049870 ♥30 P4 HolyWater×1 T500 ST7	FlashingMoneyBag: điểm 48870→49870
+OK  	f2358	item RedMoneyBag	SCORE 049970 ♥30 P4 HolyWater×1 T500 ST7	RedMoneyBag: điểm 49870→49970
+OK  	f2433	item PurpleMoneyBag	SCORE 050370 ♥30 P4 HolyWater×1 T500 ST7	PurpleMoneyBag: điểm 49970→50370
+OK  	f2645	stage 8	SCORE 050370 ♥30 P4 HolyWater×1 T500 ST8	EnterStage(8) TIME 500
+OK  	f2696	item LargeHeart	SCORE 050370 ♥35 P4 HolyWater×1 T500 ST8	LargeHeart: tim 30→35
+OK  	f2754	item SmallHeart	SCORE 050370 ♥36 P4 HolyWater×1 T500 ST8	SmallHeart: tim 35→36
+OK  	f3024	item RedMoneyBag	SCORE 050470 ♥36 P4 HolyWater×1 T500 ST8	RedMoneyBag: điểm 50370→50470
+OK  	f3031	use HolyWater	SCORE 050470 ♥35 P4 HolyWater×1 T500 ST8	−1 tim (ConfigSubWeapon.HolyWater.heartCost)
+OK  	f3073	kill Skeleton	SCORE 050770 ♥35 P4 HolyWater×1 T500 ST8	+300 (ConfigEnemy.Skeleton)
+OK  	f3081	kill Skeleton	SCORE 051070 ♥35 P4 HolyWater×1 T500 ST8	+300 (ConfigEnemy.Skeleton)
+BIẾT	f3081	known 800	SCORE 051870 ♥35 P4 HolyWater×1 T500 ST8	+800 LUẬT CHƯA DỰNG: Skeleton chet trong lua nuoc thanh => chu "1000" (CVM3 §5 #12)
+OK  	f3089	item SmallHeart	SCORE 051870 ♥36 P4 HolyWater×1 T500 ST8	SmallHeart: tim 35→36
+OK  	f3169	item SmallHeart	SCORE 051870 ♥37 P4 HolyWater×1 T500 ST8	SmallHeart: tim 36→37
+OK  	f3395	item SmallHeart	SCORE 051870 ♥38 P4 HolyWater×1 T500 ST8	SmallHeart: tim 37→38
+OK  	f3478	item FlashingMoneyBag	SCORE 052870 ♥38 P4 HolyWater×1 T500 ST8	FlashingMoneyBag: điểm 51870→52870
+OK  	f3644	kill Raven	SCORE 053070 ♥38 P4 HolyWater×1 T500 ST8	+200 (ConfigEnemy.Raven)
+OK  	f3710	item LargeHeart	SCORE 053070 ♥43 P4 HolyWater×1 T500 ST8	LargeHeart: tim 38→43
+OK  	f3728	shot 	SCORE 053170 ♥43 P4 HolyWater×1 T500 ST8	+100 (ConfigScore.EnemyProjectilePoints — phá đạn enemy)
+OK  	f3746	shot 	SCORE 053270 ♥43 P4 HolyWater×1 T500 ST8	+100 (ConfigScore.EnemyProjectilePoints — phá đạn enemy)
+OK  	f3837	kill BoneTower	SCORE 053670 ♥43 P4 HolyWater×1 T500 ST8	+400 (ConfigEnemy.BoneTower)
+OK  	f3917	kill Raven	SCORE 053870 ♥43 P4 HolyWater×1 T500 ST8	+200 (ConfigEnemy.Raven)
+OK  	f3957	kill Raven	SCORE 054070 ♥43 P4 HolyWater×1 T500 ST8	+200 (ConfigEnemy.Raven)
+OK  	f4028	shot 	SCORE 054170 ♥43 P4 HolyWater×1 T500 ST8	+100 (ConfigScore.EnemyProjectilePoints — phá đạn enemy)
+OK  	f4042	shot 	SCORE 054270 ♥43 P4 HolyWater×1 T500 ST8	+100 (ConfigScore.EnemyProjectilePoints — phá đạn enemy)
+OK  	f4096	kill BoneTower	SCORE 054670 ♥43 P4 HolyWater×1 T500 ST8	+400 (ConfigEnemy.BoneTower)
+OK  	f4220	item SmallHeart	SCORE 054670 ♥44 P4 HolyWater×1 T500 ST8	SmallHeart: tim 43→44
+OK  	f4335	item SmallHeart	SCORE 054670 ♥45 P4 HolyWater×1 T500 ST8	SmallHeart: tim 44→45
+OK  	f4546	stage 9	SCORE 054670 ♥45 P4 HolyWater×1 T500 ST9	EnterStage(9) TIME 500
+OK  	f4606	item SmallHeart	SCORE 054670 ♥46 P4 HolyWater×1 T500 ST9	SmallHeart: tim 45→46
+OK  	f4700	kill Raven	SCORE 054870 ♥46 P4 HolyWater×1 T500 ST9	+200 (ConfigEnemy.Raven)
+OK  	f4745	kill Raven	SCORE 055070 ♥46 P4 HolyWater×1 T500 ST9	+200 (ConfigEnemy.Raven)
+OK  	f4778	shot 	SCORE 055170 ♥46 P4 HolyWater×1 T500 ST9	+100 (ConfigScore.EnemyProjectilePoints — phá đạn enemy)
+OK  	f4791	shot 	SCORE 055270 ♥46 P4 HolyWater×1 T500 ST9	+100 (ConfigScore.EnemyProjectilePoints — phá đạn enemy)
+OK  	f4854	kill BoneTower	SCORE 055670 ♥46 P4 HolyWater×1 T500 ST9	+400 (ConfigEnemy.BoneTower)
+OK  	f4904	kill Raven	SCORE 055870 ♥46 P4 HolyWater×1 T500 ST9	+200 (ConfigEnemy.Raven)
+OK  	f4933	kill Raven	SCORE 056070 ♥46 P4 HolyWater×1 T500 ST9	+200 (ConfigEnemy.Raven)
+OK  	f4994	shot 	SCORE 056170 ♥46 P4 HolyWater×1 T500 ST9	+100 (ConfigScore.EnemyProjectilePoints — phá đạn enemy)
+OK  	f5009	shot 	SCORE 056270 ♥46 P4 HolyWater×1 T500 ST9	+100 (ConfigScore.EnemyProjectilePoints — phá đạn enemy)
+OK  	f5077	kill BoneTower	SCORE 056670 ♥46 P4 HolyWater×1 T500 ST9	+400 (ConfigEnemy.BoneTower)
+OK  	f5099	item SmallHeart	SCORE 056670 ♥47 P4 HolyWater×1 T500 ST9	SmallHeart: tim 46→47
+OK  	f5105	item LargeHeart	SCORE 056670 ♥52 P4 HolyWater×1 T500 ST9	LargeHeart: tim 47→52
+OK  	f5123	kill Raven	SCORE 056870 ♥52 P4 HolyWater×1 T500 ST9	+200 (ConfigEnemy.Raven)
+OK  	f5151	kill Skeleton	SCORE 057170 ♥52 P4 HolyWater×1 T500 ST9	+300 (ConfigEnemy.Skeleton)
+OK  	f5198	use HolyWater	SCORE 057170 ♥51 P4 HolyWater×1 T500 ST9	−1 tim (ConfigSubWeapon.HolyWater.heartCost)
+BIẾT	f5221	known 100	SCORE 057270 ♥51 P4 HolyWater×1 T500 ST9	+100 LUẬT CHƯA DỰNG: +100 f5221 chua ro nguon (luc lua nuoc thanh: co the xuong bi lua pha - Unity xuong khong pha duoc, CVM3 §6 07)
+OK  	f5223	kill Skeleton	SCORE 057570 ♥51 P4 HolyWater×1 T500 ST9	+300 (ConfigEnemy.Skeleton)
+BIẾT	f5223	known 1000	SCORE 058570 ♥51 P4 HolyWater×1 T500 ST9	+1000 LUẬT CHƯA DỰNG: Skeleton chet trong lua nuoc thanh => chu "1000" (CVM3 §5 #12)
+OK  	f5266	item SmallHeart	SCORE 058570 ♥52 P4 HolyWater×1 T500 ST9	SmallHeart: tim 51→52
+OK  	f5432	shot 	SCORE 058670 ♥52 P4 HolyWater×1 T500 ST9	+100 (ConfigScore.EnemyProjectilePoints — phá đạn enemy)
+OK  	f5447	shot 	SCORE 058770 ♥52 P4 HolyWater×1 T500 ST9	+100 (ConfigScore.EnemyProjectilePoints — phá đạn enemy)
+OK  	f5475	kill MedusaHead	SCORE 059070 ♥52 P4 HolyWater×1 T500 ST9	+300 (ConfigEnemy.MedusaHead)
+OK  	f5495	shot 	SCORE 059170 ♥52 P4 HolyWater×1 T500 ST9	+100 (ConfigScore.EnemyProjectilePoints — phá đạn enemy)
+OK  	f5511	kill BoneTower	SCORE 059570 ♥52 P4 HolyWater×1 T500 ST9	+400 (ConfigEnemy.BoneTower)
+OK  	f5511	shot 	SCORE 059670 ♥52 P4 HolyWater×1 T500 ST9	+100 (ConfigScore.EnemyProjectilePoints — phá đạn enemy)
+OK  	f5684	item SmallHeart	SCORE 059670 ♥53 P4 HolyWater×1 T500 ST9	SmallHeart: tim 52→53
+OK  	f5703	kill MedusaHead	SCORE 059970 ♥53 P4 HolyWater×1 T500 ST9	+300 (ConfigEnemy.MedusaHead)
+OK  	f5880	item SmallHeart	SCORE 059970 ♥54 P4 HolyWater×1 T500 ST9	SmallHeart: tim 53→54
+OK  	f5940	item SmallHeart	SCORE 059970 ♥55 P4 HolyWater×1 T500 ST9	SmallHeart: tim 54→55
+OK  	f6074	use HolyWater	SCORE 059970 ♥54 P4 HolyWater×1 T500 ST9	−1 tim (ConfigSubWeapon.HolyWater.heartCost)
+OK  	f6147	use HolyWater	SCORE 059970 ♥53 P4 HolyWater×1 T500 ST9	−1 tim (ConfigSubWeapon.HolyWater.heartCost)
+OK  	f6230	use HolyWater	SCORE 059970 ♥52 P4 HolyWater×1 T500 ST9	−1 tim (ConfigSubWeapon.HolyWater.heartCost)
+OK  	f6312	use HolyWater	SCORE 059970 ♥51 P4 HolyWater×1 T500 ST9	−1 tim (ConfigSubWeapon.HolyWater.heartCost)
+OK  	f6394	use HolyWater	SCORE 059970 ♥50 P4 HolyWater×1 T500 ST9	−1 tim (ConfigSubWeapon.HolyWater.heartCost)
+OK  	f6475	use HolyWater	SCORE 059970 ♥49 P4 HolyWater×1 T500 ST9	−1 tim (ConfigSubWeapon.HolyWater.heartCost)
+OK  	f6556	use HolyWater	SCORE 059970 ♥48 P4 HolyWater×1 T500 ST9	−1 tim (ConfigSubWeapon.HolyWater.heartCost)
+OK  	f6634	use HolyWater	SCORE 059970 ♥47 P4 HolyWater×1 T500 ST9	−1 tim (ConfigSubWeapon.HolyWater.heartCost)
+OK  	f6686	boss MummyMan	SCORE 062970 ♥47 P4 HolyWater×1 T500 ST9	+3000 (ConfigBoss.MummyMan)
+OK  	f6717	use HolyWater	SCORE 062970 ♥46 P4 HolyWater×1 T500 ST9	−1 tim (ConfigSubWeapon.HolyWater.heartCost)
+OK  	f6771	boss MummyMan	SCORE 065970 ♥46 P4 HolyWater×1 T500 ST9	+3000 (ConfigBoss.MummyMan)
+OK  	f6903	item DoubleShot	SCORE 065970 ♥46 P4 HolyWater×2 T500 ST9	DoubleShot: shot 1→2
+OK  	f6920	time 306	SCORE 065970 ♥46 P4 HolyWater×2 T306 ST9	TIME = 306 (HUD video lúc nhặt cầu)
+OK  	f7393	tally 	SCORE 073630 ♥0 P4 HolyWater×2 T0 ST9	tally Block 3: TIME 306 đv (+3060), tim 46 (+4600), cộng 7660; pha: TIME bắt đầu tick 227, hết 532, tim 586→946, xong 1066
+OK  	f7464	nextblock 	SCORE 073630 ♥5 P4 HolyWater×2 T0 ST10	StartNextBlock ⇒ STAGE 10 tim 5

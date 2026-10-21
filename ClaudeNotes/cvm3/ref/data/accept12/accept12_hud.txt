@@ -1,0 +1,22 @@
+== MAT 6 - HUD & luat trong LUONG THAT (vet thu dong)
+vao STAGE 07 wt1: TIME 500, tim 5, P 3, SCORE 13510, ENEMY 16 (video 0500, tim 05, ENEMY 16)
+TIME tang (dat lai) trong Block 3: 0 lan [] (video: KHONG dat lai qua STAGE 08/09 - 0432 / 0380 giu)
+doi STAGE (wt, cu, moi, TIME truoc, TIME sau): [(2468, 7, 8, 469, 469), (4939, 8, 9, 437, 437)]
+khoang giua 2 lan TIME giam (truoc tally): {64: 93, 66: 1, 102: 1, 485: 1, 507: 1} (video 64 tick/dv; khoang dai = TIME dung o cua / den)
+  STAGE 07 hien frame 26181 => TIME giam dau sau 60 tick (video 60)
+  moc stair_up   frame 27307 WalkwayEntranceA => TIME giam dau sau 82 tick (video 82 sau DAU den thang)
+  moc stage8     frame 28670 WalkwayA => TIME giam dau sau 58 tick (video 58 / 57 sau khi STAGE moi hien)
+  moc stair_up   frame 29886 WalkwayA => TIME giam dau sau 82 tick (video 82 sau DAU den thang)
+  moc stage9     frame 31163 MummyMan => TIME giam dau sau 58 tick (video 58 / 57 sau khi STAGE moi hien)
+-- diem tung su kien (K/B/P/U) = buoc SCORE HUD
+  K wt343 WalkwayEntranceA Fleaman -392800_168 (352,175) +500 | SCORE sau 14010
+  P wt372 WalkwayEntranceA SmallHeart | tim 5→6 | SCORE sau 14010
+  K wt529 WalkwayEntranceA Fleaman -392808_296 (318,175) +500 | SCORE sau 14510
+  K wt603 WalkwayEntranceA Fleaman -392800_471 (276,175) +500 | SCORE sau 15010
+  K wt3477 WalkwayA Skeleton -392180_3386 (568,128) +300 | SCORE sau 15310
+  K wt6946 MummyMan MummyMan -392150_4940 (1494,176) +3000 | SCORE sau 18510
+  B wt7021 MummyMan MummyMan (1417,176) +3000 | SCORE sau 21610
+  K wt7021 MummyMan MummyMan -392142_4940 (1417,176) +3000 | SCORE sau 21610
+  P wt7191 MummyMan MagicCrystal | quả cầu: máu 13→16 ⇒ sự kiện CrystalPicked (tally — routine 12) | SCORE sau 21610
+tally: luc nhat cau SCORE 21610 TIME 402 tim 6 => ky vong 26230 | Unity luc tally_done 26230 => KHOP
+Simon mat mau trong luong that (wt, vach): [(768, 3)] (lo trinh bat tu theo doan - chi WEA chiu don)

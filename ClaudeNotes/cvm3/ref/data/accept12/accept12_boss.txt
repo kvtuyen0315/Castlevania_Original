@@ -1,0 +1,14 @@
+== MAT 5 - Mummy Men trong LUONG THAT (vet thu dong) vs video (CVM3 09 2i)
+khoa camera: wt6299 cx 1280 Simon x 1408 (video f5931: cx 1280 khi Simon x 1409; Unity khoa o Simon 1408)
+Mummy dung cho (1503,176) tu wt4940 (truoc khoa 1359 tick) | thuc wt6419 = khoa + 120 (video 119.5-120.9)
+Mummy dung cho (1312,176) tu wt4940 (truoc khoa 1359 tick) | thuc wt6419 = khoa + 120 (video 119.5-120.9)
+Poison Mind: wt6359 = khoa + 60 (video ~ khoa + 1.2 s; Unity Config 60)
+Mummy (1503,176): di ['buoc TB 0.7500 px/tick (468 tick di that)', '0 tick Walk dung tai cho (mep man / quay)'] px/tick (video 0.741-0.767) | Throw (tick) [47, 10] (video dung 46-51, Config 48) | chuoi Do1479 Wa63 Th47 Wa407 Th10
+Mummy (1312,176): di ['buoc TB 0.7500 px/tick (474 tick di that)', '0 tick Walk dung tai cho (mep man / quay)'] px/tick (video 0.741-0.767) | Throw (tick) [47, 47, 31] (video dung 46-51, Config 48) | chuoi Do1479 Wa119 Th47 Wa293 Th47 Wa65 Th31 Dy117
+  bang sinh wt6577 (1402,145) Mummy (1402,176) => y - chan -31 | vx +1.500 | rms song 24 sin(2pi t/102) 0.00 | song 44 tick
+  bang sinh wt6917 (1399,145) Mummy (1399,176) => y - chan -31 | vx +1.500 | rms song 24 sin(2pi t/102) 0.00 | song 37 tick
+thanh ENEMY dung chung: 16 lan giam, 16 -> 0 (video 16 lan -1)
+ha: [('K', 6946, 'MummyMan -392150_4940 (1494,176) +3000', 18510), ('B', 7021, 'MummyMan (1417,176) +3000', 21610), ('K', 7021, 'MummyMan -392142_4940 (1417,176) +3000', 21610)]
+buoc SCORE >= 1000 trong phong: [3000, 3000] (video +3000 MOI con)
+con cuoi bi ha wt7021 -> qua cau hien wt7138 (+117; video +117: 118.2 / 116.2) tai 1408,104 (video (cx+128, 104) = (1408,104))
+qua cau: dung tu wt7138, roi dau wt7176 (+38; video 35-37 sau khi hien, Config hover 34), y cuoi 142 o wt7190 (+52) - Simon nhat khi qua cau con dang roi (lo trinh tu dong nhay len)

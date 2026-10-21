@@ -1,0 +1,466 @@
+Flow xong @60 fps — tick 25325, hash 7068416c
+trước STAGE 04: tick 8464 hash 59cafbaa (chuẩn 8464 / 59cafbaa — CVM3 04) | STAGE 07 ở tick 16663, trước STAGE 07 hash 8fcc6b6e (PRE7 8fcc6b6e) | STAGE 10 ở tick 25265
+checkpoints: 1656c8b2 1f13a30e 0c18ae3d 322813e1 8849eb53 76b3b8a1 6fb113bc 0e5fa710 146a9420 5694df30 a5a89cce 366aff99 2631e2df fd976fbf f75811a7 7b3452a7 99a83806 d4422899 062d15eb 2656a58c dd4190fa 4574c867 7a47ab17 e8a4f2f7 83a8441a 2ab34c89 970387e9 f4c17e08 571ca617 be4361e2 2d420260 78294768 d1fb3195 8a92e90c a8a60138 cc846117 9a6be9e4 ef850951 7e4ac030 e1c58a8d ff99ad47 96a198fc 20c2bbfa 2e1dc909 176e2f62 687fc7ee 5159bcb2 9a4e5230 d967d0a1 872ba616 7068416c 
+GameObject sau mỗi lần: 639 
+khung: 212523 khung, TB 16.66 ms, max 523.2 ms
+TIME đổi ở tick lộ trình: 1202 lần — khoảng cách: 64×270 262×1 497×1 142×1 97×1 483×1 280×1 1×910 739×1 63×1 92×1 486×1 87×1 514×1 136×1 231×1 653×1 60×1 124×1 507×1 88×1 485×1 244×1
+lỗi console: 0
+0	L0	GoTo(Title,0) abs 8597 = L0	Title	SCORE 000000 TIME 0300 ST 01 ♥5 P3 HP 16 E 16 roi 1 None×1
+0	L10	ảnh h8_L10	Title	SCORE 000000 TIME 0300 ST 01 ♥5 P3 HP 16 E 16 roi 1 None×1
+0	L600	ảnh h8_L600	Intro	SCORE 000000 TIME 0300 ST 01 ♥5 P3 HP 16 E 16 roi 1 None×1
+0	L922	phát lộ trình ở L922 (abs 9519)	Intro	SCORE 000000 TIME 0300 ST 01 ♥5 P3 HP 16 E 16 roi 1 None×1
+1	L923	section CastleEntrance	CastleEntrance cx 0 Simon 51,160 t1	SCORE 000000 TIME 0300 ST 01 ♥5 P3 HP 16 E 16 roi 1 None×1
+7	L930	ảnh h8_L930	CastleEntrance cx 0 Simon 58,160 t8	SCORE 000000 TIME 0300 ST 01 ♥5 P3 HP 16 E 16 roi 1 None×1
+1159	L2081	section EntranceHall	EntranceHall cx 0 Simon 49,176 t1142	SCORE 000000 TIME 0285 ST 01 ♥15 P3 HP 16 E 16 roi 3 Dagger×1
+3127	L4049	section CryptA	CryptA cx 0 Simon 48,80 t3110	SCORE 000000 TIME 0261 ST 02 ♥15 P3 HP 16 E 16 roi 3 Dagger×1
+3462	L4384	section CryptB	CryptB cx 0 Simon 72,36 t3428	SCORE 000000 TIME 0257 ST 02 ♥15 P3 HP 16 E 16 roi 3 Dagger×1
+4007	L4929	section CryptA	CryptA cx 256 Simon 384,188 t3956	SCORE 000000 TIME 0249 ST 02 ♥15 P3 HP 16 E 16 roi 3 Dagger×1
+4745	L5667	section PhantomBat	PhantomBat cx 0 Simon 48,80 t4694	SCORE 000000 TIME 0244 ST 03 ♥15 P3 HP 16 E 16 roi 3 Dagger×1
+5426	L6348	boss thức	PhantomBat cx 512 Simon 693,144 t5375	SCORE 000000 TIME 0234 ST 03 ♥15 P3 HP 16 E 16 roi 3 Dagger×1
+8042	L8964	màn CastleMap	CastleMap	SCORE 006650 TIME 0000 ST 04 ♥5 P3 HP 16 E 0 roi 3 Dagger×1
+8462	L9385	phát map2_route ở L9385 (8260 tick)	CastleMap	SCORE 006650 TIME 0000 ST 04 ♥5 P3 HP 16 E 0 roi 3 Dagger×1
+8464	L9386	màn Stage1	TowerEntranceA cx 0 Simon 64,176 t1	SCORE 006650 TIME 0400 ST 04 ♥5 P3 HP 16 E 16 roi 3 Dagger×1
+8464	L9386	section TowerEntranceA	TowerEntranceA cx 0 Simon 64,176 t1	SCORE 006650 TIME 0400 ST 04 ♥5 P3 HP 16 E 16 roi 3 Dagger×1
+8876	L9798	section TowerEntranceB	TowerEntranceB cx 256 Simon 386,189 t393	SCORE 006650 TIME 0394 ST 04 ♥5 P3 HP 16 E 16 roi 3 Dagger×1
+10001	L10923	section TowerHallA	TowerHallA cx 512 Simon 720,80 t1518	SCORE 006650 TIME 0383 ST 05 ♥5 P3 HP 16 E 16 roi 3 Dagger×1
+10729	L11651	section TowerHallB	TowerHallB cx 0 Simon 66,189 t2226	SCORE 006650 TIME 0372 ST 05 ♥5 P3 HP 16 E 16 roi 3 Dagger×1
+12778	L13700	section TowerHallC	TowerHallC cx 512 Simon 720,112 t4275	SCORE 006650 TIME 0347 ST 06 ♥5 P3 HP 16 E 16 roi 3 Dagger×1
+14003	L14925	section Medusa	Medusa cx 512 Simon 674,189 t5480	SCORE 006650 TIME 0329 ST 06 ♥5 P3 HP 16 E 16 roi 3 Dagger×1
+16241	L17163	màn CastleMap	CastleMap	SCORE 013510 TIME 0000 ST 07 ♥5 P3 HP 16 E 0 roi 3 Dagger×1
+16661	L17584	phát map3_route ở L17584 (8663 tick)	CastleMap	SCORE 013510 TIME 0000 ST 07 ♥5 P3 HP 16 E 0 roi 3 Dagger×1
+16663	L17585	màn Stage1	WalkwayEntranceA cx 512 Simon 720,160 t1	SCORE 013510 TIME 0500 ST 07 ♥5 P3 HP 16 E 16 roi 3 Dagger×1
+16663	L17585	section WalkwayEntranceA	WalkwayEntranceA cx 512 Simon 720,160 t1	SCORE 013510 TIME 0500 ST 07 ♥5 P3 HP 16 E 16 roi 3 Dagger×1
+17812	L18734	section WalkwayEntranceB	WalkwayEntranceB cx 0 Simon 97,189 t1128	SCORE 015010 TIME 0483 ST 07 ♥6 P3 HP 13 E 16 roi 3 Dagger×1
+19152	L20074	section WalkwayA	WalkwayA cx 0 Simon 48,128 t2468	SCORE 015010 TIME 0469 ST 08 ♥6 P3 HP 13 E 16 roi 3 Dagger×1
+20391	L21313	section WalkwayB	WalkwayB cx 81 Simon 209,189 t3685	SCORE 015310 TIME 0450 ST 08 ♥6 P3 HP 13 E 16 roi 3 Dagger×1
+21645	L22567	section MummyMan	MummyMan cx 0 Simon 48,96 t4939	SCORE 015310 TIME 0437 ST 09 ♥6 P3 HP 13 E 16 roi 3 Dagger×1
+24758	L25680	màn CastleMap	CastleMap	SCORE 026230 TIME 0000 ST 10 ♥5 P3 HP 16 E 0 roi 3 Dagger×1
+25265	L26187	màn Stage10Stub	Stage10Stub	SCORE 026230 TIME 0000 ST 10 ♥5 P3 HP 16 E 16 roi 3 Dagger×1
+25325	L26247	end	Stage10Stub	SCORE 026230 TIME 0000 ST 10 ♥5 P3 HP 16 E 16 roi 3 Dagger×1
+
+# sự kiện (tick lộ trình \t L luồng \t nơi \t sự kiện \t HUD)
+0	L129	Title	Title: dơi lơ lửng	T0300 ♥5 SC0
+0	L352	Title	Title: Start	T0300 ♥5 SC0
+0	L432	Title	Title→Black (16f)	T0300 ♥5 SC0
+0	L448	Title	Black→Intro	T0300 ♥5 SC0
+0	L448	Intro	Intro: Simon bắt đầu đi	T0300 ♥5 SC0
+0	L448	Intro	PlayMusic Prologue (m02_prologue)	T0300 ♥5 SC0
+0	L696	Intro	Intro: Simon dừng, quay lưng	T0300 ♥5 SC0
+0	L890	Intro	Intro→Black (32f)	T0300 ♥5 SC0
+0	L922	Intro	Black→Stage1	T0300 ♥5 SC0
+0	L922	CastleEntrance cx 0 w0 S 50,160	PlayMusic VampireKiller (m03_vampire_killer, lặp 33127–1350059)	T0300 ♥5 SC0
+0	L922	CastleEntrance cx 0 w0 S 50,160	StageScreen: STAGE 01 — CastleEntrance (50,160)	T0300 ♥5 SC0
+35	L957	CastleEntrance cx 0 w36 S 72,160	PlaySfx HitFlame	T0300 ♥5 SC0
+36	L958	CastleEntrance cx 0 w36 S 72,160	vỡ CE_T1 (96,160)	T0300 ♥5 SC0
+56	L978	CastleEntrance cx 0 w56 S 72,160	rơi CE_T1 ⇒ LargeHeart sau 20 tick	T0300 ♥5 SC0
+80	L1002	CastleEntrance cx 0 w81 S 81,160	PlaySfx PickupHeart	T0299 ♥10 SC0
+80	L1002	CastleEntrance cx 0 w81 S 81,160	nhặt LargeHeart tim 5→10	T0299 ♥10 SC0
+213	L1135	CastleEntrance cx 72 w214 S 200,160	PlaySfx HitFlame	T0297 ♥10 SC0
+214	L1136	CastleEntrance cx 72 w214 S 200,160	vỡ CE_T2 (224,160)	T0297 ♥10 SC0
+234	L1156	CastleEntrance cx 72 w234 S 200,160	rơi CE_T2 ⇒ MorningStar sau 20 tick	T0297 ♥10 SC0
+258	L1180	CastleEntrance cx 80 w259 S 209,160	PlaySfx PickupWeapon	T0296 ♥10 SC0
+258	L1180	CastleEntrance cx 80 w259 S 209,160	nhặt MorningStar roi 1→2 + đóng băng 46 tick	T0296 ♥10 SC0
+437	L1359	CastleEntrance cx 200 w438 S 328,160	PlaySfx HitFlame	T0294 ♥10 SC0
+482	L1404	CastleEntrance cx 208 w483 S 337,160	PlaySfx PickupWeapon	T0293 ♥10 SC0
+482	L1404	CastleEntrance cx 208 w483 S 337,160	nhặt MorningStar roi 2→3 + đóng băng 46 tick	T0293 ♥10 SC0
+661	L1583	CastleEntrance cx 328 w662 S 456,160	PlaySfx HitFlame	T0290 ♥10 SC0
+706	L1628	CastleEntrance cx 336 w707 S 465,160	PlaySfx PickupHeart	T0289 ♥15 SC0
+706	L1628	CastleEntrance cx 336 w707 S 465,160	nhặt LargeHeart tim 10→15	T0289 ♥15 SC0
+839	L1761	CastleEntrance cx 456 w840 S 584,160	PlaySfx HitFlame	T0287 ♥15 SC0
+884	L1806	CastleEntrance cx 464 w885 S 593,160	PlaySfx PickupWeapon	T0287 ♥15 SC0
+884	L1806	CastleEntrance cx 464 w885 S 593,160	nhặt Dagger vũ khí phụ None→Dagger, shot 1→1	T0287 ♥15 SC0
+969	L1891	CastleEntrance cx 512 w970 S 678,160	flow gate	T0285 ♥15 SC0
+1029	L1951	CastleEntrance cx 512 w1030 S 696,160	PlaySfx EnterGate	T0285 ♥15 SC0
+1140	L2062	CastleEntrance cx 512 w1141 S 730,160	flow gate_black	T0285 ♥15 SC0
+1158	L2080	EntranceHall cx 0 w1141 S 48,176	flow eh	T0285 ♥15 SC0
+1158	L2080	EntranceHall cx 0 w1142 S 49,176	sinh Ghoul (248,176) từ Ghoul_Hall	T0285 ♥15 SC0
+1190	L2112	EntranceHall cx 0 w1174 S 81,176	sinh Ghoul (248,176) từ Ghoul_Hall	T0285 ♥15 SC0
+1222	L2144	EntranceHall cx 0 w1206 S 113,176	sinh Ghoul (248,176) từ Ghoul_Hall	T0284 ♥15 SC0
+1486	L2408	EntranceHall cx 249 w1470 S 377,176	sinh Ghoul (497,176) từ Ghoul_Hall	T0280 ♥15 SC0
+1807	L2729	EntranceHall cx 570 w1791 S 698,176	Music loop VampireKiller 1350423 → 33491	T0275 ♥15 SC0
+2239	L3161	EntranceHall cx 1002 w2223 S 1130,176	sinh Ghoul (1250,176) từ Ghoul_Stairs	T0269 ♥15 SC0
+2271	L3193	EntranceHall cx 1034 w2255 S 1162,176	sinh Ghoul (1282,176) từ Ghoul_Stairs	T0268 ♥15 SC0
+2303	L3225	EntranceHall cx 1066 w2287 S 1194,176	sinh Ghoul (1314,176) từ Ghoul_Stairs	T0268 ♥15 SC0
+2494	L3416	EntranceHall cx 1213 w2478 S 1341,130	sinh Ghoul (1461,176) từ Ghoul_Stairs	T0265 ♥15 SC0
+2526	L3448	EntranceHall cx 1229 w2510 S 1357,114	sinh Ghoul (1477,176) từ Ghoul_Stairs	T0264 ♥15 SC0
+2558	L3480	EntranceHall cx 1245 w2542 S 1373,98	sinh Ghoul (1493,176) từ Ghoul_Stairs	T0264 ♥15 SC0
+2718	L3640	EntranceHall cx 1280 w2702 S 1516,80	flow door	T0261 ♥15 SC0
+2846	L3768	EntranceHall cx 1408 w2830 S 1516,80	flow door_stop	T0261 ♥15 SC0
+2858	L3780	EntranceHall cx 1408 w2842 S 1516,80	PlaySfx Door	T0261 ♥15 SC0
+2858	L3780	EntranceHall cx 1408 w2842 S 1516,80	flow door_open	T0261 ♥15 SC0
+2952	L3874	EntranceHall cx 1408 w2936 S 1584,80	PlaySfx Door	T0261 ♥15 SC0
+2952	L3874	EntranceHall cx 1408 w2936 S 1584,80	flow door_closed	T0261 ♥15 SC0
+3126	L4048	CryptA cx 0 w3110 S 48,80	flow stage2	T0261 ♥15 SC0
+3140	L4062	CryptA cx 0 w3124 S 62,80	sinh Bat (248,66) từ Bat_Crypt	T0261 ♥15 SC0
+3443	L4365	CryptA cx 0 w3427 S 68,192	flow stair_down	T0257 ♥15 SC0
+3461	L4383	CryptB cx 0 w3427 S 71,35	flow cb_from_ca	T0257 ♥15 SC0
+3461	L4383	CryptB cx 0 w3428 S 72,36	sinh Fishman (32,192) từ Fishman_Water	T0257 ♥15 SC0
+3461	L4383	CryptB cx 0 w3428 S 72,36	PlaySfx FishJump	T0257 ♥15 SC0
+3461	L4383	CryptB cx 0 w3428 S 72,36	sinh Fishman (224,192) từ Fishman_Water	T0257 ♥15 SC0
+3461	L4383	CryptB cx 0 w3428 S 72,36	PlaySfx FishJump	T0257 ♥15 SC0
+3548	L4470	CryptB cx 1 w3515 S 130,64	PlaySfx FishSplash	T0256 ♥15 SC0
+3570	L4492	CryptB cx 24 w3537 S 152,96	Music loop VampireKiller 1350610 → 33678	T0256 ♥15 SC0
+3618	L4540	CryptB cx 72 w3585 S 200,96	sinh Fishman (288,192) từ Fishman_Water	T0255 ♥15 SC0
+3618	L4540	CryptB cx 72 w3585 S 200,96	PlaySfx FishJump	T0255 ♥15 SC0
+3705	L4627	CryptB cx 158 w3672 S 287,96	PlaySfx FishSplash	T0254 ♥15 SC0
+3708	L4630	CryptB cx 162 w3675 S 290,96	sinh Fishman (224,192) từ Fishman_Water	T0254 ♥15 SC0
+3708	L4630	CryptB cx 162 w3675 S 290,96	PlaySfx FishJump	T0254 ♥15 SC0
+3783	L4705	CryptB cx 237 w3750 S 365,96	sinh Fishman (288,192) từ Fishman_Water	T0252 ♥15 SC0
+3783	L4705	CryptB cx 237 w3750 S 365,96	PlaySfx FishJump	T0252 ♥15 SC0
+3870	L4792	CryptB cx 256 w3837 S 446,90	PlaySfx FishSplash	T0251 ♥15 SC0
+3909	L4831	CryptB cx 256 w3876 S 427,71	sinh Fishman (480,192) từ Fishman_Water	T0250 ♥15 SC0
+3909	L4831	CryptB cx 256 w3876 S 427,71	PlaySfx FishJump	T0250 ♥15 SC0
+3988	L4910	CryptB cx 256 w3955 S 387,31	sinh Fishman (352,192) từ Fishman_Water	T0249 ♥15 SC0
+3988	L4910	CryptB cx 256 w3955 S 387,31	PlaySfx FishJump	T0249 ♥15 SC0
+3988	L4910	CryptB cx 256 w3955 S 387,31	flow stair_up	T0249 ♥15 SC0
+4006	L4928	CryptA cx 256 w3955 S 384,188	flow ca_from_cb	T0249 ♥15 SC0
+4015	L4937	CryptA cx 251 w3965 S 379,183	sinh Bat (259,169) từ Bat_Crypt	T0249 ♥15 SC0
+4336	L5258	CryptA cx 256 w4286 S 492,80	flow door	T0244 ♥15 SC0
+4464	L5386	CryptA cx 384 w4414 S 492,80	flow door_stop	T0244 ♥15 SC0
+4476	L5398	CryptA cx 384 w4426 S 492,80	PlaySfx Door	T0244 ♥15 SC0
+4476	L5398	CryptA cx 384 w4426 S 492,80	flow door_open	T0244 ♥15 SC0
+4570	L5492	CryptA cx 384 w4520 S 560,80	PlaySfx Door	T0244 ♥15 SC0
+4570	L5492	CryptA cx 384 w4520 S 560,80	flow door_closed	T0244 ♥15 SC0
+4744	L5666	PhantomBat cx 0 w4694 S 48,80	flow stage3	T0244 ♥15 SC0
+4745	L5667	PhantomBat cx 0 w4695 S 49,80	sinh Ghoul (248,112) từ Ghoul_Corridor	T0244 ♥15 SC0
+4745	L5667	PhantomBat cx 0 w4695 S 49,80	sinh PhantomBat (623,41) từ BossArena_PhantomBat	T0244 ♥15 SC0
+4777	L5699	PhantomBat cx 0 w4727 S 81,80	sinh Ghoul (248,176) từ Ghoul_Corridor	T0244 ♥15 SC0
+4809	L5731	PhantomBat cx 0 w4759 S 113,80	sinh Ghoul (248,112) từ Ghoul_Corridor	T0243 ♥15 SC0
+4999	L5921	PhantomBat cx 157 w4949 S 285,112	sinh Ghoul (405,176) từ Ghoul_Corridor	T0241 ♥15 SC0
+5031	L5953	PhantomBat cx 189 w4981 S 317,176	sinh Ghoul (437,176) từ Ghoul_Corridor	T0240 ♥15 SC0
+5336	L6258	PhantomBat cx 476 w5286 S 604,176	Music loop VampireKiller 1350797 → 33865	T0235 ♥15 SC0
+5458	L6380	PhantomBat cx 512 w5408 S 660,176	PlayMusic PoisonMind (m10_poison_mind, lặp 410181–739234)	T0233 ♥15 SC0
+5716	L6638	PhantomBat cx 512 w5666 S 640,176	PlaySfx BreakWall	T0229 ♥15 SC0
+5716	L6638	PhantomBat cx 512 w5666 S 640,176	khối vỡ PhantomBat_X43_9	T0229 ♥15 SC0
+6180	L7102	PhantomBat cx 512 w6130 S 640,176	PlaySfx HitFlame	T0222 ♥15 SC0
+6181	L7103	PhantomBat cx 512 w6130 S 640,176	vỡ PB_C10 (608,160)	T0222 ♥15 SC0
+6201	L7123	PhantomBat cx 512 w6150 S 629,176	rơi PB_C10 ⇒ SmallHeart sau 20 tick	T0222 ♥15 SC0
+6205	L7127	PhantomBat cx 512 w6155 S 624,176	PlaySfx PickupHeart	T0222 ♥16 SC0
+6205	L7127	PhantomBat cx 512 w6155 S 624,176	nhặt SmallHeart tim 15→16	T0222 ♥16 SC0
+6462	L7384	PhantomBat cx 512 w6412 S 640,176	Music loop PoisonMind 739844 → 410791	T0218 ♥16 SC0
+6909	L7831	PhantomBat cx 512 w6859 S 593,176	Music loop PoisonMind 740070 → 411017	T0211 ♥16 SC0
+7089	L8011	PhantomBat cx 512 w7039 S 640,176	boss hạ +3000	T0208 ♥16 SC3000
+7089	L8011	PhantomBat cx 512 w7039 S 640,176	hạ PhantomBat (645,155) +3000	T0208 ♥16 SC3000
+7241	L8163	PhantomBat cx 512 w7191 S 640,176	quả cầu hiện 640,104	T0205 ♥16 SC3000
+7260	L8182	PhantomBat cx 512 w7210 S 640,176	PlayMusic StageClear (m12_stage_clear)	T0205 ♥16 SC3000
+7260	L8182	PhantomBat cx 512 w7210 S 640,176	flow crystal	T0205 ♥16 SC3000
+7260	L8182	PhantomBat cx 512 w7210 S 640,176	nhặt MagicCrystal quả cầu: máu 16→16 ⇒ sự kiện CrystalPicked (tally — routine 12)	T0205 ♥16 SC3000
+7521	L8443	PhantomBat cx 512 w7470 S 640,176	SFX(kênh đơn) sfx_04_tally_time	T0204 ♥16 SC3010
+7529	L8451	PhantomBat cx 512 w7478 S 640,176	SFX(kênh đơn) sfx_04_tally_time	T0196 ♥16 SC3090
+7537	L8459	PhantomBat cx 512 w7486 S 640,176	SFX(kênh đơn) sfx_04_tally_time	T0188 ♥16 SC3170
+7545	L8467	PhantomBat cx 512 w7494 S 640,176	SFX(kênh đơn) sfx_04_tally_time	T0180 ♥16 SC3250
+7553	L8475	PhantomBat cx 512 w7502 S 640,176	SFX(kênh đơn) sfx_04_tally_time	T0172 ♥16 SC3330
+7561	L8483	PhantomBat cx 512 w7510 S 640,176	SFX(kênh đơn) sfx_04_tally_time	T0164 ♥16 SC3410
+7569	L8491	PhantomBat cx 512 w7518 S 640,176	SFX(kênh đơn) sfx_04_tally_time	T0156 ♥16 SC3490
+7577	L8499	PhantomBat cx 512 w7526 S 640,176	SFX(kênh đơn) sfx_04_tally_time	T0148 ♥16 SC3570
+7585	L8507	PhantomBat cx 512 w7534 S 640,176	SFX(kênh đơn) sfx_04_tally_time	T0140 ♥16 SC3650
+7593	L8515	PhantomBat cx 512 w7542 S 640,176	SFX(kênh đơn) sfx_04_tally_time	T0132 ♥16 SC3730
+7601	L8523	PhantomBat cx 512 w7550 S 640,176	SFX(kênh đơn) sfx_04_tally_time	T0124 ♥16 SC3810
+7609	L8531	PhantomBat cx 512 w7558 S 640,176	SFX(kênh đơn) sfx_04_tally_time	T0116 ♥16 SC3890
+7617	L8539	PhantomBat cx 512 w7566 S 640,176	SFX(kênh đơn) sfx_04_tally_time	T0108 ♥16 SC3970
+7625	L8547	PhantomBat cx 512 w7574 S 640,176	SFX(kênh đơn) sfx_04_tally_time	T0100 ♥16 SC4050
+7633	L8555	PhantomBat cx 512 w7582 S 640,176	SFX(kênh đơn) sfx_04_tally_time	T0092 ♥16 SC4130
+7641	L8563	PhantomBat cx 512 w7590 S 640,176	SFX(kênh đơn) sfx_04_tally_time	T0084 ♥16 SC4210
+7649	L8571	PhantomBat cx 512 w7598 S 640,176	SFX(kênh đơn) sfx_04_tally_time	T0076 ♥16 SC4290
+7657	L8579	PhantomBat cx 512 w7606 S 640,176	SFX(kênh đơn) sfx_04_tally_time	T0068 ♥16 SC4370
+7665	L8587	PhantomBat cx 512 w7614 S 640,176	SFX(kênh đơn) sfx_04_tally_time	T0060 ♥16 SC4450
+7673	L8595	PhantomBat cx 512 w7622 S 640,176	SFX(kênh đơn) sfx_04_tally_time	T0052 ♥16 SC4530
+7681	L8603	PhantomBat cx 512 w7630 S 640,176	SFX(kênh đơn) sfx_04_tally_time	T0044 ♥16 SC4610
+7689	L8611	PhantomBat cx 512 w7638 S 640,176	SFX(kênh đơn) sfx_04_tally_time	T0036 ♥16 SC4690
+7697	L8619	PhantomBat cx 512 w7646 S 640,176	SFX(kênh đơn) sfx_04_tally_time	T0028 ♥16 SC4770
+7705	L8627	PhantomBat cx 512 w7654 S 640,176	SFX(kênh đơn) sfx_04_tally_time	T0020 ♥16 SC4850
+7713	L8635	PhantomBat cx 512 w7662 S 640,176	SFX(kênh đơn) sfx_04_tally_time	T0012 ♥16 SC4930
+7721	L8643	PhantomBat cx 512 w7670 S 640,176	SFX(kênh đơn) sfx_04_tally_time	T0004 ♥16 SC5010
+7725	L8647	PhantomBat cx 512 w7674 S 640,176	SFX(kênh đơn) sfx_04_tally_time	T0000 ♥16 SC5050
+7779	L8701	PhantomBat cx 512 w7728 S 640,176	SFX(kênh đơn) sfx_05_tally_heart	T0000 ♥15 SC5150
+7787	L8709	PhantomBat cx 512 w7736 S 640,176	SFX(kênh đơn) sfx_05_tally_heart	T0000 ♥14 SC5250
+7795	L8717	PhantomBat cx 512 w7744 S 640,176	SFX(kênh đơn) sfx_05_tally_heart	T0000 ♥13 SC5350
+7803	L8725	PhantomBat cx 512 w7752 S 640,176	SFX(kênh đơn) sfx_05_tally_heart	T0000 ♥12 SC5450
+7811	L8733	PhantomBat cx 512 w7760 S 640,176	SFX(kênh đơn) sfx_05_tally_heart	T0000 ♥11 SC5550
+7819	L8741	PhantomBat cx 512 w7768 S 640,176	SFX(kênh đơn) sfx_05_tally_heart	T0000 ♥10 SC5650
+7827	L8749	PhantomBat cx 512 w7776 S 640,176	SFX(kênh đơn) sfx_05_tally_heart	T0000 ♥9 SC5750
+7835	L8757	PhantomBat cx 512 w7784 S 640,176	SFX(kênh đơn) sfx_05_tally_heart	T0000 ♥8 SC5850
+7843	L8765	PhantomBat cx 512 w7792 S 640,176	SFX(kênh đơn) sfx_05_tally_heart	T0000 ♥7 SC5950
+7851	L8773	PhantomBat cx 512 w7800 S 640,176	SFX(kênh đơn) sfx_05_tally_heart	T0000 ♥6 SC6050
+7859	L8781	PhantomBat cx 512 w7808 S 640,176	SFX(kênh đơn) sfx_05_tally_heart	T0000 ♥5 SC6150
+7867	L8789	PhantomBat cx 512 w7816 S 640,176	SFX(kênh đơn) sfx_05_tally_heart	T0000 ♥4 SC6250
+7875	L8797	PhantomBat cx 512 w7824 S 640,176	SFX(kênh đơn) sfx_05_tally_heart	T0000 ♥3 SC6350
+7883	L8805	PhantomBat cx 512 w7832 S 640,176	SFX(kênh đơn) sfx_05_tally_heart	T0000 ♥2 SC6450
+7891	L8813	PhantomBat cx 512 w7840 S 640,176	SFX(kênh đơn) sfx_05_tally_heart	T0000 ♥1 SC6550
+7899	L8821	PhantomBat cx 512 w7848 S 640,176	SFX(kênh đơn) sfx_05_tally_heart	T0000 ♥0 SC6650
+8018	L8940	PhantomBat cx 512 w7968 S 640,176	flow tally_done	T0000 ♥0 SC6650
+8018	L8940	Stage1	Stage1→Black (23f)	T0000 ♥0 SC6650
+8041	L8963	Stage1	Black→CastleMap	T0000 ♥0 SC6650
+8041	L8963	CastleMap	CastleMap: hết block 1, bản đồ trượt vào (dừng sau 171 tick) ⇒ Stage1	T0000 ♥5 SC6650
+8226	L9148	CastleMap	PlaySfx MapStep	T0000 ♥5 SC6650
+8242	L9164	CastleMap	PlaySfx MapStep	T0000 ♥5 SC6650
+8258	L9180	CastleMap	PlaySfx MapStep	T0000 ♥5 SC6650
+8274	L9196	CastleMap	PlaySfx MapStep	T0000 ♥5 SC6650
+8290	L9212	CastleMap	PlaySfx MapStep	T0000 ♥5 SC6650
+8306	L9228	CastleMap	PlaySfx MapStep	T0000 ♥5 SC6650
+8322	L9244	CastleMap	PlaySfx MapStep	T0000 ♥5 SC6650
+8338	L9260	CastleMap	PlaySfx MapStep	T0000 ♥5 SC6650
+8354	L9276	CastleMap	PlaySfx MapStep	T0000 ♥5 SC6650
+8370	L9292	CastleMap	PlaySfx MapStep	T0000 ♥5 SC6650
+8386	L9308	CastleMap	PlaySfx MapStep	T0000 ♥5 SC6650
+8402	L9324	CastleMap	PlaySfx MapStep	T0000 ♥5 SC6650
+8418	L9340	CastleMap	PlaySfx MapStep	T0000 ♥5 SC6650
+8434	L9356	CastleMap	PlaySfx MapStep	T0000 ♥5 SC6650
+8436	L9358	CastleMap	CastleMap: Simon tới x 240 ⇒ STAGE 04	T0000 ♥5 SC6650
+8436	L9358	CastleMap	CastleMap→Black (27f)	T0000 ♥5 SC6650
+8463	L9385	CastleMap	Black→Stage1	T0000 ♥5 SC6650
+8463	L9385	TowerEntranceA cx 0 w0 S 64,176	PlayMusic Stalker (m04_stalker, lặp 579967–1895019)	T0400 ♥5 SC6650
+8463	L9385	TowerEntranceA cx 0 w0 S 64,176	StageScreen: STAGE 04 — TowerEntranceA (64,176)	T0400 ♥5 SC6650
+8854	L9776	TowerEntranceA cx 0 w392 S 128,31	flow stair_up	T0394 ♥5 SC6650
+8875	L9797	TowerEntranceB cx 256 w392 S 386,189	flow ca_from_cb	T0394 ♥5 SC6650
+9584	L10506	TowerEntranceB cx 0 w1102 S 26,80	flow door	T0383 ♥5 SC6650
+9712	L10634	TowerEntranceB cx -128 w1230 S 26,80	flow door_stop	T0383 ♥5 SC6650
+9720	L10642	TowerEntranceB cx -128 w1238 S 26,80	PlaySfx Door	T0383 ♥5 SC6650
+9720	L10642	TowerEntranceB cx -128 w1238 S 26,80	flow door_open	T0383 ♥5 SC6650
+9822	L10744	TowerEntranceB cx -128 w1340 S -48,80	PlaySfx Door	T0383 ♥5 SC6650
+9822	L10744	TowerEntranceB cx -128 w1340 S -48,80	flow door_closed	T0383 ♥5 SC6650
+10000	L10922	TowerHallA cx 512 w1518 S 720,80	flow stage5	T0383 ♥5 SC6650
+10039	L10961	TowerHallA cx 512 w1557 S 681,80	sinh MedusaHead (520,31) từ MedusaHead_HA	T0383 ♥5 SC6650
+10167	L11089	TowerHallA cx 425 w1685 S 553,80	sinh MedusaHead (433,31) từ MedusaHead_HA	T0381 ♥5 SC6650
+10707	L11629	TowerHallA cx 0 w2225 S 64,31	flow stair_up	T0372 ♥5 SC6650
+10728	L11650	TowerHallB cx 0 w2225 S 66,189	flow ca_from_cb	T0372 ♥5 SC6650
+10749	L11671	TowerHallB cx 0 w2247 S 77,178	sinh MedusaHead (248,129) từ MedusaHead_HB	T0372 ♥5 SC6650
+10877	L11799	TowerHallB cx 59 w2375 S 187,160	sinh MedusaHead (307,111) từ MedusaHead_HB	T0370 ♥5 SC6650
+11039	L11961	TowerHallB cx 221 w2537 S 349,144	Music loop Stalker 1895146 → 580094	T0368 ♥5 SC6650
+12111	L13033	TowerHallB cx 144 w3609 S 272,80	sinh MedusaHead (152,31) từ MedusaHead_HB	T0351 ♥5 SC6650
+12239	L13161	TowerHallB cx 14 w3737 S 142,80	sinh MedusaHead (22,31) từ MedusaHead_HB	T0349 ♥5 SC6650
+12355	L13277	TowerHallB cx 0 w3853 S 26,112	flow door	T0347 ♥5 SC6650
+12483	L13405	TowerHallB cx -128 w3981 S 26,112	flow door_stop	T0347 ♥5 SC6650
+12498	L13420	TowerHallB cx -128 w3996 S 26,112	PlaySfx Door	T0347 ♥5 SC6650
+12498	L13420	TowerHallB cx -128 w3996 S 26,112	flow door_open	T0347 ♥5 SC6650
+12602	L13524	TowerHallB cx -128 w4100 S -48,112	PlaySfx Door	T0347 ♥5 SC6650
+12602	L13524	TowerHallB cx -128 w4100 S -48,112	flow door_closed	T0347 ♥5 SC6650
+12777	L13699	TowerHallC cx 512 w4275 S 720,112	flow stage6	T0347 ♥5 SC6650
+12827	L13749	TowerHallC cx 512 w4325 S 670,128	Music loop Stalker 1895332 → 580280	T0347 ♥5 SC6650
+13260	L14182	TowerHallC cx 128 w4758 S 256,144	sinh Ghost (352,144) từ Ghost_HC_low	T0340 ♥5 SC6650
+13868	L14790	TowerHallC cx 448 w5366 S 576,48	sinh Ghost (480,48) từ Ghost_HC_up	T0330 ♥5 SC6650
+13981	L14903	TowerHallC cx 512 w5479 S 672,31	flow stair_up	T0329 ♥5 SC6650
+14002	L14924	Medusa cx 512 w5479 S 674,189	flow ca_from_cb	T0329 ♥5 SC6650
+14002	L14924	Medusa cx 512 w5480 S 674,189	sinh QueenMedusa (112,144) từ BossArena_QueenMedusa	T0329 ♥5 SC6650
+14225	L15147	Medusa cx 457 w5703 S 585,128	sinh MedusaHead (465,79) từ MedusaHead_MD	T0326 ♥5 SC6650
+14353	L15275	Medusa cx 329 w5831 S 457,128	sinh MedusaHead (337,79) từ MedusaHead_MD	T0324 ♥5 SC6650
+14618	L15540	Medusa cx 64 w6096 S 192,144	Music loop Stalker 1895518 → 580466	T0320 ♥5 SC6650
+14876	L15798	Medusa cx 0 w6354 S 61,144	PlaySfx HitFlame	T0316 ♥5 SC6650
+14876	L15798	Medusa cx 0 w6354 S 61,144	hạ Snake (114,131) +100	T0316 ♥5 SC6750
+14919	L15841	Medusa cx 0 w6397 S 61,144	PlayMusic PoisonMind (m10_poison_mind, lặp 410181–739234)	T0315 ♥5 SC6750
+15101	L16023	Medusa cx 0 w6579 S 61,144	PlaySfx HitFlame	T0312 ♥5 SC6750
+15101	L16023	Medusa cx 0 w6579 S 61,144	hạ Snake (75,144) +100	T0312 ♥5 SC6850
+15226	L16148	Medusa cx 0 w6704 S 61,144	PlaySfx HitFlame	T0310 ♥5 SC6850
+15226	L16148	Medusa cx 0 w6704 S 61,144	hạ Snake (86,144) +100	T0310 ♥5 SC6950
+15276	L16198	Medusa cx 0 w6754 S 61,144	boss hạ +3000	T0310 ♥5 SC9950
+15276	L16198	Medusa cx 0 w6754 S 61,144	hạ QueenMedusa (46,136) +3000	T0310 ♥5 SC9950
+15428	L16350	Medusa cx 0 w6906 S 61,144	quả cầu hiện 128,104	T0307 ♥5 SC9950
+15480	L16402	Medusa cx 0 w6958 S 113,144	PlayMusic StageClear (m12_stage_clear)	T0306 ♥5 SC9950
+15480	L16402	Medusa cx 0 w6958 S 113,144	flow crystal	T0306 ♥5 SC9950
+15480	L16402	Medusa cx 0 w6958 S 113,144	nhặt MagicCrystal quả cầu: máu 16→16 ⇒ sự kiện CrystalPicked (tally — routine 12)	T0306 ♥5 SC9950
+15705	L16627	Medusa cx 0 w7182 S 113,144	SFX(kênh đơn) sfx_04_tally_time	T0305 ♥5 SC9960
+15713	L16635	Medusa cx 0 w7190 S 113,144	SFX(kênh đơn) sfx_04_tally_time	T0297 ♥5 SC10040
+15721	L16643	Medusa cx 0 w7198 S 113,144	SFX(kênh đơn) sfx_04_tally_time	T0289 ♥5 SC10120
+15729	L16651	Medusa cx 0 w7206 S 113,144	SFX(kênh đơn) sfx_04_tally_time	T0281 ♥5 SC10200
+15737	L16659	Medusa cx 0 w7214 S 113,144	SFX(kênh đơn) sfx_04_tally_time	T0273 ♥5 SC10280
+15745	L16667	Medusa cx 0 w7222 S 113,144	SFX(kênh đơn) sfx_04_tally_time	T0265 ♥5 SC10360
+15753	L16675	Medusa cx 0 w7230 S 113,144	SFX(kênh đơn) sfx_04_tally_time	T0257 ♥5 SC10440
+15761	L16683	Medusa cx 0 w7238 S 113,144	SFX(kênh đơn) sfx_04_tally_time	T0249 ♥5 SC10520
+15769	L16691	Medusa cx 0 w7246 S 113,144	SFX(kênh đơn) sfx_04_tally_time	T0241 ♥5 SC10600
+15777	L16699	Medusa cx 0 w7254 S 113,144	SFX(kênh đơn) sfx_04_tally_time	T0233 ♥5 SC10680
+15785	L16707	Medusa cx 0 w7262 S 113,144	SFX(kênh đơn) sfx_04_tally_time	T0225 ♥5 SC10760
+15793	L16715	Medusa cx 0 w7270 S 113,144	SFX(kênh đơn) sfx_04_tally_time	T0217 ♥5 SC10840
+15801	L16723	Medusa cx 0 w7278 S 113,144	SFX(kênh đơn) sfx_04_tally_time	T0209 ♥5 SC10920
+15809	L16731	Medusa cx 0 w7286 S 113,144	SFX(kênh đơn) sfx_04_tally_time	T0201 ♥5 SC11000
+15817	L16739	Medusa cx 0 w7294 S 113,144	SFX(kênh đơn) sfx_04_tally_time	T0193 ♥5 SC11080
+15825	L16747	Medusa cx 0 w7302 S 113,144	SFX(kênh đơn) sfx_04_tally_time	T0185 ♥5 SC11160
+15833	L16755	Medusa cx 0 w7310 S 113,144	SFX(kênh đơn) sfx_04_tally_time	T0177 ♥5 SC11240
+15841	L16763	Medusa cx 0 w7318 S 113,144	SFX(kênh đơn) sfx_04_tally_time	T0169 ♥5 SC11320
+15849	L16771	Medusa cx 0 w7326 S 113,144	SFX(kênh đơn) sfx_04_tally_time	T0161 ♥5 SC11400
+15857	L16779	Medusa cx 0 w7334 S 113,144	SFX(kênh đơn) sfx_04_tally_time	T0153 ♥5 SC11480
+15865	L16787	Medusa cx 0 w7342 S 113,144	SFX(kênh đơn) sfx_04_tally_time	T0145 ♥5 SC11560
+15873	L16795	Medusa cx 0 w7350 S 113,144	SFX(kênh đơn) sfx_04_tally_time	T0137 ♥5 SC11640
+15881	L16803	Medusa cx 0 w7358 S 113,144	SFX(kênh đơn) sfx_04_tally_time	T0129 ♥5 SC11720
+15889	L16811	Medusa cx 0 w7366 S 113,144	SFX(kênh đơn) sfx_04_tally_time	T0121 ♥5 SC11800
+15897	L16819	Medusa cx 0 w7374 S 113,144	SFX(kênh đơn) sfx_04_tally_time	T0113 ♥5 SC11880
+15905	L16827	Medusa cx 0 w7382 S 113,144	SFX(kênh đơn) sfx_04_tally_time	T0105 ♥5 SC11960
+15913	L16835	Medusa cx 0 w7390 S 113,144	SFX(kênh đơn) sfx_04_tally_time	T0097 ♥5 SC12040
+15921	L16843	Medusa cx 0 w7398 S 113,144	SFX(kênh đơn) sfx_04_tally_time	T0089 ♥5 SC12120
+15929	L16851	Medusa cx 0 w7406 S 113,144	SFX(kênh đơn) sfx_04_tally_time	T0081 ♥5 SC12200
+15937	L16859	Medusa cx 0 w7414 S 113,144	SFX(kênh đơn) sfx_04_tally_time	T0073 ♥5 SC12280
+15945	L16867	Medusa cx 0 w7422 S 113,144	SFX(kênh đơn) sfx_04_tally_time	T0065 ♥5 SC12360
+15953	L16875	Medusa cx 0 w7430 S 113,144	SFX(kênh đơn) sfx_04_tally_time	T0057 ♥5 SC12440
+15961	L16883	Medusa cx 0 w7438 S 113,144	SFX(kênh đơn) sfx_04_tally_time	T0049 ♥5 SC12520
+15969	L16891	Medusa cx 0 w7446 S 113,144	SFX(kênh đơn) sfx_04_tally_time	T0041 ♥5 SC12600
+15977	L16899	Medusa cx 0 w7454 S 113,144	SFX(kênh đơn) sfx_04_tally_time	T0033 ♥5 SC12680
+15985	L16907	Medusa cx 0 w7462 S 113,144	SFX(kênh đơn) sfx_04_tally_time	T0025 ♥5 SC12760
+15993	L16915	Medusa cx 0 w7470 S 113,144	SFX(kênh đơn) sfx_04_tally_time	T0017 ♥5 SC12840
+16001	L16923	Medusa cx 0 w7478 S 113,144	SFX(kênh đơn) sfx_04_tally_time	T0009 ♥5 SC12920
+16009	L16931	Medusa cx 0 w7486 S 113,144	SFX(kênh đơn) sfx_04_tally_time	T0001 ♥5 SC13000
+16068	L16990	Medusa cx 0 w7545 S 113,144	SFX(kênh đơn) sfx_05_tally_heart	T0000 ♥4 SC13110
+16076	L16998	Medusa cx 0 w7553 S 113,144	SFX(kênh đơn) sfx_05_tally_heart	T0000 ♥3 SC13210
+16084	L17006	Medusa cx 0 w7561 S 113,144	SFX(kênh đơn) sfx_05_tally_heart	T0000 ♥2 SC13310
+16092	L17014	Medusa cx 0 w7569 S 113,144	SFX(kênh đơn) sfx_05_tally_heart	T0000 ♥1 SC13410
+16100	L17022	Medusa cx 0 w7577 S 113,144	SFX(kênh đơn) sfx_05_tally_heart	T0000 ♥0 SC13510
+16219	L17141	Medusa cx 0 w7697 S 113,144	flow tally_done	T0000 ♥0 SC13510
+16219	L17141	Stage1	Stage1→Black (21f)	T0000 ♥0 SC13510
+16240	L17162	Stage1	Black→CastleMap	T0000 ♥0 SC13510
+16240	L17162	CastleMap	CastleMap: hết block 2, bản đồ trượt vào (dừng sau 171 tick) ⇒ Stage1	T0000 ♥5 SC13510
+16425	L17347	CastleMap	PlaySfx MapStep	T0000 ♥5 SC13510
+16441	L17363	CastleMap	PlaySfx MapStep	T0000 ♥5 SC13510
+16457	L17379	CastleMap	PlaySfx MapStep	T0000 ♥5 SC13510
+16473	L17395	CastleMap	PlaySfx MapStep	T0000 ♥5 SC13510
+16489	L17411	CastleMap	PlaySfx MapStep	T0000 ♥5 SC13510
+16505	L17427	CastleMap	PlaySfx MapStep	T0000 ♥5 SC13510
+16521	L17443	CastleMap	PlaySfx MapStep	T0000 ♥5 SC13510
+16537	L17459	CastleMap	PlaySfx MapStep	T0000 ♥5 SC13510
+16553	L17475	CastleMap	PlaySfx MapStep	T0000 ♥5 SC13510
+16569	L17491	CastleMap	PlaySfx MapStep	T0000 ♥5 SC13510
+16585	L17507	CastleMap	PlaySfx MapStep	T0000 ♥5 SC13510
+16601	L17523	CastleMap	PlaySfx MapStep	T0000 ♥5 SC13510
+16617	L17539	CastleMap	PlaySfx MapStep	T0000 ♥5 SC13510
+16633	L17555	CastleMap	PlaySfx MapStep	T0000 ♥5 SC13510
+16635	L17557	CastleMap	CastleMap: Simon tới x 240 ⇒ STAGE 07	T0000 ♥5 SC13510
+16635	L17557	CastleMap	CastleMap→Black (27f)	T0000 ♥5 SC13510
+16662	L17584	CastleMap	Black→Stage1	T0000 ♥5 SC13510
+16662	L17584	WalkwayEntranceA cx 512 w0 S 720,160	PlayMusic WickedChild (m05_wicked_child, lặp 1009942–3006096)	T0500 ♥5 SC13510
+16662	L17584	WalkwayEntranceA cx 512 w0 S 720,160	StageScreen: STAGE 07 — WalkwayEntranceA (720,160, quay trái)	T0500 ♥5 SC13510
+16806	L17728	WalkwayEntranceA cx 448 w145 S 576,176	sinh Ghost (672,145) từ Ghost_WEA	T0498 ♥5 SC13510
+17004	L17926	WalkwayEntranceA cx 264 w343 S 392,176	PlaySfx HitFlame	T0495 ♥5 SC13510
+17004	L17926	WalkwayEntranceA cx 264 w343 S 392,176	hạ Fleaman (352,175) +500	T0495 ♥5 SC14010
+17004	L17926	WalkwayEntranceA cx 264 w343 S 392,176	PlaySfx HitFlame	T0495 ♥5 SC14010
+17005	L17927	WalkwayEntranceA cx 264 w343 S 392,176	vỡ WEA_C05 (353,160)	T0495 ♥5 SC14010
+17025	L17947	WalkwayEntranceA cx 253 w363 S 381,176	rơi WEA_C05 ⇒ SmallHeart sau 20 tick	T0495 ♥5 SC14010
+17033	L17955	WalkwayEntranceA cx 245 w372 S 372,176	PlaySfx PickupHeart	T0495 ♥6 SC14010
+17033	L17955	WalkwayEntranceA cx 245 w372 S 372,176	nhặt SmallHeart tim 5→6	T0495 ♥6 SC14010
+17190	L18112	WalkwayEntranceA cx 154 w529 S 282,176	PlaySfx HitFlame	T0492 ♥6 SC14010
+17190	L18112	WalkwayEntranceA cx 154 w529 S 282,176	hạ Fleaman (318,175) +500	T0492 ♥6 SC14510
+17256	L18178	WalkwayEntranceA cx 107 w595 S 235,176	PlaySfx HitFlame	T0491 ♥6 SC14510
+17257	L18179	WalkwayEntranceA cx 107 w595 S 235,176	vỡ WEA_C04 (289,160)	T0491 ♥6 SC14510
+17264	L18186	WalkwayEntranceA cx 107 w603 S 235,176	PlaySfx HitFlame	T0491 ♥6 SC14510
+17264	L18186	WalkwayEntranceA cx 107 w603 S 235,176	hạ Fleaman (276,175) +500	T0491 ♥6 SC15010
+17277	L18199	WalkwayEntranceA cx 96 w615 S 224,176	rơi WEA_C04 ⇒ SmallHeart sau 20 tick	T0491 ♥6 SC15010
+17788	L18710	WalkwayEntranceA cx 0 w1127 S 99,31	flow stair_up	T0483 ♥6 SC15010
+17811	L18733	WalkwayEntranceB cx 0 w1127 S 97,189	flow ca_from_cb	T0483 ♥6 SC15010
+18737	L19659	WalkwayEntranceB cx 512 w2054 S 743,128	flow door	T0469 ♥6 SC15010
+18865	L19787	WalkwayEntranceB cx 640 w2182 S 743,128	flow door_stop	T0469 ♥6 SC15010
+18871	L19793	WalkwayEntranceB cx 640 w2188 S 743,128	PlaySfx Door	T0469 ♥6 SC15010
+18871	L19793	WalkwayEntranceB cx 640 w2188 S 743,128	flow door_open	T0469 ♥6 SC15010
+18972	L19894	WalkwayEntranceB cx 640 w2289 S 816,128	PlaySfx Door	T0469 ♥6 SC15010
+18972	L19894	WalkwayEntranceB cx 640 w2289 S 816,128	flow door_closed	T0469 ♥6 SC15010
+19151	L20073	WalkwayA cx 0 w2468 S 48,128	flow stage8	T0469 ♥6 SC15010
+19268	L20190	WalkwayA cx 37 w2585 S 165,128	sinh MedusaHead (285,79) từ MedusaHead_WA	T0468 ♥6 SC15010
+19396	L20318	WalkwayA cx 96 w2713 S 224,128	sinh MedusaHead (344,79) từ MedusaHead_WA	T0466 ♥6 SC15010
+19524	L20446	WalkwayA cx 155 w2841 S 283,128	sinh MedusaHead (403,79) từ MedusaHead_WA	T0464 ♥6 SC15010
+19652	L20574	WalkwayA cx 214 w2969 S 342,128	sinh MedusaHead (462,79) từ MedusaHead_WA	T0462 ♥6 SC15010
+19780	L20702	WalkwayA cx 273 w3097 S 401,128	sinh MedusaHead (521,79) từ MedusaHead_WA	T0460 ♥6 SC15010
+19908	L20830	WalkwayA cx 332 w3225 S 460,128	sinh MedusaHead (580,79) từ MedusaHead_WA	T0458 ♥6 SC15010
+20036	L20958	WalkwayA cx 391 w3353 S 519,128	sinh MedusaHead (639,79) từ MedusaHead_WA	T0456 ♥6 SC15010
+20160	L21082	WalkwayA cx 432 w3477 S 560,128	PlaySfx HitFlame	T0454 ♥6 SC15010
+20160	L21082	WalkwayA cx 432 w3477 S 560,128	hạ Skeleton (568,128) +300	T0454 ♥6 SC15310
+20160	L21082	WalkwayA cx 432 w3477 S 560,128	PlaySfx HitFlame	T0454 ♥6 SC15310
+20161	L21083	WalkwayA cx 432 w3477 S 560,128	vỡ WA_C4 (615,112)	T0454 ♥6 SC15310
+20164	L21086	WalkwayA cx 432 w3481 S 560,128	sinh MedusaHead (680,79) từ MedusaHead_WA	T0454 ♥6 SC15310
+20181	L21103	WalkwayA cx 443 w3497 S 571,128	rơi WA_C4 ⇒ RedMoneyBag sau 20 tick	T0453 ♥6 SC15310
+20292	L21214	WalkwayA cx 501 w3609 S 629,74	sinh MedusaHead (749,25) từ MedusaHead_WA	T0452 ♥6 SC15310
+20367	L21289	WalkwayA cx 483 w3684 S 611,31	flow stair_up	T0450 ♥6 SC15310
+20390	L21312	WalkwayB cx 81 w3684 S 209,189	flow ca_from_cb	T0450 ♥6 SC15310
+20749	L21671	WalkwayB cx 258 w4044 S 386,128	Music loop WickedChild 3006231 → 1010077	T0445 ♥6 SC15310
+21227	L22149	WalkwayB cx 624 w4522 S 852,96	flow door	T0437 ♥6 SC15310
+21355	L22277	WalkwayB cx 752 w4650 S 852,96	flow door_stop	T0437 ♥6 SC15310
+21362	L22284	WalkwayB cx 752 w4657 S 852,96	PlaySfx Door	T0437 ♥6 SC15310
+21362	L22284	WalkwayB cx 752 w4657 S 852,96	flow door_open	T0437 ♥6 SC15310
+21465	L22387	WalkwayB cx 752 w4760 S 928,96	PlaySfx Door	T0437 ♥6 SC15310
+21465	L22387	WalkwayB cx 752 w4760 S 928,96	flow door_closed	T0437 ♥6 SC15310
+21644	L22566	MummyMan cx 0 w4939 S 48,96	flow stage9	T0437 ♥6 SC15310
+21645	L22567	MummyMan cx 0 w4940 S 49,96	sinh MummyMan (1503,176) từ BossArena_MummyMen	T0437 ♥6 SC15310
+22615	L23537	MummyMan cx 891 w5910 S 1019,96	sinh MedusaHead (1139,47) từ MedusaHead_MM	T0422 ♥6 SC15310
+22743	L23665	MummyMan cx 1019 w6038 S 1147,96	sinh MedusaHead (1267,47) từ MedusaHead_MM	T0420 ♥6 SC15310
+23064	L23986	MummyMan cx 1280 w6359 S 1408,176	PlayMusic PoisonMind (m10_poison_mind, lặp 410181–739234)	T0415 ♥6 SC15310
+23651	L24573	MummyMan cx 1280 w6946 S 1448,176	hạ MummyMan (1494,176) +3000	T0406 ♥6 SC18510
+23726	L24648	MummyMan cx 1280 w7021 S 1448,176	boss hạ +3000	T0405 ♥6 SC21610
+23726	L24648	MummyMan cx 1280 w7021 S 1448,176	hạ MummyMan (1417,176) +3000	T0405 ♥6 SC21610
+23843	L24765	MummyMan cx 1280 w7138 S 1448,176	quả cầu hiện 1408,104	T0403 ♥6 SC21610
+23896	L24818	MummyMan cx 1280 w7191 S 1408,176	PlayMusic StageClear (m12_stage_clear)	T0402 ♥6 SC21610
+23896	L24818	MummyMan cx 1280 w7191 S 1408,176	flow crystal	T0402 ♥6 SC21610
+23896	L24818	MummyMan cx 1280 w7191 S 1408,176	nhặt MagicCrystal quả cầu: máu 13→16 ⇒ sự kiện CrystalPicked (tally — routine 12)	T0402 ♥6 SC21610
+24123	L25045	MummyMan cx 1280 w7417 S 1408,176	SFX(kênh đơn) sfx_04_tally_time	T0401 ♥6 SC21620
+24131	L25053	MummyMan cx 1280 w7425 S 1408,176	SFX(kênh đơn) sfx_04_tally_time	T0393 ♥6 SC21700
+24139	L25061	MummyMan cx 1280 w7433 S 1408,176	SFX(kênh đơn) sfx_04_tally_time	T0385 ♥6 SC21780
+24147	L25069	MummyMan cx 1280 w7441 S 1408,176	SFX(kênh đơn) sfx_04_tally_time	T0377 ♥6 SC21860
+24155	L25077	MummyMan cx 1280 w7449 S 1408,176	SFX(kênh đơn) sfx_04_tally_time	T0369 ♥6 SC21940
+24163	L25085	MummyMan cx 1280 w7457 S 1408,176	SFX(kênh đơn) sfx_04_tally_time	T0361 ♥6 SC22020
+24171	L25093	MummyMan cx 1280 w7465 S 1408,176	SFX(kênh đơn) sfx_04_tally_time	T0353 ♥6 SC22100
+24179	L25101	MummyMan cx 1280 w7473 S 1408,176	SFX(kênh đơn) sfx_04_tally_time	T0345 ♥6 SC22180
+24187	L25109	MummyMan cx 1280 w7481 S 1408,176	SFX(kênh đơn) sfx_04_tally_time	T0337 ♥6 SC22260
+24195	L25117	MummyMan cx 1280 w7489 S 1408,176	SFX(kênh đơn) sfx_04_tally_time	T0329 ♥6 SC22340
+24203	L25125	MummyMan cx 1280 w7497 S 1408,176	SFX(kênh đơn) sfx_04_tally_time	T0321 ♥6 SC22420
+24211	L25133	MummyMan cx 1280 w7505 S 1408,176	SFX(kênh đơn) sfx_04_tally_time	T0313 ♥6 SC22500
+24219	L25141	MummyMan cx 1280 w7513 S 1408,176	SFX(kênh đơn) sfx_04_tally_time	T0305 ♥6 SC22580
+24227	L25149	MummyMan cx 1280 w7521 S 1408,176	SFX(kênh đơn) sfx_04_tally_time	T0297 ♥6 SC22660
+24235	L25157	MummyMan cx 1280 w7529 S 1408,176	SFX(kênh đơn) sfx_04_tally_time	T0289 ♥6 SC22740
+24243	L25165	MummyMan cx 1280 w7537 S 1408,176	SFX(kênh đơn) sfx_04_tally_time	T0281 ♥6 SC22820
+24251	L25173	MummyMan cx 1280 w7545 S 1408,176	SFX(kênh đơn) sfx_04_tally_time	T0273 ♥6 SC22900
+24259	L25181	MummyMan cx 1280 w7553 S 1408,176	SFX(kênh đơn) sfx_04_tally_time	T0265 ♥6 SC22980
+24267	L25189	MummyMan cx 1280 w7561 S 1408,176	SFX(kênh đơn) sfx_04_tally_time	T0257 ♥6 SC23060
+24275	L25197	MummyMan cx 1280 w7569 S 1408,176	SFX(kênh đơn) sfx_04_tally_time	T0249 ♥6 SC23140
+24283	L25205	MummyMan cx 1280 w7577 S 1408,176	SFX(kênh đơn) sfx_04_tally_time	T0241 ♥6 SC23220
+24291	L25213	MummyMan cx 1280 w7585 S 1408,176	SFX(kênh đơn) sfx_04_tally_time	T0233 ♥6 SC23300
+24299	L25221	MummyMan cx 1280 w7593 S 1408,176	SFX(kênh đơn) sfx_04_tally_time	T0225 ♥6 SC23380
+24307	L25229	MummyMan cx 1280 w7601 S 1408,176	SFX(kênh đơn) sfx_04_tally_time	T0217 ♥6 SC23460
+24315	L25237	MummyMan cx 1280 w7609 S 1408,176	SFX(kênh đơn) sfx_04_tally_time	T0209 ♥6 SC23540
+24323	L25245	MummyMan cx 1280 w7617 S 1408,176	SFX(kênh đơn) sfx_04_tally_time	T0201 ♥6 SC23620
+24331	L25253	MummyMan cx 1280 w7625 S 1408,176	SFX(kênh đơn) sfx_04_tally_time	T0193 ♥6 SC23700
+24339	L25261	MummyMan cx 1280 w7633 S 1408,176	SFX(kênh đơn) sfx_04_tally_time	T0185 ♥6 SC23780
+24347	L25269	MummyMan cx 1280 w7641 S 1408,176	SFX(kênh đơn) sfx_04_tally_time	T0177 ♥6 SC23860
+24355	L25277	MummyMan cx 1280 w7649 S 1408,176	SFX(kênh đơn) sfx_04_tally_time	T0169 ♥6 SC23940
+24363	L25285	MummyMan cx 1280 w7657 S 1408,176	SFX(kênh đơn) sfx_04_tally_time	T0161 ♥6 SC24020
+24371	L25293	MummyMan cx 1280 w7665 S 1408,176	SFX(kênh đơn) sfx_04_tally_time	T0153 ♥6 SC24100
+24379	L25301	MummyMan cx 1280 w7673 S 1408,176	SFX(kênh đơn) sfx_04_tally_time	T0145 ♥6 SC24180
+24387	L25309	MummyMan cx 1280 w7681 S 1408,176	SFX(kênh đơn) sfx_04_tally_time	T0137 ♥6 SC24260
+24395	L25317	MummyMan cx 1280 w7689 S 1408,176	SFX(kênh đơn) sfx_04_tally_time	T0129 ♥6 SC24340
+24403	L25325	MummyMan cx 1280 w7697 S 1408,176	SFX(kênh đơn) sfx_04_tally_time	T0121 ♥6 SC24420
+24411	L25333	MummyMan cx 1280 w7705 S 1408,176	SFX(kênh đơn) sfx_04_tally_time	T0113 ♥6 SC24500
+24419	L25341	MummyMan cx 1280 w7713 S 1408,176	SFX(kênh đơn) sfx_04_tally_time	T0105 ♥6 SC24580
+24427	L25349	MummyMan cx 1280 w7721 S 1408,176	SFX(kênh đơn) sfx_04_tally_time	T0097 ♥6 SC24660
+24435	L25357	MummyMan cx 1280 w7729 S 1408,176	SFX(kênh đơn) sfx_04_tally_time	T0089 ♥6 SC24740
+24443	L25365	MummyMan cx 1280 w7737 S 1408,176	SFX(kênh đơn) sfx_04_tally_time	T0081 ♥6 SC24820
+24451	L25373	MummyMan cx 1280 w7745 S 1408,176	SFX(kênh đơn) sfx_04_tally_time	T0073 ♥6 SC24900
+24459	L25381	MummyMan cx 1280 w7753 S 1408,176	SFX(kênh đơn) sfx_04_tally_time	T0065 ♥6 SC24980
+24467	L25389	MummyMan cx 1280 w7761 S 1408,176	SFX(kênh đơn) sfx_04_tally_time	T0057 ♥6 SC25060
+24475	L25397	MummyMan cx 1280 w7769 S 1408,176	SFX(kênh đơn) sfx_04_tally_time	T0049 ♥6 SC25140
+24483	L25405	MummyMan cx 1280 w7777 S 1408,176	SFX(kênh đơn) sfx_04_tally_time	T0041 ♥6 SC25220
+24491	L25413	MummyMan cx 1280 w7785 S 1408,176	SFX(kênh đơn) sfx_04_tally_time	T0033 ♥6 SC25300
+24499	L25421	MummyMan cx 1280 w7793 S 1408,176	SFX(kênh đơn) sfx_04_tally_time	T0025 ♥6 SC25380
+24507	L25429	MummyMan cx 1280 w7801 S 1408,176	SFX(kênh đơn) sfx_04_tally_time	T0017 ♥6 SC25460
+24515	L25437	MummyMan cx 1280 w7809 S 1408,176	SFX(kênh đơn) sfx_04_tally_time	T0009 ♥6 SC25540
+24523	L25445	MummyMan cx 1280 w7817 S 1408,176	SFX(kênh đơn) sfx_04_tally_time	T0001 ♥6 SC25620
+24578	L25500	MummyMan cx 1280 w7872 S 1408,176	SFX(kênh đơn) sfx_05_tally_heart	T0000 ♥5 SC25730
+24586	L25508	MummyMan cx 1280 w7880 S 1408,176	SFX(kênh đơn) sfx_05_tally_heart	T0000 ♥4 SC25830
+24594	L25516	MummyMan cx 1280 w7888 S 1408,176	SFX(kênh đơn) sfx_05_tally_heart	T0000 ♥3 SC25930
+24602	L25524	MummyMan cx 1280 w7896 S 1408,176	SFX(kênh đơn) sfx_05_tally_heart	T0000 ♥2 SC26030
+24610	L25532	MummyMan cx 1280 w7904 S 1408,176	SFX(kênh đơn) sfx_05_tally_heart	T0000 ♥1 SC26130
+24618	L25540	MummyMan cx 1280 w7912 S 1408,176	SFX(kênh đơn) sfx_05_tally_heart	T0000 ♥0 SC26230
+24737	L25659	MummyMan cx 1280 w8032 S 1408,176	flow tally_done	T0000 ♥0 SC26230
+24737	L25659	Stage1	Stage1→Black (20f)	T0000 ♥0 SC26230
+24757	L25679	Stage1	Black→CastleMap	T0000 ♥0 SC26230
+24757	L25679	CastleMap	CastleMap: hết block 3, bản đồ trượt vào (dừng sau 256 tick) ⇒ Stage10Stub	T0000 ♥5 SC26230
+25027	L25949	CastleMap	PlaySfx MapStep	T0000 ♥5 SC26230
+25043	L25965	CastleMap	PlaySfx MapStep	T0000 ♥5 SC26230
+25059	L25981	CastleMap	PlaySfx MapStep	T0000 ♥5 SC26230
+25075	L25997	CastleMap	PlaySfx MapStep	T0000 ♥5 SC26230
+25091	L26013	CastleMap	PlaySfx MapStep	T0000 ♥5 SC26230
+25107	L26029	CastleMap	PlaySfx MapStep	T0000 ♥5 SC26230
+25123	L26045	CastleMap	PlaySfx MapStep	T0000 ♥5 SC26230
+25139	L26061	CastleMap	PlaySfx MapStep	T0000 ♥5 SC26230
+25155	L26077	CastleMap	PlaySfx MapStep	T0000 ♥5 SC26230
+25171	L26093	CastleMap	PlaySfx MapStep	T0000 ♥5 SC26230
+25187	L26109	CastleMap	PlaySfx MapStep	T0000 ♥5 SC26230
+25203	L26125	CastleMap	PlaySfx MapStep	T0000 ♥5 SC26230
+25219	L26141	CastleMap	PlaySfx MapStep	T0000 ♥5 SC26230
+25235	L26157	CastleMap	PlaySfx MapStep	T0000 ♥5 SC26230
+25237	L26159	CastleMap	CastleMap: Simon tới x 240 ⇒ STAGE 10	T0000 ♥5 SC26230
+25237	L26159	CastleMap	CastleMap→Black (27f)	T0000 ♥5 SC26230
+25264	L26186	CastleMap	Black→Stage10Stub	T0000 ♥5 SC26230
+25264	L26186	Stage10Stub	Stage10Stub: STAGE 10 (chờ cụm Map 4) — TIME 0000 (ConfigBlock[4].timeLimit chưa có số — giữ), nhạc WalkingOnTheEdge	T0000 ♥5 SC26230
+25264	L26186	Stage10Stub	PlayMusic WalkingOnTheEdge (m06_walking_on_the_edge, lặp 394747–1945585)	T0000 ♥5 SC26230
