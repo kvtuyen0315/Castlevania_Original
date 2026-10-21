@@ -1,0 +1,52 @@
+# CVM3 04 — Unity (Kb4Probe, scene Arena, _cache/04/unity3) ↔ video (kb4_track / kb4_holy_all / kb4_ledge) — Tools/cvm3/kb4_compare.py
+kb_free_l <-> b2_hit3 (Boss_Map_2 #3 f351-369 (ran, khong tuong)): Unity lui 34 px / bay 34 tick, cao 14 | du cao theo dong ho x: 14 mau, max |du| 0, rms 0.00 | theo frame (pha -3, 12 mau): rms x 1.00 y 1.08 (max 1 / 3)
+    f351 t0 video cao 0 Unity 0 du +0
+    f352 t2 video cao 6 Unity 6 du +0
+    f355 t6 video cao 11 Unity 11 du +0
+    f357 t10 video cao 14 Unity 14 du +0
+    f359 t12 video cao 14 Unity 14 du +0
+    f360 t14 video cao 14 Unity 14 du +0
+    f361 t16 video cao 14 Unity 14 du +0
+    f362 t18 video cao 14 Unity 14 du +0
+    f363 t20 video cao 14 Unity 14 du +0
+    f364 t24 video cao 14 Unity 14 du +0
+    f366 t26 video cao 13 Unity 13 du +0
+    f367 t28 video cao 11 Unity 11 du +0
+    f368 t30 video cao 9 Unity 9 du +0
+    f369 t32 video cao 6 Unity 6 du +0
+kb_free_r <-> b3_hit1 (Boss_Map_3 #1 f540-556 (bang gac, khong tuong)): Unity lui 34 px / bay 34 tick, cao 14 | du cao theo dong ho x: 14 mau, max |du| 0, rms 0.00 | theo frame (pha -1, 13 mau): rms x 1.00 y 1.00 (max 1 / 2)
+    f540 t0 video cao 0 Unity 0 du +0
+    f542 t2 video cao 6 Unity 6 du +0
+    f543 t6 video cao 11 Unity 11 du +0
+    f545 t10 video cao 14 Unity 14 du +0
+    f546 t12 video cao 14 Unity 14 du +0
+    f547 t14 video cao 14 Unity 14 du +0
+    f548 t16 video cao 14 Unity 14 du +0
+    f549 t18 video cao 14 Unity 14 du +0
+    f550 t20 video cao 14 Unity 14 du +0
+    f551 t22 video cao 14 Unity 14 du +0
+    f553 t24 video cao 14 Unity 14 du +0
+    f554 t26 video cao 13 Unity 13 du +0
+    f555 t28 video cao 11 Unity 11 du +0
+    f556 t32 video cao 6 Unity 6 du +0
+kb_wall_l <-> b2_hit1 (Boss_Map_2 #1 f106-122 (tuong trai sau 10 px)): Unity lui 10 px / bay 34 tick, cao 14 | du cao theo dong ho x: 5 mau, max |du| 0, rms 0.00 | theo frame (pha +0, 13 mau): rms x 0.00 y 0.00 (max 0 / 0)
+    f106 t0 video cao 0 Unity 0 du +0
+    f107 t2 video cao 6 Unity 6 du +0
+    f108 t4 video cao 9 Unity 9 du +0
+    f109 t6 video cao 11 Unity 11 du +0
+    f110 t8 video cao 13 Unity 13 du +0
+kb_wall_r <-> b1_hit (Boss_Map_1 f362-379 (mep man khoa phai sau 12 px)): Unity lui 12 px / bay 34 tick, cao 14 | du cao theo dong ho x: 2 mau, max |du| 1, rms 1.00 | theo frame (pha +3, 9 mau): rms x 0.47 y 0.47 (max 1 / 1)
+    f362 t4 video cao 8 Unity 9 du -1
+    f365 t10 video cao 13 Unity 14 du -1
+kb_duck_wall_r <-> b3_hit2 (Boss_Map_3 #2 f699-713 (ngoi sat mep phai)): Unity lui 10 px / bay 34 tick, cao 14 | du cao theo dong ho x: 2 mau, max |du| 0, rms 0.00 | theo frame (pha +3, 10 mau): rms x 0.95 y 1.76 (max 2 / 5)
+    f699 t1 video cao 3 Unity 3 du +0
+    f700 t7 video cao 12 Unity 12 du +0
+holy_drop64_r <-> Map_3 tran Mummy 9 lo (46 diem quy dao): du x max 0, du y max 0, rms y 0.00; Unity vo o n 49, lua x +73 (video: lo con ve n48, lua x +73 => vo n49)
+holy_flat_l (Unity nem tren san quay trai): sinh rel 18 tai (300,157), vo rel 50 (n 32) lua HolyFire 252 176, lua song 76 tick | video Boss_Map_1: lua_0 hien rel 24 sau tim -1 (n ~32), lo n31 con ve
+ledge_eh_l (Map_1 f1882/1883 EH mep trai 928): Unity dung cuoi x 922, roi tick dau x 921 | video dung cuoi 922, x0 921 => lech x0 +0
+ledge_cb_r (Map_1 f3757/3758 CB mep phai 128): Unity dung cuoi x 133, roi tick dau x 134 | video dung cuoi 132, x0 134 => lech x0 +0
+ledge_tha_r (Map_2 f2409/2410 Hall A mep phai 320): Unity dung cuoi x 325, roi tick dau x 326 | video dung cuoi 324, x0 326 => lech x0 +0
+ledge_tha_l (Map_2 f2507/2508 Hall A mep trai 288): Unity dung cuoi x 282, roi tick dau x 281 | video dung cuoi 283, x0 281 => lech x0 +0
+ledge_thb_l (Map_2 f3824/3825 Hall B mep trai 608): Unity dung cuoi x 602, roi tick dau x 601 | video dung cuoi 603, x0 601 => lech x0 +0
+ledge_med_r (Map_2 f6047/6048 Medusa mep phai 704): Unity dung cuoi x 709, roi tick dau x 710 | video dung cuoi 708, x0 710 => lech x0 +0
+ledge_med_l (Map_2 f6688/6690 Medusa mep trai 224): Unity dung cuoi x 218, roi tick dau x 217 | video dung cuoi 220, x0 217 => lech x0 +0

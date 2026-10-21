@@ -100,8 +100,8 @@ public static class Map2MechProbe
             new Scn { name = "pit_respawn", section = "TowerHallA", x = 304, y = 120, facing = -1, rle = "-*420",
                 note = "Hall A + StageRules (đầu STAGE 05 = Hall A (720,80)): thả giữa hố cột 18–19 ⇒ rơi ra đáy ⇒ FallDeath Pit ⇒ LifeLost Fall ⇒ đen ⇒ hồi sinh đầu stage, P −1",
                 check = CheckPitRespawn },
-            new Scn { name = "pit_knockback", section = "TowerEntranceB", x = 194, y = 80, facing = 1, rle = "-*200",
-                note = "TEB: Simon quay phải đứng mép trái bờ cột 12 (khe 160–191 trống tới đáy), bia chạm thân từ phải ⇒ knockback lùi trái 12 px ⇒ rơi hố ⇒ FallDeath Pit (wiki: Medusa Head hất xuống hố)",
+            new Scn { name = "pit_knockback", section = "TowerEntranceB", x = 214, y = 80, facing = 1, rle = "-*200",
+                note = "TEB: Simon quay phải đứng trên bờ phải khe 160–191 (trống tới đáy) x 214, bia chạm thân từ phải ⇒ knockback lùi trái 34 px (CVM3 04 — trước 12 px từ x 194) ⇒ cuối cung x 180 giữa khe ⇒ rơi hố ⇒ FallDeath Pit (wiki: Medusa Head hất xuống hố)",
                 check = CheckKnockbackPit },
             new Scn { name = "enemy_pit", section = "TowerEntranceB", x = 300, y = 80, facing = -1, rle = "-*120",
                 note = "TEB: Ghoul thả trên khe 160–191 rơi ra đáy section ⇒ biến mất (Kill, KHÔNG điểm)", check = CheckEnemyPit },
@@ -341,7 +341,7 @@ public static class Map2MechProbe
             case "pit_knockback":
                 {
                     var prefab = UnityEditor.AssetDatabase.LoadAssetAtPath<ArenaTarget>(TARGET_PREFAB);
-                    var t = (ArenaTarget)world.Spawn(prefab, 205, 80, -1);
+                    var t = (ArenaTarget)world.Spawn(prefab, 225, 80, -1);   // CVM3 04: cùng khoảng cách 11 px như trước (Simon 194 / bia 205)
                     t.touchDamage = true;   // pool giữ cờ probe trước (CVM2_MEMORY §6) ⇒ đặt tường minh
                     t.Touch.active = true;
                     extras.Add(t);
@@ -713,7 +713,8 @@ public static class Map2MechProbe
         if (leave >= 0 && pi >= 0)
         {
             var r = recs[leave];
-            Expect("rời bệ ở phía trái mép bệ, trên hố x 32–63", 1, r.sx + 7 < r.pleft[pi] && r.sx - 8 >= 32 - 8 && r.sx + 7 < 64 ? 1 : 0);
+            // CVM3 04: rời bệ khi đầu dò sàn X + 6 (FootProbeHalfWidth — video 9 lần đi khỏi mép) qua mép trái bệ (trước: cả thân X + 7)
+            Expect("rời bệ ở phía trái mép bệ, trên hố x 32–63", 1, r.sx + SimonProbe.VIDEO_FOOT < r.pleft[pi] && r.sx - 8 >= 32 - 8 && r.sx + 7 < 64 ? 1 : 0);
             measures.Add("rời bệ rel " + leave + " Simon x " + r.sx + ", bệ mép trái " + r.pleft[pi] + ", chết rel " + deathRel);
         }
     }

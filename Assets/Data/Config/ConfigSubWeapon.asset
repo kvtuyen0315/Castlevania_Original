@@ -98,13 +98,15 @@ MonoBehaviour:
       value: 1.5
     speedY0:
       has: 1
-      value: -1.3
+      value: -1.5
     gravity:
       has: 1
-      value: 0.125
-    src_motion: "\u0111o:routine 09 proj_fit.py kh\u1EDBp 2 qu\u1EF9 \u0111\u1EA1o
-      l\u1ECD video:Boss 13.0\u201313.9 s (f390\u2013403 / f404\u2013418: vx 1.57
-      / 1.43; g 0.116 / 0.133; v\u1EDBi g 0.125 vy0 \u22121.13 / \u22121.53)"
+      value: 0.12890625
+    src_motion: "\u0111o:cvm3-04 Tools/cvm3/kb4_holy_fit.py video:Map_3 3:22\u20133:44
+      9 l\u1ECD t\u1EEB kh\u1ED1i cao (Simon (22,144) quay ph\u1EA3i) + f5198 nh\u1EA3y-n\xE9m:
+      X = Simon + floor(1.5\xB7n), vy += g r\u1ED3i y += vy v\u1EDBi vy0 \u22121.5,
+      g 33/256 = 0.12890625 \u21D2 46 \u0111i\u1EC3m (m\u1ECDi l\u1ECD) d\u01B0 0
+      px; CVGP 09 (video Boss, Simon nh\xE1y): vx 1.57 / 1.43, g 0.116 / 0.133"
     behaviorShort: "L\u1ECD v\u1EE1 khi ch\u1EA1m s\xE0n th\xE0nh ng\u1ECDn l\u1EEDa
       nh\u1ECF gi\u1EEF ch\xE2n/\u0111\u1ED1t enemy"
     source: "wiki:Items#Holy Water; wiki:Enemies (nh\xF3m y\u1EBFu)"

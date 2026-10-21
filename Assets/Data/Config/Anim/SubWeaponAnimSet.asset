@@ -62,19 +62,25 @@ MonoBehaviour:
     note: 
   - name: holywater_fire
     frames:
+    - {fileID: 21300000, guid: ab8867f897583334c89be849fe90b5a2, type: 3}
     - {fileID: 21300000, guid: 0702f1f8404ea8c4a9e9ea2d30afeb2a, type: 3}
     - {fileID: 21300000, guid: a0763f3ef0a396c408976ea51d192b25, type: 3}
     - {fileID: 21300000, guid: 25f7ec3f23772e646824fc8826b57152, type: 3}
     - {fileID: 21300000, guid: ed64320ef16fe6a48b2175fa36a43569, type: 3}
-    durations: 09000000060000000c00000007000000
-    loop: 1
+    - {fileID: 21300000, guid: ab8867f897583334c89be849fe90b5a2, type: 3}
+    - {fileID: 21300000, guid: 0702f1f8404ea8c4a9e9ea2d30afeb2a, type: 3}
+    - {fileID: 21300000, guid: a0763f3ef0a396c408976ea51d192b25, type: 3}
+    - {fileID: 21300000, guid: 25f7ec3f23772e646824fc8826b57152, type: 3}
+    durations: 090000000900000009000000090000000900000009000000090000000900000009000000
+    loop: 0
     measured: 1
     overlays: []
     overlayOffsets: []
     overlayOnTop: 
-    note: "routine 09: video Boss kh\u1EDBp m\u1EABu (Tools/cvgp/proj_fit.py fire):
-      l\u1EEDa ch\u1EA1y fire_1\u21922\u21923\u21924 r\u1ED3i l\u1EB7p, TB 9/6/12/7
-      tick (3 chu\u1ED7i f355\u2013372, f560\u2013577, f578\u2013592; \xB12 tick);
-      fire_0 kh\xF4ng th\u1EA5y r\xF5 (nghi khung v\u1EE1 l\u1ECD) \u2014 kh\xF4ng
-      d\xF9ng"
+    note: "CVM3 04: video Map_3 tr\u1EADn Mummy 4 chu\u1ED7i l\u1EEDa tr\u1ECDn (Tools/cvm3/kb4_flame.py,
+      kh\u1EDBp m\u1EABu 5 khung): fire_0\u21921\u21922\u21923\u21924\u21920\u21921\u21922\u21923
+      r\u1ED3i t\u1EAFt, m\u1ED7i khung 9 tick (8 kho\u1EA3ng = 70\u201372 tick),
+      kh\xF4ng l\u1EB7p \u2014 khung cu\u1ED1i gi\u1EEF t\u1EDBi h\u1EBFt ConfigActorParam
+      HolyWater.fireTicks (76); tr\u01B0\u1EDBc: routine 09 fire_1\u21924 l\u1EB7p
+      9/6/12/7 (video Boss, kh\xF4ng th\u1EA5y fire_0)"
   palettes: []

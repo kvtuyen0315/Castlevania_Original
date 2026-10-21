@@ -258,45 +258,50 @@ MonoBehaviour:
   - key: KnockbackDx
     value:
       has: 1
-      value: 12
-    min:
-      has: 1
-      value: 11
-    max:
-      has: 1
-      value: 13
-    unit: px
-    source: "\u0111o:routine 08 kh\u1EDBp m\u1EABu video:Boss_Map_1 11.9\u201312.6
-      s (f363\u2013380: x +4/+10/+12 r\u1ED3i \u0111\u1EE9ng)"
-    note: "l\xF9i NG\u01AF\u1EE2C h\u01B0\u1EDBng m\u1EB7t"
-  - key: KnockbackDy
-    value:
-      has: 1
-      value: 15
-    min:
-      has: 1
-      value: 14
-    max:
-      has: 1
-      value: 15
-    unit: px
-    source: "\u0111o:routine 08 video:Boss_Map_1 f363\u2013380 (h 8/13/14/13/8; khung
-      hurt_0)"
-    note: "1 m\u1EABu"
-  - key: KnockbackAirTicks
-    value:
-      has: 1
-      value: 35
+      value: 34
     min:
       has: 1
       value: 32
     max:
       has: 1
-      value: 38
+      value: 35
+    unit: px
+    source: "\u0111o:cvm3-04 video:Boss_Map_2 f351\u2013369 (x 104 \u2192 72 \u1EDF
+      t32, c\xF2n tr\xEAn kh\xF4ng; \u0111\xE1p t34) + video:Boss_Map_3 f540\u2013556
+      (196 \u2192 228 \u1EDF t32) \u2014 kh\xF4ng t\u01B0\u1EDDng"
+    note: "TH\xD4NG TIN = KnockbackSpeedX \xD7 (2\xD710 + KnockbackApexTicks); CVGP
+      08 \u0111o 12 px v\xEC video:Boss_Map_1 b\u1ECB m\xE9p m\xE0n kho\xE1 ch\u1EB7n
+      \u1EDF x 239 (cx + 239)"
+  - key: KnockbackDy
+    value:
+      has: 1
+      value: 14
+    min:
+      has: 1
+      value: 14
+    max:
+      has: 1
+      value: 14
+    unit: px
+    source: "\u0111o:cvm3-04 3 video: Boss_Map_1 208 \u2192 194, Boss_Map_2 176 \u2192
+      162 (\xD73), Boss_Map_3 208 \u2192 194 (\xD72)"
+    note: "TH\xD4NG TIN = t\u1ED5ng KnockbackRise01..10"
+  - key: KnockbackAirTicks
+    value:
+      has: 1
+      value: 34
+    min:
+      has: 1
+      value: 33
+    max:
+      has: 1
+      value: 36
     unit: tick
-    source: "\u0111o:routine 08 video:Boss_Map_1 (tr\xFAng f362.5 \u2192 bi\u1EBFn
-      m\u1EA5t nh\xE1y t\u1EEB f381 \u2248 36 tick)"
-    note: "= 2\xB7|KnockbackVy0|/KnockbackGravity"
+    source: "\u0111o:cvm3-04 (\u0111\u1ED3ng h\u1ED3 x: t32 c\xF2n cao 6 px \u1EDF
+      3 m\u1EABu; xu\u1ED1ng = g\u01B0\u01A1ng pha l\xEAn quanh t17 \u21D2 ch\u1EA1m
+      \u0111\u1EA5t t34)"
+    note: "TH\xD4NG TIN = 2\xD710 + KnockbackApexTicks tr\xEAn s\xE0n ph\u1EB3ng;
+      ch\u01B0a ch\u1EA1m \u0111\u1EA5t \u21D2 r\u01A1i FallSpeed, v\u1EABn l\xF9i"
   - key: InvincibleTicks
     value:
       has: 1
@@ -309,7 +314,10 @@ MonoBehaviour:
       value: 96
     unit: tick
     source: "\u0111o:routine 08 video:Boss_Map_1 f381\u2013427 (47 frame kh\xF4ng
-      th\u1EA5y Simon sau khi \u0111\xE1p)"
+      th\u1EA5y Simon sau khi \u0111\xE1p); \u0111o:cvm3-04 tools kb4_visible.py
+      6 l\u1EA7n tr\xFAng (Boss_Map_1/2/3): \u0111\xE1p \u2192 hi\u1EC7n li\xEAn
+      t\u1EE5c sau 45\u201351 frame (90\u2013102 tick, trung v\u1ECB \u2248 96) \u2014
+      gi\u1EEF 94"
     note: "\u0111\u1EBFm t\u1EEB l\xFAc \u0110\xC1P sau knockback (trong l\xFAc bay
       hi\u1EC7n hurt_0 kh\xF4ng nh\xE1y)"
   - key: WhipTotalTicks
@@ -879,47 +887,6 @@ MonoBehaviour:
     note: "v\u1EBD l\xF9i 3 px ng\u01B0\u1EE3c h\u01B0\u1EDBng di chuy\u1EC3n ngang
       khi xu\u1ED1ng \u2014 thang \u2197 l\u1EA5y \u0111\u1ED1i x\u1EE9ng (ch\u01B0a
       c\xF3 video)"
-  - key: KnockbackVy0
-    value:
-      has: 1
-      value: -1.75
-    min:
-      has: 0
-      value: 0
-    max:
-      has: 0
-      value: 0
-    unit: px/tick
-    source: "\u0111o:routine 08 kh\u1EDBp parabol video:Boss_Map_1 f363\u2013380
-      (h 8/13/14/13/8)"
-    note: "c\xF9ng KnockbackGravity \u21D2 cao \u2248 15 px; bay \u2248 35 tick"
-  - key: KnockbackGravity
-    value:
-      has: 1
-      value: 0.1
-    min:
-      has: 0
-      value: 0
-    max:
-      has: 0
-      value: 0
-    unit: "px/tick\xB2"
-    source: "\u0111o:routine 08 (nh\u01B0 KnockbackVy0)"
-    note: 
-  - key: KnockbackDxTicks
-    value:
-      has: 1
-      value: 12
-    min:
-      has: 0
-      value: 0
-    max:
-      has: 0
-      value: 0
-    unit: tick
-    source: "\u0111o:routine 08 video:Boss_Map_1 (x +12 r\u1ED3i \u0111\u1EE9ng y\xEAn
-      d\xF9 c\xF2n tr\xEAn kh\xF4ng \u2014 f369\u2013380)"
-    note: "l\xF9i 1 px/tick trong 12 tick \u0111\u1EA7u"
   - key: InvincibleBlinkPeriod
     value:
       has: 1
@@ -1000,3 +967,206 @@ MonoBehaviour:
     note: "tick th\u1EE9 N (0 = tick \u0111\u1EA7u) c\u1EE7a khung du\u1ED7i th\xEC
       sinh v\u0169 kh\xED ph\u1EE5; tim tr\u1EEB ngay l\xFAc b\u1EA5m (HUD tr\u1EEB
       tim tr\u01B0\u1EDBc SFX n\xE9m ~0.2 s \u2014 routine 02)"
+  - key: KnockbackSpeedX
+    value:
+      has: 1
+      value: 1
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px/tick
+    source: "\u0111o:cvm3-04 video:Boss_Map_2 f106\u2013111 (5 frame m\u1EDBi li\u1EC1n
+      nhau \u22122 px/frame t\u1EDBi t\u01B0\u1EDDng) + f359\u2013363 + video:Boss_Map_3
+      f545\u2013551 (+2 px/frame)"
+    note: "l\xF9i NG\u01AF\u1EE2C h\u01B0\u1EDBng m\u1EB7t SU\u1ED0T cung (t\u1EDBi
+      khi \u0111\xE1p); t\u01B0\u1EDDng/m\xE9p m\xE0n ch\u1EB7n ngang, cung d\u1ECDc
+      ch\u1EA1y ti\u1EBFp (Boss_Map_2 #1/#2, Boss_Map_3 #2, Boss_Map_1)"
+  - key: KnockbackApexTicks
+    value:
+      has: 1
+      value: 14
+    min:
+      has: 1
+      value: 13
+    max:
+      has: 1
+      value: 15
+    unit: tick
+    source: "\u0111o:cvm3-04 (cao 14 \u1EDF m\u1ECDi m\u1EABu t10..t24 \u0111\u1ED3ng
+      h\u1ED3 x \u2014 Boss_Map_2 #1/#3, Boss_Map_3 #1; t26 = 13)"
+    note: "tick gi\u1EEF \u0111\u1EC9nh (tick 11\u201324); kh\xE1c nh\u1EA3y (JumpApexTicks
+      8)"
+  - key: KnockbackRise01
+    value:
+      has: 1
+      value: 3
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "\u0111o:cvm3-04 Tools/cvm3/kb4_track.py kh\u1EDBp m\u1EABu hurt_0 t\u1EEBng
+      frame, \u0111\u1ED3ng h\u1ED3 x (l\xF9i 1 px/tick): video:Boss_Map_2 f106\u2013122
+      (#1) + f351\u2013369 (#3) + video:Boss_Map_3 f540\u2013556 (#1) c\xF9ng m\u1ED9t
+      b\u1EA3ng (0 px d\u01B0 m\u1ECDi m\u1EABu); tick l\u1EBB video:Boss_Map_1 f362/f365
+      (t3 = 8, t9 = 13) + video:Boss_Map_3 f699/f700 (t1 = 3, t7 = 12)"
+    note: "cao 3 sau tick 1; xu\u1ED1ng tick 25\u201334 = g\u01B0\u01A1ng (\u2212KnockbackRise10
+      \u2026 \u2212KnockbackRise01)"
+  - key: KnockbackRise02
+    value:
+      has: 1
+      value: 3
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "\u0111o:cvm3-04 (nh\u01B0 KnockbackRise01)"
+    note: cao 6 sau tick 2
+  - key: KnockbackRise03
+    value:
+      has: 1
+      value: 2
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "\u0111o:cvm3-04 (nh\u01B0 KnockbackRise01)"
+    note: cao 8 sau tick 3
+  - key: KnockbackRise04
+    value:
+      has: 1
+      value: 1
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "\u0111o:cvm3-04 (nh\u01B0 KnockbackRise01)"
+    note: cao 9 sau tick 4
+  - key: KnockbackRise05
+    value:
+      has: 1
+      value: 1
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "\u0111o:cvm3-04 (nh\u01B0 KnockbackRise01)"
+    note: cao 10 sau tick 5
+  - key: KnockbackRise06
+    value:
+      has: 1
+      value: 1
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "\u0111o:cvm3-04 (nh\u01B0 KnockbackRise01)"
+    note: cao 11 sau tick 6
+  - key: KnockbackRise07
+    value:
+      has: 1
+      value: 1
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "\u0111o:cvm3-04 (nh\u01B0 KnockbackRise01)"
+    note: cao 12 sau tick 7
+  - key: KnockbackRise08
+    value:
+      has: 1
+      value: 1
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "\u0111o:cvm3-04 (nh\u01B0 KnockbackRise01)"
+    note: cao 13 sau tick 8
+  - key: KnockbackRise09
+    value:
+      has: 1
+      value: 0
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "\u0111o:cvm3-04 (nh\u01B0 KnockbackRise01)"
+    note: cao 13 sau tick 9
+  - key: KnockbackRise10
+    value:
+      has: 1
+      value: 1
+    min:
+      has: 0
+      value: 0
+    max:
+      has: 0
+      value: 0
+    unit: px
+    source: "\u0111o:cvm3-04 (nh\u01B0 KnockbackRise01)"
+    note: cao 14 sau tick 10
+  - key: FootProbeHalfWidth
+    value:
+      has: 1
+      value: 6
+    min:
+      has: 1
+      value: 6
+    max:
+      has: 1
+      value: 6
+    unit: px
+    source: "\u0111o:cvm3-04 Tools/cvm3/kb4_ledge.py 9 l\u1EA7n \u0111i kh\u1ECFi
+      m\xE9p (video:Map_1 1:02.8 EH \u2190 + 2:05.3 CB \u2192; video:Map_2 Hall A
+      \xD72, Hall B \xD73, Medusa \xD72; c\u1EA3 2 h\u01B0\u1EDBng): c\xF2n \u0111\u1EE9ng
+      khi th\xE2n qua m\xE9p 5 px, r\u01A1i \u1EDF 6 px"
+    note: "\u0111\u1EA7u d\xF2 s\xE0n (\u0111\u1EE9ng + \u0111\xE1p) c\u1EE7a Simon
+      = c\u1ED9t X\u22126..X+6 (th\xE2n va t\u01B0\u1EDDng v\u1EABn 16 px); tr\u01B0\u1EDBc
+      CVM3 04 d\xF2 c\u1EA3 th\xE2n X\u22128..X+7 (r\u01A1i tr\u1EC5 2 px)"
+  - key: LockedScreenMaxX
+    value:
+      has: 1
+      value: 239
+    min:
+      has: 1
+      value: 239
+    max:
+      has: 1
+      value: 239
+    unit: px
+    source: "\u0111o:cvm3-04 video:Boss_Map_1 f368\u2013379 (knockback d\u1EEBng
+      \u1EDF x m\xE0n 239, kh\xF4ng c\xF3 \xF4 t\u01B0\u1EDDng) + video:Boss_Map_3
+      f690\u2013713 (ng\u1ED3i s\xE1t r\u1ED3i knockback k\u1EB9t \u1EDF 239); b\xEAn
+      tr\xE1i: video:Map_3 ph\xF2ng Mummy x m\xE0n t\u1EDBi 11"
+    note: "ph\xF2ng boss camera kho\xE1: Simon kh\xF4ng qua cx + 239 (BossArena \u2014
+      c\u1ED9t cx + 247 ch\u1EB7n th\xE2n); b\xEAn tr\xE1i gi\u1EEF cx + 8 (suy lu\u1EADn
+      CVGP 14)"

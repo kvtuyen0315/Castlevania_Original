@@ -1,0 +1,14 @@
+# CVM3 04 — Simon đi khỏi mép bục (Tools/cvm3/kb4_ledge.py): d = khoảng thân qua mép (đi phải: x − E; đi trái: (E − 1) − x); Unity trước CVM3 04 rơi ở d = 8 (dò cả thân X−8..X+7), video rơi ở d = 6 (còn đứng d ≤ 5) ⇒ FootProbeHalfWidth 6.
+# Cột: video f(trước) mặt-cắt | mép E (ô đặc hàng sàn, lưới va chạm Unity Block 1/2) | frame đứng cuối + x + d | frame rơi đầu + x + dy (số tick rơi 8 px/tick) ⇒ x0 + d | Unity cũ
+map1 f1874 EntranceHall huong -1 san Y144 hang 7 mep E=928 | dung cuoi f1882 X922 (d +5) | roi dau f1883 X919 dy24 (3 tick) => x0 ~921 (d +6) | Unity x0 = 919 (d +8)
+map1 f3748 CryptB huong +1 san Y96 hang 4 mep E=128 | dung cuoi f3757 X132 (d +4) | roi dau f3758 X134 dy8 (1 tick) => x0 ~134 (d +6) | Unity x0 = 136 (d +8)
+map2 f1071: khong thay roi
+map2 f2401 TowerHallA huong +1 san Y80 hang 3 mep E=320 | dung cuoi f2409 X324 (d +4) | roi dau f2410 X326 dy8 (1 tick) => x0 ~326 (d +6) | Unity x0 = 328 (d +8)
+map2 f2499 TowerHallA huong -1 san Y80 hang 3 mep E=288 | dung cuoi f2507 X283 (d +4) | roi dau f2508 X281 dy8 (1 tick) => x0 ~281 (d +6) | Unity x0 = 279 (d +8)
+map2 f3378 TowerHallB huong +1 san Y144 hang 7 mep E=608 | dung cuoi f3386 X613 (d +5) | roi dau f3388 X616 dy32 (4 tick) => x0 ~613 (d +5) | Unity x0 = 616 (d +8)
+map2 f3816 TowerHallB huong -1 san Y80 hang 3 mep E=608 | dung cuoi f3824 X603 (d +4) | roi dau f3825 X601 dy8 (1 tick) => x0 ~601 (d +6) | Unity x0 = 599 (d +8)
+map2 f4244 TowerHallB huong -1 san Y112 hang 5 mep E=64 | dung cuoi f4252 X58 (d +5) | roi dau f4253 X55 dy32 (4 tick) => x0 ~58 (d +5) | Unity x0 = 55 (d +8)
+map2 f4495: khong thay roi
+map2 f4588: khong thay roi
+map2 f6039 Medusa huong +1 san Y160 hang 8 mep E=704 | dung cuoi f6047 X708 (d +4) | roi dau f6048 X710 dy8 (1 tick) => x0 ~710 (d +6) | Unity x0 = 712 (d +8)
+map2 f6680 Medusa huong -1 san Y160 hang 8 mep E=224 | dung cuoi f6688 X220 (d +3) | roi dau f6690 X217 dy8 (1 tick) => x0 ~217 (d +6) | Unity x0 = 215 (d +8)

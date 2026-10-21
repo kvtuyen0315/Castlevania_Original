@@ -26,7 +26,7 @@ Video kèm: `C:\Users\kvtuy\Videos\Screen Recordings\Castlevania_Original\Map_3.
 | 01 | cvm3-01-nhap-sheet-level3-va-kiem-ke | **XONG** | (commit "CVM3 01") | 21/10/2026 | sheet Level 3 chép nguyên byte (sha256 khớp) + SOURCES; kiểm kê chạy lại y hệt planner (JSON + ảnh trùng byte, 125 tile 8×8 / 83 metatile); đối chiếu Tilesets (§3b); sprite Block 3 đủ 32 ô, verify 0 lỗi; không đổi runtime ⇒ hash chuẩn giữ nguyên |
 | 02 | cvm3-02-hieu-chuan-video-timeline-va-su-kien | **XONG** (Simon phủ 87 % < 90 % — §6) | (commit "CVM3 02") | 21/10/2026 | hiệu chuẩn tinh 15+8 frame (ZNCC 0.973 / grad 0.943), HUD + camera (cx −112 WalkwayB) + Simon từng frame, chuyển cảnh theo tick, 161 sự kiện, **Map_3 0 lần trúng đòn / boss 3 lần −3 vạch**, âm thanh; `ref/MAP3_TIMELINE.md` viết lại + `ref/data/*`; không đổi runtime ⇒ hash chuẩn giữ nguyên |
 | 03 | cvm3-03-dong-ho-stopwatch-theo-video | **XONG** | (commit "CVM3 03") | 21/10/2026 | đo 4 lần dùng đồng hồ Map_2 (Map_3/Boss_Map_3 0 lần) ⇒ mô hình **đóng băng hằng 186 tick từ TICK BẤM + roi vẫn vung + dùng lại khi còn hiệu lực (tính lại) + TIME bỏ mốc rơi trong lúc băng + bẫy nối lại ở mốc lưới** (§2d); Config 300 → 186 (`đo:cvm3-03`); probe mới `rules stopwatch_time/chain`, `mech crusher_resume_video` (bẫy +192 = video); hash đổi 9 bộ (chỉ kịch bản đồng hồ — §4); luồng thật `caf21ae2`/PRE4/H8 y nguyên; nhạc-dừng KHÔNG dựng |
-| 04 | cvm3-04-simon-knockback-nuoc-thanh-mep-roi | chưa chạy | | | |
+| 04 | cvm3-04-simon-knockback-nuoc-thanh-mep-roi | **XONG** | (commit "CVM3 04") | 21/10/2026 | đo **6 lần trúng / 3 video** (Boss_Map_1 ×1, Boss_Map_2 ×3, Boss_Map_3 ×2; Map_1/2/3 0 lần) ⇒ knockback = **bảng theo tick** (lên 3,3,2,1,1,1,1,1,0,1 = 14 px sau tick 10, giữ đỉnh 14 tick, xuống gương, chạm sàn tick 34) + **lùi 1 px/tick SUỐT cung = 34 px** (12 px cũ = bị mép màn khoá x 239 chặn); lọ nước thánh: 10 lọ Map_3 **dư 0 px** (vx 1.5, vy0 −1.5, g 33/256, vy += g trước, sinh Y chân − 19, dò sàn ở tâm lọ) + 4 lọ Boss_Map_1 rms 0.45–1.44; lửa fire_0→4→0→3 ×9 tick sống 76; **đi khỏi mép 9 lần ⇒ dò sàn X±6** (rơi sớm 2 px); mép phải màn khoá **cx + 239**; Unity dựng lại 5 knockback (dư 0 px theo đồng hồ x), 46 điểm lọ (0 px), 7 mép (0 px); 14 bộ Arena đổi hash — từng kịch bản đổi có nguyên nhân (§4), core giữ; `map1_route`/`map2_route` GHI LẠI (lệch do dò sàn — chứng minh tick 3196) ⇒ flow/flow30/flow144/map2 `4532ace7`, PRE4 `59cafbaa`; H8 5/5 ×3; spam1–7 0 lỗi; Map2AcceptProbe `damage_halla` + `knock_pit_hallb` ĐẠT; xác nhận 9 bộ Arena @144 = EXPECTED mới |
 | 05 | cvm3-05-tilemap-va-luoi-va-cham-block3 | chưa chạy | | | |
 | 06 | cvm3-06-quet-hoi-quy-giua-cum | chưa chạy | | | |
 | 07 | cvm3-07-skeleton-va-fleaman-do-theo-video | chưa chạy | | | |
@@ -66,6 +66,39 @@ Map_3 + Boss_Map_3: **0 lần dùng** (Map_3 cầm đồng hồ tới 0:16 rồi
 **Nhạc dừng 2.40 s** khi dùng đồng hồ: 1 mẫu dương (#1 Stalker đứng), #2 dùng 0.24 s TRƯỚC khi Poison Mind bắt đầu và PM vẫn đúng giờ, #3/#4 PM không đứng (±0.4 s) ⇒ "chỉ dừng nhạc stage" khớp cả 4 nhưng chỉ 1 mẫu dương ⇒ **KHÔNG dựng** (giữ câu hỏi `CVM2 §5 #7`; Map_3 không có mẫu mới).
 Unity sau sửa (probe): rules `stopwatch_time` băng 5–190, TIME giảm ở +192 ✓; `stopwatch_chain` bấm 42/224/431 ⇒ băng liền 43–617, TIME giảm ở +640 ✓ (video 643.1 ±3); mech `crusher_resume_video` bấm 4 tick sau mốc lưới ⇒ 3 bẫy đổi nấc lại CÙNG tick ở mốc +192 (video +192.3) ✓; Medusa/Phantom Bat giữ 186 (b24 `medusa_stopwatch`, boss `stopwatch`); Mummy Men + băng gạc KHÔNG bị giữ (b24 `mummy_stopwatch` — wiki "vô dụng", đã có từ CVGP 19).
 Ảnh (đã xem): `ref/nes/cvm3_03_use1_whip.png` (#1 roi + bẫy), `cvm3_03_medusa_freeze_start.png` (#2), `cvm3_03_medusa_resume.png` (f7016–7033), `cvm3_03_unity_crusher_resume.png` (Unity rel 28 / 214 / 216); thêm `_cache/shots/03/`.
+
+### 2e. Knockback / lọ nước thánh / mép rơi — routine 04 (21/10; `Tools/cvm3/kb4_*.py`, dữ liệu `ref/data/kb4_*.csv|txt`, ảnh `ref/nes/cvm3_04_pairs_*.png`)
+**Công cụ**: `kb4_common.py` (6 video, hiệu chuẩn CVGP/CVM2/CVM3 02, khớp mẫu sprite Simon) — **đọc frame bằng `-ss … -copyts` + lọc `select=gte(t,…)`**: `-ss` thường của các script cũ lệch 1 frame tuỳ keyframe (Map_3 f6088, Boss_Map_2 hit #3 — csv CVM2 02 đúng chỉ số). `kb4_track.py` (bám Simon từng frame + dải ảnh), `kb4_visible.py` (nháy bất tử), `kb4_knock.py` ⇒ `ref/data/kb4_knock.csv`, `kb4_holy_all.py`/`kb4_holy_boss1.py`/`kb4_holy_fit.py`/`kb4_holy_table.py` ⇒ `ref/data/kb4_holy.csv`, `kb4_flame.py`, `kb4_ledge.py` ⇒ `ref/data/kb4_ledge.txt`, `kb4_compare.py` (Unity ↔ video), `kb4_pairs.py` (cặp ảnh), `kb4_hashdiff.py` (hash từng kịch bản 2 lần chạy).
+
+**Knockback** (6 lần trúng đo được ở 3 video; Map_1/2/3 = 0 lần; Boss_Map_3 #3 bị Mummy che). **Đồng hồ x**: Simon lùi đúng 1 px/tick nên độ dời ngang = số tick (frame-clock của bản quay lệch ±2 tick vì frame lặp/khựng):
+| Video | Lần | Nguồn / tư thế | Lùi | Tường | Mẫu đồng hồ x (cao theo t) |
+|---|---|---|---|---|---|
+| Boss_Map_1 | 1 | Phantom Bat chạm thân, đứng quay trái quất | 12 px → **dừng x màn 239** (không có ô tường — mép màn khoá) | phải (mép màn) | t3 8, t9 13 (lệch 1 tick pivot use_stand/hurt) |
+| Boss_Map_2 | 1 | Medusa, đi phải | 10 px → tường/cửa trái x 23 | trái | t2 6, t4 9, t6 11, t8 13, t10 14; sau tường (frame) t24 14 → t26 13, t28 11, t30 9, t32 6 |
+| Boss_Map_2 | 2 | Medusa, đứng sát tường trái quất | 0 | trái | chỉ frame-clock (giữ đỉnh 14, xuống 13/11/9) |
+| Boss_Map_2 | 3 | rắn từ phía trước, quất phải | 32 px tới t32 (chưa đáp) | không | t2 6, t6 11, t10…t24 14, t26 13, t28 11, t30 9, t32 6 — **14 mẫu dư 0** |
+| Boss_Map_3 | 1 | băng gạc Mummy trái, quất trái | 32 px tới t32 | không | t2 6, t6 11, t10…t24 14, t26 13, t28 11, t32 6 — **14 mẫu dư 0** |
+| Boss_Map_3 | 2 | băng gạc, NGỒI quay trái sát mép phải | 10–11 px → x màn 239 | phải (mép màn) | t1 3, t7 12 |
+**Mô hình chọn** (khớp mọi mẫu đồng hồ x dư 0 px; tick lẻ từ Boss_Map_1 + Boss_Map_3 #2): cao(t) = 0,3,6,8,9,10,11,12,13,13,**14** (t10) … giữ 14 tới t24 … 13,13,12,11,10,9,8,6,3,**0 (t34)** = bảng `KnockbackRise01..10` 3,3,2,1,1,1,1,1,0,1 + `KnockbackApexTicks` 14 + xuống gương (đối xứng quanh t17); ngang `KnockbackSpeedX` 1 px/tick **suốt cung** ⇒ 34 px trên sàn phẳng. Cao 14 ở cả 3 video (CVGP 08: 15–16 parabol; CVM2 09: "36 tick / giữ ~16" = frame-clock). Chưa chạm đất sau tick 34 (bị hất khỏi mép) ⇒ rơi FallSpeed, vẫn lùi (suy luận như hết bảng nhảy — video không có mẫu). Ngồi khi trúng ⇒ cùng cung, khung hurt_0 (Boss_Map_3 #2). Tường chặn ngang, cung dọc chạy tiếp (4 mẫu). **Hướng**: 6/6 lùi ngược hướng mặt NHƯNG cả 6 đòn đều tới từ phía trước ⇒ video KHÔNG phân biệt "ngược hướng mặt" với "ra xa nguồn đòn" — giữ `−Facing` (CVGP 08), §5 #9.
+**Bất tử nháy** sau khi đáp: hiện liên tục lại sau 45–51 frame (90–102 tick, trung vị ≈ 96) ở 6 lần ⇒ giữ `InvincibleTicks` 94 (`ref/data/kb4_invinc.txt`).
+**Mép màn khi camera khoá** (phòng boss): phải **x màn 239** (Boss_Map_1 knockback dừng, Boss_Map_3 ngồi rồi knockback kẹt — 3 mẫu 2 video; Unity cũ cx + 248); trái: Map_3 phòng Mummy x màn tới 11 ⇒ giữ cx + 8. Boss_Map_2 trái dừng x 23 = cột cửa `D` (x 0–15) — Unity cửa không đặc ⇒ §6.
+
+**Lọ nước thánh** (`ref/data/kb4_holy.csv`): Map_3 trận Mummy 9 lọ từ khối cao (Simon (22,144) quay phải, sàn 208) + 1 lọ nhảy-ném (f5198): x = X Simon + floor(1.5·n) **mọi điểm**, y theo **vy += g rồi y += vy** với **vy0 −1.5, g 33/256 = 0.12890625**, tâm lọ lúc sinh = **Y chân − 19** ⇒ **46 điểm quỹ đạo (+37 của lọ nhảy-ném) dư 0 px**; sinh n = 0 ở tick 15–19 sau frame tim −1 (trung vị 17; Unity: tick 16 = duỗi + 3); lọ còn VẼ ở n48 (Y 204 — đáy lấn sàn 208 3 px), vỡ n49, lửa ở X lọ n49 (95) ⇒ **dò sàn ở tâm lọ** (khoảng hợp −1..3; Unity cũ dò hàng dưới đáy +8 ⇒ vỡ sớm 1 tick). Boss_Map_1 (bảng màu riêng, sàn phẳng, quay trái) 4 lọ: rms 0.45 / 0.67 / 0.50 / 1.44 px với cùng hằng số (X0 − Simon −1.6..+0.5, y0 − chân −19.1..−20.1 trong sai số pivot), lửa_0 hiện rel 24 sau tim −1 ⇔ n ≈ 32 = mô hình trên sàn phẳng (CVGP 16 "26–28 tick / 40–44 px" là ước lượng thô sai). Lọ không lật khi ném phải, lật khi ném trái (Unity đúng sẵn). **Lửa** (4 chuỗi trọn Map_3 + Boss_Map_1): **fire_0 → 1 → 2 → 3 → 4 → 0 → 1 → 2 → 3 rồi tắt**, mỗi khung **9 tick** (8 khoảng = 70–72 tick), không lặp; vỡ → tắt **75–78 tick** ⇒ `fireTicks` 76 (CVGP 09: lặp fire_1..4 9/6/12/7, 80 — không thấy fire_0). Hàng đáy lửa = mặt sàn − 1 (Boss_Map_1 f483–500) = Unity sẵn.
+
+**Mép rơi** (`ref/data/kb4_ledge.txt`; mép = cạnh ô đặc hàng sàn trong lưới va chạm Unity Block 1/2): 9 lần (Map_1 EH ←, CB →; Map_2 Hall A → ←, Hall B → ← ←, Medusa → ←): **còn đứng khi thân qua mép 5 px, rơi ở 6 px** cả 2 hướng ⇒ đầu dò sàn = cột **X−6..X+6** (`FootProbeHalfWidth` 6) cho cả ĐỨNG lẫn ĐÁP (Unity cũ: cả thân X−8..X+7 ⇒ rơi trễ 2 px). Xác nhận thêm: SimonProbe `jumpwall` nay đáp tường thấp ở tick nhảy **30 = video 2:03.7** (cũ 29).
+
+**Unity ↔ video** (`Kb4Probe` scene Arena → `_cache/04/unity3/compare.txt`; cặp ảnh đã xem `ref/nes/cvm3_04_pairs_kb_left.png`, `…kb_right.png`, `…holy.png`, `…ledge_eh.png`):
+| Dựng lại | So với | Kết quả |
+|---|---|---|
+| `kb_free_l` (quay phải, lùi trái) | Boss_Map_2 #3 | 14 mẫu đồng hồ x dư 0; frame-clock rms x 1.00 / y 1.08 |
+| `kb_free_r` (quay trái, lùi phải) | Boss_Map_3 #1 | 14 mẫu dư 0; rms 1.00 / 1.00 |
+| `kb_wall_l` (tường trái sau 10 px) | Boss_Map_2 #1 | 5 mẫu dư 0; frame-clock rms 0 / 0 (13 mẫu) |
+| `kb_wall_r` (mép màn khoá phải sau 12 px) | Boss_Map_1 | 2 mẫu dư −1 (pivot); rms 0.47 / 0.47 |
+| `kb_duck_wall_r` (ngồi sát mép phải) | Boss_Map_3 #2 | 2 mẫu dư 0; rms 0.95 / 1.76 (frame-clock trôi — 5 frame lặp) |
+| `holy_drop64_r` (tâm lọ cao hơn sàn 83 px) | Map_3 9 lọ | 46 điểm dư 0; vỡ n49, lửa x +73 = video |
+| `holy_flat_l` (sàn phẳng, quay trái) | Boss_Map_1 | sinh (300,157) tick 18, vỡ n32 x −48, lửa 76 tick |
+| `ledge_*` ×7 | Map_1 ×2, Map_2 ×5 | x tick rơi đầu = video x0 (921, 134, 326, 281, 601, 710, 217) — 7/7 lệch 0 |
+Cặp ảnh mép (`…ledge_eh.png`) ghép theo frame video ±2 tick (frame rơi đầu video đã rơi 3 tick) — vị trí x đúng, dọc lệch pha.
 
 ### 2b. Mốc chính (planner; `ref/MAP3_TIMELINE.md §3`) — đã trích lại ở routine 00 (ảnh `_cache/shots/00/sheet.png`)
 | Mốc | Sự kiện | Kiểm 00 |
@@ -109,32 +142,41 @@ Unity sau sửa (probe): rules `stopwatch_time` băng 5–190, TIME giảm ở +
 - **Mummy đỏ**: video Map_3 3:25–3:44 (contact sheet `_cache/shots/01/mm/mm_map3.png`, đã xem) — thân Mummy ĐỔI MÀU tím → đỏ vài khung rồi về tím khi bị trúng (nước thánh/roi); chỉ đổi bảng màu, hình giữ nguyên. `mummy_red_*` có cùng số điểm ảnh từng màu với `mummy_purple_*` (đúng bảng màu đỏ (216,40,0)/(252,116,180) so tím (204,136,252)/(252,196,252)) ⇒ **dùng `mummy_red_*` làm khung nháy trúng đòn** (routine 09 đo nhịp nháy; không cần sprite mới). Mummy tím còn đứng thân trần khi kẹp hai bên.
 - Khung có đủ cho 07/08/09? Chỉ đối chiếu số khung (video ≈ 18 khung thật/s): Raven 4 (đậu/bay đủ), Fleaman 2 (co/duỗi — nhảy trên không dùng khung duỗi, routine 07 xác nhận), Skeleton 2 (đi/ném dùng chung khung ném — routine 07 kiểm), Mummy 3 khung đi/giơ tay + 2 băng gạc (routine 09 kiểm khung ném). **Không thiếu sprite**, không cần tải thêm (§5 không thêm câu hỏi).
 
+### 3c. Routine 04 (21/10/2026) — knockback / nước thánh / mép rơi
+| Thứ | Đường dẫn | Ghi chú |
+|---|---|---|
+| Harness đo (Editor, Arena) | `Assets/Data/Script/Debug/Kb4Probe.cs` | `Kb4Probe.Run(Kb4Probe.CaseNames(), dir)` (+ `Kb4Probe.Shots = true` chụp Game view) ⇒ `<case>.csv` vết từng tick + SUMMARY; không trong RegressionRunner |
+| Công cụ đo | `Tools/cvm3/kb4_*.py` (chạy từ gốc repo, `python -P -E`) | `kb4_common` (6 video), `kb4_track`, `kb4_visible`, `kb4_knock`, `kb4_holy*`, `kb4_flame`, `kb4_ledge`, `kb4_compare <dir Unity>`, `kb4_pairs <dir Unity>`, `kb4_hashdiff <dir cũ> <dir mới>`; cache `_cache/04/` |
+| Dữ liệu | `ClaudeNotes/cvm3/ref/data/kb4_{knock.csv,holy.csv,ledge.txt,invinc.txt,compare.txt}` | bảng mẫu + so Unity ↔ video |
+| Ảnh đã xem | `ClaudeNotes/cvm3/ref/nes/cvm3_04_pairs_{kb_left,kb_right,holy,ledge_eh}.png` | hàng trên video, hàng dưới Unity |
+| Lộ trình | `Assets/Data/Tests/Replays/map1_route.txt`, `map2_route.txt` | GHI LẠI bằng autopilot (§4) |
+
 ## §4 Quyết định kỹ thuật + Bảng hash chuẩn
 
 ### Bảng hash chuẩn (H11 — baseline = Bảng hash chuẩn sau CVM2 12; routine 00 đo lại 21/10/2026, code = HEAD `d1bf216`)
-*(Sau CVM3 03: các dòng ghi "→ **CVM3 03**" là hash mới — cũ ở "Lịch sử đổi hash".)* Hash đổi chỉ khi routine CỐ Ý đổi hành vi: thêm 1 dòng vào "Lịch sử đổi hash" (cũ → mới, lý do, routine) **và** sửa `RegressionRunner.EXPECTED`. Cờ `EXPECTED` hiện tại (đọc, không sửa): y hệt bảng dưới (long…rules, core, gallery, flow/flow30/flow144/map2, holy, mech, h8 `352/432/448/890/922`) + `PRE4 = 165b9aef`.
+*(Sau CVM3 03 / 04: các dòng ghi "→ **CVM3 03**" / "→ **CVM3 04**" là hash mới — cũ ở "Lịch sử đổi hash". CVM3 04 đổi MỌI bộ Arena-Simon + luồng thật; core, H8 giữ.)* Hash đổi chỉ khi routine CỐ Ý đổi hành vi: thêm 1 dòng vào "Lịch sử đổi hash" (cũ → mới, lý do, routine) **và** sửa `RegressionRunner.EXPECTED`. Cờ `EXPECTED` hiện tại (đọc, không sửa): y hệt bảng dưới (long…rules, core, gallery, flow/flow30/flow144/map2, holy, mech, h8 `352/432/448/890/922`) + `PRE4 = 59cafbaa` (CVM3 04; trước `165b9aef`).
 
 | Bộ | Lệnh | Scene | Hash chuẩn (đo 21/10) | Đạt/tổng | Thời gian | Routine đặt | Ngày |
 |---|---|---|---|---|---|---|---|
-| long | `RegressionRunner.Start("long", fps, dir)` | Arena (Simon) | `5963c4ba` | 1/1 | 21 s | CVGP 11/21 → CVM2 00 | 21/10 |
-| simon | `…Start("simon",…)` | Arena (Simon) | `b2954cbe` | 20/20 | 38 s | CVGP 08/21 → CVM2 00 | 21/10 |
-| attack | `…Start("attack",…)` | Arena (Simon) | `b880de83` | 21/21 | 26 s | CVGP 09/21 → CVM2 00 → **CVM3 03** | 21/10 |
-| item | `…Start("item",…)` | Arena (Simon) | `7ca5bf56` | 14/14 | 33 s | CVGP 11/21 → CVM2 00 | 21/10 |
-| enemy | `…Start("enemy",…)` | Arena (Simon) | `0a731b36` | 20/20 | 104 s | CVGP 13/21 → CVM2 00 → **CVM3 03** | 21/10 |
-| boss | `…Start("boss",…)` | Arena (Simon) | `c9813c11` | 12/12 | 109 s | CVGP 14/21 → CVM2 00 → **CVM3 03** | 21/10 |
-| b23 | `…Start("b23",…)` | Arena (Simon) | `50a6b4bf` | 35/35 | 182 s | CVGP 17/21 → CVM2 08 → **CVM3 03** | 21/10 |
-| b46 | `…Start("b46",…)` | Arena (Simon) | `6c8e9a74` | 26/26 | 135 s | CVGP 18/21 → CVM2 00 → **CVM3 03** | 21/10 |
-| b24 | `…Start("b24",…)` | Arena (Simon) | `397842ee` | 21/21 | 249 s | CVGP 19/21 → CVM2 09 → **CVM3 03** | 21/10 |
-| b56 | `…Start("b56",…)` | Arena (Simon) | `c140225d` | 14/14 | 221 s | CVGP 20/21 → CVM2 00 → **CVM3 03** | 21/10 |
-| holy | `…Start("holy",…)` | Arena (Simon) | `b1033a3f` | 5/5 | 13 s | CVM2 04 → CVM2 09 | 21/10 |
-| mech | `…Start("mech",…)` | Arena (Simon) | `6409b5fe` | 15/15 | 59 s | CVM2 06 → **CVM3 03** (+`crusher_resume_video`) | 21/10 |
-| rules | `…Start("rules",…)` | Arena (Simon) | `00144e42` | 78/78 | 0 s | CVGP 12/21 → CVM2 00 → **CVM3 03** (+`stopwatch_time`, `stopwatch_chain`) | 21/10 |
-| gallery | `…Start("gallery",…)` (240 fps, không chụp; nằm trong `full`) | Arena (Simon) | `ffd5b71e` | 75/75 | 486 s | CVGP 21 → CVM2 11 | 21/10 |
+| long | `RegressionRunner.Start("long", fps, dir)` | Arena (Simon) | `b2cc1424` | 1/1 | 21 s | CVGP 11/21 → CVM2 00 → **CVM3 04** | 21/10 |
+| simon | `…Start("simon",…)` | Arena (Simon) | `5c1c46ce` | 20/20 | 38 s | CVGP 08/21 → CVM2 00 → **CVM3 04** | 21/10 |
+| attack | `…Start("attack",…)` | Arena (Simon) | `62c14a1f` | 21/21 | 26 s | CVGP 09/21 → CVM2 00 → **CVM3 03** → **CVM3 04** | 21/10 |
+| item | `…Start("item",…)` | Arena (Simon) | `c8db5123` | 14/14 | 33 s | CVGP 11/21 → CVM2 00 → **CVM3 04** | 21/10 |
+| enemy | `…Start("enemy",…)` | Arena (Simon) | `20aa5652` | 20/20 | 104 s | CVGP 13/21 → CVM2 00 → **CVM3 03** → **CVM3 04** | 21/10 |
+| boss | `…Start("boss",…)` | Arena (Simon) | `4d7bd652` | 12/12 | 109 s | CVGP 14/21 → CVM2 00 → **CVM3 03** → **CVM3 04** | 21/10 |
+| b23 | `…Start("b23",…)` | Arena (Simon) | `46dcc544` | 35/35 | 182 s | CVGP 17/21 → CVM2 08 → **CVM3 03** → **CVM3 04** | 21/10 |
+| b46 | `…Start("b46",…)` | Arena (Simon) | `a4cfdcaf` | 26/26 | 135 s | CVGP 18/21 → CVM2 00 → **CVM3 03** → **CVM3 04** | 21/10 |
+| b24 | `…Start("b24",…)` | Arena (Simon) | `4066b4db` | 21/21 | 249 s | CVGP 19/21 → CVM2 09 → **CVM3 03** → **CVM3 04** | 21/10 |
+| b56 | `…Start("b56",…)` | Arena (Simon) | `9b9b7440` | 14/14 | 221 s | CVGP 20/21 → CVM2 00 → **CVM3 03** → **CVM3 04** | 21/10 |
+| holy | `…Start("holy",…)` | Arena (Simon) | `95e3ba78` | 5/5 | 13 s | CVM2 04 → CVM2 09 → **CVM3 04** | 21/10 |
+| mech | `…Start("mech",…)` | Arena (Simon) | `d2b0212f` | 15/15 | 59 s | CVM2 06 → **CVM3 03** (+`crusher_resume_video`) → **CVM3 04** | 21/10 |
+| rules | `…Start("rules",…)` | Arena (Simon) | `72c7e7bf` | 78/78 | 0 s | CVGP 12/21 → CVM2 00 → **CVM3 03** (+`stopwatch_time`, `stopwatch_chain`) → **CVM3 04** | 21/10 |
+| gallery | `…Start("gallery",…)` (240 fps, không chụp; nằm trong `full`) | Arena (Simon) | `ab874ae4` | 75/75 | 486 s | CVGP 21 → CVM2 11 → **CVM3 04** | 21/10 |
 | core | `…Start("core",…)` | Arena, `CVGP.ArenaUseDummy` = true | `76516076` | 21/21 | 92 s | CVGP 07/21 → CVM2 00 | 21/10 |
-| flow (Title → STAGE 07 + trước STAGE 04 = `165b9aef`) | `…Start("flow",…)` | Main | `caf21ae2` | 2/2 | 294 s | CVM2 11 | 21/10 |
-| flow30 / flow144 | `…Start("flow30,flow144",…)` | Main | `caf21ae2` (cả hai) | 2/2 ×2 | 294 s mỗi bộ | CVM2 11 | 21/10 |
+| flow (Title → STAGE 07 + trước STAGE 04 = `59cafbaa`) | `…Start("flow",…)` | Main | `4532ace7` | 2/2 | 294 s | CVM2 11 → **CVM3 04** (lộ trình ghi lại) | 21/10 |
+| flow30 / flow144 | `…Start("flow30,flow144",…)` | Main | `4532ace7` (cả hai) | 2/2 ×2 | 294 s mỗi bộ | CVM2 11 → **CVM3 04** | 21/10 |
 | h8 (5 mốc CVTI, kèm mọi `flow*`) | tự chạy | Main | Start **L352** · đen **L432** · Intro **L448** · đen **L890** · Stage **L922** | 5/5 ×3 | 0 s | CVTI → CVM2 00 | 21/10 |
-| map2 (`Map2RouteProbe.Replay` tua nhanh) | `…Start("map2",…)` (trong `main`) | Main | `caf21ae2` | 2/2 | 1 s | CVM2 11 | 21/10 |
+| map2 (`Map2RouteProbe.Replay` tua nhanh) | `…Start("map2",…)` (trong `main`) | Main | `4532ace7` | 2/2 | 1 s | CVM2 11 → **CVM3 04** | 21/10 |
 | spam1..4 (Map 1) | `…Start("spam",…)` (trong `main`) | Main | *(không hash)* 0 lỗi console | 4/4 | 60–80 s mỗi lượt | CVGP 16/21 | 21/10 |
 | spam5..7 (Block 2) | `…Start("spamb2",…)` (trong `main`) | Main | *(không hash)* 0 lỗi console | 3/3 | 60–80 s mỗi lượt | CVM2 11 | 21/10 |
 
@@ -156,6 +198,24 @@ Thời gian đo 21/10 (@60 fps, harness cùng máy): Arena `full` **1672 s ≈ 2
   - **Y nguyên**: long, simon, item, holy, gallery, core; Main: flow/flow30/flow144/map2 `caf21ae2`, PRE4 `165b9aef`, H8 5/5 ×3, spam1–7 0 lỗi — lộ trình `map1_route`/`map2_route` không bấm vũ khí phụ (không có `Sub`/`U+B`) ⇒ không tick nào khác.
   - Replay đổi: `enemy_b46_freeze_whip_axe.txt`, `boss_b56_death_stopwatch.txt` (kịch bản); 6 file khác chỉ đổi dòng mô tả `#` (300 → 186).
 
+- (04, 21/10) **Knockback bảng theo tick 34 px / 34 tick + dò sàn Simon X±6 + mép phải màn khoá cx + 239 + lọ nước thánh/lửa theo video** (§2e). So TỪNG kịch bản với `_cache/03/{arena,arena2,arena3}` (`Tools/cvm3/kb4_hashdiff.py`) — mỗi kịch bản đổi đều có nguyên nhân, kịch bản không dính 4 luật giữ nguyên hash:
+  - long `5963c4ba` → `b2cc1424` (lộ trình RegressionProbe rơi khỏi mép/xuống nước — **dò sàn**; chạy lại với `FootProbeHalfWidth` tạm 0 ⇒ ra lại đúng `5963c4ba`)
+  - simon `b2954cbe` → `5c1c46ce` (8/20 đổi: hurtL/hurtR/death = **knockback**; ledge32/ledge64/water/pit = **dò sàn** rơi sớm 2 tick; jumpwall = **dò sàn khi đáp** — đáp tick nhảy 29 → **30 = video 2:03.7**; 12 kịch bản khác giữ)
+  - attack `b880de83` → `62c14a1f` (chỉ `holy` — **lọ**: sinh Y−19, quỹ đạo video, vỡ n32, lửa 76; 20 giữ)
+  - item `7ca5bf56` → `c8db5123` (chỉ `potion` — hết tàng hình chạm bia ⇒ **knockback**)
+  - enemy `0a731b36` → `20aa5652` (`touch`, `fireball` — **knockback**; 18 giữ)
+  - boss `c9813c11` → `4d7bd652` (`touch` — **knockback**; `holy_hold` — **lọ/lửa**; 10 giữ, gồm `walls` mép trái cx + 8)
+  - b23 `50a6b4bf` → `46dcc544` (7 `*_touch`/`*_hit` — **knockback**; 28 giữ)
+  - b46 `6c8e9a74` → `a4cfdcaf` (5 `*_touch`/`*_hit` — **knockback**; 21 giữ)
+  - b24 `397842ee` → `4066b4db` (medusa_touch, medusa_room_touch, frank_touch, mummy_stand, mummy_kill_l1, frank_kill_l1 — Simon trúng đòn ⇒ **knockback**; 15 giữ)
+  - b56 `c140225d` → `9b9b7440` (death_touch, drac1_touch — **knockback**; drac2_holy — **lọ**; 11 giữ)
+  - holy `b1033a3f` → `95e3ba78` (5/5 — **lọ**: đối chứng vỡ rel 50 lửa (348,176), xuyên bia/Phantom Bat/Medusa như cũ)
+  - mech `6409b5fe` → `d2b0212f` (`plat_pit` — **dò sàn** rời bệ ở x + 6 (kiểm sửa: trước "x + 7 < mép bệ" theo thân); `pit_knockback` — **knockback 34 px bay QUA khe 32 px** ⇒ kịch bản dời Simon 194 → 214, bia 205 → 225 (cuối cung x 180 giữa khe); 13 giữ)
+  - rules `00144e42` → `72c7e7bf` (water/pit FallDeath sớm 2 tick — **dò sàn**; damage* — **knockback**)
+  - gallery `ffd5b71e` → `ab874ae4` (39/69 replay đổi: 34 có đòn vào Simon ⇒ **knockback** (0 replay có đòn mà giữ hash); 5 replay `*_attack` (bất tử, không đòn): QueenMedusa ⇐ **mép màn cx + 239** (tắt tạm `LockedScreenMaxX` ⇒ ra lại `64d590d7` cũ), Dracula1/Dracula2 ⇐ **dò sàn** (tắt tạm ⇒ `8e91724a`/`b053a40d` cũ), MummyMen/FrankensteinIgor ⇐ cả hai (tắt cả hai ⇒ `3e190686`/`702db6c9` cũ))
+  - **Giữ**: core `76516076` (ArenaDummy — không dùng luật Simon); H8 5/5 ×3.
+  - **Luồng thật** (cheat bất tử ⇒ không knockback; lộ trình không ném vũ khí phụ): `map1_route` cũ LỆCH — tick khác đầu tiên = **Crypt A tick 3196**: Simon đi phải khỏi mép x 128 rơi ở **x 134** (cũ 136 — dò sàn), đáp sớm 2 tick; sau đó 4 đoạn lệch nữa đều là đi khỏi mép (Crypt A x 182, **Crypt B x 134** (= mẫu video Map_1 2:05.3), Phantom Bat x 118) ⇒ vào lại Crypt A sớm 4 tick, input ghi sẵn lệch nhịp ⇒ không lên được bục x 693 ⇒ dơi không thức ⇒ hết lộ trình ở Phantom Bat (flow/flow30/flow144 `bbdcd542`, map2 `1927acf3` — tất định ×3 fps). **Chứng minh**: phát lại lộ trình CŨ với `FootProbeHalfWidth` = 0 + `LockedScreenMaxX` = 0 (tạm, trong bộ nhớ) ⇒ ra lại ĐÚNG `PRE4 165b9aef` + `caf21ae2` STAGE 07 tick 16648 (vết từng tick `_cache/04/route/`). ⇒ **ghi lại** bằng autopilot (`Map1RouteProbe.Record(40)`, `Map2RouteProbe.Record(40)`): mọi mốc giữ (cổng, cửa, thang, dơi, tally, bản đồ, STAGE 04/07), input chỉ dời 1–2 tick vài đoạn (+18 tick đoạn đi phải phòng Phantom Bat); STAGE 04 tick 8449 → **8464**, SCORE cuối Map 1 6640 → **6650**, STAGE 07 tick 16648 → **16663**; `PRE4` `165b9aef` → **`59cafbaa`**; flow/flow30/flow144/map2 `caf21ae2` → **`4532ace7`**.
+
 ### Bộ chạy hồi quy (kế thừa `CVM2_MEMORY §4 "Bộ chạy hồi quy"`)
 Chỉ Editor, đang Play, `runInBackground = true`. Gọi bằng `execute_code` (codedom): `RegressionRunner.Start("<bộ>", 60, "D:/Unity/Castlevania_Original-main/ClaudeNotes/cvm3/_cache/<NN>/<tên phiên>")`; kết quả ở `<dir>/suites/{SUMMARY.txt,progress.txt,ALL.done,<bộ>.txt}`; chờ bằng vòng lặp bash `[ -f <dir>/suites/ALL.done ]`. **3 phiên Play**:
 1. Arena, Player = Simon (`CVGP.ArenaUseDummy` = false): `Start("full", 60, …)` ≈ 28 phút.
@@ -167,6 +227,14 @@ Chỉ Editor, đang Play, `runInBackground = true`. Gọi bằng `execute_code` 
 - **(03) Mô hình đồng hồ** = §2d (a)–(e). Code: `SimonController.StartAttack` (đồng hồ: trừ tim + `SpawnSubWeapon()` NGAY, `atkThrow = false` ⇒ đòn là roi), `CanThrow` (đồng hồ không giới hạn số — dùng lại được), `Stopwatch.OnLaunch` (gỡ đồng hồ cũ), `StageWorld.FreezeEnemies` (đang băng ⇒ chỉ kéo dài `to`, không đặt lại `from` — tránh hở 1 tick lúc dùng lại: nhóm Enemy chạy sau Player trong cùng tick), `StageRules.PostTick` (mốc TIME rơi vào `IsEnemyFrozen` ⇒ bỏ), `Crusher.OnTick` (pha lưới `ph` chạy cả lúc băng; đang chờ mốc mà `u mod 16 ≠ ph` ⇒ nhảy tới trong cùng ô hoặc giữ; đang hạ ⇒ chạy tiếp — suy luận, video không có mẫu băng lúc đang hạ). Không băng ⇒ `ph ≡ u mod 16` ⇒ y hệt cũ (mọi kịch bản bẫy khác giữ hash).
 - **(03) Lưới bẫy ↔ nhịp TIME trong Unity vẫn là 2 bộ đếm riêng** (bẫy: từ lúc sinh + startTick; TIME: `ResetClockPhase` khi section hiện) — trên luồng thật chúng có trùng pha không là việc của routine căn pha (cvm2-fix-03 / `CVM2 §5 #16`); routine 03 chỉ bảo đảm "nấc kế ở mốc lưới của chính bẫy" (= video khi hai lưới trùng).
 - **(03) Nhạc dừng khi dùng đồng hồ: KHÔNG dựng** (1 mẫu dương — §2d).
+
+### Quyết định routine 04 (knockback / nước thánh / mép rơi)
+- **(04) Knockback = bảng độ cao theo tick** (như bảng nhảy CVGP 08) thay parabol: `ConfigSimon.KnockbackRise01..10` + `KnockbackApexTicks` + xuống gương, `KnockbackSpeedX` 1 px/tick suốt cung (`SimonHurtState`); hết bảng chưa đáp ⇒ rơi `FallSpeed`, vẫn lùi (suy luận). Bỏ khoá `KnockbackVy0/Gravity/DxTicks`; `KnockbackDx/Dy/AirTicks` giữ làm số THÔNG TIN (34/14/34). Va trần khi bay knockback: **giữ chặn trần** (như CVGP 08 — không có mẫu video; nhảy không chặn trần CVM2 11 ⇒ §6).
+- **(04) Hướng lùi** giữ ngược hướng mặt (6/6 mẫu, nhưng mọi đòn tới từ phía trước — không phân biệt được ⇒ §5 #9). Trên thang: không văng (wiki) giữ.
+- **(04) Dò sàn Simon X±6** (`Entity.FootSpan` ảo, mặc định = bề rộng body; `SimonController` thu hẹp theo `FootProbeHalfWidth`) dùng cho `TileCollision.IsOnGround` + đáp trong `MoveY` (+ mặt bệ di động). Enemy giữ body. Va tường ngang vẫn thân 16 px.
+- **(04) Mép phải màn khi camera khoá** = `TileCollision.PlayerWallMaxX` (chỉ nhóm Player) đặt bởi `BossArena` = cx + `LockedScreenMaxX` + 8 ⇒ Simon X ≤ cx + 239 (video). Enemy/boss giữ `WallMaxX` cx + 256; mép trái giữ cx + 8.
+- **(04) Lọ nước thánh**: `HolyWater.Move` đổi thứ tự **vy += g trước rồi dời** (ConfigSubWeapon `speedY0` −1.5, `gravity` 0.12890625); `ConfigActorParam` `spawnHeightAboveFeet` 23 → **19**, thêm `floorProbePx` **0** (điểm dò sàn = tâm lọ; trường prefab `bottomOffset` chỉ còn dùng cho `OnSpent` khi pierces 0); `fireTicks` 80 → **76**; anim `holywater_fire` (manifest `Tools/cvgp/slices_gameplay.json` + `CVGP/Build AnimSets` — chỉ SubWeaponAnimSet ghi lại) fire_0→4→0→3 ×9 tick không lặp. Hộp đánh lửa giữ hợp bbox fire_1..4 (video không đo được hộp). Lửa vẽ: đáy ở mặt sàn − 1 = Unity sẵn (thử đổi viewOffset rồi BỎ — Boss_Map_1 f483–500 xác nhận Unity đúng).
+- **(04) Probe**: SimonProbe kỳ vọng `VIDEO_KB_H` (35 giá trị) / `VIDEO_KB_DX` 34 / `VIDEO_KB_AIR` 34 / `VIDEO_FOOT` 6 + kiểm x bắt đầu rơi `ledge32` (438) / `ledge64` (921 = video); `ledge64` bỏ "1 tick bị chặn" (đầu kẹt bục y 80 chỉ vì rơi trễ ở x 919); AttackProbe `holy`: quỹ đạo từng tick = mô hình video, vỡ n32, lửa ở x lọ, `VIDEO_FIRE_TICKS` 76; Map2MechProbe `plat_pit` kiểm theo dò sàn, `pit_knockback` dời x 214; Map2AcceptProbe `knock_pit_hallb` dời x 164 → 176 (knockback 34 px nay bay qua khe 32 px). Harness đo mới `Kb4Probe` (không trong RegressionRunner).
 
 ### Việc gộp + hash DỰ KIẾN đổi (lập ở routine 00 — dự đoán, routine thực hiện xác nhận)
 | Routine | Đổi | Hash dự kiến đổi |
@@ -187,12 +255,14 @@ Chỉ Editor, đang Play, `runInBackground = true`. Gọi bằng `execute_code` 
 7. Kết thúc game (credits/ending/Second Quest) — vẫn chờ.
 8. (02 CVM3, mới) **Sát thương Block 3 = 3 vạch/đòn** (đo Boss_Map_3; Block 1–2 = 2): dùng chung cho Skeleton/Raven/… hay chỉ băng gạc Mummy? Map_3 không có đòn nào để đo ⇒ routine 04/07/08 theo wiki (sát thương theo stage), ghi §4 — nếu người dùng có clip Skeleton/Fleaman trúng Simon thì đối chiếu.
 
+9. (04 CVM3, mới) **Hướng knockback khi bị đánh từ PHÍA SAU**: cả 6 lần trúng ở 3 video đều do đòn tới từ phía trước ⇒ không phân biệt "lùi ngược hướng mặt" (Unity giữ, CVGP 08) với "lùi ra xa nguồn đòn". Người dùng nhớ bản gốc (vd Medusa Head đánh sau lưng ở cầu Block 3 hất Simon về phía trước xuống hố?) hoặc có clip thì báo.
+
 ## §6 Nợ & việc ngoài phạm vi (chép mục còn mở liên quan Block 3 từ `CVM2_MEMORY §6`)
 - (02 CVM3) **Simon từng frame Map_3 phủ 81.4 % khớp / 87.0 % sau nội suy (< 90 %)**; hố lớn f341–496 (nền lệch LUT), cửa #1, sau đổi tầng WalkwayB f3275–3320; boss 47 %. Đủ cho bảng sự kiện/trúng đòn (khớp 100 % hit #1/#2; #3 bị Mummy che) — nếu routine sau cần quỹ đạo Simon dày hơn: chạy lại `simon3.py` với LUT riêng đoạn WEA hoặc đo tay bằng `strip3.py`.
 - (02 CVM3) **Hit #3 boss** Simon bị Mummy che f806–834 (không đo knockback); +100 trong trận boss (5 lần) chưa phân biệt được "đòn trúng Mummy" hay "phá băng gạc" — routine 09 xác nhận bằng ảnh phóng to (khung f503/507, 636/640, 725/729, 833/837, 899/903).
 - (02 CVM3) Nhạc Poison Mind chuyển ≈ 1.2 s sau khóa: ±0.3 s (cửa sổ 1 s) — routine 09/11 nếu cần chính xác hơn dùng `music3.py pos`.
 - (02 CVM3) Loại enemy ở bảng hạ (§4 timeline) suy theo giá trị điểm wiki (ảnh xác nhận ~12/29) — 07/08 xác minh từng loại khi dựng.
-- (CVM2 ACCEPT12) ~~Đồng hồ 300 vs video 186–196 tick → routine 03~~ **(03) xong** — 186 tick theo video (§2d); knockback 12 vs 31–32 px → routine 04; enemy rơi vật → routine 08.
+- (CVM2 ACCEPT12) ~~Đồng hồ 300 vs video 186–196 tick → routine 03~~ **(03) xong** — 186 tick theo video (§2d); knockback 12 vs 31–32 px → **(04) xong** (34 px / 34 tick bảng video — §2e); enemy rơi vật → routine 08.
 - (CVM2 03) **Đồng hồ dừng nhạc 2.40 s** (Map_2 2:40.97, 1 lần đo) — chưa dựng. **(03)** Map_3/Boss_Map_3 không dùng đồng hồ lần nào ⇒ không thêm mẫu; mô hình "chỉ dừng nhạc stage" khớp 4/4 nhưng 1 mẫu dương ⇒ vẫn chưa dựng (`CVM2 §5 #7` mở).
 - (03) Đồng hồ băng lúc bẫy ép ĐANG HẠ (nhịp 4 tick riêng) — video không có mẫu; Unity chạy tiếp nhịp hạ rồi mới khớp lưới (suy luận).
 - (03) Unity: lưới bẫy và nhịp TIME là 2 bộ đếm riêng; video cho thấy trùng nhau ⇒ routine căn pha section (cvm2-fix-03 / §5 #16 CVM2) nên đặt `startTick` bẫy theo pha TIME để "bẫy + TIME chạy lại cùng tick" đúng trên luồng thật Hall C.
@@ -204,6 +274,11 @@ Chỉ Editor, đang Play, `runInBackground = true`. Gọi bằng `execute_code` 
 - (CVM2 11) Builder `Build Map2 Screens` không idempotent byte → routine 11.
 - (00 CVM3) Prompt routine 00 ghi baseline Arena `full` ≈ 26 phút; đo thực 28 phút (máy bận) — không ảnh hưởng.
 - (00 CVM3) `RegressionRunner.EXPECTED` chưa có `map3`/spam8..10 — thêm ở routine 11.
+- (04 CVM3) **Phòng Medusa (Map 2) mép trái**: video Boss_Map_2 Simon dừng ở x 23 (cột cửa `D` x 0–15 chặn như tường khi cửa đóng); Unity cửa `D` không đặc ⇒ Simon/knockback tới cx + 8 = 8 (lệch 15 px) — việc của lưới va chạm/luồng cửa trái (cvm3-fix hoặc routine màn sau), không sửa ở 04.
+- (04 CVM3) Knockback **dưới trần** (Unity chặn trần như CVGP 08) và **bị hất khỏi mép xuống hố / tầng dưới** (hết bảng ⇒ rơi 8 px/tick vẫn lùi) — chưa có mẫu video; Block 3 (cầu hỏng) là nơi đầu tiên gặp — routine 12 so khi có mẫu.
+- (04 CVM3) Lọ nước thánh **ném khi ngồi** (sinh Y + 8 − 19 theo tư thế) và **ném trái** (X0 − Simon đo −1.6..+0.5 ở Boss_Map_1, trong sai số pivot) chưa đo trực tiếp; nhịp lửa đánh lại 8 tick (quy ước) chưa đo được.
+- (04 CVM3) Mép TRÁI màn khi khoá giữ cx + 8 (video chỉ thấy Simon tới x màn 11 ở phòng Mummy) — suy luận CVGP 14.
+- (04 CVM3) Script đo cũ (`Tools/cvm2/*`, `Tools/cvm3/*3.py` dùng `-ss` không `-copyts`) có thể lệch chỉ số frame 1 ở vài chỗ — csv CVM2/CVM3 02 (giải mã tuần tự) không bị; dùng `kb4_common.read_frames` khi cần chính xác frame.
 
 ## §7 Nhật ký nghiệm thu
 
@@ -233,6 +308,18 @@ Chỉ Editor, đang Play, `runInBackground = true`. Gọi bằng `execute_code` 
 - **Dọn**: thoát Play, `ArenaUseDummy` = false, EnterPlayModeOptions về như HEAD, `EditorSettings.asset` = HEAD (CRLF), scene Main không dirty.
 - **Câu hỏi §5 mới**: không (nhạc-dừng vẫn là `CVM2 §5 #7`).
 - **Nghiệm thu routine 03**: [x] bảng 4 lần dùng + mô hình + sai số §2d; Config nguồn video · [x] probe ĐẠT kỳ vọng mới (rules 78/78, attack 21/21, mech 15/15, b23 35/35, b46 26/26, b24 21/21, b56 14/14, enemy 20/20, boss 12/12); bẫy so video: Unity +192 = video +192.3, Medusa chạy lại 186 tick sau bấm (video 186.3) · [x] mỗi hash đổi 1 dòng lý do (§4), hash không liên quan y nguyên, H8 5/5 ×3, CHARACTER_STATS cập nhật. **Xấp xỉ**: D = 186 ±3 (4 mẫu, 1 đo trực tiếp); băng lúc bẫy đang hạ = suy luận; nhạc dừng chưa dựng.
+
+### Routine 04 — 21/10/2026 — Simon knockback + lọ nước thánh + mép rơi theo video (= cvgp-fix-03)
+- **Bước 0**: `main`; nhiễu nền giữ nguyên (thêm `Tools/cvm3/__pycache__/` — không commit); cổng 00/02 = XONG. MCP `Castlevania_Original-main@5669a9bbfcade130` (1 instance), `dataPath` đúng.
+- **Đo** (§2e, `Tools/cvm3/kb4_*.py`): knockback 6 lần / 3 video (Map_1/2/3 0 lần) ⇒ bảng theo tick; bất tử sau đáp 90–102 tick (giữ 94); mép phải màn khoá x 239; lọ nước thánh 10 lọ Map_3 (dư 0 px) + 4 lọ Boss_Map_1 (rms ≤ 1.44); lửa 4 chuỗi (0→4→0→3 ×9, sống 76); đi khỏi mép 9 lần (rơi ở 6 px).
+- **Phát hiện ngoài dự kiến**: (1) "lùi 12 px" của CVGP 08 = Simon bị **mép màn khoá** chặn ở x 239, không phải quãng knockback; (2) "36 tick, giữ đỉnh ~16" (CVM2 09) là frame-clock — đồng hồ x cho 34 tick, giữ 14; (3) đọc frame bằng `-ss` không `-copyts` lệch 1 frame tuỳ keyframe (đã sửa trong `kb4_common`); (4) dò sàn X±6 làm SimonProbe `jumpwall` đáp đúng tick 30 của video (trước 29); (5) knockback 34 px **bay qua khe 32 px** ⇒ 2 kịch bản hất-xuống-hố phải dời chỗ đứng; (6) thử hạ lửa 1 px (viewOffset) rồi BỎ — Boss_Map_1 xác nhận Unity vẽ đúng.
+- **Sửa**: `ConfigSimon` (+`KnockbackSpeedX/ApexTicks/Rise01..10`, `FootProbeHalfWidth`, `LockedScreenMaxX`; bỏ `KnockbackVy0/Gravity/DxTicks`; Dx/Dy/AirTicks = 34/14/34 thông tin), `ConfigSubWeapon.HolyWater` (vy0 −1.5, g 33/256), `ConfigActorParam` (spawnHeightAboveFeet 19, floorProbePx 0, fireTicks 76) + `CVGP/Import Config`; anim lửa (manifest + `CVGP/Build AnimSets` — chỉ SubWeaponAnimSet ghi lại); code `SimonHurtState`, `SimonController` (bảng kb, `FootSpan`), `Entity.FootSpan`, `TileCollision` (dò sàn + `PlayerWallMaxX`), `BossArena`, `HolyWater` (thứ tự vy += g, dò tâm), `HolyFire`; probe SimonProbe/AttackProbe/Map2MechProbe/Map2AcceptProbe (kỳ vọng video, §4), harness đo `Kb4Probe`; `RegressionRunner.EXPECTED` 14 hash + flow* + `PRE4`; `map1_route`/`map2_route` ghi lại (autopilot); `CHARACTER_STATS.md` xuất lại; ghi chú "(CVM3 04)" ở 4 dòng `CVGP_MEMORY` (knockback, ngưỡng mép, nước thánh, quyết định knockback) vốn diễn giải sai.
+- **Hồi quy** (`_cache/04/{arena,core,main,main2,confirm144}`): Arena `full` 14/14 bộ ĐẠT mọi kiểm, 14 hash đổi — so từng kịch bản (`kb4_hashdiff.py`) + chứng minh bằng tắt tạm luật trong bộ nhớ (long, gallery QueenMedusa/Dracula/Mummy/Frankenstein ra lại đúng hash cũ) ⇒ §4 "Lịch sử đổi hash"; core `76516076` giữ; Main lần 1: luồng cũ lệch (tick 3196 Crypt A — chứng minh, §4) ⇒ ghi lại lộ trình ⇒ Main lần 2: 14/14 KHỚP (flow ×3 fps `4532ace7`, PRE4 `59cafbaa`, H8 5/5 ×3, spam1–7 0 lỗi); Map2AcceptProbe `damage_halla` (lùi 33–34 rồi kẹt tường x 760) + `knock_pit_hallb` (rơi khe ⇒ hồi sinh đầu STAGE 05) ĐẠT; xác nhận @144: long/simon/attack/item/holy/mech/rules/boss/enemy = EXPECTED mới (tất định).
+- **CVM2 ACCEPT12 mặt 3** ("Simon lùi 12 px vs video 31–32"): nay **34 px / 34 tick theo bảng video** (Unity ↔ Boss_Map_2/3 dư 0 px theo đồng hồ x) ⇒ phần knockback **ĐẠT**.
+- **Lưu ý quy trình**: lỡ ghi `Kb4Probe.cs` 1 lần khi đang Play (dời bia) — thoát Play ngay, biên dịch lại, mọi kết quả ghi ở đây chạy SAU lần biên dịch đó. Config chỉ sửa TẠM trong bộ nhớ khi Play (để chứng minh nguyên nhân hash) rồi trả; `CVGP/Import Config` cuối phiên "ghi lại 0".
+- **Dọn**: thoát Play, `ArenaUseDummy`/`CheatInvincible` = false, fps/vSync mặc định (-1 / 1), EnterPlayModeOptions tắt, `EditorSettings.asset` = HEAD (CRLF), scene Main không dirty.
+- **Câu hỏi §5 mới**: #9 (hướng knockback khi bị đánh từ phía sau).
+- **Nghiệm thu routine 04**: [x] bảng knockback 6 lần / 3 video + mô hình; nước thánh 14 lọ (10 Map_3 + 4 Boss_Map_1) + lửa 4 chuỗi; mép rơi 9 lần — có frame nguồn (`ref/data/kb4_*`) · [x] Unity ↔ video: knockback dư 0 px theo đồng hồ x (5 dựng lại; frame-clock rms ≤ 1.1, riêng ngồi-sát-mép y 1.76 do frame lặp), lọ 46 điểm 0 px + vỡ n49 đúng, mép 7/7 lệch 0; 4 cặp ảnh đã xem (`ref/nes/cvm3_04_pairs_*`) · [x] mọi hash đổi có lý do + chứng minh; lộ trình ghi lại có tick khác đầu + nguyên nhân; Map 1 + 2 chơi trọn tới STAGE 07 ×3 fps; H8; CHARACTER_STATS. **Xấp xỉ/còn lại**: tick lẻ pha lên (2 mẫu) và đoạn hết bảng bị hất khỏi mép là suy luận; hướng lùi chưa phân biệt được; mép trái phòng Medusa (cửa) lệch 15 px — §6.
 
 ### Routine 02 — 21/10/2026 — Hiệu chuẩn tinh 2 video, HUD/camera/Simon từng frame, chuyển cảnh, sự kiện, trúng đòn, âm thanh
 - **Bước 0**: `main`; nhiễu nền giữ nguyên; cổng 00/01 = XONG. Không đụng Unity (python + ffmpeg + file; không ghi `.cs`/asset; MCP không cần) ⇒ **không đổi runtime, mọi hash giữ Bảng hash chuẩn (không chạy lại bộ)**.

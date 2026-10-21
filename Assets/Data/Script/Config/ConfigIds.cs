@@ -144,15 +144,27 @@ public enum eSimonParam
     StairLineOffsetUpLeft,
     StairWalkPoseDrawY,
     StairDownDrawBack,
-    KnockbackVy0,
-    KnockbackGravity,
-    KnockbackDxTicks,
     InvincibleBlinkPeriod,
     DeathKneelTicks,
     DeathTicks,
     // CVGP 09 — tấn công
     WhipColorTicks,
     SubWeaponSpawnTick,
+    // CVM3 04 — knockback = bảng độ cao theo tick (lên KnockbackRise01..10, giữ đỉnh, xuống đối xứng) + lùi suốt cung; đầu dò sàn; mép màn khi khoá
+    KnockbackSpeedX,
+    KnockbackApexTicks,
+    KnockbackRise01,
+    KnockbackRise02,
+    KnockbackRise03,
+    KnockbackRise04,
+    KnockbackRise05,
+    KnockbackRise06,
+    KnockbackRise07,
+    KnockbackRise08,
+    KnockbackRise09,
+    KnockbackRise10,
+    FootProbeHalfWidth,
+    LockedScreenMaxX,
 }
 
 /// <summary>Khoá bảng ConfigScore.csv.</summary>

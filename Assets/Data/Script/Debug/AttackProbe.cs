@@ -25,7 +25,20 @@ public static class AttackProbe
     public const int VIDEO_DAGGER_SPAWN_H = 23;       // pivot dao = Y − 23 (góc trên sprite Y − 31: f2797, f3214)
     public const int VIDEO_SPAWN_TICK = 3;            // vũ khí sinh 2.5–5 tick sau khi khung duỗi bắt đầu
     public const int VIDEO_STOPWATCH_TICKS = 186;     // video:Map_2 (đo:cvm3-03 — CVM3_MEMORY §2d; wiki 5 s = 300 sai)
-    public const int VIDEO_FIRE_TICKS = 80;           // video Boss ≈ 40 frame
+    public const int VIDEO_FIRE_TICKS = 76;           // CVM3 04: video Map_3 4 chuỗi lửa trọn 75–78 (CVGP 09: ≈ 80 — video Boss)
+    // CVM3 04: lọ nước thánh — video Map_3 9 lọ trận Mummy + 1 nhảy-ném (46 điểm dư 0 px) + Boss_Map_1 3 lọ (rms ≤ 0.7): x = X0 ± floor(1.5 n),
+    // vy += g rồi y += vy (vy0 −1.5, g 33/256), sinh ở (X Simon, Y chân − 19)
+    public const int VIDEO_HOLY_SPAWN_H = 19;
+    public const int VIDEO_HOLY_VY0_256 = -384;
+    public const int VIDEO_HOLY_G_256 = 33;
+
+    /// <summary>Vị trí lọ theo mô hình video sau n tick bay (n = 0 lúc sinh), toạ độ px (floor như fixed-point 1/256).</summary>
+    public static Vector2Int VideoHolyPos(int x0, int y0, int dir, int n)
+    {
+        int fx = x0 * 256 + dir * 384 * n;
+        int fy = y0 * 256 + VIDEO_HOLY_VY0_256 * n + VIDEO_HOLY_G_256 * n * (n + 1) / 2;
+        return new Vector2Int(Mathf.FloorToInt(fx / 256f), Mathf.FloorToInt(fy / 256f));
+    }
     /// <summary>Góc trên-trái mảnh roi duỗi so với pivot thân, quay TRÁI (sheet — CVGP_MEMORY §3 roi tách lớp): [lên thang?][cấp].</summary>
     static readonly Vector2Int[] SHEET_EXT_OFF = { new Vector2Int(0, 0), new Vector2Int(-36, -33), new Vector2Int(-36, -32), new Vector2Int(-52, -32) };
     static readonly Vector2Int[] SHEET_EXT_OFF_UP = { new Vector2Int(0, 0), new Vector2Int(-36, -31), new Vector2Int(-36, -30), new Vector2Int(-52, -30) };
@@ -530,9 +543,28 @@ public static class AttackProbe
         var pf = ProjPos(fire);
         var p0 = ProjPos(spawn);
         Expect("lửa đứng trên mặt sàn y 176", 176, pf.y);
-        ExpectRange("lửa sống ≈ 80 tick (video Boss ≈ 40 frame)", VIDEO_FIRE_TICKS - 1, VIDEO_FIRE_TICKS + 1, fireEnd - fire);
+        ExpectRange("lửa sống 76 tick (video Map_3 75–78)", VIDEO_FIRE_TICKS - 1, VIDEO_FIRE_TICKS + 1, fireEnd - fire);
+        // CVM3 04: quỹ đạo từng tick = mô hình video; vỡ khi tâm lọ chạm mặt sàn (n 32 — lửa ở x lọ tick đó)
+        Expect("lọ sinh tại (X Simon, Y − " + VIDEO_HOLY_SPAWN_H + ") (video Map_3)", 300 * 1000 + 176 - VIDEO_HOLY_SPAWN_H, p0.x * 1000 + p0.y);
+        int bad = 0, firstBad = -1;
+        for (int i = spawn; i < fire; i++)
+        {
+            var want = VideoHolyPos(300, 176 - VIDEO_HOLY_SPAWN_H, 1, i - spawn);
+            if (ProjPos(i) != want)
+            {
+                bad++;
+                if (firstBad < 0) firstBad = i - spawn;
+            }
+        }
+        Expect("quỹ đạo lọ từng tick = mô hình video (số tick lệch)", 0, bad);
+        int nBreak = 0;
+        while (VideoHolyPos(300, 176 - VIDEO_HOLY_SPAWN_H, 1, nBreak).y < 176)
+            nBreak++;
+        Expect("vỡ ở tick bay n đầu tiên tâm lọ ≥ mặt sàn (" + nBreak + ")", nBreak, fire - spawn);
+        Expect("lửa ở x lọ tick vỡ", VideoHolyPos(300, 176 - VIDEO_HOLY_SPAWN_H, 1, nBreak).x, pf.x);
         measures.Add("nước thánh: sinh (" + p0.x + "," + p0.y + ") tick " + spawn + ", chạm sàn sau " + (fire - spawn) + " tick cách " + (pf.x - p0.x)
-                     + " px (video boss: ~26–28 tick, 40–44 px — ước lượng planner), lửa " + (fireEnd - fire) + " tick, bia trúng " + recs[recs.Count - 1].hitsA + " lần");
+                     + " px (mô hình video Map_3: " + nBreak + " tick; video Boss_Map_1 lửa hiện ~rel 24 ⇒ n ≈ 32), lệch quỹ đạo " + bad + " tick"
+                     + (firstBad >= 0 ? " (đầu n" + firstBad + ")" : "") + ", lửa " + (fireEnd - fire) + " tick, bia trúng " + recs[recs.Count - 1].hitsA + " lần");
         ExpectRange("bia đứng trong lửa trúng lặp mỗi 8 tick (≥ 9 lần)", 9, 11, recs[recs.Count - 1].hitsA);
         Expect("ném tốn 1 tim", 19, recs[recs.Count - 1].hearts);
     }

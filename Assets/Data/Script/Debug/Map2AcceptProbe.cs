@@ -307,8 +307,9 @@ public static class Map2AcceptProbe
                 // 8 đòn = 16 vạch ⇒ chết (Damage) ⇒ hồi sinh đầu STAGE 05
                 return new Scn { name = n, stage = 5, lives = 3, input = a => 0, maxTicks = 1500, check = CheckDamage };
             case "knock_pit_hallb":
-                // Hall B tầng dưới x 164 (mép phải khe [128,160)), quay PHẢI: Medusa Head từ phía trước ⇒ knockback lùi TRÁI ⇒ rơi hố
-                return new Scn { name = n, stage = 5, lives = 3, warpSec = "TowerHallB", wx = 164, wy = 160, wf = 1, input = a => 0, maxTicks = 2000,
+                // Hall B tầng dưới x 176 (bờ phải khe [128,160)), quay PHẢI: Medusa Head từ phía trước ⇒ knockback lùi TRÁI 34 px ⇒ cuối cung x 142 giữa khe
+                // ⇒ rơi hố (CVM3 04: trước đứng x 164 — knockback 34 px nay bay QUA khe 32 px, đáp bờ trái)
+                return new Scn { name = n, stage = 5, lives = 3, warpSec = "TowerHallB", wx = 176, wy = 160, wf = 1, input = a => 0, maxTicks = 2000,
                     check = () =>
                     {
                         string e = Expect(eDeathCause.Fall, "TowerHallA", 720, 80, -1, 512, 5, 2);

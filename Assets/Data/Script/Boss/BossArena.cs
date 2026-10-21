@@ -40,6 +40,10 @@ public class BossArena : EnemySpawner
             WallsOn = true;
             w.Tiles.WallMinX = cx;
             w.Tiles.WallMaxX = cx + NesCoord.SCREEN_W;
+            // CVM3 04: Simon dừng ở x màn LockedScreenMaxX (239 — video Boss_Map_1 f368–379, Boss_Map_3 f690–713) ⇒ cột cx + 239 + 8 chặn thân
+            int maxX = w.Config != null && w.Config.simon != null ? w.Config.simon.GetInt(eSimonParam.LockedScreenMaxX, 0) : 0;
+            if (maxX > 0)
+                w.Tiles.PlayerWallMaxX = cx + maxX + 8;
         }
     }
 

@@ -3651,33 +3651,59 @@ MonoBehaviour:
     key: spawnHeightAboveFeet
     value:
       has: 1
-      value: 23
+      value: 19
+    min:
+      has: 1
+      value: 19
+    max:
+      has: 1
+      value: 19
+    unit: px
+    source: "\u0111o:cvm3-04 Tools/cvm3/kb4_holy_fit.py video:Map_3 3:22\u20133:44
+      9 l\u1ECD tr\u1EADn Mummy (Simon \u0111\u1EE9ng Y 144, l\u1ECD \u1EDF n = 0:
+      (X, 125.0)) + 1 l\u1ECD nh\u1EA3y-n\xE9m 2:53.3 (f5198: Simon Y 95 l\xFAc sinh
+      \u21D2 l\u1ECD 76) \u2014 46 + 37 \u0111i\u1EC3m d\u01B0 0 px"
+    note: "t\xE2m l\u1ECD = Y ch\xE2n \u2212 19 (CVGP 09 suy lu\u1EADn 23 = dao:
+      l\u1EC7ch 4 px \u2014 video l\u1ECD th\u1EA5p h\u01A1n)"
+  - actor: SubWeapon.HolyWater
+    key: floorProbePx
+    value:
+      has: 1
+      value: 0
     min:
       has: 0
       value: 0
     max:
-      has: 0
-      value: 0
+      has: 1
+      value: 3
     unit: px
-    source: "suy lu\u1EADn: = dao (video boss Simon \u0111ang nh\xE1y b\u1EA5t t\u1EED
-      \u2014 kh\xF4ng th\u1EA5y \u0111i\u1EC3m sinh)"
-    note: "t\xE2m l\u1ECD"
+    source: "\u0111o:cvm3-04 video:Map_3 tr\u1EADn Mummy (f6262 / f6750: l\u1ECD
+      c\xF2n v\u1EBD \u1EDF Y 204 \u2014 \u0111\xE1y 211 l\u1EA5n s\xE0n 208 \u2014
+      v\u1EE1 tick sau, l\u1EEDa \u1EDF X 95 = X l\u1ECD tick n49) + f5236 (s\xE0n
+      128)"
+    note: "\u0111i\u1EC3m d\xF2 s\xE0n c\u1EE7a l\u1ECD so v\u1EDBi t\xE2m (Y = h\xE0ng
+      tr\xEAn v\xF9ng \u0111\u1EE5c); tr\u01B0\u1EDBc CVM3 04 d\xF2 h\xE0ng ngay
+      d\u01B0\u1EDBi \u0111\xE1y (+8) \u21D2 v\u1EE1 s\u1EDBm 1 tick; kho\u1EA3ng
+      h\u1EE3p c\u1EA3 2 video \u22121..3 (Boss_Map_1 v\u1EE1 n32\u201333)"
   - actor: SubWeapon.HolyWater
     key: fireTicks
     value:
       has: 1
-      value: 80
+      value: 76
     min:
       has: 1
-      value: 80
+      value: 74
     max:
       has: 1
-      value: 94
+      value: 78
     unit: tick
-    source: "\u0111o:routine 09 proj_fit.py video:Boss: l\u1EEDa v\u1EE1 ~f348 t\u1EAFt
-      sau f389; l\u1ECD cu\u1ED1i ch\u1EA1m s\xE0n ~f570 l\u1EEDa t\u1EAFt sau f609
-      (\u2248 40 frame video)"
-    note: "sau \u0111\xF3 l\u1EEDa bi\u1EBFn m\u1EA5t; anim holywater_fire l\u1EB7p"
+    source: "\u0111o:cvm3-04 Tools/cvm3/kb4_flame.py video:Map_3 4 chu\u1ED7i l\u1EEDa
+      tr\u1ECDn (f6180\u20136218, f6264\u20136301, f6508\u20136547, f6751\u20136788):
+      tick v\u1EE1 \u2192 t\u1EAFt 75\u201378 (frame-clock), khung th\u1EE9 9 (fire_3)
+      ch\u1EC9 hi\u1EC7n 2\u20133 frame"
+    note: "anim holywater_fire 0\u21921\u21922\u21923\u21924\u21920\u21921\u21922\u21923
+      m\u1ED7i 9 tick (kh\xF4ng l\u1EB7p) \u2014 CVGP 09 \u0111o 80 (video Boss,
+      kh\xF4ng th\u1EA5y fire_0)"
   - actor: SubWeapon.HolyWater
     key: fireRehitTicks
     value:

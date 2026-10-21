@@ -16,10 +16,10 @@ JumpAirControl,0,,,bool,video:planner (không đổi hướng giữa không trun
 StairSpeedX,0.5,,,px/tick,đo:routine 08 khớp mẫu 4 cửa sổ lên thang video:Map_1 0:46.7/1:18.6/2:25.7/2:32.3 (+1 px mỗi frame video),liên tục — không nhảy bậc
 StairSpeedY,0.5,,,px/tick,đo:routine 08 (như StairSpeedX; chéo 45°),
 StairKnockOff,0,,,bool,wiki:Stages 16-18#Stage 17 (trên cầu thang không bao giờ bị đánh văng khỏi bậc),trúng đòn trên thang: chỉ mất máu + nháy
-KnockbackDx,12,11,13,px,đo:routine 08 khớp mẫu video:Boss_Map_1 11.9–12.6 s (f363–380: x +4/+10/+12 rồi đứng),lùi NGƯỢC hướng mặt
-KnockbackDy,15,14,15,px,đo:routine 08 video:Boss_Map_1 f363–380 (h 8/13/14/13/8; khung hurt_0),1 mẫu
-KnockbackAirTicks,35,32,38,tick,đo:routine 08 video:Boss_Map_1 (trúng f362.5 → biến mất nháy từ f381 ≈ 36 tick),= 2·|KnockbackVy0|/KnockbackGravity
-InvincibleTicks,94,92,96,tick,đo:routine 08 video:Boss_Map_1 f381–427 (47 frame không thấy Simon sau khi đáp),đếm từ lúc ĐÁP sau knockback (trong lúc bay hiện hurt_0 không nháy)
+KnockbackDx,34,32,35,px,"đo:cvm3-04 video:Boss_Map_2 f351–369 (x 104 → 72 ở t32, còn trên không; đáp t34) + video:Boss_Map_3 f540–556 (196 → 228 ở t32) — không tường",THÔNG TIN = KnockbackSpeedX × (2×10 + KnockbackApexTicks); CVGP 08 đo 12 px vì video:Boss_Map_1 bị mép màn khoá chặn ở x 239 (cx + 239)
+KnockbackDy,14,14,14,px,"đo:cvm3-04 3 video: Boss_Map_1 208 → 194, Boss_Map_2 176 → 162 (×3), Boss_Map_3 208 → 194 (×2)",THÔNG TIN = tổng KnockbackRise01..10
+KnockbackAirTicks,34,33,36,tick,đo:cvm3-04 (đồng hồ x: t32 còn cao 6 px ở 3 mẫu; xuống = gương pha lên quanh t17 ⇒ chạm đất t34),"THÔNG TIN = 2×10 + KnockbackApexTicks trên sàn phẳng; chưa chạm đất ⇒ rơi FallSpeed, vẫn lùi"
+InvincibleTicks,94,92,96,tick,"đo:routine 08 video:Boss_Map_1 f381–427 (47 frame không thấy Simon sau khi đáp); đo:cvm3-04 tools kb4_visible.py 6 lần trúng (Boss_Map_1/2/3): đáp → hiện liên tục sau 45–51 frame (90–102 tick, trung vị ≈ 96) — giữ 94",đếm từ lúc ĐÁP sau knockback (trong lúc bay hiện hurt_0 không nháy)
 WhipTotalTicks,22,18,26,tick,đo:routine 09 Tools/cvgp/whip_timing.py 52 cú roi video:Map_1 (TB 21.6; trung vị 22; khung video mới ±1 tick),= WhipWindupTicks + WhipRaiseTicks + WhipExtendTicks; ném vũ khí phụ dùng cùng nhịp (video 1:32.9 và 3:27.9)
 WhipWindupTicks,6,2,10,tick,đo:routine 09 whip_timing.py 52 cú roi video:Map_1 (khung use_*_0: TB 5.85; mốt 6),khung 0 — roi treo sau lưng
 WhipRaiseTicks,7,2,14,tick,đo:routine 09 whip_timing.py 52 cú roi video:Map_1 (khung use_*_1: TB 7.0; trung vị 6),khung 1 — roi vắt qua vai
@@ -60,11 +60,22 @@ StairLineOffsetUpRight,3,,,px,đo:routine 08 (thang ↗ EH stair0/stair3: x + y 
 StairLineOffsetUpLeft,0,,,px,đo:routine 08 (thang ↖ CB stair1 + CA stair3: x − y đúng đường tâm bậc; ra đỉnh 2:34.3),
 StairWalkPoseDrawY,2,,,px,đo:routine 08 (khi lên thang khung walk_1 vẽ thấp hơn stairs_up_0 2 px ở cả 4 cửa sổ),chỉ khi lên thang
 StairDownDrawBack,3,2,4,px,đo:routine 08 video:Map_1 1:47.5 (CA stair0 −2.5) và 1:54.4 (CB stair0 −3.6) khi xuống thang ↖,vẽ lùi 3 px ngược hướng di chuyển ngang khi xuống — thang ↗ lấy đối xứng (chưa có video)
-KnockbackVy0,-1.75,,,px/tick,đo:routine 08 khớp parabol video:Boss_Map_1 f363–380 (h 8/13/14/13/8),cùng KnockbackGravity ⇒ cao ≈ 15 px; bay ≈ 35 tick
-KnockbackGravity,0.1,,,px/tick²,đo:routine 08 (như KnockbackVy0),
-KnockbackDxTicks,12,,,tick,đo:routine 08 video:Boss_Map_1 (x +12 rồi đứng yên dù còn trên không — f369–380),lùi 1 px/tick trong 12 tick đầu
 InvincibleBlinkPeriod,2,,,tick,suy luận: video:Boss_Map_1 f381–427 KHÔNG thấy Simon ở cả 47 frame ⇒ nháy 1 tick hiện / 1 tick ẩn (bản quay 30 fps bắt trúng pha ẩn),
 DeathKneelTicks,16,,,tick,quy ước — video/wiki không có cảnh chết (routine 12 xem lại),khung death_0 (quỳ) trước death_1 (nằm)
 DeathTicks,124,,,tick,suy luận: độ dài nhạc Art_Source/music/15. Death.mp3 = 2.07 s; video không có cảnh chết,từ lúc ngã (hoặc rơi hố) tới khi báo sự kiện Died (routine 12 hồi sinh)
 WhipColorTicks,1,,,tick,đo:routine 09 Tools/cvgp/whip_colors.py video:Map_1 (286 frame duỗi roi cấp 3: 2 frame mới cách 2 tick mà khác màu thì lệch chỉ số 2 ở 37/53 lần ⇒ đổi màu MỖI tick qua 4 bảng màu),thứ tự c1→c2→c3→c4 theo sheet là suy luận (video 30 fps không phân biệt chiều); chu kỳ đếm từ tick đầu của đòn (suy luận)
 SubWeaponSpawnTick,3,2,5,tick,đo:routine 09 proj_fit.py: dao video:Map_1 1:33.0 (f2795–2805) + 1:47.1 trên thang (f3214–3220); rìu 3:27.9/3:29.3 (khớp parabol g 0.25) ⇒ vũ khí xuất hiện tại pivot 2.5–5 tick sau khi khung duỗi bắt đầu,tick thứ N (0 = tick đầu) của khung duỗi thì sinh vũ khí phụ; tim trừ ngay lúc bấm (HUD trừ tim trước SFX ném ~0.2 s — routine 02)
+KnockbackSpeedX,1.0,,,px/tick,đo:cvm3-04 video:Boss_Map_2 f106–111 (5 frame mới liền nhau −2 px/frame tới tường) + f359–363 + video:Boss_Map_3 f545–551 (+2 px/frame),"lùi NGƯỢC hướng mặt SUỐT cung (tới khi đáp); tường/mép màn chặn ngang, cung dọc chạy tiếp (Boss_Map_2 #1/#2, Boss_Map_3 #2, Boss_Map_1)"
+KnockbackApexTicks,14,13,15,tick,"đo:cvm3-04 (cao 14 ở mọi mẫu t10..t24 đồng hồ x — Boss_Map_2 #1/#3, Boss_Map_3 #1; t26 = 13)",tick giữ đỉnh (tick 11–24); khác nhảy (JumpApexTicks 8)
+KnockbackRise01,3,,,px,"đo:cvm3-04 Tools/cvm3/kb4_track.py khớp mẫu hurt_0 từng frame, đồng hồ x (lùi 1 px/tick): video:Boss_Map_2 f106–122 (#1) + f351–369 (#3) + video:Boss_Map_3 f540–556 (#1) cùng một bảng (0 px dư mọi mẫu); tick lẻ video:Boss_Map_1 f362/f365 (t3 = 8, t9 = 13) + video:Boss_Map_3 f699/f700 (t1 = 3, t7 = 12)",cao 3 sau tick 1; xuống tick 25–34 = gương (−KnockbackRise10 … −KnockbackRise01)
+KnockbackRise02,3,,,px,đo:cvm3-04 (như KnockbackRise01),cao 6 sau tick 2
+KnockbackRise03,2,,,px,đo:cvm3-04 (như KnockbackRise01),cao 8 sau tick 3
+KnockbackRise04,1,,,px,đo:cvm3-04 (như KnockbackRise01),cao 9 sau tick 4
+KnockbackRise05,1,,,px,đo:cvm3-04 (như KnockbackRise01),cao 10 sau tick 5
+KnockbackRise06,1,,,px,đo:cvm3-04 (như KnockbackRise01),cao 11 sau tick 6
+KnockbackRise07,1,,,px,đo:cvm3-04 (như KnockbackRise01),cao 12 sau tick 7
+KnockbackRise08,1,,,px,đo:cvm3-04 (như KnockbackRise01),cao 13 sau tick 8
+KnockbackRise09,0,,,px,đo:cvm3-04 (như KnockbackRise01),cao 13 sau tick 9
+KnockbackRise10,1,,,px,đo:cvm3-04 (như KnockbackRise01),cao 14 sau tick 10
+FootProbeHalfWidth,6,6,6,px,"đo:cvm3-04 Tools/cvm3/kb4_ledge.py 9 lần đi khỏi mép (video:Map_1 1:02.8 EH ← + 2:05.3 CB →; video:Map_2 Hall A ×2, Hall B ×3, Medusa ×2; cả 2 hướng): còn đứng khi thân qua mép 5 px, rơi ở 6 px",đầu dò sàn (đứng + đáp) của Simon = cột X−6..X+6 (thân va tường vẫn 16 px); trước CVM3 04 dò cả thân X−8..X+7 (rơi trễ 2 px)
+LockedScreenMaxX,239,239,239,px,"đo:cvm3-04 video:Boss_Map_1 f368–379 (knockback dừng ở x màn 239, không có ô tường) + video:Boss_Map_3 f690–713 (ngồi sát rồi knockback kẹt ở 239); bên trái: video:Map_3 phòng Mummy x màn tới 11",phòng boss camera khoá: Simon không qua cx + 239 (BossArena — cột cx + 247 chặn thân); bên trái giữ cx + 8 (suy luận CVGP 14)

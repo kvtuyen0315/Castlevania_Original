@@ -16,7 +16,7 @@ using UnityEngine;
 ///                                            Map1RouteProbe (từ tick 1 Stage 01 ⇒ hash cuối = hash luồng thật Title → STAGE 07 của
 ///                                            Map1AcceptProbe.StartFlow), mốc luồng, chụp Game view ở các mốc chuyển cảnh (pairs11.py)
 ///   Map2RouteProbe.Try(stage, tpu)        ⇒ THỬ autopilot từ đầu stage 4/5/6 (phiên dev — session giả, KHÔNG ghi file) để chỉnh lộ trình
-///   Map2RouteProbe.Report()               ⇒ mốc + hash + "trước STAGE 04" (phải = 165b9aef — Map 1 không đổi) + vết autopilot
+///   Map2RouteProbe.Report()               ⇒ mốc + hash + "trước STAGE 04" (phải = RegressionRunner.PRE4 — Map 1 không đổi; CVM3 04: 59cafbaa) + vết autopilot
 /// Chạy: NesClock TẮT, tự gọi NesClock.Step tpu tick mỗi vòng EditorApplication.update. Cheat BẤT TỬ bật suốt (như Map 1; Map 2 mọi section có
 /// quái/bẫy/hố: Spear Knight, Medusa Head, bẫy ép, Bone Tower, Ghost, Queen Medusa — autopilot không né quái; hố vẫn chết ⇒ autopilot tự tránh).
 /// </summary>
@@ -217,9 +217,9 @@ public static class Map2RouteProbe
         GameRules.NewGame();
         if (tryMode)
         {
-            // session giả = trạng thái cuối lộ trình Map 1 (Map1RouteProbe tick 8449: SCORE 6640, P3, roi 3, dao ×1, tim 5)
+            // session giả = trạng thái cuối lộ trình Map 1 (Map1RouteProbe tick 8464: SCORE 6650 — CVM3 04 ghi lại lộ trình, trước 8449 / 6640; P3, roi 3, dao ×1, tim 5)
             var s = GameSession.Current;
-            s.score = 6640;
+            s.score = 6650;
             s.whipLevel = 3;
             s.SetSubWeapon(eSubWeapon.Dagger);
             s.stage = devStage;

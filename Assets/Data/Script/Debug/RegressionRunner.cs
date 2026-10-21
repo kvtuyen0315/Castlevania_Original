@@ -27,21 +27,25 @@ public static class RegressionRunner
     /// <summary>BẢNG HASH CHUẨN (baseline = CVGP 21 / CVM2 00). h8 = 5 mốc L (Start, đen, Intro, đen, Stage).</summary>
     public static readonly Dictionary<string, string> EXPECTED = new Dictionary<string, string>
     {
-        // CVM3 03 (đồng hồ theo video Map_2: 186 tick từ tick bấm + roi vẫn vung, dùng lại khi còn hiệu lực, TIME bỏ mốc, bẫy nối lưới — chỉ
-        // kịch bản đồng hồ đổi): attack cũ eee2cdfb, enemy f288b0ce, boss 31e6d711, b23 5eb00c5b, b46 58a8edf9, b24 9b218696, b56 6cb8a1ad, rules 03fafb24
-        { "long", "5963c4ba" }, { "simon", "b2954cbe" }, { "attack", "b880de83" }, { "item", "7ca5bf56" },
-        { "enemy", "0a731b36" }, { "boss", "c9813c11" }, { "b23", "50a6b4bf" }, { "b46", "6c8e9a74" },
-        { "b24", "397842ee" }, { "b56", "c140225d" }, { "rules", "00144e42" }, { "core", "76516076" },
-        { "gallery", "ffd5b71e" } /* CVM2 11 (nhảy không va trần — PhantomBat_attack; CVM2 09 25b99169) */,
+        // CVM3 04 (knockback = bảng theo tick 34 px / 34 tick, dò sàn Simon X±6, mép màn khoá phải cx + 239, lọ nước thánh vy0 −1.5 / g 33/256 /
+        // sinh Y−19 / dò sàn tâm, lửa fire_0→4→0→3 ×9 tick sống 76 — CVM3_MEMORY §2e/§4): cũ long 5963c4ba, simon b2954cbe, attack b880de83,
+        // item 7ca5bf56, enemy 0a731b36, boss c9813c11, b23 50a6b4bf, b46 6c8e9a74, b24 397842ee, b56 c140225d, rules 00144e42, gallery ffd5b71e,
+        // holy b1033a3f, mech 6409b5fe; flow* / map2 caf21ae2 (map1_route + map2_route GHI LẠI bằng autopilot — CVM3_MEMORY §4)
+        // CVM3 03 (đồng hồ theo video Map_2): attack cũ eee2cdfb, enemy f288b0ce, boss 31e6d711, b23 5eb00c5b, b46 58a8edf9, b24 9b218696, b56 6cb8a1ad, rules 03fafb24
+        { "long", "b2cc1424" }, { "simon", "5c1c46ce" }, { "attack", "62c14a1f" }, { "item", "c8db5123" },
+        { "enemy", "20aa5652" }, { "boss", "4d7bd652" }, { "b23", "46dcc544" }, { "b46", "a4cfdcaf" },
+        { "b24", "4066b4db" }, { "b56", "9b9b7440" }, { "rules", "72c7e7bf" }, { "core", "76516076" },
+        { "gallery", "ab874ae4" } /* CVM3 04; CVM2 11 ffd5b71e (nhảy không va trần — PhantomBat_attack; CVM2 09 25b99169) */,
         // CVM2 11: luồng thật Title → STAGE 07 (map1_route + map2_route; cũ Title → STAGE 04 e0b2d54c — phần Map 1 = PRE4 dưới)
-        { "flow", "caf21ae2" }, { "flow30", "caf21ae2" }, { "flow144", "caf21ae2" }, { "map2", "caf21ae2" },
-        { "holy", "b1033a3f" },   // CVM2 04 (HolyPierceProbe — bộ mới) → CVM2 09 (Medusa thức 180 tick sau khoá; cũ 52c59864)
-        { "mech", "6409b5fe" },   // CVM2 06 (Map2MechProbe — bệ, bẫy ép gai, hố) → CVM3 03 (crusher_stopwatch + crusher_resume_video; cũ 91215ebd)
+        { "flow", "4532ace7" }, { "flow30", "4532ace7" }, { "flow144", "4532ace7" }, { "map2", "4532ace7" },
+        { "holy", "95e3ba78" },   // CVM2 04 (HolyPierceProbe — bộ mới) → CVM2 09 (52c59864 → b1033a3f) → CVM3 04 (lọ theo video Map_3)
+        { "mech", "d2b0212f" },   // CVM2 06 (Map2MechProbe) → CVM3 03 (91215ebd → 6409b5fe) → CVM3 04 (plat_pit dò sàn X±6, pit_knockback dời x 214)
         { "h8", "352/432/448/890/922" },
     };
 
-    /// <summary>CVM2 11: hash lộ trình ngay TRƯỚC tick màn STAGE 04 bật (đo trên code CVM2 10 — luồng cũ Stage4Stub) — Map 1 không đổi.</summary>
-    public const string PRE4 = "165b9aef";
+    /// <summary>CVM2 11: hash lộ trình ngay TRƯỚC tick màn STAGE 04 bật (đo trên code CVM2 10 — luồng cũ Stage4Stub) — Map 1 không đổi.
+    /// CVM3 04: map1_route ghi lại (dò sàn X±6 ⇒ rơi khỏi mép sớm 2 tick, lộ trình cũ lệch từ tick 3196 Crypt A) ⇒ 165b9aef → 59cafbaa.</summary>
+    public const string PRE4 = "59cafbaa";
 
     const string CORE_NAMES = "walk300,wallR,wallR3,wallR24,wallL,wallL3,ledge,stairs,stair2,water,pit,camR,camL,hit,touch,matrix,spawn,freeze,freezeEnemy,mix,mix";
     const string ARENA_ALL = "long,simon,attack,item,enemy,boss,b23,b46,b24,b56,holy,mech,rules";

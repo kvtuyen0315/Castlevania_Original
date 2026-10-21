@@ -72,6 +72,9 @@ public class TileCollision
     /// <summary>CVGP 14 — tường vô hình (px): cột x &lt; WallMinX hoặc ≥ WallMaxX coi là đặc khi đi ngang (BossArena: mép màn khi camera khoá).
     /// Dựng lại mỗi LoadSection ⇒ mặc định không có.</summary>
     public int WallMinX = int.MinValue, WallMaxX = int.MaxValue;
+    /// <summary>CVM3 04 — mép phải màn RIÊNG cho Simon (nhóm Player) khi camera khoá: cột x ≥ PlayerWallMaxX chặn thân (BossArena đặt
+    /// cx + ConfigSimon.LockedScreenMaxX + 8 ⇒ X ≤ cx + 239 — video Boss_Map_1 / Boss_Map_3). Enemy/boss giữ WallMaxX.</summary>
+    public int PlayerWallMaxX = int.MaxValue;
     /// <summary>CVM2 06 — bệ di động đang sống của section (StageWorld gán, dùng chung danh sách). Mặt trên bệ = sàn một chiều (chỉ đáp
     /// từ trên xuống) cho thực thể RidesPlatforms. Null/rỗng ⇒ va chạm y hệt trước (Block 1 không có bệ).</summary>
     public System.Collections.Generic.List<MovingPlatform> Platforms;
@@ -180,7 +183,9 @@ public class TileCollision
     public bool IsOnGround(Entity e)
     {
         var b = e.BodyRect;
-        return RowLandable(b.yMax, b.xMin, b.xMax - 1) || PlatformAt(e, b.yMax, b.xMin, b.xMax - 1) != null;
+        int x0, x1;
+        e.FootSpan(out x0, out x1);   // CVM3 04: Simon dò X±6 (video), thực thể khác = bề rộng body
+        return RowLandable(b.yMax, x0, x1) || PlatformAt(e, b.yMax, x0, x1) != null;
     }
 
     /// <summary>CVM2 06: bệ di động có MẶT TRÊN đúng hàng y, chồng cột x0..x1 (chỉ thực thể RidesPlatforms). Không có ⇒ null.</summary>
@@ -238,10 +243,11 @@ public class TileCollision
         var b = e.BodyRect;
         int dir = newPx > oldPx ? 1 : -1;
         int steps = (newPx - oldPx) * dir;
+        bool player = e.Group == eEntityGroup.Player;
         for (int s = 1; s <= steps; s++)
         {
             int col = dir > 0 ? b.xMax - 1 + s : b.xMin - s;
-            if (ColumnHitsSolid(col, b.yMin, b.yMax - 1))
+            if (ColumnHitsSolid(col, b.yMin, b.yMax - 1) || (player && dir > 0 && col >= PlayerWallMaxX))
             {
                 e.fx = Fixed.FromPx(oldPx + dir * (s - 1));
                 return true;
@@ -271,8 +277,10 @@ public class TileCollision
         if (newPx > oldPx)
         {
             int steps = newPx - oldPx;
+            int fx0, fx1;
+            e.FootSpan(out fx0, out fx1);   // CVM3 04: đáp cùng đầu dò với đứng
             for (int s = 1; s <= steps; s++)
-                if (RowLandable(b.yMax + s - 1, b.xMin, b.xMax - 1) || PlatformAt(e, b.yMax + s - 1, b.xMin, b.xMax - 1) != null)
+                if (RowLandable(b.yMax + s - 1, fx0, fx1) || PlatformAt(e, b.yMax + s - 1, fx0, fx1) != null)
                 {
                     e.fy = Fixed.FromPx(oldPx + s - 1);
                     return true;

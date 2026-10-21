@@ -1,0 +1,9 @@
+# CVM3 04 — nháy bất tử sau knockback (Tools/cvm3/kb4_visible.py): frame ẩn đầu (≈ đáp) → frame đầu của đoạn hiện liên tục (≥ 8 frame, ≥ 4 frame mới)
+# Video 30 fps bắt nháy 1 tick hiện / 1 tick ẩn theo pha ⇒ chỉ đo được lúc HẾT nháy; ±1–2 frame.
+Boss_Map_2 #1: đáp ~f123, hiện liên tục từ f171–178 (dải mơ hồ: đoạn hiện f171–176, f178–185, f189–) ⇒ 48–55 frame
+Boss_Map_2 #2: đáp ~f217, hiện liên tục f265 ⇒ 48 frame ≈ 96 tick
+Boss_Map_2 #3: đáp ~f371, hiện liên tục f422 ⇒ 51 frame ≈ 102 tick
+Boss_Map_3 #1: đáp ~f558, hiện liên tục f606 ⇒ 48 frame ≈ 96 tick
+Boss_Map_3 #2: đáp ~f715, hiện liên tục f762 ⇒ 47 frame ≈ 94 tick
+Boss_Map_1   : đáp ~f381, hiện liên tục f426 ⇒ 45 frame ≈ 90 tick (nhiều frame lặp)
+Trung vị ≈ 96 tick (90–102) — ConfigSimon.InvincibleTicks 94 (CVGP 08) nằm trong khoảng ⇒ GIỮ.

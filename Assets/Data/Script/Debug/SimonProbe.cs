@@ -29,9 +29,19 @@ public static class SimonProbe
     public const int VIDEO_WALK_FRAME_TICKS = 7;
     public const int VIDEO_FALL_SPEED = 8;
     public const int VIDEO_LAND_CROUCH = 20;      // ±2
-    public const int VIDEO_KB_DX = 12;            // 11–13
-    public const int VIDEO_KB_PEAK = 15;          // 14–15
-    public const int VIDEO_KB_AIR = 36;           // ±2 (trúng f362.5 → biến mất f381)
+    /// <summary>
+    /// CVM3 04: độ cao knockback (px) ở tick t = 0..34 kể từ tick trúng — video Boss_Map_2 f106–122 / f351–369 + Boss_Map_3 f540–556
+    /// (đồng hồ x: lùi 1 px/tick), tick lẻ Boss_Map_1 f362/f365 + Boss_Map_3 f699/f700 (Tools/cvm3/kb4_track.py, CVM3_MEMORY §2e).
+    /// </summary>
+    public static readonly int[] VIDEO_KB_H =
+    {
+        0, 3, 6, 8, 9, 10, 11, 12, 13, 13, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14,
+        13, 13, 12, 11, 10, 9, 8, 6, 3, 0,
+    };
+    public const int VIDEO_KB_DX = 34;            // lùi 1 px/tick suốt cung (CVGP 08 đo 12 — bị mép màn khoá chặn ở x 239)
+    public const int VIDEO_KB_PEAK = 14;          // 3 video
+    public const int VIDEO_KB_AIR = 34;           // chạm sàn phẳng ở tick 34
+    public const int VIDEO_FOOT = 6;              // CVM3 04: rơi khỏi mép khi thân qua mép 6 px (9 lần, Map_1 + Map_2)
     public const int VIDEO_BLINK = 94;            // 92–96
     public const int VIDEO_TUCK_DRAW = 4;
     public const int VIDEO_CROUCH_DRAW = 8;
@@ -289,11 +299,21 @@ public static class SimonProbe
                 break;
             case "ledge32":
                 s.Teleport(424, 144, 1);
-                finish = () => FallChecks(144, 176, false);
+                finish = () =>
+                {
+                    FallChecks(144, 176, false);
+                    // CVM3 04: tường thấp x 416–431 ⇒ mép phải 432; rơi khi X − 6 ≥ 432
+                    Expect("bắt đầu rơi ở x = mép phải 432 + " + VIDEO_FOOT + " (video 9 lần đi khỏi mép)", 432 + VIDEO_FOOT, FallStartX());
+                };
                 break;
             case "ledge64":
                 s.Teleport(940, 112, -1);
-                finish = () => FallChecks(112, 176, true);
+                finish = () =>
+                {
+                    FallChecks(112, 176, true);
+                    // CVM3 04: mép trái Bục C x 928 ⇒ rơi khi X + 6 < 928 ⇒ x 921 (video Map_1 f1882 còn đứng x 922, f1883 rơi ⇒ x0 921)
+                    Expect("bắt đầu rơi ở x = mép trái 928 − 1 − " + VIDEO_FOOT + " (video 1:02.8: 921)", 928 - 1 - VIDEO_FOOT, FallStartX());
+                };
                 break;
             case "stairs":
                 s.Teleport(626, 176, -1);
@@ -569,6 +589,14 @@ public static class SimonProbe
         Expect("khung co chân tick 3–29 (+4 px) / đứng tick 1–2, 30–40 — số tick sai", 0, tuckBad);
     }
 
+    /// <summary>CVM3 04: X ở tick đầu đã rơi (Y vượt mặt sàn ban đầu).</summary>
+    private static int FallStartX()
+    {
+        int y0 = Ys.Count > 0 ? Ys[0] : 0;
+        int start = IndexWhere(i => Ys[i] > y0);
+        return start >= 0 ? Xs[start] : -1;
+    }
+
     private static void FallChecks(int fromY, int toY, bool crouch)
     {
         int start = IndexWhere(i => Ys[i] > fromY);
@@ -587,9 +615,9 @@ public static class SimonProbe
         Expect("tốc độ rơi 8 px/tick", VIDEO_FALL_SPEED, maxStep);
         Expect("số tick rơi = cao / 8", (toY - fromY) / VIDEO_FALL_SPEED, land - start + 1);
         Expect("đáp đúng mặt sàn", toY, Ys[Ys.Count - 1]);
-        // giữ đà ngang 1 px/tick suốt lúc rơi, trừ tick đầu bị tường chặn (mép trái Bục C: đầu chạm bục y 80–95 khi Y < 128 ⇒ 1 tick;
-        // video 1:02.8: x 919→915 trong 8 tick rơi ±2 do capture)
-        int blockedTicks = crouch ? 1 : 0;
+        // giữ đà ngang 1 px/tick suốt lúc rơi. CVM3 04: rơi ở x 921 (dò sàn X±6) ⇒ thân (cột 912) không còn chạm bục y 80–95 (x ≤ 911) ⇒ 0 tick bị
+        // chặn (trước: rơi trễ ở x 919 ⇒ đầu kẹt 1 tick); video 1:02.8: rơi từ x0 921, đáp ngồi x 915 ±1 (Unity 914)
+        int blockedTicks = 0;
         Expect("giữ đà ngang khi rơi (1 px/tick, trừ tick bị tường chặn)", Xs[start] > Xs[Math.Max(0, start - 1)] ? 1 : -1, Math.Sign(dx));
         Expect("số px ngang khi rơi", (toY - fromY) / VIDEO_FALL_SPEED - blockedTicks, Math.Abs(dx));
         if (crouch)
@@ -666,13 +694,24 @@ public static class SimonProbe
             if (i > blinkStart && Visibles[i] == Visibles[i - 1] && Invs[i] > 0)
                 toggleBad++;
         }
-        Measures.Add((death ? "chết" : "knockback") + " (mặt " + (facing > 0 ? "phải" : "trái") + "): trúng tick " + hit + ", lùi " + dxEnd + " px (video ∓12), cao "
-                     + (176 - minY) + " px (video 14–15), bay " + air + " tick (video ≈36), nháy " + blink + " tick sau khi đáp (video 94), ẩn " + hidden + " tick, HP "
-                     + Hps[Math.Max(0, hit)] + (death ? "" : "") + "; ma trận hướng: văng " + (dxEnd < 0 ? "trái" : "phải"));
+        // CVM3 04: từng tick t = 0..34 kể từ tick vào Hurt: cao = bảng video, lùi đúng t px
+        int hBad = 0, xBad = 0, firstBad = -1;
+        for (int t = 0; t <= VIDEO_KB_AIR && hit >= 0 && hit + t < Ys.Count; t++)
+        {
+            bool hb = 176 - Ys[hit + t] != VIDEO_KB_H[t], xb = Xs[hit + t] - x0 != -facing * t;
+            if (hb) hBad++;
+            if (xb) xBad++;
+            if ((hb || xb) && firstBad < 0) firstBad = t;
+        }
+        Measures.Add((death ? "chết" : "knockback") + " (mặt " + (facing > 0 ? "phải" : "trái") + "): trúng tick " + hit + ", lùi " + dxEnd + " px (video ∓34), cao "
+                     + (176 - minY) + " px (video 14), bay " + air + " tick (video 34), lệch bảng cao " + hBad + " / lùi " + xBad + " tick" + (firstBad >= 0 ? " (đầu t" + firstBad + ")" : "")
+                     + ", nháy " + blink + " tick sau khi đáp (video 94), ẩn " + hidden + " tick, HP " + Hps[Math.Max(0, hit)] + "; ma trận hướng: văng " + (dxEnd < 0 ? "trái" : "phải"));
         Expect("trúng đòn (Hurt) xảy ra", 1, hit >= 0 ? 1 : 0);
         Expect("văng NGƯỢC hướng mặt " + VIDEO_KB_DX + " px", -facing * VIDEO_KB_DX, dxEnd);
-        ExpectRange("độ cao cung (video 14–15)", 14, 16, 176 - minY);
-        ExpectRange("thời gian bay (video 36 ±2)", 34, 38, air);
+        Expect("độ cao cung (video 14)", VIDEO_KB_PEAK, 176 - minY);
+        Expect("thời gian bay (video 34)", VIDEO_KB_AIR, air);
+        Expect("độ cao từng tick = bảng video (số tick lệch)", 0, hBad);
+        Expect("lùi 1 px/tick suốt cung (số tick lệch)", 0, xBad);
         Expect("mất 2 vạch (Stage 1–6, wiki)", death ? 0 : GameSession.MAX_HP - 2, Hps[hit]);
         if (!death)
         {

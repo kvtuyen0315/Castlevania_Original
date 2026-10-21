@@ -10,8 +10,9 @@ using UnityEngine;
 /// Nhảy = bảng độ cao (JumpRise01..16 đi lên, đỉnh JumpApexTicks tick, rơi đối xứng; 40 tick trên sàn phẳng), hướng ngang chốt
 /// lúc bấm A (1 px/tick). Hết bảng mà chưa chạm đất ⇒ Fall (FallSpeed hằng, giữ vận tốc ngang). Rơi ≥ LandCrouchMinFallTicks
 /// tick ⇒ Land (ngồi khựng LandCrouchTicks). Cầu thang: đường StairPath (CVGP 07) + lệch x theo hướng thang; 0.5 px/tick; thả nút
-/// ⇒ đi nốt tới bội StairStepPx. Trúng đòn: mất máu (GameSession.playerHp, ConfigBlock theo stage), knockback cung parabol lùi
-/// ngược hướng mặt (trên thang: không văng — wiki), bất tử nháy InvincibleTicks từ lúc đáp. Hết máu ⇒ Dead; nước/hố ⇒ FallDeath.
+/// ⇒ đi nốt tới bội StairStepPx. Trúng đòn: mất máu (GameSession.playerHp, ConfigBlock theo stage), knockback = bảng độ cao theo tick
+/// (CVM3 04: KnockbackRise01..10 + giữ đỉnh KnockbackApexTicks + xuống đối xứng) lùi ngược hướng mặt 1 px/tick suốt cung (trên thang:
+/// không văng — wiki), bất tử nháy InvincibleTicks từ lúc đáp. Hết máu ⇒ Dead; nước/hố ⇒ FallDeath. Dò sàn (đứng/đáp) = cột X±FootProbeHalfWidth.
 /// Tấn công (CVGP 09): 1 state Attack cho 4 tư thế (đứng/trên không, ngồi, lên thang, xuống thang) — roi 3 cấp (thân use_* +
 /// roi lớp phủ, cấp 3 đổi 4 màu mỗi WhipColorTicks tick) hoặc ném vũ khí phụ (Up+B / phím tắt SubWeapon) cùng nhịp 3 khung
 /// (WhipWindupTicks/RaiseTicks/ExtendTicks — đo video). Hitbox roi = bbox mảnh roi duỗi (ConfigWhip.hit*) đặt theo
@@ -20,6 +21,8 @@ using UnityEngine;
 public class SimonController : Entity
 {
     public const int JUMP_RISE_TICKS = 16;
+    /// <summary>CVM3 04: số tick pha lên của knockback (KnockbackRise01..10).</summary>
+    public const int KB_RISE_TICKS = 10;
 
     [Tooltip("Scene thử: chết xong (DeathTicks) tự hồi sinh ở điểm xuất phát + đầy máu. Màn chơi thật (routine 12) để tắt và nghe Died.")]
     [SerializeField] private bool autoRespawn;
@@ -46,7 +49,12 @@ public class SimonController : Entity
     [NonSerialized] public int tuckStart, untuck, tuckDrawY, crouchDrawY;
     [NonSerialized] public int landCrouchMinFall, landCrouchTicks;
     [NonSerialized] public int stairStep, stairEnterRange, stairOffUpRight, stairOffUpLeft, stairWalkDrawY, stairDownBack, stairFrameTicks;
-    [NonSerialized] public int kbVy0, kbGravity, kbVx, kbDxTicks;
+    [NonSerialized] public int kbVx;                 // fixed/tick (lùi suốt cung)
+    /// <summary>CVM3 04: dy (px, dương = xuống) ở tick knockback 1..kbTicks; sau đó rơi FallSpeed.</summary>
+    [NonSerialized] public int[] kbDy = new int[0];
+    [NonSerialized] public int kbTicks;
+    /// <summary>CVM3 04: nửa bề rộng đầu dò sàn (px; 0 = cả thân).</summary>
+    [NonSerialized] public int footHalf;
     [NonSerialized] public int blinkTicks, blinkPeriod, deathKneelTicks, deathTicks;
     [NonSerialized] public bool stairKnockOff;
     [NonSerialized] public RectInt standHurt, tuckHurt, crouchHurt;
@@ -73,7 +81,7 @@ public class SimonController : Entity
     [NonSerialized] public int stairMoveDir;     // +1 lên / −1 xuống (lần đi gần nhất)
     [NonSerialized] public int approachX;        // StairApproach: x đích
     [NonSerialized] public eSimonState approachNext;
-    [NonSerialized] public int kbDir, kbVy;
+    [NonSerialized] public int kbDir, kbTick;
     [NonSerialized] public bool kbLanded;
     [NonSerialized] public int autoWalkDir, autoWalkTarget, autoWalkSpeed;
     [NonSerialized] public bool autoWalkNoClip;      // CVGP 15: đi xuyên địa hình (qua cửa sang section kế)
@@ -234,10 +242,17 @@ public class SimonController : Entity
         stairWalkDrawY = s.GetInt(eSimonParam.StairWalkPoseDrawY);
         stairDownBack = s.GetInt(eSimonParam.StairDownDrawBack);
         stairFrameTicks = s.GetInt(eSimonParam.StairFrameTicks);
-        kbVy0 = Fixed.FromFloat(s.GetFloat(eSimonParam.KnockbackVy0));
-        kbGravity = Fixed.FromFloat(s.GetFloat(eSimonParam.KnockbackGravity));
-        kbDxTicks = s.GetInt(eSimonParam.KnockbackDxTicks);
-        kbVx = kbDxTicks > 0 ? Fixed.FromPx(s.GetInt(eSimonParam.KnockbackDx)) / kbDxTicks : 0;
+        // CVM3 04: knockback = bảng như nhảy — lên KnockbackRise01..10, giữ đỉnh KnockbackApexTicks, xuống = gương (video Boss_Map_1/2/3)
+        kbVx = Fixed.FromFloat(s.GetFloat(eSimonParam.KnockbackSpeedX));
+        kbTicks = KB_RISE_TICKS * 2 + s.GetInt(eSimonParam.KnockbackApexTicks);
+        kbDy = new int[kbTicks + 1];
+        for (int i = 1; i <= KB_RISE_TICKS; i++)
+        {
+            int rise = s.GetInt((eSimonParam)((int)eSimonParam.KnockbackRise01 + i - 1));
+            kbDy[i] = -rise;
+            kbDy[kbTicks + 1 - i] = rise;
+        }
+        footHalf = s.GetInt(eSimonParam.FootProbeHalfWidth);
         blinkTicks = s.GetInt(eSimonParam.InvincibleTicks);
         blinkPeriod = Mathf.Max(1, s.GetInt(eSimonParam.InvincibleBlinkPeriod));
         deathKneelTicks = s.GetInt(eSimonParam.DeathKneelTicks);
@@ -394,6 +409,21 @@ public class SimonController : Entity
 
     /// <summary>CVM2 06: đứng được trên bệ di động khi không ở thang / không đang chết / không đi xuyên địa hình qua cửa.</summary>
     public override bool RidesPlatforms => Fsm != null && !OnStairs && !IsDying && !(Fsm.Is(eSimonState.AutoWalk) && autoWalkNoClip);
+
+    /// <summary>
+    /// CVM3 04: dò sàn (đứng + đáp) = cột X−FootProbeHalfWidth..X+FootProbeHalfWidth — video 9 lần đi khỏi mép (Map_1 ×2, Map_2 ×7, cả 2 hướng):
+    /// còn đứng khi thân qua mép 5 px, rơi ở 6 px (dò cả thân X−8..X+7 như trước thì rơi trễ 2 px). Va tường ngang vẫn dùng thân 16 px.
+    /// </summary>
+    public override void FootSpan(out int x0, out int x1)
+    {
+        if (footHalf <= 0)
+        {
+            base.FootSpan(out x0, out x1);
+            return;
+        }
+        x0 = X - footHalf;
+        x1 = X + footHalf;
+    }
 
     internal void RaiseDyingStarted()
     {

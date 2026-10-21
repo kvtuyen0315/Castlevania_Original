@@ -99,6 +99,14 @@ public class Entity : MonoBehaviour
     /// <summary>CVM2 06: đứng được trên bệ di động (TileCollision tính mặt bệ là sàn). Chỉ Simon — video Map_2 không có enemy nào đứng bệ.</summary>
     public virtual bool RidesPlatforms => false;
 
+    /// <summary>CVM3 04: cột dò sàn khi đứng/đáp (px section, gồm 2 đầu) — mặc định bề rộng hộp body (Simon thu hẹp theo video).</summary>
+    public virtual void FootSpan(out int x0, out int x1)
+    {
+        var b = BodyRect;
+        x0 = b.xMin;
+        x1 = b.xMax - 1;
+    }
+
     protected virtual void Awake()
     {
         EnsureBuilt();

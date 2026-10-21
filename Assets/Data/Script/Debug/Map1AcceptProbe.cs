@@ -12,7 +12,7 @@ using UnityEngine;
 ///   StartFlow(fps, shotDir)   ⇒ luồng THẬT theo thời gian thực (NesClock bật, targetFrameRate = fps): GoTo(Title,0) = L0, nhấn Start ở L352
 ///                               (như harness H8), phát map1_route.txt từ tick Stage 01 bật (L922); CVM2 11: tới tick màn STAGE 04 (StageScreen)
 ///                               bật thì phát tiếp map2_route.txt tới STAGE 07 stub + 60 tick (không có map2_route ⇒ dừng ở STAGE 04 + 60 như
-///                               cũ); hash trạng thái CÙNG công thức Map1RouteProbe (= Map2RouteProbe.Replay), "trước STAGE 04" = 165b9aef
+///                               cũ); hash trạng thái CÙNG công thức Map1RouteProbe (= Map2RouteProbe.Replay), "trước STAGE 04" = RegressionRunner.PRE4 (CVM3 04: 59cafbaa)
 ///                               (Map 1 không đổi); log mốc luồng, SFX, enemy sinh/chết, item, vật vỡ, TIME;
 ///                               shotDir ≠ null ⇒ ảnh H8 L10/L600/L930. Cheat bất tử bật suốt (như lộ trình 15), trả lại khi xong.
 ///   StartSpam(stage, ticks, seed, withStart) ⇒ bấm ngẫu nhiên MỌI nút mỗi tick (không bất tử) từ đầu stage; đếm lỗi console.
@@ -825,7 +825,7 @@ public static class Map1AcceptProbe
         var sb = new StringBuilder();
         sb.Append(Mode).Append(Running ? " ĐANG CHẠY" : Finished ? " xong" : "").Append(" @").Append(Fps).Append(" fps — tick ").Append(Tick)
           .Append(", hash ").Append(Hash.ToString("x8")).Append(Error.Length > 0 ? ", LỖI: " + Error : "").Append('\n');
-        sb.Append("trước STAGE 04: tick ").Append(stage4Tick).Append(" hash ").Append(PreStage4Hash.ToString("x8")).Append(" (chuẩn 8449 / 165b9aef)")
+        sb.Append("trước STAGE 04: tick ").Append(stage4Tick).Append(" hash ").Append(PreStage4Hash.ToString("x8")).Append(" (chuẩn 8464 / " + RegressionRunner.PRE4 + " — CVM3 04)")
           .Append(" | STAGE 07 ở tick ").Append(stage7Tick).Append('\n');
         sb.Append("checkpoints: ");
         foreach (var c in Checkpoints)
