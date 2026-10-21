@@ -1,0 +1,95 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c4c25d45acf3c14e9c6005b7044ce18, type: 3}
+  m_Name: WalkwayEntranceA
+  m_EditorClassIdentifier: 
+  id: WalkwayEntranceA
+  stage: 7
+  width: 768
+  height: 192
+  cols: 48
+  rows: 12
+  cameraMinX: 0
+  cameraMaxX: 512
+  bossLockCx: -1
+  hasSimonStart: 1
+  simonStart: {x: 720, y: 160}
+  simonStartDir: -1
+  simonStartSrc: 'video Map_3 0:06.90 (f207-226): STAGE 07 TIME 0500 hien, cx 512,
+    Simon px 208 = x 720, Y 192 NES (ysec 160 = mat khoi hang 10 cot 42-47), idle_0
+    quay TRAI (flip 0) dung yen 20 frame roi di trai (f227); CVM3 02 MAP3_TIMELINE
+    3a'
+  collision:
+  - '####S...........############################....'
+  - '##...S..........................................'
+  - '##....S.........................................'
+  - '##.....S........................................'
+  - '##......S.......................................'
+  - '##.......S......................................'
+  - '##....######..................................##'
+  - '##.............................................D'
+  - '####..............X#......##...................D'
+  - '##.............................................D'
+  - '##..####..................................######'
+  - '##......########################################'
+  foreground: []
+  stairs:
+  - id: WalkwayEntranceA_stair0
+    dir: 1
+    steps: 12
+    foot: {x: 152, y: 88}
+    top: {x: 64, y: 0}
+    cutBottom: 0
+    cutTop: 1
+  connections:
+  - id: stair_up_to_WalkwayEntranceB
+    kind: 2
+    target: WalkwayEntranceB
+    targetStage: 7
+    trigger:
+      x: 64
+      y: 0
+      width: 96
+      height: 96
+    triggerSimonX: -1
+    stair: WalkwayEntranceA_stair0
+    targetStair: WalkwayEntranceB_stair1
+    targetOrigin: {x: -32, y: -192}
+    entry: {x: 0, y: 0}
+    dir: 0
+    src: 'thang LEN-TRAI 12 bac (152,88)->(64,0) cat mep tren; bac ke tren mep (56,-8)
+      = chan thang WEB (88,184): WEB(x,y) = WEA(x+32, y+192). Video 0:36-0:39.53
+      Simon leo tu bo hang 6 (x 98-161 y 96, f1082-1124) toi x 100-106 Y 66-70 NES;
+      den f1187-1197 (22 tick); WEB 0:39.93 (f1198) cx 0 Simon x 96 ysec 189 van
+      leo len-trai (x 96 -> 66, y 189 -> 158 f1198-1228) - CVM3 02 MAP3_TIMELINE
+      3b: (96,189) trong WEB = (64,-3) trong WEA = ngay tren dinh thang'
+  - id: door_entry
+    kind: 1
+    target: 
+    targetStage: 7
+    trigger:
+      x: 752
+      y: 112
+      width: 8
+      height: 48
+    triggerSimonX: -1
+    stair: 
+    targetStair: 
+    targetOrigin: {x: 0, y: 0}
+    entry: {x: 0, y: 0}
+    dir: 1
+    src: 'cot cua do (216,40,0) x 752-759 hang 7-9 tren khoi hang 10 = cua VAO stage
+      (Simon den tu ban do lau dai B2): trang tri, KHONG noi (nhu door_entry TEA
+      Map 2 / door_end Phantom Bat). Video: Simon bat dau x 720 quay trai va di TRAI,
+      khong lan nao toi mep phai WEA; mep phai section = tuong (TileCollision ngoai
+      luoi = Solid)'
+  markers: []

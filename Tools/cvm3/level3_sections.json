@@ -1,0 +1,75 @@
+{
+ "note": "CVM3 05 - do thi section Map 3 (Level 3 = Block 3 = Stage 7-9). Viet tay, moi so co nguon. Tools/cvm3/build_collision3.py doc + kiem + gop vao Assets/Data/Config/Level/Block3/Level3Map.json. Toa do = px trong section (goc tren-trai vung 192 dong; dong r <-> NES y 32 + r). WalkwayB NOI TRAI 112 px (Tools/cvm3/build_tileset3.py): x_section = x_sheet + 112 = x_video + 112 (cx video -112 <=> cx 0). Video Map_3: toa do Simon = ClaudeNotes/cvm3/ref/data/map3_simon.csv (CVM3 02: world_x = x tam than theo goc sheet, y_sec = mat san); flip 1 = quay PHAI, 0 = quay TRAI.",
+ "conventions": {
+  "levelRowToNesY": 32,
+  "simonStart": "[x tam than Simon, y mat san (dinh o dac duoi chan)] nhu Level 1/2",
+  "simonStartDir": "huong Simon luc vao stage: 1 = quay phai, -1 = quay trai (khoa CVM2 05)",
+  "dir": "Connection kind Door: 1 = cua mep PHAI nhu Map 1 (camera cuon phai, Simon tu di phai, section dich ghep LIEN PHAI: targetOrigin = (rong nguon, 0); kich hoat khi Simon tren dat o day trigger va X >= triggerSimonX = cot cua - 12 nhu Map 1). Block 3 chi co cua PHAI",
+  "targetOrigin": "goc tren-trai section DICH tinh trong toa do section NGUON (dich(x,y) = nguon(x,y) - targetOrigin) - nhu Level 1/2. Thang LEN-TRAI cat mep tren (WEA->WEB, WalkwayA->WalkwayB): bac ke tren mep = (dinh.x - 8, -8) noi chan thang dich (cat day)",
+  "camera": "cx kep [cameraMinX, cameraMaxX] = [0, rong-256]; khong cuon doc; bossLockCx >= 0 = phong boss khoa o cx do: MummyMan 1280 = cameraMaxX (mep PHAI nhu Phantom Bat - NesCameraController.autoBossLock khoa khi cx >= bossLockCx)",
+  "markers": "pit (khe san ma ben duoi trong toi day section = roi ra day = chet Pit; build_collision3.py tu tinh - khuon CVM2 05)"
+ },
+ "order": ["WalkwayEntranceA", "WalkwayEntranceB", "WalkwayA", "WalkwayB", "MummyMan"],
+ "sections": [
+  {
+   "id": "WalkwayEntranceA", "stage": 7, "cameraMinX": 0, "cameraMaxX": 512, "bossLockCx": -1,
+   "simonStart": [720, 160], "simonStartDir": -1,
+   "simonStartSrc": "video Map_3 0:06.90 (f207-226): STAGE 07 TIME 0500 hien, cx 512, Simon px 208 = x 720, Y 192 NES (ysec 160 = mat khoi hang 10 cot 42-47), idle_0 quay TRAI (flip 0) dung yen 20 frame roi di trai (f227); CVM3 02 MAP3_TIMELINE 3a",
+   "foreground": [],
+   "foregroundSrc": "khong co lop FG: video Map_3 Simon ve DE len tuong/cot/tuong da (vd WEA cot xanh 12-13 f1020-1050, phong Mummy cot 84-85 f6850-7031) - nhu Block 2",
+   "markers": [],
+   "connections": [
+    {"id": "stair_up_to_WalkwayEntranceB", "kind": "Stair", "stair": "WalkwayEntranceA_stair0", "target": "WalkwayEntranceB", "targetStair": "WalkwayEntranceB_stair1", "targetOrigin": [-32, -192], "targetStage": 7,
+     "src": "thang LEN-TRAI 12 bac (152,88)->(64,0) cat mep tren; bac ke tren mep (56,-8) = chan thang WEB (88,184): WEB(x,y) = WEA(x+32, y+192). Video 0:36-0:39.53 Simon leo tu bo hang 6 (x 98-161 y 96, f1082-1124) toi x 100-106 Y 66-70 NES; den f1187-1197 (22 tick); WEB 0:39.93 (f1198) cx 0 Simon x 96 ysec 189 van leo len-trai (x 96 -> 66, y 189 -> 158 f1198-1228) - CVM3 02 MAP3_TIMELINE 3b: (96,189) trong WEB = (64,-3) trong WEA = ngay tren dinh thang"},
+    {"id": "door_entry", "kind": "Door", "trigger": [752, 112, 8, 48], "target": "", "targetOrigin": [0, 0], "entry": [0, 0], "targetStage": 7, "dir": 1,
+     "src": "cot cua do (216,40,0) x 752-759 hang 7-9 tren khoi hang 10 = cua VAO stage (Simon den tu ban do lau dai B2): trang tri, KHONG noi (nhu door_entry TEA Map 2 / door_end Phantom Bat). Video: Simon bat dau x 720 quay trai va di TRAI, khong lan nao toi mep phai WEA; mep phai section = tuong (TileCollision ngoai luoi = Solid)"}
+   ]
+  },
+  {
+   "id": "WalkwayEntranceB", "stage": 7, "cameraMinX": 0, "cameraMaxX": 512, "bossLockCx": -1,
+   "simonStart": null,
+   "simonStartSrc": "khong co diem bat dau stage (chi vao qua cau thang tu WEA)",
+   "foreground": [],
+   "markers": [],
+   "connections": [
+    {"id": "stair_down_to_WalkwayEntranceA", "kind": "Stair", "stair": "WalkwayEntranceB_stair1", "target": "WalkwayEntranceA", "targetStair": "WalkwayEntranceA_stair0", "targetOrigin": [32, 192], "targetStage": 7,
+     "src": "nghich dao stair_up_to_WalkwayEntranceB: thang len-trai 4 bac (88,184)->(64,160) cat mep duoi; bac ke duoi mep (96,192) = dinh thang WEA (64,0). Video chi di len"},
+    {"id": "door_to_WalkwayA", "kind": "Door", "trigger": [752, 80, 8, 48], "triggerSimonX": 740, "target": "WalkwayA", "targetOrigin": [768, 0], "entry": [48, 128], "targetStage": 8, "dir": 1,
+     "src": "cot cua do (216,40,0) x 752-759 hang 5-7 tren go hang 8 (cot 46-47, y 128). Video 1:21.20-1:21.33 (f2436-2440): Simon di phai tren khoi (44-45,7) y 112 toi x 740, buoc khoi mep, dap go y 128 o x 742 -> f2440 camera bat dau cuon PHAI (cua #2 cho nguong chinh xac: Simon di tren dat x 735, 739, 740 -> cuon f4338 o X 740 = cot cua 752 - 12, y het Map 1 EH 1528 -> 1516). WalkwayA ghep LIEN PHAI (toa do ghep WEB>WA cua map3_camera.csv: WA x = ghep - 768); cuon 1 ~122 tick -> dung ~158 tick (Simon tu di PHAI tu ghep 742 toi 816 = WA x 48, f2516-2597) -> cuon 2 ~126 tick -> WalkwayA cx 0 Simon x 48 ysec 128 quay phai; STAGE 08 f2645 (MAP3_TIMELINE 3c)"}
+   ]
+  },
+  {
+   "id": "WalkwayA", "stage": 8, "cameraMinX": 0, "cameraMaxX": 512, "bossLockCx": -1,
+   "simonStart": [48, 128], "simonStartDir": 1,
+   "simonStartSrc": "video Map_3 1:28.17 (f2645-2646) sau cua phai #1: WalkwayA cx 0, Simon px 48 = x 48, Y 160 NES (ysec 128 = mat cau hang 8), idle_0 quay PHAI (flip 1); HUD STAGE 08 f2645 (MAP3_TIMELINE 3c)",
+   "foreground": [],
+   "markers": [],
+   "connections": [
+    {"id": "stair_up_to_WalkwayB", "kind": "Stair", "stair": "WalkwayA_stair1", "target": "WalkwayB", "targetStair": "WalkwayB_stair0", "targetOrigin": [368, -192], "targetStage": 8,
+     "src": "thang LEN-TRAI 8 bac (632,56)->(576,0) cat mep tren (noi tiep thang len-phai WalkwayA_stair0 (576,120)->(632,64) qua chieu nghi khoi hang 4 cot 40-43); bac ke tren mep (568,-8) = chan thang WalkwayB (200,184) (sheet 88 + noi 112): WB(x,y) = WA(x-368, y+192). Video 1:44-1:48.73 Simon leo ↗ roi ↖ (camera cx 490->482, Simon giua man x ~610 Y 63 NES); den f3263-3274 (24 tick); WalkwayB 1:49.17 (f3275) cx -33 (= 79 sau noi) - Simon x ~95 sheet (= 207 sau noi) chan thang (MAP3_TIMELINE 3b)"}
+   ]
+  },
+  {
+   "id": "WalkwayB", "stage": 8, "cameraMinX": 0, "cameraMaxX": 624, "bossLockCx": -1,
+   "simonStart": null,
+   "simonStartSrc": "khong co diem bat dau stage (chi vao qua cau thang tu WalkwayA). Bien camera [0, 624] sau noi = cx video [-112, 512]: video camera bam Simon (cx = X - 128) toi cx -112 khi Simon o mut trai cau x 16 sheet (f3483-3485, 1:56.10) - CVM3 02 MAP3_TIMELINE 2a",
+   "foreground": [],
+   "markers": [],
+   "connections": [
+    {"id": "stair_down_to_WalkwayA", "kind": "Stair", "stair": "WalkwayB_stair0", "target": "WalkwayA", "targetStair": "WalkwayA_stair1", "targetOrigin": [-368, 192], "targetStage": 8,
+     "src": "nghich dao stair_up_to_WalkwayB: thang len-trai 8 bac (200,184)->(144,128) cat mep duoi; bac ke duoi mep (208,192) = dinh thang WalkwayA (576,0). Video chi di len"},
+    {"id": "door_to_MummyMan", "kind": "Door", "trigger": [864, 48, 8, 48], "triggerSimonX": 852, "target": "MummyMan", "targetOrigin": [880, 0], "entry": [48, 96], "targetStage": 9, "dir": 1,
+     "src": "cot cua do (216,40,0) x 752-759 sheet (= 864-871 sau noi) hang 3-5 tren khoi hang 6 (cot 53-54, y 96). Video 2:24.43-2:24.60 (f4333-4338): Simon di phai tren khoi y 96 x 735, 736, 739, 740 (sheet) roi f4338 camera bat dau cuon PHAI o X 740 sheet = 852 sau noi = cot cua - 12 (nhu Map 1). MummyMan ghep LIEN PHAI (toa do ghep WB>MM: MM x = ghep - 768 sheet); cuon 1 ~126 tick -> dung ~162 tick (Simon tu di tu ghep 740 toi 816 = MM x 48, f4413-4535) -> cuon 2 ~124 tick -> MummyMan cx 0 Simon x 48 ysec 96 quay phai; STAGE 09 f4546 (MAP3_TIMELINE 3c)"}
+   ]
+  },
+  {
+   "id": "MummyMan", "stage": 9, "cameraMinX": 0, "cameraMaxX": 1280, "bossLockCx": 1280,
+   "bossLockSrc": "video Map_3 3:17.70 (f5931) camera bam Simon dat cx 1280 (Simon wx >= 1408) roi khong lui nua du Simon di lui toi wx 1383 => khoa o mep PHAI (cx 1280 = cameraMaxX, nhu Phantom Bat 512); Boss_Map_3 khoa f374 (12.47 s) - MAP3_TIMELINE 3d",
+   "simonStart": [48, 96], "simonStartDir": 1,
+   "simonStartSrc": "video Map_3 2:31.17 (f4535) sau cua phai #2: Simon x ghep 816 = MM x 48, Y 128 NES (ysec 96 = mat cau hang 6), idle_0 quay PHAI (flip 1); HUD STAGE 09 f4546; cx 0 (MAP3_TIMELINE 3c)",
+   "foreground": [],
+   "markers": [],
+   "connections": []
+  }
+ ]
+}

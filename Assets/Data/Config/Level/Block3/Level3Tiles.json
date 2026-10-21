@@ -1,0 +1,235 @@
+{
+ "note": "CVM3 05 - sinh boi Tools/cvm3/build_tileset3.py; KHONG sua tay",
+ "sheet": "Art_Source/spriters-resource/level3_walkway.png",
+ "sheetSha256": "c8bfc7ef3da18110c4f226276e7ae82e6611d2c4f3246517f5578bd476c44eee",
+ "tileSize": 8,
+ "columns": 16,
+ "count": 125,
+ "png": "Assets/Data/Art/Level/Block3/level3_tiles.png",
+ "levelRowToNesY": 32,
+ "pads": [
+  {
+   "section": "WalkwayB",
+   "left": 112,
+   "sky": [
+    "WalkwayB",
+    0,
+    0
+   ],
+   "cells": [
+    [
+     -32,
+     136,
+     "WalkwayB",
+     448,
+     72
+    ],
+    [
+     -8,
+     136,
+     "WalkwayB",
+     472,
+     72
+    ],
+    [
+     -32,
+     144,
+     "WalkwayB",
+     96,
+     0
+    ],
+    [
+     -24,
+     144,
+     "WalkwayB",
+     448,
+     72
+    ],
+    [
+     -16,
+     144,
+     "WalkwayB",
+     472,
+     72
+    ],
+    [
+     -8,
+     144,
+     "WalkwayB",
+     104,
+     0
+    ],
+    [
+     -32,
+     152,
+     "WalkwayB",
+     96,
+     8
+    ],
+    [
+     -24,
+     152,
+     "WalkwayB",
+     104,
+     8
+    ],
+    [
+     -16,
+     152,
+     "WalkwayB",
+     96,
+     8
+    ],
+    [
+     -8,
+     152,
+     "WalkwayB",
+     104,
+     0
+    ],
+    [
+     -32,
+     160,
+     "WalkwayB",
+     64,
+     64
+    ],
+    [
+     -24,
+     160,
+     "WalkwayB",
+     72,
+     64
+    ],
+    [
+     -16,
+     160,
+     "WalkwayB",
+     80,
+     64
+    ],
+    [
+     -8,
+     160,
+     "WalkwayB",
+     128,
+     0
+    ],
+    [
+     -16,
+     168,
+     "WalkwayB",
+     80,
+     72
+    ],
+    [
+     -8,
+     168,
+     "WalkwayB",
+     80,
+     64
+    ],
+    [
+     -8,
+     176,
+     "WalkwayB",
+     80,
+     72
+    ]
+   ],
+   "src": "CVM3 05: camera WalkwayB toi cx -112 (video Map_3 f3483 1:56.10, CVM3 02 MAP3_TIMELINE 2a) => noi trai 112 px = bo 16 nho nhat >= 112. Noi dung do bang nen trung vi video (424 frame cx < 128, LUT video->sheet CVM3 02) so moi tile 8x8 cua sheet: x -112..-33 troi thuan, x -32..-1 hang 136-183 = 17 o da reu mep cau chep tu o co san CUA CHINH WalkwayB (gach reu x 96-111 y 0-15, mep da x 64-87 y 64-79, x 448/472 y 72; rms 8-31, o nhi >= 86); kiem chung x 0..63: 176/176 o dung. Hang 0-15 sau HUD khong thay => troi. Script do: Tools/cvm3/wb_pad3.py (anh _cache/05/work/wb_pad_compare.png; ban luu ref/nes/cvm3_05_wb_pad_compare.png)"
+  }
+ ],
+ "sections": [
+  {
+   "id": "WalkwayEntranceA",
+   "inventoryId": "WalkwayEntranceA",
+   "stage": 7,
+   "sheetRect": [
+    1,
+    425,
+    768,
+    192
+   ],
+   "padLeft": 0,
+   "width": 768,
+   "height": 192,
+   "cols8": 96,
+   "rows8": 24,
+   "uniqueTiles": 68,
+   "csv": "Assets/Data/Config/Level/Block3/WalkwayEntranceA_tiles.csv"
+  },
+  {
+   "id": "WalkwayEntranceB",
+   "inventoryId": "WalkwayEntranceB",
+   "stage": 7,
+   "sheetRect": [
+    1,
+    218,
+    768,
+    192
+   ],
+   "padLeft": 0,
+   "width": 768,
+   "height": 192,
+   "cols8": 96,
+   "rows8": 24,
+   "uniqueTiles": 47,
+   "csv": "Assets/Data/Config/Level/Block3/WalkwayEntranceB_tiles.csv"
+  },
+  {
+   "id": "WalkwayA",
+   "inventoryId": "WalkwayA",
+   "stage": 8,
+   "sheetRect": [
+    774,
+    218,
+    768,
+    192
+   ],
+   "padLeft": 0,
+   "width": 768,
+   "height": 192,
+   "cols8": 96,
+   "rows8": 24,
+   "uniqueTiles": 60,
+   "csv": "Assets/Data/Config/Level/Block3/WalkwayA_tiles.csv"
+  },
+  {
+   "id": "WalkwayB",
+   "inventoryId": "WalkwayB",
+   "stage": 8,
+   "sheetRect": [
+    1286,
+    11,
+    768,
+    192
+   ],
+   "padLeft": 112,
+   "width": 880,
+   "height": 192,
+   "cols8": 110,
+   "rows8": 24,
+   "uniqueTiles": 60,
+   "csv": "Assets/Data/Config/Level/Block3/WalkwayB_tiles.csv"
+  },
+  {
+   "id": "MummyMan",
+   "inventoryId": "MummyMan",
+   "stage": 9,
+   "sheetRect": [
+    2059,
+    11,
+    1536,
+    192
+   ],
+   "padLeft": 0,
+   "width": 1536,
+   "height": 192,
+   "cols8": 192,
+   "rows8": 24,
+   "uniqueTiles": 100,
+   "csv": "Assets/Data/Config/Level/Block3/MummyMan_tiles.csv"
+  }
+ ]
+}

@@ -1,0 +1,113 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c4c25d45acf3c14e9c6005b7044ce18, type: 3}
+  m_Name: WalkwayB
+  m_EditorClassIdentifier: 
+  id: WalkwayB
+  stage: 8
+  width: 880
+  height: 192
+  cols: 55
+  rows: 12
+  cameraMinX: 0
+  cameraMaxX: 624
+  bossLockCx: -1
+  hasSimonStart: 0
+  simonStart: {x: 0, y: 0}
+  simonStartDir: 0
+  simonStartSrc: 'khong co diem bat dau stage (chi vao qua cau thang tu WalkwayA).
+    Bien camera [0, 624] sau noi = cx video [-112, 512]: video camera bam Simon (cx
+    = X - 128) toi cx -112 khi Simon o mut trai cau x 16 sheet (f3483-3485, 1:56.10)
+    - CVM3 02 MAP3_TIMELINE 2a'
+  collision:
+  - .....................................................##
+  - .....................................................##
+  - .....................................................##
+  - ......................................................D
+  - ......................................................D
+  - ......................................................D
+  - ...................................................####
+  - .................................................##..##
+  - .......##=#####################..######..########....##
+  - ..........S..........................................##
+  - ...........S...##....................................##
+  - ............S........................................##
+  foreground: []
+  stairs:
+  - id: WalkwayB_stair0
+    dir: 1
+    steps: 8
+    foot: {x: 200, y: 184}
+    top: {x: 144, y: 128}
+    cutBottom: 1
+    cutTop: 0
+  connections:
+  - id: stair_down_to_WalkwayA
+    kind: 2
+    target: WalkwayA
+    targetStage: 8
+    trigger:
+      x: 144
+      y: 128
+      width: 64
+      height: 64
+    triggerSimonX: -1
+    stair: WalkwayB_stair0
+    targetStair: WalkwayA_stair1
+    targetOrigin: {x: -368, y: 192}
+    entry: {x: 0, y: 0}
+    dir: 0
+    src: 'nghich dao stair_up_to_WalkwayB: thang len-trai 8 bac (200,184)->(144,128)
+      cat mep duoi; bac ke duoi mep (208,192) = dinh thang WalkwayA (576,0). Video
+      chi di len'
+  - id: door_to_MummyMan
+    kind: 1
+    target: MummyMan
+    targetStage: 9
+    trigger:
+      x: 864
+      y: 48
+      width: 8
+      height: 48
+    triggerSimonX: 852
+    stair: 
+    targetStair: 
+    targetOrigin: {x: 880, y: 0}
+    entry: {x: 48, y: 96}
+    dir: 1
+    src: 'cot cua do (216,40,0) x 752-759 sheet (= 864-871 sau noi) hang 3-5 tren
+      khoi hang 6 (cot 53-54, y 96). Video 2:24.43-2:24.60 (f4333-4338): Simon di
+      phai tren khoi y 96 x 735, 736, 739, 740 (sheet) roi f4338 camera bat dau cuon
+      PHAI o X 740 sheet = 852 sau noi = cot cua - 12 (nhu Map 1). MummyMan ghep
+      LIEN PHAI (toa do ghep WB>MM: MM x = ghep - 768 sheet); cuon 1 ~126 tick ->
+      dung ~162 tick (Simon tu di tu ghep 740 toi 816 = MM x 48, f4413-4535) -> cuon
+      2 ~124 tick -> MummyMan cx 0 Simon x 48 ysec 96 quay phai; STAGE 09 f4546 (MAP3_TIMELINE
+      3c)'
+  markers:
+  - id: pit_8_31
+    kind: pit
+    rect:
+      x: 496
+      y: 128
+      width: 32
+      height: 64
+    src: 'tu dong (build_collision3): khe san hang 8 cot 31-32 (2 ben dac), cot 31-32
+      trong toi day section => roi ra day = chet Pit (TileCollision.CheckDeadly)'
+  - id: pit_8_39
+    kind: pit
+    rect:
+      x: 624
+      y: 128
+      width: 32
+      height: 64
+    src: 'tu dong (build_collision3): khe san hang 8 cot 39-40 (2 ben dac), cot 39-40
+      trong toi day section => roi ra day = chet Pit (TileCollision.CheckDeadly)'

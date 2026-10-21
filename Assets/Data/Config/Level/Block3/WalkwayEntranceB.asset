@@ -1,0 +1,157 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c4c25d45acf3c14e9c6005b7044ce18, type: 3}
+  m_Name: WalkwayEntranceB
+  m_EditorClassIdentifier: 
+  id: WalkwayEntranceB
+  stage: 7
+  width: 768
+  height: 192
+  cols: 48
+  rows: 12
+  cameraMinX: 0
+  cameraMaxX: 512
+  bossLockCx: -1
+  hasSimonStart: 0
+  simonStart: {x: 0, y: 0}
+  simonStartDir: 0
+  simonStartSrc: khong co diem bat dau stage (chi vao qua cau thang tu WEA)
+  collision:
+  - '##............................................##'
+  - '##............................................##'
+  - '##............................................##'
+  - '##............................................##'
+  - '##...........................S................##'
+  - '##..........................S..................D'
+  - '##.....S##....##..................##S..........D'
+  - '##....S.##....................##.....S......##.D'
+  - '##...S...................S##..........S.......##'
+  - '##..S...................S..............S..##..##'
+  - '####=#....##########..##....##........####....##'
+  - '####.S........................####............##'
+  foreground: []
+  stairs:
+  - id: WalkwayEntranceB_stair0
+    dir: 0
+    steps: 8
+    foot: {x: 64, y: 152}
+    top: {x: 120, y: 96}
+    cutBottom: 0
+    cutTop: 0
+  - id: WalkwayEntranceB_stair1
+    dir: 1
+    steps: 4
+    foot: {x: 88, y: 184}
+    top: {x: 64, y: 160}
+    cutBottom: 1
+    cutTop: 0
+  - id: WalkwayEntranceB_stair2
+    dir: 0
+    steps: 4
+    foot: {x: 384, y: 152}
+    top: {x: 408, y: 128}
+    cutBottom: 0
+    cutTop: 0
+  - id: WalkwayEntranceB_stair3
+    dir: 0
+    steps: 4
+    foot: {x: 448, y: 88}
+    top: {x: 472, y: 64}
+    cutBottom: 0
+    cutTop: 0
+  - id: WalkwayEntranceB_stair4
+    dir: 1
+    steps: 8
+    foot: {x: 632, y: 152}
+    top: {x: 576, y: 96}
+    cutBottom: 0
+    cutTop: 0
+  connections:
+  - id: stair_down_to_WalkwayEntranceA
+    kind: 2
+    target: WalkwayEntranceA
+    targetStage: 7
+    trigger:
+      x: 64
+      y: 160
+      width: 32
+      height: 32
+    triggerSimonX: -1
+    stair: WalkwayEntranceB_stair1
+    targetStair: WalkwayEntranceA_stair0
+    targetOrigin: {x: 32, y: 192}
+    entry: {x: 0, y: 0}
+    dir: 0
+    src: 'nghich dao stair_up_to_WalkwayEntranceB: thang len-trai 4 bac (88,184)->(64,160)
+      cat mep duoi; bac ke duoi mep (96,192) = dinh thang WEA (64,0). Video chi di
+      len'
+  - id: door_to_WalkwayA
+    kind: 1
+    target: WalkwayA
+    targetStage: 8
+    trigger:
+      x: 752
+      y: 80
+      width: 8
+      height: 48
+    triggerSimonX: 740
+    stair: 
+    targetStair: 
+    targetOrigin: {x: 768, y: 0}
+    entry: {x: 48, y: 128}
+    dir: 1
+    src: 'cot cua do (216,40,0) x 752-759 hang 5-7 tren go hang 8 (cot 46-47, y 128).
+      Video 1:21.20-1:21.33 (f2436-2440): Simon di phai tren khoi (44-45,7) y 112
+      toi x 740, buoc khoi mep, dap go y 128 o x 742 -> f2440 camera bat dau cuon
+      PHAI (cua #2 cho nguong chinh xac: Simon di tren dat x 735, 739, 740 -> cuon
+      f4338 o X 740 = cot cua 752 - 12, y het Map 1 EH 1528 -> 1516). WalkwayA ghep
+      LIEN PHAI (toa do ghep WEB>WA cua map3_camera.csv: WA x = ghep - 768); cuon
+      1 ~122 tick -> dung ~158 tick (Simon tu di PHAI tu ghep 742 toi 816 = WA x
+      48, f2516-2597) -> cuon 2 ~126 tick -> WalkwayA cx 0 Simon x 48 ysec 128 quay
+      phai; STAGE 08 f2645 (MAP3_TIMELINE 3c)'
+  markers:
+  - id: pit_10_6
+    kind: pit
+    rect:
+      x: 96
+      y: 160
+      width: 64
+      height: 32
+    src: 'tu dong (build_collision3): khe san hang 10 cot 6-9 (2 ben dac), cot 6-9
+      trong toi day section => roi ra day = chet Pit (TileCollision.CheckDeadly)'
+  - id: pit_10_20
+    kind: pit
+    rect:
+      x: 320
+      y: 160
+      width: 32
+      height: 32
+    src: 'tu dong (build_collision3): khe san hang 10 cot 20-21 (2 ben dac), cot
+      20-21 trong toi day section => roi ra day = chet Pit (TileCollision.CheckDeadly)'
+  - id: pit_10_24
+    kind: pit
+    rect:
+      x: 384
+      y: 160
+      width: 64
+      height: 32
+    src: 'tu dong (build_collision3): khe san hang 10 cot 24-27 (2 ben dac), cot
+      24-27 trong toi day section => roi ra day = chet Pit (TileCollision.CheckDeadly)'
+  - id: pit_10_34
+    kind: pit
+    rect:
+      x: 544
+      y: 160
+      width: 64
+      height: 32
+    src: 'tu dong (build_collision3): khe san hang 10 cot 30-37 (2 ben dac), cot
+      34-37 trong toi day section => roi ra day = chet Pit (TileCollision.CheckDeadly)'

@@ -1,0 +1,82 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c4c25d45acf3c14e9c6005b7044ce18, type: 3}
+  m_Name: WalkwayA
+  m_EditorClassIdentifier: 
+  id: WalkwayA
+  stage: 8
+  width: 768
+  height: 192
+  cols: 48
+  rows: 12
+  cameraMinX: 0
+  cameraMaxX: 512
+  bossLockCx: -1
+  hasSimonStart: 1
+  simonStart: {x: 48, y: 128}
+  simonStartDir: 1
+  simonStartSrc: 'video Map_3 1:28.17 (f2645-2646) sau cua phai #1: WalkwayA cx 0,
+    Simon px 48 = x 48, Y 160 NES (ysec 128 = mat cau hang 8), idle_0 quay PHAI (flip
+    1); HUD STAGE 08 f2645 (MAP3_TIMELINE 3c)'
+  collision:
+  - ....................................S.........##
+  - .....................................S........##
+  - ..##..................................S.......##
+  - .......................................S......##
+  - .......................................S####..##
+  - ......................................S.......##
+  - .....................................S........##
+  - ....................................S.........##
+  - '################################################'
+  - ..............................................##
+  - ..............................................##
+  - ..............................................##
+  foreground: []
+  stairs:
+  - id: WalkwayA_stair0
+    dir: 0
+    steps: 8
+    foot: {x: 576, y: 120}
+    top: {x: 632, y: 64}
+    cutBottom: 0
+    cutTop: 0
+  - id: WalkwayA_stair1
+    dir: 1
+    steps: 8
+    foot: {x: 632, y: 56}
+    top: {x: 576, y: 0}
+    cutBottom: 0
+    cutTop: 1
+  connections:
+  - id: stair_up_to_WalkwayB
+    kind: 2
+    target: WalkwayB
+    targetStage: 8
+    trigger:
+      x: 576
+      y: 0
+      width: 64
+      height: 64
+    triggerSimonX: -1
+    stair: WalkwayA_stair1
+    targetStair: WalkwayB_stair0
+    targetOrigin: {x: 368, y: -192}
+    entry: {x: 0, y: 0}
+    dir: 0
+    src: "thang LEN-TRAI 8 bac (632,56)->(576,0) cat mep tren (noi tiep thang len-phai
+      WalkwayA_stair0 (576,120)->(632,64) qua chieu nghi khoi hang 4 cot 40-43);
+      bac ke tren mep (568,-8) = chan thang WalkwayB (200,184) (sheet 88 + noi 112):
+      WB(x,y) = WA(x-368, y+192). Video 1:44-1:48.73 Simon leo \u2197 roi \u2196
+      (camera cx 490->482, Simon giua man x ~610 Y 63 NES); den f3263-3274 (24 tick);
+      WalkwayB 1:49.17 (f3275) cx -33 (= 79 sau noi) - Simon x ~95 sheet (= 207 sau
+      noi) chan thang (MAP3_TIMELINE 3b)"
+  markers: []

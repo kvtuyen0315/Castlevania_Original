@@ -1,0 +1,76 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c4c25d45acf3c14e9c6005b7044ce18, type: 3}
+  m_Name: MummyMan
+  m_EditorClassIdentifier: 
+  id: MummyMan
+  stage: 9
+  width: 1536
+  height: 192
+  cols: 96
+  rows: 12
+  cameraMinX: 0
+  cameraMaxX: 1280
+  bossLockCx: 1280
+  hasSimonStart: 1
+  simonStart: {x: 48, y: 96}
+  simonStartDir: 1
+  simonStartSrc: 'video Map_3 2:31.17 (f4535) sau cua phai #2: Simon x ghep 816 =
+    MM x 48, Y 128 NES (ysec 96 = mat cau hang 6), idle_0 quay PHAI (flip 1); HUD
+    STAGE 09 f4546; cx 0 (MAP3_TIMELINE 3c) | camera: video Map_3 3:17.70 (f5931)
+    camera bam Simon dat cx 1280 (Simon wx >= 1408) roi khong lui nua du Simon di
+    lui toi wx 1383 => khoa o mep PHAI (cx 1280 = cameraMaxX, nhu Phantom Bat 512);
+    Boss_Map_3 khoa f374 (12.47 s) - MAP3_TIMELINE 3d'
+  collision:
+  - ............................................................................##..................
+  - ............................................................................##..................
+  - '##..........................................................................##..................'
+  - ................................................................................................
+  - ................................................................................................
+  - ................................................................................................
+  - '################################################..##..##..######################................'
+  - ............................................................................######..............
+  - ............................................................................##....#.............
+  - ............................................................................##.....X............
+  - ........................................................................##..##..................
+  - ............................................................................##..################
+  foreground: []
+  stairs: []
+  connections: []
+  markers:
+  - id: pit_6_48
+    kind: pit
+    rect:
+      x: 768
+      y: 96
+      width: 32
+      height: 96
+    src: 'tu dong (build_collision3): khe san hang 6 cot 48-49 (2 ben dac), cot 48-49
+      trong toi day section => roi ra day = chet Pit (TileCollision.CheckDeadly)'
+  - id: pit_6_52
+    kind: pit
+    rect:
+      x: 832
+      y: 96
+      width: 32
+      height: 96
+    src: 'tu dong (build_collision3): khe san hang 6 cot 52-53 (2 ben dac), cot 52-53
+      trong toi day section => roi ra day = chet Pit (TileCollision.CheckDeadly)'
+  - id: pit_6_56
+    kind: pit
+    rect:
+      x: 896
+      y: 96
+      width: 32
+      height: 96
+    src: 'tu dong (build_collision3): khe san hang 6 cot 56-57 (2 ben dac), cot 56-57
+      trong toi day section => roi ra day = chet Pit (TileCollision.CheckDeadly)'

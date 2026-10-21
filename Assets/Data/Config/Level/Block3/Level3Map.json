@@ -1,0 +1,1450 @@
+{
+ "note": "CVM3 05 - sinh boi Tools/cvm3/build_collision3.py tu sheet (WalkwayB noi trai 112 px) + level3_collision_overrides.json + level3_sections.json; KHONG sua tay",
+ "cellSize": 16,
+ "levelRowToNesY": 32,
+ "types": [
+  {
+   "name": "Empty",
+   "char": "."
+  },
+  {
+   "name": "Solid",
+   "char": "#"
+  },
+  {
+   "name": "Stair",
+   "char": "S"
+  },
+  {
+   "name": "StairFloor",
+   "char": "="
+  },
+  {
+   "name": "Water",
+   "char": "~"
+  },
+  {
+   "name": "Pit",
+   "char": "P"
+  },
+  {
+   "name": "Door",
+   "char": "D"
+  },
+  {
+   "name": "Breakable",
+   "char": "X"
+  },
+  {
+   "name": "Hazard",
+   "char": "!"
+  }
+ ],
+ "order": [
+  "WalkwayEntranceA",
+  "WalkwayEntranceB",
+  "WalkwayA",
+  "WalkwayB",
+  "MummyMan"
+ ],
+ "sections": [
+  {
+   "id": "WalkwayEntranceA",
+   "stage": 7,
+   "width": 768,
+   "height": 192,
+   "cols": 48,
+   "rows": 12,
+   "cameraMinX": 0,
+   "cameraMaxX": 512,
+   "bossLockCx": -1,
+   "hasSimonStart": true,
+   "simonStart": [
+    720,
+    160
+   ],
+   "simonStartDir": -1,
+   "simonStartSrc": "video Map_3 0:06.90 (f207-226): STAGE 07 TIME 0500 hien, cx 512, Simon px 208 = x 720, Y 192 NES (ysec 160 = mat khoi hang 10 cot 42-47), idle_0 quay TRAI (flip 0) dung yen 20 frame roi di trai (f227); CVM3 02 MAP3_TIMELINE 3a",
+   "collision": [
+    "####S...........############################....",
+    "##...S..........................................",
+    "##....S.........................................",
+    "##.....S........................................",
+    "##......S.......................................",
+    "##.......S......................................",
+    "##....######..................................##",
+    "##.............................................D",
+    "####..............X#......##...................D",
+    "##.............................................D",
+    "##..####..................................######",
+    "##......########################################"
+   ],
+   "counts": {
+    "Empty": 449,
+    "Solid": 117,
+    "Stair": 6,
+    "StairFloor": 0,
+    "Water": 0,
+    "Pit": 0,
+    "Door": 3,
+    "Breakable": 1,
+    "Hazard": 0
+   },
+   "foreground": [],
+   "stairs": [
+    {
+     "id": "WalkwayEntranceA_stair0",
+     "dir": "UpLeft",
+     "steps": 12,
+     "foot": [
+      152,
+      88
+     ],
+     "top": [
+      64,
+      0
+     ],
+     "cutBottom": false,
+     "cutTop": true
+    }
+   ],
+   "markers": [],
+   "connections": [
+    {
+     "id": "stair_up_to_WalkwayEntranceB",
+     "kind": "Stair",
+     "target": "WalkwayEntranceB",
+     "targetStage": 7,
+     "trigger": [
+      64,
+      0,
+      96,
+      96
+     ],
+     "triggerSimonX": -1,
+     "stair": "WalkwayEntranceA_stair0",
+     "targetStair": "WalkwayEntranceB_stair1",
+     "targetOrigin": [
+      -32,
+      -192
+     ],
+     "entry": [
+      0,
+      0
+     ],
+     "src": "thang LEN-TRAI 12 bac (152,88)->(64,0) cat mep tren; bac ke tren mep (56,-8) = chan thang WEB (88,184): WEB(x,y) = WEA(x+32, y+192). Video 0:36-0:39.53 Simon leo tu bo hang 6 (x 98-161 y 96, f1082-1124) toi x 100-106 Y 66-70 NES; den f1187-1197 (22 tick); WEB 0:39.93 (f1198) cx 0 Simon x 96 ysec 189 van leo len-trai (x 96 -> 66, y 189 -> 158 f1198-1228) - CVM3 02 MAP3_TIMELINE 3b: (96,189) trong WEB = (64,-3) trong WEA = ngay tren dinh thang"
+    },
+    {
+     "id": "door_entry",
+     "kind": "Door",
+     "target": "",
+     "targetStage": 7,
+     "trigger": [
+      752,
+      112,
+      8,
+      48
+     ],
+     "triggerSimonX": -1,
+     "stair": "",
+     "targetStair": "",
+     "targetOrigin": [
+      0,
+      0
+     ],
+     "entry": [
+      0,
+      0
+     ],
+     "dir": 1,
+     "src": "cot cua do (216,40,0) x 752-759 hang 7-9 tren khoi hang 10 = cua VAO stage (Simon den tu ban do lau dai B2): trang tri, KHONG noi (nhu door_entry TEA Map 2 / door_end Phantom Bat). Video: Simon bat dau x 720 quay trai va di TRAI, khong lan nao toi mep phai WEA; mep phai section = tuong (TileCollision ngoai luoi = Solid)"
+    }
+   ]
+  },
+  {
+   "id": "WalkwayEntranceB",
+   "stage": 7,
+   "width": 768,
+   "height": 192,
+   "cols": 48,
+   "rows": 12,
+   "cameraMinX": 0,
+   "cameraMaxX": 512,
+   "bossLockCx": -1,
+   "hasSimonStart": false,
+   "simonStart": [
+    0,
+    0
+   ],
+   "simonStartSrc": "khong co diem bat dau stage (chi vao qua cau thang tu WEA)",
+   "collision": [
+    "##............................................##",
+    "##............................................##",
+    "##............................................##",
+    "##............................................##",
+    "##...........................S................##",
+    "##..........................S..................D",
+    "##.....S##....##..................##S..........D",
+    "##....S.##....................##.....S......##.D",
+    "##...S...................S##..........S.......##",
+    "##..S...................S..............S..##..##",
+    "####=#....##########..##....##........####....##",
+    "####.S........................####............##"
+   ],
+   "counts": {
+    "Empty": 474,
+    "Solid": 85,
+    "Stair": 13,
+    "StairFloor": 1,
+    "Water": 0,
+    "Pit": 0,
+    "Door": 3,
+    "Breakable": 0,
+    "Hazard": 0
+   },
+   "foreground": [],
+   "stairs": [
+    {
+     "id": "WalkwayEntranceB_stair0",
+     "dir": "UpRight",
+     "steps": 8,
+     "foot": [
+      64,
+      152
+     ],
+     "top": [
+      120,
+      96
+     ],
+     "cutBottom": false,
+     "cutTop": false
+    },
+    {
+     "id": "WalkwayEntranceB_stair1",
+     "dir": "UpLeft",
+     "steps": 4,
+     "foot": [
+      88,
+      184
+     ],
+     "top": [
+      64,
+      160
+     ],
+     "cutBottom": true,
+     "cutTop": false
+    },
+    {
+     "id": "WalkwayEntranceB_stair2",
+     "dir": "UpRight",
+     "steps": 4,
+     "foot": [
+      384,
+      152
+     ],
+     "top": [
+      408,
+      128
+     ],
+     "cutBottom": false,
+     "cutTop": false
+    },
+    {
+     "id": "WalkwayEntranceB_stair3",
+     "dir": "UpRight",
+     "steps": 4,
+     "foot": [
+      448,
+      88
+     ],
+     "top": [
+      472,
+      64
+     ],
+     "cutBottom": false,
+     "cutTop": false
+    },
+    {
+     "id": "WalkwayEntranceB_stair4",
+     "dir": "UpLeft",
+     "steps": 8,
+     "foot": [
+      632,
+      152
+     ],
+     "top": [
+      576,
+      96
+     ],
+     "cutBottom": false,
+     "cutTop": false
+    }
+   ],
+   "markers": [
+    {
+     "id": "pit_10_6",
+     "kind": "pit",
+     "rect": [
+      96,
+      160,
+      64,
+      32
+     ],
+     "src": "tu dong (build_collision3): khe san hang 10 cot 6-9 (2 ben dac), cot 6-9 trong toi day section => roi ra day = chet Pit (TileCollision.CheckDeadly)"
+    },
+    {
+     "id": "pit_10_20",
+     "kind": "pit",
+     "rect": [
+      320,
+      160,
+      32,
+      32
+     ],
+     "src": "tu dong (build_collision3): khe san hang 10 cot 20-21 (2 ben dac), cot 20-21 trong toi day section => roi ra day = chet Pit (TileCollision.CheckDeadly)"
+    },
+    {
+     "id": "pit_10_24",
+     "kind": "pit",
+     "rect": [
+      384,
+      160,
+      64,
+      32
+     ],
+     "src": "tu dong (build_collision3): khe san hang 10 cot 24-27 (2 ben dac), cot 24-27 trong toi day section => roi ra day = chet Pit (TileCollision.CheckDeadly)"
+    },
+    {
+     "id": "pit_10_34",
+     "kind": "pit",
+     "rect": [
+      544,
+      160,
+      64,
+      32
+     ],
+     "src": "tu dong (build_collision3): khe san hang 10 cot 30-37 (2 ben dac), cot 34-37 trong toi day section => roi ra day = chet Pit (TileCollision.CheckDeadly)"
+    }
+   ],
+   "connections": [
+    {
+     "id": "stair_down_to_WalkwayEntranceA",
+     "kind": "Stair",
+     "target": "WalkwayEntranceA",
+     "targetStage": 7,
+     "trigger": [
+      64,
+      160,
+      32,
+      32
+     ],
+     "triggerSimonX": -1,
+     "stair": "WalkwayEntranceB_stair1",
+     "targetStair": "WalkwayEntranceA_stair0",
+     "targetOrigin": [
+      32,
+      192
+     ],
+     "entry": [
+      0,
+      0
+     ],
+     "src": "nghich dao stair_up_to_WalkwayEntranceB: thang len-trai 4 bac (88,184)->(64,160) cat mep duoi; bac ke duoi mep (96,192) = dinh thang WEA (64,0). Video chi di len"
+    },
+    {
+     "id": "door_to_WalkwayA",
+     "kind": "Door",
+     "target": "WalkwayA",
+     "targetStage": 8,
+     "trigger": [
+      752,
+      80,
+      8,
+      48
+     ],
+     "triggerSimonX": 740,
+     "stair": "",
+     "targetStair": "",
+     "targetOrigin": [
+      768,
+      0
+     ],
+     "entry": [
+      48,
+      128
+     ],
+     "dir": 1,
+     "src": "cot cua do (216,40,0) x 752-759 hang 5-7 tren go hang 8 (cot 46-47, y 128). Video 1:21.20-1:21.33 (f2436-2440): Simon di phai tren khoi (44-45,7) y 112 toi x 740, buoc khoi mep, dap go y 128 o x 742 -> f2440 camera bat dau cuon PHAI (cua #2 cho nguong chinh xac: Simon di tren dat x 735, 739, 740 -> cuon f4338 o X 740 = cot cua 752 - 12, y het Map 1 EH 1528 -> 1516). WalkwayA ghep LIEN PHAI (toa do ghep WEB>WA cua map3_camera.csv: WA x = ghep - 768); cuon 1 ~122 tick -> dung ~158 tick (Simon tu di PHAI tu ghep 742 toi 816 = WA x 48, f2516-2597) -> cuon 2 ~126 tick -> WalkwayA cx 0 Simon x 48 ysec 128 quay phai; STAGE 08 f2645 (MAP3_TIMELINE 3c)"
+    }
+   ]
+  },
+  {
+   "id": "WalkwayA",
+   "stage": 8,
+   "width": 768,
+   "height": 192,
+   "cols": 48,
+   "rows": 12,
+   "cameraMinX": 0,
+   "cameraMaxX": 512,
+   "bossLockCx": -1,
+   "hasSimonStart": true,
+   "simonStart": [
+    48,
+    128
+   ],
+   "simonStartDir": 1,
+   "simonStartSrc": "video Map_3 1:28.17 (f2645-2646) sau cua phai #1: WalkwayA cx 0, Simon px 48 = x 48, Y 160 NES (ysec 128 = mat cau hang 8), idle_0 quay PHAI (flip 1); HUD STAGE 08 f2645 (MAP3_TIMELINE 3c)",
+   "collision": [
+    "....................................S.........##",
+    ".....................................S........##",
+    "..##..................................S.......##",
+    ".......................................S......##",
+    ".......................................S####..##",
+    "......................................S.......##",
+    ".....................................S........##",
+    "....................................S.........##",
+    "################################################",
+    "..............................................##",
+    "..............................................##",
+    "..............................................##"
+   ],
+   "counts": {
+    "Empty": 492,
+    "Solid": 76,
+    "Stair": 8,
+    "StairFloor": 0,
+    "Water": 0,
+    "Pit": 0,
+    "Door": 0,
+    "Breakable": 0,
+    "Hazard": 0
+   },
+   "foreground": [],
+   "stairs": [
+    {
+     "id": "WalkwayA_stair0",
+     "dir": "UpRight",
+     "steps": 8,
+     "foot": [
+      576,
+      120
+     ],
+     "top": [
+      632,
+      64
+     ],
+     "cutBottom": false,
+     "cutTop": false
+    },
+    {
+     "id": "WalkwayA_stair1",
+     "dir": "UpLeft",
+     "steps": 8,
+     "foot": [
+      632,
+      56
+     ],
+     "top": [
+      576,
+      0
+     ],
+     "cutBottom": false,
+     "cutTop": true
+    }
+   ],
+   "markers": [],
+   "connections": [
+    {
+     "id": "stair_up_to_WalkwayB",
+     "kind": "Stair",
+     "target": "WalkwayB",
+     "targetStage": 8,
+     "trigger": [
+      576,
+      0,
+      64,
+      64
+     ],
+     "triggerSimonX": -1,
+     "stair": "WalkwayA_stair1",
+     "targetStair": "WalkwayB_stair0",
+     "targetOrigin": [
+      368,
+      -192
+     ],
+     "entry": [
+      0,
+      0
+     ],
+     "src": "thang LEN-TRAI 8 bac (632,56)->(576,0) cat mep tren (noi tiep thang len-phai WalkwayA_stair0 (576,120)->(632,64) qua chieu nghi khoi hang 4 cot 40-43); bac ke tren mep (568,-8) = chan thang WalkwayB (200,184) (sheet 88 + noi 112): WB(x,y) = WA(x-368, y+192). Video 1:44-1:48.73 Simon leo \u2197 roi \u2196 (camera cx 490->482, Simon giua man x ~610 Y 63 NES); den f3263-3274 (24 tick); WalkwayB 1:49.17 (f3275) cx -33 (= 79 sau noi) - Simon x ~95 sheet (= 207 sau noi) chan thang (MAP3_TIMELINE 3b)"
+    }
+   ]
+  },
+  {
+   "id": "WalkwayB",
+   "stage": 8,
+   "width": 880,
+   "height": 192,
+   "cols": 55,
+   "rows": 12,
+   "cameraMinX": 0,
+   "cameraMaxX": 624,
+   "bossLockCx": -1,
+   "hasSimonStart": false,
+   "simonStart": [
+    0,
+    0
+   ],
+   "simonStartSrc": "khong co diem bat dau stage (chi vao qua cau thang tu WalkwayA). Bien camera [0, 624] sau noi = cx video [-112, 512]: video camera bam Simon (cx = X - 128) toi cx -112 khi Simon o mut trai cau x 16 sheet (f3483-3485, 1:56.10) - CVM3 02 MAP3_TIMELINE 2a",
+   "collision": [
+    ".....................................................##",
+    ".....................................................##",
+    ".....................................................##",
+    "......................................................D",
+    "......................................................D",
+    "......................................................D",
+    "...................................................####",
+    ".................................................##..##",
+    ".......##=#####################..######..########....##",
+    "..........S..........................................##",
+    "...........S...##....................................##",
+    "............S........................................##"
+   ],
+   "counts": {
+    "Empty": 592,
+    "Solid": 61,
+    "Stair": 3,
+    "StairFloor": 1,
+    "Water": 0,
+    "Pit": 0,
+    "Door": 3,
+    "Breakable": 0,
+    "Hazard": 0
+   },
+   "foreground": [],
+   "stairs": [
+    {
+     "id": "WalkwayB_stair0",
+     "dir": "UpLeft",
+     "steps": 8,
+     "foot": [
+      200,
+      184
+     ],
+     "top": [
+      144,
+      128
+     ],
+     "cutBottom": true,
+     "cutTop": false
+    }
+   ],
+   "markers": [
+    {
+     "id": "pit_8_31",
+     "kind": "pit",
+     "rect": [
+      496,
+      128,
+      32,
+      64
+     ],
+     "src": "tu dong (build_collision3): khe san hang 8 cot 31-32 (2 ben dac), cot 31-32 trong toi day section => roi ra day = chet Pit (TileCollision.CheckDeadly)"
+    },
+    {
+     "id": "pit_8_39",
+     "kind": "pit",
+     "rect": [
+      624,
+      128,
+      32,
+      64
+     ],
+     "src": "tu dong (build_collision3): khe san hang 8 cot 39-40 (2 ben dac), cot 39-40 trong toi day section => roi ra day = chet Pit (TileCollision.CheckDeadly)"
+    }
+   ],
+   "connections": [
+    {
+     "id": "stair_down_to_WalkwayA",
+     "kind": "Stair",
+     "target": "WalkwayA",
+     "targetStage": 8,
+     "trigger": [
+      144,
+      128,
+      64,
+      64
+     ],
+     "triggerSimonX": -1,
+     "stair": "WalkwayB_stair0",
+     "targetStair": "WalkwayA_stair1",
+     "targetOrigin": [
+      -368,
+      192
+     ],
+     "entry": [
+      0,
+      0
+     ],
+     "src": "nghich dao stair_up_to_WalkwayB: thang len-trai 8 bac (200,184)->(144,128) cat mep duoi; bac ke duoi mep (208,192) = dinh thang WalkwayA (576,0). Video chi di len"
+    },
+    {
+     "id": "door_to_MummyMan",
+     "kind": "Door",
+     "target": "MummyMan",
+     "targetStage": 9,
+     "trigger": [
+      864,
+      48,
+      8,
+      48
+     ],
+     "triggerSimonX": 852,
+     "stair": "",
+     "targetStair": "",
+     "targetOrigin": [
+      880,
+      0
+     ],
+     "entry": [
+      48,
+      96
+     ],
+     "dir": 1,
+     "src": "cot cua do (216,40,0) x 752-759 sheet (= 864-871 sau noi) hang 3-5 tren khoi hang 6 (cot 53-54, y 96). Video 2:24.43-2:24.60 (f4333-4338): Simon di phai tren khoi y 96 x 735, 736, 739, 740 (sheet) roi f4338 camera bat dau cuon PHAI o X 740 sheet = 852 sau noi = cot cua - 12 (nhu Map 1). MummyMan ghep LIEN PHAI (toa do ghep WB>MM: MM x = ghep - 768 sheet); cuon 1 ~126 tick -> dung ~162 tick (Simon tu di tu ghep 740 toi 816 = MM x 48, f4413-4535) -> cuon 2 ~124 tick -> MummyMan cx 0 Simon x 48 ysec 96 quay phai; STAGE 09 f4546 (MAP3_TIMELINE 3c)"
+    }
+   ]
+  },
+  {
+   "id": "MummyMan",
+   "stage": 9,
+   "width": 1536,
+   "height": 192,
+   "cols": 96,
+   "rows": 12,
+   "cameraMinX": 0,
+   "cameraMaxX": 1280,
+   "bossLockCx": 1280,
+   "hasSimonStart": true,
+   "simonStart": [
+    48,
+    96
+   ],
+   "simonStartDir": 1,
+   "simonStartSrc": "video Map_3 2:31.17 (f4535) sau cua phai #2: Simon x ghep 816 = MM x 48, Y 128 NES (ysec 96 = mat cau hang 6), idle_0 quay PHAI (flip 1); HUD STAGE 09 f4546; cx 0 (MAP3_TIMELINE 3c) | camera: video Map_3 3:17.70 (f5931) camera bam Simon dat cx 1280 (Simon wx >= 1408) roi khong lui nua du Simon di lui toi wx 1383 => khoa o mep PHAI (cx 1280 = cameraMaxX, nhu Phantom Bat 512); Boss_Map_3 khoa f374 (12.47 s) - MAP3_TIMELINE 3d",
+   "collision": [
+    "............................................................................##..................",
+    "............................................................................##..................",
+    "##..........................................................................##..................",
+    "................................................................................................",
+    "................................................................................................",
+    "................................................................................................",
+    "################################################..##..##..######################................",
+    "............................................................................######..............",
+    "............................................................................##....#.............",
+    "............................................................................##.....X............",
+    "........................................................................##..##..................",
+    "............................................................................##..################"
+   ],
+   "counts": {
+    "Empty": 1036,
+    "Solid": 115,
+    "Stair": 0,
+    "StairFloor": 0,
+    "Water": 0,
+    "Pit": 0,
+    "Door": 0,
+    "Breakable": 1,
+    "Hazard": 0
+   },
+   "foreground": [],
+   "stairs": [],
+   "markers": [
+    {
+     "id": "pit_6_48",
+     "kind": "pit",
+     "rect": [
+      768,
+      96,
+      32,
+      96
+     ],
+     "src": "tu dong (build_collision3): khe san hang 6 cot 48-49 (2 ben dac), cot 48-49 trong toi day section => roi ra day = chet Pit (TileCollision.CheckDeadly)"
+    },
+    {
+     "id": "pit_6_52",
+     "kind": "pit",
+     "rect": [
+      832,
+      96,
+      32,
+      96
+     ],
+     "src": "tu dong (build_collision3): khe san hang 6 cot 52-53 (2 ben dac), cot 52-53 trong toi day section => roi ra day = chet Pit (TileCollision.CheckDeadly)"
+    },
+    {
+     "id": "pit_6_56",
+     "kind": "pit",
+     "rect": [
+      896,
+      96,
+      32,
+      96
+     ],
+     "src": "tu dong (build_collision3): khe san hang 6 cot 56-57 (2 ben dac), cot 56-57 trong toi day section => roi ra day = chet Pit (TileCollision.CheckDeadly)"
+    }
+   ],
+   "connections": []
+  }
+ ],
+ "metatiles": [
+  {
+   "id": 0,
+   "auto": "Solid",
+   "rule": "L3",
+   "count": 456,
+   "firstSection": "WalkwayEntranceA",
+   "firstCol": 0,
+   "firstRow": 0
+  },
+  {
+   "id": 1,
+   "auto": "Stair",
+   "rule": "L2",
+   "count": 16,
+   "firstSection": "WalkwayEntranceA",
+   "firstCol": 4,
+   "firstRow": 0
+  },
+  {
+   "id": 2,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 8,
+   "firstSection": "WalkwayEntranceA",
+   "firstCol": 5,
+   "firstRow": 0
+  },
+  {
+   "id": 3,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 487,
+   "firstSection": "WalkwayEntranceA",
+   "firstCol": 6,
+   "firstRow": 0
+  },
+  {
+   "id": 4,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 53,
+   "firstSection": "WalkwayEntranceA",
+   "firstCol": 8,
+   "firstRow": 0
+  },
+  {
+   "id": 5,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 53,
+   "firstSection": "WalkwayEntranceA",
+   "firstCol": 9,
+   "firstRow": 0
+  },
+  {
+   "id": 6,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 13,
+   "firstSection": "WalkwayEntranceA",
+   "firstCol": 12,
+   "firstRow": 0
+  },
+  {
+   "id": 7,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 13,
+   "firstSection": "WalkwayEntranceA",
+   "firstCol": 13,
+   "firstRow": 0
+  },
+  {
+   "id": 8,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 4,
+   "firstSection": "WalkwayEntranceA",
+   "firstCol": 14,
+   "firstRow": 0
+  },
+  {
+   "id": 9,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 4,
+   "firstSection": "WalkwayEntranceA",
+   "firstCol": 15,
+   "firstRow": 0
+  },
+  {
+   "id": 10,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 23,
+   "firstSection": "WalkwayEntranceA",
+   "firstCol": 44,
+   "firstRow": 0
+  },
+  {
+   "id": 11,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 23,
+   "firstSection": "WalkwayEntranceA",
+   "firstCol": 45,
+   "firstRow": 0
+  },
+  {
+   "id": 12,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 49,
+   "firstSection": "WalkwayEntranceA",
+   "firstCol": 46,
+   "firstRow": 0
+  },
+  {
+   "id": 13,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 49,
+   "firstSection": "WalkwayEntranceA",
+   "firstCol": 47,
+   "firstRow": 0
+  },
+  {
+   "id": 14,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 86,
+   "firstSection": "WalkwayEntranceA",
+   "firstCol": 2,
+   "firstRow": 1
+  },
+  {
+   "id": 15,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 228,
+   "firstSection": "WalkwayEntranceA",
+   "firstCol": 3,
+   "firstRow": 1
+  },
+  {
+   "id": 16,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 8,
+   "firstSection": "WalkwayEntranceA",
+   "firstCol": 4,
+   "firstRow": 1
+  },
+  {
+   "id": 17,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 53,
+   "firstSection": "WalkwayEntranceA",
+   "firstCol": 8,
+   "firstRow": 1
+  },
+  {
+   "id": 18,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 53,
+   "firstSection": "WalkwayEntranceA",
+   "firstCol": 9,
+   "firstRow": 1
+  },
+  {
+   "id": 19,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 4,
+   "firstSection": "WalkwayEntranceA",
+   "firstCol": 14,
+   "firstRow": 1
+  },
+  {
+   "id": 20,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 4,
+   "firstSection": "WalkwayEntranceA",
+   "firstCol": 15,
+   "firstRow": 1
+  },
+  {
+   "id": 21,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 23,
+   "firstSection": "WalkwayEntranceA",
+   "firstCol": 44,
+   "firstRow": 1
+  },
+  {
+   "id": 22,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 1060,
+   "firstSection": "WalkwayEntranceA",
+   "firstCol": 45,
+   "firstRow": 1
+  },
+  {
+   "id": 23,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 70,
+   "firstSection": "WalkwayEntranceA",
+   "firstCol": 3,
+   "firstRow": 2
+  },
+  {
+   "id": 24,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 4,
+   "firstSection": "WalkwayEntranceA",
+   "firstCol": 14,
+   "firstRow": 2
+  },
+  {
+   "id": 25,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 4,
+   "firstSection": "WalkwayEntranceA",
+   "firstCol": 15,
+   "firstRow": 2
+  },
+  {
+   "id": 26,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 34,
+   "firstSection": "WalkwayEntranceA",
+   "firstCol": 20,
+   "firstRow": 2
+  },
+  {
+   "id": 27,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 27,
+   "firstSection": "WalkwayEntranceA",
+   "firstCol": 21,
+   "firstRow": 2
+  },
+  {
+   "id": 28,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 19,
+   "firstSection": "WalkwayEntranceA",
+   "firstCol": 44,
+   "firstRow": 2
+  },
+  {
+   "id": 29,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 19,
+   "firstSection": "WalkwayEntranceA",
+   "firstCol": 45,
+   "firstRow": 2
+  },
+  {
+   "id": 30,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 70,
+   "firstSection": "WalkwayEntranceA",
+   "firstCol": 2,
+   "firstRow": 3
+  },
+  {
+   "id": 31,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 4,
+   "firstSection": "WalkwayEntranceA",
+   "firstCol": 14,
+   "firstRow": 3
+  },
+  {
+   "id": 32,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 4,
+   "firstSection": "WalkwayEntranceA",
+   "firstCol": 15,
+   "firstRow": 3
+  },
+  {
+   "id": 33,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 27,
+   "firstSection": "WalkwayEntranceA",
+   "firstCol": 21,
+   "firstRow": 3
+  },
+  {
+   "id": 34,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 19,
+   "firstSection": "WalkwayEntranceA",
+   "firstCol": 44,
+   "firstRow": 3
+  },
+  {
+   "id": 35,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 19,
+   "firstSection": "WalkwayEntranceA",
+   "firstCol": 45,
+   "firstRow": 3
+  },
+  {
+   "id": 36,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 7,
+   "firstSection": "WalkwayEntranceA",
+   "firstCol": 26,
+   "firstRow": 4
+  },
+  {
+   "id": 37,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 15,
+   "firstSection": "WalkwayEntranceA",
+   "firstCol": 28,
+   "firstRow": 4
+  },
+  {
+   "id": 38,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 24,
+   "firstSection": "WalkwayEntranceA",
+   "firstCol": 29,
+   "firstRow": 4
+  },
+  {
+   "id": 39,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 9,
+   "firstSection": "WalkwayEntranceA",
+   "firstCol": 18,
+   "firstRow": 5
+  },
+  {
+   "id": 40,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 9,
+   "firstSection": "WalkwayEntranceA",
+   "firstCol": 19,
+   "firstRow": 5
+  },
+  {
+   "id": 41,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 9,
+   "firstSection": "WalkwayEntranceA",
+   "firstCol": 20,
+   "firstRow": 5
+  },
+  {
+   "id": 42,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 7,
+   "firstSection": "WalkwayEntranceA",
+   "firstCol": 26,
+   "firstRow": 5
+  },
+  {
+   "id": 43,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 130,
+   "firstSection": "WalkwayEntranceA",
+   "firstCol": 28,
+   "firstRow": 5
+  },
+  {
+   "id": 44,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 11,
+   "firstSection": "WalkwayEntranceA",
+   "firstCol": 36,
+   "firstRow": 5
+  },
+  {
+   "id": 45,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 18,
+   "firstSection": "WalkwayEntranceA",
+   "firstCol": 26,
+   "firstRow": 6
+  },
+  {
+   "id": 46,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 18,
+   "firstSection": "WalkwayEntranceA",
+   "firstCol": 26,
+   "firstRow": 7
+  },
+  {
+   "id": 47,
+   "auto": "Door",
+   "rule": "L1",
+   "count": 3,
+   "firstSection": "WalkwayEntranceA",
+   "firstCol": 47,
+   "firstRow": 7
+  },
+  {
+   "id": 48,
+   "auto": "Door",
+   "rule": "L1",
+   "count": 3,
+   "firstSection": "WalkwayEntranceA",
+   "firstCol": 47,
+   "firstRow": 8
+  },
+  {
+   "id": 49,
+   "auto": "Door",
+   "rule": "L1",
+   "count": 3,
+   "firstSection": "WalkwayEntranceA",
+   "firstCol": 47,
+   "firstRow": 9
+  },
+  {
+   "id": 50,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 9,
+   "firstSection": "WalkwayEntranceB",
+   "firstCol": 17,
+   "firstRow": 2
+  },
+  {
+   "id": 51,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 6,
+   "firstSection": "WalkwayEntranceB",
+   "firstCol": 28,
+   "firstRow": 4
+  },
+  {
+   "id": 52,
+   "auto": "Stair",
+   "rule": "L2",
+   "count": 6,
+   "firstSection": "WalkwayEntranceB",
+   "firstCol": 29,
+   "firstRow": 4
+  },
+  {
+   "id": 53,
+   "auto": "Stair",
+   "rule": "L2",
+   "count": 6,
+   "firstSection": "WalkwayEntranceB",
+   "firstCol": 28,
+   "firstRow": 5
+  },
+  {
+   "id": 54,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 18,
+   "firstSection": "WalkwayEntranceB",
+   "firstCol": 16,
+   "firstRow": 7
+  },
+  {
+   "id": 55,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 18,
+   "firstSection": "WalkwayEntranceB",
+   "firstCol": 17,
+   "firstRow": 7
+  },
+  {
+   "id": 56,
+   "auto": "Stair",
+   "rule": "L2",
+   "count": 2,
+   "firstSection": "WalkwayEntranceB",
+   "firstCol": 4,
+   "firstRow": 10
+  },
+  {
+   "id": 57,
+   "auto": "Stair",
+   "rule": "L2",
+   "count": 2,
+   "firstSection": "WalkwayEntranceB",
+   "firstCol": 5,
+   "firstRow": 11
+  },
+  {
+   "id": 58,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 12,
+   "firstSection": "WalkwayA",
+   "firstCol": 34,
+   "firstRow": 0
+  },
+  {
+   "id": 59,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 14,
+   "firstSection": "WalkwayA",
+   "firstCol": 18,
+   "firstRow": 7
+  },
+  {
+   "id": 60,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 7,
+   "firstSection": "WalkwayB",
+   "firstCol": 8,
+   "firstRow": 11
+  },
+  {
+   "id": 61,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 7,
+   "firstSection": "WalkwayB",
+   "firstCol": 25,
+   "firstRow": 11
+  },
+  {
+   "id": 62,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 7,
+   "firstSection": "WalkwayB",
+   "firstCol": 26,
+   "firstRow": 11
+  },
+  {
+   "id": 63,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 2,
+   "firstSection": "MummyMan",
+   "firstCol": 74,
+   "firstRow": 0
+  },
+  {
+   "id": 64,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 2,
+   "firstSection": "MummyMan",
+   "firstCol": 75,
+   "firstRow": 0
+  },
+  {
+   "id": 65,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 16,
+   "firstSection": "MummyMan",
+   "firstCol": 86,
+   "firstRow": 0
+  },
+  {
+   "id": 66,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 16,
+   "firstSection": "MummyMan",
+   "firstCol": 87,
+   "firstRow": 0
+  },
+  {
+   "id": 67,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 2,
+   "firstSection": "MummyMan",
+   "firstCol": 74,
+   "firstRow": 1
+  },
+  {
+   "id": 68,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 2,
+   "firstSection": "MummyMan",
+   "firstCol": 75,
+   "firstRow": 1
+  },
+  {
+   "id": 69,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 8,
+   "firstSection": "MummyMan",
+   "firstCol": 86,
+   "firstRow": 1
+  },
+  {
+   "id": 70,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 8,
+   "firstSection": "MummyMan",
+   "firstCol": 87,
+   "firstRow": 1
+  },
+  {
+   "id": 71,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 1,
+   "firstSection": "MummyMan",
+   "firstCol": 60,
+   "firstRow": 2
+  },
+  {
+   "id": 72,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 1,
+   "firstSection": "MummyMan",
+   "firstCol": 61,
+   "firstRow": 2
+  },
+  {
+   "id": 73,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 3,
+   "firstSection": "MummyMan",
+   "firstCol": 86,
+   "firstRow": 2
+  },
+  {
+   "id": 74,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 1,
+   "firstSection": "MummyMan",
+   "firstCol": 60,
+   "firstRow": 3
+  },
+  {
+   "id": 75,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 1,
+   "firstSection": "MummyMan",
+   "firstCol": 61,
+   "firstRow": 3
+  },
+  {
+   "id": 76,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 1,
+   "firstSection": "MummyMan",
+   "firstCol": 60,
+   "firstRow": 4
+  },
+  {
+   "id": 77,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 1,
+   "firstSection": "MummyMan",
+   "firstCol": 61,
+   "firstRow": 4
+  },
+  {
+   "id": 78,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 1,
+   "firstSection": "MummyMan",
+   "firstCol": 62,
+   "firstRow": 4
+  },
+  {
+   "id": 79,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 1,
+   "firstSection": "MummyMan",
+   "firstCol": 63,
+   "firstRow": 4
+  },
+  {
+   "id": 80,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 1,
+   "firstSection": "MummyMan",
+   "firstCol": 61,
+   "firstRow": 5
+  },
+  {
+   "id": 81,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 1,
+   "firstSection": "MummyMan",
+   "firstCol": 62,
+   "firstRow": 5
+  },
+  {
+   "id": 82,
+   "auto": "Empty",
+   "rule": "-",
+   "count": 1,
+   "firstSection": "MummyMan",
+   "firstCol": 63,
+   "firstRow": 5
+  }
+ ]
+}

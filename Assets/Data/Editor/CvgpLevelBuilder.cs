@@ -22,6 +22,10 @@ using UnityEngine.Tilemaps;
 /// Assets/Data/Config/Level/Block2/Level2Tiles.json + Level2Map.json (Tools/cvm2/build_tileset2.py + build_collision2.py) ⇒ tileset
 /// level2_tiles.png (sprite l2t_NNN) · Tile Assets/Data/Art/Level/Block2/Tiles/l2t_NNN.asset · Assets/Data/Config/Level/Block2/&lt;Section&gt;.asset ·
 /// Assets/Data/Prefabs/Level/Block2/&lt;Section&gt;.prefab — menu CVM2/Build Map2 Tilemaps (Cvm2LevelMenu). Block 1/Arena: đường dựng y hệt cũ.
+/// CVM3 05: Block 3 (Map 3, Stage 7–9) cùng đường dựng từ Assets/Data/Config/Level/Block3/Level3Tiles.json + Level3Map.json
+/// (Tools/cvm3/build_tileset3.py + build_collision3.py; WalkwayB đã nới trái 112 px trong dữ liệu) ⇒ level3_tiles.png (sprite l3t_NNN) ·
+/// Tile Assets/Data/Art/Level/Block3/Tiles/l3t_NNN.asset · Config/Level/Block3/&lt;Section&gt;.asset · Prefabs/Level/Block3/&lt;Section&gt;.prefab —
+/// menu CVM3/Build Map3 Tilemaps (Cvm3LevelMenu). Block 1/2/Arena không đổi.
 /// </summary>
 public static class CvgpLevelBuilder
 {
@@ -56,6 +60,15 @@ public static class CvgpLevelBuilder
         label = "Map2", tilesJson = MAP2_CFG_DIR + "/Level2Tiles.json", mapJson = MAP2_CFG_DIR + "/Level2Map.json",
         cfgDir = MAP2_CFG_DIR, prefabDir = "Assets/Data/Prefabs/Level/Block2",
         tileDir = "Assets/Data/Art/Level/Block2/Tiles", tilePrefix = "l2t_"
+    };
+
+    /// <summary>CVM3 05: Map 3 = Block 3 (Stage 7–9) — tileset + Tile riêng (l3t_), dữ liệu + prefab ở thư mục Block3 (H12).</summary>
+    const string MAP3_CFG_DIR = "Assets/Data/Config/Level/Block3";
+    static readonly Spec MAP3 = new Spec
+    {
+        label = "Map3", tilesJson = MAP3_CFG_DIR + "/Level3Tiles.json", mapJson = MAP3_CFG_DIR + "/Level3Map.json",
+        cfgDir = MAP3_CFG_DIR, prefabDir = "Assets/Data/Prefabs/Level/Block3",
+        tileDir = "Assets/Data/Art/Level/Block3/Tiles", tilePrefix = "l3t_"
     };
 
     /// <summary>CVGP 19: 3 phòng boss thử (Tools/cvgp/build_boss_rooms.py — ghép ô Map 1) ⇒ Arena/Boss*.asset + Prefabs/Level/Test/Boss*.prefab.</summary>
@@ -122,6 +135,12 @@ public static class CvgpLevelBuilder
     public static string BuildMap2()
     {
         return Build(MAP2);
+    }
+
+    /// <summary>CVM3 05: địa hình Map 3 (Block 3) — menu CVM3/Build Map3 Tilemaps (Cvm3LevelMenu). Độc lập Block 1/2.</summary>
+    public static string BuildMap3()
+    {
+        return Build(MAP3);
     }
 
     static string Build(Spec spec)
