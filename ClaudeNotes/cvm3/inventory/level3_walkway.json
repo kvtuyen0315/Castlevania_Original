@@ -1,0 +1,436 @@
+{
+ "sheet": "NES - Castlevania - Stages - Level 3_ Crumbling Tower.png",
+ "size": [
+  3596,
+  618
+ ],
+ "bytes": 96910,
+ "sha256": "c8bfc7ef3da18110c4f226276e7ae82e6611d2c4f3246517f5578bd476c44eee",
+ "background_key": [
+  0,
+  128,
+  0
+ ],
+ "credit": "Sprites ripped by Mister Mike. Give credit if used. (logo [3371, 585, 224, 32])",
+ "labels": "nhan chu trang tren moi vung: \"Walkway Entrance A/B\", \"Walkway A/B\", \"Mummy Man\" (ten vung = ten section de xuat)",
+ "row_to_nes_y": "dong r cua vung <-> NES y = 32 + r (kiem bang ZNCC video Map_3: 5 section 0.95-0.98 voi cal planner)",
+ "regions": [
+  {
+   "name": "WalkwayEntranceA",
+   "stage": 7,
+   "rect": [
+    1,
+    425,
+    768,
+    192
+   ],
+   "screens": 3,
+   "cx_max": 512,
+   "unique8": 68,
+   "unique16": 50,
+   "colors": 10,
+   "key_green_px": 0,
+   "top_colors": [
+    [
+     [
+      92,
+      148,
+      252
+     ],
+     40531
+    ],
+    [
+     [
+      36,
+      24,
+      140
+     ],
+     40089
+    ],
+    [
+     [
+      0,
+      0,
+      0
+     ],
+     27433
+    ],
+    [
+     [
+      252,
+      116,
+      96
+     ],
+     14665
+    ],
+    [
+     [
+      0,
+      148,
+      0
+     ],
+     12559
+    ],
+    [
+     [
+      200,
+      76,
+      12
+     ],
+     8958
+    ],
+    [
+     [
+      0,
+      68,
+      0
+     ],
+     2740
+    ],
+    [
+     [
+      252,
+      152,
+      56
+     ],
+     336
+    ]
+   ],
+   "note": "Stage 07 tang duoi (video 0:06.8 vao cx 512 tu cua phai, di TRAI toi cx 0) - thang len-trai o goc tren-trai sang WalkwayEntranceB"
+  },
+  {
+   "name": "WalkwayEntranceB",
+   "stage": 7,
+   "rect": [
+    1,
+    218,
+    768,
+    192
+   ],
+   "screens": 3,
+   "cx_max": 512,
+   "unique8": 47,
+   "unique16": 43,
+   "colors": 10,
+   "key_green_px": 0,
+   "top_colors": [
+    [
+     [
+      36,
+      24,
+      140
+     ],
+     67184
+    ],
+    [
+     [
+      92,
+      148,
+      252
+     ],
+     34936
+    ],
+    [
+     [
+      0,
+      0,
+      0
+     ],
+     20205
+    ],
+    [
+     [
+      252,
+      116,
+      96
+     ],
+     10769
+    ],
+    [
+     [
+      0,
+      148,
+      0
+     ],
+     6456
+    ],
+    [
+     [
+      200,
+      76,
+      12
+     ],
+     5610
+    ],
+    [
+     [
+      0,
+      68,
+      0
+     ],
+     1360
+    ],
+    [
+     [
+      252,
+      152,
+      56
+     ],
+     791
+    ]
+   ],
+   "note": "Stage 07 tang tren (video 0:40.0 cx 0, di PHAI toi cx 512) - CUA PHAI cuoi stage (1:21.4)"
+  },
+  {
+   "name": "WalkwayA",
+   "stage": 8,
+   "rect": [
+    774,
+    218,
+    768,
+    192
+   ],
+   "screens": 3,
+   "cx_max": 512,
+   "unique8": 60,
+   "unique16": 44,
+   "colors": 8,
+   "key_green_px": 0,
+   "top_colors": [
+    [
+     [
+      36,
+      24,
+      140
+     ],
+     71455
+    ],
+    [
+     [
+      92,
+      148,
+      252
+     ],
+     30842
+    ],
+    [
+     [
+      0,
+      0,
+      0
+     ],
+     17584
+    ],
+    [
+     [
+      0,
+      148,
+      0
+     ],
+     11453
+    ],
+    [
+     [
+      252,
+      116,
+      96
+     ],
+     9442
+    ],
+    [
+     [
+      200,
+      76,
+      12
+     ],
+     5016
+    ],
+    [
+     [
+      0,
+      68,
+      0
+     ],
+     1216
+    ],
+    [
+     [
+      252,
+      152,
+      56
+     ],
+     448
+    ]
+   ],
+   "note": "Stage 08 tang duoi (video 1:28.0 cx 0, di PHAI) - cau co lan can + tuong; thang len-trai o phan phai sang WalkwayB (1:48.8)"
+  },
+  {
+   "name": "WalkwayB",
+   "stage": 8,
+   "rect": [
+    1286,
+    11,
+    768,
+    192
+   ],
+   "screens": 3,
+   "cx_max": 512,
+   "unique8": 60,
+   "unique16": 43,
+   "colors": 10,
+   "key_green_px": 0,
+   "top_colors": [
+    [
+     [
+      36,
+      24,
+      140
+     ],
+     68549
+    ],
+    [
+     [
+      92,
+      148,
+      252
+     ],
+     31658
+    ],
+    [
+     [
+      0,
+      0,
+      0
+     ],
+     24100
+    ],
+    [
+     [
+      0,
+      148,
+      0
+     ],
+     10076
+    ],
+    [
+     [
+      252,
+      116,
+      96
+     ],
+     7695
+    ],
+    [
+     [
+      200,
+      76,
+      12
+     ],
+     4026
+    ],
+    [
+     [
+      0,
+      68,
+      0
+     ],
+     976
+    ],
+    [
+     [
+      252,
+      152,
+      56
+     ],
+     231
+    ]
+   ],
+   "note": "Stage 08 tang tren (video 1:49.2) - camera lui toi cx -109 (troi ben trai NGOAI vung sheet); CUA PHAI cuoi stage (2:24.6)"
+  },
+  {
+   "name": "MummyMan",
+   "stage": 9,
+   "rect": [
+    2059,
+    11,
+    1536,
+    192
+   ],
+   "screens": 6,
+   "cx_max": 1280,
+   "unique8": 100,
+   "unique16": 59,
+   "colors": 8,
+   "key_green_px": 0,
+   "top_colors": [
+    [
+     [
+      36,
+      24,
+      140
+     ],
+     148326
+    ],
+    [
+     [
+      0,
+      0,
+      0
+     ],
+     58453
+    ],
+    [
+     [
+      92,
+      148,
+      252
+     ],
+     27184
+    ],
+    [
+     [
+      200,
+      76,
+      12
+     ],
+     19217
+    ],
+    [
+     [
+      0,
+      68,
+      0
+     ],
+     15104
+    ],
+    [
+     [
+      252,
+      116,
+      96
+     ],
+     14565
+    ],
+    [
+     [
+      0,
+      148,
+      0
+     ],
+     11918
+    ],
+    [
+     [
+      252,
+      152,
+      56
+     ],
+     145
+    ]
+   ],
+   "note": "Stage 09 (video 2:31.5 cx 0, di PHAI) - cau dai co doan hong (ho), phong boss Mummy Men o 256 px cuoi (khoa cx 1280, video 3:18)"
+  }
+ ],
+ "total_unique8": 125,
+ "total_unique16": 83
+}
