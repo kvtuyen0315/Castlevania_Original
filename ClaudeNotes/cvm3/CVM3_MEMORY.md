@@ -23,7 +23,7 @@ Video kèm: `C:\Users\kvtuy\Videos\Screen Recordings\Castlevania_Original\Map_3.
 | # | taskId | Trạng thái | Commit | Ngày | Ghi chú |
 |---|---|---|---|---|---|
 | 00 | cvm3-00-ha-tang-so-ghi-nho-va-baseline | **XONG** | (commit "CVM3 00") | 21/10/2026 | sổ này + commit đồ planner + kiểm mẫu số (§7) + baseline 3 phiên Play: **mọi hash = Bảng hash chuẩn CVM2 12** (Arena `full` 14/14, core, Main 14 bộ), H8 5/5 ×3 fps |
-| 01 | cvm3-01-nhap-sheet-level3-va-kiem-ke | chưa chạy | | | |
+| 01 | cvm3-01-nhap-sheet-level3-va-kiem-ke | **XONG** | (commit "CVM3 01") | 21/10/2026 | sheet Level 3 chép nguyên byte (sha256 khớp) + SOURCES; kiểm kê chạy lại y hệt planner (JSON + ảnh trùng byte, 125 tile 8×8 / 83 metatile); đối chiếu Tilesets (§3b); sprite Block 3 đủ 32 ô, verify 0 lỗi; không đổi runtime ⇒ hash chuẩn giữ nguyên |
 | 02 | cvm3-02-hieu-chuan-video-timeline-va-su-kien | chưa chạy | | | |
 | 03 | cvm3-03-dong-ho-stopwatch-theo-video | chưa chạy | | | |
 | 04 | cvm3-04-simon-knockback-nuoc-thanh-mep-roi | chưa chạy | | | |
@@ -67,6 +67,26 @@ Kiểm lại routine 00 (21/10): `calib_map3.py map3 12:WalkwayEntranceA:512 92:
   - Probe: `Script/Debug/Map2RouteProbe.cs` (+ lộ trình `Assets/Data/Tests/Replays/map2_route.txt`), `Map2AcceptProbe.cs`, `Map2ObjectsProbe.cs`, `Map2EnemyProbe.cs`, `Map2BossProbe.cs`/`Map2BossRoom.cs`, `Map2MechProbe.cs`, `Cvm2TerrainProbe.cs`, `Cvm2SweepProbe.cs`.
   - Dữ liệu: `Assets/Data/Config/Level/Block2/Map2Objects.json`; công cụ python `Tools/cvm2/*.py`.
   - Hạ tầng hồi quy: `Assets/Data/Script/Debug/RegressionRunner.cs` (`EXPECTED` + `PRE4`).
+
+### 3b. Routine 01 (21/10/2026) — nhập sheet Level 3, đối chiếu Tilesets, sprite Block 3
+| Thứ | Đường dẫn | Ghi chú |
+|---|---|---|
+| Sheet Level 3 | `Art_Source/spriters-resource/level3_walkway.png` | nguyên byte, 3596×618, 96 910 B, sha256 `c8bfc7ef…476c44eee` (khớp); `Art_Source/SOURCES.md` +1 dòng |
+| Kiểm kê | `Tools/cvm3/inv_level3_tiles.py` (chạy từ gốc repo, đọc sheet trong repo) | ghi `inventory/level3_walkway.json` + `_annot.png` — **trùng byte** bản planner (kể cả trường `sheet`); 5 vùng, 125 tile 8×8 / 83 metatile 16×16, 0 px khoá xanh |
+| Đối chiếu Tilesets | `Tools/cvm3/cmp_tilesets3.py` → `_cache/01/cmp_tilesets3.json`; ảnh `ref/level3/tilesets_xcheck.png` (đã xem) | cột "LEVEL3: CRUMBLING TOWER": lưới ô 32×32 bước 33, gốc (808,92), 5×8 |
+
+**Đối chiếu Tilesets** (so theo HÌNH — bảng màu Tilesets khác bản đồ: 10 màu mỗi bên, chỉ đen chung; vd trời bản đồ (36,24,140) ↔ Tilesets (0,16,132)):
+| So | Bản đồ (hình) | Tilesets | Chung | Chỉ bản đồ | Chỉ Tilesets |
+|---|---|---|---|---|---|
+| 16×16 | 80 | 77 | **74** | 6: WEA(15,1), WEA(14,3), WEA(15,3), WEB(4,10), WEB(5,11), WA(18,7) | 3 |
+| 8×8 | 112 | 109 | 105 | 7 (cùng vị trí trên) | 4 |
+- (a) **Trời xanh đậm là tile đặc có thật cả hai bên**: bản đồ có 32/161/183/177/430 ô 16×16 đặc (36,24,140) ở WEA/WEB/WA/WB/MM; Tilesets có ô đặc xanh tương ứng ⇒ nới `WalkwayB` sang trái (camera tới cx −109) dùng được tile trời + tile mép cầu CÓ SẴN (routine 05 ghi ô nguồn). 74/80 metatile bản đồ có trong Tilesets ⇒ đủ để routine 05 kiểm dựng Tilemap.
+- (b) 6 metatile chỉ-bản-đồ là ô có chi tiết vẽ đè sẵn (cột nến/đài cam-vàng ở WEA(15,1)/(14,3)/(15,3) vùng 3 ô liên tiếp; bục cột trụ xanh ở WEB(4,10)/(5,11); cột đá rêu WA(18,7)) — không thấy dấu sửa tay; routine 05 kiểm lại trên ảnh khi dựng.
+
+**Sprite Block 3** — đủ 32 ô, `verify_sprites.py --meta` **0 lỗi** (246 PNG, 371/371 ô); ảnh gộp `_cache/shots/01/sprites_b3.png` đã xem:
+- `Enemy/Fleaman/fleaman_0..1` (16×16, co/duỗi) · `Raven/raven_0..3` (16×16: 2 đậu/cánh gập + 2 vỗ cánh) · `WhiteSkeleton/skeleton_0..1` (16×32) + `bone_0..2` (đứng 8×16 + 2 xoay 16×16) · `Boss/Mummy/mummy_purple_0..2`, `mummy_red_0..2` (16×48), `bandage_0..1` · `Item/moneybag_{red,purple,white}`, `axe`, `dagger`, `holywater`, `roast`, `double`, `triple`, `crystal_0..1` · `Object/door_0` (16×48), `door_1` (24×48).
+- **Mummy đỏ**: video Map_3 3:25–3:44 (contact sheet `_cache/shots/01/mm/mm_map3.png`, đã xem) — thân Mummy ĐỔI MÀU tím → đỏ vài khung rồi về tím khi bị trúng (nước thánh/roi); chỉ đổi bảng màu, hình giữ nguyên. `mummy_red_*` có cùng số điểm ảnh từng màu với `mummy_purple_*` (đúng bảng màu đỏ (216,40,0)/(252,116,180) so tím (204,136,252)/(252,196,252)) ⇒ **dùng `mummy_red_*` làm khung nháy trúng đòn** (routine 09 đo nhịp nháy; không cần sprite mới). Mummy tím còn đứng thân trần khi kẹp hai bên.
+- Khung có đủ cho 07/08/09? Chỉ đối chiếu số khung (video ≈ 18 khung thật/s): Raven 4 (đậu/bay đủ), Fleaman 2 (co/duỗi — nhảy trên không dùng khung duỗi, routine 07 xác nhận), Skeleton 2 (đi/ném dùng chung khung ném — routine 07 kiểm), Mummy 3 khung đi/giơ tay + 2 băng gạc (routine 09 kiểm khung ném). **Không thiếu sprite**, không cần tải thêm (§5 không thêm câu hỏi).
 
 ## §4 Quyết định kỹ thuật + Bảng hash chuẩn
 
@@ -147,3 +167,11 @@ Chỉ Editor, đang Play, `runInBackground = true`. Gọi bằng `execute_code` 
 - **Dọn**: thoát Play, `ArenaUseDummy` = false, EnterPlayModeOptions tắt, `EditorSettings.asset` = HEAD (CRLF; `git status` không hiện), scene mở = Main không dirty.
 - **Câu hỏi §5 mới**: không.
 - **Nghiệm thu routine 00**: [x] đồ planner commit (`_cache/` không vào git) · [x] sổ đủ §1–§7, bảng hash 21 dòng có số đo hôm nay · [x] mọi hash = bảng CVM2 12; H8 5/5 ×3; console không lỗi mới (spam 0 lỗi).
+
+### Routine 01 — 21/10/2026 — Nhập sheet Level 3, kiểm kê, đối chiếu Tilesets, kiểm sprite Block 3
+- **Bước 0**: `main`; nhiễu nền giữ nguyên; cổng 00 = XONG. Không đụng Unity (không vào Play, không ghi `.cs`/asset Unity; chỉ python + file) ⇒ MCP không cần; mọi hash giữ nguyên Bảng hash chuẩn (không chạy lại bộ).
+- Sheet chép nguyên byte, sha256 khớp, `SOURCES.md` +1 dòng. Kiểm kê chạy lại ⇒ JSON + ảnh chú thích trùng byte planner (`cmp`).
+- Đối chiếu Tilesets: `cmp_tilesets3.py` (mới) — §3b; ảnh `ref/level3/tilesets_xcheck.png` đã xem.
+- Sprite: 32 ô có đủ, verify 0 lỗi; Mummy đỏ = nháy bảng màu dùng `mummy_red_*` (§3b).
+- **Câu hỏi §5 mới**: không.
+- **Nghiệm thu routine 01**: [x] sheet nguyên byte + SOURCES · [x] kiểm kê y hệt + bảng Tilesets + ảnh · [x] bảng sprite §3b, verify 0 lỗi · [x] không đổi runtime ⇒ hash chuẩn y nguyên (không chạy lại bộ; chưa đo lại — chỉ suy ra do không đụng Assets).
